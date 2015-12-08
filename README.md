@@ -1,10 +1,26 @@
-### dev
+### Start
+
+```
+$ npm install
+
+```
+### Dev
+
+```
 $ npm run dev
+```
 
-### build for production
+### Build for production
+
+```
 $ npm run build
+```
 
-### dependencies
+### Dependencies
 
-#### vue-loader
-> https://github.com/vuejs/vue-loader
+* [vue-loader]( https://github.com/vuejs/vue-loader)
+
+### To do list
+
+* add vue-router
+* add vuex
