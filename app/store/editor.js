@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import '../utils/ajax'
 
 Vue.use(Vuex)
 
@@ -9,7 +10,9 @@ const state = {
 
 const actions = {
   new_post: ({dispath,state}) => {
-    console.log(state.content)
+    $.get({url:'/'}).then((resolve) => {
+      console.log(resolve);
+    })
   },
   edit_post: (store) => {
     if(store.state.content.length === 0){

@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import configRouter from './router.config'
+import configRouter from './config/router.config'
 
 // install router
 Vue.use(VueRouter)
 
 // create router
 const router = new VueRouter({
-  // history: true, 
+  // history: true,
   saveScrollPosition: true
 })
 
