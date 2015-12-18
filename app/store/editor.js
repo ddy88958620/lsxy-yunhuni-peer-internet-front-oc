@@ -10,8 +10,8 @@ const state = {
 
 const actions = {
   new_post: ({dispath,state}) => {
-    $.get({url:'/'}).then((resolve) => {
-      console.log(resolve);
+    $.post('admin/post',{content : state.content}).then((resolve) => {
+      console.log(resolve)
     })
   },
   edit_post: (store) => {
@@ -23,6 +23,7 @@ const actions = {
     store.dispatch('UPDATE_CONTENT',e.target.value)
   }
 }
+
 const mutations = {
   EDIT_POST(state,edit){
     state.content = edit
@@ -31,8 +32,6 @@ const mutations = {
     state.content = value
   }
 }
-
-
 
 export default new Vuex.Store({
   state,
