@@ -16,7 +16,7 @@ export default {
       return store.state.content
     }
   },
-  methods: store.actions
+  methods: store.actions // extend the store methods
 }
 
 </script>
