@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --quiet",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "webpack --progress --hide-modules --progress "
   },
   "keywords": [
     "webpack"

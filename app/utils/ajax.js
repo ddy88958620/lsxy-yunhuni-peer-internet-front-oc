@@ -1,7 +1,7 @@
 import { host} from '../config/main'
 
 $.extend({
-  get: function({url,data}){
+  get: function(url,data){
     return new Promise((resolve, reject) => {
       $.ajax({
         type: 'get',
