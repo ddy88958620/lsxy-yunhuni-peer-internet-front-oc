@@ -4,11 +4,11 @@ var path = require('path')
 module.exports = {
   entry: './app/index.js',
   output: {
-    path: './dist',
+    path: './static',
     //Watching your source files for changes and when changes are made the
     //bundle will be recompiled. This modified bundle is served from memory at
     // the relative path specified in publicPath (see API).
-    publicPath: 'dist/',
+    publicPath: 'static/',
     filename: 'build.js'
   },
   module: {
