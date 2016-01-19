@@ -19,7 +19,25 @@ $ npm run build
 
 * [vue-loader]( https://github.com/vuejs/vue-loader)
 
-### To do list
+### Other
 
-* add vue-router
-* add vuex
+
+如果你要使用sass
+
+#### Sass
+
+安装
+
+```
+npm install sass-loader node-sass --save-dev
+```
+
+引用
+
+```css
+<style lang='sass'>
+  @import '../sass/common.scss'
+</style
+```
+
+

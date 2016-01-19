@@ -5,7 +5,12 @@
   "main": "app.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --config webpack.dev.config.js",
+<<<<<<< HEAD
     "build": "webpack --progress --hide-modules --progress --config webpack.prod.config.js"
+=======
+    "build": "webpack --progress --hide-modules --progress --config webpack.prod.config.js",
+    "test": "webpack --watch --config webpack.dev.config.js"
+>>>>>>> 616f62558185e91d7a13c8e28cc9a069f872a09a
   },
   "keywords": [
     "webpack"
@@ -21,6 +26,8 @@
     "css-loader": "^0.23.0",
     "file-loader": "^0.8.5",
     "jquery": "^2.1.4",
+    "node-sass": "^3.4.2",
+    "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
     "vue-hot-reload-api": "^1.2.2",
     "vue-html-loader": "^1.0.0",
