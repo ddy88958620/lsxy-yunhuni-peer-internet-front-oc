@@ -5,12 +5,8 @@
   "main": "app.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --config webpack.dev.config.js",
-<<<<<<< HEAD
-    "build": "webpack --progress --hide-modules --progress --config webpack.prod.config.js"
-=======
     "build": "webpack --progress --hide-modules --progress --config webpack.prod.config.js",
     "test": "webpack --watch --config webpack.dev.config.js"
->>>>>>> 616f62558185e91d7a13c8e28cc9a069f872a09a
   },
   "keywords": [
     "webpack"
