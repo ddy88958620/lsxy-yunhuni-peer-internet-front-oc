@@ -99,7 +99,7 @@ then we just change the `DEBUG` variable to false which in config.py
 
 平时如果只想开发前端页面只需要 `npm run dev`  ，打开`localhost:8080` ，此时如果对前端代码进行修改，浏览器也会得到实时的结果。
 
-如果想要结合后端API测试，运行`python run.py`，打开`localhost:5000` 。因为在 template 做了是否是DEBUG模式的判断，如下:
+如果想要结合后端API测试，运行`python run.py`，打开`localhost:5000`(如果想打开swagger，地址是: `localhost:5000/api/1`) 。因为在 template 做了是否是DEBUG模式的判断，如下:
 
 ```jinja2
 {% if config.DEBUG: %}
