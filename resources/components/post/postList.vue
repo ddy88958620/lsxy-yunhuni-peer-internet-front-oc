@@ -1,0 +1,3 @@
+<template>
+  postlist
+</template>
