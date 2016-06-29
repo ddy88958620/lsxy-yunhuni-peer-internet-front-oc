@@ -11,6 +11,7 @@ const router = new VueRouter({
   saveScrollPosition: true
 })
 
+// test
 configRouter(router)
 
 router.start(App,'#app')
