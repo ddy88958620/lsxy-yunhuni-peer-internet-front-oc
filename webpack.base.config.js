@@ -2,7 +2,7 @@ var webpack = require('webpack')
 var path = require('path')
 
 module.exports = {
-  entry: './resources/index.js',
+  entry: './resources/main.js',
   output: {
     path: '/static',
     //Watching your source files for changes and when changes are made the
