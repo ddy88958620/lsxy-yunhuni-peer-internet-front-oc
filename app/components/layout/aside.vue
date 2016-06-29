@@ -1,12 +1,17 @@
 <style lang='sass'>
-.footer {
+@import '../../scss/variable.scss';
+
+.app-sidebar {
   border: 1px solid red;
+  position: fixed;
+  top: $header-height;
+  height: 100%;
 }
 </style>
 <template>
-  <footer class='footer'>
-    hello navbar!
-  </footer>
+  <aside class='app-sidebar'>
+    hello sidebar!
+  </aside>
 </template>
 <script>
 

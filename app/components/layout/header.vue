@@ -1,12 +1,20 @@
 <style lang='sass'>
-.footer {
+@import '../../scss/variable.scss';
+
+.app-header {
   border: 1px solid red;
+  position: fixed;
+  min-height: $header-height;
+  line-height: $header-height;
+  width: 100%;
+  text-align: center;
 }
+
 </style>
 <template>
-  <footer class='footer'>
-    hello footer!
-  </footer>
+  <header class='app-header'>
+    hello header!
+  </header>
 </template>
 <script>
 
