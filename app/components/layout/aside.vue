@@ -10,7 +10,7 @@
 </style>
 <template>
   <aside class='app-sidebar'>
-    <a href="">login</a>
+    <a v-link="'/login'">login</a>
   </aside>
 </template>
 <script>

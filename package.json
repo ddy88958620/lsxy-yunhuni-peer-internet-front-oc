@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.6",
-    "vue": "^1.0.25"
+    "vue": "^1.0.25",
+    "vue-validator": "^2.1.3"
   }
 }
