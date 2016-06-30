@@ -1,10 +1,11 @@
 <style lang='sass'>
+@import '../../scss/variable.scss';
 .app-footer {
   border: 1px solid red;
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding-left: 86px;
+  padding-left: $sidebar-width;
   text-align: center;
 }
 </style>
