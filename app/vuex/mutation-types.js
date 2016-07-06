@@ -1,1 +1,9 @@
 export const ADD_TODO = 'ADD_TODO'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const USERINFO_SUCCESS = 'USERINFO_SUCCESS'
+export const USERINFO_FAILURE = 'USERINFO_FAILURE'
+export const LOGOUT_USER = 'LOGOUT_USER'
+export const UPDATE_USESR_SUCCESS = 'UPDATE_USESR_SUCCESS'
+
+export const SHOW_MSG = 'SHOW_MSG'
+export const HIDE_MSG = 'HIDE_MSG'

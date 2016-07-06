@@ -23,15 +23,36 @@ form {
         </div>
         <input type="submit" value="send">
       </form>
-    </validator
+    </validator>
+
+    <button @click='doshowMsg()'>showmsg</button>
+    <button @click='hideMsg()'>hidemsg</button>
+
     <router-view></router-view>
 </template>
 <script>
+import {showMsg,hideMsg} from '../../vuex/actions'
+
 export default {
+  vuex: {
+    actions: {
+      showMsg,
+      hideMsg
+    }
+  },
   data(){
     return {
       msg: ''
     }
   },
+  methods: {
+    doshowMsg(){
+      this.showMsg({
+        content: 'content',
+        title: 'title',
+        type: 'error'
+      })
+    }
+  }
 }
 </script>
