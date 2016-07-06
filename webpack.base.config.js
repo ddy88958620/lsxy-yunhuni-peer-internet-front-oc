@@ -18,7 +18,7 @@ module.exports = {
         loader: 'babel',
         exclude: /(node_modules|bower_components)/,
         query: {
-          presets: ['es2015'],
+          presets: ['stage-0', 'es2015'], // stage-0 is es7 rule , ex:like {...state}
         }
       },
       {
