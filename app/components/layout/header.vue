@@ -6,7 +6,6 @@
     justify-content:center;
     background-color: #2E97CB;
     color:#FFF;
-  //border: 1px solid red;
     position: fixed;
     min-height: $header-height;
     line-height: $header-height;
@@ -20,24 +19,23 @@
       list-style: none;
     }
     .nav-left{
-      display:flex;
-      width: 50%;
+      flex: initial;
+      width: 220px;
+      min-width: 60px;
       height: $header-height;
-      justify-content: flex-start;
-      align-items: flex-start;
+      .logo{
+        width: 50px;
+        height: $header-height;
+      }
     }
 
-    .logo{
-      width: 50px;
-      height: $header-height;
-    }
     .nav-right{
       display: flex;
-      width: 50%;
+      flex: 1;
+      border:1px solid #000;
       height: $header-height;
-      justify-content: flex-end;
       align-items: flex-end;
-      align-content: flex-end;
+      justify-content: flex-end;
       li{
         width: auto;
         padding:0 5px;
