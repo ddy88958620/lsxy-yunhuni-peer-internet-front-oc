@@ -8,7 +8,7 @@
     color:#FFF;
     position: fixed;
     min-height: $header-height;
-    line-height: $header-height;
+
     width: 100%;
     text-align: center;
     ul{
@@ -18,23 +18,24 @@
     .nav-box{
       list-style: none;
     }
+    .logobox{
+      width: 200px;
+    }
     .nav-left{
-      flex: initial;
-      width: 220px;
-      min-width: 60px;
+      display: flex;
+      flex: 1;
+      align-items: center;
       height: $header-height;
       .logo{
         width: 50px;
-        height: $header-height;
       }
     }
-
     .nav-right{
       display: flex;
       flex: 1;
       border:1px solid #000;
       height: $header-height;
-      align-items: flex-end;
+      align-items: center;
       justify-content: flex-end;
       li{
         width: auto;
@@ -54,11 +55,13 @@
 
 <template>
   <header class='app-header'>
+    <div class="logobox">
+      <ul class="nav-box nav-left">
+        <li class="logo">logo</li>
+        <li>运营中心后台</li>
+      </ul>
+    </div>
 
-    <ul class="nav-box nav-left">
-      <li class="logo">logo</li>
-      <li>运营中心后台</li>
-    </ul>
     <ul class="nav-box nav-right">
       <li >欢迎您，<a href="">admin</a>，今天，</li>
       <li ><a>您有(3)件事项未处理</a></li>
