@@ -1,20 +1,21 @@
 <template>
-    <p v-if="message.content !== ''" 
+    <p v-if="content !== ''" 
       class="bg-success">
-      {{message.content}}
+      {{content}}
     </p>
 </template>
 <script type="text/javascript">
-import {showMsg,hideMsg} from '../../vuex/actions'
 
 export default {
-  vuex: {
-    getters: {
-     message: ({showmsg}) => showmsg.message
+  props: {
+    type: {
+      type: String,
+      default: 'bg-success'
     },
-    actions: {
-      showMsg,
-      hideMsg
+    content: {
+      type: String,
+      default: '',
+      twoWays: true
     }
   },
 }
