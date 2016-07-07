@@ -1,6 +1,7 @@
 <style lang='sass'>
   @import '../../scss/variable.scss';
   .app-header {
+    z-index: -1;
     display:flex;
     flex-direction: row;
     justify-content:center;
@@ -63,13 +64,37 @@
     </div>
 
     <ul class="nav-box nav-right">
-      <li >欢迎您，<a href="">admin</a>，今天，</li>
-      <li ><a>您有(3)件事项未处理</a></li>
+      <li >欢迎您，<a href="">{{ msg }}</a>，今天，</li>
+      <li ><a @click='doshowMsg()' >您有(3)件事项未处理</a></li>
       <li >(3)条未读</li>
       <li>退出</li>
     </ul>
   </header>
 </template>
 
+
 <script>
+  import {showMsg,hideMsg} from '../../vuex/actions'
+  export default {
+    vuex: {
+      actions: {
+        showMsg,
+        hideMsg
+      }
+    },
+    data(){
+      return {
+        msg: 'admin'
+      }
+    },
+    methods: {
+      doshowMsg(){
+        this.showMsg({
+          content: 'content',
+          title: 'title',
+          type: 'error'
+        })
+      }
+    }
+  }
 </script>

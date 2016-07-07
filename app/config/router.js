@@ -22,7 +22,8 @@ export default function(router){
       next()
     } else {
       // redirect, status 401 or 403 ...
-      redirect('/auth/login')
+      next()
+      //redirect('/auth/login')
     }
   })
 }
