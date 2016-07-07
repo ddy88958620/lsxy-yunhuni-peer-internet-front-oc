@@ -1,4 +1,4 @@
-<style lang="stylus" rel="stylesheet/stylus" >
+<style lang="stylus" rel="stylesheet/stylus">
   header-height = 60px
   flexbox()
     display flex
@@ -19,6 +19,8 @@
       li
         list-style-type none
         text-align center
+        a
+          color #FFF
     .nav-left
       flexbox()
       .logo
@@ -28,7 +30,6 @@
       justify-content flex-end
 </style>
 
-
 <template>
   <header class='app-header'>
     <div class="logobox">
@@ -37,19 +38,17 @@
         <li>运营中心后台</li>
       </ul>
     </div>
-
     <ul class="nav-box nav-right">
-      <li >欢迎您，<a href="">{{ msg }}</a>，今天，</li>
-      <li ><a @click='doshowMsg()' >您有(3)件事项未处理</a></li>
-      <li ><a @click='hideMsg()'>(3)条未读</a></li>
+      <li>欢迎您，<a href="">{{ msg }}</a>，今天，</li>
+      <li><a @click='doshowMsg()'>您有(3)件事项未处理</a></li>
+      <li><a @click='hideMsg()'>(3)条未读</a></li>
       <li>退出</li>
     </ul>
   </header>
 </template>
 
-
 <script>
-  import {showMsg,hideMsg} from '../../vuex/actions'
+  import {showMsg, hideMsg} from '../../vuex/actions'
   export default {
     vuex: {
       actions: {
