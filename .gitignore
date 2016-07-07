@@ -5,3 +5,4 @@ npm-debug.log
 venv
 *.pyc
 .project
+build.js
