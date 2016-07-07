@@ -24,10 +24,6 @@ form {
         <input type="submit" value="send">
       </form>
     </validator>
-
-    <button @click='doshowMsg()'>showmsg</button>
-    <button @click='hideMsg()'>hidemsg</button>
-
     <router-view></router-view>
 </template>
 <script>

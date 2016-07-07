@@ -19,3 +19,13 @@ export default {
   },
 }
 </script><`2`>
+<style lang='stylus' scoped>
+@import '../../stylus/mixin'
+
+p
+  padding: 15px
+  width: 300px
+  text-align: center
+  center()
+
+</style>
