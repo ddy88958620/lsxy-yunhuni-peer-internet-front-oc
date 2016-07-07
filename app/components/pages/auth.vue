@@ -21,23 +21,26 @@ form {
           <p v-if="$validation1.username.required">Required your name.</p>
           <p v-if="$validation1.comment.maxlength">Your comment is too long.</p>
         </div>
-        <input type="submit" value="send">
+        <button @click="showMsg({content:'hello world'})">
+          send
+        </button>
+        <button @click="hideMsg">
+          hidden
+        </button>
       </form>
     </validator>
-
-    <button @click='doshowMsg()'>showmsg</button>
-    <button @click='hideMsg()'>hidemsg</button>
-
     <router-view></router-view>
 </template>
 <script>
-import {showMsg,hideMsg} from '../../vuex/actions'
+import {showMsg, hideMsg} from '../../vuex/actions'
 
 export default {
   vuex: {
+    getters: {
+      messege: ({showmsg}) => showmsg.message
+    },
     actions: {
-      showMsg,
-      hideMsg
+      showMsg,hideMsg
     }
   },
   data(){
@@ -45,14 +48,5 @@ export default {
       msg: ''
     }
   },
-  methods: {
-    doshowMsg(){
-      this.showMsg({
-        content: 'content',
-        title: 'title',
-        type: 'error'
-      })
-    }
-  }
 }
 </script>

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueValidator from 'vue-validator'
 
+
 Vue.use(VueRouter)
 Vue.use(VueValidator)
 
@@ -17,7 +18,7 @@ const router = new VueRouter({
 // test
 configRouter(router)
 
-router.start(App,'#app')
+router.start(App ,'#app')
 
 // just for the debug
 window.router = router

@@ -1,17 +1,22 @@
 <template>
   <div>
     <router-view></router-view>
-    <toast></toast>
+    <toaster :content.sync='message.content'></toaster>
   </div>
 </template>
 <script type="text/javascript">
+import toaster from './ui/toaster.vue'
 import store from '../vuex/store'
-import toast from './ui/toaster.vue'
 
 export default {
   store,
+  vuex: {
+    getters:{
+      message: ({showmsg}) => showmsg.message
+    }
+  },
   components: {
-    toast
+    toaster
   }
 }
 
