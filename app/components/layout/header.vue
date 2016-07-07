@@ -47,6 +47,7 @@
   </header>
 </template>
 
+
 <script>
   import {showMsg, hideMsg} from '../../vuex/actions'
   export default {
