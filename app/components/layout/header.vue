@@ -46,12 +46,7 @@
     </ul>
   </header>
 </template>
-
-
-
-
 <script>
-<<<<<<< HEAD
 import {localLogout} from '../../vuex/actions.js'
 export default {
   vuex: {
@@ -60,26 +55,4 @@ export default {
     }
   }
 }
-=======
-  import {showMsg, hideMsg} from '../../vuex/actions'
-  export default {
-    data(){
-      return {
-        msg: 'admin',
-        mattercount : 10
-      }
-    },
-    vuex: {
-      actions: {
-        showMsg,
-        hideMsg
-      }
-    },
-    methods: {
-      doshowMsg(){
-        this.showMsg({content: '你有十个未读消息'})
-      }
-    }
-  }
->>>>>>> 2ff59a01085cbbe49a1f65d8cb03621064680fe2
 </script>
