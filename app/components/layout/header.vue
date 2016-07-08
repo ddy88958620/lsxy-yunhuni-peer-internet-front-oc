@@ -66,10 +66,18 @@
       <li >欢迎您，<a href="">admin</a>，今天，</li>
       <li ><a>您有(3)件事项未处理</a></li>
       <li >(3)条未读</li>
-      <li>退出</li>
+      <li><a @click='localLogout'>退出</a></li>
     </ul>
   </header>
 </template>
 
 <script>
+import {localLogout} from '../../vuex/actions.js'
+export default {
+  vuex: {
+    actions: {
+      localLogout
+    }
+  }
+}
 </script>

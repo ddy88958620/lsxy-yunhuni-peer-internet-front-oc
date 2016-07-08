@@ -1,5 +1,5 @@
 import * as types from './mutation-types.js'
-import {saveCookie} from '../utils/cookieAuth.js'
+import {saveCookie, removeCookie} from '../utils/cookieAuth.js'
 
 
 export const showMsg = ({dispatch}, message) => {
@@ -19,4 +19,9 @@ export const localLogin = ({dispatch, router}, user) => {
     dispatch(types.LOCAL_LOGIN, user)
     router.go({path:'/admin'})
   }
+}
+
+export const localLogout = ({dispatch, router}) => {
+  removeCookie('user')
+  router.go({path: '/auth/login'})
 }
