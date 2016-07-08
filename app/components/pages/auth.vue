@@ -8,6 +8,7 @@
           <input 
             type="text"
             class='form-control'
+            v-model='user.name'
             :id="username" 
             :placeholder=""
             :field="username"
@@ -19,6 +20,7 @@
           <input 
             type="password"
             class='form-control'
+            v-model='user.password'
             :id="password" 
             :placeholder=""
             :field="password"
@@ -36,8 +38,12 @@ import toaster from '../ui/toaster.vue'
 
 export default {
   data(){
-    return({
-    })
+    return{
+      user: {
+        name: '',
+        password: ''
+      }
+    }
   },
   components: {
     toaster
@@ -53,7 +59,7 @@ export default {
   methods: {
     login(val) {
       if(val.valid) {
-        this.localLogin({name: 'lluvio'})
+        this.localLogin(this.user)
       }
     }
   }

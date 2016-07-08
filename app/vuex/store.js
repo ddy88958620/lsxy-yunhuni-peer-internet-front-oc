@@ -7,7 +7,6 @@ import auth from './modules/auth.js'
 
 const debug = process.env.NODE_ENV !== 'production'
 
-// install Vuex
 Vue.use(Vuex)
 
 export default new Vuex.Store({

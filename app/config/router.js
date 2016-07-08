@@ -11,7 +11,7 @@ export default function(router){
     },
     '/admin': {
       component: require('../components/pages/admin.vue')
-    }
+    },
   })
   // set the default router-view
   router.redirect({

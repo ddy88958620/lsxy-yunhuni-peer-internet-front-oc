@@ -39,10 +39,10 @@
       </ul>
     </div>
     <ul class="nav-box nav-right">
-      <li>欢迎您，<a href="">{{ msg }}</a>，今天，</li>
-      <li><a @click='doshowMsg()'>您有({{ mattercount }})件事项未处理</a></li>
-      <li><a @click='hideMsg()'>(3)条未读</a></li>
-      <li>退出</li>
+      <li >欢迎您，<a href="">admin</a>，今天，</li>
+      <li ><a>您有(3)件事项未处理</a></li>
+      <li >(3)条未读</li>
+      <li><a @click='localLogout'>退出</a></li>
     </ul>
   </header>
 </template>
@@ -51,6 +51,16 @@
 
 
 <script>
+<<<<<<< HEAD
+import {localLogout} from '../../vuex/actions.js'
+export default {
+  vuex: {
+    actions: {
+      localLogout
+    }
+  }
+}
+=======
   import {showMsg, hideMsg} from '../../vuex/actions'
   export default {
     data(){
@@ -71,4 +81,5 @@
       }
     }
   }
+>>>>>>> 2ff59a01085cbbe49a1f65d8cb03621064680fe2
 </script>

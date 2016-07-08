@@ -1,5 +1,6 @@
+import api from '../api'
 import * as types from './mutation-types.js'
-import {saveCookie} from '../utils/cookieAuth.js'
+import {saveCookie, removeCookie} from '../utils/cookieAuth.js'
 
 
 export const showMsg = ({dispatch}, message) => {
@@ -12,11 +13,25 @@ export const hideMsg = ({dispatch}) => {
 }
 
 export const localLogin = ({dispatch, router}, user) => {
-  // api.....
-  let api = true
-  if(api) {
-    saveCookie('user', 'lluvio')
-    dispatch(types.LOCAL_LOGIN, user)
-    router.go({path:'/admin'})
-  }
+  api.localLogin(user).then(response => {
+    let r_user = response.json().data.user
+
+    if(r_user.name === user.name) {
+      saveCookie('user', user)
+      dispatch(types.LOCAL_LOGIN, user)
+      router.go({path:'/admin'})
+      dispatch(types.HIDE_MSG)
+    }else {
+      dispatch(types.SHOW_MSG, {content:'用户名或密码不匹配'})
+    }
+
+  }, response => {
+    console.log('fail');
+    // dispatch(types.SHOW_MSG, {content:'用户名或密码不匹配'})
+  })
+}
+
+export const localLogout = ({dispatch, router}) => {
+  removeCookie('user')
+  router.go({path: '/auth/login'})
 }
