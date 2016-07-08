@@ -24,7 +24,8 @@ export default function(router){
       redirect('/admin')
     } else {
       // redirect, status 401 or 403 ...
-      redirect('/auth/login')
+      next()
+      //redirect('/auth/login')
     }
   })
 }

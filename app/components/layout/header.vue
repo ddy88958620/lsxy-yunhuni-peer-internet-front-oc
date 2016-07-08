@@ -1,56 +1,33 @@
-<style lang='sass'>
-  @import '../../scss/variable.scss';
-  .app-header {
-    display:flex;
-    flex-direction: row;
-    justify-content:center;
-    background-color: #2E97CB;
-    color:#FFF;
-    position: fixed;
-    min-height: $header-height;
-
-    width: 100%;
-    text-align: center;
-    ul{
-      margin: 0;
-      padding: 0;
-    }
-    .nav-box{
-      list-style: none;
-    }
-    .logobox{
-      width: 200px;
-    }
-    .nav-left{
-      display: flex;
-      flex: 1;
-      align-items: center;
-      height: $header-height;
-      .logo{
-        width: 50px;
-      }
-    }
-    .nav-right{
-      display: flex;
-      flex: 1;
-      border:1px solid #000;
-      height: $header-height;
-      align-items: center;
-      justify-content: flex-end;
-      li{
-        width: auto;
-        padding:0 5px;
-        &:hover{
-           color:#FFF;
-           background-color: #00799e;
-         }
-        a{
-          cursor: pointer;
-          color:#FFF;
-        }
-      }
-    }
-  }
+<style lang="stylus" rel="stylesheet/stylus">
+  header-height = 60px
+  flexbox()
+    display flex
+    flex 1
+  .app-header
+    font-size 16px
+    display flex
+    min-height header-height
+    align-items center
+    color #FFF
+    position flex
+    background-color #2E97CB
+    .logobox
+      width 200px
+    .nav-box
+      margin 0
+      padding 0
+      li
+        list-style-type none
+        text-align center
+        a
+          color #FFF
+    .nav-left
+      flexbox()
+      .logo
+        width 50px
+    .nav-right
+      flexbox()
+      justify-content flex-end
 </style>
 
 <template>
@@ -61,7 +38,6 @@
         <li>运营中心后台</li>
       </ul>
     </div>
-
     <ul class="nav-box nav-right">
       <li >欢迎您，<a href="">admin</a>，今天，</li>
       <li ><a>您有(3)件事项未处理</a></li>
@@ -71,7 +47,11 @@
   </header>
 </template>
 
+
+
+
 <script>
+<<<<<<< HEAD
 import {localLogout} from '../../vuex/actions.js'
 export default {
   vuex: {
@@ -80,4 +60,26 @@ export default {
     }
   }
 }
+=======
+  import {showMsg, hideMsg} from '../../vuex/actions'
+  export default {
+    data(){
+      return {
+        msg: 'admin',
+        mattercount : 10
+      }
+    },
+    vuex: {
+      actions: {
+        showMsg,
+        hideMsg
+      }
+    },
+    methods: {
+      doshowMsg(){
+        this.showMsg({content: '你有十个未读消息'})
+      }
+    }
+  }
+>>>>>>> 2ff59a01085cbbe49a1f65d8cb03621064680fe2
 </script>

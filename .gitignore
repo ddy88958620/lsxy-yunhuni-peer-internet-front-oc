@@ -4,9 +4,4 @@ dist
 npm-debug.log
 venv
 *.pyc
-<<<<<<< HEAD
-.project
-build.js
-=======
-./idea.project
->>>>>>> 2c26f675792d6ab3e9e5b281eaa433408f92f107
+./idea
