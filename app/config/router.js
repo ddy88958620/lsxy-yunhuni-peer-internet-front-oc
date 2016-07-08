@@ -1,3 +1,5 @@
+import { getCookie } from '../utils/cookieAuth.js'
+
 export default function(router){
   router.map({
     '/auth/login': {
@@ -9,7 +11,7 @@ export default function(router){
     },
     '/admin': {
       component: require('../components/pages/admin.vue')
-    }
+    },
   })
   // set the default router-view
   router.redirect({
@@ -17,12 +19,13 @@ export default function(router){
   })
 
   router.beforeEach(function({to, next, redirect}){
-    if(to.auth) {
-      // login
+    if(to.auth || getCookie('user')) {
       next()
+      redirect('/admin')
     } else {
       // redirect, status 401 or 403 ...
-      redirect('/auth/login')
+      next()
+      //redirect('/auth/login')
     }
   })
 }
