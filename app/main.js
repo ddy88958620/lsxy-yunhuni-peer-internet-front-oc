@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueValidator from 'vue-validator'
+import {sync} from 'vuex-router-sync'
+import store from './vuex/store'
 
 
 Vue.use(VueRouter)
@@ -8,7 +10,7 @@ Vue.use(VueValidator)
 
 
 import App from './components/app.vue'
-import {configRouter} from './config'
+import configRouter from './config/router.js'
 
 const router = new VueRouter({
   // history: true,
@@ -17,6 +19,7 @@ const router = new VueRouter({
 
 // test
 configRouter(router)
+sync(store, router)
 
 router.start(App ,'#app')
 

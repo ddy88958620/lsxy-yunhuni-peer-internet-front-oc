@@ -1,3 +1,5 @@
+import { getCookie } from '../utils/cookieAuth.js'
+
 export default function(router){
   router.map({
     '/auth/login': {
@@ -17,9 +19,9 @@ export default function(router){
   })
 
   router.beforeEach(function({to, next, redirect}){
-    if(to.auth) {
-      // login
+    if(to.auth || getCookie('user')) {
       next()
+      redirect('/admin')
     } else {
       // redirect, status 401 or 403 ...
       next()

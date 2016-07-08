@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import createLogger from  'vuex/logger'
 
 import showmsg from './modules/showmsg.js'
+import auth from './modules/auth.js'
 
 const debug = process.env.NODE_ENV !== 'production'
 
@@ -11,7 +12,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    showmsg
+    showmsg,
+    auth,
   },
   strict: debug,
   middlewares: debug ? [createLogger()] : []
