@@ -1,0 +1,11 @@
+.app-main-content {
+  display: flex;
+
+  .app-main-left {
+    width: 200px;
+  }
+  .app-main-right {
+    flex: 1;
+  }
+}
+

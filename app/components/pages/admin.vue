@@ -3,14 +3,12 @@
     <headerbar></headerbar>
     <asidebar></asidebar>
     <section class='app-main'>
-      <div class="container">
         <router-view
           class=''
           transition='fade'
           transition-mode='out-in'
           keep-live>
         </router-view>
-      </div>
     </section>
     <footerbar></footerbar>
   </div>
@@ -30,4 +28,9 @@ export default {
 </script>
 <style lang='sass'>
 @import '../../scss/index.scss';
+
+.app-main {
+  margin-left: $sidebar-width;
+}
+
 </style>
