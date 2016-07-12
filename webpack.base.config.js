@@ -36,10 +36,6 @@ module.exports = {
       }
     ]
   },
-  stylus: {
-    use: [require('nib')()],
-    import: ['~nib/lib/nib/index.styl']
-  },
   plugins: [
     new webpack.ProvidePlugin({
       $: 'jquery',
