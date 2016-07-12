@@ -1,5 +1,5 @@
 import Cookie from 'js-cookie'
-import domain from '../config/domain.js' 
+import domain from '../config/domain.js'
 
 console.log(domain);
 const cookieConfig =  {domain: domain.COOKIE_DOMAIN, expires: 3}
