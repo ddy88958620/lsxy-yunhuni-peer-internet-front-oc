@@ -1,10 +1,10 @@
 <style lang="stylus" rel="stylesheet/stylus">
-  header-height = 60px
+  header-height = 50px
   flexbox()
     display flex
     flex 1
   .app-header
-    font-size 16px
+    font-size 1.2rem
     display flex
     min-height header-height
     align-items center

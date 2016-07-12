@@ -1,15 +1,35 @@
-<style lang='sass'>
+<style lang='sass' scope>
 @import '../../scss/variable.scss';
 .app-sidebar {
-  border: 1px solid red;
-  position: fixed;
+  position: absolute;
   top: $header-height;
   height: 100%;
   width: $sidebar-width;
+  background-color: #222d32;
+
+  a {
+    color: white;
+  }
 
   ul {
     list-style: none;
     padding: 0;
+    $height: 50px;
+
+    li {
+      a {
+        width: 100%;
+        padding-left: 15px;
+        height: $height;
+        line-height: $height;
+        display: inline-block;
+      }
+      a.v-link-active {
+        @extend a;
+        background-color: #1fc8db;
+        color: #fff;
+      }
+    }
   }
 
 }

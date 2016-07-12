@@ -9,8 +9,8 @@
           transition-mode='out-in'
           keep-live>
         </router-view>
+        <footerbar></footerbar>
     </section>
-    <footerbar></footerbar>
   </div>
 </template>
 <script>
@@ -31,6 +31,9 @@ export default {
 
 .app-main {
   margin-left: $sidebar-width;
+  position: absolute;
+  min-height: 100%;
+  width: 100%;
 }
 
 </style>
