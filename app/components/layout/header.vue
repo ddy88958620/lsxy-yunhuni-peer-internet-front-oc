@@ -9,7 +9,6 @@
     min-height header-height
     align-items center
     color #FFF
-    position flex
     background-color #2E97CB
     .logobox
       width 200px
