@@ -1,16 +1,3 @@
-.app-main-content {
+.flex {
   display: flex;
-  height: 100%;
-
-  .app-main-left {
-    width: 200px;
-    padding: 0px;
-    list-style: none;
-    margin-bottom: 0;
-    background-color: #EAEDF1;
-  }
-  .app-main-right {
-    flex: 1;
-  }
 }
-

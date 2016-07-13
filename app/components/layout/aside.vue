@@ -1,9 +1,6 @@
 <style lang='sass' scope>
 @import '../../scss/variable.scss';
 .app-sidebar {
-  position: absolute;
-  top: $header-height;
-  height: 100%;
   width: $sidebar-width;
   background-color: #222d32;
 
