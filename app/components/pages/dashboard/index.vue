@@ -5,16 +5,24 @@
     <!--     <a v&#45;link="'/admin/dashboard/a'">a</a></li> -->
     <!--   <li><a v&#45;link="'/admin/dashboard/b'">b</a></li> -->
     <!-- </ul> -->
-    <pie></pie>
+
+    <section class='flex flex-1 section_one'>
+      <member></member>
+      <app></app>
+    </section>
+
+
     <router-view></router-view>
  </div>
 </template>
 <script>
-import pie from './components/pie.vue'
+import member from './components/member.vue'
+import app from './components/app.vue'
 
 export default {
   components: {
-    pie
+    member,
+    app
   }
 }
 </script>
@@ -36,6 +44,10 @@ export default {
     background-color: white;
   }
 
+}
+
+.section_one {
+  height: 20rem;
 }
 
 

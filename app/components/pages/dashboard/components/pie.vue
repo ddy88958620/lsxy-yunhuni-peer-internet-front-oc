@@ -10,6 +10,8 @@ span {
     data-thickness="0.1"
     type="text"
     class="dial"
+    data-width="100"
+    data-height="100"
     data-min="0"
     data-max="2000"
     value="1534"/>
@@ -17,7 +19,6 @@ span {
 
 <script>
 require('jquery-knob')
-
 
 export default {
   computed: {
