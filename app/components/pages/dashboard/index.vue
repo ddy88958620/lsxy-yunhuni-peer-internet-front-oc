@@ -5,10 +5,19 @@
     <!--     <a v&#45;link="'/admin/dashboard/a'">a</a></li> -->
     <!--   <li><a v&#45;link="'/admin/dashboard/b'">b</a></li> -->
     <!-- </ul> -->
+    <pie></pie>
     <router-view></router-view>
-  </div>
+ </div>
 </template>
+<script>
+import pie from './components/pie.vue'
 
+export default {
+  components: {
+    pie
+  }
+}
+</script>
 <style lang='sass'>
 
 .app-main-left {
