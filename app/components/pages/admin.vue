@@ -1,8 +1,8 @@
 <template>
   <div id="topbox">
-    <headerbar></headerbar>
+    <asidebar></asidebar>
     <section class='app-main'>
-        <asidebar></asidebar>
+        <headerbar></headerbar>
         <router-view
           class=''
           transition='fade'
@@ -31,12 +31,13 @@ export default {
 
 #topbox {
   flex: 1;
-  flex-direction: column;
+  flex-direction: row;
   display: flex;
 
   .app-main {
     display: flex;
     flex: 1;
+    flex-direction: column;
   }
 
 }

@@ -1,10 +1,10 @@
 <template>
   <div class="app-main-content">
-    <ul class='app-main-left'>
-      <li>
-        <a v-link="'/admin/dashboard/a'">a</a></li>
-      <li><a v-link="'/admin/dashboard/b'">b</a></li>
-    </ul>
+    <!-- <ul class='app&#45;main&#45;left'> -->
+    <!--   <li> -->
+    <!--     <a v&#45;link="'/admin/dashboard/a'">a</a></li> -->
+    <!--   <li><a v&#45;link="'/admin/dashboard/b'">b</a></li> -->
+    <!-- </ul> -->
     <router-view></router-view>
   </div>
 </template>

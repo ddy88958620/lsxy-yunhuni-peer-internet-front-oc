@@ -8,8 +8,7 @@
     display flex
     min-height header-height
     align-items center
-    color #FFF
-    background-color #2E97CB
+    color #333
     .logobox
       width 200px
     .nav-box
@@ -18,8 +17,6 @@
       li
         list-style-type none
         text-align center
-        a
-          color #FFF
     .nav-left
       flexbox()
       .logo

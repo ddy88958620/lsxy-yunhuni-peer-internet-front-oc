@@ -33,6 +33,9 @@ export default function(router){
               component: require('../components/pages/charts/page-child-d/index.vue')
             },
           }
+        },
+        '/service': {
+          component: require('../components/pages/charts/index.vue')
         }
       }
     },

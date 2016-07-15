@@ -2,7 +2,7 @@
 @import '../../scss/variable.scss';
 .app-sidebar {
   width: $sidebar-width;
-  background-color: #222d32;
+  background-color: #616888;
 
   a {
     color: white;
@@ -23,7 +23,8 @@
       }
       a.v-link-active {
         @extend a;
-        background-color: #1fc8db;
+        border-left: 3px solid #f6f883;
+        background-color: #515a76;
         color: #fff;
       }
     }
