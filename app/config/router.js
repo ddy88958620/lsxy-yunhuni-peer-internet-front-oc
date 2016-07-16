@@ -33,13 +33,16 @@ export default function(router){
               component: require('../components/pages/charts/page-child-d/index.vue')
             },
           }
+        },
+        '/service': {
+          component: require('../components/pages/charts/index.vue')
         }
       }
     },
   })
   // set the default router-view
   router.redirect({
-    // '/postlist': '/postlist/test',
+    '/': '/admin',
   })
 
   router.beforeEach(function({to, next, redirect}){

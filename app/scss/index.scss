@@ -4,12 +4,21 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import './variable.scss';
 @import './layout.scss';
 
+html {
+  height: 100%
+}
+
 body {
   min-height: 100%;
   font-size: 12px;
-  overflow-x: hidden;
+  display: flex;
 }
 
 a:link {
   text-decoration: none;
+}
+
+#app {
+  flex: 1;
+  display: flex;
 }

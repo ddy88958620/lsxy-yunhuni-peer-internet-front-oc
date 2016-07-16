@@ -1,49 +1,35 @@
-<style lang="stylus" rel="stylesheet/stylus">
-  header-height = 50px
-  flexbox()
-    display flex
-    flex 1
-  .app-header
-    font-size 1.2rem
-    display flex
-    min-height header-height
-    align-items center
-    color #FFF
-    position flex
-    background-color #2E97CB
-    .logobox
-      width 200px
-    .nav-box
-      margin 0
-      padding 0
-      li
-        list-style-type none
-        text-align center
-        a
-          color #FFF
-    .nav-left
-      flexbox()
-      .logo
-        width 50px
-    .nav-right
-      flexbox()
-      justify-content flex-end
+<style lang='sass' scope>
+  @import '../../scss/variable.scss';
+  .app-header{
+    height:$header-height;
+    background-color: #fff;
+    .nav-left{
+      width: 200px;
+    }
+    .topbar-btn{
+      padding: 17px 10px;
+      cursor: pointer;
+      &:hover{
+        background: #f3f0f0;
+      }
+    }
+  }
 </style>
 
 <template>
-  <header class='app-header'>
-    <div class="logobox">
-      <ul class="nav-box nav-left">
-        <li class="logo">logo</li>
-        <li>运营中心后台</li>
-      </ul>
+  <header class='app-header flex align-items'>
+    <div class="nav-left ">
+      <div class="nav-logo flex flex-1 align-items ">
+        <span class="topbar-btn logo">logo</span>
+        <span class="topbar-btn">运营中心后台</span>
+      </div>
     </div>
-    <ul class="nav-box nav-right">
-      <li >欢迎您，<a href="">admin</a>，今天，</li>
-      <li ><a>您有(3)件事项未处理</a></li>
-      <li >(3)条未读</li>
-      <li><a @click='localLogout'>退出</a></li>
-    </ul>
+    <div class="nav-right flex flex-1 justify-content-end align-items">
+      <span class="topbar-btn" >欢迎您，<a href="">admin</a>，今天，</span>
+      <span class="topbar-btn" ><a>您有(3)件事项未处理</a></span>
+      <span class="topbar-btn" >(3)条未读</span>
+      <span class="topbar-btn" ><a @click='localLogout'>退出</a></span>
+    </div>
   </header>
 </template>
 <script>
