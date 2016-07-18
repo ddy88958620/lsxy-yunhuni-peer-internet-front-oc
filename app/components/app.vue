@@ -4,7 +4,7 @@
     <toaster :content.sync='message.content'></toaster>
   </div>
 </template>
-<script type="text/javascript">
+<script>
 import toaster from './ui/toaster.vue'
 import store from '../vuex/store'
 
