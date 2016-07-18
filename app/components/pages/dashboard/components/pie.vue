@@ -10,8 +10,8 @@ span {
     data-thickness="0.1"
     type="text"
     class="dial"
-    data-width="100"
-    data-height="100"
+    data-width="80"
+    data-height="80"
     data-min="0"
     data-max="2000"
     value="1534"/>

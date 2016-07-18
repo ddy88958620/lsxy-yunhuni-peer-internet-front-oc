@@ -38,6 +38,8 @@ export default {
     display: flex;
     flex: 1;
     flex-direction: column;
+    padding: 10px;
+    background-color: #EFF5FA;
   }
 
 }
