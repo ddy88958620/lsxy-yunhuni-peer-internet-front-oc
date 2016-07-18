@@ -28,9 +28,12 @@
       height: 110px;
       font-size: 1.6rem;
       background-color: #586381;
-      .logo{}
+      .logo{
+        width: 50px;
+        height: 60px;
+        padding: 10px 0;
+      }
     }
-
     .avatar-box{
       height: 180px;
       padding-top: 10px;
@@ -45,10 +48,9 @@
           border-radius: 40px;
         }
       }
-
       .identity{
         padding: 10px 0 5px 0;
-        text-align: center;
+
       }
     }
 
@@ -76,18 +78,15 @@
   <aside class='app-sidebar'>
     <ul class="flex-direction-column-reverse fex fex-1 ">
       <li class="logo-box flex flex-direction-column justify-content-c align-items-c border">
-        <span class="logo ">logo</span>
-        <div>云呼你运营中心</div>
+        <img src="../../assets/images/logo.png" class="logo " />
+        <span>云呼你运营中心</span>
       </li>
       <li class="avatar-box flex justify-content-c align-items-c flex-direction-column border">
         <div class="canvas flex justify-content-c align-items-c ">
           <img class="avatar" src="../../assets/images/avatar.png" />
         </div>
-        <a class="flex flex-1 identity">管理员</a>
+        <a class="flex flex-1 identity text-center">管理员</a>
         <a class="flex flex-1" @click='localLogout'>退出图标</a>
-      </li>
-      <li class="flex justify-content-c align-items-c flex-direction-column border">
-        <a>---</a>
       </li>
       <li class="flex" v-for='menu in menus'>
         <a class="sub border" v-link="menu.link">
