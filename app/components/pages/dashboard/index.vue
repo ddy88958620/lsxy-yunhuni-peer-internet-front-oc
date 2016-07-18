@@ -6,9 +6,12 @@
     <!--   <li><a v&#45;link="'/admin/dashboard/b'">b</a></li> -->
     <!-- </ul> -->
 
-    <section class='flex flex-1 section_one'>
+    <section class='flex section_one bg-section-margin'>
       <member></member>
       <app></app>
+    </section>
+    <section class='section_two'>
+      <app-chart-line></app-chart-line>
     </section>
 
 
@@ -18,15 +21,36 @@
 <script>
 import member from './components/member.vue'
 import app from './components/app.vue'
+import appChartLine from './components/appChartLine.vue'
 
 export default {
   components: {
     member,
-    app
+    app,
+    appChartLine
   }
 }
 </script>
 <style lang='sass'>
+@import '../../../scss/layout.scss';
+
+.app-main-content {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  flex-direction: column;
+
+  .app-main-left {
+    width: 200px;
+    padding: 0px;
+    list-style: none;
+    margin-bottom: 0;
+    background-color: #EAEDF1;
+  }
+  .app-main-right {
+    flex: 1;
+  }
+}
 
 .app-main-left {
 
@@ -47,7 +71,10 @@ export default {
 }
 
 .section_one {
-  height: 20rem;
+}
+
+.section_two {
+  background-color: white;
 }
 
 
