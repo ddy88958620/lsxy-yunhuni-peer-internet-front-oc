@@ -11,6 +11,19 @@ module.exports = {
     publicPath: 'static/',
     filename: 'build.js'
   },
+  resolve: {
+    modulesDirectories: [
+      'src',
+      'node_modules',
+      'bower_components'
+    ],
+    plugins: [
+      new webpack.ResolverPlugin(
+          new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
+          )
+    ],
+    extensions: ['', '.json', '.js']
+  },
   module: {
     loaders:[
       {
@@ -19,7 +32,7 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         query: {
           presets: ['stage-0', 'es2015'], // stage-0 is es7 rule , ex:like {...state}
-        }
+        },
       },
       {
         test: /\.vue$/,
@@ -29,13 +42,17 @@ module.exports = {
         test: /\.(png|jpg|gif)$/,
         loader: 'file?name=[name].[ext]?[hash]'
       },
-      { test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url?limit=10000&name=fonts/[hash:8].[name].[ext]'}
+      { test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url?limit=10000&name=fonts/[hash:8].[name].[ext]'},
+      {
+        test: /\.styl$/,
+        loader: 'css-loader!stylus-loader?paths=node_modules/bootstrap-stylus/stylus/'
+      }
     ]
   },
   plugins: [
     new webpack.ProvidePlugin({
       $: 'jquery',
-      jQuery: 'jquery'
+      jQuery: 'jquery',
     })
   ]
 }
