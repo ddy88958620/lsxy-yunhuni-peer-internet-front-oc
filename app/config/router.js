@@ -14,14 +14,6 @@ export default function(router){
       subRoutes: {
         '/dashboard': {
           component: require('../components/pages/dashboard/index.vue'),
-          subRoutes: {
-            '/a': {
-              component: require('../components/pages/dashboard/page-child-a/index.vue')
-            },
-            '/b': {
-              component: require('../components/pages/dashboard/page-child-b/index.vue')
-            },
-          }
         },
         '/charts': {
           component: require('../components/pages/charts/index.vue'),

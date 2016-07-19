@@ -1,13 +1,6 @@
 <template>
-  <div id="app-chart">
-    <div class="app-chart-header">
-      <input type="radio" checked=checked/>日统计
-      <input type="radio"/>月统计
-    </div>
     <canvas id="appChart"></canvas>
-  </div>
 </template>
-
 <script>
   import Chart from 'chart.js';
 
@@ -17,12 +10,18 @@
 
       }
     },
+    props: {
+      type: {
+        type: String,
+      }
+    },
     ready(){
       var data = {
         labels: ["1月", "2月", "3月","4月", "5月", "6月","7月", "8月", "9月","10月", "11月","12月"],
         datasets: [
           {
             label: "新增注册会员",
+            type: 'line',
             // 曲线
             // lineTension: 0.1,
             backgroundColor: "rgba(75,192,192,0.4)",
@@ -46,7 +45,8 @@
           {
             label: "新增应用",
             // lineTension: 0.1,
-            backgroundColor: "rgba(75,168,192,0.4)",
+            type: 'bar',
+            backgroundColor: "rgba(220,220,220,0.5)",
             borderColor: "rgba(75,168,192,0.4)",
             borderCapStyle: 'butt',
             borderDash: [],
@@ -68,7 +68,7 @@
       };
       const ctx = document.getElementById('appChart').getContext('2d')
       new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: data,
         options: {
           responsive: true,

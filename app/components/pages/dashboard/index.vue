@@ -6,28 +6,18 @@
     <!--   <li><a v&#45;link="'/admin/dashboard/b'">b</a></li> -->
     <!-- </ul> -->
 
-    <section class='flex section_one bg-section-margin'>
-      <member></member>
-      <app></app>
-    </section>
-    <section class='section_two'>
-      <app-chart-line></app-chart-line>
-    </section>
-
-
+    <section-one></section-one>
+    <section-two></section-two>
+    <section-three></section-three>
     <router-view></router-view>
  </div>
 </template>
 <script>
-import member from './components/member.vue'
-import app from './components/app.vue'
-import appChartLine from './components/appChartLine.vue'
-
 export default {
   components: {
-    member,
-    app,
-    appChartLine
+    'section-two': require('./section-two/index.vue'),
+    'section-one': require('./section-one/index.vue'),
+    'section-three': require('./section-three/index.vue')
   }
 }
 </script>
@@ -68,13 +58,6 @@ export default {
     background-color: white;
   }
 
-}
-
-.section_one {
-}
-
-.section_two {
-  background-color: white;
 }
 
 
