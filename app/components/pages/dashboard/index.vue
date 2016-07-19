@@ -9,6 +9,7 @@
     <section-one></section-one>
     <section-two></section-two>
     <section-three></section-three>
+    <section-four></section-four>
     <router-view></router-view>
  </div>
 </template>
@@ -17,7 +18,8 @@ export default {
   components: {
     'section-two': require('./section-two/index.vue'),
     'section-one': require('./section-one/index.vue'),
-    'section-three': require('./section-three/index.vue')
+    'section-three': require('./section-three/index.vue'),
+    'section-four': require('./section-four/index.vue')
   }
 }
 </script>

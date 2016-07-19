@@ -59,7 +59,7 @@
 
 </template>
 <script>
-import pie from './pie.vue'
+import pie from '../../../ui/pie.vue'
 
 export default {
   data(){

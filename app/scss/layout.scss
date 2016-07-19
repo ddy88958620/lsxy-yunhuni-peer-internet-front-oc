@@ -19,6 +19,16 @@
   justify-content: flex-end;
 }
 
+//两端对齐，项目之间的间隔都相等
+.justify-content-b{
+  justify-content: space-between;
+}
+
+.justify-content-a{
+  justify-content: space-around;
+}
+
+
 //垂直布局
 .align-items-c {
   align-items: center;
