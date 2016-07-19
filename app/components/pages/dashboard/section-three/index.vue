@@ -29,7 +29,7 @@
      <div class="flex flex-1 section-right">
        <datetime-picker :type="bar"></datetime-picker>
        <div class="flex-1">
-         <chart></chart>
+         <chart :uuid="'dashboard-st3-chart'" :type="['line','bar']"></chart>
        </div>
      </div>
 

@@ -1,27 +1,40 @@
+/**
+ *
+ 这是查询的chart组件,还有一个实时chart组件
+ *
+ ***/
+
 <template>
-    <canvas id="appChart"></canvas>
+    <canvas :class="[uuid]"></canvas>
 </template>
 <script>
-  import Chart from 'chart.js';
+import Chart from 'chart.js';
+import chance from 'chance'
 
   export default {
     data(){
       return {
-
+        class: '',
       }
     },
     props: {
       type: {
-        type: String,
+        type: Array,
+      },
+      uuid: {
+        require: true,
+        type: String
       }
     },
     ready(){
+      let self = this
+
       var data = {
         labels: ["1月", "2月", "3月","4月", "5月", "6月","7月", "8月", "9月","10月", "11月","12月"],
         datasets: [
           {
             label: "新增注册会员",
-            type: 'line',
+            type: self.type[0],
             // 曲线
             // lineTension: 0.1,
             backgroundColor: "rgba(75,192,192,0.4)",
@@ -45,7 +58,7 @@
           {
             label: "新增应用",
             // lineTension: 0.1,
-            type: 'bar',
+            type: self.type[1],
             backgroundColor: "rgba(220,220,220,0.5)",
             borderColor: "rgba(75,168,192,0.4)",
             borderCapStyle: 'butt',
@@ -66,9 +79,12 @@
           }
         ]
       };
-      const ctx = document.getElementById('appChart').getContext('2d')
+
+
+      const ctx = document.querySelector("."+self.uuid).getContext('2d')
+
       new Chart(ctx, {
-        type: 'bar',
+        type: self.type[1] === 'bar' ? 'bar' : 'line',
         data: data,
         options: {
           responsive: true,

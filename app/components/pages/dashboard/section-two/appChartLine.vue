@@ -5,7 +5,7 @@
       <input name='app-chart-type' type="radio"/>月统计
       <datetime-picker></datetime-picker>
     </div>
-    <chart></chart>
+    <chart :uuid="'bashboard-app-chart'":type="['line','line']"></chart>
   </div>
 </template>
 
