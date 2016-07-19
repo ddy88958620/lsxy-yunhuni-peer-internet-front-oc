@@ -10,6 +10,7 @@ span {
     data-thickness="0.1"
     type="text"
     class="dial"
+    data-fgColor='#89d9e3'
     data-width="80"
     data-height="80"
     data-min="0"
