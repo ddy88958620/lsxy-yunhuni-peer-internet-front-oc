@@ -41,7 +41,9 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "bootstrap-datepicker": "^1.6.1",
     "bootstrap-sass": "^3.3.6",
+    "chance": "^1.0.3",
     "chart.js": "^2.2.0-rc.1",
     "jquery-knob": "^1.2.11",
     "js-cookie": "^2.1.2",
