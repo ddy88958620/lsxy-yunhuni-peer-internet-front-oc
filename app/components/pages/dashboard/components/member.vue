@@ -1,6 +1,5 @@
 <template>
   <div class="section_left">
-
     <div class="panel panel-default flex-1">
       <div class="panel-heading">会员数据</div>
       <div class="panel-body flex">

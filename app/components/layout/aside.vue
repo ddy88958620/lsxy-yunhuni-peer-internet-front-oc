@@ -1,5 +1,6 @@
 <style lang='sass' scope>
 @import '../../scss/font.scss';
+@import '../../scss/mixin.scss';
 @import '../../scss/variable.scss';
 .app-sidebar {
   width: $sidebar-width;
@@ -24,6 +25,8 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    font-size: 1.4rem;
+
     .logo-box{
       height: 110px;
       font-size: 1.6rem;
@@ -34,31 +37,26 @@
         padding: 10px 0;
       }
     }
+
     .avatar-box{
       height: 180px;
       padding-top: 10px;
       .canvas{
-        width: 100px;
-        height: 100px;
-        border-radius: 50px;
+        @include circlebox(50px);
         border:1px solid #2a303e;
         img{
-          width: 80px;
-          height: 80px;
-          border-radius: 40px;
+          @include circlebox(40px);
         }
       }
       .identity{
-        padding: 10px 0 5px 0;
-
+        padding: 10px 0 0 0;
       }
     }
 
     li {
       .sub{
         width: 100%;
-        padding: 15px;
-        padding-left: 50px;
+        padding: 15px 15px 15px 50px;
         &:hover{
           @extend .active;
         }
@@ -71,6 +69,7 @@
         @extend .active;
       }
     }
+
   }
 }
 </style>
@@ -85,8 +84,8 @@
         <div class="canvas flex justify-content-c align-items-c ">
           <img class="avatar" src="../../assets/images/avatar.png" />
         </div>
-        <a class="flex flex-1 identity text-center">管理员</a>
-        <a class="flex flex-1" @click='localLogout'>退出图标</a>
+        <a class="flex flex-1 identity text-center cursor text-none" title='管理员'>管理员</a>
+        <a class="flex flex-1 iconfont icon-ico-exit cursor text-none" @click='localLogout' title='退出'></a>
       </li>
       <li class="flex" v-for='menu in menus'>
         <a class="sub border" v-link="menu.link">

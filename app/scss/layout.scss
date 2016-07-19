@@ -9,30 +9,24 @@
 .justify-content-c {
   justify-content: center;
 }
+
 .justify-content-s{
   justify-content: flex-start;
 }
+
 .justify-content-e {
   justify-content: flex-end;
 }
 
-
 .align-items-c {
-  align-items: center;
-}
-
-
-.align-items-s{
-.align-items {
   align-items: center;
 }
 
 .align-items-s{
   align-items: flex-start;
 }
-.align-items-e{
 
-.align-items-end{
+.align-items-e{
   align-items: flex-end;
 }
 
@@ -62,15 +56,23 @@
 }
 
 // 一些初始化的配置
-
 .list-none-style {
   list-style: none;
   padding-left: 0;
   margin-bottom: 0px;
 }
+
 //溢出显示省略号
 .overflow{
   text-overflow:ellipsis;
   white-space:nowrap;
   overflow:hidden;
+}
+
+//隐藏下划线
+.text-none{
+  text-decoration: none;
+  &:hover{
+    text-decoration: none;
+  }
 }

@@ -14,7 +14,7 @@ export default [
   {
     title: '客服中心',
     label: 'Charts',
-    icon: 'icon-oc-user',
+    icon: 'icon-666',
     link: '/admin/service'
   },
 ]
