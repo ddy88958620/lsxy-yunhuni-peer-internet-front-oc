@@ -1,8 +1,11 @@
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
-@import './variable.scss';
-@import './layout.scss';
+@import
+    './variable.scss',
+    './init.scss',
+    './layout.scss',
+    './admin.scss';
 
 html {
   height: 100%
@@ -21,9 +24,4 @@ a:link {
 #app {
   flex: 1;
   display: flex;
-}
-
-.list-none-style {
-  list-style: none;
-  padding-left: 0;
 }

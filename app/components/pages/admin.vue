@@ -10,7 +10,7 @@
           keep-live>
         </router-view>
     </section>
-    <footerbar></footerbar>
+    <!-- <footerbar></footerbar> -->
   </div>
 </template>
 <script>
@@ -38,27 +38,10 @@ export default {
     display: flex;
     flex: 1;
     flex-direction: column;
-    padding: 10px;
+    padding: $admin-padding;
     background-color: #EFF5FA;
   }
 
-}
-
-.app-main-content {
-  display: flex;
-  flex: 1;
-  height: 100%;
-
-  .app-main-left {
-    width: 200px;
-    padding: 0px;
-    list-style: none;
-    margin-bottom: 0;
-    background-color: #EAEDF1;
-  }
-  .app-main-right {
-    flex: 1;
-  }
 }
 
 

@@ -24,12 +24,15 @@
 .align-items {
   align-items: center;
 }
+
 .align-items-start{
   align-items: flex-start;
 }
+
 .align-items-end{
   align-items: flex-end;
 }
+
 .cursor{
   cursor: pointer;
 }
@@ -37,12 +40,28 @@
 .flex-direction-row{
   flex-direction:row;
 }
+
 .flex-direction-row-reverse{
   flex-direction:row-reverse;
 }
+
 .flex-direction-column{
   flex-direction:column;
 }
+
 .flex-direction-column-reverse{
   flex-direction:column-reverse;
+}
+
+//统一后台 section 之间的margin
+.bg-section-margin{
+  margin: 20px 0;
+}
+
+// 一些初始化的配置
+
+.list-none-style {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0px;
 }
