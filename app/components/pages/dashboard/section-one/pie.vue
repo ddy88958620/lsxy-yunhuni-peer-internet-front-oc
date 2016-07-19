@@ -5,7 +5,7 @@ span {
 </style>
 <template>
   <input
-    data-angleOffset=90
+    data-angleOffset="min/max"
     data-linecap=round
     data-thickness="0.1"
     type="text"
@@ -22,6 +22,14 @@ span {
 require('jquery-knob')
 
 export default {
+  props: {
+    min: {
+
+    },
+    max: {
+
+    }
+  },
   computed: {
     angleOffset: {
       handle(){
