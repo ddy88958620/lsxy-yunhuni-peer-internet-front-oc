@@ -25,13 +25,12 @@
 
 <template>
   <header class='app-header flex align-items-c'>
-
     <div class="nav-left flex flex-1 justify-content-s align-items-c overflow">
-      <span class="topbar-btn flex" >欢迎您来到云呼你运营中心,您有 <a href="#">3</a> 件事项未处理</span><span class="iconfont icon-oc-user"></span>
+      <span class="topbar-btn flex" >欢迎您来到云呼你运营中心， 您有&nbsp;<a href="#">3</a>&nbsp;件事项未处理</span><span class="iconfont icon-oc-user"></span>
     </div>
     <div class="nav-right">
       <div class=" flex flex-1">
-        <input class="form-control search" placeholder="搜索"   /><i class="iconfont icon-ico-search1"></i>
+        <input class="form-control search" placeholder="搜索" @keyup.enter="serach" v-model="serachName" value="{{ serachName }}"/><i class="iconfont icon-ico-search1 cursor" @click='serach'></i>
       </div>
     </div>
   </header>
@@ -39,6 +38,16 @@
 <script>
 import {localLogout} from '../../vuex/actions.js'
 export default {
+  data(){
+    return{
+      serachName: '12121',
+    }
+  },
+  methods:{
+    serach: function() {
+      console.log('搜索内容:'+this.serachName);
+    }
+  },
   vuex: {
     actions: {
     }
