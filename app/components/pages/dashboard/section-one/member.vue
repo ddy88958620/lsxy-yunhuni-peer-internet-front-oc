@@ -1,12 +1,15 @@
 <template>
   <div class="section_left">
-
     <div class="panel panel-default flex-1">
       <div class="panel-heading">会员数据</div>
       <div class="panel-body flex">
         <div class='flex flex-1 append-solid'>
           <div class="flex-1 pie_wrap">
-            <pie></pie>
+            <pie
+              :max="pie1.max",
+              :value="pie1.value"
+              >
+            </pie>
           </div>
           <div class="flex flex-1 align-items-c">
             <ul class="list-none-style">
@@ -19,7 +22,10 @@
         </div>
         <div class='flex flex-1 append-solid'>
           <div class="flex-1 pie_wrap">
-            <pie></pie>
+            <pie
+              :max="pie2.max",
+              :value="pie2.value">
+            </pie>
           </div>
           <div class="flex flex-1 align-items-c">
             <ul class="list-none-style">
@@ -32,7 +38,11 @@
         </div>
         <div class='flex flex-1'>
           <div class="flex-1 pie_wrap">
-            <pie></pie>
+            <pie
+              :min="pie3.min",
+              :max="pie3.max",
+              :value="pie3.value">
+            </pie>
           </div>
           <div class="flex flex-1 align-items-c">
             <ul class="list-none-style">
@@ -49,9 +59,16 @@
 
 </template>
 <script>
-import pie from './pie.vue'
+import pie from '../../../ui/pie.vue'
 
 export default {
+  data(){
+    return {
+      pie1: { 'max': 999,  'value': 499},
+      pie2: { 'max': 1000, 'value': 200},
+      pie3: { 'max': 1000, 'value': 500}
+    }
+  },
   components: {
     pie
   },

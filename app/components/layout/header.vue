@@ -2,42 +2,54 @@
   @import '../../scss/variable.scss';
   .app-header{
     height:$header-height;
-    background-color: #fff;
-    .nav-left{
+    border-bottom: 1px solid #eeeeee;
+    color:#666;
+    font-size: 1.4rem;
+    .nav-right{
       width: 200px;
+      position: relative;
+
+      i{
+        position: absolute;
+        right:5px;
+        top:5px;
+        color:#d4d4d4;
+        font-size: 1.8rem;
+      }
     }
     .topbar-btn{
-      padding: 17px 10px;
-      cursor: pointer;
-      &:hover{
-        background: #f3f0f0;
-      }
+      padding: 15px 10px;
     }
   }
 </style>
 
 <template>
-  <header class='app-header flex align-items'>
-    <div class="nav-left ">
-      <div class="nav-logo flex flex-1 align-items ">
-        <span class="topbar-btn logo">logo</span>
-        <span class="topbar-btn">运营中心后台</span>
-      </div>
+  <header class='app-header flex align-items-c'>
+    <div class="nav-left flex flex-1 justify-content-s align-items-c overflow">
+      <span class="topbar-btn flex" >欢迎您来到云呼你运营中心， 您有&nbsp;<a href="#">3</a>&nbsp;件事项未处理</span><span class="iconfont icon-oc-user"></span>
     </div>
-    <div class="nav-right flex flex-1 justify-content-end align-items">
-      <span class="topbar-btn" >欢迎您，<a href="">admin</a>，今天，</span>
-      <span class="topbar-btn" ><a>您有(3)件事项未处理</a></span>
-      <span class="topbar-btn" >(3)条未读</span>
-      <span class="topbar-btn" ><a @click='localLogout'>退出</a></span>
+    <div class="nav-right">
+      <div class=" flex flex-1">
+        <input class="form-control search" placeholder="搜索" @keyup.enter="serach" v-model="serachName" value="{{ serachName }}"/><i class="iconfont icon-ico-search1 cursor" @click='serach'></i>
+      </div>
     </div>
   </header>
 </template>
 <script>
 import {localLogout} from '../../vuex/actions.js'
 export default {
+  data(){
+    return{
+      serachName: '12121',
+    }
+  },
+  methods:{
+    serach: function() {
+      console.log('搜索内容:'+this.serachName);
+    }
+  },
   vuex: {
     actions: {
-      localLogout
     }
   }
 }
