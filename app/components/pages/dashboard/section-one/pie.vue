@@ -5,17 +5,17 @@ span {
 </style>
 <template>
   <input
-    data-angleOffset="min/max"
-    data-linecap=round
+    data-angleOffset="{{ angleOffset }}"
+    data-linecap="round"
     data-thickness="0.1"
     type="text"
     class="dial"
-    data-fgColor='#89d9e3'
-    data-width="80"
-    data-height="80"
-    data-min="0"
-    data-max="2000"
-    value="1534"/>
+    data-fgColor='{{ bgcolor }}'
+    data-width="{{ width }}"
+    data-height="{{ height }}"
+    data-max="{{ max }}"
+    data-min="{{ min }}"
+    value="{{ value }}"/>
 </template>
 
 <script>
@@ -24,21 +24,36 @@ require('jquery-knob')
 export default {
   props: {
     min: {
-
+      type: Number,
+      default: 0
     },
     max: {
-
+      type: Number,
+      default: 100
+    },
+    value: {
+      type: Number,
+      default: 50
+    },
+    bgcolor: {
+      type:String,
+      defualt:'#89d9e3'
+    },
+    height: {
+      type: String,
+      default:'80px'
+    },
+    weight: {
+      type:String,
+      defualt:'80px'
     }
   },
   computed: {
-    angleOffset: {
-      handle(){
-        return
-      }
+    angleOffset(){
+        return parseInt(this.value)/parseInt(this.max)*360
     }
   },
   ready(){
-    console.log('ready')
       $(".dial").knob({
         readOnly: true
       });
