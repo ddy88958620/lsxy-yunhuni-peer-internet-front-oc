@@ -4,7 +4,8 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import
     './variable.scss',
     './init.scss',
-    './layout.scss';
+    './layout.scss',
+    './admin.scss';
 
 html {
   height: 100%
