@@ -2,8 +2,9 @@
 </style>
 <template>
   <input
-    data-angleOffset="-90"
+    data-angleOffset="360"
     data-linecap="round"
+    data-rotation="anticlockwise"
     data-thickness="0.1"
     type="text"
     class="dial"
