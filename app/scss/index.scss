@@ -1,4 +1,4 @@
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+// $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
 @import
@@ -17,7 +17,7 @@ body {
   min-height: 100%;
   font-size: 12px;
   display: flex;
-  font-family: "Microsoft YaHei";
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 
 a:link {

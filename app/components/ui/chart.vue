@@ -5,7 +5,7 @@
  ***/
 
 <template>
-    <canvas :class="[uuid]"></canvas>
+    <canvas :class="[uuid]" height='100'></canvas>
 </template>
 <script>
 import Chart from 'chart.js';
@@ -20,9 +20,13 @@ import chance from 'chance'
     props: {
       type: {
         type: Array,
+        default: ['line', 'line']
       },
       uuid: {
         require: true,
+        type: String
+      },
+      label: {
         type: String
       }
     },

@@ -2,8 +2,7 @@
     <validator name="validation">
       <form novalidate >
         <div
-          class="validate-field form-group"
-          >
+          class="validate-field form-group">
           <label :for="usernmae">用户名</label>
           <input
             type="text"
@@ -14,8 +13,7 @@
             :field="username"
             v-validate:username="{maxlength: 16, minlength: 3, required: true}">
         </div>
-        <div
-          class="validate-field form-group"
+        <div class="validate-field form-group">
           <label :for="password">密码</label>
           <input
             type="password"
@@ -27,7 +25,6 @@
             v-validate:password="{maxlength:16, minlength: 3, required: true}">
         </div>
         <button class="btn btn-primary" :disabled='!$validation.valid' @click.prevent='login($validation)'>登入</button>
-        <pre>{{ $validation | json }}</pre>
       </form>
     </validator>
     <router-view></router-view>
@@ -65,21 +62,27 @@ export default {
   }
 }
 </script>
-<style lang='stylus' scoped>
-form
-  position: absolute
-  left: 50%
-  top: 30%
-  transform: translate(-50%,0%)
+<style lang='sass' scoped>
+form {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%,0%);
+}
 
-.validate-field
-  .pristine.invalid
-    border-color: #ccc
-    box-shadow: none
-  .invalid
-    border-color: #a94442
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075)
-  .valid
-    border-color: #3c763d
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075)
+.validate-field {
+  .pristine.invalid {
+    border-color: #ccc;
+    box-shadow: none;
+  }
+
+  .invalid {
+    border-color: #a94442;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  }
+  .valid {
+    border-color: #3c763d;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  }
+}
 </style>
