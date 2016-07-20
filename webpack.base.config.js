@@ -43,10 +43,6 @@ module.exports = {
         loader: 'file?name=[name].[ext]?[hash]'
       },
       { test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url?limit=10000&name=fonts/[hash:8].[name].[ext]'},
-      {
-        test: /\.styl$/,
-        loader: 'css-loader!stylus-loader?paths=node_modules/bootstrap-stylus/stylus/'
-      }
     ]
   },
   plugins: [
