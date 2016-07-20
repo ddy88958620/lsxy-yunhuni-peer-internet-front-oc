@@ -9,7 +9,7 @@ module.exports = {
     //bundle will be recompiled. This modified bundle is served from memory at
     // the relative path specified in publicPath (see API).
     publicPath: 'static/',
-    filename: 'build.js'
+    filename: 'build.[hash].js'
   },
   resolve: {
     modulesDirectories: [
