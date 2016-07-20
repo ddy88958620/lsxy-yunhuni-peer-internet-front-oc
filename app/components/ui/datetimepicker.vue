@@ -1,9 +1,14 @@
 <template>
-    <input width=200
+<div class="input-group date">
+    <input
     type="text"
     :value.sync='date'
     class="datepicker _month form-control"
     data-date-end-date="0m" />
+    <div class="input-group-addon">
+      <span class="iconfont icon-oc-date"></span>
+    </div>
+</div>
 </template>
 <script>
 require("bootstrap-datepicker")
@@ -49,7 +54,18 @@ export default {
 
 .form-control {
   display: inline-block;
-  width: auto;
+}
+
+div.date {
+  width: 120px;
+  input {
+    border-right: none;
+  }
+}
+
+.input-group-addon {
+  background: none;
+  border-left: none;
 }
 
 </style>

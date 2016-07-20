@@ -5,7 +5,7 @@
  ***/
 
 <template>
-    <canvas :class="[uuid]"></canvas>
+    <canvas :class="[uuid]" height='100'></canvas>
 </template>
 <script>
 import Chart from 'chart.js';

@@ -1,5 +1,5 @@
 <template>
-    <section class='section_five'>
+    <section class='section_five bg-section-margin admin-padding'>
     <chart :uuid="'realtime-app-chart'" :label="['1']"></chart>
     </section>
 </template>

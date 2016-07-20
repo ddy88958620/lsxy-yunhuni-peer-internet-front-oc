@@ -1,3 +1,12 @@
 .admin-font-color {
-  color:$admin-font-color
+  color: $admin-font-color;
+}
+
+.admin-padding {
+  padding: $admin-padding;
+}
+
+//统一后台 section 之间的margin
+.bg-section-margin{
+  margin: 20px 0;
 }
