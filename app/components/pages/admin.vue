@@ -33,7 +33,6 @@ export default {
   flex: 1;
   flex-direction: row;
   display: flex;
-
   .app-main {
     display: flex;
     flex: 1;
@@ -41,8 +40,6 @@ export default {
     padding: $admin-padding;
     background-color: #EFF5FA;
   }
-
 }
-
 
 </style>
