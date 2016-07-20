@@ -1,7 +1,6 @@
 <style lang="sass">
   .rankbox{
     border:1px solid #000;
-    width: 300px;
     font-size:1.6rem;
 
     .sort{

@@ -2,14 +2,15 @@
 </style>
 <template>
   <input
-    data-angleOffset="{{ angleOffset }}"
+    data-angleOffset="360"
     data-linecap="round"
+    data-rotation="anticlockwise"
     data-thickness="0.1"
     type="text"
     class="dial"
     data-fgColor='{{ bgcolor }}'
-    data-width="{{ width }}"
-    data-height="{{ height }}"
+    data-width="80"
+    data-height="80"
     data-max="{{ max }}"
     data-min="{{ min }}"
     value="{{ value }}"/>
@@ -37,11 +38,11 @@
       },
       height: {
         type: String,
-        default:'80px'
+        default:'80'
       },
       weight: {
         type:String,
-        defualt:'80px'
+        defualt:'80'
       }
     },
     computed: {
