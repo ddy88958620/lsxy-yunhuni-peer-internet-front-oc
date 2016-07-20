@@ -20,9 +20,13 @@ import chance from 'chance'
     props: {
       type: {
         type: Array,
+        default: ['line', 'line']
       },
       uuid: {
         require: true,
+        type: String
+      },
+      label: {
         type: String
       }
     },
