@@ -18,6 +18,9 @@
           padding: 0 3px;
           color:#FFF;
         }
+        .icon{
+          font-size:1.8rem;
+        }
       }
       .ranking-two{
         padding: 5px 0;
@@ -29,7 +32,9 @@
       .ranking-three{
         padding:15px 10px;
         border-top:1px solid #f0f4fb;
+        color:#666;
         .count{
+          padding:0 5px 0 10px;
           font-size: 2.4rem;
         }
         .number{
@@ -95,23 +100,23 @@
   <div class="rankbox flex flex-direction-column flex-grow-1 ">
     <div class="flex justify-content-c title "><span>---</span>{{ box[index]['title'] }}<span>---</span></div>
 
-
     <div v-for="r in datarank">
       <div class="sort flex flex-direction-column {{ box[index]['color'] }}border" v-if="$index==0">
-        <div class="flex  justify-content-b ranking-one"><i class="band {{ box[index]['color'] }}bg" >NO.1</i><i class="iconfont icon-oc-member {{ box[index]['color'] }}"></i></div>
+        <div class="flex  justify-content-b ranking-one">
+          <i class="flex align-items-e band {{ box[index]['color'] }}bg" >NO.1</i>
+          <i class="icon iconfont icon-oc-member {{ box[index]['color'] }}"></i>
+        </div>
         <div class="flex flex-1 ranking-two">{{r.name}}</div>
       </div>
       <div class="sort2 flex flex-1 flex-direction-column" >
         <div class="flex flex-1 align-items-c ranking-three" v-if="$index==0">
-          <i class="iconfont icon-oc-member grey"></i>
+          <i class="iconfont {{box[index]['icon']}} grey"></i>
           <span class="count align-items-e">{{r.count}}</span>
           <span>{{box[index]['unit']}}</span>
         </div>
-
-        <div class="flex flex-1 ranking-three" v-if="$index!=0"><i class="number flex" >{{r.rank}}</i><span>{{r.name}}</span></div>
+        <div class="flex flex-1 ranking-three" v-if="$index!=0"><i class="number flex" ><strong>{{r.rank}}</strong></i><span>{{r.name}}</span></div>
       </div>
     </div>
-
 
   </div>
 </template>
