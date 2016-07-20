@@ -1,12 +1,18 @@
 <style>
   .headbox{
     background-color: white;
+    padding-left: 15px;
+    color:#666;
+    font-size: 1.6rem;
   }
 </style>
 
 <template>
   <div class="headbox flex flex-1 align-items-c ">
-    活跃会员排名
+    <span class="m-title">
+      <i class="iconfont icon-oc-user"></i>
+      活跃会员排名
+    </span>
   </div>
 </template>
 <style>
@@ -17,6 +23,7 @@
 <script>
   export default{
     components: {
+
 
     }
   }
