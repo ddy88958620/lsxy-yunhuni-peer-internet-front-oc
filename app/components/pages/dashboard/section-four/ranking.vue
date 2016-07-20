@@ -140,7 +140,7 @@
           {
             title:'按会话量排名',
             color: 'green',
-            icon: 'icon-oc-member',
+            icon: 'icon-oc-msg',
             unit: '(次)'
           },
           {

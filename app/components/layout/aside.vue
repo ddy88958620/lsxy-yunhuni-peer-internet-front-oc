@@ -85,7 +85,7 @@
           <img class="avatar" src="../../assets/images/avatar.png" />
         </div>
         <a class="flex flex-1 identity text-center cursor text-none" title='管理员'>管理员</a>
-        <a class="flex flex-1 iconfont icon-oc-user cursor text-none" @click='localLogout' title='退出'></a>
+        <a class="flex flex-1 iconfont icon-oc-exit cursor text-none" @click='localLogout' title='退出'></a>
       </li>
       <li class="flex" v-for='menu in menus'>
         <a class="sub border" v-link="menu.link">
