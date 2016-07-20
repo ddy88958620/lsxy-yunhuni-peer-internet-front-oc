@@ -1,6 +1,7 @@
 var webpack = require('webpack')
 var path = require('path')
 
+
 module.exports = {
   entry: './app/main.js',
   output: {
@@ -8,8 +9,8 @@ module.exports = {
     //Watching your source files for changes and when changes are made the
     //bundle will be recompiled. This modified bundle is served from memory at
     // the relative path specified in publicPath (see API).
-    publicPath: 'static/',
-    filename: 'build.[hash].js'
+    publicPath: '/',
+    filename: 'build.js'
   },
   resolve: {
     modulesDirectories: [
@@ -48,7 +49,7 @@ module.exports = {
   plugins: [
     new webpack.ProvidePlugin({
       $: 'jquery',
-      jQuery: 'jquery',
-    })
+      jQuery: 'jquery'
+    }),
   ]
 }
