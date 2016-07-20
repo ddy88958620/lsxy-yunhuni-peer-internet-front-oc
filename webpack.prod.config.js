@@ -1,6 +1,9 @@
 var webpack = require('webpack')
 var config = require('./webpack.base.config')
+var htmlwebpackplugin = require('html-webpack-plugin')
 
+
+config.output.filename = 'build.[hash].js'
 
 config.plugins = (config.plugins || []).concat([
     new webpack.DefinePlugin({
@@ -12,6 +15,11 @@ config.plugins = (config.plugins || []).concat([
         compress: {
           warnings: false
         }
+    }),
+    new htmlwebpackplugin({
+      title: 'yunhuni',
+      filename: 'index.html',
+      template: './template/product-index.html'
     })
 ])
 

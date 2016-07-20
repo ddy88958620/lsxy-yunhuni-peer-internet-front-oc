@@ -5,5 +5,3 @@ npm-debug.log
 venv
 *.pyc
 .idea
-static
-
