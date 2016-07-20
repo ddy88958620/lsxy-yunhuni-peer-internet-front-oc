@@ -6,27 +6,47 @@
     <!--   <li><a v&#45;link="'/admin/dashboard/b'">b</a></li> -->
     <!-- </ul> -->
 
-    <section class='flex flex-1 section_one'>
-      <member></member>
-      <app></app>
-    </section>
-
-
+    <section-one></section-one>
+    <section-two></section-two>
+    <section-three></section-three>
+    <section-four></section-four>
+    <section-five></section-five>
+    <section-six></section-six>
     <router-view></router-view>
  </div>
 </template>
 <script>
-import member from './components/member.vue'
-import app from './components/app.vue'
-
 export default {
   components: {
-    member,
-    app
+    'section-one': require('./section-one/index.vue'),
+    'section-two': require('./section-two/index.vue'),
+    'section-three': require('./section-three/index.vue'),
+    'section-four': require('./section-four/index.vue'),
+    'section-five': require('./section-five/index.vue'),
+    'section-six': require('./section-six/index.vue'),
   }
 }
 </script>
 <style lang='sass'>
+@import '../../../scss/layout.scss';
+
+.app-main-content {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  flex-direction: column;
+
+  .app-main-left {
+    width: 200px;
+    padding: 0px;
+    list-style: none;
+    margin-bottom: 0;
+    background-color: #EAEDF1;
+  }
+  .app-main-right {
+    flex: 1;
+  }
+}
 
 .app-main-left {
 
@@ -44,10 +64,6 @@ export default {
     background-color: white;
   }
 
-}
-
-.section_one {
-  height: 20rem;
 }
 
 
