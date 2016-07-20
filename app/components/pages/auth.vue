@@ -65,21 +65,27 @@ export default {
   }
 }
 </script>
-<style lang='stylus' scoped>
-form
-  position: absolute
-  left: 50%
-  top: 30%
-  transform: translate(-50%,0%)
+<style lang='sass' scoped>
+form {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%,0%);
+}
 
-.validate-field
-  .pristine.invalid
-    border-color: #ccc
-    box-shadow: none
-  .invalid
-    border-color: #a94442
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075)
-  .valid
-    border-color: #3c763d
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075)
+.validate-field {
+  .pristine.invalid {
+    border-color: #ccc;
+    box-shadow: none;
+  }
+
+  .invalid {
+    border-color: #a94442;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  }
+  .valid {
+    border-color: #3c763d;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  }
+}
 </style>
