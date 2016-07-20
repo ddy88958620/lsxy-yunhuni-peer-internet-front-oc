@@ -1,33 +1,30 @@
 <template>
     <validator name="validation">
-      <form novalidate>
-        <div 
-          class="validate-field form-group"
-          >
+      <form novalidate >
+        <div
+          class="validate-field form-group">
           <label :for="usernmae">用户名</label>
-          <input 
+          <input
             type="text"
             class='form-control'
             v-model='user.name'
-            :id="username" 
+            :id="username"
             :placeholder=""
             :field="username"
             v-validate:username="{maxlength: 16, minlength: 3, required: true}">
         </div>
-        <div 
-          class="validate-field form-group"
+        <div class="validate-field form-group">
           <label :for="password">密码</label>
-          <input 
+          <input
             type="password"
             class='form-control'
             v-model='user.password'
-            :id="password" 
+            :id="password"
             :placeholder=""
             :field="password"
             v-validate:password="{maxlength:16, minlength: 3, required: true}">
         </div>
-        <button class="btn btn-primary" :disabled='!$validation.valid' @click='login($validation)'>登入</button>
-        <pre>{{ $validation | json }}</pre>
+        <button class="btn btn-primary" :disabled='!$validation.valid' @click.prevent='login($validation)'>登入</button>
       </form>
     </validator>
     <router-view></router-view>
@@ -65,21 +62,27 @@ export default {
   }
 }
 </script>
-<style lang='stylus' scoped>
-form
-  position: absolute
-  left: 50%
-  top: 30%
-  transform: translate(-50%,0%)
+<style lang='sass' scoped>
+form {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%,0%);
+}
 
-.validate-field
-  .pristine.invalid
-    border-color: #ccc
-    box-shadow: none
-  .invalid
-    border-color: #a94442
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075)
-  .valid
-    border-color: #3c763d
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075)
+.validate-field {
+  .pristine.invalid {
+    border-color: #ccc;
+    box-shadow: none;
+  }
+
+  .invalid {
+    border-color: #a94442;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  }
+  .valid {
+    border-color: #3c763d;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  }
+}
 </style>

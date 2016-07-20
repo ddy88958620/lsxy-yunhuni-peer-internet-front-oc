@@ -1,18 +1,16 @@
 <template>
   <div id="topbox">
-    <headerbar></headerbar>
     <asidebar></asidebar>
     <section class='app-main'>
-      <div class="container">
+        <headerbar></headerbar>
         <router-view
           class=''
           transition='fade'
           transition-mode='out-in'
           keep-live>
         </router-view>
-      </div>
     </section>
-    <footerbar></footerbar>
+    <!-- <footerbar></footerbar> -->
   </div>
 </template>
 <script>
@@ -30,4 +28,18 @@ export default {
 </script>
 <style lang='sass'>
 @import '../../scss/index.scss';
+
+#topbox {
+  flex: 1;
+  flex-direction: row;
+  display: flex;
+  .app-main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: $admin-padding;
+    background-color: #EFF5FA;
+  }
+}
+
 </style>

@@ -10,22 +10,39 @@ export default function(router){
       component: require('../components/pages/auth.vue')
     },
     '/admin': {
-      component: require('../components/pages/admin.vue')
+      component: require('../components/pages/admin.vue'),
+      subRoutes: {
+        '/dashboard': {
+          component: require('../components/pages/dashboard/index.vue'),
+        },
+        '/charts': {
+          component: require('../components/pages/charts/index.vue'),
+          subRoutes: {
+            '/c': {
+              component: require('../components/pages/charts/page-child-c/index.vue')
+            },
+            '/d': {
+              component: require('../components/pages/charts/page-child-d/index.vue')
+            },
+          }
+        },
+        '/service': {
+          component: require('../components/pages/charts/index.vue')
+        }
+      }
     },
   })
   // set the default router-view
   router.redirect({
-    // '/postlist': '/postlist/test',
+    '/': '/admin',
   })
 
   router.beforeEach(function({to, next, redirect}){
     if(to.auth || getCookie('user')) {
       next()
-      redirect('/admin')
     } else {
       // redirect, status 401 or 403 ...
-      next()
-      //redirect('/auth/login')
+      redirect('/auth/login')
     }
   })
 }

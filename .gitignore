@@ -4,4 +4,6 @@ dist
 npm-debug.log
 venv
 *.pyc
-./idea
+.idea
+static
+

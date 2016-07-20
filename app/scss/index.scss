@@ -1,8 +1,30 @@
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+// $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
-@import './variable.scss';
+@import
+    './variable.scss',
+    './font.scss',
+    './init.scss',
+    './layout.scss',
+    './admin.scss',
+    './mixin.scss';
+
+html {
+  height: 100%
+}
 
 body {
   min-height: 100%;
+  font-size: 12px;
+  display: flex;
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+#app {
+  flex: 1;
+  display: flex;
 }

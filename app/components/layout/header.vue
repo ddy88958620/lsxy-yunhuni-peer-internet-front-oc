@@ -1,85 +1,56 @@
-<style lang="stylus" rel="stylesheet/stylus">
-  header-height = 60px
-  flexbox()
-    display flex
-    flex 1
-  .app-header
-    font-size 16px
-    display flex
-    min-height header-height
-    align-items center
-    color #FFF
-    position flex
-    background-color #2E97CB
-    .logobox
-      width 200px
-    .nav-box
-      margin 0
-      padding 0
-      li
-        list-style-type none
-        text-align center
-        a
-          color #FFF
-    .nav-left
-      flexbox()
-      .logo
-        width 50px
-    .nav-right
-      flexbox()
-      justify-content flex-end
+<style lang='sass' scope>
+  @import '../../scss/variable.scss';
+  .app-header{
+    height:$header-height;
+    border-bottom: 1px solid #eeeeee;
+    color:#666;
+    font-size: 1.4rem;
+    .nav-right{
+      width: 200px;
+      position: relative;
+
+      i{
+        position: absolute;
+        right:5px;
+        top:5px;
+        color:#d4d4d4;
+        font-size: 1.8rem;
+      }
+    }
+    .topbar-btn{
+      padding: 15px 10px;
+    }
+  }
 </style>
 
 <template>
-  <header class='app-header'>
-    <div class="logobox">
-      <ul class="nav-box nav-left">
-        <li class="logo">logo</li>
-        <li>运营中心后台</li>
-      </ul>
+  <header class='app-header flex align-items-c'>
+    <div class="nav-left flex flex-1 justify-content-s align-items-c overflow">
+      <span class="topbar-btn flex" >欢迎您来到云呼你运营中心， 您有&nbsp;<a href="#">3</a>&nbsp;件事项未处理</span><span class="iconfont icon-oc-user"></span>
     </div>
-    <ul class="nav-box nav-right">
-      <li >欢迎您，<a href="">admin</a>，今天，</li>
-      <li ><a>您有(3)件事项未处理</a></li>
-      <li >(3)条未读</li>
-      <li><a @click='localLogout'>退出</a></li>
-    </ul>
+    <div class="nav-right">
+      <div class=" flex flex-1">
+        <input class="form-control search" placeholder="搜索" @keyup.enter="serach" v-model="serachName" value="{{ serachName }}"/><i class="iconfont icon-ico-search1 cursor" @click='serach'></i>
+      </div>
+    </div>
   </header>
 </template>
-
-
-
-
 <script>
-<<<<<<< HEAD
 import {localLogout} from '../../vuex/actions.js'
 export default {
+  data(){
+    return{
+      serachName: '12121',
+    }
+  },
+  methods:{
+    serach: function() {
+      console.log('搜索内容:'+this.serachName);
+    }
+  },
   vuex: {
     actions: {
-      localLogout
     }
   }
 }
-=======
-  import {showMsg, hideMsg} from '../../vuex/actions'
-  export default {
-    data(){
-      return {
-        msg: 'admin',
-        mattercount : 10
-      }
-    },
-    vuex: {
-      actions: {
-        showMsg,
-        hideMsg
-      }
-    },
-    methods: {
-      doshowMsg(){
-        this.showMsg({content: '你有十个未读消息'})
-      }
-    }
-  }
->>>>>>> 2ff59a01085cbbe49a1f65d8cb03621064680fe2
 </script>

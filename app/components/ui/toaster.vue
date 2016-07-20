@@ -1,5 +1,5 @@
 <template>
-    <p v-if="content !== ''" 
+    <p v-if="content !== ''"
       class="bg-success">
       {{content}}
     </p>
@@ -20,12 +20,15 @@ export default {
   },
 }
 </script>
-<style lang='stylus' scoped>
-@import '../../stylus/mixin'
-p
-  padding: 15px
-  width: 300px
-  text-align: center
-  center()
+<style lang='sass' scoped>
 
+p{
+  padding: 15px;
+  width: 300px;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 30px;
+  transform: translate(-50%, -50%);
+}
 </style>
