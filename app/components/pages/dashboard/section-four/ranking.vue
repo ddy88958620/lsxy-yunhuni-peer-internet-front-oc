@@ -25,6 +25,13 @@
       .ranking-two{
         padding: 5px 0;
         color:#333;
+        .name{
+          padding:5px 0;
+        }
+        .count{
+          padding:0 5px 0 10px;
+          font-size: 2.4rem;
+        }
       }
     }
     .sort2{
@@ -33,10 +40,7 @@
         padding:15px 10px;
         border-top:1px solid #f0f4fb;
         color:#666;
-        .count{
-          padding:0 5px 0 10px;
-          font-size: 2.4rem;
-        }
+
         .number{
           color:#bebebe;
           padding-right: 10px;
@@ -106,14 +110,19 @@
           <i class="flex align-items-e band {{ box[index]['color'] }}bg" >NO.1</i>
           <i class="icon iconfont icon-oc-member {{ box[index]['color'] }}"></i>
         </div>
-        <div class="flex flex-1 ranking-two">{{r.name}}</div>
+        <div class="flex flex-1 flex-direction-column ranking-two" v-if="$index==0">
+          <span class="name">{{r.name}}</span>
+          <div class="flex flex-1  align-items-c  " >
+            <i class="iconfont {{box[index]['icon']}} grey"></i>
+            <span class="count align-items-e">{{r.count}}</span>
+            <span>{{box[index]['unit']}}</span>
+          </div>
+
+        </div>
+
+
       </div>
       <div class="sort2 flex flex-1 flex-direction-column" >
-        <div class="flex flex-1 align-items-c ranking-three" v-if="$index==0">
-          <i class="iconfont {{box[index]['icon']}} grey"></i>
-          <span class="count align-items-e">{{r.count}}</span>
-          <span>{{box[index]['unit']}}</span>
-        </div>
         <div class="flex flex-1 ranking-three" v-if="$index!=0"><i class="number flex" ><strong>{{r.rank}}</strong></i><span>{{r.name}}</span></div>
       </div>
     </div>
@@ -131,7 +140,7 @@
           {
             title:'按会话量排名',
             color: 'green',
-            icon: 'icon-oc-member',
+            icon: 'icon-oc-msg',
             unit: '(次)'
           },
           {
