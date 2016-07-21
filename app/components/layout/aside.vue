@@ -56,12 +56,13 @@
     li {
       .sub{
         width: 100%;
-        padding: 15px 15px 15px 50px;
+        height: 48px;
+        padding: 0 15px 0 50px;
         &:hover{
           @extend .active;
         }
         i{
-          padding-right: 10px;
+          padding:0 10px 3px 0;
         }
       }
       a.v-link-active {
@@ -87,8 +88,8 @@
         <a class="flex flex-1 identity text-center cursor text-none" title='管理员'>管理员</a>
         <a class="flex flex-1 iconfont icon-oc-exit cursor text-none" @click='localLogout' title='退出'></a>
       </li>
-      <li class="flex" v-for='menu in menus'>
-        <a class="sub border" v-link="menu.link">
+      <li class="flex " v-for='menu in menus'>
+        <a class="flex sub border align-items-c " v-link="menu.link">
           <i class="iconfont {{menu.icon}}"></i>
           {{ menu.title }}</a>
       </li>
