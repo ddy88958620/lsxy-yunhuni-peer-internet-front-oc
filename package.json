@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --config webpack.dev.config.js",
-    "build": "rm ./static/* & cp -rf ./app/mock ./static & webpack --progress --hide-modules --progress --config webpack.prod.config.js",
+    "build": "rm ./static/**/* & cp -rf ./app/mock ./static & webpack --progress --hide-modules --progress --config webpack.prod.config.js",
     "test": "webpack --watch --config webpack.dev.config.js"
   },
   "keywords": [
