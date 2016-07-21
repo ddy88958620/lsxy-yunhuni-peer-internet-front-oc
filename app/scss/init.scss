@@ -31,7 +31,7 @@
 //
 // // Components
 // @import "bootstrap/component-animations";
-// @import "bootstrap/dropdowns";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_dropdowns.scss';
 // @import "bootstrap/button-groups";
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/_input-groups.scss';
 // @import "bootstrap/navs";
@@ -47,7 +47,7 @@
 // @import "bootstrap/progress-bars";
 // @import "bootstrap/media";
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/_list-group.scss';
-// @import "bootstrap/panels";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_panels.scss';
 // @import "bootstrap/responsive-embed";
 // @import "bootstrap/wells";
 // @import "bootstrap/close";
