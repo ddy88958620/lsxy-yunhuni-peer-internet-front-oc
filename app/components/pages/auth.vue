@@ -1,6 +1,6 @@
 <template>
     <validator name="validation">
-      <form novalidate >
+      <form novalidate id='auth-form'>
         <div
           class="validate-field form-group">
           <label :for="usernmae">用户名</label>
@@ -62,8 +62,8 @@ export default {
   }
 }
 </script>
-<style lang='sass' scoped>
-form {
+<style lang='sass'>
+#auth-form {
   position: absolute;
   left: 50%;
   top: 30%;

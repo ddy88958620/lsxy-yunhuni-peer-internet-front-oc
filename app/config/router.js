@@ -1,33 +1,40 @@
 import { getCookie } from '../utils/cookieAuth.js'
 
+
+// FUNCTION LAZYLOA DO NOT WORK
+// const lazyLoad = function(path) {
+//   return (resolve) => require([`${path}`], resolve)
+// }
+
+
 export default function(router){
   router.map({
     '/auth/login': {
-      component: require('../components/pages/auth.vue'),
+      component: (resolve) => require(['../components/pages/auth.vue'], resolve),
       auth: true
     },
     '/auth/register': {
-      component: require('../components/pages/auth.vue')
+      component: (resolve) => require(['../components/pages/auth.vue'], resolve)
     },
     '/admin': {
-      component: require('../components/pages/admin.vue'),
+      component: (resolve) =>  require(['../components/pages/admin.vue'], resolve),
       subRoutes: {
         '/dashboard': {
-          component: require('../components/pages/dashboard/index.vue'),
+          component: (resolve) => require(['../components/pages/dashboard/index.vue'], resolve),
         },
         '/charts': {
-          component: require('../components/pages/charts/index.vue'),
+          component: (resolve) => require(['../components/pages/charts/index.vue'], resolve),
           subRoutes: {
             '/c': {
-              component: require('../components/pages/charts/page-child-c/index.vue')
+              component: (resolve) => require(['../components/pages/charts/page-child-c/index.vue'], resolve)
             },
             '/d': {
-              component: require('../components/pages/charts/page-child-d/index.vue')
+              component: (resolve) => require(['../components/pages/charts/page-child-d/index.vue'], resolve)
             },
           }
         },
         '/service': {
-          component: require('../components/pages/charts/index.vue')
+          component: (resolve) => require(['../components/pages/service/index.vue'], resolve)
         }
       }
     },
