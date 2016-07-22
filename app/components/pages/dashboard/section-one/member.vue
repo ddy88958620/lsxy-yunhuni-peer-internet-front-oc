@@ -14,11 +14,11 @@
             </pie>
           </div>
           <div class="flex flex-1 align-items-c">
-            <ul class="list-none-style">
+            <ul class="list-none-style ">
               <li>总注册会员 ( 个 )</li>
-              <li>日 <span class='text-danger'>11</span></li>
-              <li>周 <span class='text-danger'>77</span></li>
-              <li>月 <span class='text-danger'>308</span></li>
+              <li>日 <span class='text-danger'><i class="iconfont icon-oc-up"></i>11</span></li>
+              <li>周 <span class='text-danger'><i class="iconfont icon-oc-up"></i>77</span></li>
+              <li>月 <span class='text-danger'><i class="iconfont icon-oc-up"></i>308</span></li>
             </ul>
           </div>
         </div>
@@ -34,9 +34,9 @@
           <div class="flex flex-1 align-items-c" >
             <ul class="list-none-style">
               <li>总注册会员 ( 个 )</li>
-              <li>日 <span class='text-danger'>11</span></li>
-              <li>周 <span class='text-danger'>77</span></li>
-              <li>月 <span class='text-danger'>308</span></li>
+              <li>日 <i class="iconfont icon-oc-up "></i><span class='text-danger'>11</span></li>
+              <li>周 <i class="iconfont icon-oc-up "></i><span class='text-danger'>77</span></li>
+              <li>月 <i class="iconfont icon-oc-up "></i><span class='text-danger'>308</span></li>
             </ul>
           </div>
         </div>
@@ -52,9 +52,9 @@
           <div class="flex flex-1 align-items-c" >
             <ul class="list-none-style">
               <li>总注册会员 ( 个 )</li>
-              <li>日 11</li>
-              <li>周 77</li>
-              <li>月 308</li>
+              <li>日 <i class="iconfont icon-oc-up"></i><span class='text-danger'>11</span></li>
+              <li>周 <i class="iconfont icon-oc-up"></i><span class='text-danger'>77</span></li>
+              <li>月 <i class="iconfont icon-oc-up"></i><span class='text-danger'>308</span></li>
             </ul>
           </div>
         </div>
@@ -111,5 +111,10 @@ export default {
   display: flex;
   align-self: center;
 }
+
+.icon-oc-up{
+  font-size: 0.3rem;
+}
+
 
 </style>

@@ -60,13 +60,8 @@ export default {
     color:#666;
     font-size: 1.6rem;
   }
-.section_right {
-  display: flex;
-  flex: 2;
-}
-
-  .border{
-    border:1px solid #000;
+  .section_right {
+    display: flex;
+    flex: 2;
   }
-
 </style>

@@ -18,7 +18,8 @@ export default {
 
 <style lang="sass" scoped>
   .section_one{
-
+    font-size: 1.4rem;
+    color:#666;
   }
 
 </style>

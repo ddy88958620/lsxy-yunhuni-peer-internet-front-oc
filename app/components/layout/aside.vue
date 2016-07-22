@@ -1,5 +1,4 @@
 <style lang='sass' scope>
-@import '../../scss/font.scss';
 @import '../../scss/mixin.scss';
 @import '../../scss/variable.scss';
 .app-sidebar {
@@ -41,10 +40,10 @@
 
     .avatar-box{
       height: 180px;
-      padding-top: 10px;
+      padding-top: 15px;
       .canvas{
         @include circlebox(50px);
-        border:1px solid #n;
+        border:1px solid #000;
         img{
           @include circlebox(40px);
         }
@@ -52,6 +51,17 @@
       .identity{
         padding: 10px 0 0 0;
       }
+      .exitbox{
+        font-size: 1.8rem;
+        padding-bottom: 10px;
+      }
+    }
+    .menu-box{
+      .iconfont{
+        color:#515a76;
+        font-size: 1rem !important;
+      }
+      height: 24px;
     }
 
     li {
@@ -87,7 +97,10 @@
           <img class="avatar" src="../../assets/images/avatar.png" />
         </div>
         <a class="flex flex-1 identity text-center cursor text-none" title='管理员'>管理员</a>
-        <a class="flex flex-1 iconfont icon-oc-exit cursor text-none" @click='localLogout' title='退出'></a>
+        <a class="flex flex-1 exitbox iconfont icon-oc-exit cursor text-none" @click='localLogout' title='退出'></a>
+      </li>
+      <li class="flex menu-box align-items-c justify-content-c border">
+        <i class="iconfont icon-oc-menu"></i>
       </li>
       <li class="flex " v-for='menu in menus'>
         <a class="flex sub border align-items-c " v-link="menu.link">

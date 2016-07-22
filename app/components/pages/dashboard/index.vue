@@ -7,12 +7,12 @@
     <!-- </ul> -->
 
     <section-one></section-one>
-<!--    <section-two></section-two>
+    <section-two></section-two>
     <section-three></section-three>
     <section-four></section-four>
     <section-five></section-five>
     <section-six></section-six>
-    <router-view></router-view>-->
+    <router-view></router-view>
  </div>
 </template>
 <script>
