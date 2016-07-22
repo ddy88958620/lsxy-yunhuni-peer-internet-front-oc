@@ -1,5 +1,4 @@
 <style lang='sass' scope>
-@import '../../scss/font.scss';
 @import '../../scss/mixin.scss';
 @import '../../scss/variable.scss';
 .app-sidebar {

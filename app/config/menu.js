@@ -17,4 +17,10 @@ export default [
     icon: 'icon-oc-custom',
     link: '/admin/service'
   },
+  {
+    title: '消息中心',
+    label: 'Message',
+    icon: 'icon-oc-msg',
+    link: '/admin/message'
+  }
 ]
