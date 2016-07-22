@@ -1,9 +1,10 @@
 <template>
   <div class="section_right">
     <div class="panel panel-default flex-1">
-      <div class="panel-heading">应用数据</div>
+      <div class="panel-heading"><i class="iconfont icon-oc-app"></i>应用数据</div>
       <div class="panel-body flex">
-        <div class='flex flex-1 append-solid'>
+
+        <div class='flex flex-1 append-solid flex-direction-column align-items-c'>
           <div class="flex-1 pie_wrap">
             <pie
               :max="pie1.max",
@@ -12,16 +13,13 @@
             ></pie>
           </div>
           <div class="flex flex-1 align-items-c">
-            <ul class="list-none-style">
-              <li>总注册会员 ( 个 )</li>
-              <li>日 <span class='text-danger'>11</span></li>
-              <li>周 <span class='text-danger'>77</span></li>
-              <li>月 <span class='text-danger'>308</span></li>
-            </ul>
+            总应用数（个）
           </div>
         </div>
-        <div class='flex flex-1 append-solid'>
-          <div class="flex-1 pie_wrap">
+
+
+        <div class='flex flex-1 flex-direction-column align-items-c'>
+          <div class="flex-1 pie_wrap ">
             <pie
               :max="pie2.max",
               :value="pie2.value",
@@ -29,14 +27,10 @@
             ></pie>
           </div>
           <div class="flex flex-1 align-items-c">
-            <ul class="list-none-style">
-              <li>总注册会员 ( 个 )</li>
-              <li>日 <span class='text-danger'>11</span></li>
-              <li>周 <span class='text-danger'>77</span></li>
-              <li>月 <span class='text-danger'>308</span></li>
-            </ul>
+            总上线应用数（个）
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -58,11 +52,21 @@ export default {
   }
 }
 </script>
-<style>
-
+<style lang="sass" scoped>
+  .panel-heading{
+    .iconfont{
+      padding-right: 10px;
+    }
+    color:#666;
+    font-size: 1.6rem;
+  }
 .section_right {
   display: flex;
   flex: 2;
 }
+
+  .border{
+    border:1px solid #000;
+  }
 
 </style>

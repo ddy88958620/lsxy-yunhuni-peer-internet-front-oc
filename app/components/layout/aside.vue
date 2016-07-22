@@ -17,7 +17,7 @@
     border-left: 3px solid #f6f883;
     background-color: #515a76;
     color: #fff;
-    border-top:1px solid transparent;
+
     border-bottom:1px solid #444f70;
     padding-left: 47px;
   }

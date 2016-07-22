@@ -15,3 +15,10 @@ export default {
 }
 
 </script>
+
+<style lang="sass" scoped>
+  .section_one{
+
+  }
+
+</style>
