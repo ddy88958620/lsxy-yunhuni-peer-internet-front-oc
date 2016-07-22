@@ -113,7 +113,7 @@ export default {
 }
 
 .icon-oc-up{
-  font-size: 0.3rem;
+  font-size: 10px;
 }
 
 
