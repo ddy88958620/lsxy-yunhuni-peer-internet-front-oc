@@ -23,7 +23,7 @@ module.exports = {
           new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
           )
     ],
-    extensions: ['', '.json', '.js']
+    extensions: ['', '.json', '.js'],
   },
   module: {
     loaders:[
@@ -37,7 +37,7 @@ module.exports = {
       },
       {
         test: /\.vue$/,
-        loader: 'vue'
+        loader: 'vue',
       },
       {
         test: /\.(png|jpg|gif)$/,
