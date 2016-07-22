@@ -49,8 +49,6 @@
       }
     },
     ready(){
-      console.log(this.bgcolor);
-
       $(".dial").knob({
         readOnly: true
       });

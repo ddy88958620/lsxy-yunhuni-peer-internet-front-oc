@@ -19,7 +19,7 @@
     color: #fff;
     border-top:1px solid transparent;
     border-bottom:1px solid #444f70;
-    padding-left: 48px;
+    padding-left: 47px;
   }
   ul {
     list-style: none;
@@ -30,6 +30,7 @@
     .logo-box{
       height: 110px;
       font-size: 1.6rem;
+      border-bottom:1px solid #505b7b;
       background-color: #586381;
       .logo{
         width: 50px;
@@ -43,7 +44,7 @@
       padding-top: 10px;
       .canvas{
         @include circlebox(50px);
-        border:1px solid #2a303e;
+        border:1px solid #n;
         img{
           @include circlebox(40px);
         }
@@ -56,13 +57,13 @@
     li {
       .sub{
         width: 100%;
-        height: 48px;
+        height: 46px;
         padding: 0 15px 0 50px;
         &:hover{
           @extend .active;
         }
         i{
-          padding:0 10px 3px 0;
+          padding-right: 12px;
         }
       }
       a.v-link-active {
@@ -77,7 +78,7 @@
 <template>
   <aside class='app-sidebar'>
     <ul class="flex-direction-column-reverse fex fex-1 ">
-      <li class="logo-box flex flex-direction-column justify-content-c align-items-c border">
+      <li class="logo-box flex flex-1 flex-direction-column justify-content-c align-items-c">
         <img src="../../assets/images/logo.png" class="logo " />
         <span>云呼你运营中心</span>
       </li>

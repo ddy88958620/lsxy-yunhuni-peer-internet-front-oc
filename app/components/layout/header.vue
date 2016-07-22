@@ -34,7 +34,7 @@
     </div>
     <div class="nav-right">
       <div class=" flex flex-1">
-        <input class="form-control search" placeholder="搜索" @keyup.enter="serach" v-model="serachName" value="{{ serachName }}"/><i class="iconfont icon-oc-search cursor" @click='serach'></i>
+        <input class="form-control search" placeholder="请输入会员名称" @keyup.enter="serach" v-model="serachName" value="{{ serachName }}"/><i class="iconfont icon-oc-search cursor" @click='serach'></i>
       </div>
     </div>
   </header>
@@ -44,7 +44,7 @@ import {localLogout} from '../../vuex/actions.js'
 export default {
   data(){
     return{
-      serachName: '12121',
+      serachName: '',
     }
   },
   methods:{
