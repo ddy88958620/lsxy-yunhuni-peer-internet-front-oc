@@ -1,9 +1,16 @@
 import { getCookie } from '../utils/cookieAuth.js'
 
+
+// FUNCTION LAZYLOA DO NOT WORK
+// const lazyLoad = function(path) {
+//   return (resolve) => require([`${path}`], resolve)
+// }
+
+
 export default function(router){
   router.map({
     '/auth/login': {
-      component: ( resolve ) => require(['../components/pages/auth.vue'], resolve),
+      component: (resolve) => require(['../components/pages/auth.vue'], resolve),
       auth: true
     },
     '/auth/register': {
