@@ -8,7 +8,7 @@
     "test": "webpack --watch --config webpack.dev.config.js",
     "clean": "rm -rf ./static/*",
     "build": "webpack --progress --hide-modules --progress --config webpack.prod.config.js",
-    "mock":  "cp -rf ./app/mock ./static"
+    "mock": "cp -rf ./app/mock ./static"
   },
   "keywords": [
     "webpack"

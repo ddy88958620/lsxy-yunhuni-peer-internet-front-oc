@@ -14,7 +14,6 @@ module.exports = {
   },
   resolve: {
     modulesDirectories: [
-      'src',
       'node_modules',
       'bower_components'
     ],
@@ -23,7 +22,11 @@ module.exports = {
           new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
           )
     ],
-    extensions: ['', '.json', '.js']
+    alias: {
+      // 'components': path.resolve(__dirname, 'app/components'),
+      'font': path.resolve(__dirname, 'app/assets/fonts')
+    },
+    extensions: ['', '.json', '.js', '.vue'],
   },
   module: {
     loaders:[
@@ -37,14 +40,15 @@ module.exports = {
       },
       {
         test: /\.vue$/,
-        loader: 'vue'
+        loader: 'vue',
       },
       {
         test: /\.(png|jpg|gif)$/,
         loader: 'file?name=[name].[ext]?[hash]'
       },
       { test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url?limit=10000&name=fonts/[hash:8].[name].[ext]'},
-    ]
+    ],
+    noParse: [],
   },
   plugins: [
     new webpack.ProvidePlugin({
