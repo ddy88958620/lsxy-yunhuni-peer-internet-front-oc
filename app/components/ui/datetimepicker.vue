@@ -1,13 +1,11 @@
 <template>
-<div class="input-group date">
+<div class="input-group date-component">
     <input
     type="text"
     :value.sync='date'
     class="datepicker _month form-control"
     data-date-end-date="0m" />
-    <div class="input-group-addon">
-      <span class="iconfont icon-oc-date"></span>
-    </div>
+    <span class="iconfont icon-oc-date"></span>
 </div>
 </template>
 <script>
@@ -34,32 +32,40 @@ export default {
       format: 'yyyy-mm',
       startView: "months",
       minViewMode: "months",
-      todayHighlight: true,
-      todayBtn: true,
-      autoclose: true //fail
     }).on('changeDate',function(e){
       $(this).datepicker('hide')
 
-      self.date = $(this)[0].value
+      let currenSelectDate = $(this)[0].value
+      console.log(currenSelectDate);
+      self.date = currenSelectDate ? currenSelectDate : self.date
     });
 
     // 默认当前月份
-    var str = date.getFullYear() + '-' + (date.getMonth()+1)
+    let month = date.getMonth()+1
+    let fmtMonth = month.length > 1 ? month : `0${month}`
+    let str = date.getFullYear() + '-' + fmtMonth
+
     self.date = str
   }
 }
 </script>
-<style lang='sass' scoped>
+<style lang='sass'>
 @import '~bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css';
 
-.form-control {
-  display: inline-block;
-}
-
-div.date {
+.date-component {
   width: 120px;
-  input {
-    border-right: none;
+  background-color: white;
+  display: inline-block;
+  position: relative;
+  span {
+    font-size: 2.2rem;
+    position: absolute;
+    right: 8px;
+    top: 2px;
+    z-index: 2;
+  }
+  .form-control {
+    display: inline-block;
   }
 }
 

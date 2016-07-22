@@ -23,9 +23,11 @@
         }
       }
       .ranking-two{
+        height: 80px;
         padding: 5px 0;
         color:#333;
         .name{
+          height: 30px;
           padding:5px 0;
         }
         .count{
@@ -37,10 +39,10 @@
     .sort2{
        background-color:#fff;
       .ranking-three{
+        height: 50px;
         padding:15px 10px;
         border-top:1px solid #f0f4fb;
         color:#666;
-
         .number{
           color:#bebebe;
           padding-right: 10px;
@@ -101,29 +103,28 @@
 
 
 <template>
-  <div class="rankbox flex flex-direction-column flex-grow-1 ">
-    <div class="flex justify-content-c title "><span>---</span>{{ box[index]['title'] }}<span>---</span></div>
+  <div class="rankbox flex flex-1 flex-direction-column flex-grow-1 ">
+    <div class="flex justify-content-c title overflow"><span>---</span>{{ box[index]['title'] }}<span>---</span></div>
 
     <div v-for="r in datarank">
       <div class="sort flex flex-direction-column {{ box[index]['color'] }}border" v-if="$index==0">
-        <div class="flex  justify-content-b ranking-one">
+        <div class="flex justify-content-b ranking-one">
           <i class="flex align-items-e band {{ box[index]['color'] }}bg" >NO.1</i>
           <i class="icon iconfont icon-oc-member {{ box[index]['color'] }}"></i>
         </div>
         <div class="flex flex-1 flex-direction-column ranking-two" v-if="$index==0">
-          <span class="name">{{r.name}}</span>
+          <span class="name overflow-y-h" title="{{r.name}}">{{r.name}}</span>
           <div class="flex flex-1  align-items-c  " >
             <i class="iconfont {{box[index]['icon']}} grey"></i>
             <span class="count align-items-e">{{r.count}}</span>
-            <span>{{box[index]['unit']}}</span>
+            <span class="overflow-y-h">{{box[index]['unit']}}</span>
           </div>
-
         </div>
 
 
       </div>
       <div class="sort2 flex flex-1 flex-direction-column" >
-        <div class="flex flex-1 ranking-three" v-if="$index!=0"><i class="number flex" ><strong>{{r.rank}}</strong></i><span>{{r.name}}</span></div>
+        <div class="flex flex-1 ranking-three" v-if="$index!=0"><i class="number flex" title="{{r.count}}{{box[index]['unit']}}" ><strong>{{r.rank}}</strong></i><span title="{{r.name}}" class="overflow-y-h">{{r.name}}</span></div>
       </div>
     </div>
 

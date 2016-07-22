@@ -1,5 +1,4 @@
 <style lang='sass' scope>
-@import '../../scss/font.scss';
 @import '../../scss/mixin.scss';
 @import '../../scss/variable.scss';
 .app-sidebar {
@@ -17,9 +16,9 @@
     border-left: 3px solid #f6f883;
     background-color: #515a76;
     color: #fff;
-    border-top:1px solid transparent;
+
     border-bottom:1px solid #444f70;
-    padding-left: 48px;
+    padding-left: 47px;
   }
   ul {
     list-style: none;
@@ -30,6 +29,7 @@
     .logo-box{
       height: 110px;
       font-size: 1.6rem;
+      border-bottom:1px solid #505b7b;
       background-color: #586381;
       .logo{
         width: 50px;
@@ -40,10 +40,10 @@
 
     .avatar-box{
       height: 180px;
-      padding-top: 10px;
+      padding-top: 15px;
       .canvas{
         @include circlebox(50px);
-        border:1px solid #2a303e;
+        border:1px solid #000;
         img{
           @include circlebox(40px);
         }
@@ -51,17 +51,29 @@
       .identity{
         padding: 10px 0 0 0;
       }
+      .exitbox{
+        font-size: 1.8rem;
+        padding-bottom: 10px;
+      }
+    }
+    .menu-box{
+      .iconfont{
+        color:#515a76;
+        font-size: 1rem !important;
+      }
+      height: 24px;
     }
 
     li {
       .sub{
         width: 100%;
-        padding: 15px 15px 15px 50px;
+        height: 46px;
+        padding: 0 15px 0 50px;
         &:hover{
           @extend .active;
         }
         i{
-          padding-right: 10px;
+          padding-right: 12px;
         }
       }
       a.v-link-active {
@@ -76,7 +88,7 @@
 <template>
   <aside class='app-sidebar'>
     <ul class="flex-direction-column-reverse fex fex-1 ">
-      <li class="logo-box flex flex-direction-column justify-content-c align-items-c border">
+      <li class="logo-box flex flex-1 flex-direction-column justify-content-c align-items-c">
         <img src="../../assets/images/logo.png" class="logo " />
         <span>云呼你运营中心</span>
       </li>
@@ -85,10 +97,13 @@
           <img class="avatar" src="../../assets/images/avatar.png" />
         </div>
         <a class="flex flex-1 identity text-center cursor text-none" title='管理员'>管理员</a>
-        <a class="flex flex-1 iconfont icon-oc-exit cursor text-none" @click='localLogout' title='退出'></a>
+        <a class="flex flex-1 exitbox iconfont icon-oc-exit cursor text-none" @click='localLogout' title='退出'></a>
       </li>
-      <li class="flex" v-for='menu in menus'>
-        <a class="sub border" v-link="menu.link">
+      <li class="flex menu-box align-items-c justify-content-c border">
+        <i class="iconfont icon-oc-menu"></i>
+      </li>
+      <li class="flex " v-for='menu in menus'>
+        <a class="flex sub border align-items-c " v-link="menu.link">
           <i class="iconfont {{menu.icon}}"></i>
           {{ menu.title }}</a>
       </li>

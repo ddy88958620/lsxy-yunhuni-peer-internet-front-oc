@@ -128,6 +128,12 @@ import chance from 'chance'
           }
         }
       })
+
+      $(window).resize(function()
+      {
+
+        $('canvas').css('width','100%');
+      });
     }
   }
 </script>
