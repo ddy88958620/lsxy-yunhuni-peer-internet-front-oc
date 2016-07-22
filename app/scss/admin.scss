@@ -10,3 +10,22 @@
 .bg-section-margin{
   margin: 20px 0;
 }
+
+// admin table
+
+.admin-table {
+
+}
+
+.admin-table-header {
+  $input-height: 32px;
+
+  .datetime-picker-label {
+    display: inline-block;
+    height: $input-height;
+  }
+
+  select {
+    width: 150px;
+  }
+}

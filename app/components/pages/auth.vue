@@ -63,8 +63,6 @@ export default {
 }
 </script>
 <style lang='sass'>
-@import '../../scss/index.scss';
-
 #auth-form {
   position: absolute;
   left: 50%;
