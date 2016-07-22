@@ -1,4 +1,5 @@
 <style scoped>
+
 </style>
 <template>
   <input
@@ -8,7 +9,7 @@
     data-thickness="0.1"
     type="text"
     class="dial"
-    data-fgColor='{{ bgcolor }}'
+    data-fgColor="{{ bgcolor }}"
     data-width="80"
     data-height="80"
     data-max="{{ max }}"
@@ -33,15 +34,12 @@
         default: 50
       },
       bgcolor: {
-        type:String,
         defualt:'#89d9e3'
       },
       height: {
-        type: String,
         default:'80'
       },
       weight: {
-        type:String,
         defualt:'80'
       }
     },

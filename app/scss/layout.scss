@@ -1,3 +1,7 @@
+.inline-block {
+  display: inline-block;
+}
+
 .flex {
   display: flex;
 }
@@ -40,6 +44,10 @@
 
 .align-items-e{
   align-items: flex-end;
+}
+
+.align-items-b{
+  align-items: baseline;
 }
 
 //手型
@@ -86,4 +94,12 @@
 }
 .flex-grow-1{
   flex-grow: 1;
+}
+
+.overflow-y-h{
+   overflow-y: hidden;
+}
+
+.overflow-x-h{
+  overflow-x: hidden;
 }
