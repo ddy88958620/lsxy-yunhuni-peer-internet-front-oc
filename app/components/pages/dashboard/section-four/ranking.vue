@@ -49,6 +49,29 @@
         }
       }
     }
+
+
+    .title div {
+      color: #212121;
+      position: relative;   /*定位横线（当横线的父元素）*/
+    }
+
+
+    .title div:before, .title div:after{
+      content: '';                 /*CSS伪类用法*/
+      position: absolute;         /*定位背景横线的位置*/
+      top: 51%;
+      background: #ddd;       /*宽和高做出来的背景横线*/
+      width: 30%;
+      height: 1px;
+    }
+    .title div:before{
+        left: -35%;
+    }
+    .title div:after {
+      right: -35%;
+    }
+
     .grey{
       color:#b2b9ce;
     }
@@ -104,8 +127,9 @@
 
 <template>
   <div class="rankbox flex flex-1 flex-direction-column flex-grow-1 ">
-    <div class="flex justify-content-c title overflow"><span>---</span>{{ box[index]['title'] }}<span>---</span></div>
-
+    <div class="flex justify-content-c title overflow">
+      <div>{{ box[index]['title'] }}</div>
+    </div>
     <div v-for="r in datarank">
       <div class="sort flex flex-direction-column {{ box[index]['color'] }}border" v-if="$index==0">
         <div class="flex justify-content-b ranking-one">
