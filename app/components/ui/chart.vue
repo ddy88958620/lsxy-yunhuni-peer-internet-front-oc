@@ -14,7 +14,7 @@ import chance from 'chance'
   export default {
     data(){
       return {
-        class: '',
+        class: ''
       }
     },
     props: {
@@ -28,7 +28,16 @@ import chance from 'chance'
       },
       label: {
         type: String
-      }
+      },
+      title: {
+        type : Array,
+        default: ['新增注册会员','新增应用']
+      },
+      color: {
+        type: Array,
+        default: [['rgba(247,249,242,0.4)','rgba(214,235,78,0.8)','rgba(214,235,78,1)','#FFF','rgba(214,235,78,0.1)','rgba(220,220,220,0.1)'],
+          ['rgba(235,238,204,1)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)']]
+      },
     },
     ready(){
       let self = this
@@ -37,22 +46,22 @@ import chance from 'chance'
         labels: ["1月", "2月", "3月","4月", "5月", "6月","7月", "8月", "9月","10月", "11月","12月"],
         datasets: [
           {
-            label: "新增注册会员",
+            label: self.title[0],
             type: self.type[0],
             // 曲线
             // lineTension: 0.1,
-            backgroundColor: "rgba(247,249,242,0.4)",
-            borderColor: "rgba(214,235,78,0.8)",
+            backgroundColor: self.color[0][0],
+            borderColor: self.color[0][1],
             borderCapStyle: 'butt',
             borderDash: [],
             borderDashOffset: 0.0,
             borderJoinStyle: 'miter',
-            pointBorderColor: "rgba(214,235,78,1)",
-            pointBackgroundColor: "#fff",
+            pointBorderColor: self.color[0][2],
+            pointBackgroundColor: self.color[0][3],
             pointBorderWidth: 5,
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(214,235,78,0.1)",
-            pointHoverBorderColor: "rgba(220,220,220,0.1)",
+            pointHoverBackgroundColor: self.color[0][4],
+            pointHoverBorderColor: self.color[0][5],
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
@@ -60,21 +69,21 @@ import chance from 'chance'
             yAxisID: 'y-axis-1',
           },
           {
-            label: "新增应用",
+            label: self.title[1],
             // lineTension: 0.1,
             type: self.type[1],
-            backgroundColor: "rgba(246,239,232,0.8)",
-            borderColor: "rgba(251,54,45,0.8)",
+            backgroundColor: self.color[1][0],
+            borderColor: self.color[1][1],
             borderCapStyle: 'butt',
             borderDash: [],
             borderDashOffset: 0.0,
             borderJoinStyle: 'miter',
-            pointBorderColor: "rgba(251,54,45,0.8)",
-            pointBackgroundColor: "#fff",
+            pointBorderColor: self.color[1][2],
+            pointBackgroundColor: self.color[1][3],
             pointBorderWidth: 5,
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(251,54,45,0.8)",
-            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBackgroundColor: self.color[1][4],
+            pointHoverBorderColor: self.color[1][5],
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,

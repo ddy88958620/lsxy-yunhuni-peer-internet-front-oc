@@ -9,7 +9,12 @@
         <datetime-picker></datetime-picker>
       </div>
     </div>
-    <chart :uuid="'bashboard-app-chart'":type="['line','line']"></chart>
+    <chart :uuid="'bashboard-app-chart'" :type="['line','line']"
+           :title="['新增注册会员','新增应用']"
+           :color="[['rgba(246,239,232,0.8)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
+                    ['rgba(247,249,242,0.4)','rgba(214,235,78,0.8)','rgba(214,235,78,1)','#FFF','rgba(214,235,78,0.1)','rgba(220,220,220,0.1)']]"
+
+    ></chart>
   </div>
 </template>
 
