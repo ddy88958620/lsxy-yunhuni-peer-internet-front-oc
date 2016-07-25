@@ -1,17 +1,3 @@
-// 覆盖一些 bootstrap 的默认设置
-.panel {
-  margin-bottom: 0;
-}
-.panel-body {
-  padding: 0px;
-}
-
-.text-danger {
-  color: red !important;
-}.form-control {
-  display: inline-block !important;
-}
-
 // Bootstrap init . Fuck sass, it is don't support dynamic import !
 
 // $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";

@@ -1,9 +1,23 @@
+$normal-font-color: #333;
+$middle-font-color: #666;
+$small-font-color: #999;
+
+$table-bg: #f0f4f8;
 .admin-font-color {
   color: $admin-font-color;
 }
 
+.admin-button-margin {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
 .admin-padding {
   padding: $admin-padding;
+}
+
+.admin-margin-l {
+  margin-left: 15px;
 }
 
 //统一后台 section 之间的margin
@@ -12,20 +26,87 @@
 }
 
 // admin table
-
 .admin-table {
+  .message-time {
+    color: $small-font-color;
+  }
+  .more {
+    a {
+      color: $middle-font-color;
+    }
+    $height: 30px;
+    color: $middle-font-color;
+    background-color: #ffffff;
+    text-align: center;
+    height: $height;
+    line-height: $height;
+  }
+  table {
+    border: 1px solid #eee;
+    thead  tr{
+      background-color: #f6f7fb;
+    }
+    thead tr th {
+      border-bottom: none;
+      font-weight: 300;
+    }
 
+    tbody tr:nth-child(even) {
+     background-color: #f6f7fb;
+    }
+    tbody tr:nth-child(odd) {
+      background-color: #ffffff;
+    }
+  }
 }
 
 .admin-table-header {
   $input-height: 32px;
+  color: $middle-font-color;
+  font-size: 1.4rem;
 
   .datetime-picker-label {
     display: inline-block;
-    height: $input-height;
+    padding: 15px;
+    color: $middle-font-color;
   }
 
   select {
     width: 150px;
   }
+}
+
+// 覆盖一些 bootstrap 的默认设置
+a {
+  cursor: pointer;
+}
+
+.panel {
+  margin-bottom: 0;
+}
+
+.panel-body {
+  padding: 0px;
+}
+
+table {
+  background-color: #FFFFFF;
+}
+
+.text-danger {
+  color: red !important;
+}
+
+.form-control {
+  display: inline-block !important;
+}
+
+.btn {
+  border-radius: 1px;
+  padding: 6px 15px;
+  border-color: rgba(0,0,0,0);
+}
+
+.btn.btn-primary {
+  background-color: #008dd0;
 }

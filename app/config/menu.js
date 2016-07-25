@@ -21,6 +21,6 @@ export default [
     title: '消息中心',
     label: 'Message',
     icon: 'icon-oc-msg',
-    link: '/admin/message'
+    link: '/admin/message/list'
   }
 ]
