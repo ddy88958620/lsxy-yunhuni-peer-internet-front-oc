@@ -4,9 +4,6 @@
     font-size:1.6rem;
     .title{
       padding: 14px 0;
-      span{
-        color:#dddddd;
-      }
     }
     .sort{
       background-color:#fff;
@@ -52,7 +49,7 @@
 
 
     .title div {
-      color: #212121;
+      color: #333;
       position: relative;   /*定位横线（当横线的父元素）*/
     }
 
