@@ -2,10 +2,10 @@
   <div class="section_right">
     <div class="panel panel-default flex-1">
       <div class="panel-heading"><i class="iconfont icon-oc-app"></i>应用数据</div>
-      <div class="panel-body flex">
+      <div class="panel-body flex flex-1">
 
-        <div class='flex flex-1 append-solid flex-direction-column align-items-c'>
-          <div class="flex-1 pie_wrap">
+        <div class='flex flex-1 flex-direction-column align-items-c'>
+          <div class="flex  pie_wrap">
             <pie
               :max="pie1.max",
               :value="pie1.value",
@@ -17,9 +17,10 @@
           </div>
         </div>
 
+        <div class="border-span flex align-items-c "><span></span></div>
 
         <div class='flex flex-1 flex-direction-column align-items-c'>
-          <div class="flex-1 pie_wrap ">
+          <div class="flex  pie_wrap ">
             <pie
               :max="pie2.max",
               :value="pie2.value",
@@ -57,11 +58,34 @@ export default {
     .iconfont{
       padding-right: 10px;
     }
+    background-color: #f8f9fc;
     color:#666;
     font-size: 1.6rem;
   }
+
   .section_right {
     display: flex;
     flex: 2;
   }
+
+  .border-span{
+    span{
+      height: 60px;
+      padding: 0px 0;
+      border-left: 1px solid #ddd;
+    }
+    width: 1px;
+
+  }
+
+  .panel-body{
+    height: 160px;
+  ul{
+    width: 110px;
+    overflow-y: hidden;
+  }
+  }
+
+
+
 </style>

@@ -13,15 +13,16 @@
               >
             </pie>
           </div>
-          <div class="flex flex-1 align-items-c">
-            <ul class="list-none-style ">
+          <div class="flex flex-1 ">
+            <ul class="list-none-style flex flex-direction-column  justify-content-c">
               <li>总注册会员 ( 个 )</li>
-              <li>日 <span class='text-danger'><i class="iconfont icon-oc-up"></i>11</span></li>
-              <li>周 <span class='text-danger'><i class="iconfont icon-oc-up"></i>77</span></li>
-              <li>月 <span class='text-danger'><i class="iconfont icon-oc-up"></i>308</span></li>
+              <li>日 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>11</span></li>
+              <li>周 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>77</span></li>
+              <li>月 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>308</span></li>
             </ul>
           </div>
         </div>
+
 
         <div class='flex flex-1 append-solid'>
           <div class="flex pie_wrap">
@@ -32,14 +33,15 @@
             </pie>
           </div>
           <div class="flex flex-1 align-items-c" >
-            <ul class="list-none-style">
+            <ul class="list-none-style flex flex-direction-column  justify-content-c">
               <li>总注册会员 ( 个 )</li>
-              <li>日 <i class="iconfont icon-oc-up "></i><span class='text-danger'>11</span></li>
-              <li>周 <i class="iconfont icon-oc-up "></i><span class='text-danger'>77</span></li>
-              <li>月 <i class="iconfont icon-oc-up "></i><span class='text-danger'>308</span></li>
+              <li>日 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>22</span></li>
+              <li>周 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>77</span></li>
+              <li>月 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>308</span></li>
             </ul>
           </div>
         </div>
+
 
         <div class='flex flex-1'>
           <div class="flex pie_wrap" >
@@ -50,11 +52,11 @@
             </pie>
           </div>
           <div class="flex flex-1 align-items-c" >
-            <ul class="list-none-style">
+            <ul class="list-none-style flex flex-direction-column  justify-content-c">
               <li>总注册会员 ( 个 )</li>
-              <li>日 <i class="iconfont icon-oc-up"></i><span class='text-danger'>11</span></li>
-              <li>周 <i class="iconfont icon-oc-up"></i><span class='text-danger'>77</span></li>
-              <li>月 <i class="iconfont icon-oc-up"></i><span class='text-danger'>308</span></li>
+              <li>日 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>22</span></li>
+              <li>周 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>77</span></li>
+              <li>月 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>308</span></li>
             </ul>
           </div>
         </div>
@@ -90,6 +92,7 @@ export default {
     padding-right: 10px;
   }
   color:#666;
+  background-color: #f8f9fc;
   font-size: 1.6rem;
 }
 .section_left {
@@ -113,8 +116,29 @@ export default {
 }
 
 .icon-oc-up{
-  font-size: 10px;
+  font-size: 8px;
 }
 
+.s-font{
+  padding-left: 3px;
+  font-size: 12px;
+}
+
+.border-span{
+  span{
+    height: 50px;
+    padding: 15px 0;
+    border-left: 1px solid #ddd;
+  }
+  width: 1px;
+}
+
+.panel-body{
+  height: 160px;
+  ul{
+    width: 110px;
+    overflow-y: hidden;
+  }
+}
 
 </style>

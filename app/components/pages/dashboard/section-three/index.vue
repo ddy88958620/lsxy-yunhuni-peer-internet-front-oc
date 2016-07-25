@@ -1,30 +1,30 @@
 <template>
     <section class="section-three flex  bg-section-margin">
      <div class="flex section-left flex-direction-column ">
-          <div class="flex flex-1 flex-1align-items-c flex-direction-column session-small-box">
-            <div>
-              <span class='iconfont icon-oc-mobile'></span>
-              <span class='admin-font-color ranknumber'>548465</span>
-            </div>
-            <ul class="list-none-style">
-              <li class='title'>总注册会员 ( 个 )</li>
-              <li>日 <span class='text-danger'>11%</span></li>
-              <li>周 <span class='text-danger'>77%</span></li>
-              <li>月 <span class='text-danger'>308%</span></li>
-            </ul>
+        <div class="flex flex-1 flex-1align-items-c flex-direction-column session-small-box">
+          <div>
+            <span class='iconfont icon-oc-mobile'></span>
+            <span class='admin-font-color ranknumber'>548465</span>
           </div>
-          <div class="flex flex-1 flex-1align-items-c flex-direction-column session-small-box">
-            <div>
-              <span class='iconfont icon-oc-wallet'></span>
-              <span class='admin-font-color ranknumber'>548465</span>
-            </div>
-            <ul class="list-none-style">
-              <li class='title'>总注册会员 ( 个 )</li>
-              <li>日 <span class='text-danger'>11%</span></li>
-              <li>周 <span class='text-danger'>77%</span></li>
-              <li>月 <span class='text-danger'>308%</span></li>
-            </ul>
+          <ul class="list-none-style">
+            <li class='title'>总注册会员 ( 个 )</li>
+            <li>日 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>11%</span></li>
+            <li>周 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>77%</span></li>
+            <li>月 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>308%</span></li>
+          </ul>
+        </div>
+        <div class="flex flex-1 flex-1align-items-c flex-direction-column session-small-box">
+          <div>
+            <span class='iconfont icon-oc-wallet'></span>
+            <span class='admin-font-color ranknumber'>548465</span>
           </div>
+          <ul class="list-none-style">
+            <li class='title'>总注册会员 ( 个 )</li>
+            <li>日 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>11%</span></li>
+            <li>周 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>77%</span></li>
+            <li>月 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>308%</span></li>
+          </ul>
+        </div>
      </div>
      <div class="flex flex-1 flex-direction-column section-right admin-padding">
        <datetime-picker :type="bar"></datetime-picker>
@@ -61,8 +61,9 @@
     ul {
       color: #888;
       .title {
-        font-size: 1.5rem;
-        font-weight: bold;
+        font-size: 1.8rem;
+        color:#666;
+        font-weight: 500;
         padding-top: 10px;
       }
     }
@@ -73,6 +74,9 @@
       font-size: 2.5rem;
       padding-left: 10px;
       font-weight: 300;
+    }
+    .small{
+      font-size: 8px;
     }
   }
 }

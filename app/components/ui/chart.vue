@@ -41,18 +41,18 @@ import chance from 'chance'
             type: self.type[0],
             // 曲线
             // lineTension: 0.1,
-            backgroundColor: "rgba(75,192,192,0.4)",
-            borderColor: "rgba(75,192,192,0.4)",
+            backgroundColor: "rgba(247,249,242,0.4)",
+            borderColor: "rgba(214,235,78,0.8)",
             borderCapStyle: 'butt',
             borderDash: [],
             borderDashOffset: 0.0,
             borderJoinStyle: 'miter',
-            pointBorderColor: "rgba(75,192,192,1)",
+            pointBorderColor: "rgba(214,235,78,1)",
             pointBackgroundColor: "#fff",
             pointBorderWidth: 5,
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(75,192,192,1)",
-            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBackgroundColor: "rgba(214,235,78,0.1)",
+            pointHoverBorderColor: "rgba(220,220,220,0.1)",
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
@@ -63,17 +63,17 @@ import chance from 'chance'
             label: "新增应用",
             // lineTension: 0.1,
             type: self.type[1],
-            backgroundColor: "rgba(220,220,220,0.5)",
-            borderColor: "rgba(75,168,192,0.4)",
+            backgroundColor: "rgba(246,239,232,0.8)",
+            borderColor: "rgba(251,54,45,0.8)",
             borderCapStyle: 'butt',
             borderDash: [],
             borderDashOffset: 0.0,
             borderJoinStyle: 'miter',
-            pointBorderColor: "rgba(75,192,192,1)",
+            pointBorderColor: "rgba(251,54,45,0.8)",
             pointBackgroundColor: "#fff",
             pointBorderWidth: 5,
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBackgroundColor: "rgba(251,54,45,0.8)",
             pointHoverBorderColor: "rgba(220,220,220,1)",
             pointHoverBorderWidth: 2,
             pointRadius: 1,
@@ -94,7 +94,7 @@ import chance from 'chance'
           responsive: true,
           title:{
             display:true,
-            text:"Chart.js Line Chart - Stacked Area"
+            text:""
           },
           tooltips: {
             mode: 'label',
@@ -131,7 +131,6 @@ import chance from 'chance'
 
       $(window).resize(function()
       {
-
         $('canvas').css('width','100%');
       });
     }
