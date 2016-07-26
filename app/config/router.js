@@ -22,17 +22,6 @@ export default function(router){
         '/dashboard': {
           component: (resolve) => require(['../components/pages/dashboard/index.vue'], resolve),
         },
-        '/charts': {
-          component: (resolve) => require(['../components/pages/charts/index.vue'], resolve),
-          subRoutes: {
-            '/c': {
-              component: (resolve) => require(['../components/pages/charts/page-child-c/index.vue'], resolve)
-            },
-            '/d': {
-              component: (resolve) => require(['../components/pages/charts/page-child-d/index.vue'], resolve)
-            },
-          }
-        },
         '/service': {
           component: (resolve) => require(['../components/pages/service/index.vue'], resolve),
           subRoutes: {
@@ -52,12 +41,27 @@ export default function(router){
             }
           }
         },
+        '/demand': {
+          component: (resolve) => require(['../components/pages/demand/index.vue'], resolve),
+	        subRoutes: {
+            '/voice': {
+              component: (resolve) => require(['../components/pages/demand/voice.vue'], resolve),
+            },
+            '/member': {
+              component: (resolve) => require(['../components/pages/demand/member.vue'], resolve),
+            },
+          }
+        }
       }
     },
   })
+  
   // set the default router-view
   router.redirect({
     '/': '/admin',
+	  '/admin/demand': '/admin/demand/member',
+    '/admin/service': '/admin/service/list',
+	  '/admin/message': '/admin/message/list',
   })
 
   router.beforeEach(function({to, next, redirect}){

@@ -37,7 +37,6 @@ export default {
     display: flex;
     flex: 1;
     flex-direction: column;
-    padding: $admin-padding;
     background-color: #EFF5FA;
   }
 }

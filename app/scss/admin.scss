@@ -93,6 +93,43 @@ table {
   background-color: #FFFFFF;
 }
 
+.app-main-content {
+  display: flex;
+
+  // 存在二级导航时布局
+  .app-main-left {
+
+    // 待改进
+    & {
+      background-color: #d0daec;
+      width: 200px;
+      padding: 0px;
+      list-style: none;
+      margin-bottom: 0;
+    }
+
+    a {
+      color: #333;
+      font-size: 1rem;
+      width: 100%;
+      display: inline-block;
+      text-align: center;
+      line-height: 1;
+      padding: 15px;
+    }
+
+    a.v-link-active {
+      background-color: white;
+    }
+
+    width: 200px;
+    padding: 0;
+  }
+  .app-main-right {
+    flex: 1;
+  }
+}
+
 .text-danger {
   color: red !important;
 }

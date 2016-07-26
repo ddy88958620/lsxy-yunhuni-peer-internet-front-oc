@@ -16,7 +16,7 @@
                     <option>已上线</option>
                     <option>未上线</option>
                 </select>
-                <a class="btn btn-primary admin-button-margin" v-link="{path: '/admin/message/new', exact: true}">发布新消息</a>
+                <a class="btn btn-primary admin-button-margin" v-link="'/admin/message/new'">发布新消息</a>
             </div>
         </div>
         <div class="admin-table table-responsive">

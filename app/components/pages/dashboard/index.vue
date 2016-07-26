@@ -1,5 +1,5 @@
 <template>
-  <div class="app-main-content">
+  <div class="app-main-content admin-padding flex-direction-column">
     <!-- <ul class='app&#45;main&#45;left'> -->
     <!--   <li> -->
     <!--     <a v&#45;link="'/admin/dashboard/a'">a</a></li> -->
@@ -29,42 +29,5 @@ export default {
 </script>
 <style lang='sass'>
 @import '../../../scss/layout.scss';
-
-.app-main-content {
-  display: flex;
-  flex: 1;
-  height: 100%;
-  flex-direction: column;
-
-  .app-main-left {
-    width: 200px;
-    padding: 0px;
-    list-style: none;
-    margin-bottom: 0;
-    background-color: #EAEDF1;
-  }
-  .app-main-right {
-    flex: 1;
-  }
-}
-
-.app-main-left {
-
-  a {
-    color: #333;
-    font-size: 1rem;
-    width: 100%;
-    display: inline-block;
-    text-align: center;
-    line-height: 1;
-    padding: 15px;
-  }
-
-  a.v-link-active {
-    background-color: white;
-  }
-
-}
-
 
 </style>
