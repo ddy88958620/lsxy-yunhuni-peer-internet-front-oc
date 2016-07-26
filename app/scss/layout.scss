@@ -10,6 +10,10 @@
   flex: 1;
 }
 
+.text-align-c {
+  text-align: center;
+}
+
 //水平布局
 .justify-content-c {
   justify-content: center;
@@ -102,4 +106,10 @@
 
 .overflow-x-h{
   overflow-x: hidden;
+}
+
+//  padding
+
+.clear-padding-left {
+  padding-left: 0px !important;
 }
