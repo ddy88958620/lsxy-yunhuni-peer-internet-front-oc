@@ -19,7 +19,7 @@
         <div class="admin-form flex flex-direction-row align-items-s">
           <label for="content"></label>
           <div class="flex align-items-c">
-            选择上线时间 &nbsp;&nbsp;<datetimepicker></datetimepicker>
+            选择上线时间 &nbsp;&nbsp;<datetimepicker :width="200" :type="'time'"></datetimepicker>
           </div>
         </div>
         <div class="admin-form flex flex-direction-row align-items-s">
