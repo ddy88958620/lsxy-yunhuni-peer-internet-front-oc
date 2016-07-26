@@ -1,8 +1,7 @@
 <template>
-	<div class="input-group date-component" >
+	<div class="input-group date-component" :style="{width: `${width}px`}">
 		<input
 			type="text"
-			:style="{width: `${width}px`}"
 			:value.sync='date'
 			class="form_datetime _month form-control"
 			data-date-end-date="0m" />
