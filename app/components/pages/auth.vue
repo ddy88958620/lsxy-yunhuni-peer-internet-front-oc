@@ -1,5 +1,5 @@
 <template>
-    <validator name="validation">
+    <validator  name="validation">
       <div class="flex flex-1 login-bg align-items-c justify-content-c ">
         <div class="flex login-form   flex-direction-column ">
           <div class="login-header flex justify-content-c align-items-c ">
@@ -7,8 +7,6 @@
           </div>
           <div class="login-content flex flex-1 justify-content-c">
             <form novalidate id='auth-form'>
-
-
               <div
                 class="validate-field form-group relative ">
                 <i class="iconfont icon-oc-user input-icon"></i>
@@ -20,6 +18,9 @@
                   :id="username"
                   :field="username"
                   v-validate:username="{maxlength: 16, minlength: 3, required: true}">
+                  <div class="error" v-if="$validation.username.modified">
+                    <span v-if="$validation.username.required || $validation.username.maxlength || $validation.username.minlength">账号长度为3-16位</span>
+                  </div>
               </div>
 
               <div
@@ -33,27 +34,46 @@
                   :id="password"
                   :field="password"
                   v-validate:password="{maxlength:16, minlength: 3, required: true}">
+                <div class="error" v-if="$validation.password.modified">
+                  <span v-if="$validation.password.required || $validation.password.maxlength || $validation.password.minlength">密码长度为3-16位</span>
+                </div>
               </div>
 
               <div class="validate-field form-group flex-direction-row flex">
-                <input type="text" class="form-control flex flex-1 "   placeholder="请输入验证码" />
+                <div class="flex flex-1 relative">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="请输入验证码"
+                    v-model='user.code'
+                    :id="code"
+                    :field="code"
+                    v-validate:code="{maxlength:4, minlength: 4, required: true}">
+                  <div class="error" v-if="$validation.code.modified">
+                    <span v-if="$validation.code.required || $validation.code.maxlength || $validation.code.minlength">验证码长度为4位</span>
+                  </div>
+                </div>
+
+
                 <div class="flex  flex-1"></div>
               </div>
 
               <div class="validate-field form-group flex mt-15">
-                <input type="checkbox"   />  记住密码
+                <input type="checkbox"    />  记住密码
               </div>
 
               <div class="form-group flex flex-1 mt-15">
                 <button class="btn btn-primary flex flex-1 justify-content-c" :disabled='!$validation.valid' @click.prevent='login($validation)'>登录</button>
               </div>
 
-
-
             </form>
           </div>
+
+
+          <div class="copy flex justify-content-c" >Copyright 2016 云呼你 粤ICP备16048993号 All Rights Reserved 广州流水行云科技有限公司</div>
         </div>
       </div>
+
 
 
     </validator>
@@ -68,7 +88,8 @@ export default {
     return{
       user: {
         name: '',
-        password: ''
+        password: '',
+        code:''
       }
     }
   },
@@ -96,13 +117,14 @@ export default {
 
 .login-bg{
   background:url("../../assets/images/loginbg.jpg") no-repeat ;
-  background-position: center bottom;
+  background-position: center top;
   background-attachment: fixed;
+  background-size: cover;
 }
 
 .login-form{
   width: 907px;
-  height: 604px;
+  height: 644px;
   .login-header{
     height: 242px;
     background:url("../../assets/images/loginheader.jpg") no-repeat ;
@@ -118,7 +140,6 @@ export default {
       margin-top: 30px;
       width: 360px;
       input[type="text"],input[type="password"],button{
-        border: 0;
         height: 44px;
       }
       .form-input{
@@ -132,6 +153,15 @@ export default {
         color:#dddddd;
 
       }
+
+      .error {
+        position: absolute;
+        padding-top: 3px;
+        right: 0;
+        bottom:-18px;
+        color:#c26060;
+      }
+
     }
     .mt-15{
       margin-top: 15px;
@@ -139,21 +169,19 @@ export default {
 
   }
 
+  .copy{
+    color:#FFF;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
 }
 
 
-
-#auth-form2 {
-  position: absolute;
-  left: 50%;
-  top: 30%;
-  transform: translate(-50%,0%);
-}
 
 .validate-field {
 
-
   .pristine.invalid {
+    border: 0;
     border-color: #ccc;
     box-shadow: none;
   }

@@ -77,7 +77,7 @@
     .ranknumber {
       font-size: 2.5rem;
       padding-left: 10px;
-      font-weight: 300;
+      font-weight: 500;
     }
     .small{
       font-size: 8px;

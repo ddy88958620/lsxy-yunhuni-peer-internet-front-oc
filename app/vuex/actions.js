@@ -19,7 +19,7 @@ export const localLogin = ({dispatch, router}, user) => {
     if(r_user.name === user.name) {
       saveCookie('user', user)
       dispatch(types.LOCAL_LOGIN, user)
-      router.go({path:'/admin'})
+      router.go({path:'/admin/dashboard'})
       dispatch(types.HIDE_MSG)
     }else {
       dispatch(types.SHOW_MSG, {content:'用户名或密码不匹配'})
