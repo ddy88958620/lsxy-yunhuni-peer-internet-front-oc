@@ -99,10 +99,23 @@ table {
   // 存在二级导航时布局
   .app-main-left {
 
+    .wrapper{
+      span{
+        border-left: 2px solid #616b88;
+        padding-left: 5px;
+        font-weight: bold;
+        font-size: 10px;
+      }
+      padding:47px 0 20px 24px;
+      font-weight: 600;
+      color:#333;
+      font-size: 1.2rem;
+    }
+
     // 待改进
     & {
       background-color: #d0daec;
-      width: 200px;
+      width: 150px;
       padding: 0px;
       list-style: none;
       margin-bottom: 0;

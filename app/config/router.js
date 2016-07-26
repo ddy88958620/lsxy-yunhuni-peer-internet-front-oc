@@ -22,6 +22,9 @@ export default function(router){
         '/dashboard': {
           component: (resolve) => require(['../components/pages/dashboard/index.vue'], resolve),
         },
+        '/tenant': {
+          component: (resolve) => require(['../components/pages/tenant/index.vue'], resolve),
+        },
         '/service': {
           component: (resolve) => require(['../components/pages/service/index.vue'], resolve),
           subRoutes: {
@@ -50,6 +53,7 @@ export default function(router){
             '/member': {
               component: (resolve) => require(['../components/pages/demand/member.vue'], resolve),
             },
+
           }
         }
       }
