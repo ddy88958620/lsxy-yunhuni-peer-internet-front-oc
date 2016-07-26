@@ -52,7 +52,6 @@
 					break;
 			}
 			
-			
 			$('.form_datetime').datetimepicker(datetimepickerObj).on('changeDate',function(e){
 				$(this).datetimepicker('hide')
 				

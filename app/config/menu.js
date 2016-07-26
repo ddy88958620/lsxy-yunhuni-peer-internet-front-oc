@@ -15,7 +15,7 @@ export default [
     title: '客服中心',
     label: 'Charts',
     icon: 'icon-oc-custom',
-    link: '/admin/service'
+    link: '/admin/service/list'
   },
   {
     title: '消息中心',

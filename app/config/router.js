@@ -34,7 +34,12 @@ export default function(router){
           }
         },
         '/service': {
-          component: (resolve) => require(['../components/pages/service/index.vue'], resolve)
+          component: (resolve) => require(['../components/pages/service/index.vue'], resolve),
+          subRoutes: {
+            '/list': {
+              component: (resolve) => require(['../components/pages/service/list.vue'], resolve),
+            }
+          }
         },
         '/message': {
           component: (resolve) => require(['../components/pages/message/index.vue'], resolve),
