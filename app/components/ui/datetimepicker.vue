@@ -39,8 +39,8 @@
 				case 'year':
 					datetimepickerObj = {
 						format: 'yyyy-mm',
-						startView: 'month',
-						minView: 'month',
+						startView: 'year',
+						minView: 'year',
 					}
 					break;
 				case 'time':
