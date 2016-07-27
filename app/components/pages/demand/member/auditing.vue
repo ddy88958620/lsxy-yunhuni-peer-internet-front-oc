@@ -27,7 +27,7 @@
 						<span><a  @click="audit(message.id)">审核</a></span>
 					</td>
 					<td class="text-align-c" v-if="this.$route.params.tabid==2 ||  this.$route.params.tabid==3">
-						<span><a v-link="'/admin/demand/member/detail'">查看2</a></span>
+						<span><a v-link="'/admin/demand/member/detail'">查看</a></span>
 					</td>
 				</tr>
 				</tbody>

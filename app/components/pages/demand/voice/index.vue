@@ -27,7 +27,7 @@
     <div class="flex flex-direction-column admin-table-header">
       <h4>放音文件审核</h4>
 
-      <div class="flex flex-1 app-main-tab">
+      <div class="flex flex-1 admin-main-tab">
         <div class="tab"><a class="flex"  v-link="'/admin/demand/voice/1'">待审核</a></div>
         <div class="tab"><a class="flex"  v-link="'/admin/demand/voice/2'">已审核</a></div>
         <div class="tab"><a class="flex"  v-link="'/admin/demand/voice/3'">审核不通过</a></div>

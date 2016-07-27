@@ -78,10 +78,10 @@ export default function(router){
           component: (resolve) => require(['../components/pages/demand/index.vue'], resolve),
 	        subRoutes: {
             '/voice': {
-              component: (resolve) => require(['../components/pages/demand/voice.vue'], resolve),
+              component: (resolve) => require(['../components/pages/demand/voice/index.vue'], resolve),
               subRoutes: {
                 '/:tabid': {
-                  component: (resolve) => require(['../components/pages/demand/voice/audting.vue'], resolve)
+                  component: (resolve) => require(['../components/pages/demand/voice/auditing.vue'], resolve)
                 }
               }
             },
@@ -89,7 +89,7 @@ export default function(router){
               component: (resolve) => require(['../components/pages/demand/member/index.vue'], resolve),
 	            subRoutes: {
                 '/:tabid': {
-                
+                  component: (resolve) => require(['../components/pages/demand/member/auditing.vue'], resolve)
                 }
               }
             },

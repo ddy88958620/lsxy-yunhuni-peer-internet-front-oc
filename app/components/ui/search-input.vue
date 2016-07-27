@@ -32,11 +32,10 @@
     },
     methods: {
       search(){
-         console.log('搜索内容'+searchName);
+         console.log('搜索内容'+this.searchName);
       }
     },
     ready(){
-      console.log(this.$data);
     }
 
   }

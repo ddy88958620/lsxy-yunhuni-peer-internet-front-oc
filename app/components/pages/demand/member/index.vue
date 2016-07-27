@@ -1,28 +1,5 @@
 <style lang="sass" scoped>
-  .app-main-tab {
-    border-bottom: 1px solid #d3d7e4;
-    height: 53px;
-    .tab {
-      padding: 15px 28px ;
-    }
-    a {
-      font-size: 1.8rem;
-      padding: 0 19px 10px 19px;
-      color: #969eb4;
-      text-decoration: none;
 
-      &:hover {
-        color: #586381;
-        border-bottom: 2px solid #586381;
-       }
-    }
-
-    a.v-link-active {
-      color: #586381;
-      border-bottom: 2px solid #586381;
-    }
-
-  }
 
 </style><template>
     <div>
