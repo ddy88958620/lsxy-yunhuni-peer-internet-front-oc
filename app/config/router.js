@@ -24,7 +24,37 @@ export default function(router){
         },
         '/tenant': {
           component: (resolve) => require(['../components/pages/tenant/index.vue'], resolve),
-        },
+          subRoutes: {
+            '/detail/:uid': {
+              name: 'detail',
+              component: (resolve) => require(['../components/pages/tenant/detail.vue'], resolve),
+              subRoutes: {
+                '/preview': {
+                  component: (resolve) => require(['../components/pages/tenant/preview/index.vue'], resolve)
+                },
+                '/app': {
+                  component: (resolve) => require(['../components/pages/tenant/app/index.vue'], resolve)
+                },
+                '/base': {
+                  component: (resolve) => require(['../components/pages/tenant/base/index.vue'], resolve)
+                },
+                '/session': {
+                  component: (resolve) => require(['../components/pages/tenant/app/index.vue'], resolve)
+                },
+                '/statistic': {
+                  component: (resolve) => require(['../components/pages/tenant/app/index.vue'], resolve)
+                },
+                '/switch': {
+                  component: (resolve) => require(['../components/pages/tenant/app/index.vue'], resolve)
+                },
+              }
+            },
+            '/list' : {
+              component: (resolve) => require(['../components/pages/tenant/list.vue'], resolve)
+            }
+          }
+        }
+        ,
         '/service': {
           component: (resolve) => require(['../components/pages/service/index.vue'], resolve),
           subRoutes: {
@@ -59,7 +89,7 @@ export default function(router){
               component: (resolve) => require(['../components/pages/demand/member/index.vue'], resolve),
 	            subRoutes: {
                 '/:tabid': {
-                  component: (resolve) => require(['../components/pages/demand/member/audting.vue'], resolve)
+                
                 }
               }
             },
@@ -79,6 +109,7 @@ export default function(router){
 	  '/admin/demand': '/admin/demand/member',
     '/admin/service': '/admin/service/list',
 	  '/admin/message': '/admin/message/list',
+    '/admin/tenant': '/admin/tenant/list',
   })
 
   router.beforeEach(function({to, next, redirect}){

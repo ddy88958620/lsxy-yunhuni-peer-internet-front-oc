@@ -3,6 +3,7 @@
     background-color: white;
     padding-left: 15px;
     color:#666;
+    height: 65px;
     font-size: 1.6rem;
     i{
 
@@ -18,16 +19,3 @@
     </span>
   </div>
 </template>
-<style>
-  .headbox{
-    height: 65px;
-  }
-</style>
-<script>
-  export default{
-    components: {
-
-
-    }
-  }
-</script>

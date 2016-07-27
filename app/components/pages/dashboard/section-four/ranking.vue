@@ -2,9 +2,6 @@
   .rankbox{
     padding-top: 10px;
     font-size:1.6rem;
-    .title{
-      padding: 14px 0;
-    }
     .sort{
       background-color:#fff;
       border-top:4px solid #00A000;
@@ -47,27 +44,6 @@
       }
     }
 
-
-    .title div {
-      color: #333;
-      position: relative;   /*定位横线（当横线的父元素）*/
-    }
-
-
-    .title div:before, .title div:after{
-      content: '';                 /*CSS伪类用法*/
-      position: absolute;         /*定位背景横线的位置*/
-      top: 51%;
-      background: #ddd;       /*宽和高做出来的背景横线*/
-      width: 30%;
-      height: 1px;
-    }
-    .title div:before{
-        left: -35%;
-    }
-    .title div:after {
-      right: -35%;
-    }
 
     .grey{
       color:#b2b9ce;
@@ -124,8 +100,8 @@
 
 <template>
   <div class="rankbox flex flex-1 flex-direction-column flex-grow-1 ">
-    <div class="flex justify-content-c title overflow">
-      <div>{{ box[index]['title'] }}</div>
+    <div class="flex justify-content-c overflow">
+      <div class="hr-title">{{ box[index]['title'] }}</div>
     </div>
     <div v-for="r in datarank">
       <div class="sort flex flex-direction-column {{ box[index]['color'] }}border" v-if="$index==0">

@@ -7,6 +7,10 @@ $table-bg: #f0f4f8;
   color: $admin-font-color;
 }
 
+.admin-bg {
+  background-color: #EFF5FA;
+}
+
 .admin-button-margin {
   margin-right: 20px;
   margin-left: 20px;
@@ -192,4 +196,47 @@ table {
 
 .btn.btn-primary {
   background-color: #008dd0;
+}
+
+// admin tab
+
+.admin-main-tab{
+  border-bottom: 1px solid #d3d7e4;
+  height: 53px;
+  .tab{
+    padding:15px 28px;
+  }
+  a{
+    padding:6px 25px 10px 19px ;
+    color:#586381;
+    text-decoration: none;
+    &:hover{
+      border-bottom:2px solid #586381;
+    }
+  }
+  a.v-link-active {
+    border-bottom:2px solid #586381;
+  }
+}
+
+// 一些初始化的配置
+.list-none-style {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0px;
+}
+
+//溢出显示省略号
+.overflow{
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  overflow:hidden;
+}
+
+//隐藏下划线
+.text-none{
+  text-decoration: none;
+  &:hover{
+    text-decoration: none;
+  }
 }
