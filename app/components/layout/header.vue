@@ -9,14 +9,7 @@
     }
     .nav-right{
       width: 200px;
-      position: relative;
-      i{
-        position: absolute;
-        right:5px;
-        top:5px;
-        color:#d4d4d4;
-        font-size: 1.8rem;
-      }
+      padding-right: 15px;
     }
     .topbar-btn{
       padding: 15px 10px;
@@ -30,19 +23,24 @@
       <span class="topbar-btn flex" >欢迎您来到云呼你运营中心， 您有&nbsp;<a href="#">3</a>&nbsp;件事项未处理</span><i class="iconfont icon-oc-handle"></i>
     </div>
     <div class="nav-right">
-      <div class=" flex flex-1">
-        <input class="form-control search" placeholder="请输入会员名称" @keyup.enter="serach" v-model="serachName" value="{{ serachName }}"/><i class="iconfont icon-oc-search cursor" @click='serach'></i>
-      </div>
+      <search
+        :placeholder=''>
+      </search>
     </div>
   </header>
 </template>
 <script>
 import {localLogout} from '../../vuex/actions.js'
+
+
 export default {
   data(){
     return{
       serachName: '',
     }
+  },
+  components: {
+    'search': require('../ui/search-input.vue'),
   },
   methods:{
     serach: function() {

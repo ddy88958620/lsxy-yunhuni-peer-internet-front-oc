@@ -37,18 +37,28 @@ $table-bg: #f0f4f8;
     $height: 30px;
     color: $middle-font-color;
     background-color: #ffffff;
+    border:1px solid #dbe2ee;
     text-align: center;
     height: $height;
     line-height: $height;
   }
+
   table {
     border: 1px solid #eee;
+
+    font-size: 1.4rem;
     thead  tr{
       background-color: #f6f7fb;
     }
-    thead tr th {
+    thead tr th{
       border-bottom: none;
-      font-weight: 300;
+      font-weight: 400;
+      color:$middle-font-color;
+    }
+    tbody > tr > td{
+      padding-bottom: 10px;
+      padding-top: 10px;
+      border-top:0;
     }
 
     tbody tr:nth-child(even) {
@@ -74,6 +84,11 @@ $table-bg: #f0f4f8;
   select {
     width: 150px;
   }
+
+  .search{
+    width: 300px;
+    padding: 15px;
+  }
 }
 
 // 覆盖一些 bootstrap 的默认设置
@@ -93,6 +108,20 @@ table {
   background-color: #FFFFFF;
 }
 
+//导航统计
+.app-menu-count{
+  background-color: #FF3D81;
+  height: 15px;
+  overflow-y: hidden;
+  color:#FFF;
+  border-radius: 5px;
+  padding: 1px 2px 1px 1px;
+  font-size: 1rem;
+  margin-left: 5px;
+}
+
+
+
 .app-main-content {
   display: flex;
 
@@ -107,9 +136,9 @@ table {
         font-size: 10px;
       }
       padding:47px 0 20px 24px;
-      font-weight: 600;
+      font-weight: 500;
       color:#333;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
     }
 
     // 待改进
@@ -123,13 +152,14 @@ table {
 
     a {
       color: #333;
-      font-size: 1rem;
-      width: 100%;
-      display: inline-block;
-      text-align: center;
+      font-size: 1.4rem;
+      display: flex;
+      flex:1;
+      height: 40px;
       line-height: 1;
-      padding: 15px;
+      padding: 15px 15px 15px 35px;
     }
+
 
     a.v-link-active {
       background-color: white;
@@ -140,6 +170,9 @@ table {
   }
   .app-main-right {
     flex: 1;
+    .query-box{
+      padding: 20px 0;
+    }
   }
 }
 

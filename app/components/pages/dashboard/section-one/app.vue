@@ -4,7 +4,7 @@
       <div class="panel-heading"><i class="iconfont icon-oc-app"></i>应用数据</div>
       <div class="panel-body flex flex-1">
 
-        <div class='flex flex-1 flex-direction-column align-items-c'>
+        <div class='flex flex-1 flex-direction-column align-items-c justify-content-c'>
           <div class="flex  pie_wrap">
             <pie
               :max="pie1.max",
@@ -12,22 +12,22 @@
               :bgcolor="color[0]"
             ></pie>
           </div>
-          <div class="flex flex-1 align-items-c">
+          <div class="flex  align-items-c">
             总应用数（个）
           </div>
         </div>
 
         <div class="border-span flex align-items-c "><span></span></div>
 
-        <div class='flex flex-1 flex-direction-column align-items-c'>
-          <div class="flex  pie_wrap ">
+        <div class='flex flex-1 flex-direction-column align-items-c justify-content-c'>
+          <div class="flex  pie_wrap align-items-c ">
             <pie
               :max="pie2.max",
               :value="pie2.value",
               :bgcolor="color[1]"
             ></pie>
           </div>
-          <div class="flex flex-1 align-items-c">
+          <div class="flex align-items-c">
             总上线应用数（个）
           </div>
         </div>

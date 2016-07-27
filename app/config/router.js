@@ -49,6 +49,11 @@ export default function(router){
 	        subRoutes: {
             '/voice': {
               component: (resolve) => require(['../components/pages/demand/voice.vue'], resolve),
+              subRoutes: {
+                '/:tabid': {
+                  component: (resolve) => require(['../components/pages/demand/voice/audting.vue'], resolve)
+                }
+              }
             },
             '/member': {
               component: (resolve) => require(['../components/pages/demand/member/index.vue'], resolve),
@@ -58,6 +63,9 @@ export default function(router){
                 }
               }
             },
+            '/member/detail': {
+              component: (resolve) => require(['../components/pages/demand/member/detail.vue'],resolve)
+            }
 
           }
         }

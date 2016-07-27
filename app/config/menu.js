@@ -24,7 +24,7 @@ export default [
     link: '/admin/message'
   },
   {
-    title: '审批中心',
+    title: '审核中心',
     label: 'Demand',
 	  icon: 'icon-oc-verify',
     link: '/admin/demand'
