@@ -51,7 +51,12 @@ export default function(router){
               component: (resolve) => require(['../components/pages/demand/voice.vue'], resolve),
             },
             '/member': {
-              component: (resolve) => require(['../components/pages/demand/member.vue'], resolve),
+              component: (resolve) => require(['../components/pages/demand/member/index.vue'], resolve),
+	            subRoutes: {
+                '/:tabid': {
+                  component: (resolve) => require(['../components/pages/demand/member/audting.vue'], resolve)
+                }
+              }
             },
 
           }
