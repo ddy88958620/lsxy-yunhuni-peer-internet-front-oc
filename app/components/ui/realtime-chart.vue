@@ -24,6 +24,14 @@ import chance from 'chance'
       },
       label: {
         type: Array
+      },
+      color: {
+        type: Array,
+        default:['#bde8ef','#f5f7c6','#f8c0a9','#129b0c','#361654']
+      },
+      title: {
+        type: Array,
+        default:['实时并发量','并发量']
       }
     },
     methods: {
@@ -45,7 +53,8 @@ import chance from 'chance'
               fill: false,
               borderDashOffset: 5.15,
               borderJoinStyle: 'miter',
-              pointBorderColor: "rgba(75,192,192,1)",
+              borderColor: self.color[i],
+              pointBorderColor: "rgba(121,219,204,1)",
               pointBackgroundColor: "#fff",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
@@ -78,7 +87,7 @@ import chance from 'chance'
           responsive: true,
           title:{
             display:true,
-            text:"实时并发量"
+            text:self.title[0]
           },
           tooltips: {
             mode: 'label',
@@ -91,9 +100,9 @@ import chance from 'chance'
               {
                 type: "linear",
                 display: true,
-                scaleLabel: {
+                  scaleLabel: {
                   display: true,
-                  labelString: '并发量'
+                  labelString: self.title[1]
                 },
               },
             ]
