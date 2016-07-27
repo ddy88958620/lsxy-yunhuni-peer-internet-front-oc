@@ -1,18 +1,6 @@
-// 覆盖一些 bootstrap 的默认设置
-.panel {
-  margin-bottom: 0;
-}
+
 .panel-heading{
   background-color: #f8f9fc;
-}
-.panel-body {
-  padding: 0px;
-}
-
-.text-danger {
-  color: red !important;
-}.form-control {
-  display: inline-block !important;
 }
 // Bootstrap init . Fuck sass, it is don't support dynamic import !
 
