@@ -7,13 +7,13 @@ export default [
   },
   {
     title: '租户中心',
-    label: 'Charts',
+    label: 'Tenant',
     icon: 'icon-oc-user',
-    link: '/admin/charts'
+    link: '/admin/tenant'
   },
   {
     title: '客服中心',
-    label: 'Charts',
+    label: 'Custom',
     icon: 'icon-oc-custom',
     link: '/admin/service'
   },

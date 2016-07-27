@@ -6,9 +6,6 @@
     color:#666;
     font-size: 1.4rem;
     .nav-left{
-      i{
-        padding-bottom: 5px;
-      }
     }
     .nav-right{
       width: 200px;
