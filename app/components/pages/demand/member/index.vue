@@ -1,30 +1,9 @@
-<style lang="sass" scoped>
-  .app-main-tab{
-    border-bottom: 1px solid #d3d7e4;
-    height: 53px;
-    .tab{
-      padding:15px 28px;
-    }
-    a{
-      padding:6px 25px 10px 19px ;
-      color:#586381;
-      text-decoration: none;
-      &:hover{
-         border-bottom:2px solid #586381;
-      }
-    }
-    a.v-link-active {
-       border-bottom:2px solid #586381;
-    }
-  }
-
-</style>
 <template>
     <div>
         <div class="flex flex-direction-column admin-table-header">
             <h4>会员认证审核</h4>
 
-            <div class="flex flex-1 app-main-tab">
+            <div class="flex flex-1 admin-main-tab">
                 <div class="tab"><a class="flex"  v-link="'/admin/demand/member/1'">待审核</a></div>
                 <div class="tab"><a class="flex"  v-link="'/admin/demand/member/2'">已审核</a></div>
                 <div class="tab"><a class="flex"  v-link="'/admin/demand/member/3'">审核不通过</a></div>

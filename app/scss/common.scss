@@ -1,0 +1,23 @@
+.hr-title{
+  padding: 14px 0;
+}
+
+.hr-title {
+  color: #333;
+  position: relative;   /*定位横线（当横线的父元素）*/
+}
+
+.hr-title:before, .hr-title:after{
+  content: '';                 /*CSS伪类用法*/
+  position: absolute;         /*定位背景横线的位置*/
+  top: 51%;
+  background: #ddd;       /*宽和高做出来的背景横线*/
+  width: 30%;
+  height: 1px;
+}
+.hr-title:before{
+  left: -35%;
+}
+.hr-title:after {
+  right: -35%;
+}

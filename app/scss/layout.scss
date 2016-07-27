@@ -75,27 +75,6 @@
   flex-direction:column-reverse;
 }
 
-// 一些初始化的配置
-.list-none-style {
-  list-style: none;
-  padding-left: 0;
-  margin-bottom: 0px;
-}
-
-//溢出显示省略号
-.overflow{
-  text-overflow:ellipsis;
-  white-space:nowrap;
-  overflow:hidden;
-}
-
-//隐藏下划线
-.text-none{
-  text-decoration: none;
-  &:hover{
-    text-decoration: none;
-  }
-}
 .flex-grow-1{
   flex-grow: 1;
 }
