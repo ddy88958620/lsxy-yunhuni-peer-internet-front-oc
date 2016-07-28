@@ -91,9 +91,6 @@ export default {
   .iconfont {
     padding-right: 10px;
   }
-  color:#666;
-  background-color: #f8f9fc;
-  font-size: 1.6rem;
 }
 .section_left {
   display: flex;
@@ -107,13 +104,7 @@ export default {
   padding-right: 0px;
 }
 
-.append-solid::after {
-  border-left: solid 1px #dddddd;
-  content: '';
-  height: 50%;
-  display: flex;
-  align-self: center;
-}
+
 
 .icon-oc-up{
   font-size: 8px;

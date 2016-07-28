@@ -1,8 +1,33 @@
-$normal-font-color: #333;
-$middle-font-color: #666;
-$small-font-color: #999;
+.normal-font-color{
+  color:$normal-font-color;
+}
 
-$table-bg: #f0f4f8;
+.middle-font-color{
+  color:$middle-font-color;
+}
+
+.small-font-color{
+  color:$small-font-color;
+}
+
+.normal-font-size{
+  font-size: $normal-font-size;
+}
+
+.middle-font-size{
+  font-size: $middle-font-size;
+}
+
+.bigger-font-size{
+  font-size: $bigger-font-size;
+}
+
+.small-font-size{
+  font-size: $small-font-size;
+}
+
+
+
 .admin-font-color {
   color: $admin-font-color;
 }
@@ -104,6 +129,12 @@ a {
   margin-bottom: 0;
 }
 
+.panel-heading{
+  background-color: #f8f9fc !important;
+  color:$middle-font-color !important;
+  font-size: 1.6rem;
+}
+
 .panel-body {
   padding: 0px;
 }
@@ -197,6 +228,11 @@ table {
 .btn.btn-primary {
   background-color: #008dd0;
 }
+
+.btn.btn-default{
+  background-color: #e3eef4;
+}
+
 
 // admin tab
 

@@ -25,12 +25,12 @@
 					<td>{{message.email}}</td>
 					<td>{{message.type}}</td>
 					<td class="text-align-c" v-if="this.$route.params.tabid==1">
-						<span><a href="#">试听</a></span>
-						<span><a href="#">通过</a></span>
-						<span><a href="#">不通过</a></span>
+						<span><a>试听</a></span>
+						<span><a>通过</a></span>
+						<span><a>不通过</a></span>
 					</td>
 					<td class="text-align-c" v-if="this.$route.params.tabid==2 ||  this.$route.params.tabid==3">
-						<span><a href="#">试听</a></span>
+						<span><a>试听</a></span>
 					</td>
 				</tr>
 

@@ -32,7 +32,7 @@
 				</tr>
 				</tbody>
 			</table>
-			<div class="more"><a @click="moreMessage">加载更多</a></div>
+			<div class="more"><a @click="moreMessage" >加载更多<i class="iconfont" >&#xe622;</i></a></div>
 			</div>
 		</div>
 </template>

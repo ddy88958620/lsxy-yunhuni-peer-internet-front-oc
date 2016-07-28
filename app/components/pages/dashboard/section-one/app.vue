@@ -58,9 +58,6 @@ export default {
     .iconfont{
       padding-right: 10px;
     }
-    background-color: #f8f9fc;
-    color:#666;
-    font-size: 1.6rem;
   }
 
   .section_right {
@@ -80,10 +77,10 @@ export default {
 
   .panel-body{
     height: 160px;
-  ul{
-    width: 110px;
-    overflow-y: hidden;
-  }
+    ul{
+      width: 110px;
+      overflow-y: hidden;
+    }
   }
 
 

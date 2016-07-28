@@ -44,7 +44,7 @@
                 <td>{{message.result}}{{message.reason}}</td>
 
                 <td class="text-align-c" >
-                  <span><a  @click="">下拉</a></span>
+                  <span @click="" class="cursor"><i class="icon iconfont icon-oc-dropdown"></i></span>
                 </td>
 
               </tr>
