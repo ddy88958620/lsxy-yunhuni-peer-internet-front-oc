@@ -1,5 +1,5 @@
 <template>
-		<section-one></section-one>
+		<section-one></section-one>  
 </template>
 <script>
 	export default {
