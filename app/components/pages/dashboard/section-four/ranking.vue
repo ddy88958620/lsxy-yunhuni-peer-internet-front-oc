@@ -2,6 +2,7 @@
   .rankbox{
     padding-top: 10px;
     font-size:1.6rem;
+
     .sort{
       background-color:#fff;
       border-top:4px solid #00A000;
@@ -30,6 +31,7 @@
         }
       }
     }
+
     .sort2{
        background-color:#fff;
       .ranking-three{
@@ -44,57 +46,7 @@
       }
     }
 
-
-    .grey{
-      color:#b2b9ce;
-    }
-    .green{
-      color:#76dcd8;
-    }
-    .greenbg{
-      background-color:#76dcd8;
-    }
-    .greenborder{
-      border-color: #76dcd8;
-    }
-    .blue{
-      color:#80d1ff;
-    }
-    .bluebg{
-      background-color:#80d1ff;
-    }
-    .blueborder{
-      border-color: #80d1ff;
-    }
-    .yellow{
-      color:#f9e993;
-    }
-    .yellowbg{
-      background-color:#f9e993;
-    }
-    .yellowborder{
-      border-color: #f9e993;
-    }
-    .purple{
-      color:#cec2ed;
-    }
-    .purplebg{
-      background-color:#cec2ed;
-    }
-    .purpleborder{
-      border-color: #cec2ed;
-    }
-    .pink{
-      color:#f1adc3;
-    }
-    .pinkbg{
-      background-color:#f1adc3;
-    }
-    .pinkborder{
-      border-color: #f1adc3;
-    }
   }
-
 </style>
 
 
