@@ -63,6 +63,10 @@
     a {
       color: $middle-font-color;
     }
+    .iconfont{
+      font-size:8px;
+    }
+
     $height: 30px;
     color: $middle-font-color;
     background-color: #ffffff;
@@ -279,3 +283,12 @@ table {
     text-decoration: none;
   }
 }
+
+//
+.admin-panel{
+  margin-top: 20px;
+  .panel-heading{
+    background-color: #ebf1fa !important;
+  }
+}
+

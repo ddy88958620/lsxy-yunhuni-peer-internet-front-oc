@@ -1,6 +1,8 @@
 <template>
 	<div class="flex flex-direction-column">
 		<div class="flex">
+
+
 			<single-one-app></single-one-app>
 			<single-one-app></single-one-app>
 		</div>
@@ -17,3 +19,9 @@
 		}
 	}
 </script>
+
+
+<style lang="sass" scoped>
+
+
+</style>

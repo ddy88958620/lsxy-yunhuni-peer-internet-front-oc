@@ -55,7 +55,7 @@
                 </tr>
                 </tbody>
             </table>
-            <div class="more"><a @click="moreMessage">加载更多</a></div>
+            <div class="more"><a @click="moreMessage" class="text-none">加载更多<i class="icon iconfont icon-oc-dropdown" ></i></a></div>
             </div>
         </div>
 </template>
@@ -69,7 +69,7 @@
                 messages: [
                     {
                         date: '2016-06-06 16:00',
-                        author: 'CPHJY',
+                        author: 'CPHJY2',
                         app_count: 2,
                         status: false,
                         remain: 123132,
@@ -78,7 +78,7 @@
                     },
                     {
                         date: '2016-06-06 16:00',
-                        author: 'CPHJY',
+                        author: 'CPHJY22',
                         app_count: 2,
                         status: true,
                         remain: 123132,
@@ -93,9 +93,21 @@
                 this.messages.push(
                   {
                       date: '2016-06-06 16:00',
-                      author: 'CPHJY',
-                      status: false,
-                      title: '云呼你有新的讯息，新的活动，市场活动，滚动播出-----点击查看详情'
+                      author: 'CPHJY22',
+                      app_count: 2,
+                      status: true,
+                      remain: 123132,
+                      cost: 123123,
+                      account_status: true,
+                  },
+                  {
+                      date: '2016-06-06 16:00',
+                      author: 'CPHJY22',
+                      app_count: 2,
+                      status: true,
+                      remain: 123132,
+                      cost: 123123,
+                      account_status: true,
                   }
                 )
             }

@@ -77,7 +77,7 @@
 
 
     <modal :show.sync="showModal">
-      <h3 slot="header">custom header</h3>
+    <!--  <div slot="header">custom header</div>-->
     </modal>
     
 </template>
@@ -115,31 +115,29 @@
         font-size: 1.6rem;
       }
     }
+
     .message{
       color:#999;
     }
+
     .money{
       font-size: 2.6rem;
     }
+
     .unit{
       color:#666;
       padding-left: 10px;
       font-size: 1.4rem;
     }
+
     .surplus{
       font-size:1.4rem;
     }
-
     button{
       margin: 0 5px;
     }
-
-
   }
 
-  .border{
-    border: 1px solid #000;
-  }
 
 </style>
 <script>
