@@ -1,7 +1,7 @@
 <template>
 		<div class="app-main-content flex flex-1 flex-direction-r">
 			<ul class='app-main-left'>
-				<li class="wrapper"><span></span>审批管理</li>
+				<li class="wrapper"><span></span>审核管理</li>
 
 				<li>
 					<a v-link="'/admin/demand/member'">会员认证<span class="app-menu-count">100</span></a>
