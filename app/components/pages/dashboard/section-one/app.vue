@@ -72,7 +72,6 @@ export default {
       border-left: 1px solid #ddd;
     }
     width: 1px;
-
   }
 
   .panel-body{
@@ -82,7 +81,6 @@ export default {
       overflow-y: hidden;
     }
   }
-
 
 
 </style>

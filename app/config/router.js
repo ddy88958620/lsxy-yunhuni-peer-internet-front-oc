@@ -33,7 +33,7 @@ export default function(router){
                   component: (resolve) => require(['../components/pages/tenant/preview/index.vue'], resolve)
                 },
                 '/app': {
-                  component: (resolve) => require(['../components/pages/tenant/app/index.vue'], resolve)
+                  component: (resolve) => require(['../components/pages/tenant/app/index.vue'], resolve),
                 },
                 '/base': {
                   component: (resolve) => require(['../components/pages/tenant/base/index.vue'], resolve)
@@ -42,10 +42,10 @@ export default function(router){
                   component: (resolve) => require(['../components/pages/tenant/app/index.vue'], resolve)
                 },
                 '/statistic': {
-                  component: (resolve) => require(['../components/pages/tenant/app/index.vue'], resolve)
+                  component: (resolve) => require(['../components/pages/tenant/statistic/index.vue'], resolve)
                 },
                 '/switch': {
-                  component: (resolve) => require(['../components/pages/tenant/app/index.vue'], resolve)
+                  component: (resolve) => require(['../components/pages/tenant/switch/index.vue'], resolve)
                 },
               }
             },
