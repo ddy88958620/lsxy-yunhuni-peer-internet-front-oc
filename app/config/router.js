@@ -35,11 +35,14 @@ export default function(router){
                 '/app': {
                   component: (resolve) => require(['../components/pages/tenant/app/index.vue'], resolve),
                 },
+                '/app/detail': {
+                  component: (resolve) => require(['../components/pages/tenant/app/detail.vue'], resolve),
+                },
                 '/base': {
                   component: (resolve) => require(['../components/pages/tenant/base/index.vue'], resolve)
                 },
                 '/session': {
-                  component: (resolve) => require(['../components/pages/tenant/app/index.vue'], resolve)
+                  component: (resolve) => require(['../components/pages/tenant/session/index.vue'], resolve)
                 },
                 '/statistic': {
                   component: (resolve) => require(['../components/pages/tenant/statistic/index.vue'], resolve)
