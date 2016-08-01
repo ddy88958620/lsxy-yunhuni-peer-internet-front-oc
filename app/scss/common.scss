@@ -31,6 +31,15 @@
   align-self: center;
 }
 
+//右边框div
+.append-solid{
+  border-right: 1px solid #dddddd;
+  height: 50%;
+}
+
+
+
+
 //去除底部margin
 .remove-margin-bottom{
   margin-bottom: 0 !important;

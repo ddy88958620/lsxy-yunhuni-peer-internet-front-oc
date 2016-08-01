@@ -19,4 +19,4 @@ Vue.http.interceptors.push(
 )
 
 
-export const AuthResource = Vue.resource('auth.js')
+export const AuthResource = Vue.resource('auth.json')

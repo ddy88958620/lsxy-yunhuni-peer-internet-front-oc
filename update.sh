@@ -3,4 +3,4 @@ git reset HEAD --hard
 git pull orgin develop
 npm run clean
 npm run build
-npm run mock
+cp -rf ./app/mock ./static

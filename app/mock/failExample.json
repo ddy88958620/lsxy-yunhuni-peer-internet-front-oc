@@ -1,0 +1,12 @@
+{
+  "desc": "客服中心的列表",
+  "req": {
+    "url": "/service/list?page=1"
+  },
+  "res": {
+    "success": false,
+    "errorCode": null,
+    "errorMsg": null,
+    "data": null
+  }
+}
