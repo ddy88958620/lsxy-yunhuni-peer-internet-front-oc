@@ -4,8 +4,8 @@
       <div class="panel-heading"><i class="iconfont icon-oc-member"></i>会员数据</div>
       <div class="panel-body flex">
 
-        <div class='flex flex-1 append-solid'>
-          <div class="flex pie_wrap">
+        <div class='flex flex-1 append-solid '>
+          <div class="flex pie_wrap align-items-c">
             <pie
               :max="pie1.max",
               :value="pie1.value",
@@ -25,7 +25,7 @@
 
 
         <div class='flex flex-1 append-solid'>
-          <div class="flex pie_wrap">
+          <div class="flex pie_wrap align-items-c">
             <pie
               :max="pie2.max",
               :value="pie2.value",
@@ -44,7 +44,7 @@
 
 
         <div class='flex flex-1'>
-          <div class="flex pie_wrap" >
+          <div class="flex pie_wrap align-items-c" >
             <pie
               :max="pie3.max",
               :value="pie3.value",
@@ -91,9 +91,6 @@ export default {
   .iconfont {
     padding-right: 10px;
   }
-  color:#666;
-  background-color: #f8f9fc;
-  font-size: 1.6rem;
 }
 .section_left {
   display: flex;
@@ -107,13 +104,7 @@ export default {
   padding-right: 0px;
 }
 
-.append-solid::after {
-  border-left: solid 1px #dddddd;
-  content: '';
-  height: 50%;
-  display: flex;
-  align-self: center;
-}
+
 
 .icon-oc-up{
   font-size: 8px;

@@ -21,3 +21,17 @@
 .hr-title:after {
   right: -35%;
 }
+
+//右边框
+.append-solid::after {
+  border-left: solid 1px #dddddd;
+  content: '';
+  height: 50%;
+  display: flex;
+  align-self: center;
+}
+
+//去除底部margin
+.remove-margin-bottom{
+  margin-bottom: 0 !important;
+}

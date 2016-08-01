@@ -36,7 +36,7 @@
         height: 60px;
         padding: 10px 0;
       }
-    }
+       }
 
     .avatar-box{
       height: 180px;
