@@ -19,7 +19,9 @@
 <script>
   export  default {
     data(){
-      return{}
+      return{
+
+      }
     },
     components: {
       'chart': require('../../../../ui/chart.vue')
