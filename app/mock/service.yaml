@@ -4,7 +4,9 @@ req:
   # params:
   #   page: 1
 res:
-  error: 0
+  success: true
+  errorCode: null
+  errorMsg: null,
   messages:
     - date: '2016-06-06 16:00'
       author: 'CPHJY'
