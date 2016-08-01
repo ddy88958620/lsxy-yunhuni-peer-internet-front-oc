@@ -1,5 +1,6 @@
 <template>
-	<div class="flex  flex-direction-column single-box while" v-for="app in appdata" v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail'">
+
+	<div class="flex  flex-direction-column single-box  while" v-for="app in appdata" v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail'">
 		<header class="flex flex-1 flex-direction-column header-box normal-font-size">
 			<div class="flex flex-direction-column justify-content-c align-items-c">
 				<img src="../../../../assets/default-50x50.gif" width="100" height="100" alt="">
