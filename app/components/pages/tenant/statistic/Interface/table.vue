@@ -7,16 +7,14 @@
           <th colspan="6" class="text-align-r">共<span class="text-danger">{{ total }}</span>条</th>
         </tr>
         <tr>
-          <th class="text-align-c">充值时间</th>
-          <th>充值额（元）</th>
-          <th>充值方式</th>
+          <th class="text-align-c">日期</th>
+          <th>调用次数</th>
         </tr>
         </thead>
         <tbody>
         <tr v-for='message in messages'>
-          <td class="message-time text-align-c">{{message.date}}</td>
-          <td>{{message.money}}</td>
-          <td>{{message.type}}</td>
+          <td class="message-time text-align-c">{{ message.date }}</td>
+          <td>{{ message.count }}</td>
         </tr>
         </tbody>
       </table>
@@ -37,8 +35,7 @@
         this.messages.push(
           {
             date: '2016-06-06',
-            money: '20',
-            type:'支付宝充值'
+            count: '20'
           }
         )
       }
@@ -53,23 +50,19 @@
       this.messages = [
         {
           date: '2016-06-06',
-          money: '20',
-          type:'手工充值'
+          count: '1020',
         },
         {
-          date: '2016-06-06',
-          money: '4112',
-          type:'支付宝充值'
+          date: '2016-06-05',
+          count: '4112',
         },
         {
-          date: '2016-06-06',
-          money: '1000',
-          type:'银联充值'
+          date: '2016-06-03',
+          count: '1000',
         },
         {
-          date: '2016-06-06',
-          money: '523',
-          type:'支付宝充值'
+          date: '2016-06-02',
+          count: '523',
         }
       ]
     }

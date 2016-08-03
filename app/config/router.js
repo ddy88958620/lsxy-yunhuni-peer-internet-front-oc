@@ -34,15 +34,41 @@ export default function(router){
                 },
                 '/app': {
                   component: (resolve) => require(['../components/pages/tenant/app/index.vue'], resolve),
-                },
-                '/app/detail': {
-                  component: (resolve) => require(['../components/pages/tenant/app/detail.vue'], resolve),
+                  subRoutes:{
+                    '/list':{
+                      component: (resolve) => require(['../components/pages/tenant/app/list/index.vue'], resolve),
+                    },
+
+                    '/detail':{
+                      component: (resolve) => require(['../components/pages/tenant/app/detail/index.vue'], resolve),
+                    }
+                  }
                 },
                 '/base': {
                   component: (resolve) => require(['../components/pages/tenant/base/index.vue'], resolve)
                 },
                 '/session': {
-                  component: (resolve) => require(['../components/pages/tenant/session/index.vue'], resolve)
+                  component: (resolve) => require(['../components/pages/tenant/session/index.vue'], resolve),
+                  subRoutes: {
+                    '/call': {
+                      component: (resolve) => require(['../components/pages/tenant/session/call/index.vue'], resolve),
+                    },
+                    '/callback': {
+                      component: (resolve) => require(['../components/pages/tenant/session/callback/index.vue'], resolve),
+                    },
+                    '/meeting': {
+                      component: (resolve) => require(['../components/pages/tenant/session/meeting/index.vue'], resolve),
+                    },
+                    '/record': {
+                      component: (resolve) => require(['../components/pages/tenant/session/record/index.vue'], resolve),
+                    },
+                    'verification': {
+                      component: (resolve) => require(['../components/pages/tenant/session/verification/index.vue'], resolve),
+                    },
+                    'ivr': {
+                      component: (resolve) => require(['../components/pages/tenant/session/ivr/index.vue'], resolve),
+                    }
+                  }
                 },
                 '/statistic': {
                   component: (resolve) => require(['../components/pages/tenant/statistic/index.vue'], resolve),
@@ -62,8 +88,6 @@ export default function(router){
                     'line': {
                       component: (resolve) => require(['../components/pages/tenant/statistic/line/index.vue'], resolve),
                     }
-
-
                   },
                 },
                 '/switch': {
