@@ -21,10 +21,9 @@
 
 ## 返回数据
 
-### 单数据：
 
+### 单数据
 
-```javascript
 {
   "success": true,
   "errorCode": null,
@@ -51,7 +50,6 @@
     "conferenceRemain": 68
   }
 }
-```
 
 ### 请求成功但业务处理失败抛出异常：
 
@@ -107,7 +105,7 @@
 }
 
 
-//分页（page）
+### 分页（page）
 
 {
   "success": true,
