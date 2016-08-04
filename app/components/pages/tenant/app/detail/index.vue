@@ -1,6 +1,5 @@
 <template>
 	<div class="bg-section-margin">
-
 		<div class="admin-panel flex-1">
 			<div class="panel-body">
 				<ul class="list-none-style">
@@ -20,44 +19,32 @@
 				</ul>
 				<div class="btn-group">
 					<button type="button" class="btn btn-default"
-					        v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/play'">放音媒体库
+					        v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/play'">放音媒体库
 					</button>
 					<button type="button" class="btn btn-default"
-					        v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/record'">录音文件
+					        v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/record'">录音文件
 					</button>
 				</div>
 			</div>
 		</div>
-
-
-
-
 		<router-view></router-view>
-
-
 	</div>
 
 
-	<modal :show.sync="showModal">
-		<div slot="body">
-			<div class="flex flex-1 ">
-				<span class="flex flex-1 align-items-c justify-content-c">不通过原因</span>
-				<span class="flex flex-2 "><input type="text" class="form-control "/></span>
-			</div>
-		</div>
-	</modal>
+
 </template>
 <style lang="sass" scoped>
 	ul {
 		padding: 0 15px 0 15px;
 		font-size: 1.4rem;
-
-	li {
-		padding-bottom: 25px;
+	  li {
+		  padding-bottom: 25px;
+	  }
 	}
 
+	.btn-group .v-link-active {
+		background-color: #f6f6f6;
 	}
-
 </style>
 <script>
 	export default {

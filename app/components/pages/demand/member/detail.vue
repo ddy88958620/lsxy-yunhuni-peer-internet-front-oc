@@ -15,7 +15,7 @@
 					<li>
 						<button class="btn btn-primary">通过</button>
 						<button class="btn btn-primary" @click="showModal = true">不通过</button>
-						<button class="btn btn-default">取消</button>
+						<button class="btn btn-default" >取消</button>
 					</li>
 				</ul>
 			</div>

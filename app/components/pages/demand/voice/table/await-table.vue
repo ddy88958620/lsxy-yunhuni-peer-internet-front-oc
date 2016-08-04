@@ -23,12 +23,11 @@
 					<td>{{message.email}}</td>
 					<td>{{message.type}}</td>
 					<td class="text-align-c">
-						<span><a>试听</a></span>
+						<span><a @click="showModal=true" >试听</a></span>
 						<span><a>通过</a></span>
 						<span><a>不通过</a></span>
 					</td>
 				</tr>
-
 				</tbody>
 			</table>
 			<div class="more"><a @click="moreMessage" class="text-none">加载更多<i class="icon iconfont icon-oc-dropdown" ></i></a></div>
@@ -45,8 +44,6 @@
 		},
 		methods: {
 			moreMessage(){
-
-
 				this.messages.push(
 					{
 						id: 4,

@@ -38,7 +38,7 @@ export default function(router){
                     '/list':{
                       component: (resolve) => require(['../components/pages/tenant/app/list/index.vue'], resolve),
                     },
-                    '/detail':{
+                    '/detail/:appid':{
                       component: (resolve) => require(['../components/pages/tenant/app/detail/index.vue'], resolve),
                       subRoutes:{
                         '/play':{
@@ -166,7 +166,7 @@ export default function(router){
                     }
                   }
                 },
-                '/detail':{
+                '/detail/:id':{
                   component: (resolve) => require(['../components/pages/demand/member/detail.vue'],resolve)
                 }
               }
@@ -185,7 +185,6 @@ export default function(router){
     '/admin/tenant': '/admin/tenant/list',
     '/admin/tenant/detail/:uid/': '/admin/tenant/detail/:uid/preview',
     '/admin/tenant/detail/:uid/app': '/admin/tenant/detail/:uid/app/list',
-    '/admin/tenant/detail/:uid/app/detail': '/admin/tenant/detail/:uid/app/detail/play',
     '/admin/tenant/detail/:uid/statistic': '/admin/tenant/detail/:uid/statistic/consume',
     '/admin/tenant/detail/:uid/session': '/admin/tenant/detail/:uid/session/call',
     '/admin/demand': '/admin/demand/member',

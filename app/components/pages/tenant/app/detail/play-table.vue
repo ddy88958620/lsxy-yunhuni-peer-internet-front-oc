@@ -1,6 +1,6 @@
 <template>
 
-	<div class="flex search-box bg-section-margin">
+	<div class="flex search-box bg-section-margin remove-margin-bottom">
 		<div class="select-box">
 			<search></search>
 		</div>

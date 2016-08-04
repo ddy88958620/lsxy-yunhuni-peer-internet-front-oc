@@ -22,9 +22,8 @@
 					<td>{{message.mobile}}</td>
 					<td>{{message.email}}</td>
 					<td>{{message.type}}</td>
-
 					<td class="text-align-c">
-						<span><a v-link="'/admin/demand/member/detail'">查看</a></span>
+						<span><a v-link="'/admin/demand/member/detail/'+message.id">查看</a></span>
 					</td>
 				</tr>
 				</tbody>

@@ -7,13 +7,19 @@
 				<datetime-picker></datetime-picker>
 				<span class='datetime-picker-label'>至</span>
 				<datetime-picker></datetime-picker>
-				<span class='datetime-picker-label'>发布状态: </span>
+				<span class='datetime-picker-label'>认证状态: </span>
 				<select class="form-control">
 					<option>全部</option>
-					<option>已上线</option>
-					<option>未上线</option>
+					<option>认证</option>
+					<option>未认证</option>
 				</select>
-				<a class="btn btn-primary admin-button-margin" v-link="{path: '/admin/message/new', exact: true}">发布新消息</a>
+				<span class='datetime-picker-label'>账号状态: </span>
+				<select class="form-control">
+					<option>全部</option>
+					<option>启用</option>
+					<option>禁用</option>
+				</select>
+
 			</div>
 		</div>
 		<div class="admin-table table-responsive ">
@@ -71,6 +77,7 @@
 			return {
 				messages: [
 					{
+						id:1,
 						date: '2016-06-06 16:00',
 						author: 'CPHJY2',
 						app_count: 2,
@@ -80,6 +87,7 @@
 						account_status: false,
 					},
 					{
+						id:2,
 						date: '2016-06-06 16:00',
 						author: 'CPHJY22',
 						app_count: 2,
@@ -95,6 +103,7 @@
 			moreMessage(){
 				this.messages.push(
 					{
+						id:3,
 						date: '2016-06-06 16:00',
 						author: 'CPHJY22',
 						app_count: 2,
@@ -104,6 +113,7 @@
 						account_status: true,
 					},
 					{
+						id:4,
 						date: '2016-06-06 16:00',
 						author: 'CPHJY22',
 						app_count: 2,
