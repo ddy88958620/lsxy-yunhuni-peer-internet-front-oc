@@ -76,7 +76,7 @@
       font-size:8px;
     }
 
-    $height: 30px;
+    $height: 40px;
     color: $middle-font-color;
     background-color: #ffffff;
     border:1px solid #dbe2ee;
@@ -306,5 +306,14 @@ table {
   a{
     margin-right: 20px;
   }
+}
 
+//默认下拉框
+.selcet-box{
+  width: 200px;
+}
+
+//padding-right-20
+.padding-right-20{
+  padding-right: 20px;
 }

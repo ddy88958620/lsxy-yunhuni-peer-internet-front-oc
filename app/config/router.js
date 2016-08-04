@@ -34,15 +34,48 @@ export default function(router){
                 },
                 '/app': {
                   component: (resolve) => require(['../components/pages/tenant/app/index.vue'], resolve),
-                },
-                '/app/detail': {
-                  component: (resolve) => require(['../components/pages/tenant/app/detail.vue'], resolve),
+                  subRoutes:{
+                    '/list':{
+                      component: (resolve) => require(['../components/pages/tenant/app/list/index.vue'], resolve),
+                    },
+                    '/detail':{
+                      component: (resolve) => require(['../components/pages/tenant/app/detail/index.vue'], resolve),
+                      subRoutes:{
+                        '/play':{
+                          component: (resolve) => require(['../components/pages/tenant/app/detail/play-table.vue'], resolve),
+                        },
+                        '/record':{
+                          component: (resolve) => require(['../components/pages/tenant/app/detail/record-table.vue'], resolve),
+                        }
+                      }
+                    }
+                  }
                 },
                 '/base': {
                   component: (resolve) => require(['../components/pages/tenant/base/index.vue'], resolve)
                 },
                 '/session': {
-                  component: (resolve) => require(['../components/pages/tenant/session/index.vue'], resolve)
+                  component: (resolve) => require(['../components/pages/tenant/session/index.vue'], resolve),
+                  subRoutes: {
+                    '/call': {
+                      component: (resolve) => require(['../components/pages/tenant/session/call/index.vue'], resolve),
+                    },
+                    '/callback': {
+                      component: (resolve) => require(['../components/pages/tenant/session/callback/index.vue'], resolve),
+                    },
+                    '/meeting': {
+                      component: (resolve) => require(['../components/pages/tenant/session/meeting/index.vue'], resolve),
+                    },
+                    '/record': {
+                      component: (resolve) => require(['../components/pages/tenant/session/record/index.vue'], resolve),
+                    },
+                    'verification': {
+                      component: (resolve) => require(['../components/pages/tenant/session/verification/index.vue'], resolve),
+                    },
+                    'ivr': {
+                      component: (resolve) => require(['../components/pages/tenant/session/ivr/index.vue'], resolve),
+                    }
+                  }
                 },
                 '/statistic': {
                   component: (resolve) => require(['../components/pages/tenant/statistic/index.vue'], resolve),
@@ -62,8 +95,6 @@ export default function(router){
                     'line': {
                       component: (resolve) => require(['../components/pages/tenant/statistic/line/index.vue'], resolve),
                     }
-
-
                   },
                 },
                 '/switch': {
@@ -102,23 +133,44 @@ export default function(router){
             '/voice': {
               component: (resolve) => require(['../components/pages/demand/voice/index.vue'], resolve),
               subRoutes: {
-                '/:tabid': {
-                  component: (resolve) => require(['../components/pages/demand/voice/auditing.vue'], resolve)
+                '/list':{
+                  component: (resolve) => require(['../components/pages/demand/voice/list.vue'], resolve),
+                  subRoutes:{
+                    '/await':{
+                      component: (resolve) => require(['../components/pages/demand/voice/table/await-table.vue'], resolve),
+                    },
+                    '/auditing':{
+                      component: (resolve) => require(['../components/pages/demand/voice/table/auditing-table.vue'], resolve),
+                    },
+                    '/noauditing':{
+                      component: (resolve) => require(['../components/pages/demand/voice/table/no-auditing-table.vue'], resolve),
+                    }
+                  }
                 }
               }
             },
             '/member': {
               component: (resolve) => require(['../components/pages/demand/member/index.vue'], resolve),
 	            subRoutes: {
-                '/:tabid': {
-                  component: (resolve) => require(['../components/pages/demand/member/auditing.vue'], resolve)
+                '/list':{
+                  component: (resolve) => require(['../components/pages/demand/member/list.vue'], resolve),
+                  subRoutes:{
+                    '/await':{
+                      component: (resolve) => require(['../components/pages/demand/member/table/await-table.vue'], resolve),
+                    },
+                    '/auditing':{
+                      component: (resolve) => require(['../components/pages/demand/member/table/auditing-table.vue'], resolve),
+                    },
+                    '/noauditing':{
+                      component: (resolve) => require(['../components/pages/demand/member/table/no-auditing-table.vue'], resolve),
+                    }
+                  }
+                },
+                '/detail':{
+                  component: (resolve) => require(['../components/pages/demand/member/detail.vue'],resolve)
                 }
               }
             },
-            '/member/detail': {
-              component: (resolve) => require(['../components/pages/demand/member/detail.vue'],resolve)
-            }
-
           }
         }
       }
@@ -128,10 +180,19 @@ export default function(router){
   // set the default router-view
   router.redirect({
     '/': '/admin',
-	  '/admin/demand': '/admin/demand/member',
     '/admin/service': '/admin/service/list',
 	  '/admin/message': '/admin/message/list',
     '/admin/tenant': '/admin/tenant/list',
+    '/admin/tenant/detail/:uid/': '/admin/tenant/detail/:uid/preview',
+    '/admin/tenant/detail/:uid/app': '/admin/tenant/detail/:uid/app/list',
+    '/admin/tenant/detail/:uid/app/detail': '/admin/tenant/detail/:uid/app/detail/play',
+    '/admin/tenant/detail/:uid/statistic': '/admin/tenant/detail/:uid/statistic/consume',
+    '/admin/tenant/detail/:uid/session': '/admin/tenant/detail/:uid/session/call',
+    '/admin/demand': '/admin/demand/member',
+    '/admin/demand/member': '/admin/demand/member/list/await',
+
+
+
   })
 
   router.beforeEach(function({to, next, redirect}){

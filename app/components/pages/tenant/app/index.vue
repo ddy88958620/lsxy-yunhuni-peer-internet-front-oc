@@ -1,11 +1,8 @@
 <template>
-	<div class="flex flex-direction-column bg-section-margin">
-		<div class="flex justify-content-b flex-wrap" >
-			<single-one-app
-				:appdata="singledata"
-			></single-one-app>
-		</div>
-	</div>
+
+
+	<router-view></router-view>
+
 </template>
 <script>
 	export default {

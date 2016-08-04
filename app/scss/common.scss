@@ -44,3 +44,20 @@
 .remove-margin-bottom{
   margin-bottom: 0 !important;
 }
+
+//日月时间插件
+.app-chart-header {
+  input {
+    margin: 0px;
+  }
+
+  label {
+    margin-bottom: 0px;
+    font-weight: 300;
+    padding-right: 10px;
+  }
+
+  .datepicker-wrap {
+    padding-left: 15px;
+  }
+}

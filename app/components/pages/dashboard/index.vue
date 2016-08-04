@@ -1,11 +1,5 @@
 <template>
   <div class="app-main-content admin-padding flex-direction-column">
-    <!-- <ul class='app&#45;main&#45;left'> -->
-    <!--   <li> -->
-    <!--     <a v&#45;link="'/admin/dashboard/a'">a</a></li> -->
-    <!--   <li><a v&#45;link="'/admin/dashboard/b'">b</a></li> -->
-    <!-- </ul> -->
-
     <section-one></section-one>
     <section-two></section-two>
     <section-three></section-three>
