@@ -44,7 +44,7 @@
                 </tr>
                 </tbody>
             </table>
-            <div class="more"><a @click="moreMessage">加载更多</a></divcjk>
+            <div class="more"><a @click="moreMessage" class="text-none">加载更多<i class="icon iconfont icon-oc-dropdown" ></i></a></div>
             </div>
         </div>
 </template>

@@ -10,6 +10,10 @@
   flex: 1;
 }
 
+.flex-1-auto {
+  flex: 1 auto;
+}
+
 .text-align-c {
   text-align: center;
 }
@@ -57,6 +61,23 @@
 .align-items-b{
   align-items: baseline;
 }
+
+
+//不换行
+.flex-wrap-nowrap{
+  flex-wrap: nowrap;
+}
+
+//第一行在上方
+.flex-wrap{
+  flex-wrap: wrap;
+}
+
+//第一行在下方面
+.flex-wrap-reverse{
+  flex-wrap:wrap-reverse;
+}
+
 
 //手型
 .cursor{

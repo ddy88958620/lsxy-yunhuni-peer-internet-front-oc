@@ -1,0 +1,18 @@
+desc: '客服中心的列表'
+req:
+  url: /service/list?page=1
+  # params:
+  #   page: 1
+res:
+  success: true
+  errorCode: null
+  errorMsg: null,
+  messages:
+    - date: '2016-06-06 16:00'
+      author: 'CPHJY'
+      status: false
+      title: '云呼你有新的讯息，新的活动，市场活动，滚动播出-----点击查看详情'
+    - date: '2016-06-06 16:00'
+      author: CPHJY
+      status: false
+      title: '云呼你有新的讯息，新的活动，市场活动，滚动播出-----点击查看详情'

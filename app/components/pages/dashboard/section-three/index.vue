@@ -1,5 +1,5 @@
 <template>
-    <section class="section-three flex  bg-section-margin">
+    <section class="section-three flex  bg-section-margin whilebg">
      <div class="flex section-left flex-direction-column ">
         <div class="flex flex-1 flex-1align-items-c flex-direction-column session-small-box">
           <div>
@@ -53,8 +53,6 @@
 <style lang='sass'>
 
 .section-three {
-  background-color: white;
-
   .section-left {
     width: 200px;
   }

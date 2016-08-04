@@ -14,7 +14,7 @@ export const hideMsg = ({dispatch}) => {
 
 export const localLogin = ({dispatch, router}, user) => {
   api.localLogin(user).then(response => {
-    let r_user = response.json().data.user
+    let r_user = response.json().res.data.user
 
     if(r_user.name === user.name) {
       saveCookie('user', user)

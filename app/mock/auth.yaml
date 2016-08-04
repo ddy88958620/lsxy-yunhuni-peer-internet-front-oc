@@ -1,0 +1,11 @@
+desc: '这是后台登入的请求api'
+req:
+  url: /auth/login
+res:
+  success: true
+  errorCode: null
+  errorMsg: null,
+  data:
+    user:
+      name: 'lluvio'
+      password: 1232

@@ -22,69 +22,6 @@
   right: -35%;
 }
 
-
-
-//组件上各种颜色
-
-
-.grey{
-  color:#b2b9ce !important;
-}
-.green{
-  color:#76dcd8 !important;
-}
-.greenbg{
-  background-color:#76dcd8 !important;
-}
-.greenborder{
-  border-color: #76dcd8 !important;
-}
-.blue{
-  color:#80d1ff !important;
-}
-.bluebg{
-  background-color:#80d1ff !important;
-}
-.blueborder{
-  border-color: #80d1ff !important;
-}
-.yellow{
-  color:#f9e993 !important;
-}
-.yellowbg{
-  background-color:#f9e993 !important;
-}
-.yellowborder{
-  border-color: #f9e993 !important;
-}
-.purple{
-  color:#cec2ed !important;
-}
-.purplebg{
-  background-color:#cec2ed !important;
-}
-.purpleborder{
-  border-color: #cec2ed !important;
-}
-.pink{
-  color:#f1adc3 !important;
-}
-.pinkbg{
-  background-color:#f1adc3 !important;
-}
-.pinkborder{
-  border-color: #f1adc3 !important;
-}
-.orange{
-  color:#f8c0a9 !important;
-}
-.orangebg{
-  background-color: #f8c0a9 !important;
-}
-.orangeborder{
-  border-color: #f8c0a9 !important;
-}
-
 //右边框
 .append-solid::after {
   border-left: solid 1px #dddddd;
@@ -92,4 +29,35 @@
   height: 50%;
   display: flex;
   align-self: center;
+}
+
+//右边框div
+.append-solid{
+  border-right: 1px solid #dddddd;
+  height: 50%;
+}
+
+
+
+
+//去除底部margin
+.remove-margin-bottom{
+  margin-bottom: 0 !important;
+}
+
+//日月时间插件
+.app-chart-header {
+  input {
+    margin: 0px;
+  }
+
+  label {
+    margin-bottom: 0px;
+    font-weight: 300;
+    padding-right: 10px;
+  }
+
+  .datepicker-wrap {
+    padding-left: 15px;
+  }
 }
