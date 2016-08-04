@@ -190,9 +190,7 @@ export default function(router){
     '/admin/tenant/detail/:uid/session': '/admin/tenant/detail/:uid/session/call',
     '/admin/demand': '/admin/demand/member',
     '/admin/demand/member': '/admin/demand/member/list/await',
-
-
-
+    '/admin/demand/voice': '/admin/demand/voice/list/await',
   })
 
   router.beforeEach(function({to, next, redirect}){
