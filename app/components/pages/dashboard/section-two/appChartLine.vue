@@ -33,21 +33,6 @@ export default {
 </script>
 <style lang='sass' scoped>
 
-.app-chart-header {
-  input {
-    margin: 0px;
-  }
-
-  label {
-    margin-bottom: 0px;
-    font-weight: 300;
-    padding-right: 10px;
-  }
-
-  .datepicker-wrap {
-    padding-left: 15px;
-  }
-}
 
 
 </style>
