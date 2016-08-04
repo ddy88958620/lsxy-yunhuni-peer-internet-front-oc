@@ -11,7 +11,7 @@
         </div>
 
         <div class="query-box flex align-items-c  ">
-            <div style="width: 300px;">
+            <div class="select-box">
                 <search
                   :placeholder=""
                 ></search></div>

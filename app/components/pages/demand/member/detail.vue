@@ -65,13 +65,10 @@
 	ul {
 		padding: 15px 15px 0 15px;
 		font-size: 1.4rem;
-
-	li {
-		padding-bottom: 25px;
+		li {
+			padding-bottom: 25px;
+		}
 	}
-
-	}
-
 </style>
 <script>
 	export default {

@@ -85,8 +85,13 @@
     line-height: $height;
   }
 
+  .table-total{
+    padding-bottom: 8px;
+    font-size: 1.4rem;
+  }
+
   table {
-    border: 1px solid #eee;
+    border: 1px solid #dbe2ee;
 
     font-size: 1.4rem;
     thead  tr{

@@ -1,9 +1,8 @@
 <template>
 	<div>
 		<div class="flex flex-direction-column admin-table-header">
-
 			<h4>会员列表</h4>
-			<div class="flex align-items-c  ">
+			<div class="flex align-items-c bg-section-margin  remove-margin-bottom">
 				<span class='datetime-picker-label clear-padding-left'>注册时间:</span>
 				<datetime-picker></datetime-picker>
 				<span class='datetime-picker-label'>至</span>
@@ -17,7 +16,10 @@
 				<a class="btn btn-primary admin-button-margin" v-link="{path: '/admin/message/new', exact: true}">发布新消息</a>
 			</div>
 		</div>
-		<div class="admin-table table-responsive">
+		<div class="admin-table table-responsive ">
+			<div class="table-total flex flex-1 justify-content-e">
+				共<span class="text-danger">20</span>条
+			</div>
 			<table class="table">
 				<thead>
 				<tr>
