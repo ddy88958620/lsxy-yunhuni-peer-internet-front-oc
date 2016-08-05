@@ -1,7 +1,7 @@
 <template>
-    <section class="section-three flex  bg-section-margin whilebg">
+    <section class="section-three flex admin-border bg-section-margin whilebg">
      <div class="flex section-left flex-direction-column ">
-        <div class="flex flex-1 flex-1align-items-c flex-direction-column session-small-box">
+        <div class="flex flex-1 flex-1align-items-c flex-direction-column session-small-box border-bottom">
           <div>
             <span class='iconfont icon-oc-mobile'></span>
             <span class='admin-font-color ranknumber'>548465</span>
@@ -54,12 +54,11 @@
 
 .section-three {
   .section-left {
-    width: 200px;
+    width: 280px;
   }
   .session-small-box {
-
     padding: 30px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
     ul {
       color: #888;
       .title {
@@ -80,6 +79,9 @@
     .small{
       font-size: 8px;
     }
+  }
+  .border-bottom{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
 }
 

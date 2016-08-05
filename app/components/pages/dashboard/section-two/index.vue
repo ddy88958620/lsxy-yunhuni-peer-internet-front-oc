@@ -1,5 +1,5 @@
 <template>
-    <section class='section_two admin-padding'>
+    <section class='section_two admin-padding admin-border'>
       <app-chart-line></app-chart-line>
     </section>
 </template>

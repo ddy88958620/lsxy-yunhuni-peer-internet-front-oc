@@ -43,7 +43,7 @@
 		</div>
 	</div>
 
-	<div class="flex flex-1 flex-direction-column whilebg admin-padding">
+	<div class="flex flex-1 flex-direction-column whilebg admin-padding admin-border">
 		<div class="app-chart-header flex align-items-c">
 			<input name='app-chart-type' type="radio" checked=checked/>
 			<label for="">日统计</label>

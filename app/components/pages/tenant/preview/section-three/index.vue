@@ -1,6 +1,6 @@
 <template>
-    <section class="section-three flex  bg-section-margin whilebg">
-     <div class="flex flex-1 flex-direction-column  admin-padding">
+    <section class="section-three flex admin-padding  bg-section-margin admin-border whilebg">
+     <div class="flex flex-1 flex-direction-column">
        <div class="flex-1">
          <div class="flex flex-1 section-time-box">
            <a >上个月</a>

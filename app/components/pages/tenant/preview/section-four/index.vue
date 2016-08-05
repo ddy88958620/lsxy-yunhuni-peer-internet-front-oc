@@ -1,5 +1,5 @@
 <template>
-  <div class="section-four flex flex-1 admin-padding bg-section-margin whilebg  flex-direction-row">
+  <div class="section-four flex flex-1 admin-padding admin-border bg-section-margin whilebg  flex-direction-row">
     <div class="child-box flex flex-1 flex-direction-column padding-right-10">
       <div class="flex section-time-box">
         <a >上个月</a>

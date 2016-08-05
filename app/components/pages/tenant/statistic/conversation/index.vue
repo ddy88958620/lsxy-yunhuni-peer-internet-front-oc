@@ -1,6 +1,6 @@
 <template>
 
-  <div class="flex flex-1 flex-direction-column section-right admin-padding">
+  <div class="flex flex-1 flex-direction-column section-right whilebg admin-padding admin-border">
     <div class="app-chart-header flex align-items-c">
       <input name='app-chart-type' type="radio" checked=checked/>
       <label for="">日统计</label>
@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <div class="flex flex-1 flex-direction-column whilebg admin-padding bg-section-margin">
+  <div class="flex flex-1 flex-direction-column whilebg admin-padding admin-border bg-section-margin">
     <div class="app-chart-header flex align-items-c">
       <input name='app-chart-type' type="radio" checked=checked/>
       <label for="">日统计</label>

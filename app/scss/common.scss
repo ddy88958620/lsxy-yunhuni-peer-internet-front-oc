@@ -40,10 +40,6 @@
 
 
 
-//去除底部margin
-.remove-margin-bottom{
-  margin-bottom: 0 !important;
-}
 
 //日月时间插件
 .app-chart-header {
@@ -59,5 +55,24 @@
 
   .datepicker-wrap {
     padding-left: 15px;
+  }
+}
+
+
+//选择框
+.admin-toolbar .v-link-active,.admin-toolbar .toolbar:hover {
+  color:#333 !important;
+  font-weight:500;
+  background-color: #f6f6f6;
+}
+.admin-toolbar{
+  height: 40px;
+  border:1px solid #ddd;
+  .toolbar{
+    padding: 10px;
+    background-color: #f0f4fb;
+    width: 130px;
+    border-right: 1px solid #ddd;
+    text-align: center;
   }
 }
