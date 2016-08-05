@@ -3,9 +3,8 @@
 <template>
 	<div>
 		<div class="flex flex-direction-column admin-table-header">
-			
 			<h4>反馈意见</h4>
-			<div class="flex align-items-c  ">
+			<div class="flex align-items-c bg-section-margin remove-margin-bottom">
 				<span class='datetime-picker-label clear-padding-left'>提交时间:</span>
 				<datetime-picker></datetime-picker>
 				<span class='datetime-picker-label'>至</span>
@@ -16,10 +15,13 @@
 					<option>已上线</option>
 					<option>未上线</option>
 				</select>
-				<a class="btn btn-primary admin-button-margin" v-link="'/admin/message/new'">全部标记为已读</a>
+				<a class="btn btn-primary admin-button-margin" v-link="'/admin/service'">全部标记为已读</a>
 			</div>
 		</div>
 		<div class="admin-table table-responsive">
+			<div class="table-total flex flex-1 justify-content-e">
+				共<span class="text-danger">100</span>条
+			</div>
 			<table class="table">
 				<thead>
 				<tr>

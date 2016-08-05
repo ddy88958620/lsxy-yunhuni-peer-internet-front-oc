@@ -1,12 +1,15 @@
 <template>
 
-	<div class="flex search-box bg-section-margin">
+	<div class="flex search-box bg-section-margin remove-margin-bottom">
 		<div class="select-box">
 			<search></search>
 		</div>
 	</div>
 
 	<div class="admin-table table-responsive">
+		<div class="table-total flex flex-1 justify-content-e">
+			共<span class="text-danger">20</span>条
+		</div>
 		<table class="table remove-margin-bottom">
 			<thead>
 			<tr>
