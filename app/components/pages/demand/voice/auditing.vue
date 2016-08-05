@@ -69,9 +69,6 @@
 
 				let id = this.$route.params.tabid;
 
-
-
-
 				let wait_array = 	[
 					{
 						id: 1,
@@ -106,9 +103,6 @@
 						type:'个人'
 					},
 				]
-
-
-
 
 
 

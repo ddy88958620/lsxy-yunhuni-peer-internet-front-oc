@@ -1,5 +1,17 @@
 # Mock 规范
 
+## Identify
+
+uid user id , 会员id
+cid company id
+
+
+## method
+
+
+Put请求的params如不提及，一律和单数据操持一致
+
+
 ## url
 
 * GET /zoos：列出所有动物园
