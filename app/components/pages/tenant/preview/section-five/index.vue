@@ -1,5 +1,5 @@
 <template>
-  <div class="section-five admin-padding bg-section-margin whilebg  flex flex-1">
+  <div class="section-five admin-padding admin-border bg-section-margin whilebg  flex flex-1">
       <chart :uuid="'realtime-app-chart3'" :label="['1']" :color="['#76dcd8']" :title="['实时线路情况','占用线路（线）']"></chart>
   </div>
 </template>

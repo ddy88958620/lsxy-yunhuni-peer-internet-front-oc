@@ -139,7 +139,7 @@ export default {
     background:url("../../assets/images/loginheader.jpg") no-repeat ;
   }
   .login-content{
-    background-color: #f3f4f9;
+    background-color: #eff0f5;
 
     .relative{
       position: relative;

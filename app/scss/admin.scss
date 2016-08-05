@@ -45,6 +45,10 @@
   background-color: #EFF5FA;
 }
 
+.admin-border{
+  border: 1px solid #e9edf4;
+}
+
 .admin-button-margin {
   margin-right: 20px;
   margin-left: 20px;
@@ -52,6 +56,10 @@
 
 .admin-padding {
   padding: $admin-padding;
+}
+
+.admin-padding-l-r{
+  padding: 0 $admin-padding;
 }
 
 .admin-margin-l {
@@ -145,12 +153,15 @@ a {
 
 .panel {
   margin-bottom: 0;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  border: 1px solid #e9edf4;
 }
 
 .panel-heading{
   background-color: #f8f9fc !important;
   color:$middle-font-color !important;
   font-size: 1.6rem;
+  border-bottom: 1px solid #e9edf4 !important;
 }
 
 .panel-body {
@@ -325,6 +336,17 @@ table {
   padding-right: 20px;
 }
 
+//去除右边框
+.remove-border-right{
+  border-right: 1px solid transparent !important;
+}
+
+//去除底部margin
+.remove-margin-bottom{
+  margin-bottom: 0 !important;
+}
+
+//内间距15px
 .modal-padding-bottom{
   padding-bottom: 15px;
 }
