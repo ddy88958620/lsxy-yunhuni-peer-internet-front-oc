@@ -15,7 +15,7 @@
 					<li>
 						<button class="btn btn-primary">通过</button>
 						<button class="btn btn-primary" @click="showModal = true">不通过</button>
-						<button class="btn btn-default">取消</button>
+						<button class="btn btn-default" >取消</button>
 					</li>
 				</ul>
 			</div>
@@ -65,13 +65,10 @@
 	ul {
 		padding: 15px 15px 0 15px;
 		font-size: 1.4rem;
-
-	li {
-		padding-bottom: 25px;
+		li {
+			padding-bottom: 25px;
+		}
 	}
-
-	}
-
 </style>
 <script>
 	export default {

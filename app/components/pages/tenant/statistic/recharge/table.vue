@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="admin-table table-responsive">
+      <div class="table-total flex flex-1 justify-content-e">
+        共<span class="text-danger">20</span>条
+      </div>
       <table class="table">
         <thead>
-        <tr class="total">
-          <th colspan="6" class="text-align-r">共<span class="text-danger">{{ total }}</span>条</th>
-        </tr>
         <tr>
           <th class="text-align-c">充值时间</th>
           <th>充值额（元）</th>

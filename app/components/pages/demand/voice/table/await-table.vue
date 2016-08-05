@@ -1,12 +1,11 @@
 <template>
 	<div>
 		<div class="admin-table table-responsive">
+			<div class="table-total flex flex-1 justify-content-e">
+				共<span class="text-danger">20</span>条
+			</div>
 			<table class="table">
 				<thead>
-				<tr class="total">
-					<th colspan="6" class="text-align-r">共<span class="text-danger">{{ total }}</span>条</th>
-				</tr>
-
 				<tr>
 					<th class="text-align-c">申请时间</th>
 					<th>会员名称</th>
@@ -17,7 +16,6 @@
 				</tr>
 				</thead>
 				<tbody>
-
 				<tr v-for='message in messages'>
 					<td class="message-time text-align-c">{{message.date}}</td>
 					<td><a>{{message.name}}</a></td>
@@ -25,12 +23,11 @@
 					<td>{{message.email}}</td>
 					<td>{{message.type}}</td>
 					<td class="text-align-c">
-						<span><a>试听</a></span>
+						<span><a @click="showModal=true" >试听</a></span>
 						<span><a>通过</a></span>
 						<span><a>不通过</a></span>
 					</td>
 				</tr>
-
 				</tbody>
 			</table>
 			<div class="more"><a @click="moreMessage" class="text-none">加载更多<i class="icon iconfont icon-oc-dropdown" ></i></a></div>
@@ -47,8 +44,6 @@
 		},
 		methods: {
 			moreMessage(){
-
-
 				this.messages.push(
 					{
 						id: 4,

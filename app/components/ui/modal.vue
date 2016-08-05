@@ -19,9 +19,7 @@
         <div class="modal-footer justify-content-e flex flex-1 ">
           <slot name="footer">
             <button class="btn btn-primary margin-left-right-10" @click="show = false">确认</button>
-
             <button class="btn btn-default" @click="show = false">取消</button>
-
           </slot>
         </div>
       </div>

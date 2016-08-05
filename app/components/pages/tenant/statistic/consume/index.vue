@@ -53,7 +53,6 @@
 				<datetime-picker></datetime-picker>
 			</div>
 		</div>
-
 		<chart :uuid="'realtime-app-chart1'" :label="['1']" :color="['#deef70']" :title="['消费额统计','消费额(元)']"></chart>
 	</div>
 
