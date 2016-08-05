@@ -45,6 +45,10 @@
   background-color: #EFF5FA;
 }
 
+.admin-border{
+  border: 1px solid #e9edf4;
+}
+
 .admin-button-margin {
   margin-right: 20px;
   margin-left: 20px;
@@ -52,6 +56,10 @@
 
 .admin-padding {
   padding: $admin-padding;
+}
+
+.admin-padding-l-r{
+  padding: 0 $admin-padding;
 }
 
 .admin-margin-l {
@@ -85,8 +93,13 @@
     line-height: $height;
   }
 
+  .table-total{
+    padding-bottom: 8px;
+    font-size: 1.4rem;
+  }
+
   table {
-    border: 1px solid #eee;
+    border: 1px solid #dbe2ee;
 
     font-size: 1.4rem;
     thead  tr{
@@ -140,12 +153,15 @@ a {
 
 .panel {
   margin-bottom: 0;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  border: 1px solid #e9edf4;
 }
 
 .panel-heading{
   background-color: #f8f9fc !important;
   color:$middle-font-color !important;
   font-size: 1.6rem;
+  border-bottom: 1px solid #e9edf4 !important;
 }
 
 .panel-body {
@@ -233,7 +249,7 @@ table {
 }
 
 .btn {
-  border-radius: 1px;
+  border-radius: 4px;
   padding: 6px 15px;
   border-color: rgba(0,0,0,0);
 }
@@ -253,11 +269,13 @@ table {
   border-bottom: 1px solid #d3d7e4;
   height: 53px;
   .tab{
-    padding:15px 28px;
+    padding:15px 12px;
   }
   a{
     font-size: 1.8rem;
-    padding:0 19px 10px 19px ;
+    min-width: 110px;
+    padding:0 0 10px 0 ;
+    justify-content: center;
     color:#969eb4;
     text-decoration: none;
     &:hover{
@@ -316,4 +334,25 @@ table {
 //padding-right-20
 .padding-right-20{
   padding-right: 20px;
+}
+
+//去除右边框
+.remove-border-right{
+  border-right: 1px solid transparent !important;
+}
+
+//去除底部margin
+.remove-margin-bottom{
+  margin-bottom: 0 !important;
+}
+
+//内间距15px
+.modal-padding-bottom{
+  padding-bottom: 15px;
+}
+
+.modal-label {
+  display: inline-block;
+  padding: 15px;
+  color: $middle-font-color;
 }

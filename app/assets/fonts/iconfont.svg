@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>
-Created by FontForge 20120731 at Fri Jul 29 14:59:39 2016
+Created by FontForge 20120731 at Thu Aug  4 14:19:26 2016
  By admin
 </metadata>
 <defs>
@@ -19,7 +19,7 @@ Created by FontForge 20120731 at Fri Jul 29 14:59:39 2016
     bbox="-2 -128.011 1537 898"
     underline-thickness="50"
     underline-position="-100"
-    unicode-range="U+0078-E625"
+    unicode-range="U+0078-E627"
   />
 <missing-glyph horiz-adv-x="374" 
 d="M34 0v682h272v-682h-272zM68 34h204v614h-204v-614z" />
@@ -152,5 +152,11 @@ d="M97 -128l-97 97l927 927l97 -97zM0 799l97 97l927 -927l-97 -97z" />
 d="M211 13l-70 71l671 671l71 -70zM141 684l71 71l671 -672l-70 -70z" />
     <glyph glyph-name="uniE625" unicode="&#xe625;" horiz-adv-x="1025" 
 d="M294 116l-51 50l487 487l50 -51zM244 602l51 50l486 -486l-51 -51z" />
+    <glyph glyph-name="uniE626" unicode="&#xe626;" 
+d="M768 469h-469v171q0 82 60.5 126.5t152.5 44.5q121 0 167 -40.5t46 -130.5v-85q0 -14 14 -28.5t29 -14.5t29 14.5t14 28.5v85q0 74 -43 133.5t-111 91t-145 31.5t-145 -31.5t-111 -91t-43 -133.5v-171q-85 -24 -85 -128v-341q0 -58 35 -93t93 -35h512q58 0 93 35t35 93
+v341q0 58 -35 93t-93 35zM811 0q0 -29 -7 -36t-36 -7h-512q-29 0 -36 7t-7 36v341q0 29 7 36t36 7h512q29 0 36 -7t7 -36v-341zM512 307q-15 0 -24.5 -10t-9.5 -24v-141q0 -13 10.5 -23.5t23.5 -10.5q15 0 24.5 10.5t9.5 23.5v141q0 13 -10.5 23.5t-23.5 10.5z" />
+    <glyph glyph-name="uniE627" unicode="&#xe627;" horiz-adv-x="1029" 
+d="M512 896q-115 0 -197 -82t-82 -197q0 -65 27.5 -122t74.5 -97q-148 -53 -241.5 -185t-93.5 -294q0 -21 13 -34t33.5 -13t33.5 13t13 34q0 114 56 210.5t152 152t211 55.5t197 82.5t82 197.5t-82 197t-197 82zM512 431q-77 0 -131.5 54.5t-54.5 131.5t54.5 131.5
+t131.5 54.5t131.5 -54.5t54.5 -131.5t-54.5 -131.5t-131.5 -54.5zM880 277q-14 14 -32.5 14t-32.5 -14t-14 -32.5t14 -32.5q121 -121 121 -293q0 -21 12.5 -34t33.5 -13t34 13t13 34q-8 209 -149 358z" />
   </font>
 </defs></svg>

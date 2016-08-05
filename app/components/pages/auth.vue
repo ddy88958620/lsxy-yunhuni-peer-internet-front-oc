@@ -9,7 +9,7 @@
             <form novalidate id='auth-form'>
               <div
                 class="validate-field form-group relative ">
-                <i class="iconfont icon-oc-user input-icon"></i>
+                <i class="iconfont icon-oc-login-user input-icon"></i>
                 <input
                   type="text"
                   class='form-control form-input'
@@ -25,7 +25,7 @@
 
               <div
                 class="validate-field form-group relative">
-                <i class="iconfont icon-oc-user input-icon"></i>
+                <i class="iconfont icon-oc-login-pwd input-icon"></i>
                 <input
                   type="password"
                   class='form-control form-input'
@@ -63,7 +63,7 @@
               </div>
 
               <div class="form-group flex flex-1 mt-15">
-                <button class="btn btn-primary flex flex-1 justify-content-c" :disabled='!$validation.valid' @click.prevent='login($validation)'>登录</button>
+                <button class="btn btn-login flex flex-1 justify-content-c" :disabled='!$validation.valid' @click.prevent='login($validation)'>登录</button>
               </div>
 
             </form>
@@ -122,6 +122,15 @@ export default {
   background-size: cover;
 }
 
+.btn-login{
+  background-color: #19406c;
+  color:#FFF;
+}
+
+.btn-login[disabled]{
+  opacity: 0.8;
+}
+
 .login-form{
   width: 907px;
   height: 644px;
@@ -130,7 +139,7 @@ export default {
     background:url("../../assets/images/loginheader.jpg") no-repeat ;
   }
   .login-content{
-    background-color: #f3f4f9;
+    background-color: #eff0f5;
 
     .relative{
       position: relative;
@@ -153,7 +162,6 @@ export default {
         color:#dddddd;
 
       }
-
       .error {
         position: absolute;
         padding-top: 3px;
@@ -161,8 +169,8 @@ export default {
         bottom:-18px;
         color:#c26060;
       }
-
     }
+
     .mt-15{
       margin-top: 15px;
     }

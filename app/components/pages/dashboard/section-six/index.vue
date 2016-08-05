@@ -1,6 +1,6 @@
 <template>
     <!-- 区负荷量 -->
-    <section class='section_six bg-section-margin admin-padding'>
+    <section class='section_six bg-section-margin admin-padding admin-border'>
 
       <div class="flex flex-1 justify-content-e ">
         <div class="progress-box">
@@ -21,9 +21,6 @@
           </div>
         </div>
       </div>
-
-
-
 
       <chart :uuid="'realtime-area-chart'" :title="['实时负荷量','负荷量']" :label="['1区','2区','3区']" :color="['#f5f7c6','#f8c0a9','#bde8ef']"></chart>
     </section>

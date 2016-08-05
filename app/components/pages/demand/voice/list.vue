@@ -21,16 +21,39 @@
 					<option>已上线</option>
 					<option>未上线</option>
 				</select>
+				<button class="btn btn-primary" @click="showModal=true">sad</button>
 			</div>
 		</div>
 		<router-view></router-view>
 	</div>
+
+	<modal :show.sync="showModal">
+		<div slot="body">
+			<div class="flex flex-1 modal-padding-bottom">批量下载3天范围内的录音文件</div>
+			<div class="flex flex-1 align-items-c modal-padding-bottom">
+				<datetime-picker></datetime-picker>
+				<span class='modal-label'>至</span>
+				<datetime-picker></datetime-picker>
+			</div>
+			<div class="flex flex-1 ">
+				<textarea rows="5" class="form-control"></textarea>
+			</div>
+		</div>
+		<div slot="footer"></div>
+	</modal>
+
 </template>
 <script>
 	export default {
 		components: {
+			'modal': require('../../../ui/modal.vue'),
 			'datetime-picker': require('../../../ui/datetimepicker.vue'),
 			'search' : require('../../../ui/search-input.vue')
 		},
+		data(){
+			return{
+				showModal: false
+			}
+		}
 	}
 </script>

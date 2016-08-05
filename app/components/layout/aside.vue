@@ -16,7 +16,7 @@
     border-left: 3px solid #f6f883;
     background-color: #515a76;
     color: #fff;
-
+    border-top: 1px solid transparent;
     border-bottom:1px solid #444f70;
     padding-left: 47px;
   }
@@ -36,7 +36,7 @@
         height: 60px;
         padding: 10px 0;
       }
-       }
+    }
 
     .avatar-box{
       height: 180px;
@@ -56,6 +56,13 @@
         padding-bottom: 10px;
       }
     }
+    
+    .submenu{
+      width: 20px;
+      height: 14px;
+      background: url('../../assets/images/menu_bg.png') no-repeat ;
+    }
+    
     .menu-box{
       .iconfont{
         color:#515a76;
@@ -100,7 +107,7 @@
         <a class="flex flex-1 exitbox iconfont icon-oc-exit cursor text-none" @click='localLogout' title='退出'></a>
       </li>
       <li class="flex menu-box align-items-c justify-content-c border">
-        <i class="iconfont icon-oc-menu"></i>
+        <i class="submenu"></i>
       </li>
       <li class="flex " v-for='menu in menus'>
         <a class="flex sub border align-items-c " v-link="menu.link">
