@@ -27,7 +27,7 @@
 
         <div class='flex flex-1 '>
           <div class="flex pie_wrap align-items-c">
-            <pie
+            <pie style="font-size: 1.4rem;"
               :max="pie2.max",
               :value="pie2.value",
               :bgcolor="color[1]">
@@ -76,7 +76,7 @@ export default {
   data(){
     return {
       color:['#89d9e3','#80d1ff','#f4ebb6'],
-      pie1: { 'max': 999,  'value': 499},
+      pie1: { 'max': 999,  'value': 100},
       pie2: { 'max': 1000, 'value': 200},
       pie3: { 'max': 1000, 'value': 500}
     }

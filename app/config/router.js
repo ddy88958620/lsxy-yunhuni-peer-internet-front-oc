@@ -142,8 +142,8 @@ export default function(router){
                     '/auditing':{
                       component: (resolve) => require(['../components/pages/demand/voice/table/auditing-table.vue'], resolve),
                     },
-                    '/noauditing':{
-                      component: (resolve) => require(['../components/pages/demand/voice/table/no-auditing-table.vue'], resolve),
+                    '/unauth':{
+                      component: (resolve) => require(['../components/pages/demand/voice/table/unauth-table.vue'], resolve),
                     }
                   }
                 }
@@ -161,8 +161,8 @@ export default function(router){
                     '/auditing':{
                       component: (resolve) => require(['../components/pages/demand/member/table/auditing-table.vue'], resolve),
                     },
-                    '/noauditing':{
-                      component: (resolve) => require(['../components/pages/demand/member/table/no-auditing-table.vue'], resolve),
+                    '/unauth':{
+                      component: (resolve) => require(['../components/pages/demand/member/table/unauth-table.vue'], resolve),
                     }
                   }
                 },

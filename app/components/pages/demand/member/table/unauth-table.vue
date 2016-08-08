@@ -18,7 +18,7 @@
 				<tbody>
 				<tr v-for='message in messages'>
 					<td class="message-time text-align-c">{{message.date}}</td>
-					<td>{{message.name}}</td>
+					<td><a>{{message.name}}</a></td>
 					<td>{{message.mobile}}</td>
 					<td>{{message.email}}</td>
 					<td>{{message.type}}</td>

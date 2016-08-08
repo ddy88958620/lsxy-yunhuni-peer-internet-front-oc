@@ -6,7 +6,7 @@
 			<div class="flex flex-1 admin-main-tab">
 				<div class="tab"><a class="flex"  v-link="'/admin/demand/voice/list/await'">待审核</a></div>
 				<div class="tab"><a class="flex"  v-link="'/admin/demand/voice/list/auditing'">已审核</a></div>
-				<div class="tab"><a class="flex"  v-link="'/admin/demand/voice/list/noauditing'">审核不通过</a></div>
+				<div class="tab"><a class="flex"  v-link="'/admin/demand/voice/list/unauth'">审核不通过</a></div>
 			</div>
 
 			<div class="query-box flex align-items-c  ">
@@ -21,7 +21,7 @@
 					<option>已上线</option>
 					<option>未上线</option>
 				</select>
-				<button class="btn btn-primary" @click="showModal=true">sad</button>
+				<button class="btn btn-primary admin-button-margin">查询</button>
 			</div>
 		</div>
 		<router-view></router-view>

@@ -19,6 +19,7 @@
 					<option>启用</option>
 					<option>禁用</option>
 				</select>
+				<button class="btn btn-primary admin-button-margin">查询</button>
 
 			</div>
 		</div>
