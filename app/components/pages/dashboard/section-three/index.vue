@@ -7,7 +7,7 @@
             <span class='admin-font-color ranknumber'>548465</span>
           </div>
           <ul class="list-none-style">
-            <li class='title'>总注册会员 ( 个 )</li>
+            <li class='title'>昨日话务量 ( 分钟 )</li>
             <li>日 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>11%</span></li>
             <li>周 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>77%</span></li>
             <li>月 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>308%</span></li>
@@ -19,7 +19,7 @@
             <span class='admin-font-color ranknumber'>548465</span>
           </div>
           <ul class="list-none-style">
-            <li class='title'>总注册会员 ( 个 )</li>
+            <li class='title'>昨日消费量 ( 元 )</li>
             <li>日 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>11%</span></li>
             <li>周 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>77%</span></li>
             <li>月 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>308%</span></li>
