@@ -24,7 +24,7 @@
     </div>
     <div class="nav-right">
       <search
-        :placeholder=''>
+        placeholder='请输入会员名称'>
       </search>
     </div>
   </header>

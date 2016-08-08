@@ -1,7 +1,7 @@
 <template>
     <div class="flex single-box" v-for="message in messages">
-      <div class="panel panel-default flex flex-direction-column flex-1">
-        <div class="panel-heading">{{ box[$index].title}}</div>
+      <div class="panel panel-base flex flex-direction-column flex-1">
+        <div class="panel-heading panel-base-heading">{{ box[$index].title}}</div>
           <div class="panel-body admin-bg flex-1">
             <ul class="list-none-style">
               <li v-for="b in box[$index].field">{{ b }}: {{ message[$index] }}</li>
