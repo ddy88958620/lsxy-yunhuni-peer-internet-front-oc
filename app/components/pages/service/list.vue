@@ -15,7 +15,10 @@
 					<option>已上线</option>
 					<option>未上线</option>
 				</select>
-				<a class="btn btn-primary admin-button-margin" v-link="'/admin/service'">全部标记为已读</a>
+
+				<a class="btn btn-primary admin-button-margin" >查询</a>
+
+				<a class="btn btn-primary " v-link="'/admin/service'">全部标记为已读</a>
 			</div>
 		</div>
 		<div class="admin-table table-responsive">

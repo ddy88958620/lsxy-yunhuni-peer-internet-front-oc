@@ -2,8 +2,9 @@
 
 	<div class="flex  flex-direction-column single-box  while" v-for="app in appdata" v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+app.appid+'/play'">
 		<header class="flex flex-1 flex-direction-column header-box normal-font-size">
-			<div class="flex flex-direction-column justify-content-c align-items-c">
-				<img src="../../../../../assets/default-50x50.gif" width="100" height="100" alt="">
+			<span class="flex  justify-content-e down">未上线</span>
+			<div class="flex flex-1 flex-direction-column justify-content-c align-items-c">
+				<img src="../../../../../assets/images/app.png" width="100" height="100">
 				<p class="bigger-font-size name">{{ app.name}}</p>
 				<p>APPID: {{ app.appid}}</p>
 				<p class="text-center">{{ app.introduce ? app.introduce :'这家伙很懒，什么都没留下'}}</p>
@@ -67,4 +68,8 @@
 	.money{
 		font-size: 2.6rem;
 	}
+	.down{
+		color: #e8e041;
+	}
+
 </style>
