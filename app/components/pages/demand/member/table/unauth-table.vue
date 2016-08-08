@@ -41,7 +41,6 @@
 			}
 		},
 		methods: {
-
 			audit(id){
 				console.log(this);
 				console.log(id);

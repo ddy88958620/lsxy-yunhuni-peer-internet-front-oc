@@ -15,7 +15,7 @@
 					<li>回调URL http://www.bibi.com/callback</li>
 					<li>监听通知: 启用监听 启用鉴权</li>
 					<li>绑定测试号: 1477777552 1477777552 1477777552 1477777552 1477777552 1477777552</li>
-					<li>应用状态: 未上线</li>
+					<li>应用状态: <span class="text-danger">未上线</span></li>
 				</ul>
 
 

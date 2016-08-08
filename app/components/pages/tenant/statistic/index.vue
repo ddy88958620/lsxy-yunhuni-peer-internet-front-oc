@@ -8,6 +8,7 @@
 			<span class="toolbar remove-border-right last-toolbar" v-link="'/admin/tenant/detail/'+$route.params.uid+'/statistic/line'" >线路负载量</span>
 		</div>
 	</div>
+
 	<router-view></router-view>
 </template>
 

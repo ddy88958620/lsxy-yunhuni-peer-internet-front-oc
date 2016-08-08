@@ -1,4 +1,4 @@
-template>
+<template>
 	<div>
 		<div class="admin-table table-responsive">
 			<div class="table-total flex flex-1 justify-content-e">
@@ -16,7 +16,6 @@ template>
 				</tr>
 				</thead>
 				<tbody>
-
 				<tr v-for='message in messages'>
 					<td class="message-time text-align-c">{{message.date}}</td>
 					<td><a>{{message.name}}</a></td>
@@ -24,10 +23,11 @@ template>
 					<td>{{message.email}}</td>
 					<td>{{message.type}}</td>
 					<td class="text-align-c">
-						<span><a>试听</a></span>
+						<span><a @click="showModal=true" >试听</a></span>
+						<span><a>通过</a></span>
+						<span><a>不通过</a></span>
 					</td>
 				</tr>
-
 				</tbody>
 			</table>
 			<div class="more"><a @click="moreMessage" class="text-none">加载更多<i class="icon iconfont icon-oc-dropdown" ></i></a></div>
@@ -44,8 +44,6 @@ template>
 		},
 		methods: {
 			moreMessage(){
-
-
 				this.messages.push(
 					{
 						id: 4,

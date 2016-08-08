@@ -247,9 +247,6 @@ table {
   }
   .app-main-right {
     flex: 1;
-    .query-box{
-      padding: 20px 0;
-    }
   }
 }
 
@@ -373,5 +370,15 @@ table {
 //去除所有边框
 .remove-border{
   border: 0 !important;
+}
+
+//左边距
+.padding-left-10{
+  padding-left: 10px;
+}
+
+//右边距
+.padding-right-10{
+  padding-right: 10px;
 }
 

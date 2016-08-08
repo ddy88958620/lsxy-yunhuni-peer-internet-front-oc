@@ -14,7 +14,8 @@
     data-height="100"
     data-max="{{ max }}"
     data-min="{{ min }}"
-    value="{{ value }}"/>
+    value="{{ value }}"
+  />
 </template>
 
 <script>
@@ -55,3 +56,10 @@
     }
   }
 </script>
+
+
+<style lang="sass" scoped>
+  .dial{
+    font-size: 20px !important;
+  }
+</style>
