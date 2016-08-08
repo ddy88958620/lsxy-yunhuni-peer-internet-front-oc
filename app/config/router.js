@@ -127,6 +127,17 @@ export default function(router){
             }
           }
         },
+        '/finance': {
+          component: (resolve) => require(['../components/pages/finance/index.vue'], resolve),
+          subRoutes: {
+            '/list': {
+              component: (resolve) => require(['../components/pages/finance/list.vue'], resolve),
+            }
+          }
+        },
+
+
+
         '/demand': {
           component: (resolve) => require(['../components/pages/demand/index.vue'], resolve),
 	        subRoutes: {

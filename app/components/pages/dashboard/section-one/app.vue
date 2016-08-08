@@ -12,7 +12,7 @@
               :bgcolor="color[0]"
             ></pie>
           </div>
-          <div class="flex  align-items-c">
+          <div class="flex  align-items-c title-box">
             总应用数（个）
           </div>
         </div>
@@ -27,7 +27,7 @@
               :bgcolor="color[1]"
             ></pie>
           </div>
-          <div class="flex align-items-c">
+          <div class="flex align-items-c title-box">
             总上线应用数（个）
           </div>
         </div>
@@ -81,6 +81,11 @@ export default {
       overflow-y: hidden;
     }
   }
+
+  .title-box{
+    padding-top: 10px;
+  }
+
 
 
 </style>

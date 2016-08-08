@@ -14,7 +14,7 @@
             </pie>
           </div>
           <div class="flex flex-1 ">
-            <ul class="list-none-style flex flex-direction-column  justify-content-c">
+            <ul class="list-none-style flex flex-1 flex-direction-column  justify-content-c">
               <li>总注册会员 ( 个 )</li>
               <li>日 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>11</span></li>
               <li>周 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>77</span></li>
@@ -34,8 +34,8 @@
             </pie>
           </div>
           <div class="flex flex-1 align-items-c" >
-            <ul class="list-none-style flex flex-direction-column  justify-content-c">
-              <li>总注册会员 ( 个 )</li>
+            <ul class="list-none-style flex flex-1 flex-direction-column  justify-content-c">
+              <li>总认证会员 ( 个 )</li>
               <li>日 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>22</span></li>
               <li>周 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>77</span></li>
               <li>月 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>308</span></li>
@@ -54,8 +54,8 @@
             </pie>
           </div>
           <div class="flex flex-1 align-items-c" >
-            <ul class="list-none-style flex flex-direction-column  justify-content-c">
-              <li>总注册会员 ( 个 )</li>
+            <ul class="list-none-style flex flex-1 flex-direction-column  justify-content-c">
+              <li>总产生消费会员 ( 个 )</li>
               <li>日 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>22</span></li>
               <li>周 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>77</span></li>
               <li>月 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>308</span></li>
