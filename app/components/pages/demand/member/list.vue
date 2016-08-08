@@ -7,13 +7,13 @@
         <div class="flex flex-1 admin-main-tab">
             <div class="tab"><a class="flex"  v-link="'/admin/demand/member/list/await'">待审核</a></div>
             <div class="tab"><a class="flex"  v-link="'/admin/demand/member/list/auditing'">已审核</a></div>
-            <div class="tab"><a class="flex"  v-link="'/admin/demand/member/list/noauditing'">审核不通过</a></div>
+            <div class="tab"><a class="flex"  v-link="'/admin/demand/member/list/unauth'">审核不通过</a></div>
         </div>
 
         <div class="query-box flex align-items-c  ">
             <div class="select-box">
                 <search
-                  :placeholder=""
+                  placeholder="请输入关键字,如会员名称"
                 ></search></div>
             <span class='datetime-picker-label '>申请时间:</span>
             <datetime-picker></datetime-picker>
@@ -25,6 +25,7 @@
                 <option>已上线</option>
                 <option>未上线</option>
             </select>
+            <button class="btn btn-primary admin-button-margin">查询</button>
 
         </div>
     </div>

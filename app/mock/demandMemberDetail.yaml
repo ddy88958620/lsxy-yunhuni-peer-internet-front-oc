@@ -1,0 +1,60 @@
+-
+  desc: 详情有三种情况 待认证 已认证 认证不通过
+-
+  desc: 审核中心审核详情 待认证 个人
+  req:
+    methods: get
+    url: /demand/member/detail/:uid
+  res:
+    error: 0
+    success: true
+    errorCode: null
+    errorMsg: null
+    result:
+      name: 成小米
+      card_type: 身份证
+      card_number: 442342342211114
+      auth_photo: http://www.xxxx.com/a.jpg
+      auth_history:
+        -
+          date: 2016-06-06
+          auth_type: 个人认证
+          card_type: 身份证
+          card_number: 3432424442222
+          auth_result: '上传的身份 证照片不清晰'
+          auth_photo: http://www.xxxx.com/a.jpg
+-
+  desc: 审核中心审核详情 待认证 公司
+  req:
+    methods: get
+    url: /demand/member/detail/:uid
+  res:
+    error: 0
+    success: true
+    errorCode: null
+    errorMsg: null
+    result:
+      name: 成小米
+      card_type: 身份证
+      card_number: 442342342211114
+      auth_photo: http://www.xxxx.com/a.jpg
+      auth_history:
+        -
+          date: 2016-06-06
+          auth_type: 个人认证
+          card_type: 身份证
+          card_number: 3432424442222
+          auth_result: '上传的身份 证照片不清晰'
+          auth_photo: http://www.xxxx.com/a.jpg
+-
+  desc: 审核中心审核详情
+  req:
+    methods: put
+    url: /demand/member/detail/:uid
+    params:
+      auth_status: 通过|不通过
+  res:
+    error: 0
+    success: true
+    errorCode: null
+    errorMsg: null

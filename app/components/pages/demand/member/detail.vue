@@ -12,6 +12,15 @@
 					<li>证件类型: 身份证</li>
 					<li>证件号码: 441283199310256245</li>
 					<li>持证照片:</li>
+
+					<li>公司名称:成小米网络科技有限公司</li>
+					<li>公司地址:广州天河</li>
+					<li>所属行业:互联网金融</li>
+					<li>证件类型:三证分离</li>
+					<li>税务登记号:12312354</li>
+					<li>营业执照号::995555</li>
+
+
 					<li>
 						<button class="btn btn-primary">通过</button>
 						<button class="btn btn-primary" @click="showModal = true">不通过</button>
@@ -24,23 +33,54 @@
 		<div class="panel panel-default flex-1">
 			<div class="panel-heading">历史认证信息</div>
 			<div class="panel-body  admin-bg flex-1">
-				<div class="admin-table table-responsive">
-					<table class="table remove-margin-bottom">
+				<div class="admin-table table-responsive remove-border">
+					<table class="table remove-margin-bottom remove-border">
 						<thead>
 						<tr>
-							<th class="text-align-c">申请时间</th>
-							<th>认证类型</th>
-							<th>审核结果</th>
-							<th class="text-align-c">操作</th>
+							<th colspan="3">
+								<div class="flex flex-1 flex-direction-row">
+									<div class="flex title-time justify-content-c">
+										申请时间
+									</div>
+									<div class="flex title-type justify-content-c">
+										认证类型
+									</div>
+									<div class="flex flex-1 justify-content-c">
+										审核结果
+									</div>
+								</div>
+							</th>
 						</tr>
 						</thead>
 						<tbody>
 						<tr v-for='message in messages'>
-							<td class="message-time text-align-c">{{message.date}}</td>
-							<td>{{message.type}}</td>
-							<td>{{message.result}}{{message.reason}}</td>
-							<td class="text-align-c">
-								<span @click="" class="cursor"><i class="icon iconfont icon-oc-dropdown"></i></span>
+							<td colspan="3">
+								<div class="flex flex-1 flex-direction-row">
+									<div class="flex title-time justify-content-c">
+										{{message.date}}
+									</div>
+									<div class="flex title-type justify-content-c">
+										{{message.type}}
+									</div>
+									<div class="flex flex-1 ">
+										<div class="flex flex-1 justify-content-c">
+											{{message.result}}
+											{{message.reason}}
+										</div>
+										<div class="flex"><span @click="showDetail($index)" class="cursor"><i class="icon iconfont icon-oc-dropdown"></i></span></div>
+									</div>
+								</div>
+								<div class="flex flex-1 table-detail" v-show="show[$index]">
+									<ul class="list-none-style detail">
+										<li><label>详情信息</label></li>
+										<li>真实姓名: 成小米</li>
+										<li>证件类型: 身份证</li>
+										<li>证件号码: 441283199310256245</li>
+										<li>持证照片:</li>
+										<li>
+										</li>
+									</ul>
+								</div>
 							</td>
 						</tr>
 						</tbody>
@@ -69,14 +109,42 @@
 			padding-bottom: 25px;
 		}
 	}
+
+	.title-time{
+		width: 200px;
+	}
+
+	.title-type{
+		width: 200px;
+	}
+
+	.table-detail{
+
+		border-top:1px solid #e9edf4;
+	}
+
+	.detail{
+		padding: 0 0 0 5px;
+		li {
+			padding-top: 10px;
+			padding-bottom: 0px;
+		}
+	}
+
 </style>
 <script>
 	export default {
 		components: {
 			'modal': require('../../../ui/modal.vue')
 		},
+		methods:{
+			showDetail:function(index){
+				this.show.$set(index, !this.show[index])
+			}
+		},
 		data(){
 			return {
+				show: [],
 				showModal: false,
 				messages: [
 					{
@@ -99,6 +167,14 @@
 					}
 				]
 			}
-		}
+		},
+		ready(){
+
+				let arr = []
+				Array.from(this.messages, function(i, index){
+					arr.push(false)
+				})
+				this.show = arr
+			}
 	}
 </script>

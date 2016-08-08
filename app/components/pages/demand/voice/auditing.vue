@@ -1,11 +1,12 @@
 <template>
 	<div>
 		<div class="admin-table table-responsive">
-			<div class="table-total flex flex-1 justify-content-e">
-				共<span class="text-danger">20</span>条
-			</div>
 			<table class="table">
 				<thead>
+				<tr class="total">
+					<th colspan="6" class="text-align-r">共<span class="text-danger">{{ total }}</span>条</th>
+				</tr>
+
 				<tr>
 					<th class="text-align-c">申请时间</th>
 					<th>会员名称</th>
@@ -23,7 +24,12 @@
 					<td>{{message.mobile}}</td>
 					<td>{{message.email}}</td>
 					<td>{{message.type}}</td>
-					<td class="text-align-c">
+					<td class="text-align-c" v-if="this.$route.params.tabid==1">
+						<span><a>试听</a></span>
+						<span><a>通过</a></span>
+						<span><a>不通过</a></span>
+					</td>
+					<td class="text-align-c" v-if="this.$route.params.tabid==2 ||  this.$route.params.tabid==3">
 						<span><a>试听</a></span>
 					</td>
 				</tr>
@@ -31,8 +37,8 @@
 				</tbody>
 			</table>
 			<div class="more"><a @click="moreMessage" class="text-none">加载更多<i class="icon iconfont icon-oc-dropdown" ></i></a></div>
+			</div>
 		</div>
-	</div>
 </template>
 <script>
 	export default {
@@ -61,6 +67,7 @@
 		route: {
 			data(){
 
+				let id = this.$route.params.tabid;
 
 				let wait_array = 	[
 					{
@@ -99,8 +106,19 @@
 
 
 
+				//1 待审核 2已审核 3 审核不通过
+				switch (id) {
+					case "1":
+						this.messages=wait_array;
+						break;
+					case "2":
+						this.messages=wait_array;
+						break;
+					case "3":
+						this.messages=wait_array;
+						break;
 
-				this.messages=wait_array;
+				}
 
 			}
 		},

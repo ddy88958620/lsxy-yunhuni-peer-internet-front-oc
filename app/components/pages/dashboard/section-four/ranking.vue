@@ -90,7 +90,7 @@
           {
             title:'按会话量排名',
             color: 'green',
-            icon: 'icon-oc-msg',
+            icon: 'icon-oc-msg-small',
             unit: '(次)'
           },
           {
@@ -108,7 +108,7 @@
           {
             title:'按会话周增量排名',
             color: 'purple',
-            icon: 'icon-oc-msg',
+            icon: 'icon-oc-msg-small',
             unit: '(次)'
           },
           {

@@ -356,3 +356,8 @@ table {
   padding: 15px;
   color: $middle-font-color;
 }
+
+//去除所有边框
+.remove-border{
+  border: 0 !important;
+}

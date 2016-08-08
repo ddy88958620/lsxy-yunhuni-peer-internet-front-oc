@@ -1,0 +1,52 @@
+[
+  {
+    "desc": "审核中心放音待审核",
+    "req": {
+      "methods": "get",
+      "url": "/demand/member/voice/(await|auditing|unauth)/list?page=1&start_time=2016-06-06&end_time=2016-06-08&search='搜索关键字'&auth_status='认证状态'"
+    },
+    "res": {
+      "error": 0,
+      "success": true,
+      "errorCode": null,
+      "errorMsg": null,
+      "result": {
+        "pageSize": 20,
+        "startIndex": 1,
+        "totalCount": 29,
+        "totalPageCount": 2,
+        "currentPageNo": 1,
+        "data": [
+          {
+            "uid": 23232,
+            "date": "2016-06-06 16:00",
+            "name": "流水行云有限公司",
+            "app_name": "飞飞语音",
+            "title": "1.wav",
+            "size": "1.1MB",
+            "member_type": "个人认证",
+            "auth_status": 1,
+            "voice_url": "http://www.xxx.com/dfad.wav"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "desc": "审核中心放音 通过|不通过",
+    "req": {
+      "methods": "put",
+      "url": "/demand/member/voice/list/:id",
+      "params": {
+        "member_type": "通过",
+        "text": "如果不通过填写原因"
+      }
+    },
+    "res": {
+      "error": 0,
+      "success": true,
+      "errorCode": null,
+      "errorMsg": null
+    }
+  }
+]
