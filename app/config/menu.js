@@ -18,6 +18,12 @@ export default [
     link: '/admin/service'
   },
   {
+    title: '财务中心',
+    label: 'Finance',
+    icon: 'icon-oc-finance',
+    link: '/admin/finance'
+  },
+  {
     title: '消息中心',
     label: 'Message',
     icon: 'icon-oc-msg',
