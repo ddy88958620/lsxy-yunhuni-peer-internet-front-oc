@@ -76,3 +76,26 @@
     text-align: center;
   }
 }
+
+
+
+//选择框
+.admin-small-toolbar .v-link-active,.admin-small-toolbar .toolbar:hover {
+  font-weight:500;
+  background-color: #ececec;
+}
+.admin-small-toolbar{
+  height: 40px;
+  border:1px solid #ececec;
+  .toolbar{
+    color:#333;
+    padding: 10px;
+    width: 110px;
+    border-right: 1px solid #ececec;
+    text-align: center;
+  }
+}
+
+
+
+

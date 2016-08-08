@@ -1,0 +1,71 @@
+-
+  desc: 后台首页
+-
+  desc: 会员数据
+  req:
+    methods: get
+    url: /dashboard/member
+  res:
+    error: 0
+    success: true
+    errorCode: null
+    errorMsg: null
+    result:
+      member:
+        regist_total: 1534
+        auth_total: 1242
+        consume: 809
+-
+  desc: 应用数据
+  req:
+    methods: get
+    url: /dashboard/app
+  res:
+    error: 0
+    success: true
+    errorCode: null
+    errorMsg: null
+    result:
+      app:
+        total: 1534
+        online: 1232
+-
+  desc:  会员和应用 日统计(30|31 天)
+  req:
+    methods: get
+    url: /dashboard/statistic?month=12
+  res:
+    error: 0
+    success: true
+    errorCode: null
+    errorMsg: null
+    result:
+      member_count: [65, 59, 80, 81, 56, 55, 65, 59, 80, 81, 56, 55, 40, 32, 11, 45, 35, 45, 65, 59, 80, 81, 56, 55, 40, 32, 11, 45, 35, 45]
+      app_count: [65, 59, 80, 81, 56, 55, 65, 59, 80, 81, 56, 55, 40, 32, 11, 45, 35, 45, 65, 59, 80, 81, 56, 55, 40, 32, 11, 45, 35, 45]
+
+-
+  desc:  会员和应用 月统计
+  req:
+    methods: get
+    url: /dashboard/statistic
+  res:
+    error: 0
+    success: true
+    errorCode: null
+    errorMsg: null
+    result:
+      member_count: [65, 59, 80, 81, 56, 55, 40, 32, 11, 45, 35, 45]
+      app_count: [65, 59, 80, 81, 56, 55, 40, 32, 11, 45, 35, 45]
+-
+  desc:  话务量和消费额 日统计(30|31 天)
+  req:
+    methods: get
+    url: /dashboard/session?month=12
+  res:
+    error: 0
+    success: true
+    errorCode: null
+    errorMsg: null
+    result:
+      cost: [65, 59, 80, 81, 56, 55, 65, 59, 80, 81, 56, 55, 40, 32, 11, 45, 35, 45, 65, 59, 80, 81, 56, 55, 40, 32, 11, 45, 35, 45]
+      session: [65, 59, 80, 81, 56, 55, 65, 59, 80, 81, 56, 55, 40, 32, 11, 45, 35, 45, 65, 59, 80, 81, 56, 55, 40, 32, 11, 45, 35, 45]

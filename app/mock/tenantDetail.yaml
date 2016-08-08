@@ -1,0 +1,11 @@
+-
+  desc: 租户中心详情
+  req:
+    methods: get
+    url: /tenant/:uid/(preview|base|app|statistic|session|switch)
+  res:
+    error: 0
+    success: true
+    errorCode: null
+    errorMsg: null
+    result: ''

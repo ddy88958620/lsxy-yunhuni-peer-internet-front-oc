@@ -37,7 +37,6 @@
         <div class="flex flex-1-auto justify-content-c middle-font-color">中兴通信</div>
       </div>
     </div>
-
   </div>
 
 

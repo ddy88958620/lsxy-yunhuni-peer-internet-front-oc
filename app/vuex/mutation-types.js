@@ -3,3 +3,8 @@ export const LOCAL_LOGOUT = 'LOCAL_LOGOUT'
 
 export const SHOW_MSG = 'SHOW_MSG'
 export const HIDE_MSG = 'HIDE_MSG'
+
+// 审核中心 会员认证
+export const MEMBER_LIST_AWAIT = 'MEMBER_LIST_AWAIT'
+export const MEMBER_LIST_AUDITING = 'MEMBER_LIST_AUDITING'
+export const MEMBER_LIST_AUDITING_FAIL = 'MEMBER_LIST_AUDITING_FAIL'

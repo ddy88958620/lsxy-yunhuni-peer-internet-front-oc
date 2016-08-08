@@ -1,0 +1,66 @@
+[
+  {
+    "desc": "租户中心列表",
+    "req": {
+      "methods": "get",
+      "url": "/tenant/list?page=1&start_time=2016-06-06&end_time=2016-06-08&search='搜索关键字'&auth_status='认证状态'&account_status='账号状态'"
+    },
+    "res": {
+      "error": 0,
+      "success": true,
+      "errorCode": null,
+      "errorMsg": null,
+      "result": {
+        "pageSize": 20,
+        "startIndex": 1,
+        "totalCount": 29,
+        "totalPageCount": 2,
+        "currentPageNo": 1,
+        "data": [
+          {
+            "uid": 23232,
+            "registe_date": "2016-06-06 16:00",
+            "name": "CPHJY",
+            "app_count": 1,
+            "auth_status": 1,
+            "remain_coin": 123414,
+            "cost_coin": 3234,
+            "total_coin": 1233434,
+            "session_count": 234234,
+            "session_time": 23423432,
+            "account_status": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "desc": "禁用账号",
+    "req": {
+      "methods": "put",
+      "url": "/tenant/list/:uid",
+      "params": {
+        "account_status": 1
+      }
+    },
+    "res": {
+      "error": 0,
+      "success": true,
+      "errorCode": null,
+      "errorMsg": null,
+      "result": {
+        "uid": 23232,
+        "registe_date": "2016-06-06 16:00",
+        "name": "CPHJY",
+        "app_count": 1,
+        "auth_status": 1,
+        "remain_coin": 123414,
+        "cost_coin": 3234,
+        "total_coin": 1233434,
+        "session_count": 234234,
+        "session_time": 23423432,
+        "account_status": 1
+      }
+    }
+  }
+]
