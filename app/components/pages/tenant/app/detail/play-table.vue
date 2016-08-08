@@ -2,7 +2,7 @@
 
 	<div class="flex search-box bg-section-margin remove-margin-bottom">
 		<div class="select-box">
-			<search></search>
+			<search   placeholder='请输入关键字' ></search>
 		</div>
 	</div>
 

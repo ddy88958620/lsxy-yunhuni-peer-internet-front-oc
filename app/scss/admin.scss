@@ -157,12 +157,25 @@ a {
   border: 1px solid #e9edf4;
 }
 
+//基础信息
+.panel-base{
+  border-radius: 0;
+  border: 1px solid #d3d7e4 !important;
+}
+
 .panel-heading{
   background-color: #f8f9fc !important;
   color:$middle-font-color !important;
   font-size: 1.6rem;
   border-bottom: 1px solid #e9edf4 !important;
 }
+
+//基础信息
+.panel-base-heading{
+  color:$normal-font-color !important;
+  background: #eaeff7 !important;
+}
+
 
 .panel-body {
   padding: 0px;
@@ -361,3 +374,4 @@ table {
 .remove-border{
   border: 0 !important;
 }
+

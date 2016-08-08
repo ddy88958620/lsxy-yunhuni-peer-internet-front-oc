@@ -10,8 +10,8 @@
     type="text"
     class="dial"
     data-fgColor="{{ bgcolor }}"
-    data-width="80"
-    data-height="80"
+    data-width="100"
+    data-height="100"
     data-max="{{ max }}"
     data-min="{{ min }}"
     value="{{ value }}"/>

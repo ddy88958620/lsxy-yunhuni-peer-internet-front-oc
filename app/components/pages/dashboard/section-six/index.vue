@@ -1,11 +1,12 @@
 <template>
     <!-- 区负荷量 -->
     <section class='section_six bg-section-margin admin-padding admin-border'>
+      <div class="flex justify-content-e ">
+        <button class="btn btn-primary ">刷新</button>
+      </div>
 
-
-      <div class="flex flex-1">
-
-        <div class="flex flex-1 bg-section-margin">
+      <div class="flex flex-1 bg-section-margin">
+        <div class="flex flex-1 ">
           <div class="admin-small-toolbar flex normal-font-size small-font-color cursor" >
             <span class="toolbar" >全部区域</span>
             <span class="toolbar" >1区</span>
@@ -13,8 +14,6 @@
             <span class="toolbar remove-border-right" >3区</span>
           </div>
         </div>
-
-
         <div class="flex flex-1  flex-direction-row">
           <div class="flex flex-1 justify-content-e align-items-c">
             <div class="progress-box">
