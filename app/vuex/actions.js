@@ -39,9 +39,12 @@ export const dashboard =({dispatch,router}) => {
   api.getDashboard().then(response => {
     let dash_data = response.json()
 
+    dispatch(types.DASHBOARD_MEMBER, dash_data[1])
+    dispatch(types.DASHBOARD_APP, dash_data[2])
+    
 
     //dispatch(types.HIDE_MSG)
-    console.log(dash_data)
+    console.log(dash_data[2])
     //return dash_data
 
   }, response => {
