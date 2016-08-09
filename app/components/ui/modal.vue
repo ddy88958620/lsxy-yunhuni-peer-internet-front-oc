@@ -1,16 +1,16 @@
 <template>
-  <div class="modal-mask" v-show="show" transition="modal">
+  <div class="modal-mask" v-show="show" transition="modal" >
     <div class="modal-wrapper">
-      <div class="modal-container flex flex-1 flex-direction-column ">
+      <div class="modal-container flex flex-1 flex-direction-column table-modal">
 
         <div class="modal-header flex flex-1 justify-content-b">
           <slot name="header">
-            <div class="title">提示</div>
+            <div class="title">{{title}}</div>
             <i class="icon iconfont icon-oc-close-middle cursor close" @click="show = false"></i>
           </slot>
         </div>
 
-        <div class="modal-body">
+        <div class="modal-body flex-1 flex">
           <slot name="body">
             你确认要执行这操作吗？
           </slot>
@@ -34,6 +34,10 @@
         type: Boolean,
         required: true,
         twoWay:true
+      },
+      title:{
+        default:'提示',
+        required: false,
       }
     }
   }
@@ -57,8 +61,17 @@
     vertical-align: middle;
   }
 
-  .modal-container {
+  .normal-modal{
     width: 600px;
+  }
+
+  .table-modal{
+    width: 800px;
+  }
+
+
+  .modal-container {
+
     font-size: 1.4rem;
     margin: 0px auto;
 

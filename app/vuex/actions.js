@@ -35,3 +35,4 @@ export const localLogout = ({dispatch, router}) => {
   removeCookie('user')
   router.go({path: '/auth/login'})
 }
+

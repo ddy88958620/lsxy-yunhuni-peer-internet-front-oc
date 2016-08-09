@@ -33,6 +33,10 @@ import chance from 'chance'
         type : Array,
         default: ['新增注册会员','新增应用']
       },
+      xtitle:{
+        type:Array,
+        default: ['会员数(个)','应用数(个)']
+      },
       color: {
         type: Array,
         default: [['rgba(247,249,242,0.4)','rgba(214,235,78,0.8)','rgba(214,235,78,1)','#FFF','rgba(214,235,78,0.1)','rgba(220,220,220,0.1)'],
@@ -118,7 +122,7 @@ import chance from 'chance'
                 display: true,
                 scaleLabel: {
                   display: true,
-                  labelString: '会员数(个)'
+                  labelString: self.xtitle[0],
                 },
                 position: "left",
                 id: "y-axis-1"
@@ -127,7 +131,7 @@ import chance from 'chance'
                 type: "linear",
                 scaleLabel: {
                   display: true,
-                  labelString: '应用数(个)',
+                  labelString: self.xtitle[1],
                 },
                 display: true,
                 position: "right",
