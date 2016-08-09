@@ -15,7 +15,6 @@ export const hideMsg = ({dispatch}) => {
 export const localLogin = ({dispatch, router}, user) => {
   api.localLogin(user).then(response => {
     let r_user = response.json().res.data.user
-
     if(r_user.name === user.name) {
       saveCookie('user', user)
       dispatch(types.LOCAL_LOGIN, user)
@@ -24,7 +23,6 @@ export const localLogin = ({dispatch, router}, user) => {
     }else {
       dispatch(types.SHOW_MSG, {content:'用户名或密码不匹配'})
     }
-
   }, response => {
     console.log('fail');
     // dispatch(types.SHOW_MSG, {content:'用户名或密码不匹配'})
@@ -34,5 +32,20 @@ export const localLogin = ({dispatch, router}, user) => {
 export const localLogout = ({dispatch, router}) => {
   removeCookie('user')
   router.go({path: '/auth/login'})
+}
+
+//首页
+export const dashboard =({dispatch,router}) => {
+  api.getDashboard().then(response => {
+    let dash_data = response.json()
+
+
+    //dispatch(types.HIDE_MSG)
+    console.log(dash_data)
+    //return dash_data
+
+  }, response => {
+    console.log('fail');
+  })
 }
 

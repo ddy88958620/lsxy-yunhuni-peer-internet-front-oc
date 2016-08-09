@@ -2,20 +2,20 @@
 
 	<div class="headbox flex flex-1 align-items-c ">
 		<span class="padding-right-20">选择应用</span>
-		<select class="form-control flex selcet-box">
+		<select class="form-control flex select-box">
 			<option value="">全部</option>
 			<option value="">飞飞应用</option>
 		</select>
 	</div>
 
 
-	<div class="admin-panel">
+	<div class="admin-panel admin-border">
 		<div class="panel-heading flex-direction-row flex align-items-c justify-content-b ">
 			<span class="flex ">消费月结账单</span>
 			<span class="flex "><datetime-picker></datetime-picker></span>
 		</div>
-		<div class="admin-table table-responsive  flex flex-1">
-			<table class="table remove-border">
+		<div class="admin-table table-responsive flex flex-1">
+			<table class="table remove-border ">
 				<tr>
 					<td>单向外呼</td>
 					<td>102元</td>

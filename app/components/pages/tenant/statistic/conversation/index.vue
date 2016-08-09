@@ -2,7 +2,7 @@
 
   <div class="headbox flex flex-1 align-items-c ">
     <span class="padding-right-20">选择应用</span>
-    <select class="form-control flex selcet-box">
+    <select class="form-control flex select-box">
       <option value="">全部</option>
       <option value="">飞飞应用</option>
     </select>

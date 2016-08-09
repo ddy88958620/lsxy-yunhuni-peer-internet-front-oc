@@ -20,3 +20,4 @@ Vue.http.interceptors.push(
 
 export const AuthResource = Vue.resource('auth.json')
 export const DemandMemberAwait = Vue.resource('demandMember.json')
+export const Dashboard = Vue.resource('dashboard.json')

@@ -30,18 +30,25 @@
 				</ul>
 			</div>
 		</div>
+
+
 		<div class="admin-panel flex-1">
-			<div class="panel-heading">邮寄信息</div>
+			<div class="panel-heading">处理结果 </div>
 			<div class="panel-body">
 				<ul class="list-none-style">
-					<li>收取地址：广州天河龙口西</li>
-					<li>收件人：成小明</li>
-					<li>手机号码: 1595486546</li>
+					<li>状态：处理完成,发票已寄出</li>
+					<li>快递公司：申通快递</li>
+					<li>快递单号：2312141241241242141</li>
+
+					<li>状态:审核已通过，等待寄出</li>
+					<li>快递公司：<input type="text" class="form-control select-box" /></li>
+					<li>快递单号：<input type="text" class="form-control select-box" /></li>
+
 					<li>
-						<button class="btn btn-primary">异常</button>
-						<button class="btn btn-primary">通过</button>
+						<button class="btn btn-primary">确认寄出</button>
 						<button class="btn btn-default" >取消</button>
 					</li>
+
 				</ul>
 			</div>
 		</div>
@@ -96,9 +103,9 @@
 	ul {
 		padding: 15px 15px 0 15px;
 		font-size: 1.4rem;
-		li {
-			padding-bottom: 25px;
-		}
+	li {
+		padding-bottom: 25px;
+	}
 	}
 	.modal-table{
 		height: 400px;

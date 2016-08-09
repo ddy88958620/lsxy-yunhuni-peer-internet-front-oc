@@ -106,8 +106,7 @@ export default function(router){
               component: (resolve) => require(['../components/pages/tenant/list.vue'], resolve)
             }
           }
-        }
-        ,
+        },
         '/service': {
           component: (resolve) => require(['../components/pages/service/index.vue'], resolve),
           subRoutes: {

@@ -46,6 +46,22 @@
 			</div>
 		</div>
 
+		<div class="admin-panel flex-1">
+			<div class="panel-heading">处理结果 </div>
+			<div class="panel-body">
+				<ul class="list-none-style">
+					<li>状态：审核已通过，等待寄出</li>
+
+					<li>状态：异常</li>
+					<li>异常原因：填写资料有误</li>
+
+					<li>快递公司：<input type="text" class="form-control select-box" /></li>
+					<li>快递单号：<input type="text" class="form-control select-box" /></li>
+
+				</ul>
+			</div>
+		</div>
+
 
 	</div>
 
@@ -53,44 +69,42 @@
 	<modal :show.sync="showModal" :title=''>
 		<div slot="body" class="flex flex-1 flex-direction-column">
 
-				<div class="flex flex-direction-column admin-table-header">
-					<div class="flex align-items-c">
-						<span class='datetime-picker-label clear-padding-left'>提交时间:</span>
-						<datetime-picker disable="disable"></datetime-picker>
-						<span class='datetime-picker-label'>至</span>
-						<datetime-picker></datetime-picker>
-					</div>
-				</div>
-
-				<div class="admin-table table-responsive flex-1 flex flex-direction-column">
-					<div class="table-total flex flex-1 justify-content-e">
-						消费总金额：<span class="brown">2400</span>元 共<span class="text-danger">20</span>条
-					</div>
-					<div class="flex modal-table" >
-						<table class="table"  >
-							<thead>
-							<tr>
-								<th class="text-align-c">消费时间</th>
-								<th>消费金额</th>
-								<th>消费类型</th>
-								<th>备注</th>
-							</tr>
-							</thead>
-							<tbody >
-							<tr v-for='message in messages'>
-								<td class="message-time text-align-c">{{message.date}}</td>
-								<td>{{message.money}}</td>
-								<td>{{message.type}}</td>
-								<td>{{message.remark}}</td>
-							</tr>
-							</tbody>
-						</table>
-					</div>
-
-
-					<div class="more"><a @click="moreMessage" class="text-none">加载更多<i class="icon iconfont icon-oc-dropdown" ></i></a></div>
+			<div class="flex flex-direction-column admin-table-header">
+				<div class="flex align-items-c">
+					<span class='datetime-picker-label clear-padding-left'>提交时间:</span>
+					<datetime-picker disable="disable"></datetime-picker>
+					<span class='datetime-picker-label'>至</span>
+					<datetime-picker></datetime-picker>
 				</div>
 			</div>
+
+			<div class="admin-table table-responsive flex-1 flex flex-direction-column">
+				<div class="table-total flex flex-1 justify-content-e">
+					消费总金额：<span class="brown">2400</span>元 共<span class="text-danger">20</span>条
+				</div>
+				<div class="flex modal-table" >
+					<table class="table"  >
+						<thead>
+						<tr>
+							<th class="text-align-c">消费时间</th>
+							<th>消费金额</th>
+							<th>消费类型</th>
+							<th>备注</th>
+						</tr>
+						</thead>
+						<tbody >
+						<tr v-for='message in messages'>
+							<td class="message-time text-align-c">{{message.date}}</td>
+							<td>{{message.money}}</td>
+							<td>{{message.type}}</td>
+							<td>{{message.remark}}</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="more"><a @click="moreMessage" class="text-none">加载更多<i class="icon iconfont icon-oc-dropdown" ></i></a></div>
+			</div>
+		</div>
 
 	</modal>
 </template>
@@ -98,9 +112,14 @@
 	ul {
 		padding: 15px 15px 0 15px;
 		font-size: 1.4rem;
-		li {
-			padding-bottom: 25px;
-		}
+	li {
+		padding-bottom: 25px;
+	}
+	}
+	.modal-table{
+		height: 400px;
+		overflow-y: scroll;
+		margin-bottom: 10px;
 	}
 </style>
 <script>

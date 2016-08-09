@@ -1,6 +1,7 @@
 import {
   AuthResource,
-  DemandMemberAwait
+  DemandMemberAwait,
+  Dashboard
 } from './resource.js'
 
 
@@ -10,5 +11,8 @@ export default {
   },
   getDemandMemberAwait(){
     return DemandMemberAwait.get()
-  }
+  },
+  getDashboard(){
+    return Dashboard.get()
+  },
 }
