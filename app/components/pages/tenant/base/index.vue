@@ -81,7 +81,7 @@
 		</div>
 	</div>
 
-	<modal :show.sync="showModal">
+	<modal :show.sync="showModal" title="密码重置">
 		  <div slot="body">系统将会发送一条重置密码的链接发送到会员的邮箱里，请确认您此次的操作</div>
 	</modal>
 </template>

@@ -102,12 +102,6 @@
 			padding-bottom: 25px;
 		}
 	}
-
-	.modal-table{
-		height: 400px;
-		overflow-y: scroll;
-	}
-
 </style>
 <script>
 	export default {
