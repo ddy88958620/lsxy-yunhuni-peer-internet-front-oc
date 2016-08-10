@@ -7,8 +7,8 @@
         <div class='flex flex-1 flex-direction-column align-items-c justify-content-c'>
           <div class="flex  pie_wrap">
             <pie
-              :max="pie1.max",
-              :value="pie1.value",
+              :max="app.total"
+              :value="app.total"
               :bgcolor="color[0]"
             ></pie>
           </div>
@@ -22,13 +22,13 @@
         <div class='flex flex-1 flex-direction-column align-items-c justify-content-c'>
           <div class="flex  pie_wrap align-items-c ">
             <pie
-              :max="pie2.max",
-              :value="pie2.value",
+              :max="app.total"
+              :value="app.online"
               :bgcolor="color[1]"
             ></pie>
           </div>
           <div class="flex align-items-c title-box">
-            总上线应用数（个）
+            总上线应用数（个) {{app | json }}
           </div>
         </div>
 
@@ -38,11 +38,21 @@
 
 </template>
 <script>
-  import pie from '../../../ui/pie.vue'
+import pie from '../../../ui/pie.vue'
+import {dashboard} from '../../../../vuex/actions'
 
 export default {
+  vuex: {
+    getters:{
+      app: ({dashboard}) => dashboard.app
+    },
+    actions:{
+      dashboard
+    }
+  },
   data(){
     return {
+      total : 100,
       color:['#89d9e3','#80d1ff','#f4ebb6'],
       pie1: { 'max': 1000, 'value': 400 },
       pie2: { 'max': 1000, 'value': 600 }
@@ -50,6 +60,9 @@ export default {
   },
   components: {
     pie
+  },
+  ready(){
+    this.dashboard()
   }
 }
 </script>
@@ -85,7 +98,5 @@ export default {
   .title-box{
     padding-top: 10px;
   }
-
-
 
 </style>

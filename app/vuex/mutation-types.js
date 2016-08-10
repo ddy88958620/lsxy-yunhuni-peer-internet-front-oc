@@ -12,3 +12,9 @@ export const MEMBER_LIST_AUDITING_FAIL = 'MEMBER_LIST_AUDITING_FAIL'
 //首页
 export const DASHBOARD_MEMBER = 'DASHBOARD_MEMBER'
 export const DASHBOARD_APP = 'DASHBOARD_APP'
+
+
+//会员
+export const MEMBER_COUNT = 'MEMBER_COUNT'
+//应用
+export const APP_COUNT = 'APP_COUNT'

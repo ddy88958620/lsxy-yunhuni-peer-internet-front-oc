@@ -1,5 +1,5 @@
 import {
-  MEMBER_COUNT,
+  APP_COUNT,
 } from '../mutation-types'
 
 const state = {
@@ -7,8 +7,8 @@ const state = {
 }
 
 const mutations = {
-  [MEMBER_COUNT] (state, member) {
-    state.count = member
+  [APP_COUNT] (state, app) {
+    state.count = app
   },
 }
 

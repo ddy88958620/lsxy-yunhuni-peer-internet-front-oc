@@ -27,7 +27,6 @@
         default: 0
       },
       max: {
-        type: Number,
         default: 100
       },
       value: {

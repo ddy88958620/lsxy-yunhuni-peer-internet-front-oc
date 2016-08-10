@@ -15,4 +15,10 @@ export default {
   getDashboard(){
     return Dashboard.get()
   },
+  getMemberCount(){
+    return Dashboard.get()
+  },
+  getAppCount(){
+    return Dashboard.get()
+  },
 }

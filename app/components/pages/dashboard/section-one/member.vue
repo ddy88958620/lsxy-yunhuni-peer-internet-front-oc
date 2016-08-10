@@ -7,8 +7,8 @@
         <div class='flex flex-1 '>
           <div class="flex pie_wrap align-items-c">
             <pie
-              :max="pie1.max",
-              :value="pie1.value",
+              :max="1000"
+              :value="1000"
               :bgcolor="color[0]"
               >
             </pie>
@@ -27,9 +27,9 @@
 
         <div class='flex flex-1 '>
           <div class="flex pie_wrap align-items-c">
-            <pie style="font-size: 1.4rem;"
-              :max="pie2.max",
-              :value="pie2.value",
+            <pie
+              :max="1000"
+              :value="200"
               :bgcolor="color[1]">
             </pie>
           </div>
@@ -48,8 +48,8 @@
         <div class='flex flex-1'>
           <div class="flex pie_wrap align-items-c" >
             <pie
-              :max="pie3.max",
-              :value="pie3.value",
+              :max="1000"
+              :value="300"
               :bgcolor="color[2]">
             </pie>
           </div>
@@ -63,7 +63,6 @@
           </div>
         </div>
 
-
       </div>
     </div>
   </div>
@@ -71,7 +70,6 @@
 </template>
 <script>
 import pie from '../../../ui/pie.vue'
-
 export default {
   data(){
     return {
@@ -84,6 +82,9 @@ export default {
   components: {
     pie
   },
+  ready(){
+
+  }
 }
 
 </script>
@@ -94,6 +95,7 @@ export default {
     padding-right: 10px;
   }
 }
+
 .section_left {
   display: flex;
   flex: 3;
