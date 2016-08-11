@@ -28,7 +28,7 @@
             ></pie>
           </div>
           <div class="flex align-items-c title-box">
-            总上线应用数（个) {{app | json }}
+            总上线应用数（个) {{app | json  }}
           </div>
         </div>
 

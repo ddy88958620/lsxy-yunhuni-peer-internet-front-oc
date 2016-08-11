@@ -39,7 +39,7 @@ export const dashboard =({dispatch,router}) => {
   api.getDashboard().then(response => {
     let dash_data = response.json()
     //dispatch(types.DASHBOARD_MEMBER, dash_data[1].res.result.member)
-
+    console.log(response)
     dispatch(types.DASHBOARD_APP, dash_data[2].res.result.app)
   }, response => {
     console.log('fail');

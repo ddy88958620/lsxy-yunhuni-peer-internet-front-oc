@@ -7,7 +7,7 @@
     <section-five></section-five>
     <section-six></section-six>
     <router-view></router-view>
- </div>
+  </div>
 </template>
 <script>
 export default {

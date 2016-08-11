@@ -12,6 +12,8 @@ Vue.http.interceptors.push(
     // mock
     request.method = 'GET'
     next((response) => {
+      console.log(22222);
+
       // 每次请求判断一次401
       // console.log(response.status);
     })
