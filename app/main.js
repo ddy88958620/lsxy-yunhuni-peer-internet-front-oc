@@ -20,20 +20,6 @@ const router = new VueRouter({
   saveScrollPosition: true,
 })
 
-Vue.http.interceptors.push(() => {
-  return {
-    request (request) {
-      NProgress.inc(0.2)
-      return request
-    },
-
-    response (response) {
-      NProgress.done()
-      return response
-    }
-  }
-})
-
 
 router.beforeEach(({ next }) => {
   NProgress.start()

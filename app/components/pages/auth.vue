@@ -11,6 +11,7 @@
                 class="validate-field form-group relative ">
                 <i class="iconfont icon-oc-login-user input-icon"></i>
                 <input
+                  value="user001"
                   type="text"
                   class='form-control form-input'
                   v-model='user.name'
@@ -27,6 +28,7 @@
                 class="validate-field form-group relative">
                 <i class="iconfont icon-oc-login-pwd input-icon"></i>
                 <input
+                  value="123456"
                   type="password"
                   class='form-control form-input'
                   v-model='user.password'
@@ -42,6 +44,7 @@
               <div class="validate-field form-group flex-direction-row flex">
                 <div class="flex flex-1 relative">
                   <input
+                    value="1234"
                     type="text"
                     class="form-control"
                     placeholder="请输入验证码"

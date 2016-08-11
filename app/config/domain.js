@@ -6,7 +6,7 @@ const ADMINPROCESSENV =  process.env.NODE_ENV
 console.info('NODE_ENV', ADMINPROCESSENV);
 
 // API Root
-const YUNHUNIHOST = ADMINPROCESSENV ? 'koa host' : '192.168.10.74'
+const YUNHUNIHOST = ADMINPROCESSENV ? 'koa host' : 'localhost'
 const YUNHUNIHOSTPORT = ADMINPROCESSENV ? 'koa port' : 18082
 
 
