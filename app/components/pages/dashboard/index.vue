@@ -10,6 +10,8 @@
  </div>
 </template>
 <script>
+import { dashboard } from '../../../vuex/actions'
+import store from '../../../vuex/store'
 export default {
   components: {
     'section-one': require('./section-one/index.vue'),
@@ -18,10 +20,20 @@ export default {
     'section-four': require('./section-four/index.vue'),
     'section-five': require('./section-five/index.vue'),
     'section-six': require('./section-six/index.vue'),
-  }
+  },
+  ready(){
+    let data = this.dashboard()
+  },
+  vuex: {
+    getters:{
+      
+    },
+    actions: {
+      dashboard
+    }
+  },
 }
 </script>
 <style lang='sass'>
 @import '../../../scss/layout.scss';
-
 </style>

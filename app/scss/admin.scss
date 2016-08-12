@@ -337,7 +337,7 @@ table {
 }
 
 //默认下拉框
-.selcet-box{
+.select-box{
   width: 200px;
 }
 
@@ -380,5 +380,10 @@ table {
 //右边距
 .padding-right-10{
   padding-right: 10px;
+}
+
+.modal-table{
+  height: 400px;
+  overflow-y: scroll;
 }
 

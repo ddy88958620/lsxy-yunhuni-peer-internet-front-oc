@@ -8,7 +8,7 @@
           <span>2016-08-1</span>
         </div>
         <div class="flex flex-1">
-          <chart :uuid="'realtime-app-chart5'" :label="['1']" :color="['#ebeecc']" :title="['会话量统计','会话量（次）']"></chart>
+          <chart :uuid="'realtime-app-chart5'" :label="['']" :color="['#ebeecc']" :title="['会话量统计','会话量（次）']"></chart>
         </div>
       </div>
     </div>
@@ -21,7 +21,7 @@
           <span>2016-08-1</span>
         </div>
         <div class="flex flex-1">
-          <chart :uuid="'realtime-app-chart6'" :label="['1']" :color="['#e1a2a2']" :title="['API调用次数','次数(次)']"></chart>
+          <chart :uuid="'realtime-app-chart6'" :label="['']" :color="['#e1a2a2']" :title="['API调用次数','次数(次)']"></chart>
         </div>
       </div>
     </div>

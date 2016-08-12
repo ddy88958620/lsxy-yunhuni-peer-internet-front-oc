@@ -2,7 +2,7 @@
 	<div>
 		<div class="admin-table table-responsive">
 			<div class="table-total flex flex-1 justify-content-e">
-				共<span class="text-danger">20</span>条
+				消费金额: <span class="brown">100</span>元 共<span class="text-danger">20</span>条
 			</div>
 			<table class="table">
 				<thead>

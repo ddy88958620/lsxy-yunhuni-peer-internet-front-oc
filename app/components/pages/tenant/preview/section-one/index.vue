@@ -50,7 +50,7 @@
                   0.84
                 </div>
                 <div class="flex flex-direction-row-reverse">
-                  <button class="btn btn-default ">详情</button>
+
                 </div>
               </div>
             </div>
@@ -76,9 +76,44 @@
     </section>
 
 
-    <modal :show.sync="showModal">
-    <!--  <div slot="header">custom header</div>-->
-    </modal>
+  <modal :show.sync="showModal" title='消费记录'>
+    <div slot="body" class="flex flex-1 flex-direction-column">
+      <div class="flex flex-direction-column admin-table-header">
+        <div class="flex align-items-c">
+          <span class='datetime-picker-label clear-padding-left'>提交时间:</span>
+          <datetime-picker disable="disable"></datetime-picker>
+          <span class='datetime-picker-label'>至</span>
+          <datetime-picker></datetime-picker>
+        </div>
+      </div>
+      <div class="admin-table table-responsive flex-1 flex flex-direction-column">
+        <div class="table-total flex flex-1 justify-content-e">
+          消费总金额：<span class="brown">2400</span>元 共<span class="text-danger">20</span>条
+        </div>
+        <div class="flex modal-table" >
+          <table class="table"  >
+            <thead>
+            <tr>
+              <th class="text-align-c">消费时间</th>
+              <th>消费金额</th>
+              <th>消费类型</th>
+              <th>备注</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr v-for='message in messages'>
+              <td class="message-time text-align-c">{{message.date}}</td>
+              <td>{{message.money}}</td>
+              <td>{{message.type}}</td>
+              <td>{{message.remark}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="more"><a @click="moreMessage" class="text-none">加载更多<i class="icon iconfont icon-oc-dropdown" ></i></a></div>
+      </div>
+    </div>
+  </modal>
     
 </template>
 <style lang="sass" scoped>
@@ -143,11 +178,17 @@
 <script>
   export default{
     components:{
-      'modal': require('../../../../ui/modal.vue')
+      'modal': require('../../../../ui/modal.vue'),
+      'datetime-picker': require('../../../../ui/datetimepicker.vue')
     },
     data(){
       return {
-        showModal: false,
+        showModal: false
+      }
+    },
+    methods:{
+      moreMessage:function(){
+
       }
     }
   }

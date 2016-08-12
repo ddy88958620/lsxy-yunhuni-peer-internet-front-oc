@@ -106,8 +106,7 @@ export default function(router){
               component: (resolve) => require(['../components/pages/tenant/list.vue'], resolve)
             }
           }
-        }
-        ,
+        },
         '/service': {
           component: (resolve) => require(['../components/pages/service/index.vue'], resolve),
           subRoutes: {
@@ -145,7 +144,10 @@ export default function(router){
                     '/abnormal':{
                       component: (resolve) => require(['../components/pages/finance/invoice/table/abnormal-table.vue'], resolve),
                     }
-                  },
+                  }
+                },
+                '/detail/:id':{
+                  component: (resolve) => require(['../components/pages/finance/invoice/detail.vue'],resolve),
                 }
               }
             },
@@ -155,13 +157,16 @@ export default function(router){
                 '/list':{
                   component: (resolve) => require(['../components/pages/finance/delivery/list.vue'], resolve),
                   subRoutes:{
-                    '/pending':{
+                    '/unsend':{
                       component: (resolve) => require(['../components/pages/finance/delivery/table/unsend-table.vue'], resolve),
                     },
                     '/send':{
                       component: (resolve) => require(['../components/pages/finance/delivery/table/send-table.vue'], resolve),
                     }
                   },
+                },
+                '/detail/:id':{
+                  component: (resolve) => require(['../components/pages/finance/delivery/detail.vue'],resolve),
                 }
               }
             }
@@ -224,11 +229,8 @@ export default function(router){
 	  '/admin/message': '/admin/message/list',
     '/admin/tenant': '/admin/tenant/list',
     '/admin/finance': '/admin/finance/invoice',
-    '/admin/finance/invoice': '/admin/finance/invoice/list',
-    '/admin/finance/delivery': '/admin/finance/delivery/list',
-
-
-
+    '/admin/finance/invoice': '/admin/finance/invoice/list/pending',
+    '/admin/finance/delivery': '/admin/finance/delivery/list/unsend',
     '/admin/tenant/detail/:uid/': '/admin/tenant/detail/:uid/preview',
     '/admin/tenant/detail/:uid/app': '/admin/tenant/detail/:uid/app/list',
     '/admin/tenant/detail/:uid/statistic': '/admin/tenant/detail/:uid/statistic/consume',

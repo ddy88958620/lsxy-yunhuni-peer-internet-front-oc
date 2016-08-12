@@ -19,7 +19,7 @@
             <span class='admin-font-color ranknumber'>548465</span>
           </div>
           <ul class="list-none-style">
-            <li class='title'>昨日消费量 ( 元 )</li>
+            <li class='title'>昨日消费额 ( 元 )</li>
             <li>日 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>11%</span></li>
             <li>周 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>77%</span></li>
             <li>月 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>308%</span></li>
@@ -30,7 +30,8 @@
        <datetime-picker :type="bar"></datetime-picker>
        <div class="flex-1">
          <chart :uuid="'dashboard-st3-chart'" :type="['line','bar']"
-            :title="['会话量','消费额']"
+            :title="['话务量','消费额']",
+            :xtitle="['话务量(次数)','消费额(元)']",
             :color="[['rgba(246,239,232,0.2)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
                     ['#ebeecc','rgba(214,235,78,0.8)','rgba(214,235,78,1)','#FFF','rgba(214,235,78,0.1)','rgba(220,220,220,0.1)']]"
          ></chart>
