@@ -7,8 +7,8 @@
         <div class='flex flex-1 flex-direction-column align-items-c justify-content-c'>
           <div class="flex  pie_wrap">
             <pie
-              :max="app.total"
-              :value="app.total"
+              :max.sync="app.total"
+              :value.sync="app.total"
               :bgcolor="color[0]"
             ></pie>
           </div>
@@ -22,13 +22,15 @@
         <div class='flex flex-1 flex-direction-column align-items-c justify-content-c'>
           <div class="flex  pie_wrap align-items-c ">
             <pie
-              :max="app.total"
-              :value="app.online"
+              :max.sync="a.total"
+              :value.sync="a.online"
               :bgcolor="color[1]"
             ></pie>
           </div>
           <div class="flex align-items-c title-box">
-            总上线应用数（个) {{app | json  }}
+
+            {{app | json }}
+            总上线应用数（个)  {{a | json }}
           </div>
         </div>
 
@@ -38,31 +40,34 @@
 
 </template>
 <script>
+import { getAppCount } from '../../../../vuex/actions'
 import pie from '../../../ui/pie.vue'
-import {dashboard} from '../../../../vuex/actions'
+
 
 export default {
   vuex: {
     getters:{
-      app: ({dashboard}) => dashboard.app
+      a: ({app}) => app
     },
     actions:{
-      dashboard
+      getAppCount
     }
   },
   data(){
     return {
-      total : 100,
       color:['#89d9e3','#80d1ff','#f4ebb6'],
-      pie1: { 'max': 1000, 'value': 400 },
-      pie2: { 'max': 1000, 'value': 600 }
+      app:{total:0,online:1 }
     }
   },
   components: {
     pie
   },
   ready(){
-    this.dashboard()
+    let that = self
+    setTimeout(function(){
+      that.getAppCount()
+    }, 2000)
+    console.log(this.app)
   }
 }
 </script>

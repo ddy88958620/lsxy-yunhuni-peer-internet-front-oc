@@ -39,14 +39,30 @@ export const localLogout = ({dispatch, router}) => {
 }
 
 //首页
-export const dashboard =({dispatch,router}) => {
-  api.getDashboard().then(response => {
-    let dash_data = response.json()
-    //dispatch(types.DASHBOARD_MEMBER, dash_data[1].res.result.member)
-    console.log(response)
-    dispatch(types.DASHBOARD_APP, dash_data[2].res.result.app)
+export const dashboard =({dispatch}) => {
+  api.getAppCount().then(response => {
+    let app_data = response.json()
+    console.log(app_data)
+    dispatch(types.DASHBOARD_APP, app_data.data)
   }, response => {
     console.log('fail');
   })
 }
+
+//首页
+export const getAppCount =({dispatch}) => {
+  api.getAppCount().then(response => {
+    let app_data = response.json()
+    console.log(app_data)
+    dispatch(types.APP_COUNT, app_data.data)
+  }, response => {
+    console.log('fail');
+  })
+}
+
+
+
+
+
+
 

@@ -3,12 +3,15 @@ import {
 } from '../mutation-types'
 
 const state = {
-
+    online: 0,
+    total: 0
 }
 
 const mutations = {
   [APP_COUNT] (state, app) {
-    state.count = app
+    state.online = app.online
+    state.total = app.total
+
   },
 }
 

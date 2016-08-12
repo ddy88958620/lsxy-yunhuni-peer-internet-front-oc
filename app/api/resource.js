@@ -20,7 +20,10 @@ Vue.http.interceptors.push(
   }
 )
 
-
 export const AuthResource = Vue.resource(domain.API_ROOT+'/auth/login')
 export const DemandMemberAwait = Vue.resource(domain.API_ROOT+'')
+
+export const DashboardApp = Vue.resource(domain.API_ROOT+'/dashboard/app/indicant')
+
+
 export const Dashboard = Vue.resource('dashboard.json')

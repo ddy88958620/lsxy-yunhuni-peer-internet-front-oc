@@ -24,13 +24,16 @@
     props: {
       min: {
         type: Number,
+        twoWays: true,
         default: 0
       },
       max: {
-        default: 100
+        default: 100,
+        twoWays: true,
       },
       value: {
         type: Number,
+        twoWays: true,
         default: 50
       },
       bgcolor: {

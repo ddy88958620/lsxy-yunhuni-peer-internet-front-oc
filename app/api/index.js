@@ -1,7 +1,8 @@
 import {
   AuthResource,
   DemandMemberAwait,
-  Dashboard
+  Dashboard,
+  DashboardApp
 } from './resource.js'
 
 
@@ -19,6 +20,6 @@ export default {
     return Dashboard.get()
   },
   getAppCount(){
-    return Dashboard.get()
+    return DashboardApp.get()
   },
 }
