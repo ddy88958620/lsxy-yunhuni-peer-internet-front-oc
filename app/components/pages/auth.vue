@@ -14,7 +14,7 @@
                   value="user001"
                   type="text"
                   class='form-control form-input'
-                  v-model='user.name'
+                  v-model='user.userName'
                   placeholder="请输入账号"
                   :id="username"
                   :field="username"
@@ -90,7 +90,7 @@ export default {
   data(){
     return{
       user: {
-        name: '',
+        userName: '',
         password: '',
         code:''
       }

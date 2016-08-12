@@ -224,7 +224,7 @@ export default function(router){
   
   // set the default router-view
   router.redirect({
-    '/': '/admin',
+    // '/': '/admin',
     '/admin/service': '/admin/service/list',
 	  '/admin/message': '/admin/message/list',
     '/admin/tenant': '/admin/tenant/list',
