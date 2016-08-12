@@ -6,12 +6,12 @@
 			data-rotation="anticlockwise"
 			data-thickness="0.1"
 			type="text"
-			class="dial"
+			class="{{uuid}}"
 			data-fgColor="{{ bgcolor }}"
 			data-width="100"
 			data-height="100"
-			data-max="{{ max }}"
-			data-min="{{ min }}"
+			data-max="{{max}}"
+			data-min="{{min}}"
 			v-model="value"
 		/>
 	</div>
@@ -21,6 +21,9 @@
   require('jquery-knob')
   export default {
     props: {
+      uuid: {
+        type: String,
+      },
       min: {
         type: Number,
         twoWays: true,
@@ -36,7 +39,8 @@
         default: 50
       },
       bgcolor: {
-        defualt:'#89d9e3'
+        type: String,
+        twoWays: true,
       },
       height: {
         type: Number,
@@ -48,21 +52,23 @@
       }
     },
     computed: {
-      angleOffset(){
-        return parseInt(this.value)/parseInt(this.max)*360
-      }
+     
     },
     ready(){
-      $(".dial").knob({
-        readOnly: true
+      let that = this
+      $("."+that.uuid).knob({
+        'readOnly': true,
+        'min': that.min,
+        'max': that.max,
+        'value': that.value,
+        'fgColor': that.bgcolor
       });
-      console.log('pie')
     }
   }
 </script>
 
 
-<style lang="sass" scoped>
+<style lang="sass">
   .dial{
     font-size: 20px !important;
   }

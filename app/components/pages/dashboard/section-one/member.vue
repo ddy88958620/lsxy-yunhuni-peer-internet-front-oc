@@ -7,18 +7,19 @@
         <div class='flex flex-1 '>
           <div class="flex pie_wrap align-items-c">
             <pie
-              :max="1000"
-              :value="1000"
+              :max.sync="member.regist_total"
+              :value.sync="member.regist_total"
               :bgcolor="color[0]"
+              :uuid="'memberpie'"
               >
             </pie>
           </div>
           <div class="flex flex-1 ">
             <ul class="list-none-style flex flex-1 flex-direction-column  justify-content-c">
               <li>总注册会员 ( 个 )</li>
-              <li>日 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>11</span></li>
-              <li>周 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>77</span></li>
-              <li>月 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>308</span></li>
+              <li>日 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>{{member.regist_tatal_day}}</span></li>
+              <li>周 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>{{member.regist_tatal_week}}</span></li>
+              <li>月 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>{{member.regist_tatal_month}}</span></li>
             </ul>
           </div>
         </div>
@@ -28,17 +29,18 @@
         <div class='flex flex-1 '>
           <div class="flex pie_wrap align-items-c">
             <pie
-              :max="1000"
-              :value="200"
+              :max.sync="member.auth_total"
+              :value.sync="member.consume"
+              :uuid="'memberpie'"
               :bgcolor="color[1]">
             </pie>
           </div>
           <div class="flex flex-1 align-items-c" >
             <ul class="list-none-style flex flex-1 flex-direction-column  justify-content-c">
               <li>总认证会员 ( 个 )</li>
-              <li>日 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>22</span></li>
-              <li>周 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>77</span></li>
-              <li>月 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>308</span></li>
+              <li>日 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>{{member.auth_total_day}}</span></li>
+              <li>周 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>{{member.regist_tatal_week}}</span></li>
+              <li>月 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>{{member.auth_total_month}}</span></li>
             </ul>
           </div>
         </div>
@@ -48,18 +50,19 @@
         <div class='flex flex-1'>
           <div class="flex pie_wrap align-items-c" >
             <pie
-              :max="1000"
-              :value="300"
+              :max.sync="member.regist_total"
+              :value.sync="member.consume"
+              :uuid="'memberpie'"
               :bgcolor="color[2]">
             </pie>
           </div>
           <div class="flex flex-1 align-items-c" >
             <ul class="list-none-style flex flex-1 flex-direction-column  justify-content-c">
               <li>总产生消费会员 ( 个 )</li>
-              <li>日 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>22</span></li>
-              <li>周 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>77</span></li>
-              <li>月 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>308</span></li>
-              <li>{{ member | json  }}  </li>
+              <li>日 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>{{member.consume_day}}</span></li>
+              <li>周 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>{{member.consume_week}}</span></li>
+              <li>月 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>{{member.consume_month}}</span></li>
+              <li>{{member | json}}</li>
             </ul>
           </div>
         </div>
@@ -94,6 +97,8 @@ export default {
   },
   ready(){
     this.getMemberCount()
+
+
   }
 }
 

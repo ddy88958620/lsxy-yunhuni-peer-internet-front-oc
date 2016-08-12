@@ -6,7 +6,7 @@
 
         <div class='flex flex-1 flex-direction-column align-items-c justify-content-c'>
           <div class="flex  pie_wrap">
-            <pie :max.sync="app.total" :value.sync="app.total" :bgcolor="color[0]"></pie>
+            <pie :uuid="'apppie'" :max.sync="app.total" :value.sync="app.total" :bgcolor="'#89d9e3'"></pie>
           </div>
           <div class="flex  align-items-c title-box">
             总应用数（个）
@@ -17,10 +17,10 @@
 
         <div class='flex flex-1 flex-direction-column align-items-c justify-content-c'>
           <div class="flex  pie_wrap align-items-c ">
-            <pie :max.sync="app.total" :value.sync="app.online" :bgcolor="color[1]"></pie>
+            <pie :uuid="'appie2'" :max.sync="app.total" :value.sync="app.online" :bgcolor="'#80d1ff'" ></pie>
           </div>
           <div class="flex align-items-c title-box">
-            总上线应用数（个) {{app | json}}
+            总上线应用数（个)
           </div>
         </div>
 
@@ -31,22 +31,30 @@
 </template>
 <script>
 import pie from '../../../ui/pie.vue'
-
+import { getAppCount } from '../../../../vuex/actions.js'
 
 export default {
   vuex: {
     getters:{
-      app: ({app}) => app
+      app: ({app}) => app.count
     },
+    actions:{
+      getAppCount
+    }
   },
   data(){
     return {
-      color:['#89d9e3','#80d1ff','#f4ebb6'],
+      color:'#89d9e3',
+      colorTwo:'#80d1ff',
+      colorThree: '#f4ebb6'
     }
   },
   components: {
     pie
   },
+  ready(){
+    return this.getAppCount()
+  }
 }
 </script>
 <style lang="sass" scoped>
