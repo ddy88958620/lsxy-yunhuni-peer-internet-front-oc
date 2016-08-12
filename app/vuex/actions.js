@@ -51,9 +51,10 @@ export const dashboard = ({dispatch}) => {
 
 //总应用数
 export const getAppCount = ({dispatch}) => {
-  api.getAppCount().then(response => {
+  console.log(api.getAppCount())
+  return api.getAppCount().then(response => {
     let app_data = response.json()
-    
+	  console.log(app_data.data)
     dispatch(types.APP_COUNT, app_data.data)
   }, response => {
     console.log('fail');

@@ -10,7 +10,14 @@
   </div>
 </template>
 <script>
+import { getAppCount } from '../../../vuex/actions'
+
 export default {
+  vuex: {
+    actions:{
+      getAppCount
+    }
+  },
   components: {
     'section-one': require('./section-one/index.vue'),
     'section-two': require('./section-two/index.vue'),
@@ -18,6 +25,12 @@ export default {
     'section-four': require('./section-four/index.vue'),
     'section-five': require('./section-five/index.vue'),
     'section-six': require('./section-six/index.vue'),
+  },
+  route: {
+    data: function({next}) {
+    	console.log(this.getAppCount())
+    	return this.getAppCount()
+    }
   }
 }
 </script>

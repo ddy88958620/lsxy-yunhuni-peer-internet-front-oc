@@ -6,11 +6,7 @@
 
         <div class='flex flex-1 flex-direction-column align-items-c justify-content-c'>
           <div class="flex  pie_wrap">
-            <pie
-              :max.syncs="a.total"
-              :value.sync="a.total"
-              :bgcolor="color[0]"
-            ></pie>
+            <pie :max.sync="app.total" :value.sync="app.total" :bgcolor="color[0]"></pie>
           </div>
           <div class="flex  align-items-c title-box">
             总应用数（个）
@@ -21,14 +17,10 @@
 
         <div class='flex flex-1 flex-direction-column align-items-c justify-content-c'>
           <div class="flex  pie_wrap align-items-c ">
-            <pie
-              :max.sync="a.total"
-              :value.sync="a.online"
-              :bgcolor="color[1]"
-            ></pie>
+            <pie :max.sync="app.total" :value.sync="app.online" :bgcolor="color[1]"></pie>
           </div>
           <div class="flex align-items-c title-box">
-            总上线应用数（个)  {{a.total }}
+            总上线应用数（个) {{app | json}}
           </div>
         </div>
 
@@ -38,18 +30,14 @@
 
 </template>
 <script>
-import { getAppCount } from '../../../../vuex/actions'
 import pie from '../../../ui/pie.vue'
 
 
 export default {
   vuex: {
     getters:{
-      a: ({app}) => app
+      app: ({app}) => app
     },
-    actions:{
-      getAppCount
-    }
   },
   data(){
     return {
@@ -59,13 +47,6 @@ export default {
   components: {
     pie
   },
-  created(){
-    this.getAppCount()
-  },
-  ready(){
-
-    //this.getAppCount()
-  }
 }
 </script>
 <style lang="sass" scoped>

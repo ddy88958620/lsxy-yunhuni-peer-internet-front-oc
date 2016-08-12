@@ -28,9 +28,11 @@
         default: 0
       },
       max: {
+        type: Number,
         twoWays: true
       },
       value: {
+        type: Number,
         twoWays: true,
         default: 50
       },
@@ -38,10 +40,12 @@
         defualt:'#89d9e3'
       },
       height: {
-        default:'80'
+        type: Number,
+        default:80
       },
       weight: {
-        defualt:'80'
+        type: Number,
+        defualt: 80
       }
     },
     computed: {
@@ -53,6 +57,7 @@
       $(".dial").knob({
         readOnly: true
       });
+      console.log('pie')
     }
   }
 </script>

@@ -4,7 +4,6 @@ import { removeCookie, getCookie } from '../utils/cookieAuth.js'
 
 
 // 
-Vue.http.options.emulateJSON = true;
 Vue.http.options.root = domain.API_ROOT;
 
 Vue.http.interceptors.push(
