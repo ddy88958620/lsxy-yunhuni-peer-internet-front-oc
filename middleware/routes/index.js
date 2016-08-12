@@ -1,15 +1,23 @@
 var router = require('koa-router')();
-var REQUEST = require('request')
+var fetch = require('node-fetch')
 
+var data = {userName: 'user001', password: 123456}
 function request() {
 	return new Promise((resolve, reject)=>{
-		REQUEST.get('http://localhost:8000/auth.json', (error, res, body) => {
-			resolve(body)
+		fetch('http://192.168.10.75:18082/auth/login',{
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			method: 'POST',
+			body: JSON.stringify(data)
+		}).then((e)=>{
+			resolve(e.json())
 		})
 	})
 }
 
-router.get('/', async (ctx, next) => {
+router.get('/auth/login', async (ctx, next) => {
 	ctx.body =  await request()
 })
 

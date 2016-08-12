@@ -31,7 +31,7 @@ module.exports = {
   module: {
     loaders:[
       {
-        test: /\.js$/,
+        test: /.js$/,
         loader: 'babel',
         exclude: /(node_modules|bower_components)/,
         query: {
@@ -39,14 +39,14 @@ module.exports = {
         },
       },
       {
-        test: /\.vue$/,
+        test: /.vue$/,
         loader: 'vue',
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /.(png|jpg|gif)$/,
         loader: 'file?name=[name].[ext]?[hash]'
       },
-      { test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url?limit=10000&name=fonts/[hash:8].[name].[ext]'},
+      { test: /.(woff|woff2|ttf|eot|svg)(?v=[0-9].[0-9].[0-9])?$/, loader: 'url?limit=10000&name=fonts/[hash:8].[name].[ext]'},
     ],
     noParse: [],
   },
