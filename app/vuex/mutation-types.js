@@ -16,5 +16,7 @@ export const DASHBOARD_APP = 'DASHBOARD_APP'
 
 //会员
 export const MEMBER_COUNT = 'MEMBER_COUNT'
+export const MEMBER_RANK_LIST = 'MEMBER_RANK_LIST'
+
 //应用
 export const APP_COUNT = 'APP_COUNT'

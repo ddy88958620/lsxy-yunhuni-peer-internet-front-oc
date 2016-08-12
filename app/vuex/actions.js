@@ -49,7 +49,7 @@ export const dashboard = ({dispatch}) => {
   })
 }
 
-//app
+//总应用数
 export const getAppCount = ({dispatch}) => {
   api.getAppCount().then(response => {
     let app_data = response.json()
@@ -60,7 +60,7 @@ export const getAppCount = ({dispatch}) => {
   })
 }
 
-//member
+//注册会员数
 export const getMemberCount = ({dispatch}) =>{
   api.getMemberCount().then(response => {
     let member_data = response.json()
@@ -71,6 +71,17 @@ export const getMemberCount = ({dispatch}) =>{
     console.log('fail');
   })
 }
+
+//会员排行
+export const getMemberRankList = ({dispatch}) =>{
+  api.getMemberRankList().then(response =>{
+    let rank_list = response.json()
+    dispatch(types.MEMBER_RANK_LIST, rank_list.data)
+  }, response => {
+    console.log('fail');
+  })
+}
+
 
 
 
