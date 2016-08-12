@@ -1,21 +1,20 @@
-<style scoped>
-
-</style>
 <template>
-  <input
-    data-angleOffset="360"
-    data-linecap="round"
-    data-rotation="anticlockwise"
-    data-thickness="0.1"
-    type="text"
-    class="dial"
-    data-fgColor="{{ bgcolor }}"
-    data-width="100"
-    data-height="100"
-    data-max="{{ max }}"
-    data-min="{{ min }}"
-    value="{{ value }}"
-  />
+	<div>
+		<input
+			data-angleOffset="360"
+			data-linecap="round"
+			data-rotation="anticlockwise"
+			data-thickness="0.1"
+			type="text"
+			class="dial"
+			data-fgColor="{{ bgcolor }}"
+			data-width="100"
+			data-height="100"
+			data-max="{{ max }}"
+			data-min="{{ min }}"
+			v-model="value"
+		/>
+	</div>
 </template>
 
 <script>
