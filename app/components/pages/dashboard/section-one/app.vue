@@ -7,8 +7,8 @@
         <div class='flex flex-1 flex-direction-column align-items-c justify-content-c'>
           <div class="flex  pie_wrap">
             <pie
-              :max.sync="app.total"
-              :value.sync="app.total"
+              :max.syncs="a.total"
+              :value.sync="a.total"
               :bgcolor="color[0]"
             ></pie>
           </div>
@@ -28,9 +28,7 @@
             ></pie>
           </div>
           <div class="flex align-items-c title-box">
-
-            {{app | json }}
-            总上线应用数（个)  {{a | json }}
+            总上线应用数（个)  {{a.total }}
           </div>
         </div>
 
@@ -56,18 +54,17 @@ export default {
   data(){
     return {
       color:['#89d9e3','#80d1ff','#f4ebb6'],
-      app:{total:0,online:1 }
     }
   },
   components: {
     pie
   },
+  created(){
+    this.getAppCount()
+  },
   ready(){
-    let that = self
-    setTimeout(function(){
-      that.getAppCount()
-    }, 2000)
-    console.log(this.app)
+
+    //this.getAppCount()
   }
 }
 </script>

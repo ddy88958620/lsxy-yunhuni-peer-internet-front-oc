@@ -28,11 +28,9 @@
         default: 0
       },
       max: {
-        default: 100,
-        twoWays: true,
+        twoWays: true
       },
       value: {
-        type: Number,
         twoWays: true,
         default: 50
       },

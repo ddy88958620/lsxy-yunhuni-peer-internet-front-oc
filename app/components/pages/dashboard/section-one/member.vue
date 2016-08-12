@@ -59,6 +59,7 @@
               <li>日 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>22</span></li>
               <li>周 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>77</span></li>
               <li>月 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>308</span></li>
+              <li>{{ member | json  }}  </li>
             </ul>
           </div>
         </div>
@@ -69,8 +70,17 @@
 
 </template>
 <script>
+import { getMemberCount } from '../../../../vuex/actions'
 import pie from '../../../ui/pie.vue'
 export default {
+  vuex:{
+    getters:{
+      member : ({ member }) =>member.count
+    },
+    actions:{
+      getMemberCount
+    }
+  },
   data(){
     return {
       color:['#89d9e3','#80d1ff','#f4ebb6'],
@@ -83,7 +93,7 @@ export default {
     pie
   },
   ready(){
-
+    this.getMemberCount()
   }
 }
 

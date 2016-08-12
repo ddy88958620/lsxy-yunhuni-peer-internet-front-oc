@@ -39,7 +39,7 @@ export const localLogout = ({dispatch, router}) => {
 }
 
 //首页
-export const dashboard =({dispatch}) => {
+export const dashboard = ({dispatch}) => {
   api.getAppCount().then(response => {
     let app_data = response.json()
     console.log(app_data)
@@ -49,18 +49,28 @@ export const dashboard =({dispatch}) => {
   })
 }
 
-//首页
-export const getAppCount =({dispatch}) => {
+//app
+export const getAppCount = ({dispatch}) => {
   api.getAppCount().then(response => {
     let app_data = response.json()
-    console.log(app_data)
+    
     dispatch(types.APP_COUNT, app_data.data)
   }, response => {
     console.log('fail');
   })
 }
 
+//member
+export const getMemberCount = ({dispatch}) =>{
+  api.getMemberCount().then(response => {
+    let member_data = response.json()
 
+    dispatch(types.MEMBER_COUNT, member_data.data)
+
+  }, response => {
+    console.log('fail');
+  })
+}
 
 
 
