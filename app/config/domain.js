@@ -7,12 +7,17 @@ console.info('NODE_ENV', ADMINPROCESSENV);
 
 // API Root
 const YUNHUNIHOST = ADMINPROCESSENV ? 'koa host' : 'localhost'
-const YUNHUNIHOSTPORT = ADMINPROCESSENV ? 'koa port' : 18082
+const YUNHUNIHOSTPORT = ADMINPROCESSENV ? 'koa port' : ''
 
 
 // const MOCK = ADMINPROCESSENV ? '/mock' : '/app/mock'
 
-const API_ROOT = 'http://'+YUNHUNIHOST + ':' + YUNHUNIHOSTPORT
+//const API_ROOT = 'http://'+YUNHUNIHOST + ':' + YUNHUNIHOSTPORT+'/api'
+
+
+const API_ROOT = 'http://'+YUNHUNIHOST + '/api'
+
+
 
 // 设置Cookie的域名
 const COOKIE_DOMAIN =  YUNHUNIHOST

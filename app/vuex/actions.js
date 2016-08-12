@@ -14,8 +14,12 @@ export const hideMsg = ({dispatch}) => {
 
 export const localLogin = ({dispatch, router}, user) => {
   api.localLogin(user).then(response => {
-    let r_user = response.json().res.data.user
-    if(r_user.name === user.name) {
+    let login = response.json()
+    saveCookie('user', user)
+    saveCookie('token', login.data.token)
+    /*console.log(login)
+    console.log(login.data.token)*/
+    if(login.success === true) {
       saveCookie('user', user)
       dispatch(types.LOCAL_LOGIN, user)
       router.go({path:'/admin/dashboard'})
