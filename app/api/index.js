@@ -4,7 +4,9 @@ import {
   Dashboard,
   DashboardApp,
   DashboardMember,
-  DashboardMemberRankList
+  DashboardMemberRankList,
+  DashboardComsume,
+  DashboardDuration
 } from './resource.js'
 
 
@@ -27,7 +29,13 @@ export default {
   getMemberCount(){
    return DashboardMember.get()
   },
-  getMemberRankList(){
-    return DashboardMemberRankList.get({top:3})
+  getMemberRankList(top){
+    return DashboardMemberRankList.get(top)
+  },
+  getLastDayComsume(){
+    return DashboardComsume.get()
+  },  
+  getLastDayDuration(){
+    return DashboardDuration.get()
   }
 }

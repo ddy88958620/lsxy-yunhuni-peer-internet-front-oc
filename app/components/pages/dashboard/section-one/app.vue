@@ -30,9 +30,8 @@
 
 </template>
 <script>
-import pie from '../../../ui/pie.vue'
 import { getAppCount } from '../../../../vuex/actions.js'
-
+import pie from '../../../ui/pie.vue'
 export default {
   vuex: {
     getters:{

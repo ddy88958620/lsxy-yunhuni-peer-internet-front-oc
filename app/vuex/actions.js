@@ -42,7 +42,6 @@ export const localLogout = ({dispatch, router}) => {
 export const dashboard = ({dispatch}) => {
   api.getAppCount().then(response => {
     let app_data = response.json()
-    console.log(app_data)
     dispatch(types.DASHBOARD_APP, app_data.data)
   }, response => {
     console.log('fail');
@@ -54,7 +53,6 @@ export const getAppCount = ({dispatch}) => {
   console.log(api.getAppCount())
   return api.getAppCount().then(response => {
     let app_data = response.json()
-	  console.log(app_data.data)
     dispatch(types.APP_COUNT, app_data.data)
   }, response => {
     console.log('fail');
@@ -73,9 +71,9 @@ export const getMemberCount = ({dispatch}) =>{
   })
 }
 
-//会员排行
-export const getMemberRankList = ({dispatch}) =>{
-  api.getMemberRankList().then(response =>{
+//@params top 排名量 会员排行
+export const getMemberRankList = ({dispatch},top) =>{
+  api.getMemberRankList(top).then(response =>{
     let rank_list = response.json()
     dispatch(types.MEMBER_RANK_LIST, rank_list.data)
   }, response => {
@@ -83,7 +81,27 @@ export const getMemberRankList = ({dispatch}) =>{
   })
 }
 
+//昨日会话量
+export const getLastDayComsume = ({dispatch}) =>{
+  api.getLastDayComsume().then(response =>{
+    let comsume = response.json()
 
+    dispatch(types.LASTDAY_COMSUME, comsume.data)
+  }, response => {
+    console.log('fail');
+  })
+}
+
+
+//昨日消费额
+export const getLastDayDuration = ({dispatch}) =>{
+  api.getLastDayDuration().then(response =>{
+    let duration = response.json()
+    dispatch(types.LASTDAY_DURATION, duration.data)
+  }, response => {
+    console.log('fail');
+  })
+}
 
 
 

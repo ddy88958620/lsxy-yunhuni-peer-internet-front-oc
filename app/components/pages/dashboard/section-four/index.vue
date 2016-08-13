@@ -10,10 +10,6 @@
           </div>
         </div>
     </section>
-
-
-
-    {{ranklist | json }}
 </template>
 <script>
   import {getMemberRankList} from '../../../../vuex/actions'

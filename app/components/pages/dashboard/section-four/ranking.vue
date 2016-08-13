@@ -1,3 +1,118 @@
+<template>
+  <div class="rankbox flex flex-1 flex-direction-column flex-grow-1 ">
+    <div class="flex justify-content-c overflow">
+      <div class="hr-title">{{ box[index]['title'] }}</div>
+    </div>
+    <div v-for="r in datarank">
+      <div class="sort flex flex-direction-column {{ box[index]['color'] }}border" v-if="$index==0">
+        <div class="flex justify-content-b ranking-one">
+          <i class="flex align-items-e band {{ box[index]['color'] }}bg" >NO.1</i>
+          <i class="icon iconfont icon-oc-member {{ box[index]['color'] }}"></i>
+        </div>
+        <div class="flex flex-1 flex-direction-column ranking-two" v-if="$index==0">
+          <span class="name overflow-y-h" title="{{r.name}}">{{r.name}}</span>
+          <div class="flex flex-1  align-items-c  " >
+            <i class="iconfont {{box[index]['icon']}} grey"></i>
+            <span class="count align-items-e">{{r.count}}</span>
+            <span class="overflow-y-h">{{box[index]['unit']}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="sort2 flex flex-1 flex-direction-column" >
+        <div class="flex flex-1 ranking-three" v-if="$index!=0"><i class="number flex" title="{{r.count}}{{box[index]['unit']}}" ><strong>{{r.rank}}</strong></i><span title="{{r.name}}" class="overflow-y-h">{{r.name}}</span></div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    data(){
+      return {
+        boxs:{
+          duration_top :{
+            title:'按会话量排名',
+            color: 'green',
+            icon: 'icon-oc-msg-small',
+            unit: '(次)'
+          },
+          call_top: {
+            title:'按话务量排名',
+            color: 'blue',
+            icon: 'icon-oc-mobile',
+            unit: '(分钟)'
+          },
+          consume_top: {
+            title:'按消费额排名',
+            color: 'yellow',
+            icon: 'icon-oc-wallet',
+            unit: '(元)'
+          },
+          duration_week_top: {
+            title:'按会话周增量排名',
+            color: 'purple',
+            icon: 'icon-oc-msg-small',
+            unit: '(次)'
+          },
+          call_week_top:{
+            title:'按话务周增量排名',
+            color: 'pink',
+            icon: 'icon-oc-mobile',
+            unit: '(分钟)'
+          }
+        },
+
+        box: [
+          {
+            title:'按会话量排名',
+            color: 'green',
+            icon: 'icon-oc-msg-small',
+            unit: '(次)'
+          },
+          {
+            title:'按话务量排名',
+            color: 'blue',
+            icon: 'icon-oc-mobile',
+            unit: '(分钟)'
+          },
+          {
+            title:'按消费额排名',
+            color: 'yellow',
+            icon: 'icon-oc-wallet',
+            unit: '(元)'
+          },
+          {
+            title:'按会话周增量排名',
+            color: 'purple',
+            icon: 'icon-oc-msg-small',
+            unit: '(次)'
+          },
+          {
+            title:'按话务周增量排名',
+            color: 'pink',
+            icon: 'icon-oc-mobile',
+            unit: '(分钟)'
+          }
+        ]
+      }
+    },
+    props: {
+      datarank: {
+        type: Array,
+      },
+      index:{
+        type:Number,
+        default:0
+      }
+    },
+    computed: {
+    },
+    ready(){
+    }
+  }
+</script>
+
+
 <style lang="sass" scoped>
   .rankbox{
     padding-top: 10px;
@@ -49,89 +164,3 @@
   }
 </style>
 
-
-<template>
-  <div class="rankbox flex flex-1 flex-direction-column flex-grow-1 ">
-    <div class="flex justify-content-c overflow">
-      <div class="hr-title">{{ box[index]['title'] }}</div>
-    </div>
-    <div v-for="r in datarank">
-      <div class="sort flex flex-direction-column {{ box[index]['color'] }}border" v-if="$index==0">
-        <div class="flex justify-content-b ranking-one">
-          <i class="flex align-items-e band {{ box[index]['color'] }}bg" >NO.1</i>
-          <i class="icon iconfont icon-oc-member {{ box[index]['color'] }}"></i>
-        </div>
-        <div class="flex flex-1 flex-direction-column ranking-two" v-if="$index==0">
-          <span class="name overflow-y-h" title="{{r.name}}">{{r.name}}</span>
-          <div class="flex flex-1  align-items-c  " >
-            <i class="iconfont {{box[index]['icon']}} grey"></i>
-            <span class="count align-items-e">{{r.count}}</span>
-            <span class="overflow-y-h">{{box[index]['unit']}}</span>
-          </div>
-        </div>
-
-
-      </div>
-      <div class="sort2 flex flex-1 flex-direction-column" >
-        <div class="flex flex-1 ranking-three" v-if="$index!=0"><i class="number flex" title="{{r.count}}{{box[index]['unit']}}" ><strong>{{r.rank}}</strong></i><span title="{{r.name}}" class="overflow-y-h">{{r.name}}</span></div>
-      </div>
-    </div>
-
-  </div>
-</template>
-<style>
-
-</style>
-<script>
-  export default {
-    data(){
-      return {
-        box: [
-          {
-            title:'按会话量排名',
-            color: 'green',
-            icon: 'icon-oc-msg-small',
-            unit: '(次)'
-          },
-          {
-            title:'按话务量排名',
-            color: 'blue',
-            icon: 'icon-oc-mobile',
-            unit: '(分钟)'
-          },
-          {
-            title:'按消费额排名',
-            color: 'yellow',
-            icon: 'icon-oc-wallet',
-            unit: '(元)'
-          },
-          {
-            title:'按会话周增量排名',
-            color: 'purple',
-            icon: 'icon-oc-msg-small',
-            unit: '(次)'
-          },
-          {
-            title:'按话务周增量排名',
-            color: 'pink',
-            icon: 'icon-oc-mobile',
-            unit: '(分钟)'
-          }
-        ]
-      }
-    },
-    props: {
-      datarank: {
-        type: Array,
-      },
-      index:{
-        type:Number,
-        default:0
-      }
-    },
-    computed: {
-    },
-    ready(){
-    }
-  }
-</script>

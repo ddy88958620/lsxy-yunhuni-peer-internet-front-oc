@@ -24,5 +24,8 @@ export const DashboardApp = Vue.resource(domain.API_ROOT+'/dashboard/app/indican
 export const DashboardMember = Vue.resource(domain.API_ROOT+'/dashboard/member/indicant')
 export const DashboardMemberRankList = Vue.resource(domain.API_ROOT+'/dashboard/member/top')
 
+export const DashboardComsume = Vue.resource(domain.API_ROOT+'/dashboard/comsume/indicant')
+export const DashboardDuration = Vue.resource(domain.API_ROOT+'/dashboard/duration/indicant')
+
 
 export const Dashboard = Vue.resource('dashboard.json')
