@@ -53,7 +53,17 @@
 	</div>
 </template>
 <script>
+	import {getMessageList} from '../../../vuex/actions'
+
 	export default {
+		vuex: {
+			getters: {
+
+			},
+			actions: {
+				getMessageList
+			}
+		},
 		components: {
 			'datetime-picker': require('../../ui/datetimepicker.vue')
 		},

@@ -9,10 +9,10 @@ import {
   DashboardDuration,
   ConsumeAnduration,
   Dashboardstatistic,
-  TenantList
+  TenantList,
+  MessageList,MessageNew
+
 } from './resource.js'
-
-
 
 export default {
   localLogin(user){
@@ -50,9 +50,11 @@ export default {
   },
   getTenantList(param){
     return TenantList.get(param)
+  },
+  getMessageList(param){
+    return MessageList.get(param)
+  },
+  CreateMessage(param){
+    return MessageNew.get(param)
   }
-
-
-
-
 }

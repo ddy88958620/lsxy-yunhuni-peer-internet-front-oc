@@ -122,3 +122,13 @@ export const getTenantList = ({dispatch},params) =>{
     console.log('fail');
   })
 }
+
+//消息列表
+export const getMessageList = ({dispatch},params) =>{
+  api.getMessageList(params).then(response=> {
+    let message_list = response.json()
+    dispatch(types.MESSAGE_LIST,message_list.data)
+  }, response =>{
+    console.log('fail');
+  })
+}

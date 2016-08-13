@@ -48,7 +48,6 @@ const mutations = {
   [CONSUME_DURATION_STATISTIC] (state, statistic) {
     state.statistic.comsumeduration = statistic
   }
-
 }
 
 export default {

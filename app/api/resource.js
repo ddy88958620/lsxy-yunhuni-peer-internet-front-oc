@@ -31,6 +31,13 @@ export const ConsumeAnduration = Vue.resource(domain.API_ROOT+'/dashboard/consum
 
 //租户中心
 export const TenantList = Vue.resource(domain.API_ROOT+'/tenant/tenants/')
+export const TeantRecharge = Vue.resource(domain.API_ROOT+'/tenant/tenants/recharge') 
+
+
+//消息中心
+export const MessageList = Vue.resource(domain.API_ROOT+'/message/list')
+export const MessageNew = Vue.resource(domain.API_ROOT+'/message/new')
+
 
 
 

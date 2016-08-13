@@ -25,5 +25,11 @@ export const APP_COUNT = 'APP_COUNT'
 export const LASTDAY_COMSUME = 'LASTDAY_COMSUME'
 export const LASTDAY_DURATION = 'LASTDAY_DURATION'
 
+//租户
+export const TENANT_LIST = 'TENANT_LIST'
 
+
+//消息中心
+export const MESSAGE_LIST = 'MESSAGE_LIST'
+export const CREATE_MESSAGE = 'CREATE_MESSAGE'
 
