@@ -4,7 +4,7 @@
         <div class="flex flex-1 flex-1align-items-c flex-direction-column session-small-box border-bottom">
           <div>
             <span class='iconfont icon-oc-mobile'></span>
-            <span class='admin-font-color ranknumber'>{{duration.duration_day}}</span>
+            <span class='admin-font-color ranknumber'>{{duration.consume_day}}</span>
           </div>
           <ul class="list-none-style">
             <li class='title'>昨日话务量 ( 分钟 )</li>
@@ -16,11 +16,11 @@
         <div class="flex flex-1 flex-1align-items-c flex-direction-column session-small-box">
           <div>
             <span class='iconfont icon-oc-wallet'></span>
-            <span class='admin-font-color ranknumber'>{{duration.duration_day}}</span>
+            <span class='admin-font-color ranknumber'>{{duration.consume_day}}</span>
           </div>
           <ul class="list-none-style">
             <li class='title'>昨日消费额 ( 元 )</li>
-            <li>日 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>{{comsume.duration_day}}%</span></li>
+            <li>日 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>{{comsume.consume_day}}%</span></li>
             <li>周 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>{{comsume.week_rate}}%</span></li>
             <li>月 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>{{comsume.month_rate}}%</span></li>
           </ul>
@@ -41,7 +41,7 @@
     </section>
 </template>
 <script>
-  import { getLastDayComsume, getLastDayDuration} from '../../../../vuex/actions'
+  import { getLastDayComsume, getLastDayDuration, getConsumeAnduration} from '../../../../vuex/actions'
   export  default {
     vuex :{
       getters :{
@@ -50,7 +50,8 @@
       },
       actions :{
         getLastDayComsume,
-        getLastDayDuration
+        getLastDayDuration,
+        getConsumeAnduration
       }
     },
     data(){
@@ -63,8 +64,10 @@
       'datetime-picker': require('../../../ui/datetimepicker.vue')
     },
     ready(){
+      let date = {year:'2016',month:'08'}
       this.getLastDayComsume()
       this.getLastDayDuration()
+      this.getConsumeAnduration(date)
     }
   }
 </script>

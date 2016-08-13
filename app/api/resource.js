@@ -20,12 +20,12 @@ Vue.http.interceptors.push(
 export const AuthResource = Vue.resource(domain.API_ROOT+'/auth/login')
 export const DemandMemberAwait = Vue.resource(domain.API_ROOT+'')
 
+
 export const DashboardApp = Vue.resource(domain.API_ROOT+'/dashboard/app/indicant')
 export const DashboardMember = Vue.resource(domain.API_ROOT+'/dashboard/member/indicant')
 export const DashboardMemberRankList = Vue.resource(domain.API_ROOT+'/dashboard/member/top')
-
 export const DashboardComsume = Vue.resource(domain.API_ROOT+'/dashboard/comsume/indicant')
 export const DashboardDuration = Vue.resource(domain.API_ROOT+'/dashboard/duration/indicant')
+export const Dashboardstatistic = Vue.resource(domain.API_ROOT+'/dashboard/statistic')
 
-
-export const Dashboard = Vue.resource('dashboard.json')
+export const ConsumeAnduration = Vue.resource(domain.API_ROOT+'/dashboard/consumeAnduration/statistic')

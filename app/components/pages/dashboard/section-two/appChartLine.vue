@@ -6,7 +6,7 @@
       <input name='app-chart-type' type="radio"/>
       <label for="">月统计</label>
       <div class="datepicker-wrap">
-        <datetime-picker></datetime-picker>
+        <datetime-picker :uuid='date'></datetime-picker>
       </div>
     </div>
     <chart :uuid="'bashboard-app-chart'" :type="['line','line']"
@@ -19,7 +19,17 @@
 </template>
 
 <script>
+  import {getNewMemberAndApp} from '../../../../vuex/actions.js' 
+
   export default {
+    vuex:{
+      getter: {
+
+      },
+      actions: {
+        getNewMemberAndApp
+      }
+    },
     data(){
       return {
       }
@@ -27,7 +37,11 @@
     components: {
       'chart': require('../../../ui/chart.vue'),
       'datetime-picker': require('../../../ui/datetimepicker.vue')
+    },
+    ready(){
+      this.getNewMemberAndApp({year:'2016',month:'06'})
     }
+
   }
 </script>
 <style lang='sass' scoped>

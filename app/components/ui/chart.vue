@@ -10,7 +10,6 @@
 <script>
 import Chart from 'chart.js';
 import chance from 'chance'
-
   export default {
     data(){
       return {

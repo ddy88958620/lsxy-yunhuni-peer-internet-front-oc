@@ -6,8 +6,11 @@ import {
   DashboardMember,
   DashboardMemberRankList,
   DashboardComsume,
-  DashboardDuration
+  DashboardDuration,
+  ConsumeAnduration,
+  Dashboardstatistic
 } from './resource.js'
+
 
 
 export default {
@@ -37,5 +40,12 @@ export default {
   },  
   getLastDayDuration(){
     return DashboardDuration.get()
+  },
+  getNewMemberAndApp(date){
+    return Dashboardstatistic.get(date)
+  },
+  getConsumeAnduration(date){
+    return ConsumeAnduration.get(date)
   }
+
 }

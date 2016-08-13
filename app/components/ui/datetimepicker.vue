@@ -1,6 +1,7 @@
 <template>
 	<div class="input-group date-component" :style="{width: `${width}px`}">
 		<input
+			:class="[uuid]"
 			type="text"
 			:value.sync='date'
 			class="form_datetime _month form-control"
@@ -18,6 +19,10 @@
 			}
 		},
 		props: {
+			 uuid: {
+		        require: true,
+		        type: String
+		    },
 			type: {
 				type: String,
 				default: 'year'

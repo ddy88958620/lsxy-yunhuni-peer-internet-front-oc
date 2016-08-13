@@ -38,15 +38,6 @@ export const localLogout = ({dispatch, router}) => {
   router.go({path: '/auth/login'})
 }
 
-//首页
-export const dashboard = ({dispatch}) => {
-  api.getAppCount().then(response => {
-    let app_data = response.json()
-    dispatch(types.DASHBOARD_APP, app_data.data)
-  }, response => {
-    console.log('fail');
-  })
-}
 
 //总应用数
 export const getAppCount = ({dispatch}) => {
@@ -72,7 +63,7 @@ export const getMemberCount = ({dispatch}) =>{
 }
 
 //@params top 排名量 会员排行
-export const getMemberRankList = ({dispatch},top) =>{
+export const getMemberRankList = ({dispatch},top) => {
   api.getMemberRankList(top).then(response =>{
     let rank_list = response.json()
     dispatch(types.MEMBER_RANK_LIST, rank_list.data)
@@ -82,7 +73,7 @@ export const getMemberRankList = ({dispatch},top) =>{
 }
 
 //昨日会话量
-export const getLastDayComsume = ({dispatch}) =>{
+export const getLastDayComsume = ({dispatch}) => {
   api.getLastDayComsume().then(response =>{
     let comsume = response.json()
 
@@ -94,7 +85,7 @@ export const getLastDayComsume = ({dispatch}) =>{
 
 
 //昨日消费额
-export const getLastDayDuration = ({dispatch}) =>{
+export const getLastDayDuration = ({dispatch}) => {
   api.getLastDayDuration().then(response =>{
     let duration = response.json()
     dispatch(types.LASTDAY_DURATION, duration.data)
@@ -103,6 +94,23 @@ export const getLastDayDuration = ({dispatch}) =>{
   })
 }
 
+//新增会员、应用统计
+export const getNewMemberAndApp = ({dispatch},date) => {
+  api.getNewMemberAndApp(date).then(response =>{
+      let duration = response.json()
+      dispatch(types.MEMBER_APP_STATISTIC, duration.data)
+    }, response => {
+      console.log('fail');
+  })
+}
 
-
+//话务量、消费额统计
+export const getConsumeAnduration = ({dispatch},date) => {
+    api.getConsumeAnduration(date).then(response =>{
+      let duration = response.json()
+      dispatch(types.CONSUME_DURATION_STATISTIC, duration.data)
+    }, response => {
+      console.log('fail');
+  })
+}
 

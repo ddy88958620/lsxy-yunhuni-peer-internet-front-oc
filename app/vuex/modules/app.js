@@ -1,7 +1,9 @@
 import {
   APP_COUNT,
   LASTDAY_COMSUME,
-  LASTDAY_DURATION
+  LASTDAY_DURATION,
+  MEMBER_APP_STATISTIC,
+  CONSUME_DURATION_STATISTIC
 } from '../mutation-types.js'
 
 const state = {
@@ -20,6 +22,16 @@ const state = {
     day_rate : 0,
     week_rate : 0,
     month_rate : 0
+  },
+  statistic :{
+    memberapp: {
+       app_count:[],
+       member_count:[]
+    },
+    comsumeduration: {
+      const:[],
+      session:[]
+    }
   }
 }
 
@@ -28,11 +40,15 @@ const mutations = {
     state.count = app
   },
   [LASTDAY_COMSUME] (state, comsume) {
-    state.duration_day = comsume
+    state.duration = comsume
   },
-  [LASTDAY_DURATION] (state, duration) {
-    state.comsume = duration
+  [MEMBER_APP_STATISTIC] (state, statistic) {
+    state.statistic.memberapp = statistic
+  },
+  [CONSUME_DURATION_STATISTIC] (state, statistic) {
+    state.statistic.comsumeduration = statistic
   }
+
 }
 
 export default {
