@@ -20,12 +20,25 @@ Vue.http.interceptors.push(
 export const AuthResource = Vue.resource(domain.API_ROOT+'/auth/login')
 export const DemandMemberAwait = Vue.resource(domain.API_ROOT+'')
 
-
+//首页
 export const DashboardApp = Vue.resource(domain.API_ROOT+'/dashboard/app/indicant')
 export const DashboardMember = Vue.resource(domain.API_ROOT+'/dashboard/member/indicant')
 export const DashboardMemberRankList = Vue.resource(domain.API_ROOT+'/dashboard/member/top')
 export const DashboardComsume = Vue.resource(domain.API_ROOT+'/dashboard/comsume/indicant')
 export const DashboardDuration = Vue.resource(domain.API_ROOT+'/dashboard/duration/indicant')
 export const Dashboardstatistic = Vue.resource(domain.API_ROOT+'/dashboard/statistic')
-
 export const ConsumeAnduration = Vue.resource(domain.API_ROOT+'/dashboard/consumeAnduration/statistic')
+
+//租户中心
+export const TenantList = Vue.resource(domain.API_ROOT+'/tenant/tenants/')
+
+
+
+
+
+
+
+
+
+
+//审批管理

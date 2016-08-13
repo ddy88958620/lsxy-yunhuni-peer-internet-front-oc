@@ -8,7 +8,8 @@ import {
   DashboardComsume,
   DashboardDuration,
   ConsumeAnduration,
-  Dashboardstatistic
+  Dashboardstatistic,
+  TenantList
 } from './resource.js'
 
 
@@ -46,6 +47,12 @@ export default {
   },
   getConsumeAnduration(date){
     return ConsumeAnduration.get(date)
+  },
+  getTenantList(param){
+    return TenantList.get(param)
   }
+
+
+
 
 }

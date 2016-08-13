@@ -7,6 +7,7 @@ import auth from './modules/auth.js'
 import dashboard from './modules/dashboard.js'
 import member from './modules/member.js'
 import app from './modules/app.js'
+import tenant from './modules/tenant.js'
 
 const debug = process.env.NODE_ENV !== 'production'
 
@@ -19,6 +20,7 @@ export default new Vuex.Store({
     dashboard,
     member,
     app,
+    tenant
   },
   strict: debug,
   middlewares: debug ? [createLogger()] : []

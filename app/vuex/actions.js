@@ -76,7 +76,6 @@ export const getMemberRankList = ({dispatch},top) => {
 export const getLastDayComsume = ({dispatch}) => {
   api.getLastDayComsume().then(response =>{
     let comsume = response.json()
-
     dispatch(types.LASTDAY_COMSUME, comsume.data)
   }, response => {
     console.log('fail');
@@ -114,3 +113,12 @@ export const getConsumeAnduration = ({dispatch},date) => {
   })
 }
 
+//租户列表
+export const getTenantList = ({dispatch},params) =>{
+  api.getTenantList(params).then(response=> {
+    let tenant_list = response.json()
+    dispatch(types.TENANT_LIST,tenant_list.data)
+  }, response =>{
+    console.log('fail');
+  })
+}
