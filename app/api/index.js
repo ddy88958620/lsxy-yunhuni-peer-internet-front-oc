@@ -3,7 +3,8 @@ import {
   DemandMemberAwait,
   Dashboard,
   DashboardApp,
-  DashboardMember
+  DashboardMember,
+  DashboardMemberRankList
 } from './resource.js'
 
 
@@ -25,6 +26,8 @@ export default {
   },
   getMemberCount(){
    return DashboardMember.get()
+  },
+  getMemberRankList(){
+    return DashboardMemberRankList.get({top:3})
   }
-
 }

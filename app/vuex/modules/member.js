@@ -17,7 +17,17 @@ const state = {
     consume_day: 0,
     consume_week: 0,
     consume_month: 0
+  },
+  ranklist:{
+    duration_top :[],
+    call_top :[],
+    consume_top :[],
+    duration_week_top: [],
+    call_week_top: []
   }
+
+
+
 }
 
 const mutations = {
