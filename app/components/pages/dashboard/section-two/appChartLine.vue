@@ -1,15 +1,20 @@
 <template>
   <div id="app-chart">
     <div class="app-chart-header flex align-items-c">
-      <input name='app-chart-type' type="radio" checked=checked/>
+      <input name='app-chart-type' @click="changedatetype('month')"  type="radio" checked=checked/>
       <label for="">日统计</label>
-      <input name='app-chart-type' type="radio"/>
-      <label for="">月统计</label>
+      <input name='app-chart-type' @click="changedatetype('year')"  type="radio"/>
+      <label for="">月统计 </label>
       <div class="datepicker-wrap">
-        <datetime-picker :uuid='date'></datetime-picker>
+        <datetime-picker :uuid='date' ></datetime-picker>
       </div>
+      <button @click="chanagedata">测试</button>
     </div>
+
+    <div>{{ app | json }}</div>
     <chart :uuid="'bashboard-app-chart'" :type="['line','line']"
+           :ydata1.sync="app"
+           :ydata2.sync="member"
            :title="['新增注册会员','新增应用']"
            :xtitle="['会员数(个)','应用数(个)']"
            :color="[['rgba(246,239,232,0.8)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
@@ -19,24 +24,33 @@
 </template>
 
 <script>
-  import {getNewMemberAndApp} from '../../../../vuex/actions.js' 
-
+  import  {getNewMemberAndApp } from '../../../../vuex/actions.js' 
   export default {
-    vuex:{
-      getter: {
-
+    vuex : {
+      getters: {
+        app : ({app}) => app.statistic.memberapp.app_count,
+        member : ({app}) => app.statistic.memberapp.member_count
       },
       actions: {
         getNewMemberAndApp
       }
     },
-    data(){
+    data() {
       return {
+        'datetype':'month',
       }
     },
     components: {
       'chart': require('../../../ui/chart.vue'),
       'datetime-picker': require('../../../ui/datetimepicker.vue')
+    },
+    methods: {
+      changedatetype(type) {
+        this.datetype = type
+      },
+      chanagedata() {
+         this.getNewMemberAndApp({year:'2016'})
+      }
     },
     ready(){
       this.getNewMemberAndApp({year:'2016',month:'06'})

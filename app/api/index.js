@@ -9,7 +9,7 @@ import {
   DashboardDuration,
   ConsumeAnduration,
   Dashboardstatistic,
-  TenantList,
+  TenantList,TeantBilling,
   MessageList,MessageNew
 
 } from './resource.js'
@@ -50,6 +50,9 @@ export default {
   },
   getTenantList(param){
     return TenantList.get(param)
+  },
+  getTeantBilling(param){
+    return TeantBilling.get(param)
   },
   getMessageList(param){
     return MessageList.get(param)

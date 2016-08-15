@@ -1,12 +1,13 @@
 import {
   TENANT_LIST,
   TENANT_MORE_LIST,
-  TENANT_LIST_CURRENT_PAGE
+  TENANT_LIST_CURRENT_PAGE,
+  TENANT_BILLING
 } from '../mutation-types.js'
 
 const state = {
-  list: {}
-
+  list: {},
+  bill: {}
 
 }
 
@@ -21,6 +22,9 @@ const mutations = {
   		state.list.result.push(i)
   	})*/
    },
+   [TENANT_BILLING] (state ,bill){
+    state.bill = bill
+   }
 }
 
 export default {

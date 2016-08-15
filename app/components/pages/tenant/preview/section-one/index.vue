@@ -1,6 +1,4 @@
 <template>
-
-
     <section class='section_one flex bg-section-margin flex-direction-column justify-content-s '>
         <div class="flex flex-direction-row justify-content-b">
 
@@ -116,6 +114,41 @@
   </modal>
     
 </template>
+
+<script>
+  import {getTeantBilling} from '../../../../../vuex/actions.js'
+  export default{
+    vuex: {
+      getters: {
+        bill: ({tenant}) => tenant.bill
+
+      },
+      actions: {
+        getTeantBilling
+      }
+    },
+    components:{
+      'modal': require('../../../../ui/modal.vue'),
+      'datetime-picker': require('../../../../ui/datetimepicker.vue')
+    },
+    data(){
+      return {
+        showModal: false
+      }
+    },
+    methods:{
+      moreMessage:function(){
+
+      }
+    },
+    ready(){
+      console.log(this.$route.params.uid)
+      this.getTeantBilling({id:1})
+      //this.getTeantBilling({id:this.$route.params.uid})
+    }
+  }
+</script>
+
 <style lang="sass" scoped>
   .section_one {
     .box {
@@ -175,21 +208,3 @@
 
 
 </style>
-<script>
-  export default{
-    components:{
-      'modal': require('../../../../ui/modal.vue'),
-      'datetime-picker': require('../../../../ui/datetimepicker.vue')
-    },
-    data(){
-      return {
-        showModal: false
-      }
-    },
-    methods:{
-      moreMessage:function(){
-
-      }
-    }
-  }
-</script>

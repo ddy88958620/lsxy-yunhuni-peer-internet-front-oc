@@ -1,27 +1,52 @@
 <template>
   <div class="rankbox flex flex-1 flex-direction-column flex-grow-1 ">
     <div class="flex justify-content-c overflow">
-      <div class="hr-title">{{ box[index]['title'] }}</div>
+      <div class="hr-title">{{ boxs[key]['title'] }}</div>
     </div>
-    <div v-for="r in datarank">
-      <div class="sort flex flex-direction-column {{ box[index]['color'] }}border" v-if="$index==0">
+    <div>
+      <div class="sort flex flex-direction-column {{ boxs[key]['color'] }}border">
         <div class="flex justify-content-b ranking-one">
-          <i class="flex align-items-e band {{ box[index]['color'] }}bg" >NO.1</i>
-          <i class="icon iconfont icon-oc-member {{ box[index]['color'] }}"></i>
+          <i class="flex align-items-e band {{ boxs[key]['color'] }}bg" >NO.1</i>
+          <i class="icon iconfont icon-oc-member {{ boxs[key]['color'] }}"></i>
         </div>
-        <div class="flex flex-1 flex-direction-column ranking-two" v-if="$index==0">
-          <span class="name overflow-y-h" title="{{r.name}}">{{r.name}}</span>
+        <div class="flex flex-1 flex-direction-column ranking-two" >
+          <span class="name overflow-y-h" title="">公司名称</span>
           <div class="flex flex-1  align-items-c  " >
-            <i class="iconfont {{box[index]['icon']}} grey"></i>
-            <span class="count align-items-e">{{r.count}}</span>
-            <span class="overflow-y-h">{{box[index]['unit']}}</span>
+            <i class="iconfont {{boxs[key]['icon']}} grey"></i>
+            <span class="count align-items-e">{{datarank[0].value}}</span>
+            <span class="overflow-y-h">{{boxs[key]['unit']}}</span>
           </div>
         </div>
       </div>
       <div class="sort2 flex flex-1 flex-direction-column" >
-        <div class="flex flex-1 ranking-three" v-if="$index!=0"><i class="number flex" title="{{r.count}}{{box[index]['unit']}}" ><strong>{{r.rank}}</strong></i><span title="{{r.name}}" class="overflow-y-h">{{r.name}}</span></div>
+        <div class="flex flex-1 ranking-three" ><i class="number flex" title="" ><strong>2</strong></i><span title="" class="overflow-y-h"></span></div>
+      </div>
+      <div class="sort2 flex flex-1 flex-direction-column" >
+        <div class="flex flex-1 ranking-three" ><i class="number flex" title="" ><strong>3</strong></i><span title="" class="overflow-y-h"></span></div>
       </div>
     </div>
+
+
+   <!--  <div>
+      <div class="sort flex flex-direction-column {{ boxs[key]['color'] }}border">
+        <div class="flex justify-content-b ranking-one">
+          <i class="flex align-items-e band {{ boxs[key]['color'] }}bg" >NO.1</i>
+          <i class="icon iconfont icon-oc-member {{ boxs[key]['color'] }}"></i>
+        </div>
+        <div class="flex flex-1 flex-direction-column ranking-two" v-if="$index==0">
+          <span class="name overflow-y-h" title="{{r.name}}">{{.name ? r.name :'暂未获取数据'}}</span>
+          <div class="flex flex-1  align-items-c  " >
+            <i class="iconfont {{boxs[key]['icon']}} grey"></i>
+            <span class="count align-items-e">{{datarank[0].value}}</span>
+            <span class="overflow-y-h">{{boxs[key]['unit']}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sort2 flex flex-1 flex-direction-column" >
+        <div class="flex flex-1 ranking-three" v-if="$index!=0"><i class="number flex" title="{{r.count}}{{box[index]['unit']}}" ><strong>{{r.rank}}</strong></i><span title="{{r.name}}" class="overflow-y-h">{{r.name}}</span></div>
+      </div>
+    </div> -->
   </div>
 </template>
 
@@ -61,7 +86,6 @@
             unit: '(分钟)'
           }
         },
-
         box: [
           {
             title:'按会话量排名',
@@ -99,15 +123,26 @@
     props: {
       datarank: {
         type: Array,
+        default:[
+          {name:"",value:0},
+          {name:"",value:0},
+          {name:"",value:0}
+        ]
       },
       index:{
         type:Number,
         default:0
+      },
+      key:{
+        type:String,
+        default:'duration_top'
       }
     },
     computed: {
     },
     ready(){
+
+      console.log(this.datarank)
     }
   }
 </script>

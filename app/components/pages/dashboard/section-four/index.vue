@@ -2,13 +2,15 @@
     <section class='section_four flex bg-section-margin flex-direction-column justify-content-s '>
         <head-box></head-box>
         <div class="flex flex-direction-row justify-content-b">
-          <div class="flex box" v-for="rank in allRank" >
+          <div class="flex box"  v-for="(key,rank) in ranklist" >
             <ranking
+              :key="$key"
               :index="$index"
               :datarank="rank"
             ></ranking>
           </div>
         </div>
+<!-- <div>{{ ranklist | json }}</div> -->
     </section>
 </template>
 <script>

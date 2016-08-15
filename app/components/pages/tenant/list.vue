@@ -108,13 +108,14 @@
 			},
 			query(){
 				let params = {};
-				//params.name =this.name
+				/*params.name =this.name*/
+				params.name =111111
 				/*params.begin = ''
 				params.end = ''*/
 				//params.authStatus = this.authStatus
 				//params.accStatus = this.accStatus
 			    console.log(params)
-			    //let params = {name:'111111'}
+			    
 				this.getTenantList(params)
 			},
 			switch(val){

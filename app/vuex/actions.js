@@ -137,6 +137,18 @@ export const getMoreTenant = ({dispatch},params) =>{
   })
 }
 
+//租户列表 会员总览 one
+export const getTeantBilling = ({dispatch},params) =>{
+  api.getTeantBilling(params).then(response=> {
+    let bill = response.json()
+  
+    dispatch(types.TENANT_BILLING,bill.data)
+    
+  }, response =>{
+    console.log('fail');
+  })
+}
+
 
 
 

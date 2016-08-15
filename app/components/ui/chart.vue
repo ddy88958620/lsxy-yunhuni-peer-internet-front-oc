@@ -13,7 +13,9 @@ import chance from 'chance'
   export default {
     data(){
       return {
-        class: ''
+        class: '',
+        month :["1日", "2日", "3日","4日", "5日", "6日","7日", "8日", "9日","10日", "11日","12日","13日","14日", "15日", "16日","17日", "18日", "19日","20日","21日","22日","23日","24日", "25日", "26日","27日", "28日", "29日","30日"],
+        year : ["1月", "2月", "3月","4月", "5月", "6月","7月", "8月", "9月","10月", "11月","12月"]
       }
     },
     props: {
@@ -32,7 +34,7 @@ import chance from 'chance'
         type : Array,
         default: ['新增注册会员','新增应用']
       },
-      xtitle:{
+      xtitle: {
         type:Array,
         default: ['会员数(个)','应用数(个)']
       },
@@ -41,12 +43,33 @@ import chance from 'chance'
         default: [['rgba(247,249,242,0.4)','rgba(214,235,78,0.8)','rgba(214,235,78,1)','#FFF','rgba(214,235,78,0.1)','rgba(220,220,220,0.1)'],
           ['rgba(235,238,204,1)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)']]
       },
+      xtype: {
+        type:String,
+        twoWays:true,
+        default:'year'
+      },
+      ydata1: {
+        twoWays:true,
+        type:Array,
+        default:[]
+      },
+      ydata2: {
+        twoWays:true,
+        type:Array,
+        default:[]
+      }
+
     },
     ready(){
       let self = this
+      //计算当前月份日数
+
+      console.log(self.ydata1)
+      console.log(self.ydata2)
+
 
       var data = {
-        labels: ["1月", "2月", "3月","4月", "5月", "6月","7月", "8月", "9月","10月", "11月","12月"],
+        labels: self.month,
         datasets: [
           {
             label: self.title[0],
@@ -68,7 +91,7 @@ import chance from 'chance'
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [1000, 59, 80, 81, 56, 55, 40, 32, 11, 45, 35, 45],
+            data: self.ydata1,
             yAxisID: 'y-axis-1',
           },
           {
@@ -90,7 +113,7 @@ import chance from 'chance'
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [100, 29, 30, 51, 26, 75, 80, 32, 46, 12, 56, 301],
+            data: self.ydata2,
             yAxisID: 'y-axis-2',
           }
         ]
