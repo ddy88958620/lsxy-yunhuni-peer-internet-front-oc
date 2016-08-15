@@ -31,8 +31,31 @@ export const ConsumeAnduration = Vue.resource(domain.API_ROOT+'/dashboard/consum
 
 //租户中心
 export const TenantList = Vue.resource(domain.API_ROOT+'/tenant/tenants/')
-export const TeantRecharge = Vue.resource(domain.API_ROOT+'/tenant/tenants/{id}/recharge') 
-export const TeantBilling = Vue.resource(domain.API_ROOT+'/tenant/tenants/{id}/billing') 
+export const TenantRecharge = Vue.resource(domain.API_ROOT+'/tenant/tenants/recharge') 
+export const TenantActStatus = Vue.resource(domain.API_ROOT+'/tenant/tenants/{id}') 
+export const TenantApiInvoke = Vue.resource(domain.API_ROOT+'/tenant/tenants/{id}/api_invoke/statistic') 
+export const TenantAppList = Vue.resource(domain.API_ROOT+'/tenant/tenants/{id}/app/list') 
+export const TenantApps = Vue.resource(domain.API_ROOT+'/tenant/tenants/{id}/apps')
+export const TenantBilling = Vue.resource(domain.API_ROOT+'/tenant/tenants/{id}/billing') 
+export const TenantCert = Vue.resource(domain.API_ROOT+'/tenant/tenants/{id}/cert') 
+export const TenantConsumeAnduration = Vue.resource(domain.API_ROOT+'/tenant/tenants/{id}/consumeAnduration/statistic') 
+export const TenantIndicant = Vue.resource(domain.API_ROOT+'/tenant/tenants/{id}/indicant') 
+export const TenantAuthInfo = Vue.resource(domain.API_ROOT+'/tenant/tenants/{id}/auth/info') 
+export const TenantInfo = Vue.resource(domain.API_ROOT+'/tenant/tenants/{id}/info') 
+export const TenantResetPass = Vue.resource(domain.API_ROOT+'/tenant/tenants/{id}/resetPass') 
+export const TenantAppDetail = Vue.resource(domain.API_ROOT+'/tenant/tenants/{tenant}/apps/{appId}') 
+export const TenantSessionStatistic = Vue.resource(domain.API_ROOT+'/tenant/tenants/{id}/session/statistic') 
+export const TenantFileSize = Vue.resource(domain.API_ROOT+'/tenant/tenants/{tenant}/apps/{appId}/file/totalSize') 
+export const TenantAppPlays = Vue.resource(domain.API_ROOT+'/tenant/tenants/{tenant}/apps/{appId}/plays') 
+export const TenantAppRecord = Vue.resource(domain.API_ROOT+'/tenant/tenants/{tenant}/apps/{appId}/records') 
+export const TenantAppDownload = Vue.resource(domain.API_ROOT+'/tenant/tenants/{tenant}/apps/{appId}/records/batch/download') 
+export const TenantAppDownRecord =  Vue.resource(domain.API_ROOT+'/tenant/tenants/{tenant}/apps/{appId}/records/{record}') 
+export const TenantConsumeStatistic = Vue.resource(domain.API_ROOT+'/tenant/tenants/{tenant}/consume/statistic') 
+export const TenantConsumeMonth = Vue.resource(domain.API_ROOT+'/tenant/tenants/{tenant}/consume_month') 
+export const TenantRechargeDetail = Vue.resource(domain.API_ROOT+'/tenant/tenants/{tenant}/recharges') 
+export const TenantRechargeStatistic = Vue.resource(domain.API_ROOT+'/tenant/tenants/{tenant}/recharges/statistic') 
+export const TenantSwtichs = Vue.resource(domain.API_ROOT+'/tenant/tenants/{tenant}/switchs') 
+export const TenantSaveSwtichs = Vue.resource(domain.API_ROOT+'/tenant/tenants/{tenant}/switch') 
 
 
 

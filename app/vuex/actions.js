@@ -137,9 +137,9 @@ export const getMoreTenant = ({dispatch},params) =>{
   })
 }
 
-//租户列表 会员总览 one
+//租户列表 会员总览 余额 存储 套餐
 export const getTeantBilling = ({dispatch},params) =>{
-  api.getTeantBilling(params).then(response=> {
+  api.getTenantBilling(params).then(response=> {
     let bill = response.json()
   
     dispatch(types.TENANT_BILLING,bill.data)
@@ -149,8 +149,51 @@ export const getTeantBilling = ({dispatch},params) =>{
   })
 }
 
+//租户列表 会员总览 余额 存储 套餐
+export const getTenantCert = ({dispatch},params) =>{
+  api.getTenantCert(params).then(response=> {
+    let cert = response.json()
+  
+    dispatch(types.TENANT_CERT,cert.data)
+    
+  }, response =>{
+    console.log('fail');
+  })
+}
+
+//租户列表 会员总览 余额 存储 套餐
+export const getTenantIndicant = ({dispatch},params) =>{
+  api.getTenantIndicant(params).then(response=> {
+    let indicant = response.json()
+    dispatch(types.TENANT_INDICANT,indicant.data)
+  }, response =>{
+    console.log('fail');
+  })
+}
+
+//租户列表 基础信息
+export const getTenantInfo = ({dispatch},params) =>{
+  api.getTenantInfo(params).then(response=> {
+    let info = response.json()
+
+    console.log(info)
+
+    dispatch(types.TENANT_INFO,info.data)
+  }, response =>{
+    console.log('fail');
+  })
+}
 
 
+//租户列表 认证信息
+export const getTenantAuthInfo = ({dispatch},params) =>{
+  api.getTenantAuthInfo(params).then(response=> {
+    let info = response.json()
+    dispatch(types.TENANT_AUTH_INFO,info.data)
+  }, response =>{
+    console.log('fail');
+  })
+}
 
 
 //消息列表

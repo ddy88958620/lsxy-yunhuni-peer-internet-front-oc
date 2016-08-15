@@ -28,7 +28,11 @@ export const LASTDAY_DURATION = 'LASTDAY_DURATION'
 //租户
 export const TENANT_LIST = 'TENANT_LIST'
 export const TENANT_MORE_LIST = 'TENANT_MORE_LIST'
+export const TENANT_CERT = 'TENANT_CERT'
 export const TENANT_BILLING = 'TENANT_BILLING'
+export const TENANT_INDICANT = 'TENANT_INDICANT'
+export const TENANT_INFO = 'TENANT_INFO'
+export const TENANT_AUTH_INFO = 'TENANT_AUTH_INFO'
 
 
 //消息中心

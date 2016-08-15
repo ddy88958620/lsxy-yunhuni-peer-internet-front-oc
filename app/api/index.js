@@ -9,7 +9,7 @@ import {
   DashboardDuration,
   ConsumeAnduration,
   Dashboardstatistic,
-  TenantList,TeantBilling,
+  TenantList,TenantBilling,TenantCert,TenantIndicant,TenantInfo,TenantAuthInfo,
   MessageList,MessageNew
 
 } from './resource.js'
@@ -51,8 +51,20 @@ export default {
   getTenantList(param){
     return TenantList.get(param)
   },
-  getTeantBilling(param){
-    return TeantBilling.get(param)
+  getTenantBilling(param){
+    return TenantBilling.get(param)
+  },
+  getTenantCert(param){
+    return TenantCert.get(param)
+  },
+  getTenantIndicant(param){
+    return TenantIndicant.get(param)
+  },
+  getTenantInfo(param){
+    return TenantInfo.get(param)
+  },
+  getTenantAuthInfo(param){
+    return TenantAuthInfo.get(param)
   },
   getMessageList(param){
     return MessageList.get(param)
