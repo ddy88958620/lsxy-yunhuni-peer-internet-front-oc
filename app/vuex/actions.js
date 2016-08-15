@@ -117,11 +117,29 @@ export const getConsumeAnduration = ({dispatch},date) => {
 export const getTenantList = ({dispatch},params) =>{
   api.getTenantList(params).then(response=> {
     let tenant_list = response.json()
-    dispatch(types.TENANT_LIST,tenant_list.data)
+    if(tenant_list){
+      dispatch(types.TENANT_LIST,tenant_list.data)
+    }
   }, response =>{
     console.log('fail');
   })
 }
+
+//租户列表 加载更多
+export const getMoreTenant = ({dispatch},params) =>{
+  api.getTenantList(params).then(response=> {
+    let tenant_list = response.json()
+    if(tenant_list.data.result.length>0){
+      dispatch(types.TENANT_MORE_LIST,tenant_list.data)
+    }
+  }, response =>{
+    console.log('fail');
+  })
+}
+
+
+
+
 
 //消息列表
 export const getMessageList = ({dispatch},params) =>{

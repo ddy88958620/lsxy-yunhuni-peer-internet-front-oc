@@ -27,6 +27,7 @@ export const LASTDAY_DURATION = 'LASTDAY_DURATION'
 
 //租户
 export const TENANT_LIST = 'TENANT_LIST'
+export const TENANT_MORE_LIST = 'TENANT_MORE_LIST'
 
 
 //消息中心
