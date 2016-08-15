@@ -6,11 +6,11 @@ export default class RedisStore  {
 	}
 	
 	async get(sid) {
-		return await this.redis.get(`SESSION:${sid}`);
+		return await this.redis.get(`SESSION:${sid}`)
 	}
 	
 	async set(session, value) {
-		await this.redis.set(session, 'value' , 'ex', 10);
+		await this.redis.set(session, value , 'ex', 10);
 		return session;
 	}
 	
