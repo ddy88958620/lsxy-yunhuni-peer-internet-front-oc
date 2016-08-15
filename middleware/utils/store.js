@@ -1,9 +1,7 @@
-import Redis from "ioredis";
-import {Store} from "koa-session2";
+import Redis from "ioredis"
 
-export default class RedisStore extends Store {
+export default class RedisStore  {
 	constructor() {
-		super();
 		this.redis = new Redis();
 	}
 	
@@ -11,12 +9,9 @@ export default class RedisStore extends Store {
 		return await this.redis.get(`SESSION:${sid}`);
 	}
 	
-	async set(session, opts) {
-		if(!opts.sid) {
-			opts.sid = this.getID(24);
-		}
-		await this.redis.set(`SESSION:${opts.sid}`, session , 'ex', 10);
-		return opts.sid;
+	async set(session, value) {
+		await this.redis.set(session, 'value' , 'ex', 10);
+		return session;
 	}
 	
 	async destroy(sid) {

@@ -1,5 +1,8 @@
 var router = require('koa-router')();
 var REQUEST = require('request')
+const RedisStore = require("../utils/store.js");
+const store = new RedisStore()
+
 
 function request() {
 	return new Promise((resolve, reject)=>{
@@ -13,12 +16,13 @@ router.get('/', async (ctx, next) => {
 	ctx.body =  await request()
 })
 
-router.get('/foo', async function (ctx, next) {
-	ctx.body = 'this is foo';
-})
+// 登入
+router.get('/auth/login', async function (ctx, next) {
 	
-router.get('/bar', async function (ctx, next) {
-	ctx.body = 'this is bar';
+	// 登入成功后生成 session cookie
+	ctx.cookies.set('uuid', 'token', {maxAge: 6000})
+	store.set('uuid', 'token')
+	ctx.body = '123'
 })
 
 module.exports = router;
