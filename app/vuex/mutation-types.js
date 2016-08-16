@@ -37,5 +37,6 @@ export const TENANT_AUTH_INFO = 'TENANT_AUTH_INFO'
 
 //消息中心
 export const MESSAGE_LIST = 'MESSAGE_LIST'
+export const MESSAGE_MORE_LIST = 'MESSAGE_MORE_LIST'
 export const CREATE_MESSAGE = 'CREATE_MESSAGE'
 

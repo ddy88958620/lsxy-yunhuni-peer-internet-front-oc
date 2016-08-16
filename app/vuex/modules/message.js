@@ -1,19 +1,21 @@
 import {
-  MEMBER_COUNT,
-  MEMBER_RANK_LIST,
+  MESSAGE_LIST,
+  MESSAGE_MORE_LIST
 } from '../mutation-types'
 
 const state = {
-  
+   list : {}
 }
 
 const mutations = {
-  [MEMBER_COUNT] (state, member) {
-    state.count = member
+  [MESSAGE_LIST] (state, list) {
+    state.list = list
   },
-  [MEMBER_RANK_LIST] (state, list) {
-    state.ranklist = list
-  }
+  [MESSAGE_MORE_LIST] (state, list) {
+    state.list.currentPageNo = list.currentPageNo
+    state.list.result = state.list.result.concat(list.result)
+  },
+
 }
 
 export default {

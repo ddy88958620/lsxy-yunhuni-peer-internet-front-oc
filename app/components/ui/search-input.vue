@@ -1,6 +1,6 @@
 <template>
   <div class="search-box flex flex-1">
-    <input class="form-control search" placeholder="{{placeholder}}" @keyup.enter="search" v-model="searchName" value="{{ searchName }}"/>
+    <input class="form-control search" placeholder="{{placeholder}}" @keyup="searchkeyup" v-model="searchName" value="{{ searchName }}"/>
     <i class="iconfont icon-oc-search cursor" @click='search'></i>
   </div>
 </template>
@@ -32,12 +32,15 @@
     },
     methods: {
       search(){
-         console.log('搜索内容'+this.searchName);
+         this.$dispatch('search-content',this.searchName)
+      },
+      searchkeyup(){
+         this.$dispatch('search-keycontent',this.searchName)
       }
     },
     ready(){
-    }
 
+    }
   }
 
 </script>

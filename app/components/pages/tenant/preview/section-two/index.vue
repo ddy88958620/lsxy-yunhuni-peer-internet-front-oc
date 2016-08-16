@@ -72,14 +72,14 @@
 </template>
 
 <script>
-  import {getTeantIndicant} from '../../../../../vuex/actions.js'
+  import {getTenantIndicant} from '../../../../../vuex/actions.js'
   export default{
     vuex: {
       getters: {
         indicant : ({tenant}) => tenant.detail.indicant
       },
       actions: {
-        getTeantIndicant
+        getTenantIndicant
       }
     },
     components:{
@@ -102,7 +102,7 @@
     ready(){
       let params = {}
       params.id = this.$route.params.uid
-      this.getTeantIndicant(params)
+      this.getTenantIndicant(params)
     }
   }
 </script>

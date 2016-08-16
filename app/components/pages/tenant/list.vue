@@ -7,9 +7,9 @@
 					<search placeholder="请输入关键字,如会员名称" v-on="get-name" ></search>
 				</div>
 				<span class='datetime-picker-label'>注册时间:</span>
-				<datetime-picker :uuid="starttime"></datetime-picker>
+				<datetime-picker uuid="begintime" type='month' ></datetime-picker>
 				<span class='datetime-picker-label'>至</span>
-				<datetime-picker :uuid="endtime" ></datetime-picker>
+				<datetime-picker uuid="endtime"  type='month' ></datetime-picker>
 				<span class='datetime-picker-label'>认证状态: </span>
 				<select class="form-control" v-model='authStatus' >
 					<option value=2 >全部</option>
@@ -107,10 +107,10 @@
 				this.getMoreTenant(params)
 			},
 			query(){
-				let params = {};
+				let params = {name:this.name,begin:this.begintime,end:this.endtime,accStatus:this.accStatus}
 				/*params.name =this.name*/
-				params.name =111111
-				/*params.begin = ''
+				/*params.name =111111
+				params.begin = ''
 				params.end = ''*/
 				//params.authStatus = this.authStatus
 				//params.accStatus = this.accStatus
@@ -124,6 +124,24 @@
 			getName(){
 			   console.log(this.name)
 			}
+		},
+		events:{
+		  'search-content': function(cnt) {
+		  	 this.name = cnt
+		  	 let params = {};
+			 params.name = this.name
+			 this.getTenantList(params)
+		  },
+		  'search-keyup': function(cnt){
+ 			 this.name = cnt
+		  },
+		  'date-time': function(time,uid) {
+		  	if(uid=='starttime'){
+		  		this.begintime = time
+		  	}else{
+		  		this.endtime = time
+		  	}
+		  }
 		},
 		ready(){
 			this.getTenantList()

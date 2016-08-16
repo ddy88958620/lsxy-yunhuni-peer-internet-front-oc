@@ -138,7 +138,7 @@ export const getMoreTenant = ({dispatch},params) =>{
 }
 
 //租户列表 会员总览 余额 存储 套餐
-export const getTeantBilling = ({dispatch},params) =>{
+export const getTenantBilling = ({dispatch},params) =>{
   api.getTenantBilling(params).then(response=> {
     let bill = response.json()
   

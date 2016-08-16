@@ -1,10 +1,10 @@
 <template>
-	<div class="input-group date-component" :style="{width: `${width}px`}">
+	<div class="input-group date-component" :style="{width: `${width}px`}" >
 		<input
-			:class="[uuid]"
+			:id="[uuid]"
 			type="text"
 			:value.sync='date'
-			class="form_datetime _month form-control"
+			class="form_datetime{{uuid}} _month form-control"
 			data-date-end-date="0m" />
 		<span class="iconfont icon-oc-date"></span>
 	</div>
@@ -19,9 +19,10 @@
 			}
 		},
 		props: {
-			 uuid: {
+			uuid: {
 		        require: true,
-		        type: String
+		        type: String,
+		        default:Math.random()
 		    },
 			type: {
 				type: String,
@@ -32,7 +33,11 @@
 				default: 120
 			}
 		},
-		watch: {},
+		watch: {
+			'date': function(){
+				this.$dispatch('date-time',this.date,this.uuid)
+			}
+		},
 		ready(){
 			const self = this
 			// 当前日期
@@ -42,9 +47,23 @@
 			switch (type){
 				case 'year':
 					datetimepickerObj = {
+						format: 'yyyy',
+						startView: 'year',
+						minView: 'year',
+					}
+					break;
+				case 'month':
+					datetimepickerObj = {
 						format: 'yyyy-mm',
 						startView: 'year',
 						minView: 'year',
+					}
+					break;	
+				case 'day':
+					datetimepickerObj = {
+						format: 'yyyy-mm-dd',
+						startView: 'month',
+						minView: 'day',
 					}
 					break;
 				case 'time':
@@ -55,8 +74,8 @@
 					}
 					break;
 			}
-			
-			$('.form_datetime').datetimepicker(datetimepickerObj).on('changeDate',function(e){
+
+			$('.form_datetime'+this.uuid).datetimepicker(datetimepickerObj).on('changeDate',function(e){
 				$(this).datetimepicker('hide')
 				
 				let currenSelectDate = $(this)[0].value
