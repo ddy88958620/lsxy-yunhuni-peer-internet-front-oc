@@ -9,7 +9,6 @@ const onerror = require('koa-onerror');
 const bodyparser = require('koa-bodyparser')();
 const logger = require('koa-logger');
 
-
 const index = require('./routes/index');
 
 // middlewares

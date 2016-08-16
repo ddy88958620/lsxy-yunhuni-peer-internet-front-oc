@@ -2,7 +2,7 @@
   <div>
     <div class="admin-table table-responsive">
       <div class="table-total flex flex-1 justify-content-e">
-        共<span class="text-danger">20</span>条
+        消费金额: <span class="brown">100</span>元 共<span class="text-danger">20</span>条
       </div>
       <table class="table">
         <thead>
@@ -11,7 +11,6 @@
           <th>呼叫时间</th>
           <th>参与者</th>
           <th>参与类型</th>
-          <th>通话状态</th>
           <th>时长(秒)</th>
           <th>消费金额(元)</th>
         </tr>
@@ -22,7 +21,6 @@
           <td>{{ message.date }}</td>
           <td>{{ message.called }}</td>
           <td>{{ message.type }}</td>
-          <td>{{ message.status }}</td>
           <td>{{ message.time }}</td>
           <td>{{ message.money }}</td>
         </tr>

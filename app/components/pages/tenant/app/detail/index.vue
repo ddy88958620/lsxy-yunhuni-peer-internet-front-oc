@@ -15,16 +15,19 @@
 					<li>回调URL http://www.bibi.com/callback</li>
 					<li>监听通知: 启用监听 启用鉴权</li>
 					<li>绑定测试号: 1477777552 1477777552 1477777552 1477777552 1477777552 1477777552</li>
-					<li>应用状态: 未上线</li>
+					<li>应用状态: <span class="text-danger">未上线</span></li>
 				</ul>
-				<div class="btn-group">
-					<button type="button" class="btn btn-default"
-					        v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/play'">放音媒体库
-					</button>
-					<button type="button" class="btn btn-default"
-					        v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/record'">录音文件
-					</button>
+
+
+
+				<div class="flex   ">
+					<div class="admin-toolbar flex normal-font-size small-font-color cursor" >
+						<span type="button" class="toolbar first-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/play'" >放音媒体库</span>
+						<span type="button" class="toolbar remove-border-right last-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/record'" >录音文件</span>
+					</div>
 				</div>
+
+
 			</div>
 		</div>
 		<router-view></router-view>

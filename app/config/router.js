@@ -106,8 +106,7 @@ export default function(router){
               component: (resolve) => require(['../components/pages/tenant/list.vue'], resolve)
             }
           }
-        }
-        ,
+        },
         '/service': {
           component: (resolve) => require(['../components/pages/service/index.vue'], resolve),
           subRoutes: {
@@ -124,6 +123,52 @@ export default function(router){
             },
             '/new': {
               component: (resolve) => require(['../components/pages/message/new.vue'], resolve),
+            }
+          }
+        },
+        '/finance': {
+          component: (resolve) => require(['../components/pages/finance/index.vue'], resolve),
+          subRoutes: {
+            '/invoice': {
+              component: (resolve) => require(['../components/pages/finance/invoice/index.vue'], resolve),
+              subRoutes:{
+                '/list':{
+                  component: (resolve) => require(['../components/pages/finance/invoice/list.vue'], resolve),
+                  subRoutes:{
+                    '/pending':{
+                      component: (resolve) => require(['../components/pages/finance/invoice/table/pending-table.vue'], resolve),
+                    },
+                    '/passed':{
+                      component: (resolve) => require(['../components/pages/finance/invoice/table/passed-table.vue'], resolve),
+                    },
+                    '/abnormal':{
+                      component: (resolve) => require(['../components/pages/finance/invoice/table/abnormal-table.vue'], resolve),
+                    }
+                  }
+                },
+                '/detail/:id':{
+                  component: (resolve) => require(['../components/pages/finance/invoice/detail.vue'],resolve),
+                }
+              }
+            },
+            '/delivery': {
+              component: (resolve) => require(['../components/pages/finance/delivery/index.vue'], resolve),
+              subRoutes:{
+                '/list':{
+                  component: (resolve) => require(['../components/pages/finance/delivery/list.vue'], resolve),
+                  subRoutes:{
+                    '/unsend':{
+                      component: (resolve) => require(['../components/pages/finance/delivery/table/unsend-table.vue'], resolve),
+                    },
+                    '/send':{
+                      component: (resolve) => require(['../components/pages/finance/delivery/table/send-table.vue'], resolve),
+                    }
+                  },
+                },
+                '/detail/:id':{
+                  component: (resolve) => require(['../components/pages/finance/delivery/detail.vue'],resolve),
+                }
+              }
             }
           }
         },
@@ -183,6 +228,9 @@ export default function(router){
     '/admin/service': '/admin/service/list',
 	  '/admin/message': '/admin/message/list',
     '/admin/tenant': '/admin/tenant/list',
+    '/admin/finance': '/admin/finance/invoice',
+    '/admin/finance/invoice': '/admin/finance/invoice/list/pending',
+    '/admin/finance/delivery': '/admin/finance/delivery/list/unsend',
     '/admin/tenant/detail/:uid/': '/admin/tenant/detail/:uid/preview',
     '/admin/tenant/detail/:uid/app': '/admin/tenant/detail/:uid/app/list',
     '/admin/tenant/detail/:uid/statistic': '/admin/tenant/detail/:uid/statistic/consume',

@@ -1,7 +1,7 @@
 <template>
 	<div class="flex search-box bg-section-margin remove-margin-bottom">
 		<div class="select-box">
-			<search></search>
+			<search  placeholder='请输入关键字'></search>
 		</div>
 		<button class="btn btn-primary admin-button-margin " @click="showModal=true">批量下载</button>
 	</div>

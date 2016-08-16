@@ -22,8 +22,8 @@
 					<td>{{message.mobile}}</td>
 					<td>{{message.email}}</td>
 					<td>{{message.type}}</td>
-					<td >
-						<span><a @click="audit(message.id)">审核</a></span>
+					<td class="text-align-c">
+						<span><a v-link="'/admin/demand/member/detail/'+message.id">审核</a></span>
 					</td>
 				</tr>
 				</tbody>

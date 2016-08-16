@@ -92,7 +92,7 @@
 
 	</div>
 
-	<modal :show.sync="showModal">
+	<modal :show.sync="showModal" title="审核" >
 		<div slot="body">
 			<div class="flex flex-1 ">
 				<span class="flex flex-1 align-items-c justify-content-c">不通过原因</span>

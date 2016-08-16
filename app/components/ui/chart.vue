@@ -10,7 +10,6 @@
 <script>
 import Chart from 'chart.js';
 import chance from 'chance'
-
   export default {
     data(){
       return {
@@ -32,6 +31,10 @@ import chance from 'chance'
       title: {
         type : Array,
         default: ['新增注册会员','新增应用']
+      },
+      xtitle:{
+        type:Array,
+        default: ['会员数(个)','应用数(个)']
       },
       color: {
         type: Array,
@@ -65,7 +68,7 @@ import chance from 'chance'
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 55, 40, 32, 11, 45, 35, 45],
+            data: [1000, 59, 80, 81, 56, 55, 40, 32, 11, 45, 35, 45],
             yAxisID: 'y-axis-1',
           },
           {
@@ -87,7 +90,7 @@ import chance from 'chance'
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [15, 29, 30, 51, 26, 75, 80, 32, 46, 12, 56, 52],
+            data: [100, 29, 30, 51, 26, 75, 80, 32, 46, 12, 56, 301],
             yAxisID: 'y-axis-2',
           }
         ]
@@ -102,7 +105,7 @@ import chance from 'chance'
         options: {
           responsive: true,
           title:{
-            display:true,
+            display:false,
             text:""
           },
           tooltips: {
@@ -118,7 +121,7 @@ import chance from 'chance'
                 display: true,
                 scaleLabel: {
                   display: true,
-                  labelString: '会员数(个)'
+                  labelString: self.xtitle[0],
                 },
                 position: "left",
                 id: "y-axis-1"
@@ -127,7 +130,7 @@ import chance from 'chance'
                 type: "linear",
                 scaleLabel: {
                   display: true,
-                  labelString: '应用数(个)',
+                  labelString: self.xtitle[1],
                 },
                 display: true,
                 position: "right",

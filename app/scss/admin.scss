@@ -157,12 +157,25 @@ a {
   border: 1px solid #e9edf4;
 }
 
+//基础信息
+.panel-base{
+  border-radius: 0;
+  border: 1px solid #d3d7e4 !important;
+}
+
 .panel-heading{
   background-color: #f8f9fc !important;
   color:$middle-font-color !important;
   font-size: 1.6rem;
   border-bottom: 1px solid #e9edf4 !important;
 }
+
+//基础信息
+.panel-base-heading{
+  color:$normal-font-color !important;
+  background: #eaeff7 !important;
+}
+
 
 .panel-body {
   padding: 0px;
@@ -234,9 +247,6 @@ table {
   }
   .app-main-right {
     flex: 1;
-    .query-box{
-      padding: 20px 0;
-    }
   }
 }
 
@@ -327,7 +337,7 @@ table {
 }
 
 //默认下拉框
-.selcet-box{
+.select-box{
   width: 200px;
 }
 
@@ -361,3 +371,19 @@ table {
 .remove-border{
   border: 0 !important;
 }
+
+//左边距
+.padding-left-10{
+  padding-left: 10px;
+}
+
+//右边距
+.padding-right-10{
+  padding-right: 10px;
+}
+
+.modal-table{
+  height: 400px;
+  overflow-y: scroll;
+}
+

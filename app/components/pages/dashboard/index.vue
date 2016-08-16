@@ -7,10 +7,12 @@
     <section-five></section-five>
     <section-six></section-six>
     <router-view></router-view>
- </div>
+  </div>
 </template>
 <script>
+
 export default {
+
   components: {
     'section-one': require('./section-one/index.vue'),
     'section-two': require('./section-two/index.vue'),
@@ -18,10 +20,10 @@ export default {
     'section-four': require('./section-four/index.vue'),
     'section-five': require('./section-five/index.vue'),
     'section-six': require('./section-six/index.vue'),
-  }
+  },
+
 }
 </script>
 <style lang='sass'>
 @import '../../../scss/layout.scss';
-
 </style>

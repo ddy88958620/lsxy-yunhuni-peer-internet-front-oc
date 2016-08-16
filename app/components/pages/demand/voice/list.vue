@@ -9,8 +9,10 @@
 				<div class="tab"><a class="flex"  v-link="'/admin/demand/voice/list/unauth'">审核不通过</a></div>
 			</div>
 
-			<div class="query-box flex align-items-c  ">
-				<div><search></search></div>
+			<div class="flex align-items-c bg-section-margin remove-margin-bottom ">
+				<div><search
+					placeholder="请输入关键字,如会员名称"
+				></search></div>
 				<span class='datetime-picker-label '>申请时间:</span>
 				<datetime-picker></datetime-picker>
 				<span class='datetime-picker-label'>至</span>

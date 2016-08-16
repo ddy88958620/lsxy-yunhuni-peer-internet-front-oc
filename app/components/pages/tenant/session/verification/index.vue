@@ -2,7 +2,7 @@
   <div>
     <div class="admin-table table-responsive">
       <div class="table-total flex flex-1 justify-content-e">
-        共<span class="text-danger">20</span>条
+        总条数: <span class="brown">100</span>条 共<span class="text-danger">20</span>条
       </div>
       <table class="table">
         <thead>
@@ -10,7 +10,6 @@
           <th class="text-align-c">发送时间</th>
           <th>主叫</th>
           <th>被叫</th>
-          <th>状态</th>
           <th>挂机时间</th>
         </tr>
         </thead>
@@ -19,7 +18,6 @@
           <td class="message-time text-align-c">{{message.date}}</td>
           <td>{{ message.calling }}</td>
           <td>{{ message.called }}</td>
-          <td>{{ message.status }}</td>
           <td>{{ message.date }}</td>
         </tr>
         </tbody>
