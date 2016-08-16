@@ -79,7 +79,7 @@ for (let [key, value] of Object.entries(path)) {
 			
 			// 存储token, 半小时
 			store.set(uuid, swaggerData.data.token)
-			ctx.body = ''
+			ctx.body = ' '
 		})
 	} else {
 		// switch get post put
