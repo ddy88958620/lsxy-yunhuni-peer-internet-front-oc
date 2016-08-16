@@ -205,3 +205,25 @@ export const getMessageList = ({dispatch},params) =>{
     console.log('fail');
   })
 }
+
+//新增消息
+export const NewMessage = ({dispatch},params) =>{
+  api.newMessage(params).then(response=> {
+    //
+    console.log('返回success')
+
+  }, response =>{
+    console.log('fail');
+  })
+}
+
+//客服中心
+export const getServiceList = ({dispatch},params) =>{
+   api.getServiceList(params).then(response=> {
+    let service_list = response.json()
+    dispatch(types.SERVICE_LIST,service_list.data)
+
+  }, response =>{
+    console.log('fail');
+  })
+}

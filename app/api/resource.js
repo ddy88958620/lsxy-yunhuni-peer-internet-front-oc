@@ -62,15 +62,15 @@ export const TenantSaveSwtichs = Vue.resource(domain.API_ROOT+'/tenant/tenants/{
 //消息中心
 export const MessageList = Vue.resource(domain.API_ROOT+'/message/list')
 export const MessageNew = Vue.resource(domain.API_ROOT+'/message/new')
+export const MessageEdit = Vue.resource(domain.API_ROOT+'/message/edit/{id}')
+export const MessageDetail = Vue.resource(domain.API_ROOT+'/message/detail/{id}')
 
+//财务中心
+export const InvoiceList = Vue.resource(domain.API_ROOT+'/finance/invoice/{status}/list')
+export const InvoiceDetail = Vue.resource(domain.API_ROOT+'/finance/invoice/detail/{id}')
+export const InvoiceEdit = Vue.resource(domain.API_ROOT+'/finance/invoice/edit/{id}')
 
+//客服中心
+export const ServiceList = Vue.resource(domain.API_ROOT+'/service/list')
 
-
-
-
-
-
-
-
-
-//审批管理
+//审核中心

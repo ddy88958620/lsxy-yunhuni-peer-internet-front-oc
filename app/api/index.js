@@ -10,9 +10,11 @@ import {
   ConsumeAnduration,
   Dashboardstatistic,
   TenantList,TenantBilling,TenantCert,TenantIndicant,TenantInfo,TenantAuthInfo,
-  MessageList,MessageNew
-
+  MessageList,MessageNew,MessageEdit,MessageDetail,
+  InvoiceList,InvoiceDetail,InvoiceEdit,
+  ServiceList
 } from './resource.js'
+
 
 export default {
   localLogin(user){
@@ -69,7 +71,28 @@ export default {
   getMessageList(param){
     return MessageList.get(param)
   },
-  CreateMessage(param){
+  newMessage(param){
     return MessageNew.get(param)
+  },
+  editMessage(param){
+     return MessageEdit.post(param)
+  },
+  getMessageDetail(param){
+    return MessageDetail.get(param)
+  },
+  getInvoiceList(param){
+    return InvoiceList.get(param)
+  },
+  getInvoiceDetail(param){
+    return InvoiceDetail.get(param)
+  },
+  editInvoice(param){
+    return InvoiceEdit.get(param)
+  },
+  getServiceList(param){
+    return ServiceList.get(param)
   }
+
 }
+
+
