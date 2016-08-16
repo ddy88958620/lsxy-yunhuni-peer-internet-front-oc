@@ -1,6 +1,6 @@
 import Cookie from 'js-cookie'
 
-const cookieConfig =  {domain: 'localhost', expires: 3}
+const cookieConfig =  {domain: 'http://localhost:3000', expires: 3}
 
 export function saveCookie(key ,value) {
 	Cookie.set(key, value, cookieConfig)
