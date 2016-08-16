@@ -9,16 +9,15 @@
                   <div class="canvas flex justify-content-c align-items-c ">
                     <img class="avatar" src="/avatar.png?a226ccef62bc02b7f799d54e4c5b27dd">
                   </div>
-                  <span class="flex flex-1 name align-items-c justify-content-c" title="广州流水行云有限公司">广州流水行云有限公司</span>
+                  <span class="flex flex-1 name align-items-c justify-content-c" >111</span>
                 </div>
                 <div class="message flex flex-1 flex-direction-column ">
-                  <span class="flex overflow-x-h">REST API: http://api.yunhuni.com/123456789123456</span>
-                  <span class="flex overflow-x-h">SercreKey：SoWHEREYOUGOIMYOURSHADOW</span>
+                  <span class="flex overflow-x-h">REST API: http://api.yunhuni.com/{{cert.id}}</span>
+                  <span class="flex overflow-x-h">SercreKey：{{cert.secretKey}}</span>
                 </div>
               </div>
             </div>
           </div>
-
           <div class="flex box">
             <div class="flex-grow-1 flex flex-1 flex-direction-column">
               <div class="sort flex flex-1 flex-direction-column blueborder ">
@@ -27,7 +26,7 @@
                   <span class="flex align-items-c unit">余额（元）</span>
                 </div>
                 <div class="flex flex-1 green money">
-                    ￥100.00
+                    ￥{{bill.balance}}
                 </div>
                 <div class="flex flex-direction-row-reverse">
                   <button class="btn btn-default" @click="showModal = true" >消费记录</button>
@@ -36,7 +35,6 @@
               </div>
             </div>
           </div>
-
           <div class="flex box">
             <div class="flex-grow-1 flex flex-1 flex-direction-column">
               <div class="sort flex-1 flex flex-direction-column yellowborder ">
@@ -45,7 +43,7 @@
                   <span class="flex align-items-c unit">存储容量（G）</span>
                 </div>
                 <div class="flex flex-1 green money">
-                  0.84
+                  {{filesize}}
                 </div>
                 <div class="flex flex-direction-row-reverse">
 
@@ -62,9 +60,9 @@
                   <span class="flex align-items-c unit">套餐剩余量</span>
                 </div>
                 <div class="flex flex-1 flex-direction-column surplus">
-                  <div class="flex flex-1">会议剩余：<span class="green">100</span>分钟</div>
-                  <div class="flex flex-1">语音剩余：<span class="green">100</span>分钟</div>
-                  <div class="flex flex-1">短信剩余：<span class="green">100</span>条</div>
+                  <div class="flex flex-1">会议剩余：<span class="green">{{bill.conferenceRemain}}</span>分钟</div>
+                  <div class="flex flex-1">语音剩余：<span class="green">{{bill.voiceRemain}}</span>分钟</div>
+                  <div class="flex flex-1">短信剩余：<span class="green">{{bill.smsRemain}}</span>条</div>
                 </div>
               </div>
             </div>
@@ -116,15 +114,16 @@
 </template>
 
 <script>
-  import {getTeantBilling} from '../../../../../vuex/actions.js'
+  import {getTenantBilling,getTenantCert} from '../../../../../vuex/actions.js'
   export default{
     vuex: {
       getters: {
-        bill: ({tenant}) => tenant.bill
-
+        bill: ({tenant}) => tenant.detail.bill,
+        cert: ({tenant}) => tenant.detail.cert
       },
       actions: {
-        getTeantBilling
+        getTenantBilling,
+        getTenantCert
       }
     },
     components:{
@@ -138,13 +137,18 @@
     },
     methods:{
       moreMessage:function(){
-
       }
     },
+    computed: {
+      filesize: function () {
+        return this.bill.fileTotalSize / 1024 / 1024
+      },
+    },
     ready(){
-      console.log(this.$route.params.uid)
-      this.getTeantBilling({id:1})
-      //this.getTeantBilling({id:this.$route.params.uid})
+      let params = {}
+      params.id = this.$route.params.uid
+      this.getTenantBilling(params)
+      this.getTenantCert(params)
     }
   }
 </script>
