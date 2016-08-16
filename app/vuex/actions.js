@@ -14,14 +14,14 @@ export const hideMsg = ({dispatch}) => {
 
 export const localLogin = ({dispatch, router}, user) => {
   api.localLogin(user).then(response => {
-    let login = response.json()
-    saveCookie('user', user)
-    saveCookie('token', login.data.token)
-    /*console.log(login)
-    console.log(login.data.token)*/
-    if(login.success === true) {
-      saveCookie('user', user)
-      dispatch(types.LOCAL_LOGIN, user)
+    let login = response.body
+    
+    console.log(login)
+    
+	  // 登入成功
+    if(login === ' ') {
+    	saveCookie('user', user.userName)
+      dispatch(types.LOCAL_LOGIN, user.userName)
       router.go({path:'/admin/dashboard'})
       dispatch(types.HIDE_MSG)
     }else {
