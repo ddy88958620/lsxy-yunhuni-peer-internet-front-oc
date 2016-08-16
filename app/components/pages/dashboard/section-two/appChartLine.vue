@@ -6,7 +6,7 @@
       <input name='app-chart-type' @click="changedatetype('year')"  type="radio"/>
       <label for="">月统计 </label>
       <div class="datepicker-wrap">
-        <datetime-picker :uuid='date' ></datetime-picker>
+        <datetime-picker :uuid="'001h'" :type="'month'"></datetime-picker>
       </div>
       <button @click="chanagedata">测试</button>
     </div>

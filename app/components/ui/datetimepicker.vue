@@ -20,9 +20,8 @@
 		},
 		props: {
 			uuid: {
-		        require: true,
-		        type: String,
-		        default:Math.random()
+					require: true,
+					type: String,
 		    },
 			type: {
 				type: String,

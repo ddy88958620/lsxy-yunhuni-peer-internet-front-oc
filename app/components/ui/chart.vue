@@ -40,8 +40,10 @@ import chance from 'chance'
       },
       color: {
         type: Array,
-        default: [['rgba(247,249,242,0.4)','rgba(214,235,78,0.8)','rgba(214,235,78,1)','#FFF','rgba(214,235,78,0.1)','rgba(220,220,220,0.1)'],
-          ['rgba(235,238,204,1)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)']]
+        default: function() {
+         return  [['rgba(247,249,242,0.4)','rgba(214,235,78,0.8)','rgba(214,235,78,1)','#FFF','rgba(214,235,78,0.1)','rgba(220,220,220,0.1)'],
+            ['rgba(235,238,204,1)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)']]
+        }
       },
       xtype: {
         type:String,
@@ -51,14 +53,17 @@ import chance from 'chance'
       ydata1: {
         twoWays:true,
         type:Array,
-        default:[]
+        default:function() {
+          return []
+        }
       },
       ydata2: {
         twoWays:true,
         type:Array,
-        default:[]
+        default: function() {
+         return []
+        }
       }
-
     },
     ready(){
       let self = this
