@@ -11,7 +11,8 @@ export default class RedisStore  {
 	}
 	
 	async set(session, value) {
-		await this.redis.set(session, value , 'ex', 1800);
+		await this.redis.set(session, value );
+		await this.redis.expire(session,1800);
 		return session;
 	}
 	
