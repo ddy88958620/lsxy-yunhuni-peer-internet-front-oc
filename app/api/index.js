@@ -11,8 +11,8 @@ import {
   Dashboardstatistic,
   TenantList,TenantBilling,TenantCert,TenantIndicant,TenantInfo,TenantAuthInfo,
   MessageList,MessageNew,MessageEdit,MessageDetail,
-  InvoiceList,InvoiceDetail,InvoiceEdit,
-  ServiceList
+  InvoiceList,InvoiceDetail,InvoiceEdit,InvoiceSendList,
+  ServiceList,
 } from './resource.js'
 
 
@@ -82,6 +82,9 @@ export default {
   },
   getInvoiceList(param){
     return InvoiceList.get(param)
+  },
+  getInvoiceSendList(param){
+    return InvoiceSendList.get(param)
   },
   getInvoiceDetail(param){
     return InvoiceDetail.get(param)

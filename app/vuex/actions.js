@@ -218,7 +218,7 @@ export const NewMessage = ({dispatch},params) =>{
 
 //客服中心
 export const getServiceList = ({dispatch},params) =>{
-   api.getServiceList(params).then(response=> {
+  api.getServiceList(params).then(response=> {
     let service_list = response.json()
     dispatch(types.SERVICE_LIST,service_list.data)
   }, response =>{
@@ -228,7 +228,7 @@ export const getServiceList = ({dispatch},params) =>{
 
 //客服中心 加载更多
 export const getMoreService = ({dispatch},params) =>{
-  api.getTenantList(params).then(response=> {
+  api.getServiceList(params).then(response=> {
     let service_list = response.json()
     if(service_list.data.result.length>0){
       dispatch(types.SERVICE_MORE_LIST,service_list.data)
@@ -236,4 +236,60 @@ export const getMoreService = ({dispatch},params) =>{
   }, response =>{
     console.log('fail');
   })
+}
+
+//财务中心 
+export const getInvoiceList = ({dispatch},params) =>{
+   api.getInvoiceList(params).then(response=> {
+    let invoice_list = response.json()
+    switch(params.status){
+      case 'await':
+        dispatch(types.INVOICE_PENDING_LIST,invoice_list.data)
+        break;
+      case 'auditing':
+        dispatch(types.INVOICE_PASSED_LIST,invoice_list.data)
+        break;
+      case 'unauth': 
+        dispatch(types.INVOICE_ABNORMAL_LIST,invoice_list.data)
+        break;  
+    }
+  }, response =>{
+    console.log('fail');
+  })
+}
+
+
+//财务中心 加载更多
+export const getMoreInvoiceList = ({dispatch},params) =>{
+  api.getInvoiceList(params).then(response=> {
+    let invoice_list = response.json()
+    if(invoice_list.data.result.length>0){
+      switch(params.status){
+        case 'await':
+          dispatch(types.INVOICE_MORE_PENDING_LIST,invoice_list.data)
+        break;
+        case 'auditing':
+          dispatch(types.INVOICE_MORE_PASSED_LIST,invoice_list.data)
+        break;
+        case 'unauth':
+          dispatch(types.INVOICE_MORE_ABNORMAL_LIST,invoice_list.data)
+        break;  
+      }
+    }
+  }, response =>{
+    console.log('fail');
+  })
+}
+
+//财务中心 详情
+export const getInvoiceDetail = ({dispatch},params) =>{
+   api.getInvoiceDetail(params).then(response=> {
+    let detail = response.json()
+    dispatch(types.INVOICE_DETAIL,detail.data)
+  }, response =>{
+    console.log('fail');
+  })
+
+
+  
 }

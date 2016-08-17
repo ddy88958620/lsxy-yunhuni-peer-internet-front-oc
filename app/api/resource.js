@@ -67,6 +67,7 @@ export const MessageDetail = Vue.resource(domain.API_ROOT+'/message/detail/{id}'
 
 //财务中心
 export const InvoiceList = Vue.resource(domain.API_ROOT+'/finance/invoice/{status}/list')
+export const InvoiceSendList = Vue.resource(domain.API_ROOT+'/finance/invoice/{status}/send/list')
 export const InvoiceDetail = Vue.resource(domain.API_ROOT+'/finance/invoice/detail/{id}')
 export const InvoiceEdit = Vue.resource(domain.API_ROOT+'/finance/invoice/edit/{id}')
 
