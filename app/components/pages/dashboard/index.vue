@@ -6,13 +6,12 @@
     <section-four></section-four>
     <section-five></section-five>
     <section-six></section-six>
-    <router-view></router-view>
+    <router-view keep-alive></router-view>
   </div>
 </template>
 <script>
-
+import  {getNewMemberAndApp } from '../../../vuex/actions.js'
 export default {
-
   components: {
     'section-one': require('./section-one/index.vue'),
     'section-two': require('./section-two/index.vue'),

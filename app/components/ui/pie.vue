@@ -7,11 +7,8 @@
 			data-thickness="0.1"
 			type="text"
 			class="{{uuid}}"
-			data-fgColor="{{ bgcolor }}"
 			data-width="100"
 			data-height="100"
-			data-max="{{max}}"
-			data-min="{{min}}"
 			v-model="value"
 		/>
 	</div>
@@ -31,8 +28,8 @@
       },
       max: {
         type: Number,
-        twoWays: true
-      },
+        twoWays: true,
+	      default: 0 },
       value: {
         type: Number,
         twoWays: true,
@@ -51,19 +48,28 @@
         defualt: 80
       }
     },
-    computed: {
-     
+    watch: {
+    	max: function(state, old) {
+        console.log('watch')
+    		this.initPie()
+	    }
     },
-    ready(){
-      let that = this
-      $("."+that.uuid).knob({
-        'readOnly': true,
-        'min': that.min,
-        'max': that.max,
-        'value': that.value,
-        'fgColor': that.bgcolor
-      });
-    }
+	  methods: {
+    	initPie(){
+		    let that = this
+		    $("."+that.uuid).knob({
+			    'readOnly': true,
+			    'min': that.min,
+			    'max': that.max,
+			    'fgColor': that.bgcolor
+		    });
+	    }
+	  },
+	  ready(){
+		  if(this.max !== 0){
+			  this.initPie()
+		  }
+	  }
   }
 </script>
 

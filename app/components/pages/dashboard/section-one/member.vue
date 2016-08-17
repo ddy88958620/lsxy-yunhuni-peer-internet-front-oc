@@ -9,7 +9,7 @@
             <pie
               :max.sync="member.regist_total"
               :value.sync="member.regist_total"
-              :bgcolor="color[0]"
+              :bgcolor.sync="color[0]"
               :uuid="'memberpie'"
               >
             </pie>
@@ -31,8 +31,8 @@
             <pie
               :max.sync="member.auth_total"
               :value.sync="member.consume"
-              :uuid="'memberpie'"
-              :bgcolor="color[1]">
+              :uuid="'memberpie2'"
+              :bgcolor.sync="color[1]">
             </pie>
           </div>
           <div class="flex flex-1 align-items-c" >
@@ -52,8 +52,8 @@
             <pie
               :max.sync="member.regist_total"
               :value.sync="member.consume"
-              :uuid="'memberpie'"
-              :bgcolor="color[2]">
+              :uuid="'memberpie3'"
+              :bgcolor.sync="color[2]">
             </pie>
           </div>
           <div class="flex flex-1 align-items-c" >

@@ -13,8 +13,9 @@
 
     <div>{{ app | json }}</div>
     <chart :uuid="'bashboard-app-chart'" :type="['line','line']"
-           :ydata1.sync="app"
-           :ydata2.sync="member"
+           :ydata1="app"
+           :ydata2="member"
+           :init="getNewMemberAndApp"
            :title="['新增注册会员','新增应用']"
            :xtitle="['会员数(个)','应用数(个)']"
            :color="[['rgba(246,239,232,0.8)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
@@ -52,10 +53,12 @@
          this.getNewMemberAndApp({year:'2016'})
       }
     },
-    ready(){
-      this.getNewMemberAndApp({year:'2016',month:'06'})
-    }
-
+	  ready(){
+      console.log('ok')
+    	if(this.app.length === 0){
+        this.getNewMemberAndApp({year:'2016',month:'06'})
+      }
+    },
   }
 </script>
 <style lang='sass' scoped>
