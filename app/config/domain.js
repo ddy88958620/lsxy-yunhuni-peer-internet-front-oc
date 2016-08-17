@@ -6,8 +6,8 @@ const ADMINPROCESSENV =  process.env.NODE_ENV
 console.info('NODE_ENV', ADMINPROCESSENV);
 
 // API Root
-const YUNHUNIHOST = ADMINPROCESSENV ? 'koa host' : 'localhost'
-const YUNHUNIHOSTPORT = ADMINPROCESSENV ? 'koa port' : ''
+const YUNHUNIHOST = ADMINPROCESSENV ? 'oc.dev.yunhuni.com' : 'localhost'
+const YUNHUNIHOSTPORT = ADMINPROCESSENV ? '80' : ''
 
 
 // const MOCK = ADMINPROCESSENV ? '/mock' : '/app/mock'
