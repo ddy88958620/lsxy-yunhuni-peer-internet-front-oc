@@ -54,14 +54,15 @@
 		</div>
 </template>
 <script>
-	import {getServiceList} from '../../../vuex/actions'
+	import {getServiceList,getMoreService} from '../../../vuex/actions'
 	export default {
 		vuex: {
 			getters: {
 				service: ({service}) =>service.list
 			},
 			actions: {
-				getServiceList
+				getServiceList,
+				getMoreService
 			}
 		},
 		components: {
@@ -74,6 +75,10 @@
 		},
 		methods: {
 			moreMessage(){
+				let nextPage = this.service.currentPageNo+1
+				let params = {};
+				params.pageNo = nextPage
+				this.getMoreService(params)
 				
 			}
 		},

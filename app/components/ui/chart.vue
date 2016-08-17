@@ -51,128 +51,132 @@ import chance from 'chance'
         default:'year'
       },
       ydata1: {
-        twoWays:true,
         type:Array,
+        twoWays:true,
         default:function() {
           return []
         }
       },
       ydata2: {
-        twoWays:true,
         type:Array,
+        twoWays:true,
         default: function() {
          return []
         }
       }
     },
-    ready(){
-      let self = this
-      //计算当前月份日数
-
-      console.log(self.ydata1)
-      console.log(self.ydata2)
-
-
-      var data = {
-        labels: self.month,
-        datasets: [
-          {
-            label: self.title[0],
-            type: self.type[0],
-            // 曲线
-            // lineTension: 0.1,
-            backgroundColor: self.color[0][0],
-            borderColor: self.color[0][1],
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: self.color[0][2],
-            pointBackgroundColor: self.color[0][3],
-            pointBorderWidth: 5,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: self.color[0][4],
-            pointHoverBorderColor: self.color[0][5],
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: self.ydata1,
-            yAxisID: 'y-axis-1',
-          },
-          {
-            label: self.title[1],
-            // lineTension: 0.1,
-            type: self.type[1],
-            backgroundColor: self.color[1][0],
-            borderColor: self.color[1][1],
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: self.color[1][2],
-            pointBackgroundColor: self.color[1][3],
-            pointBorderWidth: 5,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: self.color[1][4],
-            pointHoverBorderColor: self.color[1][5],
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: self.ydata2,
-            yAxisID: 'y-axis-2',
-          }
-        ]
-      };
-
-
-      const ctx = document.querySelector("."+self.uuid).getContext('2d')
-
-      new Chart(ctx, {
-        type: self.type[1] === 'bar' ? 'bar' : 'line',
-        data: data,
-        options: {
-          responsive: true,
-          title:{
-            display:false,
-            text:""
-          },
-          tooltips: {
-            mode: 'label',
-          },
-          hover: {
-            mode: 'label'
-          },
-          scales: {
-            yAxes: [
-              {
-                type: "linear",
-                display: true,
-                scaleLabel: {
+    watch: {
+    	ydata1: function(){
+    		this.initChart()
+      }
+    },
+	  methods: {
+    	initChart() {
+        let self = this
+      
+        //计算当前月份日数
+        var data = {
+          labels: self.month,
+          datasets: [
+            {
+              label: self.title[0],
+              type: self.type[0],
+              // 曲线
+              // lineTension: 0.1,
+              backgroundColor: self.color[0][0],
+              borderColor: self.color[0][1],
+              borderCapStyle: 'butt',
+              borderDash: [],
+              borderDashOffset: 0.0,
+              borderJoinStyle: 'miter',
+              pointBorderColor: self.color[0][2],
+              pointBackgroundColor: self.color[0][3],
+              pointBorderWidth: 5,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: self.color[0][4],
+              pointHoverBorderColor: self.color[0][5],
+              pointHoverBorderWidth: 2,
+              pointRadius: 1,
+              pointHitRadius: 10,
+              data: self.ydata1,
+              yAxisID: 'y-axis-1',
+            },
+            {
+              label: self.title[1],
+              // lineTension: 0.1,
+              type: self.type[1],
+              backgroundColor: self.color[1][0],
+              borderColor: self.color[1][1],
+              borderCapStyle: 'butt',
+              borderDash: [],
+              borderDashOffset: 0.0,
+              borderJoinStyle: 'miter',
+              pointBorderColor: self.color[1][2],
+              pointBackgroundColor: self.color[1][3],
+              pointBorderWidth: 5,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: self.color[1][4],
+              pointHoverBorderColor: self.color[1][5],
+              pointHoverBorderWidth: 2,
+              pointRadius: 1,
+              pointHitRadius: 10,
+              data: self.ydata2,
+              yAxisID: 'y-axis-2',
+            }
+          ]
+        };
+      
+      
+        const ctx = document.querySelector("."+self.uuid).getContext('2d')
+      
+        this.chart = new Chart(this.$el.getContext('2d'), {
+          type: self.type[1] === 'bar' ? 'bar' : 'line',
+          data: data,
+          options: {
+            responsive: true,
+            title:{
+              display:false,
+              text:""
+            },
+            tooltips: {
+              mode: 'label',
+            },
+            hover: {
+              mode: 'label'
+            },
+            scales: {
+              yAxes: [
+                {
+                  type: "linear",
                   display: true,
-                  labelString: self.xtitle[0],
+                  scaleLabel: {
+                    display: true,
+                    labelString: self.xtitle[0],
+                  },
+                  position: "left",
+                  id: "y-axis-1"
                 },
-                position: "left",
-                id: "y-axis-1"
-              },
-              {
-                type: "linear",
-                scaleLabel: {
+                {
+                  type: "linear",
+                  scaleLabel: {
+                    display: true,
+                    labelString: self.xtitle[1],
+                  },
                   display: true,
-                  labelString: self.xtitle[1],
+                  position: "right",
+                  id: "y-axis-2"
                 },
-                display: true,
-                position: "right",
-                id: "y-axis-2"
-              },
-            ]
+              ]
+            }
           }
-        }
-      })
-
-      $(window).resize(function()
-      {
-        $('canvas').css('width','100%');
-      });
-    }
+        })
+      
+        $(window).resize(function()
+        {
+          $('canvas').css('width','100%');
+        });
+    	  
+      }
+    },
   }
 </script>
