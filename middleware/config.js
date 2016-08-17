@@ -1,5 +1,5 @@
 module.exports = {
-	COOKIEDOAIM :'localhost',
+	COOKIEDOAIM :'oc.dev.yunhuni.com',
 	COOKIENAME: 'YUNHUNISESSIONID',
-	JAVAAPI : 'http://192.168.10.75:18082',
+	JAVAAPI : 'http://10.171.69.136:18082',
 }
