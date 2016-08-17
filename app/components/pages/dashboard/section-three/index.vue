@@ -29,7 +29,10 @@
      <div class="flex flex-1 flex-direction-column section-right admin-padding">
        <datetime-picker :type="bar"></datetime-picker>
        <div class="flex-1">
-         <chart :uuid="'dashboard-st3-chart'" :type="['line','bar']"
+         <chart :uuid="'dashboard-st3-chart'"
+                :type="['line','bar']"
+                :ydata1="[123,123,324]"
+                :ydata2="[2343,234325,435]"
             :title="['话务量','消费额']",
             :xtitle="['话务量(次数)','消费额(元)']",
             :color="[['rgba(246,239,232,0.2)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],

@@ -1,21 +1,20 @@
 <template>
   <div id="app-chart">
     <div class="app-chart-header flex align-items-c">
-      <input name='app-chart-type' @click="changedatetype('month')"  type="radio" checked=checked/>
+      <input name='app-chart-type' @click="date.type='month'"  type="radio" checked=checked/>
       <label for="">日统计</label>
-      <input name='app-chart-type' @click="changedatetype('year')"  type="radio"/>
+      <input name='app-chart-type' @click="date.type='year'"  type="radio"/>
       <label for="">月统计 </label>
       <div class="datepicker-wrap">
-        <datetime-picker :uuid="'001h'" :type="'month'"></datetime-picker>
+        <datetime-picker v-if="date.type==='month'" :uuid="'appChartLine1'" :action="doGetNewMemberAndApp" :type.sync="'month'" :value.sync="date.value"></datetime-picker>
+        <datetime-picker v-if="date.type==='year'" :uuid="'appChartLine1'" :action="doGetNewMemberAndApp" :type.sync="'year'" :value.sync="date.value"></datetime-picker>
       </div>
-      <button @click="chanagedata">测试</button>
     </div>
-
-    <div>{{ app | json }}</div>
-    <chart :uuid="'bashboard-app-chart'" :type="['line','line']"
+    <chart :uuid="'bashboard-app-chart'"
+           :type="['line','line']"
+           :dateType="dateType"
            :ydata1="app"
            :ydata2="member"
-           :init="getNewMemberAndApp"
            :title="['新增注册会员','新增应用']"
            :xtitle="['会员数(个)','应用数(个)']"
            :color="[['rgba(246,239,232,0.8)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
@@ -38,7 +37,10 @@
     },
     data() {
       return {
-        'datetype':'month',
+        date: {
+          type: 'month',
+          value: ''
+        }
       }
     },
     components: {
@@ -46,18 +48,22 @@
       'datetime-picker': require('../../../ui/datetimepicker.vue')
     },
     methods: {
-      changedatetype(type) {
-        this.datetype = type
+      changeDateType(type) {
+        this.date.type = type
       },
-      chanagedata() {
-         this.getNewMemberAndApp({year:'2016'})
+	    doGetNewMemberAndApp(date){
+      	if (date) {
+      	  this.getNewMemberAndApp(date)
+        } else {
+        	let year = this.date.value.split('-')[0]
+          let month = this.date.value.split('-')[1]
+		      // {year, month} === {year: year, month: month
+          this.getNewMemberAndApp({year: year,month})
+        }
       }
     },
 	  ready(){
-      console.log('ok')
-    	if(this.app.length === 0){
-        this.getNewMemberAndApp({year:'2016',month:'06'})
-      }
+    	this.doGetNewMemberAndApp({year:'2016',month:'06'})
     },
   }
 </script>

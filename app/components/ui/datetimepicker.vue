@@ -1,10 +1,9 @@
 <template>
 	<div class="input-group date-component" :style="{width: `${width}px`}" >
 		<input
-			:id="[uuid]"
+			:value.sync='value'
 			type="text"
-			:value.sync='date'
-			class="form_datetime{{uuid}} _month form-control"
+			class="form_datetime {{uuid}} _month form-control"
 			data-date-end-date="0m" />
 		<span class="iconfont icon-oc-date"></span>
 	</div>
@@ -15,17 +14,26 @@
 	export default {
 		data(){
 			return {
-				date: ''
+				dateConfig: {}
 			}
 		},
 		props: {
-			uuid: {
-					require: true,
-					type: String,
-		    },
+			value: {
+				twoWays: true,
+				type: String,
+			},
+			action: {
+				type: Function,
+				default: ()=>{}
+			},
 			type: {
 				type: String,
+				twoWays: true,
 				default: 'year'
+			},
+			uuid: {
+				require: true,
+				type: String,
 			},
 			width: {
 				type: Number,
@@ -33,54 +41,64 @@
 			}
 		},
 		watch: {
-			'date': function(){
-				this.$dispatch('date-time',this.date,this.uuid)
+			type: function () {
+				this.initDateTimePicker()
+			},
+			value: function(){
+				this.initDateTimePicker()
+			}
+		},
+		methods: {
+			initDateTimePicker(){
+				let self = this
+				// 当前日期
+				let type = self.type
+				let date = new Date()
+				switch (type) {
+					case 'year':
+						self.dateConfig = {
+							format: 'yyyy',
+							startView: 'decade',
+							minView: 'decade',
+							startDate: '2016',
+							endDate: '2017'
+						}
+						console.log('here year')
+						break;
+					case 'month':
+						self.dateConfig = {
+							format: 'yyyy-mm',
+							startView: 'year',
+							minView: 'year',
+							startDate: '2016-06',
+							endDate: '2017-01'
+						}
+						break;
+					case 'day':
+						self.dateConfig = {
+							format: 'yyyy-mm-dd',
+							startView: 'month',
+							minView: 'day',
+						}
+						break;
+					case 'time':
+						self.dateConfig = {
+							format: 'yyyy-mm-dd hh:ii',
+							startView: 'month',
+							minView: 'hour',
+						}
+						break;
+				}
+				$('.form_datetime.' + self.uuid).datetimepicker(self.dateConfig).on('changeDate', function (e) {
+					$(this).datetimepicker('hide')
+					let currenSelectDate = $(this)[0].value
+					self.value = currenSelectDate ? currenSelectDate : self.value
+					self.action()
+				});
 			}
 		},
 		ready(){
-			const self = this
-			// 当前日期
-			let date = new Date()
-			let type = self.type
-			let datetimepickerObj = null
-			switch (type){
-				case 'year':
-					datetimepickerObj = {
-						format: 'yyyy',
-						startView: 'year',
-						minView: 'year',
-					}
-					break;
-				case 'month':
-					datetimepickerObj = {
-						format: 'yyyy-mm',
-						startView: 'year',
-						minView: 'year',
-					}
-					break;	
-				case 'day':
-					datetimepickerObj = {
-						format: 'yyyy-mm-dd',
-						startView: 'month',
-						minView: 'day',
-					}
-					break;
-				case 'time':
-					datetimepickerObj = {
-						format: 'yyyy-mm-dd hh:ii',
-						startView: 'month',
-						minView: 'hour',
-					}
-					break;
-			}
-
-			$('.form_datetime'+this.uuid).datetimepicker(datetimepickerObj).on('changeDate',function(e){
-				$(this).datetimepicker('hide')
-				
-				let currenSelectDate = $(this)[0].value
-				console.log(currenSelectDate);
-				self.date = currenSelectDate ? currenSelectDate : self.date
-			});
+			this.initDateTimePicker('month')
 		}
 	}
 </script>

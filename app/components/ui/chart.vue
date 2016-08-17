@@ -5,7 +5,7 @@
  ***/
 
 <template>
-    <canvas :class="[uuid]" height='100'></canvas>
+    <canvas :class="uuid" height='100'></canvas>
 </template>
 <script>
 import Chart from 'chart.js';
@@ -52,14 +52,12 @@ import chance from 'chance'
       },
       ydata1: {
         type:Array,
-        twoWays:true,
         default:function() {
           return []
         }
       },
       ydata2: {
         type:Array,
-        twoWays:true,
         default: function() {
          return []
         }
@@ -126,10 +124,9 @@ import chance from 'chance'
           ]
         };
       
-      
         const ctx = document.querySelector("."+self.uuid).getContext('2d')
       
-        this.chart = new Chart(this.$el.getContext('2d'), {
+				this.chart = new Chart(ctx, {
           type: self.type[1] === 'bar' ? 'bar' : 'line',
           data: data,
           options: {
@@ -171,12 +168,16 @@ import chance from 'chance'
           }
         })
       
-        $(window).resize(function()
-        {
-          $('canvas').css('width','100%');
-        });
-    	  
       }
     },
+    ready(){
+    	if( this.ydata1.length ) {
+    		this.initChart()
+      }
+//      $(window).resize(function()
+//      {
+//        $('canvas').css('width','100%');
+//      });
+    }
   }
 </script>

@@ -23,21 +23,17 @@
       },
       min: {
         type: Number,
-        twoWays: true,
         default: 0
       },
       max: {
         type: Number,
-        twoWays: true,
 	      default: 0 },
       value: {
         type: Number,
-        twoWays: true,
         default: 50
       },
       bgcolor: {
         type: String,
-        twoWays: true,
       },
       height: {
         type: Number,
@@ -65,13 +61,12 @@
 	    }
 	  },
 	  ready(){
-		  if(this.max !== 0){
+		  if( this.max !== 0) {
 			  this.initPie()
 		  }
 	  }
   }
 </script>
-
 
 <style lang="sass">
   .dial{
