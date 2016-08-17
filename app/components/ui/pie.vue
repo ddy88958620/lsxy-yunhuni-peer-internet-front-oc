@@ -52,7 +52,11 @@
 	  methods: {
     	initPie(){
 		    let that = this
-		    $("."+that.uuid).knob({
+		    if(this.pie){
+		    	this.pie.trigger('change')
+		    	return
+		    }
+		    this.pie = $("."+that.uuid).knob({
 			    'readOnly': true,
 			    'min': that.min,
 			    'max': that.max,

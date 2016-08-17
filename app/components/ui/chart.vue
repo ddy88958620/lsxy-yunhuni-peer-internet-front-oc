@@ -9,7 +9,7 @@
 </template>
 <script>
 import Chart from 'chart.js';
-import chance from 'chance'
+import uuid from 'node-uuid';
   export default {
     data(){
       return {
@@ -52,26 +52,28 @@ import chance from 'chance'
       },
       ydata1: {
         type:Array,
+	      twoWays: true,
         default:function() {
           return []
         }
       },
       ydata2: {
         type:Array,
+        twoWays: true,
         default: function() {
          return []
         }
       }
     },
     watch: {
-    	ydata1: function(){
-    		this.initChart()
+    	ydata1: function(newData, old){
+        this.initChart()
       }
     },
 	  methods: {
     	initChart() {
         let self = this
-      
+		    console.log(this.chart)
         //计算当前月份日数
         var data = {
           labels: self.month,
@@ -123,6 +125,12 @@ import chance from 'chance'
             }
           ]
         };
+        
+        if (this.chart) {
+          this.chart.chart.config.data = data
+          this.chart.update()
+          return
+        }
       
         const ctx = document.querySelector("."+self.uuid).getContext('2d')
       
@@ -174,10 +182,11 @@ import chance from 'chance'
     	if( this.ydata1.length ) {
     		this.initChart()
       }
-//      $(window).resize(function()
-//      {
-//        $('canvas').css('width','100%');
-//      });
+      $(window).resize(function()
+      {
+        $('canvas').css('width','100%');
+      });
+      console.log(uuid.v1())
     }
   }
 </script>

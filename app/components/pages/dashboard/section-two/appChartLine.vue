@@ -8,6 +8,7 @@
       <div class="datepicker-wrap">
         <datetime-picker v-if="date.type==='month'" :uuid="'appChartLine1'" :action="doGetNewMemberAndApp" :type.sync="'month'" :value.sync="date.value"></datetime-picker>
         <datetime-picker v-if="date.type==='year'" :uuid="'appChartLine1'" :action="doGetNewMemberAndApp" :type.sync="'year'" :value.sync="date.value"></datetime-picker>
+        <datetime-picker  :uuid="'appChartLine2'" :action="doGetNewMemberAndApp" :type.sync="date.type" :value.sync="date.value"></datetime-picker>
       </div>
     </div>
     <chart :uuid="'bashboard-app-chart'"

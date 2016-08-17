@@ -3,7 +3,8 @@
 		<input
 			:value.sync='value'
 			type="text"
-			class="form_datetime {{uuid}} _month form-control"
+			id="{{uuid}}"
+			class="form_datetime _month form-control"
 			data-date-end-date="0m" />
 		<span class="iconfont icon-oc-date"></span>
 	</div>
@@ -14,7 +15,7 @@
 	export default {
 		data(){
 			return {
-				dateConfig: {}
+				dateConfig: {},
 			}
 		},
 		props: {
@@ -24,16 +25,18 @@
 			},
 			action: {
 				type: Function,
-				default: ()=>{}
+				default: function(){
+					return
+				}
+			},
+			uuid: {
+				type: String,
+				
 			},
 			type: {
 				type: String,
 				twoWays: true,
 				default: 'year'
-			},
-			uuid: {
-				require: true,
-				type: String,
 			},
 			width: {
 				type: Number,
@@ -42,18 +45,20 @@
 		},
 		watch: {
 			type: function () {
-				this.initDateTimePicker()
+				$('#'+this.uuid).datetimepicker('update');
+				console.log('update type')
 			},
 			value: function(){
-				this.initDateTimePicker()
+				$('#'+this.uuid).datetimepicker('update');
+				console.log('update type')
 			}
 		},
 		methods: {
 			initDateTimePicker(){
-				let self = this
+				var self = this
 				// 当前日期
-				let type = self.type
-				let date = new Date()
+				var type = self.type
+				var date = new Date()
 				switch (type) {
 					case 'year':
 						self.dateConfig = {
@@ -89,11 +94,13 @@
 						}
 						break;
 				}
-				$('.form_datetime.' + self.uuid).datetimepicker(self.dateConfig).on('changeDate', function (e) {
+				
+				this.datetimepicker = $('#'+ self.uuid).datetimepicker(self.dateConfig).on('changeDate', function (e) {
 					$(this).datetimepicker('hide')
-					let currenSelectDate = $(this)[0].value
+					var currenSelectDate = $(this)[0].value
 					self.value = currenSelectDate ? currenSelectDate : self.value
 					self.action()
+					console.log('action')
 				});
 			}
 		},
