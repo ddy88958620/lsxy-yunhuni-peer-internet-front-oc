@@ -52,7 +52,7 @@ export default {
     pie
   },
   ready(){
-    return this.getAppCount()
+    this.getAppCount()
   }
 }
 </script>

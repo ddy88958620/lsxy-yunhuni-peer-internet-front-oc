@@ -42,6 +42,9 @@ const mutations = {
   [LASTDAY_COMSUME] (state, comsume) {
     state.duration = comsume
   },
+  [LASTDAY_DURATION] (state, comsume) {
+    // state.duration = comsume
+  },
   [MEMBER_APP_STATISTIC] (state, statistic) {
     state.statistic.memberapp = statistic
   },

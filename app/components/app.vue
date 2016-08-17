@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-view></router-view>
+    <router-view keep-alive></router-view>
     <toaster :content.sync='message.content'></toaster>
   </div>
 </template>

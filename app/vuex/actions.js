@@ -82,12 +82,11 @@ export const getLastDayComsume = ({dispatch}) => {
   })
 }
 
-
 //昨日消费额
 export const getLastDayDuration = ({dispatch}) => {
   api.getLastDayDuration().then(response =>{
     let duration = response.json()
-    dispatch(types.LASTDAY_DURATION, duration.data)
+		dispatch(types.LASTDAY_DURATION, duration.data)
   }, response => {
     console.log('fail');
   })
