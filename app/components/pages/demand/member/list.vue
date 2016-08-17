@@ -9,34 +9,11 @@
 			<div class="tab"><a class="flex" v-link="'/admin/demand/member/list/auditing'">已审核</a></div>
 			<div class="tab"><a class="flex" v-link="'/admin/demand/member/list/unauth'">审核不通过</a></div>
 		</div>
-		<div class="flex align-items-c bg-section-margin remove-margin-bottom  ">
-			<div class="select-box">
-				<search
-					placeholder="请输入关键字,如会员名称"
-				></search>
-			</div>
-			<span class='datetime-picker-label '>申请时间:</span>
-			<datetime-picker></datetime-picker>
-			<span class='datetime-picker-label'>至</span>
-			<datetime-picker></datetime-picker>
-			<span class='datetime-picker-label'>认证类型: </span>
-			<select class="form-control">
-				<option>全部</option>
-				<option>已上线</option>
-				<option>未上线</option>
-			</select>
-			<button class="btn btn-primary admin-button-margin">查询</button>
-
-		</div>
 	</div>
 	<router-view></router-view>
 </template>
 <script>
 	export default {
-		components: {
-			'datetime-picker': require('../../../ui/datetimepicker.vue'),
-			'search': require('../../../ui/search-input.vue')
-		},
 		ready(){
 
 		}

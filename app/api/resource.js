@@ -75,3 +75,6 @@ export const InvoiceEdit = Vue.resource(domain.API_ROOT+'/finance/invoice/edit/{
 export const ServiceList = Vue.resource(domain.API_ROOT+'/service/list')
 
 //审核中心
+export const DemandDetail = Vue.resource(domain.API_ROOT+'/demand/member/detail/{uid}')
+export const DemandEdit = Vue.resource(domain.API_ROOT+'/demand/member/edit')
+export const DemandList = Vue.resource(domain.API_ROOT+'/demand/member/{authStatus}/list')

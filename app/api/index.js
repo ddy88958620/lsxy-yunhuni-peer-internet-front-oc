@@ -13,7 +13,9 @@ import {
   MessageList,MessageNew,MessageEdit,MessageDetail,
   InvoiceList,InvoiceDetail,InvoiceEdit,InvoiceSendList,
   ServiceList,
+  DemandDetail,DemandEdit,DemandList,
 } from './resource.js'
+
 
 
 export default {
@@ -94,8 +96,14 @@ export default {
   },
   getServiceList(param){
     return ServiceList.get(param)
-  }
-
+  },
+  getDemandDetail(param){
+    return DemandDetail.get(param)
+  },
+  editDemand(param){
+    return DemandEdit.post(param)
+  },
+  getDemandList(param){
+    return DemandList.get(param)
+  },
 }
-
-

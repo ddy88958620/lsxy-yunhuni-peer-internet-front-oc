@@ -240,7 +240,7 @@ export const getMoreService = ({dispatch},params) =>{
 
 //财务中心 
 export const getInvoiceList = ({dispatch},params) =>{
-   api.getInvoiceList(params).then(response=> {
+  api.getInvoiceList(params).then(response=> {
     let invoice_list = response.json()
     switch(params.status){
       case 'await':
@@ -283,13 +283,111 @@ export const getMoreInvoiceList = ({dispatch},params) =>{
 
 //财务中心 详情
 export const getInvoiceDetail = ({dispatch},params) =>{
-   api.getInvoiceDetail(params).then(response=> {
+  api.getInvoiceDetail(params).then(response=> {
     let detail = response.json()
     dispatch(types.INVOICE_DETAIL,detail.data)
   }, response =>{
     console.log('fail');
   })
-
-
-  
 }
+
+
+export const getDeliveryList = ({dispatch},params) =>{
+  api.getInvoiceSendList(params).then(response=> {
+    let invoice_list = response.json()
+    console.log(invoice_list)
+    console.log(params.status)
+
+    switch(params.status){
+      case 'auditing':
+
+        console.log(0)
+        dispatch(types.DELIVERY_UNSEND_LIST,invoice_list.data)
+        break;
+      case 'unauth': 
+        dispatch(types.DELIVERY_SEND_LIST,invoice_list.data)
+        break;  
+    }
+  }, response =>{
+    console.log('fail');
+  })
+}
+
+
+
+//财务中心 加载更多
+export const getMoreDeliveryList = ({dispatch},params) =>{
+  api.getInvoiceSendList(params).then(response=> {
+    let delivery_list = response.json()
+    if(invoice_list.data.result.length>0){
+      switch(params.status){
+        case 'auditing':
+          dispatch(types.DELIVERY_UNSEND_LIST,delivery_list.data)
+        break;
+        case 'unauth':
+          dispatch(types.DELIVERY_SEND_LIST,delivery_list.data)
+        break;  
+      }
+    }
+  }, response =>{
+    console.log('fail');
+  })
+}
+
+//审核列表
+export const getDemandList = ({dispatch},params) =>{
+  api.getDemandList(params).then(response=> {
+    let demand_list = response.json()
+   
+    switch(params.authStatus){
+      case 'await':
+        dispatch(types.DEMAND_AWAIT_LIST,demand_list.data)
+        break;
+      case 'auditing':
+        dispatch(types.DEMAND_AUDITING_LIST,demand_list.data)
+        break;
+      case 'unauth':
+        dispatch(types.DEMAND_UNAUTH_LIST,demand_list.data)
+        break;  
+    }
+
+  },response =>{
+  })
+}
+
+
+
+//审核列表 加载更多
+export const getMoreDemandList = ({dispatch},params) =>{
+  api.getDemandList(params).then(response=> {
+    let delivery_list = response.json()
+    if(invoice_list.data.result.length>0){
+      switch(params.status){
+        case 'await':
+          dispatch(types.DEMAND_MORE_PENDING_LIST,demand_list.data)
+          break;
+        case 'auditing':
+          dispatch(types.DEMAND_MORE_AUDITING_LIST,delivery_list.data)
+          break;
+        case 'unauth':
+          dispatch(types.DEMAND_MORE_UNAUTH_LIST,delivery_list.data)
+          break;  
+      }
+    }
+  }, response =>{
+    console.log('fail');
+  })
+}
+
+
+/*//审核中心修改
+export const editDemand = ({dispatch},params) =>{
+
+}
+
+//详情
+export const getDemandDetail = ({dispatch},params) =>{
+
+}
+*/
+

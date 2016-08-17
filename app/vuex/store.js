@@ -11,6 +11,7 @@ import tenant from './modules/tenant.js'
 import message from './modules/message.js'
 import service from './modules/service.js'
 import finance from './modules/finance.js'
+import demand from './modules/demand.js'
 
 const debug = process.env.NODE_ENV !== 'production'
 
@@ -27,6 +28,7 @@ export default new Vuex.Store({
     message,
     service,
     finance,
+    demand,
   },
   strict: debug,
   middlewares: debug ? [createLogger()] : []
