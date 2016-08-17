@@ -221,7 +221,18 @@ export const getServiceList = ({dispatch},params) =>{
    api.getServiceList(params).then(response=> {
     let service_list = response.json()
     dispatch(types.SERVICE_LIST,service_list.data)
+  }, response =>{
+    console.log('fail');
+  })
+}
 
+//客服中心 加载更多
+export const getMoreService = ({dispatch},params) =>{
+  api.getTenantList(params).then(response=> {
+    let service_list = response.json()
+    if(service_list.data.result.length>0){
+      dispatch(types.SERVICE_MORE_LIST,service_list.data)
+    }
   }, response =>{
     console.log('fail');
   })

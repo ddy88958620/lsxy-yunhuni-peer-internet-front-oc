@@ -50,6 +50,7 @@
     },
     watch: {
     	max: function(state, old) {
+        console.log('watch')
     		this.initPie()
 	    }
     },
