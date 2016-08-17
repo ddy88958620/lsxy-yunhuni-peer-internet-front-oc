@@ -6,7 +6,7 @@ const ADMINPROCESSENV =  process.env.NODE_ENV
 console.info('NODE_ENV', ADMINPROCESSENV);
 
 // API Root
-const YUNHUNIHOST = ADMINPROCESSENV ? 'oc.dev.yunhuni.com' : 'localhost'
+const YUNHUNIHOST = ADMINPROCESSENV ? window.location.host : 'localhost'
 const YUNHUNIHOSTPORT = ADMINPROCESSENV ? '80' : ''
 
 
