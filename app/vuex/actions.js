@@ -2,7 +2,6 @@ import api from '../api'
 import * as types from './mutation-types.js'
 import {saveCookie, removeCookie} from '../utils/cookieAuth.js'
 
-
 export const showMsg = ({dispatch}, message) => {
   console.log(message);
   dispatch(types.SHOW_MSG, message)
@@ -54,9 +53,7 @@ export const getAppCount = ({dispatch}) => {
 export const getMemberCount = ({dispatch}) =>{
   api.getMemberCount().then(response => {
     let member_data = response.json()
-
     dispatch(types.MEMBER_COUNT, member_data.data)
-
   }, response => {
     console.log('fail');
   })
@@ -93,7 +90,7 @@ export const getLastDayDuration = ({dispatch}) => {
 }
 
 //新增会员、应用统计
-export const getNewMemberAndApp = ({dispatch},date) => {
+export const getNewMemberAndApp = ({dispatch}, date) => {
   api.getNewMemberAndApp(date).then(response =>{
       let duration = response.json()
       dispatch(types.MEMBER_APP_STATISTIC, duration.data)
