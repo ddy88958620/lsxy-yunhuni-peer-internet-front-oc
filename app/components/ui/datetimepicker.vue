@@ -11,6 +11,7 @@
 </template>
 <script>
 	require("bootstrap-datetime-picker")
+	require("bootstrap-datetime-picker/js/locales/bootstrap-datetimepicker.zh-CN.js")
 	
 	export default {
 		data(){
@@ -61,16 +62,18 @@
 				switch (type) {
 					case 'year':
 						self.dateConfig = {
+							language: 'zh-CN',
 							format: 'yyyy',
 							startView: 'decade',
 							minView: 'decade',
 							startDate: '2016',
-							endDate: '2017'
+							endDate: '2017',
 						}
 						console.log('here year')
 						break;
 					case 'month':
 						self.dateConfig = {
+							language: 'zh-CN',
 							format: 'yyyy-mm',
 							startView: 'year',
 							minView: 'year',
@@ -80,6 +83,7 @@
 						break;
 					case 'day':
 						self.dateConfig = {
+							language: 'zh-CN',
 							format: 'yyyy-mm-dd',
 							startView: 'month',
 							minView: 'day',
@@ -87,6 +91,7 @@
 						break;
 					case 'time':
 						self.dateConfig = {
+							language: 'zh-CN',
 							format: 'yyyy-mm-dd hh:ii',
 							startView: 'month',
 							minView: 'hour',
