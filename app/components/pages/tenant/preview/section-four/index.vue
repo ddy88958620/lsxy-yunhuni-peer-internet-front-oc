@@ -4,7 +4,7 @@
     <div class="child-box flex flex-1  padding-right-10 ">
       <div class="flex flex-1 flex-direction-column whilebg admin-padding admin-border">
         <div class="flex section-time-box">
-          <a @click="chartOneDate.month-1" >上个月</a>
+          <a @click="previousMonth" >上个月</a>
           <span>{{chartOneDate.year}}-0{{ chartOneDate.month }}</span>
         </div>
         <div class="flex flex-1">
@@ -23,7 +23,10 @@
     <div class="child-box flex flex-1  padding-left-10 ">
       <div class="flex flex-1 flex-direction-column whilebg admin-padding admin-border">
         <div class="flex section-time-box">
-          <a >本月</a>  <a >上一月</a> <a >上一月</a>
+          <a >本月</a>
+          <a @click="chartOneDate.month= chartOneDate.month - 1"  >上一月</a>
+          <a @click="chartOneDate.month= chartOneDate.month + 1" >上一月</a>
+
           <span>2016-08-1</span>
         </div>
         <div class="flex flex-1">
@@ -42,23 +45,37 @@
 <script>
   export default{
     data(){
-    	return {
-    		chartOneValue: [],
-				chartOneDate:{
-					year: 2016,
-					month: 8
-				},
+      return {
+        chartOneValue: [],
+        chartOneDate:{
+          year: 2016,
+          month: 8
+        },
         chartTwoValue: [],
-				chartTwodate: {
-					year: 2016,
-					month: 8
-				}
+        chartTwodate: {
+          year: 2016,
+          month: 8
+        }
       }
+    },
+    watch: {
+        chartOneDate: {
+          handler(){
+            console.log('chartOneDate update')
+          },
+          deep: true
+        }
     },
     components:{
       'chart': require('../../../../ui/realtime-chart.vue')
     },
     methods: {
+      previousMonth(){
+        this.chartOneDate.month = this.chartOneDate.month > 1 ? this.chartOneDate.month - 1 : 1
+      },
+      nextMonth(){
+        this.chartOneDate.month = this.chartOneDate.month < 12 ? this.chartOneDate.month + 1 : 12
+      },
     	chartOneQuery(){
         let uid = this.$route.params.uid
         let self = this

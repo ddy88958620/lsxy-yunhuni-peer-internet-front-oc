@@ -46,7 +46,7 @@
     },
     ready(){
       let uid = this.$route.params.uid
-    	this.doGetTenantDuration({id: uid, year: '2016', month:'08'})
+      this.doGetTenantDuration({id: uid, year: '2016', month:'08'})
     }
   }
 </script>
