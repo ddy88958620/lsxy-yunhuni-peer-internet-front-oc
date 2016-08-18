@@ -12,7 +12,9 @@ Vue.http.interceptors.push(
     // request.headers['X-YUNHUNI-API-TOKEN'] = getCookie('token')
     next((response) => {
       // 每次请求判断一次401
-      // console.log(response.status);
+      if(response.status === 401){
+		    window.location= '/#!/auth/login'
+	    }
     })
   }
 )
