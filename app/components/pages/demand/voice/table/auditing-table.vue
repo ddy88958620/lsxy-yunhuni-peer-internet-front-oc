@@ -5,16 +5,16 @@
 				placeholder="请输入关键字,如会员名称"
 			></search></div>
 			<span class='datetime-picker-label '>申请时间:</span>
-			<datetime-picker></datetime-picker>
+			<datetime-picker :uuid="'demandVoiceStartDate'"  :type.sync="startdate.type" :value.sync="startdate.value"></datetime-picker>
 			<span class='datetime-picker-label'>至</span>
-			<datetime-picker></datetime-picker>
+			<datetime-picker :uuid="'demandVoiceEndDate'"  :type.sync="enddate.type" :value.sync="enddate.value"></datetime-picker>
 			<!-- <span class='datetime-picker-label'>认证类型: </span>
 			<select class="form-control">
 				<option>全部</option>
 				<option>已上线</option>
 				<option>未上线</option>
 			</select> -->
-			<button class="btn btn-primary admin-button-margin">查询</button>
+			<button class="btn btn-primary admin-button-margin" @click="query">查询2</button>
 		</div>
 	</div>
 	<div>
@@ -74,10 +74,26 @@
 				messages: [],
 				total: 0,
 				type : 'auditing',
-				name:''
+				name:'',
+				startdate :{
+					type:'day',
+					value:'',
+				},
+				enddate :{
+					type:'day',
+					value:'',
+				},
+
 			}
 		},
 		methods: {
+			query(){
+				let params = {}
+				params.type =  this.type
+				params.startTime = this.startdate.value
+				params.endTime = this.enddate.value
+				this.getVoiceList(params)
+			},
 			moreMessage(){
 
 
