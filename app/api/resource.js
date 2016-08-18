@@ -78,3 +78,6 @@ export const ServiceList = Vue.resource(domain.API_ROOT+'/service/list')
 export const DemandDetail = Vue.resource(domain.API_ROOT+'/demand/member/detail/{uid}')
 export const DemandEdit = Vue.resource(domain.API_ROOT+'/demand/member/edit')
 export const DemandList = Vue.resource(domain.API_ROOT+'/demand/member/{authStatus}/list')
+//放音文件
+export const VoiceLlist = Vue.resource(domain.API_ROOT+'/demand/member/voice/{type}/list')
+export const VoiceEdit  = Vue.resource(domain.API_ROOT+'/demand/member/voice/edit')

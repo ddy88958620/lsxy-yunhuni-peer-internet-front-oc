@@ -5,8 +5,13 @@ import {
   DEMAND_MORE_AUDITING_LIST,
   DEMAND_UNAUTH_LIST,
   DEMAND_MORE_UNAUTH_LIST,
+  VOICE_AWAIT_LIST,
+  VOICE_MORE_PENDING_LIST,
+  VOICE_AUDITING_LIST,
+  VOICE_MORE_AUDITING_LIST,
+  VOICE_UNAUTH_LIST,
+  VOICE_MORE_UNAUTH_LIST,
  
-
 } from '../mutation-types'
 
 
@@ -18,11 +23,11 @@ const state = {
     unauth: {}
   },
   memberdetail:{},
-  deliverylist: {
-    unsend: {},
-    send: {}
-  },
-  delivery:{}
+  voicelist: {
+    await: {},
+    auditing: {},
+    unauth: {}
+  }
 }
 
 const mutations = {
@@ -46,6 +51,27 @@ const mutations = {
   [DEMAND_MORE_UNAUTH_LIST] (state, list) {
     state.memberlist.unauth.currentPageNo = list.currentPageNo
     state.memberlist.unauth.result = state.memberlist.unauth.result.concat(list.result)
+  },
+  [VOICE_AWAIT_LIST] (state, list) {
+    state.voicelist.await = list
+  },
+  [VOICE_MORE_PENDING_LIST] (state, list) {
+    state.voicelist.await.currentPageNo = list.currentPageNo
+    state.voicelist.await.result = state.voicelist.await.result.concat(list.result)
+  },
+  [VOICE_AUDITING_LIST] (state, list) {
+    state.voicelist.auditing = list
+  },
+  [VOICE_MORE_AUDITING_LIST] (state, list) {
+    state.voicelist.auditing.currentPageNo = list.currentPageNo
+    state.voicelist.auditing.result = state.voicelist.auditing.result.concat(list.result)
+  },
+  [VOICE_UNAUTH_LIST] (state, list) {
+    state.voicelist.unauth = list
+  },
+  [VOICE_MORE_UNAUTH_LIST] (state, list) {
+    state.voicelist.unauth.currentPageNo = list.currentPageNo
+    state.voicelist.unauth.result = state.voicelist.unauth.result.concat(list.result)
   },
 }
 

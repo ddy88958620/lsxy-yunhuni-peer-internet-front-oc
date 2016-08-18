@@ -14,7 +14,10 @@ import {
   InvoiceList,InvoiceDetail,InvoiceEdit,InvoiceSendList,
   ServiceList,
   DemandDetail,DemandEdit,DemandList,
+  VoiceLlist,VoiceEdit,
 } from './resource.js'
+
+
 
 
 
@@ -106,4 +109,12 @@ export default {
   getDemandList(param){
     return DemandList.get(param)
   },
+  getVoiceLlist(param){
+    return VoiceLlist.get(param)
+  },
+  editVoiceEdit(param){
+    return VoiceEdit.post(param)
+  },
 }
+
+
