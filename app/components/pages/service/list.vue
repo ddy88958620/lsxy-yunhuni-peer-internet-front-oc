@@ -6,17 +6,17 @@
 			<h4>反馈意见</h4>
 			<div class="flex align-items-c bg-section-margin remove-margin-bottom">
 				<span class='datetime-picker-label clear-padding-left'>提交时间:</span>
-				<datetime-picker uuid='starttime' type='day' ></datetime-picker>
+				<datetime-picker :uuid="'serverStartDate'"  :type.sync="startdate.type" :value.sync="startdate.value"></datetime-picker>
 				<span class='datetime-picker-label'>至</span>
-				<datetime-picker uuid='endtime' type='day' ></datetime-picker>
+				<datetime-picker :uuid="'serveEndStartDate'"  :type.sync="enddate.type" :value.sync="enddate.value"></datetime-picker>
 				<span class='datetime-picker-label'>状态: </span>
-				<select class="form-control">
+				<select class="form-control" v-model='status'>
 					<option value="2">全部</option>
 					<option value="1">已读</option>
 					<option value="0">未读</option>
 				</select>
 
-				<a class="btn btn-primary admin-button-margin" >查询</a>
+				<a class="btn btn-primary admin-button-margin" @click="query" >查询</a>
 
 				<a class="btn btn-primary " v-link="'/admin/service'">全部标记为已读</a>
 			</div>
@@ -70,16 +70,38 @@
 		},
 		data(){
 			return {
-				status:2
+				status:2,
+				startdate :{
+					type:'day',
+					value:'',
+				},
+				enddate :{
+					type:'day',
+					value:'',
+				},
 			}
 		},
 		methods: {
 			moreMessage(){
 				let nextPage = this.service.currentPageNo+1
-				let params = {};
+				let params = {}
+				params.startTime = this.startdate.value
+				params.endTime = this.enddate.value
+				if(this.status!=2){
+					params.status = this.status
+				}
 				params.pageNo = nextPage
 				this.getMoreService(params)
 				
+			},
+			query(){
+				let params = {}
+				params.startTime = this.startdate.value
+				params.endTime = this.enddate.value
+				if(this.status!=2){
+					params.status = this.status
+				}
+				this.getServiceList(params)
 			}
 		},
 		ready(){

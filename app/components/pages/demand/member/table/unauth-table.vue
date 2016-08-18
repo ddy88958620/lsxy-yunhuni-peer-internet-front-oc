@@ -7,9 +7,11 @@
 				></search>
 			</div>
 			<span class='datetime-picker-label '>申请时间:</span>
-			<datetime-picker></datetime-picker>
+			<datetime-picker :uuid="'demandMemberStartDate'"  :type.sync="startdate.type" :value.sync="startdate.value"></datetime-picker>
+			
 			<span class='datetime-picker-label'>至</span>
-			<datetime-picker></datetime-picker>
+			<datetime-picker :uuid="'demandMemberEndDate'"  :type.sync="enddate.type" :value.sync="enddate.value"></datetime-picker>
+		
 			<span class='datetime-picker-label'>认证类型: </span>
 			<select class="form-control" v-model='type' >
 				<option value="-1">全部</option>
@@ -74,6 +76,14 @@
 				total : 0,
 				authStatus:'unauth',
 				type:'-1',
+				startdate :{
+					type:'day',
+					value:'',
+				},
+				enddate :{
+					type:'day',
+					value:'',
+				},
 
 			}
 		},
@@ -91,7 +101,8 @@
 				if(this.type!=-1){
 					params.type = this.type
 				}
-				console.log(params)
+				params.startTime = this.startdate.value
+				params.endTime = this.enddate.value
 				this.getDemandList(params)
 			}
 		},
