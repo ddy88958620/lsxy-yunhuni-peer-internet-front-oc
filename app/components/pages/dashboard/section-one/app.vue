@@ -6,7 +6,7 @@
 
         <div class='flex flex-1 flex-direction-column align-items-c justify-content-c'>
           <div class="flex  pie_wrap">
-            <pie :uuid="'apppie'" :max.sync="app.total" :value.sync="app.total" :bgcolor="'#89d9e3'"></pie>
+            <pie :uuid="'apppie'" :max="app.total" :value="app.total" :bgcolor="'#89d9e3'"></pie>
           </div>
           <div class="flex  align-items-c title-box">
             总应用数（个）
@@ -17,7 +17,7 @@
 
         <div class='flex flex-1 flex-direction-column align-items-c justify-content-c'>
           <div class="flex  pie_wrap align-items-c ">
-            <pie :uuid="'appie2'" :max.sync="app.total" :value.sync="app.online" :bgcolor="'#80d1ff'" ></pie>
+            <pie :uuid="'appie2'" :max="app.total" :value="app.online" :bgcolor="'#80d1ff'" ></pie>
           </div>
           <div class="flex align-items-c title-box">
             总上线应用数（个)

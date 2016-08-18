@@ -51,8 +51,8 @@
 					<td>{{message.name}}</td>
 					<td class="text-align-c">{{message.app_count ? message.app_count: 0 }}</td>
 					<td class="{{ message.status ? 'text-danger' : ''}}">{{message.auth_status ? '未上线' : '已上线'}}</td>
-					<td class="text-align-c">{{message.cost_coin ? message.cost_coin : 0}}</td>
-					<td class="text-align-c">{{message.remain_coin ? message.remain_coin : 0 }}</td>
+					<td class="text-align-c">{{message.remain_coin ? message.remain_coin : 0}}</td>
+					<td class="text-align-c">{{message.cost_coin ? message.cost_coin : 0 }}</td>
 					<td class="text-align-c">{{message.total_coin ? message.total_coin : 0 }}</td>
 					<td class="text-align-c">{{message.session_count ? message.session_count : 0 }}</td>
 					<td class="text-align-c">{{message.session_time ? message.session_time : 0 }}</td>

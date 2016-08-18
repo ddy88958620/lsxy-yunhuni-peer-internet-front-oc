@@ -23,21 +23,17 @@
       },
       min: {
         type: Number,
-        twoWays: true,
         default: 0
       },
       max: {
         type: Number,
-        twoWays: true,
 	      default: 0 },
       value: {
         type: Number,
-        twoWays: true,
         default: 50
       },
       bgcolor: {
         type: String,
-        twoWays: true,
       },
       height: {
         type: Number,
@@ -57,7 +53,11 @@
 	  methods: {
     	initPie(){
 		    let that = this
-		    $("."+that.uuid).knob({
+		    if(this.pie){
+		    	this.pie.trigger('change')
+		    	return
+		    }
+		    this.pie = $("."+that.uuid).knob({
 			    'readOnly': true,
 			    'min': that.min,
 			    'max': that.max,
@@ -66,13 +66,12 @@
 	    }
 	  },
 	  ready(){
-		  if(this.max !== 0){
+		  if( this.max !== 0) {
 			  this.initPie()
 		  }
 	  }
   }
 </script>
-
 
 <style lang="sass">
   .dial{

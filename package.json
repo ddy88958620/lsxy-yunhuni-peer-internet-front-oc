@@ -49,6 +49,7 @@
     "jquery-knob": "^1.2.11",
     "js-cookie": "^2.1.2",
     "knob": "^1.0.0",
+    "node-uuid": "^1.4.7",
     "nprogress": "^0.2.0",
     "simditor": "^2.3.6",
     "vue": "^1.0.26",
