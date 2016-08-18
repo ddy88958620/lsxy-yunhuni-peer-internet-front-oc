@@ -60,7 +60,7 @@
       }
     },
 	  ready(){
-    	this.doGetNewMemberAndApp({year:'2016',month:'06'})
+    	this.doGetNewMemberAndApp({year:'2016',month:'08'})
     },
   }
 </script>
