@@ -67,6 +67,7 @@ export const MessageDetail = Vue.resource(domain.API_ROOT+'/message/detail/{id}'
 
 //财务中心
 export const InvoiceList = Vue.resource(domain.API_ROOT+'/finance/invoice/{status}/list')
+export const InvoiceSendList = Vue.resource(domain.API_ROOT+'/finance/invoice/{status}/send/list')
 export const InvoiceDetail = Vue.resource(domain.API_ROOT+'/finance/invoice/detail/{id}')
 export const InvoiceEdit = Vue.resource(domain.API_ROOT+'/finance/invoice/edit/{id}')
 
@@ -74,3 +75,6 @@ export const InvoiceEdit = Vue.resource(domain.API_ROOT+'/finance/invoice/edit/{
 export const ServiceList = Vue.resource(domain.API_ROOT+'/service/list')
 
 //审核中心
+export const DemandDetail = Vue.resource(domain.API_ROOT+'/demand/member/detail/{uid}')
+export const DemandEdit = Vue.resource(domain.API_ROOT+'/demand/member/edit')
+export const DemandList = Vue.resource(domain.API_ROOT+'/demand/member/{authStatus}/list')

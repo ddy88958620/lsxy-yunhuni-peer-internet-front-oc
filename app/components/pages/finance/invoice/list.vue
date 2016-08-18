@@ -11,31 +11,15 @@
 			<div class="tab"><a class="flex" v-link="'/admin/finance/invoice/list/passed'">已通过</a></div>
 			<div class="tab"><a class="flex" v-link="'/admin/finance/invoice/list/abnormal'">异常</a></div>
 		</div>
-		<div class="flex align-items-c bg-section-margin remove-margin-bottom  ">
-			<div class="select-box">
-				<search
-					placeholder="请输入关键字,如真是姓名、会员名称"
-				></search>
-			</div>
-			<span class='datetime-picker-label'>发票类型: </span>
-			<select class="form-control">
-				<option>全部</option>
-				<option>个人增值税普通发票</option>
-				<option>企业增值税普通票</option>
-				<option>企业增值税专用票</option>
-			</select>
-			<button class="btn btn-primary admin-button-margin">查询</button>
-		</div>
+		
 	</div>
 	<router-view></router-view>
 </template>
-<script>
+<script>	
 	export default {
 		components: {
 			'datetime-picker': require('../../../ui/datetimepicker.vue'),
 			'search': require('../../../ui/search-input.vue')
-		},
-		ready(){
 		}
 	}
 </script>

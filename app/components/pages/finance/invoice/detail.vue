@@ -51,18 +51,14 @@
 			<div class="panel-body">
 				<ul class="list-none-style">
 					<li>状态：审核已通过，等待寄出</li>
-
 					<li>状态：异常</li>
 					<li>异常原因：填写资料有误</li>
-
 					<li>快递公司：<input type="text" class="form-control select-box" /></li>
 					<li>快递单号：<input type="text" class="form-control select-box" /></li>
 
 				</ul>
 			</div>
 		</div>
-
-
 	</div>
 
 
@@ -123,7 +119,16 @@
 	}
 </style>
 <script>
+	import {getInvoiceDetail} from '../../../../vuex/actions.js'
 	export default {
+		vuex:{
+	       getters: {
+
+	       },
+	       actiosn: {
+		      getInvoiceDetail
+	       }
+		},
 		components: {
 			'datetime-picker': require('../../../ui/datetimepicker.vue'),
 			'modal': require('../../../ui/modal.vue')
@@ -175,6 +180,7 @@
 			}
 		},
 		ready(){
+
 
 			let arr = []
 			Array.from(this.messages, function(i, index){
