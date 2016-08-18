@@ -2,7 +2,6 @@ import api from '../api'
 import * as types from './mutation-types.js'
 import {saveCookie, removeCookie} from '../utils/cookieAuth.js'
 
-
 export const showMsg = ({dispatch}, message) => {
   console.log(message);
   dispatch(types.SHOW_MSG, message)
@@ -54,9 +53,7 @@ export const getAppCount = ({dispatch}) => {
 export const getMemberCount = ({dispatch}) =>{
   api.getMemberCount().then(response => {
     let member_data = response.json()
-
     dispatch(types.MEMBER_COUNT, member_data.data)
-
   }, response => {
     console.log('fail');
   })
@@ -93,7 +90,7 @@ export const getLastDayDuration = ({dispatch}) => {
 }
 
 //新增会员、应用统计
-export const getNewMemberAndApp = ({dispatch},date) => {
+export const getNewMemberAndApp = ({dispatch}, date) => {
   api.getNewMemberAndApp(date).then(response =>{
       let duration = response.json()
       dispatch(types.MEMBER_APP_STATISTIC, duration.data)
@@ -285,6 +282,9 @@ export const getMoreInvoiceList = ({dispatch},params) =>{
 export const getInvoiceDetail = ({dispatch},params) =>{
   api.getInvoiceDetail(params).then(response=> {
     let detail = response.json()
+    console.log('数据')
+    console.log(detail)
+
     dispatch(types.INVOICE_DETAIL,detail.data)
   }, response =>{
     console.log('fail');
@@ -361,7 +361,7 @@ export const getDemandList = ({dispatch},params) =>{
 export const getMoreDemandList = ({dispatch},params) =>{
   api.getDemandList(params).then(response=> {
     let delivery_list = response.json()
-    if(invoice_list.data.result.length>0){
+    if(delivery_list.data.result.length>0){
       switch(params.status){
         case 'await':
           dispatch(types.DEMAND_MORE_PENDING_LIST,demand_list.data)
@@ -380,7 +380,7 @@ export const getMoreDemandList = ({dispatch},params) =>{
 }
 
 
-/*//审核中心修改
+//审核中心修改
 export const editDemand = ({dispatch},params) =>{
 
 }
@@ -389,5 +389,48 @@ export const editDemand = ({dispatch},params) =>{
 export const getDemandDetail = ({dispatch},params) =>{
 
 }
-*/
+
+
+//放音列表
+export const getVoiceList = ({dispatch},params) =>{
+  api.getVoiceLlist(params).then(response=> {
+    let voice_list = response.json()
+    switch(params.type){
+      case 'await':
+        dispatch(types.VOICE_AWAIT_LIST,voice_list.data)
+        break;
+      case 'auditing':
+        dispatch(types.VOICE_AUDITING_LIST,voice_list.data)
+        break;
+      case 'unauth':
+        dispatch(types.VOICE_UNAUTH_LIST,voice_list.data)
+        break;  
+    }
+  },response =>{
+  })
+}
+
+
+
+//放音列表 加载更多
+export const getMoreVoiceList = ({dispatch},params) =>{
+  api.getVoiceLlist(params).then(response=> {
+    let voice_list = response.json()
+    if(voice_list.data.result.length>0){
+      switch(params.status){
+        case 'await':
+          dispatch(types.VOICE_MORE_PENDING_LIST,voice_list.data)
+          break;
+        case 'auditing':
+          dispatch(types.VOICE_AUDITING_LIST,voice_list.data)
+          break;
+        case 'unauth':
+          dispatch(types.VOICE_MORE_UNAUTH_LIST,voice_list.data)
+          break;  
+      }
+    }
+  }, response =>{
+    console.log('fail');
+  })
+}
 

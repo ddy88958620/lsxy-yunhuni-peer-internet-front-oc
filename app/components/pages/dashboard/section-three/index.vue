@@ -8,9 +8,9 @@
           </div>
           <ul class="list-none-style">
             <li class='title'>昨日话务量 ( 分钟 )</li>
-            <li>日 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>{{duration.day_rate}}%</span></li>
-            <li>周 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>{{duration.week_rate}}%</span></li>
-            <li>月 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>{{duration.month_rate}}%</span></li>
+            <li>日 <i class="iconfont icon-oc-up small {{ duration.month_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{duration.day_rate}}%</span></li>
+            <li>周 <i class="iconfont icon-oc-up small {{ duration.month_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}} "></i><span class='text-danger'>{{duration.week_rate}}%</span></li>
+            <li>月 <i class="iconfont small {{ duration.month_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{duration.month_rate}}%</span></li>
           </ul>
         </div>
         <div class="flex flex-1 flex-1align-items-c flex-direction-column session-small-box">
@@ -20,19 +20,23 @@
           </div>
           <ul class="list-none-style">
             <li class='title'>昨日消费额 ( 元 )</li>
-            <li>日 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>{{comsume.consume_day}}%</span></li>
-            <li>周 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>{{comsume.week_rate}}%</span></li>
-            <li>月 <i class="iconfont icon-oc-up small"></i><span class='text-danger'>{{comsume.month_rate}}%</span></li>
+            <li>日 <i class="iconfont small {{ comsume.consume_day >= 0 ? 'icon-oc-up' : 'icon-oc-down'}} "></i><span class='text-danger'>{{comsume.consume_day}}%</span></li>
+            <li>周 <i class="iconfont {{ comsume.consume_day >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}  small"></i><span class='text-danger'>{{comsume.week_rate}}%</span></li>
+            <li>月 <i class="iconfont {{ comsume.consume_day >= 0 ? 'icon-oc-up' : 'icon-oc-down'}} small"></i><span class='text-danger'>{{comsume.month_rate}}%</span></li>
           </ul>
         </div>
      </div>
      <div class="flex flex-1 flex-direction-column section-right admin-padding">
-       <datetime-picker :type="bar"></datetime-picker>
+       <datetime-picker :uuid="'sectionThreeDate'" :action="doGetConsumeAnduraion" :type.sync="date.type" :value.sync="date.value"></datetime-picker>
        <div class="flex-1">
-         <chart :uuid="'dashboard-st3-chart'" :type="['line','bar']"
-            :title="['话务量','消费额']",
-            :xtitle="['话务量(次数)','消费额(元)']",
-            :color="[['rgba(246,239,232,0.2)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
+         <chart
+           :uuid="'sectionThreeChart'"
+						:type="['line','bar']"
+						:ydata1="comsumeduration.cost"
+						:ydata2="comsumeduration.session"
+						:title="['话务量','消费额']"
+						:xtitle="['话务量(次数)','消费额(元)']"
+						:color="[['rgba(246,239,232,0.2)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
                     ['#ebeecc','rgba(214,235,78,0.8)','rgba(214,235,78,1)','#FFF','rgba(214,235,78,0.1)','rgba(220,220,220,0.1)']]"
          ></chart>
        </div>
@@ -46,7 +50,8 @@
     vuex :{
       getters :{
          comsume: ({app}) => app.comsume,
-         duration: ({app}) => app.duration
+         duration: ({app}) => app.duration,
+         comsumeduration: ({app}) => app.statistic.comsumeduration,
       },
       actions :{
         getLastDayComsume,
@@ -56,7 +61,22 @@
     },
     data(){
       return{
-
+      	date: {
+      	  type: 'month',
+          value: ''
+        }
+      }
+    },
+    methods:{
+      doGetConsumeAnduraion(date){
+        if (date) {
+          this.getConsumeAnduraion(date)
+        } else {
+          let year = this.date.value.split('-')[0]
+          let month = this.date.value.split('-')[1]
+          // {year, month} === {year: year, month: month
+          this.getConsumeAnduration({year: year,month})
+        }
       }
     },
     components: {
@@ -64,9 +84,10 @@
       'datetime-picker': require('../../../ui/datetimepicker.vue')
     },
     ready(){
-      let date = {year:'2016',month:'08'}
       this.getLastDayComsume()
       this.getLastDayDuration()
+	    
+      let date = {year:'2016',month:'08'}
       this.getConsumeAnduration(date)
     }
   }

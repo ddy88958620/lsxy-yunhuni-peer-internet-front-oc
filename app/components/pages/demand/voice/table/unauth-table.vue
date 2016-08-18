@@ -1,8 +1,26 @@
 <template>
+	<div class="flex flex-direction-column admin-table-header">
+		<div class="flex align-items-c bg-section-margin remove-margin-bottom ">
+			<div><search
+				placeholder="请输入关键字,如会员名称"
+			></search></div>
+			<span class='datetime-picker-label '>申请时间:</span>
+			<datetime-picker></datetime-picker>
+			<span class='datetime-picker-label'>至</span>
+			<datetime-picker></datetime-picker>
+			<!-- <span class='datetime-picker-label'>认证类型: </span>
+			<select class="form-control">
+				<option>全部</option>
+				<option>已上线</option>
+				<option>未上线</option>
+			</select> -->
+			<button class="btn btn-primary admin-button-margin">查询</button>
+		</div>
+	</div>
 	<div>
 		<div class="admin-table table-responsive">
 			<div class="table-total flex flex-1 justify-content-e">
-				共<span class="text-danger">20</span>条
+				共<span class="text-danger">{{voice.totalCount}}</span>条
 			</div>
 			<table class="table">
 				<thead>
@@ -16,94 +34,62 @@
 				</tr>
 				</thead>
 				<tbody>
-				<tr v-for='message in messages'>
-					<td class="message-time text-align-c">{{message.date}}</td>
-					<td><a>{{message.name}}</a></td>
-					<td>{{message.mobile}}</td>
-					<td>{{message.email}}</td>
-					<td>{{message.type}}</td>
+				<tr v-for='message in voice.result'>
+					<td class="message-time text-align-c">{{message.createTime}}</td>
+					<td><a>{{message.tenant.tenantName}}</a></td>
+					<td>{{message.app.name}}</td>
+					<td>{{message.name}}</td>
+					<td>{{message.size}}b</td>
 					<td class="text-align-c">
-						<span><a @click="showModal=true" >试听</a></span>
-						<span><a>通过</a></span>
-						<span><a>不通过</a></span>
+						<span><a>试听</a></span>
 					</td>
 				</tr>
 				</tbody>
 			</table>
-			<div class="more"><a @click="moreMessage" class="text-none">加载更多<i class="icon iconfont icon-oc-dropdown" ></i></a></div>
+			<div class="more">
+				<a v-show='this.voice.totalPageCount==this.voice.currentPageNo || this.voice.totalPageCount==0'>加载完毕</a>
+				<a @click="moreMessage" class="text-none" v-show='this.voice.totalPageCount!=this.voice.currentPageNo && this.voice.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+			</div>
+
 		</div>
 	</div>
 </template>
 <script>
+	import { getVoiceList } from '../../../../../vuex/actions'
 	export default {
+		vuex: {
+			getters:{
+				voice: ({demand}) => demand.voicelist.unauth,
+			},
+			actions: {
+				getVoiceList
+			}
+		},
+		components: {
+			'datetime-picker': require('../../../../ui/datetimepicker.vue'),
+			'search' : require('../../../../ui/search-input.vue')
+		},
 		data(){
 			return {
 				messages: [],
-				total: 100
+				total: 0,
+				type : 'unauth',
+				name:''
 			}
 		},
 		methods: {
 			moreMessage(){
-				this.messages.push(
-					{
-						id: 4,
-						date: '2016-06-06 16:00',
-						name: '流水行云科技有限公司',
-						mobile: '1155945658462',
-						email: '475647150@qq.com',
-						type:'个人'
-					}
-				)
+
+
+
 			}
 		},
 		route: {
-			data(){
-
-
-				let wait_array = 	[
-					{
-						id: 1,
-						date: '2016-06-06 16:00',
-						name: '流水行云科技有限公司',
-						mobile: '1155945658462',
-						email: '475647150@qq.com',
-						type:'个人'
-					},
-					{
-						id: 2,
-						date: '2016-06-06 16:00',
-						name: '流水行云科技有限公司',
-						mobile: '1155945658462',
-						email: '475647150@qq.com',
-						type:'个人'
-					},
-					{
-						id: 3,
-						date: '2016-06-06 16:00',
-						name: '流水行云科技有限公司',
-						mobile: '1155945658462',
-						email: '475647150@qq.com',
-						type:'个人'
-					},
-					{
-						id: 4,
-						date: '2016-06-06 16:00',
-						name: '流水行云科技有限公司',
-						mobile: '1155945658462',
-						email: '475647150@qq.com',
-						type:'个人'
-					},
-				]
-
-
-
-
-				this.messages=wait_array;
-
-			}
 		},
 		ready(){
-
+			let params = {}
+			params.type = this.type
+			this.getVoiceList(params)
 		}
 
 	}
