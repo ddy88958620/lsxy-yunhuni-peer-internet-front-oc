@@ -1,19 +1,18 @@
 <template>
   <div id="app-chart">
     <div class="app-chart-header flex align-items-c">
-      <input name='app-chart-type' @click="date.type='month'"  type="radio" checked=checked/>
+      <input name='app-chart-type' @click="date.type = 'month'"  type="radio" checked=checked/>
       <label for="">日统计</label>
-      <input name='app-chart-type' @click="date.type='year'"  type="radio"/>
+      <input name='app-chart-type' @click="date.type = 'year'"  type="radio"/>
       <label for="">月统计 </label>
       <div class="datepicker-wrap">
-        <datetime-picker v-if="date.type==='month'" :uuid="'appChartLine1'" :action="doGetNewMemberAndApp" :type.sync="'month'" :value.sync="date.value"></datetime-picker>
-        <datetime-picker v-if="date.type==='year'" :uuid="'appChartLine1'" :action="doGetNewMemberAndApp" :type.sync="'year'" :value.sync="date.value"></datetime-picker>
-        <datetime-picker  :uuid="'appChartLine2'" :action="doGetNewMemberAndApp" :type.sync="date.type" :value.sync="date.value"></datetime-picker>
+        <datetime-picker :uuid="'datetimepicker1'" :action="doGetNewMemberAndApp" :type.sync="date.type" :value.sync="date.value"></datetime-picker>
       </div>
     </div>
     <chart :uuid="'bashboard-app-chart'"
            :type="['line','line']"
            :dateType="dateType"
+           :label.sync="date.type"
            :ydata1="app"
            :ydata2="member"
            :title="['新增注册会员','新增应用']"
@@ -41,7 +40,7 @@
         date: {
           type: 'month',
           value: ''
-        }
+        },
       }
     },
     components: {
@@ -49,9 +48,6 @@
       'datetime-picker': require('../../../ui/datetimepicker.vue')
     },
     methods: {
-      changeDateType(type) {
-        this.date.type = type
-      },
 	    doGetNewMemberAndApp(date){
       	if (date) {
       	  this.getNewMemberAndApp(date)

@@ -100,10 +100,7 @@
     },
     computed: {
     },
-    ready(){
-
-      console.log(this.datarank)
-    }
+    ready(){}
   }
 </script>
 

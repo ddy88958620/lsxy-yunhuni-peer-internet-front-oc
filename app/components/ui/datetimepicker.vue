@@ -45,13 +45,12 @@
 		},
 		watch: {
 			type: function () {
-				$('#'+this.uuid).datetimepicker('update');
-				console.log('update type')
+				this.initDateTimePicker()
 			},
-			value: function(){
-				$('#'+this.uuid).datetimepicker('update');
-				console.log('update type')
-			}
+			value: function () {
+				this.initDateTimePicker()
+				this.action()
+			},
 		},
 		methods: {
 			initDateTimePicker(){
@@ -95,12 +94,20 @@
 						break;
 				}
 				
-				this.datetimepicker = $('#'+ self.uuid).datetimepicker(self.dateConfig).on('changeDate', function (e) {
-					$(this).datetimepicker('hide')
-					var currenSelectDate = $(this)[0].value
-					self.value = currenSelectDate ? currenSelectDate : self.value
-					self.action()
-					console.log('action')
+				this.datetimepicker = $('#'+self.uuid)
+				
+				if(this.datetimepicker) {
+					this.datetimepicker.datetimepicker('remove')
+				}
+				
+				let once = 1
+				this.datetimepicker.datetimepicker(self.dateConfig).on('changeDate', function (ev) {
+					if (once){
+						$(this).datetimepicker('hide')
+						let currenSelectDate = $(this)[0].value
+						self.value = currenSelectDate ? currenSelectDate : self.value
+						once = null
+					}
 				});
 			}
 		},

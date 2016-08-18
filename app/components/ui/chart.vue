@@ -28,7 +28,9 @@ import uuid from 'node-uuid';
         type: String
       },
       label: {
-        type: String
+        type: String,
+        twoWays: true,
+        default: 'month'
       },
       title: {
         type : Array,
@@ -73,10 +75,9 @@ import uuid from 'node-uuid';
 	  methods: {
     	initChart() {
         let self = this
-		    console.log(this.chart)
         //计算当前月份日数
         var data = {
-          labels: self.month,
+          labels: self.label === 'month' ? self.month : self.year,
           datasets: [
             {
               label: self.title[0],
@@ -186,7 +187,6 @@ import uuid from 'node-uuid';
       {
         $('canvas').css('width','100%');
       });
-      console.log(uuid.v1())
     }
   }
 </script>
