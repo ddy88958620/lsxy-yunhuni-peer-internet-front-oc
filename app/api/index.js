@@ -10,6 +10,8 @@ import {
   ConsumeAnduration,
   Dashboardstatistic,
   TenantList,TenantBilling,TenantCert,TenantIndicant,TenantInfo,TenantAuthInfo,
+	TenantConsumeAnduration,TenantApiInvoke,TenantSessionStatistic,
+  TenantConsumes,
   MessageList,MessageNew,MessageEdit,MessageDetail,
   InvoiceList,InvoiceDetail,InvoiceEdit,
   ServiceList
@@ -50,8 +52,16 @@ export default {
   getConsumeAnduration(date){
     return ConsumeAnduration.get(date)
   },
+  // 租户
   getTenantList(param){
     return TenantList.get(param)
+  },
+	// 上月指标
+  getTenantIndicant(param){
+    return TenantIndicant.get(param)
+  },
+  getTenantConsume(param){
+    return TenantConsumes.get(param)
   },
   getTenantBilling(param){
     return TenantBilling.get(param)
@@ -59,11 +69,20 @@ export default {
   getTenantCert(param){
     return TenantCert.get(param)
   },
-  getTenantIndicant(param){
-    return TenantIndicant.get(param)
-  },
   getTenantInfo(param){
     return TenantInfo.get(param)
+  },
+  // 租户 话务量和消费额 统计
+  getTenantConsumeAnduration(param){
+  	return TenantConsumeAnduration.get(param)
+  },
+	// api
+  getTenantApiInvoke(param){
+  	return TenantApiInvoke.get(param)
+  },
+  // session
+  getTenantSessionStatistic(param) {
+  	return TenantSessionStatistic.get(param)
   },
   getTenantAuthInfo(param){
     return TenantAuthInfo.get(param)

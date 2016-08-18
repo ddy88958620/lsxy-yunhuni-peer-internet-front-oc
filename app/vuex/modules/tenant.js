@@ -6,8 +6,10 @@ import {
   TENANT_CERT,
   TENANT_INDICANT,
   TENANT_INFO,
-  TENANT_AUTH_INFO
-
+  TENANT_AUTH_INFO,
+  TENANT_API_STATISTIC,
+	TENANT_SESSION_STATISTIC,
+	TENANT_DURATION_STATISTIC,
 } from '../mutation-types.js'
 
 const state = {
@@ -20,6 +22,11 @@ const state = {
   base:{
     info:{},
     authinfo:{}
+  },
+  statistic:{
+  	comsumeduration: {},
+    session: {},
+    api: {}
   }
 
 }
@@ -50,7 +57,21 @@ const mutations = {
    },
    [TENANT_AUTH_INFO] (state,info) {
     state.base.authinfo = info 
-   }
+   },
+  // statistic:{
+  //   comsumeduration: null,
+  //   session: null,
+  //   invokec: null
+  // }
+  [TENANT_SESSION_STATISTIC] (state, statics){
+  	state.statistic.session = statics
+  },
+  [TENANT_API_STATISTIC] (state, statics){
+    state.statistic.api = statics
+  },
+  [TENANT_DURATION_STATISTIC] (state, statics){
+  	state.statistic.comsumeduration = statics
+  }
 }
 
 export default {
