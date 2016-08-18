@@ -53,7 +53,7 @@ const mutations = {
     state.invoicelist.abnormal.result = state.invoicelist.abnormal.result.concat(list.result)
   },
   [INVOICE_DETAIL] (state, detail) {
-    state.invoice.detail = detail 
+    state.invoice = detail 
   },
   [DELIVERY_UNSEND_LIST] (state, list){
     state.deliverylist.unsend = list 

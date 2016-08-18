@@ -285,6 +285,9 @@ export const getMoreInvoiceList = ({dispatch},params) =>{
 export const getInvoiceDetail = ({dispatch},params) =>{
   api.getInvoiceDetail(params).then(response=> {
     let detail = response.json()
+    console.log('数据')
+    console.log(detail)
+
     dispatch(types.INVOICE_DETAIL,detail.data)
   }, response =>{
     console.log('fail');
