@@ -3,6 +3,7 @@
 		<div class="flex align-items-c bg-section-margin remove-margin-bottom  ">
 			<div class="select-box">
 				<search
+					:value.sync="search"
 					placeholder="请输入关键字,如会员名称"
 				></search>
 			</div>
@@ -25,7 +26,7 @@
 	<div>
 		<div class="admin-table table-responsive">
 			<div class="table-total flex flex-1 justify-content-e">
-				共<span class="text-danger">20</span>条
+				共<span class="text-danger">{{ demand.totalCount }}</span>条
 			</div>
 			<table class="table">
 				<thead>
@@ -41,13 +42,13 @@
 				<tbody>
 				<tr v-for='message in demand.result'>
 					<td class="message-time text-align-c">{{message.date}}</td>
-					<td><a>{{message.name}}</a></td>
+					<td><a v-link="'/admin/tenant/detail/'+message.uid" >{{message.name}}</a></td>
 					<td>{{message.mobile}}</td>
 					<td>{{message.email}}</td>
 					<td v-if="message.type==0">个人认证</td>
 					<td v-if="message.type==1">企业认证</td>
 					<td class="text-align-c">
-						<span><a v-link="'/admin/demand/member/detail/'+message.uid">查看</a></span>
+						<span><a v-link="'/admin/demand/member/detail/'+message.uid+'/'+message.type">查看</a></span>
 					</td>
 				</tr>
 				</tbody>
@@ -76,6 +77,7 @@
 				total : 0,
 				authStatus:'auditing',
 				type:'-1',
+				search: '',
 				startdate :{
 					type:'day',
 					value:'',
@@ -93,8 +95,7 @@
 		},
 		methods: {
 			moreMessage(){
-				
-
+			
 			},
 			query(){
 				let params = {}
@@ -102,10 +103,14 @@
 				if(this.type!=-1){
 					params.type = this.type
 				}
+				if(this.search!=''){
+					params.search = this.search
+				}
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
 
 				console.log(params)
+
 				this.getDemandList(params)
 			}
 		},

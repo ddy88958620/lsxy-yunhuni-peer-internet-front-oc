@@ -12,15 +12,12 @@
 					<li>证件类型: 身份证</li>
 					<li>证件号码: 441283199310256245</li>
 					<li>持证照片:</li>
-
 					<li>公司名称:成小米网络科技有限公司</li>
 					<li>公司地址:广州天河</li>
 					<li>所属行业:互联网金融</li>
 					<li>证件类型:三证分离</li>
 					<li>税务登记号:12312354</li>
 					<li>营业执照号::995555</li>
-
-
 					<li>
 						<button class="btn btn-primary">通过</button>
 						<button class="btn btn-primary" @click="showModal = true">不通过</button>
@@ -101,37 +98,7 @@
 		</div>
 	</modal>
 </template>
-<style lang="sass" scoped>
-	ul {
-		padding: 15px 15px 0 15px;
-		font-size: 1.4rem;
-		li {
-			padding-bottom: 25px;
-		}
-	}
 
-	.title-time{
-		width: 200px;
-	}
-
-	.title-type{
-		width: 200px;
-	}
-
-	.table-detail{
-
-		border-top:1px solid #e9edf4;
-	}
-
-	.detail{
-		padding: 0 0 0 5px;
-		li {
-			padding-top: 10px;
-			padding-bottom: 0px;
-		}
-	}
-
-</style>
 <script>
 	export default {
 		components: {
@@ -175,6 +142,49 @@
 					arr.push(false)
 				})
 				this.show = arr
-			}
+
+		 		let uid = this.$route.params.uid
+		        let self = this
+		        if (this.chartApiDate === null){
+		          this.chartApiDate = DATE.totalDate()
+		        }
+		        $.get('/tenant/tenants/'+uid+'/session/statistic', self.chartApiDate).then((res)=>{
+		          self.chartApiValue = res.data
+		        })
+		}
 	}
 </script>
+
+
+
+<style lang="sass" scoped>
+	ul {
+		padding: 15px 15px 0 15px;
+		font-size: 1.4rem;
+		li {
+			padding-bottom: 25px;
+		}
+	}
+
+	.title-time{
+		width: 200px;
+	}
+
+	.title-type{
+		width: 200px;
+	}
+
+	.table-detail{
+
+		border-top:1px solid #e9edf4;
+	}
+
+	.detail{
+		padding: 0 0 0 5px;
+		li {
+			padding-top: 10px;
+			padding-bottom: 0px;
+		}
+	}
+
+</style>

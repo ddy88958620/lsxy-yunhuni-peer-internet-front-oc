@@ -42,13 +42,13 @@
 				<tbody>
 				<tr v-for='message in demand.result'>
 					<td class="message-time text-align-c">{{message.date}}</td>
-					<td><a>{{message.name}}</a></td>
+					<td><a v-link="'/admin/tenant/detail/'+message.uid" >{{message.name}}</a></td>
 					<td>{{message.mobile}}</td>
 					<td>{{message.email}}</td>
 					<td v-if="message.type==0">个人认证</td>
 					<td v-if="message.type==1">企业认证</td>
 					<td class="text-align-c">
-						<span><a v-link="'/admin/demand/member/detail/'+message.uid">审核</a></span>
+						<span><a v-link="'/admin/demand/member/detail/'+message.uid+'/'+message.type">审核</a></span>
 					</td>
 				</tr>
 				</tbody>
@@ -103,8 +103,14 @@
 				if(this.type!=-1){
 					params.type = this.type
 				}
+				if(this.search!=''){
+					params.search = this.search
+				}
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
+
+				console.log(params)
+
 				this.getDemandList(params)
 			}
 		},
