@@ -50,7 +50,7 @@
 				</thead>
 				<tbody>
 				<tr v-for='message in tenant.result'>
-					<td class="message-time text-align-c">{{message.registe_date}}</td>
+					<td class="message-time text-align-c">{{message.registe_date | totalDate}}</td>
 					<td>{{message.name}}</td>
 					<td class="text-align-c">{{message.app_count ? message.app_count: 0 }}</td>
 					<td class="{{ message.status ? 'text-danger' : ''}}">{{message.auth_status ? '未上线' : '已上线'}}</td>

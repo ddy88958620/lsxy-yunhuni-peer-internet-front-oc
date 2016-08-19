@@ -87,6 +87,7 @@ for (let [key, value] of Object.entries(path)) {
 				ctx.body = ' '
 				return
 			}
+			ctx.status = 401
 			ctx.body = 'java token fail'
 			return
 		})
@@ -96,14 +97,66 @@ for (let [key, value] of Object.entries(path)) {
 		for(let method of Object.keys(value)){
 			switch (method){
 				case 'put':
+					router.put(covertKOAURL(key), async(ctx, next) => {
+						let token = ctx.session.token
+						console.log('token node', token)
+						if( token === null ){
+							ctx.status = 401
+							ctx.body = ' node token null'
+							return
+						}
+						let req_url = ctx.req.url
+						let data = ctx.request.body ?  ctx.request.body : {}
+						ctx.body = await request(req_url, method, data, token)
+					})
+					break
 				case 'patch':
+					router.patch(covertKOAURL(key), async(ctx, next) => {
+						let token = ctx.session.token
+						console.log('token node', token)
+						if( token === null ){
+							ctx.status = 401
+							ctx.body = ' node token null'
+							return
+						}
+						let req_url = ctx.req.url
+						let data = ctx.request.body ?  ctx.request.body : {}
+						ctx.body = await request(req_url, method, data, token)
+					})
+					break
 				case 'post':
+					router.post(covertKOAURL(key), async(ctx, next) => {
+						let token = ctx.session.token
+						console.log('token node', token)
+						if( token === null ){
+							ctx.status = 401
+							ctx.body = ' node token null'
+							return
+						}
+						let req_url = ctx.req.url
+						let data = ctx.request.body ?  ctx.request.body : {}
+						ctx.body = await request(req_url, method, data, token)
+					})
+					break
 				case 'delete':
+					router.delete(covertKOAURL(key), async(ctx, next) => {
+						let token = ctx.session.token
+						console.log('token node', token)
+						if( token === null ){
+							ctx.status = 401
+							ctx.body = ' node token null'
+							return
+						}
+						let req_url = ctx.req.url
+						let data = ctx.request.body ?  ctx.request.body : {}
+						ctx.body = await request(req_url, method, data, token)
+					})
+					break
 				case 'get':
 					router.get(covertKOAURL(key), async(ctx, next) => {
 						let token = ctx.session.token
 						console.log('token node', token)
-						if( token === null ){
+						if( !token ){
 							ctx.status = 401
 							ctx.body = ' node token null'
 							return

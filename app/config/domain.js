@@ -17,6 +17,8 @@ const YUNHUNIHOSTPORT = ADMINPROCESSENV ? 'koa port' : ''
 
 const API_ROOT = 'http://'+YUNHUNIHOST + '/api'
 
+const API_ROOT_AUDIO = 'http://192.168.10.75:18082/ossfile/img'
+
 
 
 // 设置Cookie的域名
@@ -26,4 +28,5 @@ export default {
   API_ROOT,
   COOKIE_DOMAIN,
   YUNHUNIHOST,
+  API_ROOT_AUDIO
 }

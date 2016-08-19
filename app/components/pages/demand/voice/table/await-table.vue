@@ -1,7 +1,9 @@
 <template>
 	<div class="flex flex-direction-column admin-table-header">
 		<div class="flex align-items-c bg-section-margin remove-margin-bottom ">
-			<div><search
+			<div>
+				<search
+					:value.sync ='search'
 				placeholder="请输入关键字,如会员名称"
 			></search></div>
 			<span class='datetime-picker-label '>申请时间:</span>
@@ -35,13 +37,13 @@
 				</thead>
 				<tbody>
 				<tr v-for='message in voice.result'>
-					<td class="message-time text-align-c">{{message.createTime}}</td>
+					<td class="message-time text-align-c">{{message.createTime | totalDate}}</td>
 					<td><a>{{message.tenant.tenantName}}</a></td>
 					<td>{{message.app.name}}</td>
 					<td>{{message.name}}</td>
 					<td>{{message.size}}b</td>
 					<td class="text-align-c">
-						<span><a>试听</a></span>
+						<span><a @click="playAudio($index)">试听</a></span>
 					</td>
 				</tr>
 				</tbody>
@@ -50,12 +52,14 @@
 				<a v-show='this.voice.totalPageCount==this.voice.currentPageNo || this.voice.totalPageCount==0'>加载完毕</a>
 				<a @click="moreMessage" class="text-none" v-show='this.voice.totalPageCount!=this.voice.currentPageNo && this.voice.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
 			</div>
-
+			<!--放音文件隐藏-->
+			<audio :src="audioURI"></audio>
 		</div>
 	</div>
 </template>
 <script>
 	import { getVoiceList } from '../../../../../vuex/actions'
+	import domain from '../../../../../config/domain'
 	export default {
 		vuex: {
 			getters:{
@@ -72,6 +76,7 @@
 		data(){
 			return {
 				messages: [],
+				search: '',
 				total: 0,
 				type : 'await',
 				name:'',
@@ -83,6 +88,8 @@
 					type:'day',
 					value:'',
 				},
+				audioURI: '',
+				
 			}
 		},
 		methods: {
@@ -94,14 +101,16 @@
 				params.type =  this.type
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
+				params.search = this.search
 				console.log(params)
 
 				this.getVoiceList(params)
 			},
 			moreMessage(){
-
-					
-
+			},
+			playAudio(index){
+//				console.log(this.voice.result[index].fileKey)
+				this.audioURI = domain.API_ROOT_AUDIO + '?uri='+this.voice.result[index].fileKey
 			}
 		},
 		route: {
