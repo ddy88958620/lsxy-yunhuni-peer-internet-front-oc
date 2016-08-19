@@ -224,7 +224,7 @@ export default function(router){
   
   // set the default router-view
   router.redirect({
-    '/': '/admin',
+    // '/': '/admin',
     '/admin/service': '/admin/service/list',
 	  '/admin/message': '/admin/message/list',
     '/admin/tenant': '/admin/tenant/list',
@@ -241,6 +241,7 @@ export default function(router){
   })
 
   router.beforeEach(function({to, next, redirect}){
+  	// http only YUNHUNISESSIONID 不可在 document.cookie中打印，所以用自己设置的
     if(to.auth || getCookie('user')) {
       next()
     } else {

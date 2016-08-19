@@ -13,5 +13,5 @@ export function removeCookie(key) {
 }
 
 export function getCookie(key) {
-  return Cookie.get(key, cookieConfig)
+  return Cookie.get(key)
 }

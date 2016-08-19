@@ -7,11 +7,8 @@
 			data-thickness="0.1"
 			type="text"
 			class="{{uuid}}"
-			data-fgColor="{{ bgcolor }}"
 			data-width="100"
 			data-height="100"
-			data-max="{{max}}"
-			data-min="{{min}}"
 			v-model="value"
 		/>
 	</div>
@@ -26,21 +23,17 @@
       },
       min: {
         type: Number,
-        twoWays: true,
         default: 0
       },
       max: {
         type: Number,
-        twoWays: true
-      },
+	      default: 0 },
       value: {
         type: Number,
-        twoWays: true,
         default: 50
       },
       bgcolor: {
         type: String,
-        twoWays: true,
       },
       height: {
         type: Number,
@@ -51,22 +44,33 @@
         defualt: 80
       }
     },
-    computed: {
-     
+    watch: {
+    	max: function(state, old) {
+    		this.initPie()
+	    }
     },
-    ready(){
-      let that = this
-      $("."+that.uuid).knob({
-        'readOnly': true,
-        'min': that.min,
-        'max': that.max,
-        'value': that.value,
-        'fgColor': that.bgcolor
-      });
-    }
+	  methods: {
+    	initPie(){
+		    let that = this
+		    if(this.pie){
+		    	this.pie.trigger('change')
+		    	return
+		    }
+		    this.pie = $("."+that.uuid).knob({
+			    'readOnly': true,
+			    'min': that.min,
+			    'max': that.max,
+			    'fgColor': that.bgcolor
+		    });
+	    }
+	  },
+	  ready(){
+		  if( this.max !== 0) {
+			  this.initPie()
+		  }
+	  }
   }
 </script>
-
 
 <style lang="sass">
   .dial{

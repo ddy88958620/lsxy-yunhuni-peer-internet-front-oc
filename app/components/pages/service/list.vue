@@ -6,14 +6,14 @@
 			<h4>反馈意见</h4>
 			<div class="flex align-items-c bg-section-margin remove-margin-bottom">
 				<span class='datetime-picker-label clear-padding-left'>提交时间:</span>
-				<datetime-picker></datetime-picker>
+				<datetime-picker uuid='starttime' type='day' ></datetime-picker>
 				<span class='datetime-picker-label'>至</span>
-				<datetime-picker></datetime-picker>
+				<datetime-picker uuid='endtime' type='day' ></datetime-picker>
 				<span class='datetime-picker-label'>状态: </span>
 				<select class="form-control">
-					<option>全部</option>
-					<option>已上线</option>
-					<option>未上线</option>
+					<option value="2">全部</option>
+					<option value="1">已读</option>
+					<option value="0">未读</option>
 				</select>
 
 				<a class="btn btn-primary admin-button-margin" >查询</a>
@@ -23,7 +23,7 @@
 		</div>
 		<div class="admin-table table-responsive">
 			<div class="table-total flex flex-1 justify-content-e">
-				共<span class="text-danger">100</span>条
+				共<span class="text-danger">{{service.totalCount}}</span>条
 			</div>
 			<table class="table">
 				<thead>
@@ -36,68 +36,51 @@
 				</tr>
 				</thead>
 				<tbody>
-				<tr v-for='message in messages'>
-					<td :class="[message.status ? 'text-danger' : '', 'text-align-c']">{{message.status ? '未上线' : '已上线'}}</td>
-					<td>{{message.author}}</td>
-					<td class="message-time text-align-c">{{message.date}}</td>
-					<td>{{message.title}}</td>
+				<tr v-for='message in service.result'>
+					<td :class="[message.status===0 ? 'text-danger' : '', 'text-align-c']">{{message.status===0 ? '未读' : '已读'}}</td>
+					<td>{{message.account.tenant.tenantName}}</td>
+					<td class="message-time text-align-c">{{message.createTime}}</td>
+					<td>{{message.content}}</td>
 					<td class="text-align-c">
-						<span><a href="#">已阅</a></span>
+						<span><a >已阅</a></span>
 					</td>
 				</tr>
 				</tbody>
 			</table>
-			<div class="more"><a @click="moreMessage" class="text-none">加载更多<i class="icon iconfont icon-oc-dropdown" ></i></a></div>
+				<div class="more">
+				<a v-show='this.service.totalPageCount==this.service.currentPageNo || this.service.totalPageCount==0'>加载完毕</a>
+				<a @click="moreMessage" class="text-none" v-show='this.service.totalPageCount!=this.service.currentPageNo && this.service.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
 			</div>
 		</div>
 </template>
 <script>
+	import {getServiceList} from '../../../vuex/actions'
 	export default {
+		vuex: {
+			getters: {
+				service: ({service}) =>service.list
+			},
+			actions: {
+				getServiceList
+			}
+		},
 		components: {
 			'datetime-picker': require('../../ui/datetimepicker.vue')
 		},
 		data(){
 			return {
-				messages: [
-					{
-						date: '2016-06-06 16:00',
-						author: 'CPHJY',
-						status: false,
-						title: '云呼你有新的讯息，新的活动，市场活动，滚动播出-----点击查看详情'
-					},
-					{
-						date: '2016-06-06 16:00',
-						author: 'CPHJY',
-						status: false,
-						title: '云呼你有新的讯息，新的活动，市场活动，滚动播出-----点击查看详情'
-					},
-					{
-						date: '2016-06-06 16:00',
-						author: 'CPHJY',
-						status: true,
-						title: '云呼你有新的讯息，新的活动，市场活动，滚动播出-----点击查看详情'
-					},
-					{
-						date: '2016-06-06 16:00',
-						author: 'CPHJY',
-						status: false,
-						title: '云呼你有新的讯息，新的活动，市场活动，滚动播出-----点击查看详情'
-					},
-				]
+				status:2
 			}
 		},
 		methods: {
 			moreMessage(){
-				this.messages.push(
-					{
-						date: '2016-06-06 16:00',
-						author: 'CPHJY',
-						status: false,
-						title: '云呼你有新的讯息，新的活动，市场活动，滚动播出-----点击查看详情'
-					}
-				)
+				
 			}
+		},
+		ready(){
+			this.getServiceList()
 		}
+
 	}
 
 </script>

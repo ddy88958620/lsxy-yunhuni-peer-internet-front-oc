@@ -25,4 +25,5 @@ const COOKIE_DOMAIN =  YUNHUNIHOST
 export default {
   API_ROOT,
   COOKIE_DOMAIN,
+  YUNHUNIHOST,
 }

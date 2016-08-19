@@ -7,25 +7,25 @@
         <div class="admin-form flex flex-direction-row align-items-c">
           <label for="title">标题:</label>
           <div class="">
-            <input type="text" name="title" class="form-control"/>
+            <input type="text" name="title" class="form-control" v-model='title'/>
           </div>
         </div>
         <div class="admin-form flex flex-direction-row align-items-s">
           <label for="content">正文:</label>
           <div class="flex">
-              <textarea id="editor" placeholder="Balabala" autofocus></textarea>
+              <textarea id="editor" placeholder="Balabala" v-model='content' autofocus></textarea>
           </div>
         </div>
         <div class="admin-form flex flex-direction-row align-items-s">
           <label for="content"></label>
           <div class="flex align-items-c">
-            选择上线时间 &nbsp;&nbsp;<datetimepicker :width="200" :type="'time'"></datetimepicker>
+            选择上线时间 &nbsp;&nbsp;<datetimepicker :width="200" :type="'time'" uuid='newtime' ></datetimepicker>
           </div>
         </div>
         <div class="admin-form flex flex-direction-row align-items-s">
           <label for="content"></label>
           <div class="flex align-items-c">
-            <button class="btn btn-primary">发布</button>
+            <button class="btn btn-primary" @click="newmessage">发布</button>
             <button class="btn btn-default admin-margin-l">取消</button>
           </div>
         </div>
@@ -34,14 +34,43 @@
 </template>
 <script>
 import Simditor from 'simditor'
+import {NewMessage} from '../../../vuex/actions.js'
 export default {
+  vuex: {
+    getters: {
+
+    },
+    actions :{
+      NewMessage
+    }
+  },
   data(){
     return {
-      text: 'test'
+      text: 'test',
+      newtime : '',
+      title : '',
+      content : ''
     }
   },
   components: {
     'datetimepicker': require('../../ui/datetimepicker.vue')
+  },
+  methods:{
+    newmessage(){
+
+      let params = {}
+      params.message = {"content":'123456','name':'123456'}
+
+      console.log(params)
+
+      this.NewMessage(params)
+      console.log(this.title)
+    }
+  },
+  events:{
+    'date-time':function(time,uid){
+      this.newtime = time 
+    }
   },
   ready(){
     var editor = new Simditor({

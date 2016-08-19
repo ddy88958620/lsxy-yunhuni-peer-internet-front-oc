@@ -1,13 +1,14 @@
-import { host} from '../config/main'
+import domain from '../config/domain'
 
 $.extend({
   get: function(url,data){
     return new Promise((resolve, reject) => {
       $.ajax({
         type: 'get',
-        url: host.api + url,
+        url: domain.API_ROOT + url,
+        data: data,
         success:(e) => {
-          resolve(e)
+          resolve(JSON.parse(e))
         },
         error:(e) => {
           reject(e)
@@ -20,7 +21,7 @@ $.extend({
 
       $.ajax({
         type: 'post',
-        url: host.api + url,
+        url: domain.API_ROOT + url,
         data: JSON.stringify(data),
         contentType: 'application/json',
         processData: false,

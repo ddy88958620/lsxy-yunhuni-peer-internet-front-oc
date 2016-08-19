@@ -1,12 +1,13 @@
 <template>
   <div>
-    <router-view></router-view>
+    <router-view keep-alive></router-view>
     <toaster :content.sync='message.content'></toaster>
   </div>
 </template>
 <script>
 import toaster from './ui/toaster.vue'
 import store from '../vuex/store'
+import '../utils/fetch'
 
 export default {
   store,
