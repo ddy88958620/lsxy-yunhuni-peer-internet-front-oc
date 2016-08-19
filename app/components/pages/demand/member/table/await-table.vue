@@ -41,9 +41,9 @@
 				</thead>
 				<tbody>
 				<tr v-for='message in demand.result'>
-					
+
 					<td class="message-time text-align-c">{{message.date | date}}</td>
-					
+
 					<td><a v-link="'/admin/tenant/detail/'+message.uid" >{{message.name}}</a></td>
 					<td>{{message.mobile}}</td>
 					<td>{{message.email}}</td>
@@ -105,14 +105,8 @@
 				if(this.type!=-1){
 					params.type = this.type
 				}
-				if(this.search!=''){
-					params.search = this.search
-				}
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
-
-				console.log(params)
-
 				this.getDemandList(params)
 			}
 		},
