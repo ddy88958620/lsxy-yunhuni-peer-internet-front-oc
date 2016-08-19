@@ -123,7 +123,10 @@ export default function(router){
             },
             '/new': {
               component: (resolve) => require(['../components/pages/message/new.vue'], resolve),
-            }
+            },
+            '/edit/:mid': {
+              component: (resolve) => require(['../components/pages/message/edit.vue'], resolve),
+            },
           }
         },
         '/finance': {
