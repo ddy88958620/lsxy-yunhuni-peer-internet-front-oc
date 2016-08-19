@@ -6,9 +6,9 @@
 			<h4>消息列表</h4>
 			<div class="flex align-items-c bg-section-margin remove-margin-bottom">
 				<span class='datetime-picker-label clear-padding-left'>发布时间:</span>
-				<datetime-picker uuid="starttime"  type='month' ></datetime-picker>
+				<datetime-picker :uuid="'messageStartDate'"  :type.sync="startdate.type" :value.sync="startdate.value"></datetime-picker>
 				<span class='datetime-picker-label'>至</span>
-				<datetime-picker uuid="endtime"  type='month' ></datetime-picker>
+				<datetime-picker :uuid="'messageEndStartDate'"  :type.sync="enddate.type" :value.sync="enddate.value"></datetime-picker>
 				<span class='datetime-picker-label'>发布状态: </span>
 				<select class="form-control" v-model='status' >
 					<option value='2'>全部</option>
@@ -28,7 +28,7 @@
 		</div>
 		<div class="admin-table table-responsive ">
 			<div class="table-total flex flex-1 justify-content-e">
-				共<span class="text-danger">20</span>条
+				共<span class="text-danger">{{message.totalCount}}</span>条
 			</div>
 			<table class="table">
 				<thead>
@@ -45,12 +45,16 @@
 				<tr v-for='message in message.result'>
 					<td class="message-time text-align-c">{{message.createTime }}</td>
 					<td>{{message.name}}</td>
-					<td class="{{ message.status ? 'text-danger' : ''}}">{{message.status ? '已上线' : '未上线'}}</td>
+
+					<td v-if='message.status==-1'>已下线</td>
+					<td v-if='message.status==0' class='text-danger'>未上线</td>
+					<td v-if='message.status==1' >已上线</td>
 					<td>{{message.title}}</td>
 					<td>{{message.type ? '活动消息' : '用户消息'　}}</td>
 					<td class="text-align-c">
 						<span><a >编辑</a></span>
-						<span><a >上线</a></span>
+						<span v-if='message.status==0' ><a>上线</a></span>
+						<span v-if='message.status==1' ><a>下线</a></span>
 						<span><a >删除</a></span>
 					</td>
 				</tr>
@@ -83,26 +87,35 @@
 				startTime: '',
 				endTime: '',
 				type: 1,
-				status: '2'
+				status: '2',
+				startdate: {
+					type:'month',
+					value:''
+				},
+				enddate: {
+					type:'month',
+					value:''
+				}
 			}
 		},
 		methods: {
 			moreMessage(){
 				
+
+
 			},
 			query(){
-				let params = {type:this.type,status:this.status,startTime:this.startTime,endTime:this.endTime}
+				let params = {}
+				if(this.status!=2){
+					params.status  = this.status 
+				}
+				params.startTime = this.startdate.value
+				params.endTime = this.enddate.value
+				params.type = this.type
+
+				console.log(params)
 				this.getMessageList(params)
 			}
-		},
-		events:{
- 		 'date-time': function(time,uid) {
-		  	if(uid=='starttime'){
-		  		this.startTime = time
-		  	}else{
-		  		this.endTime = time
-		  	}
-		  }
 		},
 		ready(){
 			this.getMessageList()
