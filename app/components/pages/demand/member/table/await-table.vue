@@ -3,6 +3,7 @@
 		<div class="flex align-items-c bg-section-margin remove-margin-bottom  ">
 			<div class="select-box">
 				<search
+					:value.sync="search"
 					placeholder="请输入关键字,如会员名称"
 				></search>
 			</div>
@@ -25,7 +26,7 @@
 	<div>
 		<div class="admin-table table-responsive">
 			<div class="table-total flex flex-1 justify-content-e">
-				共<span class="text-danger">20</span>条
+				共<span class="text-danger">{{ demand.result.length }}</span>条
 			</div>
 			<table class="table">
 				<thead>
@@ -76,6 +77,7 @@
 				total : 0,
 				authStatus:'await',
 				type:'-1',
+				search: '',
 				startdate :{
 					type:'day',
 					value:'',
