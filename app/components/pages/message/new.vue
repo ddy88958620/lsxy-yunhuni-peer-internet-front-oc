@@ -13,7 +13,7 @@
         <div class="admin-form flex flex-direction-row align-items-s">
           <label for="content">正文:</label>
           <div class="flex">
-              <textarea id="editor" placeholder="Balabala" v-model='content' autofocus></textarea>
+              <textarea id="editor" placeholder="Balabala" autofocus></textarea>
           </div>
         </div>
         <div class="admin-form flex flex-direction-row align-items-s">
@@ -48,8 +48,8 @@ export default {
     return {
       text: 'test',
       newtime : '',
-      title : '',
-      content : ''
+      title: '',
+      content: ''
     }
   },
   components: {
@@ -57,10 +57,23 @@ export default {
   },
   methods:{
     newMessage(){
+    	console.log(this.editor.getValue())
+	    let params = {
+    	  title: this.title,
+        content: this.editor.getValue(),
+        type: 1,
+        status: 0
+      }
+	    
+      $.post('/message/new',params).then((res)=>{
+      	if(res.success){
+      		this.$route.router.go('/admin/message/list')
+				}
+      })
     }
   },
   ready(){
-    var editor = new Simditor({
+    this.editor = new Simditor({
       textarea: $('#editor')
     });
   }
