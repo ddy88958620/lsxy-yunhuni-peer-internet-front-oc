@@ -19,7 +19,7 @@
 			}
 		},
 		ready(){
-			var self = this;
+			let self = this;
 			$.get('/tenant/tenants/'+this.$route.params.uid+'/apps').then((res)=> {
 				return res.data && (self.singledata = res.data);
 			})

@@ -8,7 +8,7 @@
 
 	<div class="admin-table table-responsive">
 		<div class="table-total flex flex-1 justify-content-e">
-			共<span class="text-danger">20</span>条
+			共<span class="text-danger">2222220</span>条
 		</div>
 		<table class="table remove-margin-bottom">
 			<thead>
@@ -20,11 +20,11 @@
 			</tr>
 			</thead>
 			<tbody>
-			<tr v-for='message in messages'>
-				<td class="message-time text-align-c">{{message.date}}</td>
-				<td>{{message.type}}</td>
-				<td>{{message.size}}</td>
-				<td class="text-align-c">{{message.remark}}</td>
+			<tr v-for='play in plays'>
+				<td class="message-time text-align-c">{{play.date}}</td>
+				<td>{{play.type}}</td>
+				<td>{{play.size}}</td>
+				<td class="text-align-c">{{play.remark}}</td>
 			</tr>
 			</tbody>
 		</table>
@@ -39,7 +39,8 @@
 		},
 		data(){
 			return{
-				messages :[
+				app:{},
+				plays :[
 					{
 						date: '2016-06-06',
 						type: '1.wav',
@@ -54,6 +55,13 @@
 					}
 				]
 			}
+		},
+		ready(){
+			let uid = this.$route.params.uid;
+			let appId = this.$route.params.appid;
+			$.get('/tenant/tenants/'+uid+'/apps/'+ appId).then((res)=> {
+				return res.data && (self.app = res.data);
+			})
 		}
 	}
 </script>
