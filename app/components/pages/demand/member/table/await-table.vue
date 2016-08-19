@@ -26,7 +26,7 @@
 	<div>
 		<div class="admin-table table-responsive">
 			<div class="table-total flex flex-1 justify-content-e">
-				共<span class="text-danger">{{ demand.result.length }}</span>条
+				共<span class="text-danger">{{ demand.totalCount }}</span>条
 			</div>
 			<table class="table">
 				<thead>
