@@ -91,8 +91,8 @@
             name: '',
             begin: '',
             end: '',
-            authStatus: null,
-            accStatus: null,
+            authStatus: '',
+            accStatus: '',
             pageNo: 0,
             pageSize: 10
           },
