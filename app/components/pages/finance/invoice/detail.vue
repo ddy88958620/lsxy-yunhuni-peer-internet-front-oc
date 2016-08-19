@@ -9,15 +9,22 @@
 			<div class="panel-body">
 				<ul class="list-none-style">
 					<li>开具发票金额：{{detail.amount}}元</li>
-					<li>开票时间：{{ detail.start}}至{{ detail.end}}</li>
-					<li>申请时间： {{detail.applyTime}}</li>
+					<li>开票时间：{{ detail.start | date }}  至  {{ detail.end | date}}</li>
+					<li>申请时间： {{detail.applyTime | date }}</li>
 				</ul>
 			</div>
 		</div>
 		<div class="admin-panel flex-1">
 			<div class="panel-heading">发票信息</div>
 			<div class="panel-body">
-				<ul class="list-none-style">
+				<ul class="list-none-style" v-if='detail.type==1 || detail.type==2 '>
+					<li>发票类型：
+						<span v-if='detail.type==1'>个人增值税普通发票</span>
+						<span v-if='detail.type==2'>企业增值税普通票</span>
+					</li>
+					<li>发票抬头：{{ detail.title }}</li>
+				</ul>
+				<ul class="list-none-style" v-if='detail.type==3'>
 					<li>发票类型：
 						<span v-if='detail.type==1'>个人增值税普通发票</span>
 						<span v-if='detail.type==2'>企业增值税普通票</span>
@@ -29,7 +36,10 @@
 					<li>开户行：{{ detail.taxpayerNum}}</li>
 					<li>注册地址：{{detail.regAddress}}</li>
 					<li>企业电话：{{detail.phone}}</li>
-					<li>一般纳税人认证资格证书</li>
+					<li class="flex  flex-direction-row " >
+						<span class=" padding-right-10">一般纳税人认证资格证书: </span>
+						<img :src="detail.qualificationUrl | img" class="padding-right-10" >
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -40,7 +50,9 @@
 					<li>收取地址：{{ detail.receiveAddress }}</li>
 					<li>收件人：{{ detail.receivePeople }}</li>
 					<li>手机号码: {{ detail.receiveMobile }}</li>
-					<li>
+					
+
+					<li v-if="detail.status==0">
 						<button class="btn btn-primary" @click="abnormalModal = true">异常</button>
 						<button class="btn btn-primary" @click="passModal = true">通过</button>
 						<button class="btn btn-default" v-link="'/admin/finance/invoice'" >取消</button>
@@ -49,13 +61,13 @@
 			</div>
 		</div>
 
-		<div class="admin-panel flex-1">
+		<div class="admin-panel flex-1" v-if="detail.status!=0" >
 			<div class="panel-heading">处理结果 </div>
 			<div class="panel-body">
 				<ul class="list-none-style">
-					<li>状态：审核已通过，等待寄出</li>
-					<li>状态：异常</li>
-					<li>异常原因：填写资料有误</li>
+					<li v-if="detail.status==1">状态：审核已通过，等待寄出</li>
+					<li v-if="detail.status==-1" >状态：异常</li>
+					<li v-if="detail.status==-1">异常原因：填写资料有误</li>
 				</ul>
 			</div>
 		</div>
@@ -193,9 +205,7 @@
 			let params = {}
 			params.id = this.$route.params.id
 			
-
 			this.getInvoiceDetail(params)
-
 			let arr = []
 			Array.from(this.messages, function(i, index){
 				arr.push(false)

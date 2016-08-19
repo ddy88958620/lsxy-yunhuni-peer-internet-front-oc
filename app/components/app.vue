@@ -7,6 +7,7 @@
 <script>
 import toaster from './ui/toaster.vue'
 import store from '../vuex/store'
+import '../utils/fetch'
 
 export default {
   store,

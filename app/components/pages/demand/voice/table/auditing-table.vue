@@ -2,6 +2,7 @@
 	<div class="flex flex-direction-column admin-table-header">
 		<div class="flex align-items-c bg-section-margin remove-margin-bottom ">
 			<div><search
+				:value.sync = 'search'
 				placeholder="请输入关键字,如会员名称"
 			></search></div>
 			<span class='datetime-picker-label '>申请时间:</span>
@@ -14,7 +15,7 @@
 				<option>已上线</option>
 				<option>未上线</option>
 			</select> -->
-			<button class="btn btn-primary admin-button-margin" @click="query">查询2</button>
+			<button class="btn btn-primary admin-button-margin" @click="query">查询</button>
 		</div>
 	</div>
 	<div>
@@ -41,7 +42,7 @@
 					<td>{{message.email}}</td>
 					<td>{{message.type}}</td>
 					<td class="text-align-c">
-						<span><a>试听</a></span>
+						<span><a @click="playAudio($index)">试听</a></span>
 					</td>
 				</tr>
 				</tbody>
@@ -50,12 +51,15 @@
 				<a v-show='this.voice.totalPageCount==this.voice.currentPageNo || this.voice.totalPageCount==0'>加载完毕</a>
 				<a @click="moreMessage" class="text-none" v-show='this.voice.totalPageCount!=this.voice.currentPageNo && this.voice.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
 			</div>
+			<!--放音文件隐藏-->
+			<audio :src="audioURI"></audio>
 
 		</div>
 	</div>
 </template>
 <script>
 	import { getVoiceList } from '../../../../../vuex/actions'
+	import domain from '../../../../../config/domain'
 	export default {
 		vuex: {
 			getters:{
@@ -73,6 +77,7 @@
 			return {
 				messages: [],
 				total: 0,
+				search: '',
 				type : 'auditing',
 				name:'',
 				startdate :{
@@ -83,7 +88,7 @@
 					type:'day',
 					value:'',
 				},
-
+				audioURI: '',
 			}
 		},
 		methods: {
@@ -92,12 +97,13 @@
 				params.type =  this.type
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
+				params.search = this.search
 				this.getVoiceList(params)
 			},
-			moreMessage(){
-
-
-
+			moreMessage(){},
+			playAudio(index){
+//				console.log(this.voice.result[index].fileKey)
+				this.audioURI = domain.API_ROOT_AUDIO + '?uri='+this.voice.result[index].fileKey
 			}
 		},
 		route: {

@@ -68,7 +68,6 @@
 							startDate: '2016',
 							endDate: '2017',
 						}
-						console.log('here year')
 						break;
 					case 'month':
 						self.dateConfig = {
@@ -85,7 +84,7 @@
 							language: 'zh-CN',
 							format: 'yyyy-mm-dd',
 							startView: 'month',
-							minView: 'day',
+							minView: 'month',
 						}
 						break;
 					case 'time':

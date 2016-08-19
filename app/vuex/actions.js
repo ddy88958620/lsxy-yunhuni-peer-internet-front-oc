@@ -167,6 +167,35 @@ export const getTenantIndicant = ({dispatch},params) =>{
   })
 }
 
+// 租户消费量和话务量
+export const getTenantDuration = ({dispatch}, params) =>{
+  api.getTenantConsumeAnduration(params).then(response=> {
+    let indicant = response.json()
+    dispatch(types.TENANT_DURATION_STATISTIC,indicant.data)
+  }, response =>{
+    console.log('fail');
+  })
+}
+// 租户 api
+export const getTenantApi = ({dispatch}, params) =>{
+  api.getTenantApiInvoke(params).then(response=> {
+    let indicant = response.json()
+    dispatch(types.TENANT_API_STATISTIC,indicant.data)
+  }, response =>{
+    console.log('fail');
+  })
+}
+
+// 租户 session
+export const getTenantSession = ({dispatch}, params) =>{
+  api.getTenantSessionStatistic(params).then(response=> {
+    let indicant = response.json()
+    dispatch(types.TENANT_SESSION_STATISTIC,indicant.data)
+  }, response =>{
+    console.log('fail');
+  })
+}
+
 //租户列表 基础信息
 export const getTenantInfo = ({dispatch},params) =>{
   api.getTenantInfo(params).then(response=> {

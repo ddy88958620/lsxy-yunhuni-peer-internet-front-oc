@@ -11,7 +11,7 @@
 				<datetime-picker :uuid="'messageEndStartDate'"  :type.sync="enddate.type" :value.sync="enddate.value"></datetime-picker>
 				<span class='datetime-picker-label'>发布状态: </span>
 				<select class="form-control" v-model='status' >
-					<option value='2'>全部</option>
+					<option value=''>全部</option>
 					<option value=1 >已上线</option>
 					<option value=0 >未上线</option>
 					<option value=-1>已下线</option>
@@ -28,7 +28,7 @@
 		</div>
 		<div class="admin-table table-responsive ">
 			<div class="table-total flex flex-1 justify-content-e">
-				共<span class="text-danger">{{message.totalCount}}</span>条
+				共<span class="text-danger">{{messages.result ? messages.result.length : 0}}</span>条
 			</div>
 			<table class="table">
 				<thead>
@@ -42,8 +42,8 @@
 				</tr>
 				</thead>
 				<tbody>
-				<tr v-for='message in message.result'>
-					<td class="message-time text-align-c">{{message.createTime }}</td>
+				<tr v-for='message in messages.result'>
+					<td class="message-time text-align-c">{{message.createTime | totalDate}}</td>
 					<td>{{message.name}}</td>
 
 					<td v-if='message.status==-1'>已下线</td>
@@ -52,17 +52,17 @@
 					<td>{{message.title}}</td>
 					<td>{{message.type ? '活动消息' : '用户消息'　}}</td>
 					<td class="text-align-c">
-						<span><a >编辑</a></span>
+						<span><a v-if="message.status != -1">编辑</a></span>
+						<span><a v-if="message.status == -1">查看</a></span>
 						<span v-if='message.status==0' ><a>上线</a></span>
 						<span v-if='message.status==1' ><a>下线</a></span>
-						<span><a >删除</a></span>
 					</td>
 				</tr>
 				</tbody>
 			</table>
 			<div class="more">
-				<a v-show='this.message.totalPageCount==this.message.currentPageNo || this.message.totalPageCount==0'>加载完毕</a>
-				<a @click="moreMessage" class="text-none" v-show='this.message.totalPageCount!=this.message.currentPageNo && this.message.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+				<a v-show='this.messages.totalPageCount==this.messages.currentPageNo || this.messages.totalPageCount==0'>加载完毕</a>
+				<a @click="moreMessage" class="text-none" v-show='this.messages.totalPageCount!=this.messages.currentPageNo && this.messages.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
 			</div>
 		</div>
 	</div>
@@ -71,23 +71,17 @@
 	import {getMessageList} from '../../../vuex/actions'
 
 	export default {
-		vuex: {
-			getters: {
-				message: ({message}) => message.list
-			},
-			actions: {
-				getMessageList
-			}
-		},
 		components: {
 			'datetime-picker': require('../../ui/datetimepicker.vue')
 		},
 		data(){
 			return {
+				messages: {},
 				startTime: '',
 				endTime: '',
 				type: 1,
-				status: '2',
+				status: '',
+				total: '',
 				startdate: {
 					type:'month',
 					value:''
@@ -100,9 +94,9 @@
 		},
 		methods: {
 			moreMessage(){
-				
-
-
+			},
+			deleteMessage(index){
+				this.messages.splice(index, 1)
 			},
 			query(){
 				let params = {}
@@ -112,13 +106,18 @@
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
 				params.type = this.type
+				params.status = this.status
 
 				console.log(params)
-				this.getMessageList(params)
+				let self = this
+				
+				$.get('/message/list', params).then((res) => {
+					self.messages = res.data
+				})
 			}
 		},
 		ready(){
-			this.getMessageList()
+			this.query()
 		}
 
 	}
