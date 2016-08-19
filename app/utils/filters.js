@@ -1,3 +1,4 @@
+import domain from '../config/domain'
 export function date(timestamp) {
 	let date = new Date(timestamp)
 	let year = date.getFullYear()
@@ -6,3 +7,12 @@ export function date(timestamp) {
 	
 	return `${year}-${month}-${day}`
 }
+
+
+
+export function img(filename) {
+	let fileurl = 'http://192.168.10.75:18082/ossfile/img?uri='+filename
+	/*let fileurl = domain.API_ROOT+'/ossfile/img?uri='+filename*/
+	return fileurl
+}
+
