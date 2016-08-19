@@ -1,7 +1,7 @@
 var router = require('koa-router')();
 var REQUEST = require('request')
 var covertKOAURL = require('../utils/coverURLSwaggerToKoa.js')
-var ccap = require('ccap')()
+// var ccap = require('ccap')()
 
 const RedisStore = require("../utils/store.js");
 const store = new RedisStore()

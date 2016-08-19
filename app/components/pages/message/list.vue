@@ -52,7 +52,7 @@
 					<td>{{message.title}}</td>
 					<td>{{message.type ? '活动消息' : '用户消息'　}}</td>
 					<td class="text-align-c">
-						<span><a v-if="message.status != -1">编辑</a></span>
+						<span v-if="message.status != -1" ><a v-link="'/admin/message/edit/'+message.id">编辑</a></span>
 						<span><a v-if="message.status == -1">查看</a></span>
 						<span v-if='message.status==0' ><a>上线</a></span>
 						<span v-if='message.status==1' ><a>下线</a></span>

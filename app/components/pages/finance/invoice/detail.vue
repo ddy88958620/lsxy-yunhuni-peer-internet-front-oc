@@ -74,17 +74,16 @@
 	</div>
 
 
-	<modal :show.sync="abnormalModal" title='审核'>
+	<modal :show.sync="abnormalModal" title='操作' :action="abnormal">
 		<div slot="body" class="flex flex-1 flex-direction-column">
 			<div class="flex flex-direction admin-table-header">
 				<div class="flex align-items-c ">
 					<span class=''>异常原因:</span>
 				</div>
 				<div class="flex flex-1">
-					<input type="text" name="" class="form-control flex flex-1">
+					<input type="text" class="form-control flex flex-1" v-model='reason'  >
 				</div>
 			</div>
-
 		</div>
 	</modal>
 
@@ -165,6 +164,22 @@
 						type: '套餐加油包',
 						remark: '100分钟语音加油包'
 					})
+			},
+			abnormal(){
+				//异常处理
+				let id = this.$route.params.id
+				let params = {expressCom:'',expressNo:'',reason:this.reason,status:0}
+				$.put('/finance/invoice/edit/'+id, params).then((res) => {
+					this.abnormalModal = false
+				})
+			},
+			pass(){
+				//通过
+				let id = this.$route.params.id
+				let params = {expressCom:'',expressNo:'',reason:this.reason,status:1}
+				$.put('/finance/invoice/edit/'+id, params).then((res) => {
+					this.abnormalModal = false
+				})
 			}
 		},
 		data(){
@@ -173,6 +188,7 @@
 				showModal: false,
 				passModal: false,
 				abnormalModal: false,
+				reason:'',
 				messages: [
 					{
 						date: '2016-06-06 16:00',

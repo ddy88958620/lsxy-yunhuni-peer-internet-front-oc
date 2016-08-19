@@ -85,30 +85,6 @@
 	</div>
 
 
-
-
-
-	<modal :show.sync="abnormalModal" title='审核'>
-		<div slot="body" class="flex flex-1 flex-direction-column">
-			<div class="flex flex-direction admin-table-header">
-				<div class="flex align-items-c ">
-					<span class=''>异常原因:</span>
-				</div>
-				<div class="flex flex-1">
-					<input type="text" name="" class="form-control flex flex-1">
-				</div>
-			</div>
-
-		</div>
-	</modal>
-
-	<modal :show.sync="passModal">
-		<div slot="body">
-			审核通过
-		</div>
-	</modal>
-
-
 	<modal :show.sync="showModal" :title=''>
 		<div slot="body" class="flex flex-1 flex-direction-column">
 
@@ -189,7 +165,7 @@
 		       	console.log(params)
 
 
- 				$.post('/finance/invoice/edit/send',params).then((res)=>{
+ 				$.put('/finance/invoice/edit/send',params).then((res)=>{
  					console.log(res.data)
  				/*	this.messages.list = res.data.list
  					this.messages.realname = res.data.realname*/
