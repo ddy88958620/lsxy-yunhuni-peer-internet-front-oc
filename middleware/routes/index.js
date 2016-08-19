@@ -69,15 +69,18 @@ const path = JSON.parse(fs.readFileSync('./doc/swagger.json', 'utf8')).paths
 
 for (let [key, value] of Object.entries(path)) {
   // 登入
+	console.log(key)
 	if (key === '/auth/login'){
 		router.post(key , async function (ctx, next) {
 			let uuid = UUID.v1()
 			let data = ctx.request.body
-			if(!ctx.session.verCode || !data.code
-				|| ctx.session.verCode.toLowerCase() !== data.code.toLowerCase()){//验证码不匹配
-				console.log("验证码不匹配",ctx.session.verCode,data.code);
-				return false;
-			}
+			// if(!ctx.session.verCode || !data.code
+			// 	|| ctx.session.verCode.toLowerCase() !== data.code.toLowerCase()){//验证码不匹配
+			// 	console.log("验证码不匹配",ctx.session.verCode,data.code);
+			// 	ctx.body = 'code error'
+			// 	// ctx.res.end()
+			// 	return
+			// }
 			let swaggerData = await request(key, 'post', data)
 			// 登入成功后生成 session cookie
 			if(swaggerData.data && swaggerData.data.token){
