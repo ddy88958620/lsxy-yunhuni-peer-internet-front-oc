@@ -165,7 +165,7 @@
 		       	console.log(params)
 
 
- 				$.post('/finance/invoice/edit/send',params).then((res)=>{
+ 				$.put('/finance/invoice/edit/send',params).then((res)=>{
  					console.log(res.data)
  				/*	this.messages.list = res.data.list
  					this.messages.realname = res.data.realname*/

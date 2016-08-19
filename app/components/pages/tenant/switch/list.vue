@@ -73,41 +73,39 @@
 					isVoiceValidate:0,
 					isIvrService:0
 				},
-				messages: [
-					{
-						name: '语音呼叫',
-						status: false,
-					},
-					{
-						name: '语音回拨',
-						status: false,
-					},
-					{
-						name: '会议服务',
-						status: false,
-					},
-					{
-						name: '语音验证码',
-						status: false,
-					},
-					{
-						name: '录音服务',
-						status: true,
-					},
-					{
-						name: 'IVR定制服务',
-						status: true,
-					},
-					{
-						name: '语音呼叫',
-						status: true,
-					},
-				]
 			}
 		},
 		methods: {
-			moreMessage(){
+			edit(type){
+			switch(type){
+				case 'isVoiceDirectly':
+					this.switchs.isVoiceDirectly = !this.switchs.isVoiceDirectly
+					break;
+				case 'isVoiceCallback':
+					this.switchs.isVoiceCallback = !this.switchs.isVoiceCallback
+					break;
+				case 'isSessionService':
+					this.switchs.isSessionService = !this.switchs.isSessionService
+					break;
+				case 'isRecording':
+					this.switchs.isRecording = !this.switchs.isRecording
+					break;
+				case 'isVoiceValidate':
+					this.switchs.isVoiceValidate = !this.switchs.isVoiceValidate
+					break;
+				case 'isIvrService':
+					this.switchs.isIvrService = !this.switchs.isIvrService
+					break;					
+			}
+			let uid = this.$route.params.uid
+			$.put('/tenant/tenants/'+uid+'/switch',this.switchs).then((res) => {
+				if(res.success){
+					
+				}
+				
+			})
 
+				
 			}
 		},
 		ready(){
@@ -116,7 +114,7 @@
 			$.get('/tenant/tenants/'+uid+'/switchs').then((res) => {
 
 				this.switchs = res.data
-				console.log(res.data)
+				
 			})
 
 			/**

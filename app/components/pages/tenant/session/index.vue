@@ -1,12 +1,10 @@
 <template>
-
 	<div class="headbox flex flex-1 align-items-c bg-section-margin ">
 		<span class="padding-right-20">选择应用</span>
 		<select class="form-control flex select-box">
 			<option value="">飞飞应用</option>
 		</select>
 	</div>
-
 	<div class="flex flex-1 bg-section-margin ">
 		<div class="admin-toolbar flex normal-font-size small-font-color cursor" >
 			<span type="button" class="toolbar first-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/call'" >语音呼叫</span>
@@ -22,6 +20,7 @@
 </template>
 <script>
 	export default{
+		
 	}
 </script>
 

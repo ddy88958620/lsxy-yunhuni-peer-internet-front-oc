@@ -53,5 +53,25 @@ $.extend({
         }
       })
     })
-  }
+  },
+  put: function(url,data){
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        type: 'put',
+        url: domain.API_ROOT + url,
+        data: JSON.stringify(data),
+        contentType: 'application/json',
+        processData: false,
+        success: (e) => {
+          resolve(e)
+        },
+        error: (e) => {
+          reject(e)
+        }
+      })
+    })
+  },
+
+
+
 })

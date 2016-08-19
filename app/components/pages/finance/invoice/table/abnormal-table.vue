@@ -79,7 +79,7 @@
 				total: 0,
 				type: 0,
 				status:'unauth',
-				search
+				search:''
 			}
 		},
 		methods: {
