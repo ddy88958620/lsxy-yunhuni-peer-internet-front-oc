@@ -13,9 +13,14 @@ import {
 	TenantConsumeAnduration,TenantApiInvoke,TenantSessionStatistic,
   TenantConsumes,
   MessageList,MessageNew,MessageEdit,MessageDetail,
-  InvoiceList,InvoiceDetail,InvoiceEdit,
-  ServiceList
+  InvoiceList,InvoiceDetail,InvoiceEdit,InvoiceSendList,
+  ServiceList,
+  DemandDetail,DemandEdit,DemandList,
+  VoiceLlist,VoiceEdit,
 } from './resource.js'
+
+
+
 
 
 export default {
@@ -102,6 +107,9 @@ export default {
   getInvoiceList(param){
     return InvoiceList.get(param)
   },
+  getInvoiceSendList(param){
+    return InvoiceSendList.get(param)
+  },
   getInvoiceDetail(param){
     return InvoiceDetail.get(param)
   },
@@ -110,8 +118,22 @@ export default {
   },
   getServiceList(param){
     return ServiceList.get(param)
-  }
-
+  },
+  getDemandDetail(param){
+    return DemandDetail.get(param)
+  },
+  editDemand(param){
+    return DemandEdit.post(param)
+  },
+  getDemandList(param){
+    return DemandList.get(param)
+  },
+  getVoiceLlist(param){
+    return VoiceLlist.get(param)
+  },
+  editVoiceEdit(param){
+    return VoiceEdit.post(param)
+  },
 }
 
 

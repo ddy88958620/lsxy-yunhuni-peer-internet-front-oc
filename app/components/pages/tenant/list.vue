@@ -4,12 +4,15 @@
 			<h4>会员列表</h4>
 			<div class="flex align-items-c bg-section-margin  remove-margin-bottom">
 				<div class="select-box">
-					<search placeholder="请输入关键字,如会员名称" v-on="get-name" ></search>
+					<search placeholder="请输入关键字,如会员名称"
+						:value.sync='name'
+
+					 ></search>
 				</div>
 				<span class='datetime-picker-label'>注册时间:</span>
-				<datetime-picker uuid="begintime" type='month' ></datetime-picker>
+				  <datetime-picker :uuid="'datetimepicker3'"  :type.sync="startdate.type" :value.sync="startdate.value"></datetime-picker>
 				<span class='datetime-picker-label'>至</span>
-				<datetime-picker uuid="endtime"  type='month' ></datetime-picker>
+				  <datetime-picker :uuid="'datetimepicker2'"  :type.sync="enddate.type" :value.sync="enddate.value"></datetime-picker>
 				<span class='datetime-picker-label'>认证状态: </span>
 				<select class="form-control" v-model='authStatus' >
 					<option value=2 >全部</option>
@@ -51,8 +54,8 @@
 					<td>{{message.name}}</td>
 					<td class="text-align-c">{{message.app_count ? message.app_count: 0 }}</td>
 					<td class="{{ message.status ? 'text-danger' : ''}}">{{message.auth_status ? '未上线' : '已上线'}}</td>
-					<td class="text-align-c">{{message.cost_coin ? message.cost_coin : 0}}</td>
-					<td class="text-align-c">{{message.remain_coin ? message.remain_coin : 0 }}</td>
+					<td class="text-align-c">{{message.remain_coin ? message.remain_coin : 0}}</td>
+					<td class="text-align-c">{{message.cost_coin ? message.cost_coin : 0 }}</td>
 					<td class="text-align-c">{{message.total_coin ? message.total_coin : 0 }}</td>
 					<td class="text-align-c">{{message.session_count ? message.session_count : 0 }}</td>
 					<td class="text-align-c">{{message.session_time ? message.session_time : 0 }}</td>
@@ -91,6 +94,14 @@
 		},
 		data(){
 			return {
+				startdate :{
+					type:'month',
+					value:'',
+				},
+				enddate :{
+					type:'month',
+					value:'',
+				},
 				name: '',
 				begintime: '2016-06',
 				endtime:'2016-08',
@@ -107,41 +118,22 @@
 				this.getMoreTenant(params)
 			},
 			query(){
-				let params = {name:this.name,begin:this.begintime,end:this.endtime,accStatus:this.accStatus}
-				/*params.name =this.name*/
-				/*params.name =111111
-				params.begin = ''
-				params.end = ''*/
-				//params.authStatus = this.authStatus
-				//params.accStatus = this.accStatus
-			    console.log(params)
+				console.log('name ' + this.name )
+				let params = {}
+				
+				if(!this.name){
+					params.name = this.name
+				}
+				params.begin = this.startdate.value
+				params.end = this.enddate.value
+				/*params.authStatus = this.authStatus*/
+				params.accStatus = this.accStatus
 			    
 				this.getTenantList(params)
-			},
-			switch(val){
-				console.log(val)
 			},
 			getName(){
 			   console.log(this.name)
 			}
-		},
-		events:{
-		  'search-content': function(cnt) {
-		  	 this.name = cnt
-		  	 let params = {};
-			 params.name = this.name
-			 this.getTenantList(params)
-		  },
-		  'search-keyup': function(cnt){
- 			 this.name = cnt
-		  },
-		  'date-time': function(time,uid) {
-		  	if(uid=='starttime'){
-		  		this.begintime = time
-		  	}else{
-		  		this.endtime = time
-		  	}
-		  }
 		},
 		ready(){
 			this.getTenantList()

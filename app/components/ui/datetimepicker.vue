@@ -32,7 +32,6 @@
 			},
 			uuid: {
 				type: String,
-				
 			},
 			type: {
 				type: String,
