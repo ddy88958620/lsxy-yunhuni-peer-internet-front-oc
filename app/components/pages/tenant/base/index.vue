@@ -1,9 +1,4 @@
 <template>
-	<!--<div class="flex flex-direction-column bg-section-margin ">
-		<div class="flex justify-content-b flex-wrap" >
-			<single :messages="sigledata"></single>
-		</div>
-	</div>-->
 
 	<div class="flex flex-1 bg-section-margin ">
 		<div class="flex flex-1 padding-right-10">
@@ -14,8 +9,8 @@
 						<ul class="list-none-style">
 							<li>会员名称:{{info.tenantName}}</li>
 							<li>账号:{{info.userName}}</li>
-							<li>注册时间:{{info.createTime}}</li>
-							<li>绑定手机号:1358564123</li>
+							<li>注册时间:{{info.createTime | totalDate}}</li>
+							<li>绑定手机号:{{info.mobile}}</li>
 							<li>邮箱绑定:{{info.email}}</li>
 						</ul>
 					</div>
@@ -30,7 +25,7 @@
 						<ul class="list-none-style">
 							<li>所属行业: {{info.industry}}</li>
 							<li>主营业务: {{info.business}}</li>
-							<li>网站: </li>
+							<li>网站: {{info.url}}</li>
 						</ul>
 					</div>
 				</div>
@@ -47,7 +42,7 @@
 						<ul class="list-none-style">
 							<li>所在地区: {{info.province}}{{info.city}}</li>
 							<li>通讯地址: {{info.address}}</li>
-							<li>联系号码: {{info.mobile}}</li>
+							<li>联系号码: {{info.phone}}</li>
 						</ul>
 					</div>
 				</div>
@@ -59,20 +54,55 @@
 					<div class="panel-heading panel-base-heading">认证信息</div>
 					<div class="panel-body admin-bg flex-1">
 						<ul class="list-none-style">
-							<li>认证状态: <span class="text-danger padding-right-10">未审核</span> <a class="btn btn-primary">去审核</a></li>
-							<li>认证类型: {{authinfo.type}}</li>
-							<li>公司名称: {{authinfo.name}}</li>
-							<li>公司地址: {{authinfo.addr}}</li>
-							<li>所属行业: {{authinfo.industry}}互联网通信</li>
-							<li>证件类型: {{authinfo.authType}}三证合一（一证一码）</li>
-							<li>统一社会信用代码: 135546546465546564465</li>
-							<li class="flex  flex-direction-row ">
-								<span class=" padding-right-10">营业执照: </span>
-								<img src="../../../../assets/images/businesses.png" alt="" class="padding-right-10" >
-								<div class="flex ">
-									<button class="btn btn-primary down-btn">下载</button>
-								</div>
+							<li>认证状态:
+								<span class="text-danger padding-right-10" >{{authinfo.status}}</span> <a class="btn btn-primary" v-if="authinfo.status === '未审核'" v-link="'/admin/demand/member/list/await'">去审核</a>
 							</li>
+							<li>认证类型: {{authinfo.type}}</li>
+							<template v-if="authinfo.type === '公司'">
+								<li>公司名称: {{authinfo.name}}</li>
+								<li>公司地址: {{authinfo.addr}}</li>
+								<li>所属行业: {{authinfo.industry}}</li>
+								<li>证件类型:
+									<span v-if="authinfo.authType == '0'">三证合一（一照一码）</span>
+									<span v-if="authinfo.authType == '1'">三证合一</span>
+									<span v-if="authinfo.authType == '2'">三证分离</span>
+								</li>
+								<template v-if="authinfo.authType == '0'">
+									<li>统一社会信用代码：${authinfo.type01Prop02}</li>
+									<li class="flex  flex-direction-row ">
+										<span class=" padding-right-10">营业执照: </span>
+										<img v-bind:src="'/ossfile/img/'+authinfo.type01Prop01" alt="" class="padding-right-10" >
+									</li>
+								</template>
+								<template v-if="authinfo.authType == '1'">
+									<li>注册号：${authinfo.type02Prop01}</li>
+									<li>税务登记号：${authinfo.type02Prop02}</li>
+									<li class="flex  flex-direction-row ">
+										<span class=" padding-right-10">营业执照: </span>
+										<img v-bind:src="'/ossfile/img/'+authinfo.type02Prop03" alt="" class="padding-right-10" >
+									</li>
+								</template>
+								<template v-if="authinfo.authType == '2'">
+									<li>税务登记号：${authinfo.type03Prop01}</li>
+									<li>营业执照号：${authinfo.type03Prop03}</li>
+									<li class="flex  flex-direction-row ">
+										<span class=" padding-right-10">营业执照: </span>
+										<img v-bind:src="'/ossfile/img/'+authinfo.type03_prop04" alt="" class="padding-right-10" >
+									</li>
+								</template>
+							</template>
+							<template v-else>
+								<li>真实姓名：{{authinfo.name}}</li>
+								<li>证件类型：
+									<span class="padding-right-10" v-if="authinfo.idType ==='0'">身份证</span>
+									<span class="padding-right-10" v-if="authinfo.idType ==='1'">护照</span>
+								</li>
+								<li>证件号码：{{authinfo.idNumber}}</li>
+								<li class="flex  flex-direction-row ">
+									<span class=" padding-right-10">证件照: </span>
+									<img v-bind:src="'/ossfile/img/'+authinfo.idPhoto" alt="" class="padding-right-10" >
+								</li>
+							</template>
 						</ul>
 					</div>
 				</div>
@@ -80,7 +110,7 @@
 		</div>
 	</div>
 
-	<modal :show.sync="showModal" title="密码重置">
+	<modal :action="resetPass" :show.sync="showModal" title="密码重置">
 		  <div slot="body">系统将会发送一条重置密码的链接发送到会员的邮箱里，请确认您此次的操作</div>
 	</modal>
 </template>
@@ -104,13 +134,12 @@
 		},
 		data(){
 			return {
-				showModal : false,
-				sigledata:[
-					['Hello world','123123','2016-06-06 16:30','13611460986','475647150@qq.com'],
-					['通讯','飞飞语音','www.yunhuni.com'],
-					['广东广州','天河区黄埔大道羊城创意园','020-86435555'],
-					['公司','流水行云科技有限公司','广州天河','互联网通信','三证合一（一证一码）','135546546465546564465','']
-				]
+				showModal : false
+			}
+		},
+		methods:{
+			resetPass(){
+				console.log('重置密码')
 			}
 		},
 		ready(){

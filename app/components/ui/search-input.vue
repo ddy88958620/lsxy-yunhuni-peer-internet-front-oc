@@ -1,11 +1,11 @@
 <template>
   <div class="search-box flex flex-1">
-    <input class="form-control search" 
+    <input class="form-control search"
       placeholder="{{placeholder}}" 
-      :value.sync='value'
+      v-model="value"
       type="text"
-      id="{{uuid}}" />
-    <i class="iconfont icon-oc-search cursor" ></i>
+       />
+    <i class="iconfont icon-oc-search cursor" @click="action ? action : '' " ></i>
   </div>
 </template>
 
@@ -31,26 +31,23 @@
     },
     props: {
       value:{
+        type: String,
         twoWays:true,
         default:''
       },
-      uuid:{
-        type: String,
+	    action: {
+      	type: Function
       },
       placeholder: {
+      	type: String,
         default: ''
       },
     },
     methods: {
-      search(){
-         
-      },
-      searchkeyup(){
-        
-      }
+//    	action(){
+//    		this.action()
+//      }
     },
-    ready(){
-
-    }
+    ready(){}
   }
 </script>

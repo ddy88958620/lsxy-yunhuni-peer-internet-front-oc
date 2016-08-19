@@ -25,7 +25,7 @@
         <div class="admin-form flex flex-direction-row align-items-s">
           <label for="content"></label>
           <div class="flex align-items-c">
-            <button class="btn btn-primary" @click="newmessage">发布</button>
+            <button class="btn btn-primary" @click="newMessage">发布</button>
             <button class="btn btn-default admin-margin-l">取消</button>
           </div>
         </div>
@@ -56,26 +56,12 @@ export default {
     'datetimepicker': require('../../ui/datetimepicker.vue')
   },
   methods:{
-    newmessage(){
-
-      let params = {}
-      params.message = {"content":'123456','name':'123456'}
-
-      console.log(params)
-
-      this.NewMessage(params)
-      console.log(this.title)
-    }
-  },
-  events:{
-    'date-time':function(time,uid){
-      this.newtime = time 
+    newMessage(){
     }
   },
   ready(){
     var editor = new Simditor({
       textarea: $('#editor')
-      //optional options
     });
   }
 }

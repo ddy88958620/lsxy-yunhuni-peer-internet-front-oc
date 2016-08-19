@@ -84,7 +84,7 @@
 							language: 'zh-CN',
 							format: 'yyyy-mm-dd',
 							startView: 'month',
-							minView: 'day',
+							minView: 'month',
 						}
 						break;
 					case 'time':

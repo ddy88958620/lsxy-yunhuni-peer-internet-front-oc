@@ -5,7 +5,7 @@
       <div class="flex flex-1 flex-direction-column whilebg admin-padding admin-border">
         <div class="flex section-time-box">
           <a @click="previousMonth" >上个月</a>
-          <span>{{chartOneDate.year}}-0{{ chartOneDate.month }}</span>
+          <span>{{chartOneDate ? chartOneDate.year+'-0'+chartOneDate.month : '0'}}</span>
         </div>
         <div class="flex flex-1">
           <chart
@@ -24,8 +24,8 @@
       <div class="flex flex-1 flex-direction-column whilebg admin-padding admin-border">
         <div class="flex section-time-box">
           <a >本月</a>
-          <a @click="chartOneDate.month= chartOneDate.month - 1"  >上一月</a>
-          <a @click="chartOneDate.month= chartOneDate.month + 1" >上一月</a>
+          <a @click="previousMonthApi"  >上一月</a>
+          <a @click="nextMonthApi" >下一月</a>
 
           <span>2016-08-1</span>
         </div>
@@ -34,7 +34,7 @@
             :uuid="'realtime-app-chart6'"
             :label="['']"
             :color="['#e1a2a2']"
-            :value.sync="chartTwoValue"
+            :value.sync="chartApiValue"
             :title="['API调用次数','次数(次)']"></chart>
         </div>
       </div>
@@ -43,28 +43,29 @@
 </template>
 
 <script>
+  import DATE from '../../../../../utils/date'
   export default{
     data(){
       return {
         chartOneValue: [],
-        chartOneDate:{
-          year: 2016,
-          month: 8
-        },
-        chartTwoValue: [],
-        chartTwodate: {
-          year: 2016,
-          month: 8
-        }
+        chartOneDate: null,
+        chartApiValue: [],
+        chartApiDate: null,
       }
     },
     watch: {
-        chartOneDate: {
-          handler(){
-            console.log('chartOneDate update')
-          },
-          deep: true
-        }
+      chartOneDate: {
+        handler(newDate, old){
+          this.chartOneQuery()
+        },
+        deep: true
+      },
+      chartApiDate:{
+        handler(newDate, old){
+          this.chartApiQuery()
+        },
+        deep: true
+      }
     },
     components:{
       'chart': require('../../../../ui/realtime-chart.vue')
@@ -76,20 +77,36 @@
       nextMonth(){
         this.chartOneDate.month = this.chartOneDate.month < 12 ? this.chartOneDate.month + 1 : 12
       },
+	    previousMonthApi(){
+		    this.chartApiDate.month = this.chartApiDate.month > 1 ? this.chartApiDate.month - 1 : 1
+	    },
+	    nextMonthApi(){
+		    this.chartApiDate.month = this.chartApiDate.month < 12 ? this.chartApiDate.month + 1 : 12
+	    },
     	chartOneQuery(){
         let uid = this.$route.params.uid
         let self = this
+		    if (this.chartOneDate === null){
+			    this.chartOneDate = DATE.totalDate()
+        }
         $.get('/tenant/tenants/'+uid+'/session/statistic', self.chartOneDate).then((res)=>{
           self.chartOneValue = res.data
-          self.chartTwoValue = res.data
         })
-//      /tenant/tenants/{id}/api_invoke/statistic
-//      $.get('/tenant/tenants/'+uid+'/api_invoke/statistic', {year: 2016}).then((res)=>{
-//        self.chartTwo = res.data
-//      })
+      },
+      chartApiQuery(){
+        let uid = this.$route.params.uid
+        let self = this
+        if (this.chartApiDate === null){
+          this.chartApiDate = DATE.totalDate()
+        }
+        $.get('/tenant/tenants/'+uid+'/session/statistic', self.chartApiDate).then((res)=>{
+          self.chartApiValue = res.data
+        })
       }
     },
     ready(){
+    	this.chartOneQuery()
+	    this.chartApiQuery()
     }
   }
 </script>
@@ -99,6 +116,4 @@
     height: 300px;
     background-color: transparent;
   }
-
-
 </style>
