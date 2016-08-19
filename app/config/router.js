@@ -211,7 +211,7 @@ export default function(router){
                     }
                   }
                 },
-                '/detail/:id':{
+                '/detail/:authStatus/:id/:type':{
                   component: (resolve) => require(['../components/pages/demand/member/detail.vue'],resolve)
                 }
               }

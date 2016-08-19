@@ -18,3 +18,12 @@ export function totalDate(timestamp) {
 	let second = date.getSeconds().toString().length < 2 ? '0'+ date.getSeconds() : date.getMinutes()
 	return `${year}-${month}-${day} ${hour}:${minute}:${second}`
 }
+
+
+
+export function img(filename) {
+	let fileurl = 'http://192.168.10.75:18082/ossfile/img?uri='+filename
+	/*let fileurl = domain.API_ROOT+'/ossfile/img?uri='+filename*/
+	return fileurl
+}
+
