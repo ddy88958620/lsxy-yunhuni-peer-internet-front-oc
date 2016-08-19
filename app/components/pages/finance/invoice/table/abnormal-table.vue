@@ -3,6 +3,7 @@
 		<div class="flex align-items-c bg-section-margin remove-margin-bottom  ">
 			<div class="select-box">
 				<search
+					:value.sync="search"
 					placeholder="请输入关键字,如真是姓名、会员名称"
 				></search>
 			</div>
@@ -36,7 +37,7 @@
 				</thead>
 				<tbody>
 				<tr v-for='message in invoice.result'>
-					<td class="message-time text-align-c">{{message.applyTime}}</td>
+					<td class="message-time text-align-c">{{message.applyTime | date }}</td>
 					<td><a>{{message.tenant.tenantName}}</a></td>
 					<td>{{message.amount}}</td>
 					<td v-if='message.type==1'>个人增值税普通发票</td>
@@ -77,16 +78,30 @@
 				messages: [],
 				total: 0,
 				type: 0,
-				status:'unauth'
+				status:'unauth',
+				search
 			}
 		},
 		methods: {
 			moreMessage(){
-				
+				let params = {}
+				let nextPage = this.invoice.currentPageNo+1
+				params.status = this.status
+				if(this.search){
+					params.name=this.search
+				}
+				if(this.type!=0){
+					params.type = this.type
+				}
+				params.pageNo = nextPage
+				this.getMoreInvoiceList(params)	
 			},
 			query(){
 				let params = {}
 				params.status = this.status
+				if(this.search!=''){
+					params.name = this.status
+				}
 				if(this.type!=0){
 					params.type = this.type
 				}
