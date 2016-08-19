@@ -42,7 +42,7 @@
 				</tr>
 				</thead>
 				<tbody>
-				<tr v-for='message in message.result'>
+				<tr v-for='message in messages'>
 					<td class="message-time text-align-c">{{message.createTime }}</td>
 					<td>{{message.name}}</td>
 
@@ -55,7 +55,7 @@
 						<span><a >编辑</a></span>
 						<span v-if='message.status==0' ><a>上线</a></span>
 						<span v-if='message.status==1' ><a>下线</a></span>
-						<span><a >删除</a></span>
+						<span><a @click="deleteMessage($index)">删除</a></span>
 					</td>
 				</tr>
 				</tbody>
@@ -71,19 +71,12 @@
 	import {getMessageList} from '../../../vuex/actions'
 
 	export default {
-		vuex: {
-			getters: {
-				message: ({message}) => message.list
-			},
-			actions: {
-				getMessageList
-			}
-		},
 		components: {
 			'datetime-picker': require('../../ui/datetimepicker.vue')
 		},
 		data(){
 			return {
+				messages: [],
 				startTime: '',
 				endTime: '',
 				type: 1,
@@ -100,9 +93,9 @@
 		},
 		methods: {
 			moreMessage(){
-				
-
-
+			},
+			deleteMessage(index){
+				this.messages.splice(index, 1)
 			},
 			query(){
 				let params = {}
@@ -114,11 +107,15 @@
 				params.type = this.type
 
 				console.log(params)
-				this.getMessageList(params)
+				let self = this
+				
+				$.get('/message/list').then((res) => {
+					self.messages = res.data.result
+				})
 			}
 		},
 		ready(){
-			this.getMessageList()
+			this.query()
 		}
 
 	}

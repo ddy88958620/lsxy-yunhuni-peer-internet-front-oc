@@ -89,7 +89,7 @@
 
 	</div>
 
-	<modal :show.sync="showModal" title="审核" >
+	<modal :show.sync="showModal" title="审核" :action="fail">
 		<div slot="body">
 			<div class="flex flex-1 ">
 				<span class="flex flex-1 align-items-c justify-content-c">不通过原因</span>
@@ -107,6 +107,9 @@
 		methods:{
 			showDetail:function(index){
 				this.show.$set(index, !this.show[index])
+			},
+			fail(){
+				this.showModal = false
 			}
 		},
 		data(){
