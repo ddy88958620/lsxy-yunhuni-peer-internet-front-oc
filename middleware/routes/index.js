@@ -69,7 +69,6 @@ const path = JSON.parse(fs.readFileSync('./doc/swagger.json', 'utf8')).paths
 
 for (let [key, value] of Object.entries(path)) {
   // 登入
-	console.log(key)
 	if (key === '/auth/login'){
 		router.post(key , async function (ctx, next) {
 			let uuid = UUID.v1()
@@ -78,7 +77,6 @@ for (let [key, value] of Object.entries(path)) {
 			// 	|| ctx.session.verCode.toLowerCase() !== data.code.toLowerCase()){//验证码不匹配
 			// 	console.log("验证码不匹配",ctx.session.verCode,data.code);
 			// 	ctx.body = 'code error'
-			// 	// ctx.res.end()
 			// 	return
 			// }
 			let swaggerData = await request(key, 'post', data)
@@ -86,8 +84,11 @@ for (let [key, value] of Object.entries(path)) {
 			if(swaggerData.data && swaggerData.data.token){
 				ctx.cookies.set(config.COOKIENAME, uuid, {expires: new Date(), maxAge: 30*60*1000, domain: config.COOKIEDOAIM})
 				ctx.session.token = swaggerData.data.token
+				ctx.body = ' '
+				return
 			}
-			ctx.body = ' '
+			ctx.body = 'java token fail'
+			return
 		})
 	} else {
 		// switch get post put
