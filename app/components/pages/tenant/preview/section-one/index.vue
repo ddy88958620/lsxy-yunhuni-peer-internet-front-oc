@@ -12,8 +12,8 @@
                   <span class="flex flex-1 name align-items-c justify-content-c" >{{tenant.tenantName}}</span>
                 </div>
                 <div class="message flex flex-1 flex-direction-column ">
-                  <span class="flex overflow-x-h">REST API: http://api.yunhuni.com/{{cert.id}}</span>
-                  <span class="flex overflow-x-h">SercreKey：{{cert.secretKey}}</span>
+                  <span class="flex overflow-x-h">REST API: http://api.yunhuni.com/{{cert && cert.id}}</span>
+                  <span class="flex overflow-x-h">SercreKey：{{cert && cert.secretKey}}</span>
                 </div>
               </div>
             </div>
@@ -26,7 +26,7 @@
                   <span class="flex align-items-c unit">余额（元）</span>
                 </div>
                 <div class="flex flex-1 green money">
-                    ￥{{bill.balance}}
+                    ￥{{(bill && bill.balance) || 0}}
                 </div>
                 <div class="flex flex-direction-row-reverse">
                   <button class="btn btn-default" @click="openModal" >消费记录</button>
@@ -60,9 +60,9 @@
                   <span class="flex align-items-c unit">套餐剩余量</span>
                 </div>
                 <div class="flex flex-1 flex-direction-column surplus">
-                  <div class="flex flex-1">会议剩余：<span class="green">{{bill.conferenceRemain}}</span>分钟</div>
-                  <div class="flex flex-1">语音剩余：<span class="green">{{bill.voiceRemain}}</span>分钟</div>
-                  <div class="flex flex-1">短信剩余：<span class="green">{{bill.smsRemain}}</span>条</div>
+                  <div class="flex flex-1">会议剩余：<span class="green">{{(bill && bill.conferenceRemain) || 0}}</span>分钟</div>
+                  <div class="flex flex-1">语音剩余：<span class="green">{{(bill && bill.voiceRemain) || 0}}</span>分钟</div>
+                  <div class="flex flex-1">短信剩余：<span class="green">{{(bill && bill.smsRemain) || 0}}</span>条</div>
                 </div>
               </div>
             </div>
@@ -198,10 +198,10 @@
     },
     computed: {
       remainFilesize:function(){
-        return ((this.bill.fileRemainSize || 0) / 1024 / 1024 / 1024).toFixed(2)
+        return (((this.bill && this.bill.fileRemainSize) || 0) / 1024 / 1024 / 1024).toFixed(2)
       },
       filesize: function () {
-        return ((this.bill.fileTotalSize || 0) / 1024 / 1024 / 1024).toFixed(2)
+        return (((this.bill && this.bill.fileTotalSize) || 0) / 1024 / 1024 / 1024).toFixed(2)
       }
     },
     ready(){
