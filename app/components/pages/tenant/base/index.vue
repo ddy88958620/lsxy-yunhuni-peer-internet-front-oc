@@ -139,7 +139,10 @@
 		},
 		methods:{
 			resetPass(){
-				console.log('重置密码')
+				let self = this;
+				$.patch('/tenant/tenants/' + this.$route.params.uid + '/resetPass').then((res) => {
+				});
+				self.showModal = false
 			}
 		},
 		ready(){

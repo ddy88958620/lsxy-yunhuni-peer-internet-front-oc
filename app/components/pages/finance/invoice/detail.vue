@@ -50,11 +50,9 @@
 					<li>收取地址：{{ detail.receiveAddress }}</li>
 					<li>收件人：{{ detail.receivePeople }}</li>
 					<li>手机号码: {{ detail.receiveMobile }}</li>
-					
-
-					<li v-if="detail.status==0">
+					<li v-if="detail.express_no==null ||  etail.express_no=='' ">
 						<button class="btn btn-primary" @click="abnormalModal = true">异常</button>
-						<button class="btn btn-primary" @click="passModal = true">通过</button>
+						<button class="btn btn-primary" @click="pass">通过</button>
 						<button class="btn btn-default" v-link="'/admin/finance/invoice'" >取消</button>
 					</li>
 				</ul>
@@ -66,8 +64,8 @@
 			<div class="panel-body">
 				<ul class="list-none-style">
 					<li v-if="detail.status==1">状态：审核已通过，等待寄出</li>
-					<li v-if="detail.status==-1" >状态：异常</li>
-					<li v-if="detail.status==-1">异常原因：填写资料有误</li>
+					<li v-if="detail.status==2" >状态：异常</li>
+					<li v-if="detail.status==2">异常原因：{{detail.reason}}</li>
 				</ul>
 			</div>
 		</div>
@@ -100,12 +98,11 @@
 			<div class="flex flex-direction-column admin-table-header">
 				<div class="flex align-items-c">
 					<span class='datetime-picker-label clear-padding-left'>提交时间:</span>
-					<datetime-picker disable="disable"></datetime-picker>
+					2016-07-05
 					<span class='datetime-picker-label'>至</span>
-					<datetime-picker></datetime-picker>
+					2016-07-18
 				</div>
 			</div>
-
 			<div class="admin-table table-responsive flex-1 flex flex-direction-column">
 				<div class="table-total flex flex-1 justify-content-e">
 					消费总金额：<span class="brown">2400</span>元 共<span class="text-danger">20</span>条
@@ -168,17 +165,20 @@
 			abnormal(){
 				//异常处理
 				let id = this.$route.params.id
-				let params = {expressCom:'',expressNo:'',reason:this.reason,status:0}
+				params.status = 2
 				$.put('/finance/invoice/edit/'+id, params).then((res) => {
 					this.abnormalModal = false
+					this.getInvoiceDetail({id:id})
 				})
 			},
 			pass(){
 				//通过
 				let id = this.$route.params.id
-				let params = {expressCom:'',expressNo:'',reason:this.reason,status:1}
+				let params = {}
+				params.status = 1
 				$.put('/finance/invoice/edit/'+id, params).then((res) => {
-					this.abnormalModal = false
+					//成功处理
+					this.getInvoiceDetail({id:id})
 				})
 			}
 		},

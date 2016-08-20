@@ -19,7 +19,7 @@
 			<div class="admin-form flex flex-direction-row align-items-s">
 				<label for="content"></label>
 				<div class="flex align-items-c">
-					选择上线时间 &nbsp;&nbsp;<datetimepicker :width="200" :type="'time'" :value.sync="publicTime" :uuid="'newtime'" ></datetimepicker>
+					选择上线时间 &nbsp;&nbsp;<datetimepicker :width="200" :type="'time'" :value.sync="line" :uuid="'newtime'" ></datetimepicker>
 				</div>
 			</div>
 			<div class="admin-form flex flex-direction-row align-items-s">
@@ -50,12 +50,8 @@
 				text: 'test',
 				date : '',
 				title: '',
-				content: ''
-			}
-		},
-		computed: {
-			publicTime(){
-				return filter.totalDate(this.date)
+				content: '',
+				line: ''
 			}
 		},
 		components: {
@@ -68,10 +64,11 @@
 					title: this.title,
 					content: this.editor.getValue(),
 					type: 1,
-					status: 0
+					status: 0,
+					line: this.line
 				}
 				
-				$.post('/message/new',params).then((res)=>{
+				$.put('/message/edit/'+this.$route.params.mid, params).then((res)=>{
 					if(res.success){
 						this.$route.router.go('/admin/message/list')
 					}
@@ -90,7 +87,7 @@
 				
 				self.editor.setValue(res.data.content)
 				self.title = res.data.title
-				self.date = res.data.lastTime
+				self.line = filter.totalDateWithNoSeconds(res.data.lineTime)
 			})
 		}
 	}
