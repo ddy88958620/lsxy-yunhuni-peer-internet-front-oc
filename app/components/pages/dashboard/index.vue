@@ -4,8 +4,8 @@
     <section-two></section-two>
     <section-three></section-three>
     <section-four></section-four>
-    <section-five></section-five>
-    <section-six></section-six>
+   <!--  <section-five></section-five>
+    <section-six></section-six> -->
     <router-view keep-alive></router-view>
   </div>
 </template>

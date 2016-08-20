@@ -1,9 +1,9 @@
 <template>
   <div id="app-chart">
     <div class="app-chart-header flex align-items-c">
-      <input name='app-chart-type' @click="date.type = 'month'"  type="radio" checked=checked/>
+      <input name='app-chart-type' @click="changeDate('month')"  type="radio" checked=checked/>
       <label for="">日统计</label>
-      <input name='app-chart-type' @click="date.type = 'year'"  type="radio"/>
+      <input name='app-chart-type' @click="changeDate('year')"  type="radio"/>
       <label for="">月统计 </label>
       <div class="datepicker-wrap">
         <datetime-picker :uuid="'datetimepicker1'" :action="doGetNewMemberAndApp" :type.sync="date.type" :value.sync="date.value"></datetime-picker>
@@ -57,10 +57,23 @@
 		      // {year, month} === {year: year, month: month
           this.getNewMemberAndApp({year: year,month})
         }
+      },
+      changeDate(type){
+        let thisDate = new Date()
+        let self = this
+        self.date.type = type
+        if(type=='year'){
+          this.getNewMemberAndApp({year:thisDate.getFullYear()})
+        }else{
+          self.date.type ='month'
+          this.getNewMemberAndApp({year:thisDate.getFullYear(),month:thisDate.getMonth()})
+        }
       }
     },
 	  ready(){
-    	this.doGetNewMemberAndApp({year:'2016',month:'08'})
+       this.changeDate('month')
+       /*let thisDate = new Date()
+    	 this.doGetNewMemberAndApp({year:thisDate.getFullYear(),month:thisDate.getMonth()})*/
     },
   }
 </script>
