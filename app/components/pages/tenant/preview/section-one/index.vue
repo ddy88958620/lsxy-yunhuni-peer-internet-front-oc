@@ -30,7 +30,7 @@
                 </div>
                 <div class="flex flex-direction-row-reverse">
                   <button class="btn btn-default" @click="openModal" >消费记录</button>
-                  <button class="btn btn-primary">充值</button>
+                  <button class="btn btn-primary" @click="recharge.showModal = true">充值</button>
                 </div>
               </div>
             </div>
@@ -115,7 +115,16 @@
       </div>
     </div>
   </modal>
-    
+
+  <modal :show.sync="recharge.showModal" title="充值" :action="doRecharge">
+    <div slot="body">
+      <div class="flex flex-1 ">
+        <span class="flex flex-1 align-items-c justify-content-c">充值金额</span>
+        <span class="flex flex-2 "><input type="text" class="form-control " v-model='recharge.amount' /></span>
+      </div>
+    </div>
+  </modal>
+
 </template>
 
 <script>
@@ -150,6 +159,10 @@
           hasMore: true,
           total:0,
           totalAmount:0
+        },
+        recharge:{
+          showModal:false,
+          amount:0
         }
       }
     },
@@ -194,6 +207,18 @@
           self.page.total = (res.data && res.data.consumes && res.data.consumes.totalCount) || 0
           self.page.totalAmount = (res.data && res.data && res.data.sumAmount) || 0
         })
+      },
+      doRecharge:function(){
+        let self = this;
+        if(this.recharge.amount>0 && this.recharge.amount<1000000){
+          $.put('/tenant/tenants/'+this.$route.params.uid+'/recharge',this.recharge).then((res) => {
+            if(res.data){
+              self.recharge.amount = 0
+              self.recharge.showModal = false
+              self.getTenantBilling({id:self.$route.params.uid})
+            }
+          })
+        }
       }
     },
     computed: {
