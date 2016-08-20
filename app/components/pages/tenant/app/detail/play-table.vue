@@ -74,6 +74,9 @@
 				let params = $.extend(true, {}, self.page.query);
 				params.pageNo = pageNo;
 				self.page.loading = true
+				if(init){
+					self.plays = [];
+				}
 				$.get('/tenant/tenants/'+this.$route.params.uid+'/apps/'+this.$route.params.appid+'/plays', params).then((res)=> {
 					self.page.loading = false
 					if (res.data && res.data.result) {
