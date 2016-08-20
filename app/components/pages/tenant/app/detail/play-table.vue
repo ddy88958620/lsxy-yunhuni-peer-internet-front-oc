@@ -8,9 +8,9 @@
 
 	<div class="admin-table table-responsive">
 		<div class="table-total flex flex-1 justify-content-e">
-			共<span  class="green">{{(capacity.fileTotalSize/1024/1024).toFixed(2)}}</span>MB,
-			已使用<span class="text-danger">{{(capacity.fileRemainSize/1024/1024).toFixed(2)}}</span>MB,
-			共<span class="text-danger">{{page.total}}</span>条
+			共<span  class="green">{{((capacity.fileTotalSize || 0)/1024/1024).toFixed(2)}}</span>MB,
+			已使用<span class="text-danger">{{((capacity.fileRemainSize || 0)/1024/1024).toFixed(2)}}</span>MB,
+			共<span class="text-danger">{{page.total || 0}}</span>条
 		</div>
 		<table class="table remove-margin-bottom">
 			<thead>
