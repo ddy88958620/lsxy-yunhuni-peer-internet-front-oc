@@ -23,7 +23,7 @@
 					<td class="text-align-c" >语音回拨</td>
 					<td>{{ switchs.isVoiceCallback ===0 ? '关闭' : '开启'}}</td>
 					<td class="text-align-c">
-						<a @click="edit('isVoiceCallback ')">{{ switchs.isVoiceCallback ? '关闭' : '开启'}}</a>
+						<a @click="edit('isVoiceCallback')">{{ switchs.isVoiceCallback ? '关闭' : '开启'}}</a>
 					</td>
 				</tr>
 				<tr>
@@ -120,10 +120,6 @@
 				self.switchs.isVoiceValidate = res.data.isVoiceValidate
 				self.switchs.isVoiceCallback = res.data.isVoiceCallback
 			})
-
-			console.log(this.switchs)
-		
-
 
 		}
 	}
