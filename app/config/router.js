@@ -54,7 +54,7 @@ export default function(router){
                 '/base': {
                   component: (resolve) => require(['../components/pages/tenant/base/index.vue'], resolve)
                 },
-                '/session': {
+                '/session/:aid': {
                   component: (resolve) => require(['../components/pages/tenant/session/index.vue'], resolve),
                   subRoutes: {
                     '/call': {

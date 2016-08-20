@@ -324,13 +324,15 @@ export const getInvoiceDetail = ({dispatch},params) =>{
 export const getDeliveryList = ({dispatch},params) =>{
   api.getInvoiceSendList(params).then(response=> {
     let invoice_list = response.json()
+    console.log
+
     switch(params.status){
-      case 'auditing':
+      case 'await':
         if(invoice_list.data){
           dispatch(types.DELIVERY_UNSEND_LIST,invoice_list.data)
         }
         break;
-      case 'unauth': 
+      case 'auditing': 
         if(invoice_list.data){
           dispatch(types.DELIVERY_SEND_LIST,invoice_list.data)
         }

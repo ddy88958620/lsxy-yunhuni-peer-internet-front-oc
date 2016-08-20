@@ -81,7 +81,7 @@
 			return {
 				messages: [],
 				total: 0,
-				status:'unauth',
+				status:'await',
 				type: 0,
 				search:''
 			}
@@ -116,7 +116,7 @@
 		},
 		ready(){
 			let params = {}
-			params.status = 'unauth'
+			params.status = this.status
 			this.getDeliveryList(params)
 		}
 
