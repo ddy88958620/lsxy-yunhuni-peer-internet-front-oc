@@ -91,6 +91,7 @@
 						self.dateConfig = {
 							language: 'zh-CN',
 							format: 'yyyy-mm-dd hh:ii',
+							todayBtn: true,
 							startView: 'month',
 							minView: 'hour',
 						}
