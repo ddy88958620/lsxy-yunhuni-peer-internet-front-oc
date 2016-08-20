@@ -13,7 +13,8 @@
 					<li>所属行业: {{app.industry}}</li>
 					<li>服务器白名单: {{app.whiteList}}</li>
 					<li>回调URL {{app.url}}</li>
-					<li>监听通知: 启用监听 启用鉴权</li>
+					<li v-if="app.isAuth == 1">监听通知: 启用监听 启用鉴权</li>
+					<li v-else>监听通知: 没有启用监听</li>
 					<li>绑定测试号: {{app.testPhone}}</li>
 					<li v-if="app.status == 1">应用状态: <span class="text-danger">已上线</span></li>
 					<li v-else>应用状态: <span class="text-danger">未上线</span></li>
