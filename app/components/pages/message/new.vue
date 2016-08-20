@@ -19,7 +19,7 @@
         <div class="admin-form flex flex-direction-row align-items-s">
           <label for="content"></label>
           <div class="flex align-items-c">
-            选择上线时间 &nbsp;&nbsp;<datetimepicker :width="200" :type="'time'" uuid='newtime' ></datetimepicker>
+            选择上线时间 &nbsp;&nbsp;<datetimepicker :width="200" :type="'time'" :value.sync="line" uuid='newtime' ></datetimepicker>
           </div>
         </div>
         <div class="admin-form flex flex-direction-row align-items-s">
@@ -35,6 +35,7 @@
 <script>
 import Simditor from 'simditor'
 import {NewMessage} from '../../../vuex/actions.js'
+import * as filter from '../../../utils/filters'
 export default {
   vuex: {
     getters: {
@@ -47,9 +48,9 @@ export default {
   data(){
     return {
       text: 'test',
-      newtime : '',
       title: '',
-      content: ''
+      content: '',
+      line: ''
     }
   },
   components: {
@@ -62,7 +63,8 @@ export default {
     	  title: this.title,
         content: this.editor.getValue(),
         type: 1,
-        status: 0
+        status: 0,
+        line: this.line
       }
 	    
       $.post('/message/new',params).then((res)=>{
