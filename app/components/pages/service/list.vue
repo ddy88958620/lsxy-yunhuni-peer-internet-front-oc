@@ -16,7 +16,7 @@
 					<option value=0>未读</option>
 				</select>
 
-				<a class="btn btn-primary admin-button-margin" @click="query" >查询</a>
+				<a class="btn btn-primary admin-button-margin" @click="query()" >查询</a>
 
 				<a class="btn btn-primary " v-link="'/admin/service'">全部标记为已读</a>
 			</div>
@@ -49,7 +49,7 @@
 			</table>
 				<div class="more">
 				<a v-show='service.totalPageCount==service.currentPageNo || service.totalPageCount==0'>加载完毕</a>
-				<a @click="query" class="text-none" v-show='service.totalPageCount!=service.currentPageNo && service.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+				<a @click="query('more')" class="text-none" v-show='service.totalPageCount!=service.currentPageNo && service.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
 			</div>
 		</div>
 </template>
@@ -74,25 +74,28 @@
 			}
 		},
 		methods: {
-			query(){
+			query(type){
 				let params = {}
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
 				params.status = this.status
 				
 				// more
-				console.log(typeof this.service)
-				if(this.service !== null){
+				//console.log(typeof this.service)
+				if(type=='more'){
 					let pageNo = this.service.currentPageNo + 1
-					console.log(pageNo)
+					//console.log(pageNo)
 					params.pageNo = pageNo
 				}
 				
 				let self = this
 				$.get('/service/list', params).then((res)=>{
-					console.log(res)
 					self.service = res.data
-					self.serviceList = self.serviceList.concat(res.data.result)
+					if(type=='more')
+						self.serviceList = self.serviceList.concat(res.data.result)
+					else
+						self.serviceList = res.data.result
+				
 				})
 			}
 		},

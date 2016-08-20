@@ -112,7 +112,7 @@
 		},
 		ready(){
 			let params = {}
-			params.status = 'auditing'
+			params.status = this.status
 			this.getDeliveryList(params)
 		}
 
