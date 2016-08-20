@@ -80,7 +80,7 @@
 						if (init) {
 							self.plays = res.data.result
 						} else {
-							self.plays = self.tenants.concat(res.data.result)
+							self.plays = self.plays.concat(res.data.result)
 						}
 						self.page.query.pageNo = pageNo
 					}
