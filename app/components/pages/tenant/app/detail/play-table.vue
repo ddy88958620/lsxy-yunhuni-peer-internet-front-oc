@@ -2,32 +2,40 @@
 
 	<div class="flex search-box bg-section-margin remove-margin-bottom">
 		<div class="select-box">
-			<search   placeholder='请输入关键字' ></search>
+			<search  placeholder='请输入关键字' :value.sync='page.query.name' :action="query(true)"></search>
 		</div>
 	</div>
 
 	<div class="admin-table table-responsive">
 		<div class="table-total flex flex-1 justify-content-e">
-			共<span class="text-danger">2222220</span>条
+			共<span  class="green">{{((capacity.fileTotalSize || 0)/1024/1024).toFixed(2)}}</span>MB,
+			已使用<span class="text-danger">{{((capacity.fileRemainSize || 0)/1024/1024).toFixed(2)}}</span>MB,
+			共<span class="text-danger">{{page.total || 0}}</span>条
 		</div>
 		<table class="table remove-margin-bottom">
 			<thead>
 			<tr>
 				<th class="text-align-c">审核时间</th>
 				<th>文件</th>
-				<th>大小</th>
+				<th>大小(MB)</th>
 				<th class="text-align-c">备注</th>
 			</tr>
 			</thead>
 			<tbody>
 			<tr v-for='play in plays'>
-				<td class="message-time text-align-c">{{play.date}}</td>
-				<td>{{play.type}}</td>
-				<td>{{play.size}}</td>
+				<td class="message-time text-align-c">{{play.checkTime || '未审核'}}</td>
+				<td>{{play.name}}</td>
+				<td>{{((play.size+0.1)/1024/1024).toFixed(2)}}</td>
 				<td class="text-align-c">{{play.remark}}</td>
 			</tr>
 			</tbody>
 		</table>
+		<div class="more">
+			<a v-show='page.loading'>正在加载</a>
+			<a v-show='!page.loading && !page.hasMore'>加载完毕</a>
+			<a @click="query()" class="text-none" v-show='!page.loading && page.hasMore'>加载更多<i
+				class="icon iconfont icon-oc-dropdown"></i></a>
+		</div>
 	</div>
 </template>
 
@@ -39,34 +47,53 @@
 		},
 		data(){
 			return{
-				app:{},
-				plays :[
-					{
-						date: '2016-06-06',
-						type: '1.wav',
-						size: '1.1',
-						remark: '语音通知推文件'
+				plays :[],
+				capacity:{},
+				page: {
+					query: {
+						name: '',
+						pageNo: 0,
+						pageSize: 10
 					},
-					{
-						date: '2016-06-06',
-						type: '1.wav',
-						size: '1.1',
-						remark: '语音通知推文件'
+					loading: true,
+					hasMore: true,
+					total:0
+				}
+			}
+		},
+		methods: {
+			fileCapacity(){
+				let self = this;
+				$.get('/tenant/tenants/'+this.$route.params.uid+'/file/totalSize').then((res)=> {
+					return res.data && (self.capacity = res.data)
+				})
+			},
+			query(init){
+				let self = this
+				let pageNo = (init && 1) || self.page.query.pageNo + 1
+				let params = $.extend(true, {}, self.page.query);
+				params.pageNo = pageNo;
+				self.page.loading = true
+				$.get('/tenant/tenants/'+this.$route.params.uid+'/apps/'+this.$route.params.appid+'/plays', params).then((res)=> {
+					self.page.loading = false
+					if (res.data && res.data.result) {
+						if (init) {
+							self.plays = res.data.result
+						} else {
+							self.plays = self.tenants.concat(res.data.result)
+						}
+						self.page.query.pageNo = pageNo
 					}
-				]
+					self.page.hasMore = res.data && ((res.data.totalPageCount || 0 ) > self.page.query.pageNo)
+					self.page.total = (res.data && res.data.totalCount) || 0
+				})
 			}
 		},
 		ready(){
-			let uid = this.$route.params.uid;
-			let appId = this.$route.params.appid;
-			$.get('/tenant/tenants/'+uid+'/apps/'+ appId).then((res)=> {
-				return res.data && (self.app = res.data);
-			})
+			this.query(true)
+			this.fileCapacity()
 		}
 	}
 </script>
-
-
 <style lang="sass">
-
 </style>
