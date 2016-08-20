@@ -28,7 +28,7 @@
     </div>
     <div class="admin-table table-responsive ">
       <div class="table-total flex flex-1 justify-content-e">
-        共<span class="text-danger">{{tenant.totalCount}}</span>条
+        共<span class="text-danger">{{page.total}}</span>条
       </div>
       <table class="table">
         <thead>
@@ -97,7 +97,8 @@
             pageSize: 10
           },
           loading: true,
-          hasMore: true
+          hasMore: true,
+          total:0
         }
       }
     },
@@ -119,6 +120,7 @@
             self.page.query.pageNo = pageNo
           }
           self.page.hasMore = res.data && ((res.data.totalPageCount || 0 ) > self.page.query.pageNo)
+          self.page.total = (res.data && res.data.totalCount) || 0
         })
       },
       toggleStatus(index, id, status){
