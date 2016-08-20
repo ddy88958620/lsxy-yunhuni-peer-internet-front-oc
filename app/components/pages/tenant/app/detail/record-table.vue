@@ -102,7 +102,7 @@
 						if (init) {
 							self.records = res.data.result
 						} else {
-							self.records = self.tenants.concat(res.data.result)
+							self.records = self.records.concat(res.data.result)
 						}
 						self.page.query.pageNo = pageNo
 					}
