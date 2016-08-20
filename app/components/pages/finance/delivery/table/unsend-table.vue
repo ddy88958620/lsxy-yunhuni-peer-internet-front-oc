@@ -3,6 +3,7 @@
 		<div class="flex align-items-c bg-section-margin remove-margin-bottom  ">
 			<div class="select-box">
 				<search
+					:value.sync="search"
 					placeholder="请输入关键字,如真是姓名、会员名称"
 				></search>
 			</div>
@@ -37,7 +38,7 @@
 				</thead>
 				<tbody>
 				<tr v-for='message in delivery.result'>
-					<td class="message-time text-align-c">{{message.applyTime}}</td>
+					<td class="message-time text-align-c">{{message.applyTime | date }}</td>
 					<td><a>{{message.tenant.tenantName}}</a></td>
 					<td>{{message.amount}}</td>
 					<td v-if='message.type==1'>个人增值税普通发票</td>
@@ -81,7 +82,8 @@
 				messages: [],
 				total: 0,
 				status:'auditing',
-				type: 0
+				type: 0,
+				search:''
 			}
 		},
 		methods: {
@@ -99,6 +101,9 @@
 				if(this.type!=0){
 					params.type = this.type
 				}
+				if(this.search!=''){
+					params.name = this.search
+				}
 				this.getDeliveryList(params)
 			}
 		},
@@ -107,7 +112,7 @@
 		},
 		ready(){
 			let params = {}
-			params.status = 'auditing'
+			params.status = this.status
 			this.getDeliveryList(params)
 		}
 

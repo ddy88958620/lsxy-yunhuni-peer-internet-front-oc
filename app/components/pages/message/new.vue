@@ -13,13 +13,13 @@
         <div class="admin-form flex flex-direction-row align-items-s">
           <label for="content">正文:</label>
           <div class="flex">
-              <textarea id="editor" placeholder="Balabala" v-model='content' autofocus></textarea>
+              <textarea id="editor" placeholder="Balabala" autofocus></textarea>
           </div>
         </div>
         <div class="admin-form flex flex-direction-row align-items-s">
           <label for="content"></label>
           <div class="flex align-items-c">
-            选择上线时间 &nbsp;&nbsp;<datetimepicker :width="200" :type="'time'" uuid='newtime' ></datetimepicker>
+            选择上线时间 &nbsp;&nbsp;<datetimepicker :width="200" :type="'time'" :value.sync="line" uuid='newtime' ></datetimepicker>
           </div>
         </div>
         <div class="admin-form flex flex-direction-row align-items-s">
@@ -35,6 +35,7 @@
 <script>
 import Simditor from 'simditor'
 import {NewMessage} from '../../../vuex/actions.js'
+import * as filter from '../../../utils/filters'
 export default {
   vuex: {
     getters: {
@@ -47,9 +48,9 @@ export default {
   data(){
     return {
       text: 'test',
-      newtime : '',
-      title : '',
-      content : ''
+      title: '',
+      content: '',
+      line: ''
     }
   },
   components: {
@@ -57,10 +58,24 @@ export default {
   },
   methods:{
     newMessage(){
+    	console.log(this.editor.getValue())
+	    let params = {
+    	  title: this.title,
+        content: this.editor.getValue(),
+        type: 1,
+        status: 0,
+        line: this.line
+      }
+	    
+      $.post('/message/new',params).then((res)=>{
+      	if(res.success){
+      		this.$route.router.go('/admin/message/list')
+				}
+      })
     }
   },
   ready(){
-    var editor = new Simditor({
+    this.editor = new Simditor({
       textarea: $('#editor')
     });
   }

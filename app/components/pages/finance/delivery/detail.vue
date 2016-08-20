@@ -64,49 +64,26 @@
 		<div class="admin-panel flex-1">
 			<div class="panel-heading">处理结果 </div>
 			<div class="panel-body">
-				<ul class="list-none-style">
-					<li>状态：处理完成,发票已寄出</li>
-					<li>快递公司：{{detail.expressCom}}</li>
-					<li>快递单号：{{detail.expressNo}}</li>
-
-					<li>状态:审核已通过，等待寄出</li>
+				<ul class="list-none-style" v-if="detail.expressNo!=null" >
+					<li >状态：处理完成,发票已寄出</li>
+					<li >快递公司：{{detail.expressCom}}</li>
+					<li >快递单号：{{detail.expressNo}}</li>
+				</ul>
+				<ul class="list-none-style" v-if="detail.expressNo==null">
+					<li >状态:审核已通过，等待寄出</li>
 					<li>快递公司：<input type="text" class="form-control select-box" v-model="expressCom" /></li>
 					<li>快递单号：<input type="text" class="form-control select-box" v-model="expressNo" /></li>
-
 					<li>
 						<button class="btn btn-primary" @click="send">确认寄出</button>
 						<button class="btn btn-default" >取消</button>
 					</li>
-
 				</ul>
+
+
 			</div>
 		</div>
 		
 	</div>
-
-
-
-
-
-	<modal :show.sync="abnormalModal" title='审核'>
-		<div slot="body" class="flex flex-1 flex-direction-column">
-			<div class="flex flex-direction admin-table-header">
-				<div class="flex align-items-c ">
-					<span class=''>异常原因:</span>
-				</div>
-				<div class="flex flex-1">
-					<input type="text" name="" class="form-control flex flex-1">
-				</div>
-			</div>
-
-		</div>
-	</modal>
-
-	<modal :show.sync="passModal">
-		<div slot="body">
-			审核通过
-		</div>
-	</modal>
 
 
 	<modal :show.sync="showModal" :title=''>
@@ -181,20 +158,26 @@
 					})
 			},
 			send(){
-				//4028809e56106bc90156106c57870000
+			
+		       	let params = {}
+				 //异常处理
+				let id = this.$route.params.id
+				params.expressCom = this.expressCom
+				params.expressNo = this.expressNo
+				params.status =1
 
-		        let self = this
-		       	let params = {expressCom:this.expressCom,expressNo:this.expressNo,id:this.detail.id,status:1}
-
-		       	console.log(params)
-
-
- 				$.post('/finance/invoice/edit/send',params).then((res)=>{
- 					console.log(res.data)
- 				/*	this.messages.list = res.data.list
- 					this.messages.realname = res.data.realname*/
-		           	
+ 				$.put('/finance/invoice/edit/send'+id,params).then((res)=>{
+		           	this.abnormalModal = false
+		           	this.getInvoiceDetail({id:id})
 		        })
+
+
+		       
+				params.status = 2
+				$.put('/finance/invoice/edit/'+id, params).then((res) => {
+					
+				
+				})
 
 			}
 		},

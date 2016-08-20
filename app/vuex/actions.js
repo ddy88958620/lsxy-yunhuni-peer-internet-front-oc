@@ -324,17 +324,18 @@ export const getInvoiceDetail = ({dispatch},params) =>{
 export const getDeliveryList = ({dispatch},params) =>{
   api.getInvoiceSendList(params).then(response=> {
     let invoice_list = response.json()
-    console.log(invoice_list)
-    console.log(params.status)
+    console.log
 
     switch(params.status){
-      case 'auditing':
-
-        console.log(0)
-        dispatch(types.DELIVERY_UNSEND_LIST,invoice_list.data)
+      case 'await':
+        if(invoice_list.data){
+          dispatch(types.DELIVERY_UNSEND_LIST,invoice_list.data)
+        }
         break;
-      case 'unauth': 
-        dispatch(types.DELIVERY_SEND_LIST,invoice_list.data)
+      case 'auditing': 
+        if(invoice_list.data){
+          dispatch(types.DELIVERY_SEND_LIST,invoice_list.data)
+        }
         break;  
     }
   }, response =>{

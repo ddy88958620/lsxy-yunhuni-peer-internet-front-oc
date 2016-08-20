@@ -11,12 +11,12 @@
 				<datetime-picker :uuid="'serveEndStartDate'"  :type.sync="enddate.type" :value.sync="enddate.value"></datetime-picker>
 				<span class='datetime-picker-label'>状态: </span>
 				<select class="form-control" v-model='status'>
-					<option value="2">全部</option>
-					<option value="1">已读</option>
-					<option value="0">未读</option>
+					<option value=''>全部</option>
+					<option value=1>已读</option>
+					<option value=0>未读</option>
 				</select>
 
-				<a class="btn btn-primary admin-button-margin" @click="query" >查询</a>
+				<a class="btn btn-primary admin-button-margin" @click="query()" >查询</a>
 
 				<a class="btn btn-primary " v-link="'/admin/service'">全部标记为已读</a>
 			</div>
@@ -36,10 +36,10 @@
 				</tr>
 				</thead>
 				<tbody>
-				<tr v-for='message in service.result'>
+				<tr v-for='message in serviceList'>
 					<td :class="[message.status===0 ? 'text-danger' : '', 'text-align-c']">{{message.status===0 ? '未读' : '已读'}}</td>
 					<td>{{message.account.tenant.tenantName}}</td>
-					<td class="message-time text-align-c">{{message.createTime}}</td>
+					<td class="message-time text-align-c">{{message.createTime | totalDate }}</td>
 					<td>{{message.content}}</td>
 					<td class="text-align-c">
 						<span><a >已阅</a></span>
@@ -48,29 +48,21 @@
 				</tbody>
 			</table>
 				<div class="more">
-				<a v-show='this.service.totalPageCount==this.service.currentPageNo || this.service.totalPageCount==0'>加载完毕</a>
-				<a @click="moreMessage" class="text-none" v-show='this.service.totalPageCount!=this.service.currentPageNo && this.service.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+				<a v-show='service.totalPageCount==service.currentPageNo || service.totalPageCount==0'>加载完毕</a>
+				<a @click="query('more')" class="text-none" v-show='service.totalPageCount!=service.currentPageNo && service.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
 			</div>
 		</div>
 </template>
 <script>
-	import {getServiceList,getMoreService} from '../../../vuex/actions'
 	export default {
-		vuex: {
-			getters: {
-				service: ({service}) =>service.list
-			},
-			actions: {
-				getServiceList,
-				getMoreService
-			}
-		},
 		components: {
 			'datetime-picker': require('../../ui/datetimepicker.vue')
 		},
 		data(){
 			return {
-				status:2,
+				service: null,
+				serviceList: [],
+				status: '',
 				startdate :{
 					type:'day',
 					value:'',
@@ -82,32 +74,34 @@
 			}
 		},
 		methods: {
-			moreMessage(){
-				let nextPage = this.service.currentPageNo+1
+			query(type){
 				let params = {}
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
-				if(this.status!=2){
-					params.status = this.status
-				}
-				params.pageNo = nextPage
-				this.getMoreService(params)
+				params.status = this.status
 				
-			},
-			query(){
-				let params = {}
-				params.startTime = this.startdate.value
-				params.endTime = this.enddate.value
-				if(this.status!=2){
-					params.status = this.status
+				// more
+				//console.log(typeof this.service)
+				if(type=='more'){
+					let pageNo = this.service.currentPageNo + 1
+					//console.log(pageNo)
+					params.pageNo = pageNo
 				}
-				this.getServiceList(params)
+				
+				let self = this
+				$.get('/service/list', params).then((res)=>{
+					self.service = res.data
+					if(type=='more')
+						self.serviceList = self.serviceList.concat(res.data.result)
+					else
+						self.serviceList = res.data.result
+				
+				})
 			}
 		},
 		ready(){
-			this.getServiceList()
+			this.query()
 		}
-
 	}
 
 </script>
