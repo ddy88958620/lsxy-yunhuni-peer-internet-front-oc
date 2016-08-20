@@ -109,6 +109,9 @@
         let params = $.extend(true, {}, self.page.query);
         params.pageNo = pageNo;
         self.page.loading = true
+        if(init){
+          self.tenants = [];
+        }
         $.get('/tenant/tenants', params).then((res)=> {
           self.page.loading = false
           if (res.data && res.data.result) {

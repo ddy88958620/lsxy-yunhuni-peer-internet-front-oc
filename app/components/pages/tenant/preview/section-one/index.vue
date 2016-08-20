@@ -193,6 +193,9 @@
         }
         params.pageNo = pageNo;
         self.page.loading = true
+        if(init){
+          self.consumes = [];
+        }
         $.get('/tenant/tenants/'+this.$route.params.uid+'/consumes', params).then((res)=> {
           self.page.loading = false
           if (res.data && res.data.consumes && res.data.consumes.result) {
