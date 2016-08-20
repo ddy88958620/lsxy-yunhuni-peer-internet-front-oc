@@ -68,23 +68,23 @@
 									<span v-if="authinfo.authType == '2'">三证分离</span>
 								</li>
 								<template v-if="authinfo.authType == '0'">
-									<li>统一社会信用代码：${authinfo.type01Prop02}</li>
+									<li>统一社会信用代码：{{authinfo.type01Prop02}}</li>
 									<li class="flex  flex-direction-row ">
 										<span class=" padding-right-10">营业执照: </span>
 										<img :src="authinfo.type01Prop01 | img" alt="" class="padding-right-10" >
 									</li>
 								</template>
 								<template v-if="authinfo.authType == '1'">
-									<li>注册号：${authinfo.type02Prop01}</li>
-									<li>税务登记号：${authinfo.type02Prop02}</li>
+									<li>注册号：{{authinfo.type02Prop01}}</li>
+									<li>税务登记号：{{authinfo.type02Prop02}}</li>
 									<li class="flex  flex-direction-row ">
 										<span class=" padding-right-10">营业执照: </span>
 										<img :src="authinfo.type02Prop03 | img" alt="" class="padding-right-10" >
 									</li>
 								</template>
 								<template v-if="authinfo.authType == '2'">
-									<li>税务登记号：${authinfo.type03Prop01}</li>
-									<li>营业执照号：${authinfo.type03Prop03}</li>
+									<li>税务登记号：{{authinfo.type03Prop01}}</li>
+									<li>营业执照号：{{authinfo.type03Prop03}}</li>
 									<li class="flex  flex-direction-row ">
 										<span class=" padding-right-10">营业执照: </span>
 										<img :src="authinfo.type03_prop04 | img" alt="" class="padding-right-10" >
