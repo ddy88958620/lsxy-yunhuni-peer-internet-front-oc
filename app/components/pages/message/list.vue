@@ -42,8 +42,8 @@
 				</tr>
 				</thead>
 				<tbody>
-				<tr v-for='message in messages.result'>
-					<td class="message-time text-align-c">{{message.createTime | totalDate}}</td>
+				<tr v-for='message in messagesList'>
+					<td class="message-time text-align-c">{{message.lineTime | totalDate}}</td>
 					<td>{{message.name}}</td>
 
 					<td v-if='message.status==-1'>已下线</td>
@@ -62,7 +62,7 @@
 			</table>
 			<div class="more">
 				<a v-show='this.messages.totalPageCount==this.messages.currentPageNo || this.messages.totalPageCount==0'>加载完毕</a>
-				<a @click="moreMessage" class="text-none" v-show='this.messages.totalPageCount!=this.messages.currentPageNo && this.messages.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+				<a @click="query" class="text-none" v-show='this.messages.totalPageCount!=this.messages.currentPageNo && this.messages.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
 			</div>
 		</div>
 	</div>
@@ -76,7 +76,8 @@
 		},
 		data(){
 			return {
-				messages: {},
+				messagesList: [],
+				messages: null,
 				startTime: '',
 				endTime: '',
 				type: 1,
@@ -93,26 +94,28 @@
 			}
 		},
 		methods: {
-			moreMessage(){
-			},
 			deleteMessage(index){
 				this.messages.splice(index, 1)
 			},
 			query(){
 				let params = {}
-				if(this.status!=2){
-					params.status  = this.status 
-				}
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
 				params.type = this.type
 				params.status = this.status
 
-				console.log(params)
 				let self = this
+				
+				if(this.messages !== null){
+					let pageNo = this.messages.currentPageNo + 1
+					console.log(pageNo)
+					params.pageNo = pageNo
+				}
 				
 				$.get('/message/list', params).then((res) => {
 					self.messages = res.data
+					console.log(res)
+					self.messagesList = self.messagesList.concat(res.data.result)
 				})
 			}
 		},
