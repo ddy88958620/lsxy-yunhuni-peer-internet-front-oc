@@ -70,11 +70,11 @@
       return {
         'sessiondate':{
           type:'month',
-          value:DATE.today('month').year+'-'+DATE.today('month').month
+          value:DATE.todayString('month')
         },
         'chartdate':{
           type:'month',
-          value:DATE.today('month').year+'-'+DATE.today('month').month
+          value:DATE.todayString('month')
         },
         list:{
           cost:[],

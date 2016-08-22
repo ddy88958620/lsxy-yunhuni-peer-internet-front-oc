@@ -5,6 +5,13 @@ function today(type) {
 	let year = date.getFullYear()
 	let month = date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth()
 	let day = date.getDate().toString().length < 2 ? '0' + date.getDate() : date.getDate()
+
+
+	//2016
+	if (type === 'year')
+	{
+		string = `${year}`
+	}
 	
 	// {
 	// 	year: 2015,
@@ -40,6 +47,13 @@ function todayString(type){
 	let year = date.getFullYear()
 	let month = date.getMonth() < 10 ? '0'+date.getMonth() : date.getMonth()
 	let day = date.getDate().toString().length < 2 ? '0'+ date.getDate() : date.getDate()
+
+	//2016
+	if (type === 'year')
+	{
+		string = `${year}`
+	}
+
 	
 	// 2016-09
 	if (type === 'month')

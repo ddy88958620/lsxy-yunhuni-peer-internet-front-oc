@@ -46,6 +46,7 @@
 </template>
 <script>
   import { getLastDayComsume, getLastDayDuration, getConsumeAnduration} from '../../../../vuex/actions'
+  import DATE from '../../../../utils/date'
   export  default {
     vuex :{
       getters :{
@@ -63,12 +64,14 @@
       return{
       	date: {
       	  type: 'month',
-          value: ''
+          value: DATE.todayString('month')
         }
       }
     },
     methods:{
       doGetConsumeAnduraion(date){
+
+        console.log(date)
         if (date) {
           this.getConsumeAnduraion(date)
         } else {
@@ -87,8 +90,8 @@
       this.getLastDayComsume()
       this.getLastDayDuration()
 	    
-      let date = {year:'2016',month:'08'}
-      this.getConsumeAnduration(date)
+      //let date = {year:'2016',month:'08'}
+      this.getConsumeAnduration( {year:'2016',month:'08'})
     }
   }
 </script>

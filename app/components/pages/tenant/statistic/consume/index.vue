@@ -82,20 +82,19 @@
 
 
 </template>
-<style lang="sass" scoped>
 
-</style>
 <script>
+	import DATE from '../../../../../utils/date'
 	export default{
 		data(){
 			return {
 				'consumedate':{
 					type:'month',
-					value:''
+					value:DATE.todayString('month')
 				},
 				'chartdate':{
 					type:'month',
-					value:''
+					value:DATE.todayString('month')
 				},
 				comsumelist:[],
 				chart:[]
@@ -116,7 +115,6 @@
 		  		params.month = this.chartdate.value.split('-')[1]
 		  	}else{
 		  		params.year = this.chartdate.value.split('-')[0]
-				
 		  	}
 		  	//GET /tenant/tenants/{tenant}/consume/statistic
 			$.get('/tenant/tenants/'+this.$route.params.uid+'/consume/statistic',params).then((res) => {
@@ -126,12 +124,7 @@
 		  changeDate(type){
 		  	let self = this
 		    self.chartdate.type = type
-		    if(type=='month'){
-		    	this.chartdate.value = '2016-07'
-		    }else{
-		    	this.chartdate.value = '2016'
-		    }
-
+		   
 		    this.doGetComsumeChart()
 		  },
 		  //获取月结账单
@@ -146,7 +139,6 @@
 			params.month = this.consumedate.value
 			$.get('/tenant/tenants/'+this.$route.params.uid+'/consume_month',params).then((res) => {
 				self.comsumelist = res.data
-				console.log(res)
 			})
 		  },
 
@@ -154,8 +146,6 @@
 		ready(){
 			 this.doGetComsume()
 			 this.changeDate('month')
-
-
 		}
 	}
 </script>
