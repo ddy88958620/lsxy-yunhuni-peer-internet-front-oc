@@ -1,7 +1,7 @@
 var router = require('koa-router')();
 var REQUEST = require('request')
 var covertKOAURL = require('../utils/coverURLSwaggerToKoa.js')
-// var ccap = require('ccap')()
+var ccap = require('ccap')()
 
 const RedisStore = require("../utils/store.js");
 const store = new RedisStore()
@@ -73,23 +73,29 @@ for (let [key, value] of Object.entries(path)) {
 		router.post(key , async function (ctx, next) {
 			let uuid = UUID.v1()
 			let data = ctx.request.body
-			// if(!ctx.session.verCode || !data.code
-			// 	|| ctx.session.verCode.toLowerCase() !== data.code.toLowerCase()){//验证码不匹配
-			// 	console.log("验证码不匹配",ctx.session.verCode,data.code);
-			// 	ctx.body = 'code error'
-			// 	return
-			// }
+			if(!ctx.session.verCode || !data.code
+				|| ctx.session.verCode.toLowerCase() !== data.code.toLowerCase()){//验证码不匹配
+				ctx.body = {
+					errorMsg: "验证码错误",
+					data: false
+				}
+				return
+			}
 			let swaggerData = await request(key, 'post', data)
 			// 登入成功后生成 session cookie
 			if(swaggerData.data && swaggerData.data.token){
 				ctx.cookies.set(config.COOKIENAME, uuid, {expires: new Date(), maxAge: 30*60*1000, domain: config.COOKIEDOAIM})
 				ctx.session.token = swaggerData.data.token
-				ctx.body = ' '
+				delete swaggerData.data.token
+				ctx.body = {
+					data: true
+				}
 				return
 			}
-			ctx.status = 401
-			ctx.body = 'java token fail'
-			return
+			ctx.body = {
+				errorMsg: swaggerData.errorMsg,
+				data: false
+			}
 		})
 	} else {
 		// switch get post put
