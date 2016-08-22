@@ -13,7 +13,7 @@
 				<select class="form-control" v-model='status' >
 					<option value=''>全部</option>
 					<option value=1 >已上线</option>
-					<option value=0 >未上线</option>
+					<option value=0 >未发布</option>
 					<option value=-1>已下线</option>
 				</select>
 				<span class='datetime-picker-label'>消息类型: </span>
@@ -28,7 +28,7 @@
 		</div>
 		<div class="admin-table table-responsive ">
 			<div class="table-total flex flex-1 justify-content-e">
-				共<span class="text-danger">{{messages.result ? messages.result.length : 0}}</span>条
+				共<span class="text-danger">{{messages.totalCount ? messages.totalCount : 0}}</span>条
 			</div>
 			<table class="table">
 				<thead>
@@ -46,23 +46,23 @@
 					<td class="message-time text-align-c">{{message.lineTime | totalDate}}</td>
 					<td>{{message.name}}</td>
 
-					<td v-if='message.status==-1'>已下线</td>
-					<td v-if='message.status==0' class='text-danger'>未上线</td>
-					<td v-if='message.status==1' >已上线</td>
+					<td v-if='message.status==-1' >已下线</td>
+					<td v-if='message.status==0' class='text-danger'>未发布</td>
+					<td v-if='message.status==1' class="text-success" >已上线</td>
 					<td>{{message.title}}</td>
 					<td>{{message.type ? '活动消息' : '用户消息'　}}</td>
 					<td class="text-align-c">
 						<span v-if="message.status != -1" ><a v-link="'/admin/message/edit/'+message.id">编辑</a></span>
-						<span><a v-if="message.status == -1">查看</a></span>
-						<span v-if='message.status==0' ><a>上线</a></span>
-						<span v-if='message.status==1' ><a>下线</a></span>
+						<span><a v-if="message.status == -1" v-link="'/admin/message/edit/'+message.id">查看</a></span>
+						<span v-if='message.status==0' @click="changeStatus($index, 'up')"><a>上线</a></span>
+						<span v-if='message.status==1'  @click="changeStatus($index, 'down')"><a>下线</a></span>
 					</td>
 				</tr>
 				</tbody>
 			</table>
 			<div class="more">
 				<a v-show='this.messages.totalPageCount==this.messages.currentPageNo || this.messages.totalPageCount==0'>加载完毕</a>
-				<a @click="query" class="text-none" v-show='this.messages.totalPageCount!=this.messages.currentPageNo && this.messages.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+				<a @click="query('more')" class="text-none" v-show='this.messages.totalPageCount!=this.messages.currentPageNo && this.messages.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
 			</div>
 		</div>
 	</div>
@@ -84,38 +84,55 @@
 				status: '',
 				total: '',
 				startdate: {
-					type:'month',
+					type:'day',
 					value:''
 				},
 				enddate: {
-					type:'month',
+					type:'day',
 					value:''
-				}
+				},
 			}
 		},
 		methods: {
 			deleteMessage(index){
 				this.messages.splice(index, 1)
 			},
-			query(){
+			query(type){
 				let params = {}
+				
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
 				params.type = this.type
 				params.status = this.status
-
-				let self = this
 				
-				if(this.messages !== null){
-					let pageNo = this.messages.currentPageNo + 1
-					console.log(pageNo)
-					params.pageNo = pageNo
+				if(type === 'more') {
+					params.pageNo = this.messages.currentPageNo + 1
+					console.log(params.pageNo)
 				}
 				
+				let self = this
 				$.get('/message/list', params).then((res) => {
 					self.messages = res.data
 					console.log(res)
-					self.messagesList = self.messagesList.concat(res.data.result)
+					if(type=='more')
+						self.messagesList = self.messagesList.concat(res.data.result)
+					else
+						self.messagesList = res.data.result
+				})
+			},
+			changeStatus($index, type){
+				let params = {}
+				
+				if( type === 'up') {
+					params.status = 1
+				}
+				else if( type === 'down'){
+					params.status = -1
+				}
+				let messageObj = this.messagesList[$index]
+				
+				$.put('/message/edit/'+messageObj.id, params).then((res) => {
+					console.log(res)
 				})
 			}
 		},
