@@ -51,12 +51,14 @@
                     v-model='user.code'
                     :id="code"
                     :field="code"
-                    v-validate:code="{maxlength:6, minlength: 6, required: true}">
+                    v-validate:code="{maxlength:4, minlength: 4, required: true}">
                   <div class="error" v-if="$validation.code.modified">
-                    <span v-if="$validation.code.required || $validation.code.maxlength || $validation.code.minlength">验证码长度为6位</span>
+                    <span v-if="$validation.code.required || $validation.code.maxlength || $validation.code.minlength">验证码长度为4位</span>
                   </div>
                 </div>
-                <div class="flex  flex-1"><img :src="verCodeUrl" @click="refreshVerCode"/></div>
+                <div class="flex  flex-1">
+                  <img :src="verCodeUrl" @click="refreshVerCode" height="40px"/>
+                </div>
               </div>
 
               <div class="validate-field form-group flex mt-15">
