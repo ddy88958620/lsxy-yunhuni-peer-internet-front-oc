@@ -1,14 +1,5 @@
 <template>
 
-	<div class="headbox flex flex-1 align-items-c ">
-		<span class="padding-right-20">选择应用</span>
-		<select class="form-control flex select-box">
-			<option value="">全部</option>
-			<option value="">飞飞应用</option>
-		</select>
-	</div>
-
-
 	<div class="admin-panel admin-border">
 		<div class="panel-heading flex-direction-row flex align-items-c justify-content-b ">
 			<span class="flex ">消费月结账单</span>
