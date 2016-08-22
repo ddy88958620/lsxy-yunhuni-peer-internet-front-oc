@@ -51,14 +51,12 @@
                     v-model='user.code'
                     :id="code"
                     :field="code"
-                    v-validate:code="{maxlength:4, minlength: 4, required: true}">
+                    v-validate:code="{maxlength:6, minlength: 6, required: true}">
                   <div class="error" v-if="$validation.code.modified">
-                    <span v-if="$validation.code.required || $validation.code.maxlength || $validation.code.minlength">验证码长度为4位</span>
+                    <span v-if="$validation.code.required || $validation.code.maxlength || $validation.code.minlength">验证码长度为6位</span>
                   </div>
                 </div>
-
-
-                <div class="flex  flex-1"></div>
+                <div class="flex  flex-1"><img :src="verCodeUrl" @click="refreshVerCode"/></div>
               </div>
 
               <div class="validate-field form-group flex mt-15">
@@ -85,7 +83,7 @@
 <script>
 import {showMsg, hideMsg, localLogin} from '../../vuex/actions'
 import toaster from '../ui/toaster.vue'
-
+import domain from '../../config/domain'
 export default {
   data(){
     return{
@@ -93,7 +91,8 @@ export default {
         userName: '',
         password: '',
         code:''
-      }
+      },
+      verCodeUrl:''
     }
   },
   components: {
@@ -112,7 +111,13 @@ export default {
       if(val.valid) {
         this.localLogin(this.user)
       }
+    },
+    refreshVerCode(){
+      this.verCodeUrl = domain.API_ROOT+'verCode?'+new Date().getTime()
     }
+  },
+  ready(){
+    this.refreshVerCode()
   }
 }
 </script>
