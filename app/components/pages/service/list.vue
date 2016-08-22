@@ -18,7 +18,7 @@
 
 				<a class="btn btn-primary admin-button-margin" @click="query()" >查询</a>
 
-				<a class="btn btn-primary " v-link="'/admin/service'">全部标记为已读</a>
+				<a class="btn btn-primary " @click="readedAll">全部标记为已读</a>
 			</div>
 		</div>
 		<div class="admin-table table-responsive">
@@ -42,7 +42,8 @@
 					<td class="message-time text-align-c">{{message.createTime | totalDate }}</td>
 					<td>{{message.content}}</td>
 					<td class="text-align-c">
-						<span><a >已阅</a></span>
+						<span><a v-if="message.status === 0" @click="readed($index, message.id)">已阅</a></span>
+						<span v-if="message.status !== 0" >已阅</span>
 					</td>
 				</tr>
 				</tbody>
@@ -91,11 +92,32 @@
 				let self = this
 				$.get('/service/list', params).then((res)=>{
 					self.service = res.data
+					console.log(res.data)
 					if(type=='more')
 						self.serviceList = self.serviceList.concat(res.data.result)
 					else
 						self.serviceList = res.data.result
 				
+				})
+			},
+			readed(index, mid){
+				console.log(mid)
+				let self = this
+				
+				$.patch('/service/edit/' + mid).then((res) => {
+					self.serviceList.$set(index, res.data)
+				})
+			},
+			readedAll(){
+				let ids = this.serviceList.map((e)=> {
+					return e.id
+				})
+				let self = this
+				
+				$.put('/service/edit', {ids: ids}).then((res) => {
+					self.serviceList.map(function(e, index){
+						e.status =  1
+					})
 				})
 			}
 		},

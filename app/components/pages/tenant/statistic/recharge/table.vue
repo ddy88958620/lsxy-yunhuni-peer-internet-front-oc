@@ -2,7 +2,7 @@
   <div>
     <div class="admin-table table-responsive">
       <div class="table-total flex flex-1 justify-content-e">
-        共<span class="text-danger">20</span>条
+        共<span class="text-danger">{{recharge.totalCount}}</span>条
       </div>
       <table class="table">
         <thead>
@@ -13,14 +13,18 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for='message in messages'>
-          <td class="message-time text-align-c">{{message.date}}</td>
-          <td>{{message.money}}</td>
+        <tr v-for='message in rechargeList'>
+          <td class="message-time text-align-c">{{message.createTime | totalDate}}</td>
+          <td>{{message.amount}}</td>
           <td>{{message.type}}</td>
         </tr>
         </tbody>
       </table>
-      <div class="more"><a @click="moreMessage" class="text-none">加载更多<i class="icon iconfont icon-oc-dropdown" ></i></a></div>
+      <div class="more">
+        <a v-show='recharge.totalPageCount==recharge.currentPageNo || recharge.totalPageCount==0'>加载完毕</a>
+        <a @click="query('more')" class="text-none" v-show='recharge.totalPageCount!=recharge.currentPageNo && recharge.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+      </div>
+    <!--   <div class="more"><a @click="query('mores')" class="text-none">加载更多<i class="icon iconfont icon-oc-dropdown" ></i></a></div> -->
     </div>
   </div>
 </template>
@@ -28,50 +32,39 @@
   export default {
     data(){
       return {
-        messages: [],
-        total : 100
+        recharge:{},
+        rechargeTotal : 0,
+        rechargeList: [],
+       
       }
     },
     methods: {
-      moreMessage(){
-        this.messages.push(
-          {
-            date: '2016-06-06',
-            money: '20',
-            type:'支付宝充值'
+      query(more){
+        //1.语音呼叫2.双向回拨3.会议服务4.IVR定制服务5.语音验证码6.录音服务
+        let uid = this.$route.params.uid
+        let type = 3
+        let appId = this.$route.params.aid
+        let time = this.$route.params.day
+        let params = {type:type,appId:appId,time:time}
+        if(more){
+          let pageNo = this.recharge.currentPageNo + 1
+          params.pageNo = pageNo
+        }
+        let self = this
+        $.get('/tenant/tenants/'+uid+'/recharges', params).then((res) => {
+           if(res.data.totalCount>0){
+            self.rechargeTotal =res.data.total
+            self.recharge = res.data
+            if(more)
+              self.rechargeList = self.rechargeList.concat(res.data.result)
+            else
+              self.rechargeList = res.data.result
           }
-        )
-      }
-    },
-    route: {
-      data(){
-
-
+        })
       }
     },
     ready(){
-      this.messages = [
-        {
-          date: '2016-06-06',
-          money: '20',
-          type:'手工充值'
-        },
-        {
-          date: '2016-06-06',
-          money: '4112',
-          type:'支付宝充值'
-        },
-        {
-          date: '2016-06-06',
-          money: '1000',
-          type:'银联充值'
-        },
-        {
-          date: '2016-06-06',
-          money: '523',
-          type:'支付宝充值'
-        }
-      ]
+      this.query()
     }
 
   }
