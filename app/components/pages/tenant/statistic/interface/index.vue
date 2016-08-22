@@ -2,10 +2,10 @@
 
   <div class="flex flex-1 flex-direction-column admin-padding admin-border bg-section-margin whilebg ">
     <div class="app-chart-header flex align-items-c">
-      <input name='app-chart-type' type="radio" checked=checked/>
-      <label for="">日统计</label>
-      <input name='app-chart-type' type="radio"/>
-      <label for="">月统计</label>
+	    <input name='app-chart-type' @click="changeDate('month')"  type="radio" checked=checked/>
+	    <label for="">日统计</label>
+	    <input name='app-chart-type' @click="changeDate('year')"  type="radio"/>
+	    <label for="">月统计 </label>
 	    <div class="datepicker-wrap">
 		    <datetime-picker :uuid="'datetimepicker1'" :action="chartApiQuery" :type.sync="date.type" :value.sync="date.value"></datetime-picker>
 	    </div>
@@ -14,6 +14,7 @@
 			<chart
 				:uuid="'sectionThreeChart1'"
 				:type="['line','line']"
+				:label.sync="date.type"
 				:ydata1.sync="chartApiValue"
 				:title="['API调用', '']"
 				:xtitle="['话务量(次数)','消费额(元)']"
@@ -37,7 +38,7 @@
   			chartApiValue: [],
 			  date: {
   				type: 'month',
-				  value: '',
+				  value: DATE.todayString('month'),
 			  }
       }
     },
@@ -47,15 +48,25 @@
 	    'datetime-picker': require('../../../../ui/datetimepicker.vue')
     },
     methods: {
-      chartApiQuery(){
+	    changeDate(type){
+		    let self = this
+		    self.date.type = type
+		    
+		    if(type=='year'){
+			    this.chartApiQuery(DATE.todayString('year'))
+			    this.date.value = DATE.todayString('year')
+		    }
+		
+		    if(type === 'month'){
+			    this.chartApiQuery(DATE.todayString('month'))
+			    this.date.value = DATE.todayString('month')
+		    }
+		    
+	    },
+      chartApiQuery(date){
         let uid = this.$route.params.uid
-        let self = this
-	      let params = {}
-	      
-        params = this.date.value === '' ? DATE.todayString('month') : this.date.value
-	      
-	      this.date.value = params
-	      
+	      let params = date ? date : this.date.value
+	      let self = this
         $.get('/tenant/tenants/'+uid+'/session/statistic', DATE.dateParse(params)).then((res)=>{
           self.chartApiValue = res.data
         })
