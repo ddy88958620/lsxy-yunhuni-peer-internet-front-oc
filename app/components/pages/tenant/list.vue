@@ -4,7 +4,7 @@
       <h4>会员列表</h4>
       <div class="flex align-items-c bg-section-margin  remove-margin-bottom">
         <div class="select-box">
-          <search placeholder="请输入关键字,如会员名称" :value.sync='page.query.name'></search>
+          <search placeholder="请输入会员名称" :value.sync='page.query.name'></search>
         </div>
         <span class='datetime-picker-label'>注册时间:</span>
         <datetime-picker :uuid="'datetimepicker3'" :type.sync="'month'"
@@ -49,15 +49,15 @@
         <tbody>
         <tr v-for='tenant in tenants'>
           <td class="tenant-time text-align-c">{{tenant.registe_date}}</td>
-          <td>{{tenant.name}}</td>
+          <td><a v-link="'/admin/tenant/detail/'+tenant.uid" >{{tenant.name}}</a></td>
           <td class="text-align-c">{{tenant.app_count ? tenant.app_count: 0 }}</td>
-          <td class="{{ tenant.status ? 'text-danger' : ''}}">{{tenant.auth_status.toString() === '1' ? '已认证' : '未认证'}}</td>
+          <td class="{{tenant.auth_status.toString() === '1' ? '' : 'text-danger'}}">{{tenant.auth_status.toString() === '1' ? '已认证' : '未认证'}}</td>
           <td class="text-align-c">{{tenant.remain_coin ? tenant.remain_coin : 0}}</td>
           <td class="text-align-c">{{tenant.cost_coin ? tenant.cost_coin : 0 }}</td>
           <td class="text-align-c">{{tenant.total_coin ? tenant.total_coin : 0 }}</td>
           <td class="text-align-c">{{tenant.session_count ? tenant.session_count : 0 }}</td>
           <td class="text-align-c">{{tenant.session_time ? tenant.session_time : 0 }}</td>
-          <td v-if="tenant.account_status == 2">启用</td>
+          <td v-if="tenant.account_status == 2" class="green">启用</td>
           <td v-else class="text-danger">禁用</td>
           <td class="text-align-c">
             <span><a v-link="'/admin/tenant/detail/'+tenant.uid">查看</a></span>

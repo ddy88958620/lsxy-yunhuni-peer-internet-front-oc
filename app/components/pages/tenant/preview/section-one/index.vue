@@ -72,7 +72,7 @@
     </section>
 
 
-  <modal :show.sync="showModal" title='消费记录' :action="closeModal">
+  <modal :show.sync="showModal" title='消费记录' :width='table'  :action="closeModal"  >
     <div slot="body" class="flex flex-1 flex-direction-column">
       <div class="flex flex-direction-column admin-table-header">
         <div class="flex align-items-c">
@@ -117,10 +117,10 @@
   </modal>
 
   <modal :show.sync="recharge.showModal" title="充值" :action="doRecharge">
-    <div slot="body">
+    <div slot="body" class="flex flex-1 flex-direction-column" >
       <div class="flex flex-1 ">
         <span class="flex flex-1 align-items-c justify-content-c">充值金额</span>
-        <span class="flex flex-2 "><input type="text" class="form-control " v-model='recharge.amount' /></span>
+        <span class="flex flex-5 "><input type="text" class="form-control " v-model='recharge.amount' /></span>
       </div>
     </div>
   </modal>

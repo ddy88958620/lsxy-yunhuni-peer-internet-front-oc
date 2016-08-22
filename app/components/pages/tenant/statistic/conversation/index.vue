@@ -64,20 +64,17 @@
 
 </style>
 <script>
+  import DATE from '../../../../../utils/date'
   export default{
     data(){
       return {
-        'consumedate':{
-          type:'month',
-          value:''
-        },
         'sessiondate':{
           type:'month',
-          value:''
+          value:DATE.todayString('month')
         },
         'chartdate':{
           type:'month',
-          value:''
+          value:DATE.todayString('month')
         },
         list:{
           cost:[],
@@ -110,23 +107,13 @@
       changeDate(type){
         let self = this
         self.chartdate.type = type
-        if(type=='month'){
-          this.chartdate.value = '2016-07'
-        }else{
-          this.chartdate.value = '2016'
-        }
         this.doGetComsumeChart()
       },
       //获取会话量统计
       changeSessionDate(type){
         let self = this
         self.sessiondate.type = type
-        if(type=='month'){
-          this.sessiondate.value = '2016-07'
-        }else{
-          this.sessiondate.value = '2016'
-        }
-        this.doGetComsumeChart()
+        this.doGetSessionChart()
       },
       doGetSessionChart(){
         let params = {}
@@ -147,7 +134,6 @@
     ready(){
        this.changeDate('month')
        this.changeSessionDate('month')
-
     }
   }
 </script>
