@@ -34,7 +34,7 @@
           <chart
             :uuid="'sectionThreeChart1'"
             :type="['line','line']"
-            :ydata1="chartApiValue"
+            :ydata1.sync="chartApiValue"
             :title="['API调用', '']"
             :xtitle="['话务量(次数)','消费额(元)']"
             :color="[['rgba(246,239,232,0.2)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
@@ -92,7 +92,7 @@
         let uid = this.$route.params.uid
         let self = this
 		    if (this.chartOneDate === null){
-			    this.chartOneDate = DATE.totalDate()
+			    this.chartOneDate = DATE.today('month')
         }
         $.get('/tenant/tenants/'+uid+'/session/statistic', self.chartOneDate).then((res)=>{
           self.chartOneValue = res.data
@@ -102,7 +102,7 @@
         let uid = this.$route.params.uid
         let self = this
         if (this.chartApiDate === null){
-          this.chartApiDate = DATE.totalDate()
+          this.chartApiDate = DATE.today('month')
         }
         $.get('/tenant/tenants/'+uid+'/session/statistic', self.chartApiDate).then((res)=>{
           self.chartApiValue = res.data

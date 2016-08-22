@@ -120,7 +120,7 @@
 						self.messagesList = res.data.result
 				})
 			},
-			changeStatus($index, type){
+			changeStatus(index, type){
 				let params = {}
 				
 				if( type === 'up') {
@@ -129,10 +129,12 @@
 				else if( type === 'down'){
 					params.status = -1
 				}
-				let messageObj = this.messagesList[$index]
+				
+				let messageObj = this.messagesList[index]
+				let self = this
 				
 				$.put('/message/edit/'+messageObj.id, params).then((res) => {
-					console.log(res)
+					self.messagesList.$set(index, res.data)
 				})
 			}
 		},
