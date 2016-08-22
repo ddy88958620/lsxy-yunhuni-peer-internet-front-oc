@@ -5,7 +5,7 @@
 			<div class="panel-heading">会员信息</div>
 		</div>
 		<div class="admin-panel flex-1">
-			<div class="panel-heading">认证信息{{messages.realname.status}}</div>
+			<div class="panel-heading">认证信息</div>
 			<div class="panel-body">
 				<ul class="list-none-style" v-if="this.type==0">
 					<!--个人认证-->
@@ -49,10 +49,11 @@
 						<span class=" padding-right-10">营业执照: </span>
 						<img :src="messages.realname.type03Prop04 | img" class="padding-right-10" >
 					</li>
+
 				</ul>
-				<ul class="list-none-style" v-if="this.authStatus==await" >
+				<ul class="list-none-style" v-if="messages.realname.status==0" >
 					<li>
-						<button class="btn btn-primary" @click="pass" >通过{{this.authStatus}}</button>
+						<button class="btn btn-primary" @click="pass" >通过</button>
 						<button class="btn btn-primary" @click="showModal = true">不通过</button>
 						<button class="btn btn-default" >取消</button>
 					</li>
@@ -183,24 +184,42 @@
 			},
 			pass(){
 				let params = {}
+				let id = this.$route.params.id
+				// type 0 个人认证 1实名认证
 				let type = this.$route.params.type
-				params.authVo = {uid:this.$route.params.id,type:type,status:2}
-				$.post('/demand/member/edit',params).then((res)=>{
- 					console.log(res.data)
+				//个人认证成功
+				if(type==0){
+					params.status=1
+				}
+				//企业认证成功
+				if(type==1){
+					params.status=2
+				}
+				params.type = type
+		
+				$.put('/demand/member/edit/'+id,params).then((res)=>{
+					//成功
 		        })
 			},
 			fail(){
 				let params = {}
+				let id = this.$route.params.id
+				// type 0 个人认证 1实名认证
 				let type = this.$route.params.type
-				let status = -1
-				params.authVo = {uid:this.$route.params.id,type:type,status:status,reason:this.reason}
-
-				$.post('/demand/member/edit',params).then((res)=>{
- 					console.log(res.data)
+				//个人认证成功
+				if(type==0){
+					params.status=-1
+				}
+				//企业认证成功
+				if(type==1){
+					params.status=-2
+				}
+				params.type = type
+				$.put('/demand/member/edit/'+id,params).then((res)=>{
+					//成功
+					this.showModal = false
 		        })
-
-
-				this.showModal = false
+				
 			}
 		},
 		data(){
@@ -225,16 +244,12 @@
 				this.show = arr
 		 		let uid = this.$route.params.id
 		 		this.type = this.$route.params.type 
-		 		this.authStatus = this.$route.params
-		 	
-
+		 		
 		        let self = this
 		       
  				$.get('/demand/member/detail/'+uid,{type:this.type}).then((res)=>{
- 					console.log(res.data)
  					this.messages.list = res.data.list
  					this.messages.realname = res.data.realname
-		           	
 		        })
 
 

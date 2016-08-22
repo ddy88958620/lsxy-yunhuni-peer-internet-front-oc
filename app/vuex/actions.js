@@ -13,22 +13,22 @@ export const hideMsg = ({dispatch}) => {
 
 export const localLogin = ({dispatch, router}, user) => {
   api.localLogin(user).then(response => {
-    let login = response.body
-    
-    console.log(login)
-    
+    let login = ""
+    try{
+      login = JSON.parse(response.body)
+    }catch (e){
+    }
 	  // 登入成功
-    if(login === ' ') {
+    if(login&&login.data) {
     	saveCookie('user', user.userName)
       dispatch(types.LOCAL_LOGIN, user.userName)
       router.go({path:'/admin/dashboard'})
       dispatch(types.HIDE_MSG)
-    }else {
-      dispatch(types.SHOW_MSG, {content:'用户名或密码不匹配'})
+    }else{
+      dispatch(types.SHOW_MSG, {content:(login && login.errorMsg) || '未知错误'})
     }
   }, response => {
-    console.log('fail');
-    // dispatch(types.SHOW_MSG, {content:'用户名或密码不匹配'})
+    dispatch(types.SHOW_MSG, {content:'未知错误'})
   })
 }
 
@@ -324,13 +324,15 @@ export const getInvoiceDetail = ({dispatch},params) =>{
 export const getDeliveryList = ({dispatch},params) =>{
   api.getInvoiceSendList(params).then(response=> {
     let invoice_list = response.json()
+    console.log
+
     switch(params.status){
-      case 'auditing':
+      case 'await':
         if(invoice_list.data){
           dispatch(types.DELIVERY_UNSEND_LIST,invoice_list.data)
         }
         break;
-      case 'unauth': 
+      case 'auditing': 
         if(invoice_list.data){
           dispatch(types.DELIVERY_SEND_LIST,invoice_list.data)
         }

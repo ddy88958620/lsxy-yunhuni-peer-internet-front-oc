@@ -16,9 +16,9 @@
 					<option value=0>未读</option>
 				</select>
 
-				<a class="btn btn-primary admin-button-margin" @click="query" >查询</a>
+				<a class="btn btn-primary admin-button-margin" @click="query()" >查询</a>
 
-				<a class="btn btn-primary " v-link="'/admin/service'">全部标记为已读</a>
+				<a class="btn btn-primary " @click="readedAll">全部标记为已读</a>
 			</div>
 		</div>
 		<div class="admin-table table-responsive">
@@ -42,14 +42,15 @@
 					<td class="message-time text-align-c">{{message.createTime | totalDate }}</td>
 					<td>{{message.content}}</td>
 					<td class="text-align-c">
-						<span><a >已阅</a></span>
+						<span><a v-if="message.status === 0" @click="readed(message.id)">已阅</a></span>
+						<span v-if="message.status !== 0" >已阅</span>
 					</td>
 				</tr>
 				</tbody>
 			</table>
 				<div class="more">
 				<a v-show='service.totalPageCount==service.currentPageNo || service.totalPageCount==0'>加载完毕</a>
-				<a @click="query" class="text-none" v-show='service.totalPageCount!=service.currentPageNo && service.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+				<a @click="query('more')" class="text-none" v-show='service.totalPageCount!=service.currentPageNo && service.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
 			</div>
 		</div>
 </template>
@@ -64,35 +65,54 @@
 				serviceList: [],
 				status: '',
 				startdate :{
-					type:'day',
+					type:'month',
 					value:'',
 				},
 				enddate :{
-					type:'day',
+					type:'month',
 					value:'',
 				},
 			}
 		},
 		methods: {
-			query(){
+			query(type){
 				let params = {}
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
 				params.status = this.status
 				
 				// more
-				console.log(typeof this.service)
-				if(this.service !== null){
+				//console.log(typeof this.service)
+				if(type=='more'){
 					let pageNo = this.service.currentPageNo + 1
-					console.log(pageNo)
+					//console.log(pageNo)
 					params.pageNo = pageNo
 				}
 				
 				let self = this
 				$.get('/service/list', params).then((res)=>{
-					console.log(res)
 					self.service = res.data
-					self.serviceList = self.serviceList.concat(res.data.result)
+					console.log(res.data)
+					if(type=='more')
+						self.serviceList = self.serviceList.concat(res.data.result)
+					else
+						self.serviceList = res.data.result
+				
+				})
+			},
+			readed(mid){
+				console.log(mid)
+				$.patch('/service/edit/'+mid).then((res)=> {
+					console.log(res)
+				})
+			},
+			readedAll(){
+				let ids = this.serviceList.map((e)=> {
+					return e.id
+				})
+				
+				$.put('/service/edit', {ids: ids}).then((res) => {
+					console.log(res)
 				})
 			}
 		},
