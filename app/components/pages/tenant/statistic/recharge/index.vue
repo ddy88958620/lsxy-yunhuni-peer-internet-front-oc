@@ -23,6 +23,7 @@
 </template>
 
 <script>
+  import DATE from '../../../../../utils/date'
 	export default{
 		components: {
 			'datetime-picker': require('../../../../ui/datetimepicker.vue'),
@@ -33,7 +34,7 @@
 			return{
 				rechargedate:{
 					type:'year',
-					value:'2016'
+					value: DATE.today('month').year.toString()
 				},
 				rechargelist:[]
 			}
