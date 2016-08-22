@@ -13,7 +13,7 @@
         </thead>
         <tbody>
         <tr v-for='message in value' track-by="$index">
-          <td class="message-time text-align-c">2016-{{ month }}- {{$index+1 < 10 ? `0${$index+1}` : $index+1 }}</td>
+          <td class="message-time text-align-c">2016-{{ month ? month+'-' : '' }}{{$index+1 < 10 ? `0${$index+1}` : $index+1 }}</td>
           <td>{{ message }}</td>
         </tr>
         </tbody>
@@ -37,9 +37,8 @@
     computed: {
     	month(){
     		let month = DATE.dateParse(this.date).month
-        console.log(month)
+		    
         return month
-        
       }
     }
   }
