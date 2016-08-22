@@ -57,7 +57,7 @@
           <td class="text-align-c">{{tenant.total_coin ? tenant.total_coin : 0 }}</td>
           <td class="text-align-c">{{tenant.session_count ? tenant.session_count : 0 }}</td>
           <td class="text-align-c">{{tenant.session_time ? tenant.session_time : 0 }}</td>
-          <td v-if="tenant.account_status == 2" class="green">启用</td>
+          <td v-if="tenant.account_status == 2" class="darkgreen">启用</td>
           <td v-else class="text-danger">禁用</td>
           <td class="text-align-c">
             <span><a v-link="'/admin/tenant/detail/'+tenant.uid">查看</a></span>
