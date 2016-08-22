@@ -42,7 +42,7 @@
 					<td class="message-time text-align-c">{{message.createTime | totalDate }}</td>
 					<td>{{message.content}}</td>
 					<td class="text-align-c">
-						<span><a v-if="message.status === 0" @click="readed(message.id)">已阅</a></span>
+						<span><a v-if="message.status === 0" @click="readed($index, message.id)">已阅</a></span>
 						<span v-if="message.status !== 0" >已阅</span>
 					</td>
 				</tr>
@@ -100,19 +100,24 @@
 				
 				})
 			},
-			readed(mid){
+			readed(index, mid){
 				console.log(mid)
-				$.patch('/service/edit/'+mid).then((res)=> {
-					console.log(res)
+				let self = this
+				
+				$.patch('/service/edit/' + mid).then((res) => {
+					self.serviceList.$set(index, res.data)
 				})
 			},
 			readedAll(){
 				let ids = this.serviceList.map((e)=> {
 					return e.id
 				})
+				let self = this
 				
 				$.put('/service/edit', {ids: ids}).then((res) => {
-					console.log(res)
+					self.serviceList.map(function(e, index){
+						e.status =  0
+					})
 				})
 			}
 		},
