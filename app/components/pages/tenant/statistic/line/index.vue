@@ -1,14 +1,5 @@
 <template>
 
-  <div class="headbox flex flex-1 align-items-c ">
-    <span class="padding-right-20">选择应用</span>
-    <select class="form-control flex select-box">
-      <option value="">全部</option>
-      <option value="">飞飞应用</option>
-    </select>
-  </div>
-
-
   <div class="flex flex-1 whilebg admin-padding admin-border flex-direction-column bg-section-margin">
     <div class="flex flex-1  ">
       <div class="flex flex-1  flex-direction-column ">
