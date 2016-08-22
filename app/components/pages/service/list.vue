@@ -116,7 +116,7 @@
 				
 				$.put('/service/edit', {ids: ids}).then((res) => {
 					self.serviceList.map(function(e, index){
-						e.status =  0
+						e.status =  1
 					})
 				})
 			}
