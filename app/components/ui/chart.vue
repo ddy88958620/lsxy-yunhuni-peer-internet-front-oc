@@ -21,7 +21,9 @@ import uuid from 'node-uuid';
     props: {
       type: {
         type: Array,
-        default: ['line', 'line']
+        default: function() {
+          return ['line', 'line']
+        }
       },
       uuid: {
         require: true,
@@ -38,7 +40,9 @@ import uuid from 'node-uuid';
       },
       xtitle: {
         type:Array,
-        default: ['会员数(个)','应用数(个)']
+        default: () => {
+          ['会员数(个)','应用数(个)']
+        }
       },
       color: {
         type: Array,

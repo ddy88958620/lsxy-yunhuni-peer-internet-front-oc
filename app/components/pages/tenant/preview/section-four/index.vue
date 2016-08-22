@@ -9,12 +9,14 @@
         </div>
         <div class="flex flex-1">
           <chart
-            :uuid="'realtime-app-chart5'"
-            :label="['']"
-            :value.sync="chartOneValue"
-            :color="['#ebeecc']"
-            :title="['会话量统计','会话量（次）']">
-          </chart>
+            :uuid="'sectionThreeChart2'"
+            :type="['line','line']"
+            :ydata1="chartOneValue"
+            :title="['API调用', '']"
+            :xtitle="['话务量(次数)','']"
+            :color="[['rgba(246,239,232,0.2)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
+                    ['#ebeecc','rgba(214,235,78,0.8)','rgba(214,235,78,1)','#FFF','rgba(214,235,78,0.1)','rgba(220,220,220,0.1)']]"
+          ></chart>
         </div>
       </div>
     </div>
@@ -26,16 +28,19 @@
           <a >本月</a>
           <a @click="previousMonthApi"  >上一月</a>
           <a @click="nextMonthApi" >下一月</a>
-
-          <span>2016-08-1</span>
+          <span>{{chartApiDate ? chartApiDate.year+'-0'+chartApiDate.month : '0'}}</span>
         </div>
         <div class="flex flex-1">
           <chart
-            :uuid="'realtime-app-chart6'"
-            :label="['']"
-            :color="['#e1a2a2']"
-            :value.sync="chartApiValue"
-            :title="['API调用次数','次数(次)']"></chart>
+            :uuid="'sectionThreeChart1'"
+            :type="['line','line']"
+            :ydata1="chartApiValue"
+            :title="['API调用', '']"
+            :xtitle="['话务量(次数)','消费额(元)']"
+            :color="[['rgba(246,239,232,0.2)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
+                    ['#ebeecc','rgba(214,235,78,0.8)','rgba(214,235,78,1)','#FFF','rgba(214,235,78,0.1)','rgba(220,220,220,0.1)']]"
+          ></chart>
+	        
         </div>
       </div>
     </div>
@@ -68,7 +73,7 @@
       }
     },
     components:{
-      'chart': require('../../../../ui/realtime-chart.vue')
+      'chart': require('../../../../ui/chart.vue')
     },
     methods: {
       previousMonth(){

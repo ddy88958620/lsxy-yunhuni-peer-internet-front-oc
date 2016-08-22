@@ -65,11 +65,11 @@
 				serviceList: [],
 				status: '',
 				startdate :{
-					type:'month',
+					type:'day',
 					value:'',
 				},
 				enddate :{
-					type:'month',
+					type:'day',
 					value:'',
 				},
 			}
