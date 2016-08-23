@@ -5,8 +5,8 @@
 			<h4>放音文件审核</h4>
 			<div class="flex flex-1 admin-main-tab">
 				<div class="tab"><a class="flex"  v-link="'/admin/demand/voice/list/await'">待审核</a></div>
-				<div class="tab"><a class="flex"  v-link="'/admin/demand/voice/list/auditing'">已审核</a></div>
-			<!-- 	<div class="tab"><a class="flex"  v-link="'/admin/demand/voice/list/unauth'">审核不通过</a></div> -->
+				<div class="tab"><a class="flex"  v-link="'/admin/demand/voice/list/auditing'">审核已通过</a></div>
+		        <div class="tab"><a class="flex"  v-link="'/admin/demand/voice/list/unauth'">审核不通过</a></div>
 			</div>
 		</div>
 		<router-view></router-view>

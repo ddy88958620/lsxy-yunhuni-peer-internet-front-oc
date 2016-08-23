@@ -268,6 +268,8 @@ export const getMoreService = ({dispatch},params) =>{
 export const getInvoiceList = ({dispatch},params) =>{
   api.getInvoiceList(params).then(response=> {
     let invoice_list = response.json()
+    console.log(params.status)
+
     switch(params.status){
       case 'await':
         dispatch(types.INVOICE_PENDING_LIST,invoice_list.data)

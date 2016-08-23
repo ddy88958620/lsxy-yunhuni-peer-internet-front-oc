@@ -1,12 +1,13 @@
 <template>
-	<div class="input-group date-component" :style="{width: `${width}px`}" >
+	<div class="input-group date date-component input-append" :style="{width: `${width}px`}" >
 		<input
-			:value.sync='value'
+			v-model="value"
 			type="text"
 			id="{{uuid}}"
 			class="form_datetime _month form-control"
-			data-date-end-date="0m" />
-		<span class="iconfont icon-oc-date"></span>
+			data-date-end-date="0m" readonly/>
+		<span v-if='buttonStatus === 1' class="add-on" @click="clearDate"><i class="iconfont icon-oc-delete"></i></span>
+		<span v-if='buttonStatus === 0' class="iconfont icon-oc-date" @click="clearDate" ></span>
 	</div>
 </template>
 <script>
@@ -17,6 +18,7 @@
 		data(){
 			return {
 				dateConfig: {},
+				buttonStatus: 0
 			}
 		},
 		props: {
@@ -40,7 +42,7 @@
 			},
 			width: {
 				type: Number,
-				default: 120
+				default: 130
 			}
 		},
 		watch: {
@@ -112,7 +114,15 @@
 						self.value = currenSelectDate ? currenSelectDate : self.value
 						once = null
 					}
+				}).on('show', function(){
+					self.buttonStatus = 1
+				}).on('hide', function(){
+					self.buttonStatus = 0
 				});
+			},
+			clearDate(){
+				console.log(2)
+				this.value = ''
 			}
 		},
 		ready(){
@@ -132,11 +142,13 @@
 		position: absolute;
 		right: 8px;
 		top: 2px;
-		z-index: 2;
+		z-index: 300;
 	}
-	.form-control {
-		display: inline-block;
-	}
+		.form-control {
+			display: inline-block;
+			border-bottom-right-radius: 4px !important;
+    		border-top-right-radius: 4px !important;
+		}
 	}
 	
 	.input-group-addon {

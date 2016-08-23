@@ -1,10 +1,10 @@
 <template>
 	<div class="flex flex-direction-column admin-table-header">
 		<div class="flex align-items-c bg-section-margin remove-margin-bottom ">
-			<div>
+			<div class="select-box">
 				<search
 					:value.sync ='search'
-				placeholder="请输入关键字,如会员名称"
+				placeholder="请输入会员名称"
 			></search></div>
 			<span class='datetime-picker-label '>申请时间:</span>
 			<datetime-picker :uuid="'demandVoiceStartDate'"  :type.sync="startdate.type" :value.sync="startdate.value"></datetime-picker>
