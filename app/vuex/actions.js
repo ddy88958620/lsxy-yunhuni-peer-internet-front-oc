@@ -5,11 +5,16 @@ import {saveCookie, removeCookie} from '../utils/cookieAuth.js'
 export const showMsg = ({dispatch}, message) => {
   console.log(message);
   dispatch(types.SHOW_MSG, message)
+	
+  let temp = setTimeout(()=>{
+		dispatch(types.HIDE_MSG)
+    clearTimeout(temp)
+  }, 1500)
 }
-
-export const hideMsg = ({dispatch}) => {
-  dispatch(types.HIDE_MSG)
-}
+//
+// export const hideMsg = ({dispatch}) => {
+//   dispatch(types.HIDE_MSG)
+// }
 
 export const localLogin = ({dispatch, router}, user) => {
   api.localLogin(user).then(response => {

@@ -13,7 +13,7 @@
         <div class="admin-form flex flex-direction-row align-items-s">
           <label for="content">正文:</label>
           <div class="flex">
-              <textarea id="editor" placeholder="Balabala" autofocus></textarea>
+              <textarea v-model='content' id="editor" placeholder="Balabala" autofocus></textarea>
           </div>
         </div>
         <div class="admin-form flex flex-direction-row align-items-s">
@@ -34,7 +34,7 @@
 </template>
 <script>
 import Simditor from 'simditor'
-import {NewMessage} from '../../../vuex/actions.js'
+import {showMsg} from '../../../vuex/actions.js'
 import * as filter from '../../../utils/filters'
 export default {
   vuex: {
@@ -42,7 +42,7 @@ export default {
 
     },
     actions :{
-      NewMessage
+    	showMsg
     }
   },
   data(){
@@ -56,9 +56,33 @@ export default {
   components: {
     'datetimepicker': require('../../ui/datetimepicker.vue')
   },
+  
   methods:{
+    check(){
+      // 标题不能为空
+      if(this.title === ''){
+        this.showMsg({content: '标题不能为空', type: 'danger'})
+        return false
+      }
+      // 内容不能为空
+      if(this.editor.getValue() === ''){
+        this.showMsg({content: '正文内容不能为空', type: 'danger'})
+        return false
+      }
+      // 时间不能为空
+      if(this.line === ''){
+        this.showMsg({content: '时间不能为空', type: 'danger'})
+        return false
+      }
+      return true
+    },
     newMessage(){
-    	console.log(this.editor.getValue())
+	    
+      // 验证消息
+      if (!this.check()) return
+  
+      console.log(this.editor.getValue())
+	    
 	    let params = {
     	  title: this.title,
         content: this.editor.getValue(),
@@ -71,6 +95,9 @@ export default {
       	if(res.success){
       		this.$route.router.go('/admin/message/list')
 				}
+				else{
+          this.showMsg({content: '提交失败', type: 'danger'})
+        }
       })
     }
   },

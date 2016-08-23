@@ -13,7 +13,7 @@
 				<select class="form-control" v-model='status' >
 					<option value=''>全部</option>
 					<option value=1 >已上线</option>
-					<option value=0 >未发布</option>
+					<option value=0 >未上线</option>
 					<option value=-1>已下线</option>
 				</select>
 				<span class='datetime-picker-label'>消息类型: </span>
@@ -47,7 +47,7 @@
 					<td>{{message.name}}</td>
 
 					<td v-if='message.status==-1' >已下线</td>
-					<td v-if='message.status==0' class='text-danger'>未发布</td>
+					<td v-if='message.status==0' class='text-danger'>未上线</td>
 					<td v-if='message.status==1' class="text-success" >已上线</td>
 					<td>{{message.title}}</td>
 					<td>{{message.type ? '活动消息' : '用户消息'　}}</td>
