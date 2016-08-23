@@ -74,7 +74,8 @@
 
 </template>
 <script>
-	import { getVoiceList,delVoice } from '../../../../../vuex/actions'
+	
+	import { getVoiceList,delVoice,showMsg } from '../../../../../vuex/actions'
 	import domain from '../../../../../config/domain'
 	export default {
 		vuex: {
@@ -82,7 +83,9 @@
 				voice: ({demand}) => demand.voicelist.await,
 			},
 			actions: {
-				getVoiceList,delVoice
+				getVoiceList,
+				delVoice,
+				showMsg
 			}
 		},
 		components: {
@@ -137,16 +140,17 @@
 			},
 			//通过
 			pass(id,index){
+				
 				let self = this 
 				let params = {} 
 				params.status = 1
 				params.reason=''
 				$.put('/demand/member/voice/edit/'+id,params).then((res)=>{
 					if(res.data){
+						this.showMsg({content: '审核通过', type: 'success'})
 						this.delVoice(index)
 					}
-					
-					 //this.todos.splice(index, 1)
+					//this.todos.splice(index, 1)
 				})	
 
 			},
@@ -158,10 +162,10 @@
 				params.reason = this.del.reason
 				$.put('/demand/member/voice/edit/'+this.del.id,params).then((res)=>{
 					if(res.data){
+						this.showMsg({content: '审核不通过', type: 'success'})
 						this.delVoice(index)
 						this.showModal = false 
 					}
-					 //this.todos.splice(index, 1)
 				})	
 			},
 			showfail(id,index){

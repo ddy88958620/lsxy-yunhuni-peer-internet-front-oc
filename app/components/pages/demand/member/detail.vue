@@ -63,6 +63,24 @@
 			</div>
 		</div>
 
+		<div class="admin-panel">
+			<div class="panel-heading">认证信息</div>
+			<div class="panel-body">
+				<ul class="list-none-style" >
+					<li>审批结果: 
+						<span v-if="messages.realname.status==1 || messages.realname.status==2" class="darkgreen">通过</span>
+						<span v-if="messages.realname.status==-1 || messages.realname.status==-2" class="text-danger">不通过</span>
+					</li>
+					<li>
+						审核时间：{{messages.realname.lastTime | totalDate }}
+					</li>
+
+				</ul>
+			</div>	
+		</div>
+
+
+
 		<div class="panel panel-default flex-1">
 			<div class="panel-heading">历史认证信息</div>
 			<div class="panel-body  admin-bg flex-1">
@@ -94,7 +112,7 @@
 							<td colspan="3">
 								<div class="flex flex-1 flex-direction-row">
 									<div class="flex title-time justify-content-c">
-										{{message.createTime | date }}
+										{{message.createTime | totalDate }}
 									</div>
 									<div class="flex title-type justify-content-c">
 										<span v-if="message.status==-1 || message.status==1" >个人认证</span>
@@ -177,7 +195,16 @@
 </template>
 
 <script>
+	import { showMsg } from '../../../../vuex/actions'
 	export default {
+		vuex: {
+			getters:{
+				
+			},
+			actions: {
+				showMsg
+			}
+		},
 		components: {
 			'modal': require('../../../ui/modal.vue')
 		},
@@ -201,6 +228,7 @@
 				params.type = type
 		
 				$.put('/demand/member/edit/'+id,params).then((res)=>{
+					this.showMsg({content: '审核通过', type: 'success'})
 					//成功
 					this.detail()
 		        })
@@ -220,6 +248,7 @@
 				}
 				params.type = type
 				$.put('/demand/member/edit/'+id,params).then((res)=>{
+					this.showMsg({content: '审核不通过', type: 'success'})
 					//成功
 					this.showModal = false
 					this.detail()
