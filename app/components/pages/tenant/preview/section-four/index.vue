@@ -12,8 +12,8 @@
             :uuid="'sectionThreeChart2'"
             :type="['line','line']"
             :ydata1="chartOneValue"
-            :title="['API调用', '']"
-            :xtitle="['话务量(次数)','']"
+            :title="['会话量统计', '']"
+            :xtitle="['会话量(次)','']"
             :color="[['rgba(246,239,232,0.2)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
                     ['#ebeecc','rgba(214,235,78,0.8)','rgba(214,235,78,1)','#FFF','rgba(214,235,78,0.1)','rgba(220,220,220,0.1)']]"
           ></chart>
@@ -35,8 +35,8 @@
             :uuid="'sectionThreeChart1'"
             :type="['line','line']"
             :ydata1.sync="chartApiValue"
-            :title="['API调用', '']"
-            :xtitle="['话务量(次数)','消费额(元)']"
+            :title="['API调用次数', '']"
+            :xtitle="['次数(次)','']"
             :color="[['rgba(246,239,232,0.2)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
                     ['#ebeecc','rgba(214,235,78,0.8)','rgba(214,235,78,1)','#FFF','rgba(214,235,78,0.1)','rgba(220,220,220,0.1)']]"
           ></chart>

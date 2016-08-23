@@ -4,7 +4,7 @@
       <h4>会员列表</h4>
       <div class="flex align-items-c bg-section-margin  remove-margin-bottom">
         <div class="select-box">
-          <search placeholder="请输入会员名称" :value.sync='page.query.name'></search>
+          <search placeholder="请输入会员名称" :value.sync='page.query.name' :action="query" ></search>
         </div>
         <span class='datetime-picker-label'>注册时间:</span>
         <datetime-picker :uuid="'datetimepicker3'" :type.sync="'month'"
@@ -104,6 +104,9 @@
     },
     methods: {
       query(init){
+
+        console.log(init)
+
         let self = this
         let pageNo = (init && 1) || self.page.query.pageNo + 1
         let params = $.extend(true, {}, self.page.query);

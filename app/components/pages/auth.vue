@@ -44,7 +44,7 @@
               <div class="validate-field form-group flex-direction-row flex">
                 <div class="flex flex-1 relative">
                   <input
-                    value="1234"
+                    value=""
                     type="text"
                     class="form-control"
                     placeholder="请输入验证码"
@@ -56,7 +56,7 @@
                     <span v-if="$validation.code.required || $validation.code.maxlength || $validation.code.minlength">验证码长度为4位</span>
                   </div>
                 </div>
-                <div class="flex  flex-1">
+                <div class="flex  flex-1 recode">
                   <img :src="verCodeUrl" @click="refreshVerCode" height="40px"/>
                 </div>
               </div>
@@ -153,6 +153,9 @@ export default {
 
     .relative{
       position: relative;
+    }
+    .recode{
+      padding: 0 10px;
     }
 
     .form-group{

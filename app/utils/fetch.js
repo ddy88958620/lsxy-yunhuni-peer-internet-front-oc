@@ -32,6 +32,9 @@ $.extend({
           resolve(e)
         },
         error: (e) => {
+          if( e.status == 401) {
+            window.location = '/#!/auth/login'
+          }
           reject(e)
         }
       })
@@ -49,6 +52,9 @@ $.extend({
           resolve(e)
         },
         error: (e) => {
+          if( e.status == 401) {
+            window.location = '/#!/auth/login'
+          }
           reject(e)
         }
       })
@@ -66,12 +72,12 @@ $.extend({
           resolve(e)
         },
         error: (e) => {
+          if( e.status == 401) {
+            window.location = '/#!/auth/login'
+          }
           reject(e)
         }
       })
     })
   },
-
-
-
 })
