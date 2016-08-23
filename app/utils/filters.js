@@ -32,7 +32,7 @@ export function totalDateWithNoSeconds(timestamp) {
 
 
 export function img(filename) {
-	let fileurl = 'http://192.168.10.75:18082/ossfile/img?uri='+filename
+	let fileurl = 'http://localhost/api/ossfile/img?uri='+filename
 	/*let fileurl = domain.API_ROOT+'/ossfile/img?uri='+filename*/
 	return fileurl
 }

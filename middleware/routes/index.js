@@ -1,6 +1,7 @@
 var router = require('koa-router')();
 var REQUEST = require('request')
 var covertKOAURL = require('../utils/coverURLSwaggerToKoa.js')
+var checkType = require('../utils/checkType')
 var ccap = require('ccap')({width:168,generate:function(){
 	let str_ary = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H',
 		 							'I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
@@ -72,6 +73,7 @@ router.get('/verCode', async (ctx, next) => {
 	let buf = ary[1]
 	ctx.session.verCode=txt
 	ctx.type = 'image/png'
+	console.log(buf)
 	ctx.body = buf
 })
 
@@ -108,7 +110,42 @@ for (let [key, value] of Object.entries(path)) {
 				data: false
 			}
 		})
-	} else {
+	}
+	else if (key === '/ossfile/img'){
+		router.get(covertKOAURL(key), async(ctx, next) => {
+			let token = ctx.session.token
+			console.log('token node', token)
+			if( !token ){
+				ctx.status = 401
+				ctx.body = ' node token null'
+				return
+			}
+			let req_url = ctx.req.url
+			let data = ctx.request.body ?  ctx.request.body : {}
+			
+			let prefix = config.JAVAAPI
+			let stream = REQUEST({
+				url: prefix + req_url,
+				method: 'get',
+				headers: {
+					"X-YUNHUNI-API-TOKEN": token,
+				},
+			})
+			
+			if(checkType.checkImageType(req_url)){
+				let temp = req_url.split('.')
+				let type = temp[temp.length-1]
+				ctx.type = `image/${type};charset=UTF-8`
+			}
+			
+			if(checkType.checkAudioType(req_url)){
+				ctx.type = 'audio/wav;charset=UTF-8'
+			}
+			
+			ctx.body = stream
+		})
+	}
+	else {
 		// switch get post put
 		// console.log(value)
 		for(let method of Object.keys(value)){
