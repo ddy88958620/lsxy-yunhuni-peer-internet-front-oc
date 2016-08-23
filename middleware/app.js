@@ -21,7 +21,7 @@ app.use(convert(session({
       store: {
         host: config.REDISHOST || '127.0.0.1',
         port: config.REDISPORT || 6379,
-        ttl: 3600
+        ttl: 30*60,
       }
     }
 )));
