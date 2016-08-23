@@ -40,7 +40,7 @@
 			},
 			width: {
 				type: Number,
-				default: 120
+				default: 130
 			}
 		},
 		watch: {
@@ -120,7 +120,7 @@
 		}
 	}
 </script>
-<style lang='sass'>
+<style lang='sass' scoped>
 	@import '~bootstrap-datetime-picker/css/bootstrap-datetimepicker';
 	
 	.date-component {
@@ -136,6 +136,10 @@
 	}
 	.form-control {
 		display: inline-block;
+
+		border-bottom-right-radius: 4px;
+    	border-top-right-radius: 4px;
+
 	}
 	}
 	
@@ -143,5 +147,7 @@
 		background: none;
 		border-left: none;
 	}
+
+
 
 </style>

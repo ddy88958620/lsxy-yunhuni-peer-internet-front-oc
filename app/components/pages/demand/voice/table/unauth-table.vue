@@ -1,8 +1,9 @@
 <template>
 	<div class="flex flex-direction-column admin-table-header">
 		<div class="flex align-items-c bg-section-margin remove-margin-bottom ">
-			<div><search
-				:value.sync = 'search'
+			<div class="select-box">
+				<search
+					:value.sync ='search'
 				placeholder="请输入会员名称"
 			></search></div>
 			<span class='datetime-picker-label '>申请时间:</span>
@@ -35,12 +36,12 @@
 				</tr>
 				</thead>
 				<tbody>
-				<tr v-for='message in messages'>
-					<td class="message-time text-align-c">{{message.createTime}}</td>
-					<td><a>{{message.name}}</a></td>
-					<td>{{message.mobile}}</td>
-					<td>{{message.email}}</td>
-					<td>{{message.type}}</td>
+				<tr v-for='message in voice.result'>
+					<td class="message-time text-align-c">{{message.createTime | totalDate}}</td>
+					<td><a>{{message.tenant.tenantName}}</a></td>
+					<td>{{message.app.name}}</td>
+					<td>{{message.name}}</td>
+					<td>{{message.size}}b</td>
 					<td class="text-align-c">
 						<span><a @click="playAudio($index)">试听</a></span>
 					</td>
@@ -53,7 +54,6 @@
 			</div>
 			<!--放音文件隐藏-->
 			<audio :src="audioURI"></audio>
-
 		</div>
 	</div>
 </template>
@@ -76,8 +76,8 @@
 		data(){
 			return {
 				messages: [],
-				total: 0,
 				search: '',
+				total: 0,
 				type : 'unauth',
 				name:'',
 				startdate :{
@@ -89,18 +89,25 @@
 					value:'',
 				},
 				audioURI: '',
+				
 			}
 		},
 		methods: {
 			query(){
 				let params = {}
+				if(this.name!=''){
+					params.name = this.name
+				}
 				params.type =  this.type
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
 				params.search = this.search
+				console.log(params)
+
 				this.getVoiceList(params)
 			},
-			moreMessage(){},
+			moreMessage(){
+			},
 			playAudio(index){
 //				console.log(this.voice.result[index].fileKey)
 				this.audioURI = domain.API_ROOT_AUDIO + '?uri='+this.voice.result[index].fileKey

@@ -1,7 +1,7 @@
 <template>
 	<div class="flex flex-direction-column admin-table-header">
 		<div class="flex align-items-c bg-section-margin remove-margin-bottom ">
-			<div><search
+			<div class="select-box" ><search
 				:value.sync = 'search'
 				placeholder="请输入会员名称"
 			></search></div>
