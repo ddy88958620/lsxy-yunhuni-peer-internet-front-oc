@@ -5,7 +5,7 @@
       v-model="value"
       type="text"
        />
-    <i class="iconfont icon-oc-search cursor" @click="action ? action : '' " ></i>
+    <i class="iconfont icon-oc-search cursor" @click="action" ></i>
   </div>
 </template>
 
@@ -36,18 +36,18 @@
         default:''
       },
 	    action: {
-      	type: Function
+      	type: Function,
+        default: function(){
+      		console.log('defaut action')
+      	  return
+        }
       },
       placeholder: {
       	type: String,
         default: ''
       },
     },
-    methods: {
-//    	action(){
-//    		this.action()
-//      }
-    },
+    methods: {},
     ready(){}
   }
 </script>
