@@ -13,8 +13,8 @@
            :type="['line','line']"
            :dateType="dateType"
            :label.sync="date.type"
-           :ydata1="app"
-           :ydata2="member"
+           :ydata1="member"
+           :ydata2="app"
            :title="['新增注册会员','新增应用']"
            :xtitle="['会员数(个)','应用数(个)']"
            :color="[['rgba(246,239,232,0.8)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
