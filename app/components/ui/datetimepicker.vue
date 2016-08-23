@@ -6,8 +6,8 @@
 			id="{{uuid}}"
 			class="form_datetime _month form-control"
 			data-date-end-date="0m" readonly/>
-		<span v-if='buttonStatus === 0' class="add-on" @click="clearDate"><i class="icon-remove"></i>xxx</span>
-		<span v-if='buttonStatus === 0' class="iconfont icon-oc-date"></span>
+		<span v-if='buttonStatus === 1' class="add-on" @click="clearDate"><i class="iconfont icon-oc-delete"></i></span>
+		<span v-if='buttonStatus === 0' class="iconfont icon-oc-date" @click="clearDate" ></span>
 	</div>
 </template>
 <script>
@@ -42,7 +42,7 @@
 			},
 			width: {
 				type: Number,
-				default: 120
+				default: 130
 			}
 		},
 		watch: {
@@ -121,6 +121,7 @@
 				});
 			},
 			clearDate(){
+				console.log(2)
 				this.value = ''
 			}
 		},
@@ -141,11 +142,13 @@
 		position: absolute;
 		right: 8px;
 		top: 2px;
-		z-index: 12;
+		z-index: 300;
 	}
-	.form-control {
-		display: inline-block;
-	}
+		.form-control {
+			display: inline-block;
+			border-bottom-right-radius: 4px !important;
+    		border-top-right-radius: 4px !important;
+		}
 	}
 	
 	.input-group-addon {
