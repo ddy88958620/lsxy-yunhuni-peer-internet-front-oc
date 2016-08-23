@@ -67,7 +67,7 @@
         let uid = this.$route.params.uid
 	      let params = date ? date : this.date.value
 	      let self = this
-        $.get('/tenant/tenants/'+uid+'/session/statistic', DATE.dateParse(params)).then((res)=>{
+        $.get('/tenant/tenants/'+uid+'/interfaceInvoke/statistic', DATE.dateParse(params)).then((res)=>{
           self.chartApiValue = res.data
         })
       }
