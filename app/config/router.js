@@ -103,6 +103,7 @@ export default function(router){
               }
             },
             '/list' : {
+              name: 'tenantlist',
               component: (resolve) => require(['../components/pages/tenant/list.vue'], resolve)
             }
           }

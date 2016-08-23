@@ -133,8 +133,11 @@
         })
       }
     },
-    ready(){
-      this.query(true)
+    route: {
+      data(){
+				this.page.query.name = this.$route.query.searchName
+        this.query(true)
+      }
     }
   }
 </script>
