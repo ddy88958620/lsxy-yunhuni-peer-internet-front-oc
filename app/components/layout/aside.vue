@@ -42,8 +42,9 @@
       height: 180px;
       padding-top: 15px;
       .canvas{
-        @include circlebox(50px);
-        border:1px solid #000;
+        width: 96px;
+        height: 96px;
+        background: url('../../assets/images/avatar_bg.png') no-repeat ;
         img{
           @include circlebox(40px);
         }

@@ -53,7 +53,7 @@
         let time = this.$route.params.day
         let params = {type:type,appId:appId,time:time}
         if(more){
-          let pageNo = this.service.currentPageNo + 1
+          let pageNo = this.session.currentPageNo + 1
           params.pageNo = pageNo
         }
         let self = this

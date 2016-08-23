@@ -1,7 +1,7 @@
 <template>
   <div class="modal-mask" v-show="show" transition="modal" >
     <div class="modal-wrapper">
-      <div class="modal-container flex flex-1 flex-direction-column table-modal">
+      <div class="modal-container flex flex-1 flex-direction-column {{classname}}">
 
         <div class="modal-header flex flex-1 justify-content-b">
           <slot name="header">
@@ -44,6 +44,10 @@
         default: function(){
       		return
         }
+      },
+      classname:{
+        type:String,
+        default:'normal'
       }
     }
   }
@@ -67,11 +71,11 @@
     vertical-align: middle;
   }
 
-  .normal-modal{
+  .normal{
     width: 600px;
   }
 
-  .table-modal{
+  .table{
     width: 800px;
   }
 

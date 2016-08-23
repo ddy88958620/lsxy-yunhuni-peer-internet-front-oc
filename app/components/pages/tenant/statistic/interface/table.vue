@@ -2,7 +2,7 @@
   <div>
     <div class="admin-table table-responsive">
       <div class="table-total flex flex-1 justify-content-e">
-        共<span class="text-danger">20</span>条
+        共<span class="text-danger">{{ value.length }}</span>条
       </div>
       <table class="table">
         <thead>
@@ -12,61 +12,35 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for='message in messages'>
-          <td class="message-time text-align-c">{{ message.date }}</td>
-          <td>{{ message.count }}</td>
+        <tr v-for='message in value' track-by="$index">
+          <td class="message-time text-align-c">2016-{{ month ? month+'-' : '' }}{{$index+1 < 10 ? `0${$index+1}` : $index+1 }}</td>
+          <td>{{ message }}</td>
         </tr>
         </tbody>
       </table>
-      <div class="more"><a @click="moreMessage" class="text-none">加载更多<i class="icon iconfont icon-oc-dropdown" ></i></a></div>
     </div>
   </div>
 </template>
 <script>
+  import DATE from '../../../../../utils/date'
   export default {
-    data(){
-      return {
-        messages: [],
-        total : 100
+    props: {
+      value: {
+        type: Array,
+        twoWays: true
+      },
+      date: {
+        type: String,
+	      twoWays: true
       }
     },
-    methods: {
-      moreMessage(){
-        this.messages.push(
-          {
-            date: '2016-06-06',
-            count: '20'
-          }
-        )
+    computed: {
+    	month(){
+    		let month = DATE.dateParse(this.date).month
+		    
+        return month
       }
-    },
-    route: {
-      data(){
-
-
-      }
-    },
-    ready(){
-      this.messages = [
-        {
-          date: '2016-06-06',
-          count: '1020',
-        },
-        {
-          date: '2016-06-05',
-          count: '4112',
-        },
-        {
-          date: '2016-06-03',
-          count: '1000',
-        },
-        {
-          date: '2016-06-02',
-          count: '523',
-        }
-      ]
     }
-
   }
 
 </script>

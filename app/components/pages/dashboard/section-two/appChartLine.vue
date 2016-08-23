@@ -13,8 +13,8 @@
            :type="['line','line']"
            :dateType="dateType"
            :label.sync="date.type"
-           :ydata1="app"
-           :ydata2="member"
+           :ydata1="member"
+           :ydata2="app"
            :title="['新增注册会员','新增应用']"
            :xtitle="['会员数(个)','应用数(个)']"
            :color="[['rgba(246,239,232,0.8)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
@@ -25,6 +25,7 @@
 
 <script>
   import  {getNewMemberAndApp } from '../../../../vuex/actions.js' 
+  import DATE from '../../../../utils/date'
   export default {
     vuex : {
       getters: {
@@ -39,7 +40,7 @@
       return {
         date: {
           type: 'month',
-          value: ''
+          value: DATE.todayString('month')
         },
       }
     },
@@ -49,6 +50,7 @@
     },
     methods: {
 	    doGetNewMemberAndApp(date){
+        console.log(date)
       	if (date) {
       	  this.getNewMemberAndApp(date)
         } else {
@@ -63,17 +65,17 @@
         let self = this
         self.date.type = type
         if(type=='year'){
-          this.getNewMemberAndApp({year:thisDate.getFullYear()})
+           self.date.value = DATE.todayString('year')
+          this.getNewMemberAndApp({year:DATE.today('month').year})
         }else{
           self.date.type ='month'
-          this.getNewMemberAndApp({year:thisDate.getFullYear(),month:thisDate.getMonth()})
+          self.date.value = DATE.todayString('month')
+          this.getNewMemberAndApp({year:DATE.today('month').year,month:DATE.today('month').month})
         }
       }
     },
 	  ready(){
        this.changeDate('month')
-       /*let thisDate = new Date()
-    	 this.doGetNewMemberAndApp({year:thisDate.getFullYear(),month:thisDate.getMonth()})*/
     },
   }
 </script>

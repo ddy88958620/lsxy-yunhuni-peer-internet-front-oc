@@ -9,8 +9,8 @@
 			<div class="panel-body">
 				<ul class="list-none-style">
 					<li>开具发票金额：{{detail.amount}}元</li>
-					<li>开票时间：{{ detail.start | date }}  至  {{ detail.end | date}}</li>
-					<li>申请时间： {{detail.applyTime | date }}</li>
+					<li>开票时间：{{ detail.start | totalDate }}  至  {{ detail.end | totalDate}}</li>
+					<li>申请时间： {{detail.applyTime | totalDate }}</li>
 				</ul>
 			</div>
 		</div>
@@ -50,7 +50,7 @@
 					<li>收取地址：{{ detail.receiveAddress }}</li>
 					<li>收件人：{{ detail.receivePeople }}</li>
 					<li>手机号码: {{ detail.receiveMobile }}</li>
-					<li v-if="detail.express_no==null ||  etail.express_no=='' ">
+					<li v-if="detail.status==0 ">
 						<button class="btn btn-primary" @click="abnormalModal = true">异常</button>
 						<button class="btn btn-primary" @click="pass">通过</button>
 						<button class="btn btn-default" v-link="'/admin/finance/invoice'" >取消</button>
@@ -69,6 +69,7 @@
 				</ul>
 			</div>
 		</div>
+
 	</div>
 
 
@@ -98,14 +99,14 @@
 			<div class="flex flex-direction-column admin-table-header">
 				<div class="flex align-items-c">
 					<span class='datetime-picker-label clear-padding-left'>提交时间:</span>
-					2016-07-05
+					{{ detail.start | totalDate }}   
 					<span class='datetime-picker-label'>至</span>
-					2016-07-18
+					{{ detail.end | totalDate}}
 				</div>
 			</div>
 			<div class="admin-table table-responsive flex-1 flex flex-direction-column">
 				<div class="table-total flex flex-1 justify-content-e">
-					消费总金额：<span class="brown">2400</span>元 共<span class="text-danger">20</span>条
+					消费总金额：<span class="brown">{{invoice.sum!==0 ? invoice.sum :  '' }}</span>元 共<span class="text-danger">{{invoice.list.totalCount }}</span>条
 				</div>
 				<div class="flex modal-table" >
 					<table class="table">
@@ -118,16 +119,20 @@
 						</tr>
 						</thead>
 						<tbody >
-						<tr v-for='message in messages'>
-							<td class="message-time text-align-c">{{message.date}}</td>
-							<td>{{message.money}}</td>
-							<td>{{message.type}}</td>
-							<td>{{message.remark}}</td>
+						<tr v-for='message in invoiceList'>
+							<td class="message-time text-align-c">{{message.createTime | date}}</td>
+				            <td>{{message.amount}}</td>
+				            <td>{{message.type}}</td>
+				            <td>{{message.remark}}</td>
 						</tr>
 						</tbody>
 					</table>
 				</div>
-				<div class="more"><a @click="moreMessage" class="text-none">加载更多<i class="icon iconfont icon-oc-dropdown" ></i></a></div>
+				<div class="more">
+					<a v-show='invoice.list.totalPageCount==invoice.list.currentPageNo || invoice.list.totalPageCount==0'>加载完毕</a>
+					<a @click="query('more')" class="text-none" v-show='invoice.list.totalPageCount!=invoice.list.currentPageNo && invoice.list.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+				</div>	
+				
 			</div>
 		</div>
 
@@ -153,15 +158,6 @@
 			showDetail:function(index){
 				this.show.$set(index, !this.show[index])
 			},
-			moreMessage: function(){
-				this.messages.push(
-					{
-						date: '2016-06-06 16:00',
-						money: '100元',
-						type: '套餐加油包',
-						remark: '100分钟语音加油包'
-					})
-			},
 			abnormal(){
 				//异常处理
 				let id = this.$route.params.id
@@ -180,6 +176,25 @@
 					//成功处理
 					this.getInvoiceDetail({id:id})
 				})
+			},
+			query(more){
+				let params = {} 
+				params.id = this.$route.params.id
+				if(more){
+					let pageNo = this.invoice.list.currentPageNo + 1
+					params.pageNo = pageNo
+				}
+				let self = this
+				$.get('/finance/invoice/detail/list/'+this.$route.params.id,params).then((res)=>{
+					console.log(res)
+					if(res){
+			            self.invoice = res.data
+			            if(more)
+			              self.invoiceList = self.invoiceList.concat(res.data.list.result)
+			            else
+			              self.invoiceList = res.data.list.result
+			        }
+				})
 			}
 		},
 		data(){
@@ -189,44 +204,25 @@
 				passModal: false,
 				abnormalModal: false,
 				reason:'',
-				messages: [
-					{
-						date: '2016-06-06 16:00',
-						money: '100元',
-						type: '套餐加油包',
-						remark: '100分钟语音加油包'
-					},
-					{
-						date: '2016-06-06 16:00',
-						money: '100元',
-						type: '会议',
-						remark: '回拨扣费0.02/6s 10min'
-					},
-					{
-						date: '2016-06-06 16:00',
-						money: '100元',
-						type: '套餐加油包',
-						remark: '100分钟语音加油包'
-					},
-					{
-						date: '2016-06-06 16:00',
-						money: '100元',
-						type: '套餐加油包',
-						remark: '100分钟语音加油包'
-					},
-				]
+				invoice:{
+					list: { totalCount :0}
+				},
+				invoiceList:[],
 			}
 		},
 		ready(){
 			let params = {}
 			params.id = this.$route.params.id
-			
+
+			//详情
 			this.getInvoiceDetail(params)
-			let arr = []
+			//消费记录
+			this.query()
+/*			let arr = []
 			Array.from(this.messages, function(i, index){
 				arr.push(false)
 			})
-			this.show = arr
+			this.show = arr*/
 		}
 	}
 </script>

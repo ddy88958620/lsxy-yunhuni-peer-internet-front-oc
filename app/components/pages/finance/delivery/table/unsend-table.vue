@@ -4,7 +4,7 @@
 			<div class="select-box">
 				<search
 					:value.sync="search"
-					placeholder="请输入关键字,如真是姓名、会员名称"
+					placeholder="请输入姓名、会员名称"
 				></search>
 			</div>
 			<span class='datetime-picker-label'>发票类型: </span>

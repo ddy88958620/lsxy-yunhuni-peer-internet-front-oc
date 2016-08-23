@@ -14,7 +14,7 @@ import chance from 'chance'
   export default {
     data(){
       return {
-        class: '',
+        class: ''
       }
     },
     props: {
@@ -30,7 +30,7 @@ import chance from 'chance'
         }
       },
       label: {
-        type: Array
+        type: Array,
       },
       color: {
         type: Array,
