@@ -24,6 +24,8 @@
     </div>
     <div class="nav-right">
       <search
+        :value.sync= 'value'
+        :action="search"
         placeholder='请输入会员名称'>
       </search>
     </div>
@@ -36,20 +38,19 @@ import {localLogout} from '../../vuex/actions.js'
 export default {
   data(){
     return{
-      serachName: '',
+      value: '',
     }
   },
   components: {
     'search': require('../ui/search-input.vue'),
   },
   methods:{
-    serach: function() {
-      console.log('搜索内容:'+this.serachName);
+    search: function() {
+      this.$route.router.go({
+        name: 'tenantlist',
+        query: {searchName: this.value}
+      })
     }
   },
-  vuex: {
-    actions: {
-    }
-  }
 }
 </script>
