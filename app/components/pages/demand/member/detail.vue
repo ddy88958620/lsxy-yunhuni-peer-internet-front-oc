@@ -199,6 +199,7 @@
 		
 				$.put('/demand/member/edit/'+id,params).then((res)=>{
 					//成功
+					this.detail()
 		        })
 			},
 			fail(){
@@ -218,8 +219,18 @@
 				$.put('/demand/member/edit/'+id,params).then((res)=>{
 					//成功
 					this.showModal = false
+					this.detail()
 		        })
-				
+			},
+			detail(){
+				let uid = this.$route.params.id
+		 		this.type = this.$route.params.type 
+		        let self = this
+ 				$.get('/demand/member/detail/'+uid,{type:this.type}).then((res)=>{
+ 					this.messages.list = res.data.list
+ 					this.messages.realname = res.data.realname
+		        })
+
 			}
 		},
 		data(){
@@ -242,16 +253,7 @@
 					arr.push(false)
 				})
 				this.show = arr
-		 		let uid = this.$route.params.id
-		 		this.type = this.$route.params.type 
-		 		
-		        let self = this
-		       
- 				$.get('/demand/member/detail/'+uid,{type:this.type}).then((res)=>{
- 					this.messages.list = res.data.list
- 					this.messages.realname = res.data.realname
-		        })
-
+		 		this.detail()
 
 		       /* $.get('/tenant/tenants/'+uid+'/session/statistic', self.chartApiDate).then((res)=>{
 		          self.chartApiValue = res.data
