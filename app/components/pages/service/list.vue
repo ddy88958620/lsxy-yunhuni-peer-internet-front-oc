@@ -61,7 +61,10 @@
 		},
 		data(){
 			return {
-				service: null,
+				service: {
+					totalPageCount:0,
+					currentPageNo:0
+				},
 				serviceList: [],
 				status: '',
 				startdate :{
