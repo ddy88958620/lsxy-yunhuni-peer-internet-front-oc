@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-view keep-alive></router-view>
-    <toaster :content.sync='message.content'></toaster>
+    <toaster :show.sync="message.show" :content='message.content' :type="message.type" :title="message.title"></toaster>
   </div>
 </template>
 <script>

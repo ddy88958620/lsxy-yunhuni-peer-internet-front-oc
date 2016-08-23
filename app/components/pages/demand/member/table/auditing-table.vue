@@ -108,9 +108,6 @@
 				}
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
-
-				console.log(params)
-
 				this.getDemandList(params)
 			}
 		},

@@ -11,7 +11,7 @@ import {
   VOICE_MORE_AUDITING_LIST,
   VOICE_UNAUTH_LIST,
   VOICE_MORE_UNAUTH_LIST,
- 
+  VOICE_DETAIL,
 } from '../mutation-types'
 
 
@@ -73,6 +73,10 @@ const mutations = {
     state.voicelist.unauth.currentPageNo = list.currentPageNo
     state.voicelist.unauth.result = state.voicelist.unauth.result.concat(list.result)
   },
+  [VOICE_DETAIL] (state, index){
+    //this.todos.splice(index, 1)
+    state.voicelist.await.result.splice(index,1)
+  }
 }
 
 

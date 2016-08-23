@@ -7,7 +7,7 @@
 			class="form_datetime _month form-control"
 			data-date-end-date="0m" readonly/>
 		<span v-if='buttonStatus === 1' class="add-on" @click="clearDate"><i class="iconfont icon-oc-delete"></i></span>
-		<span v-if='buttonStatus === 0' class="iconfont icon-oc-date" @click="clearDate" ></span>
+		<span v-if='buttonStatus === 0' class="iconfont icon-oc-date" ></span>
 	</div>
 </template>
 <script>
@@ -154,6 +154,11 @@
 	.input-group-addon {
 		background: none;
 		border-left: none;
+	}
+
+	.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+	    background-color: #FFF !important;
+	    opacity: 1 !important;
 	}
 
 </style>

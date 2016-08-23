@@ -1,13 +1,23 @@
 <template>
-    <p v-if="content !== ''"
-      class="bg-success">
-      {{content}}
-    </p>
+	<div v-if="show">
+		<p :class="{
+      'bg-success': type==='success',
+      'bg-danger': type==='danger',
+      }"
+		   transition="fade"
+		>
+			{{content}}
+		</p>
+	</div>
 </template>
 <script type="text/javascript">
 
 export default {
   props: {
+  	show: {
+  		type: Boolean,
+		  towWays: true
+	  },
     type: {
       type: String,
       default: 'bg-success'
@@ -16,8 +26,12 @@ export default {
       type: String,
       default: '',
       twoWays: true
-    }
+    },
+	  title: {
+    	type: String
+	  }
   },
+	ready(){}
 }
 </script>
 <style lang='sass' scoped>

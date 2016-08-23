@@ -185,7 +185,7 @@ for (let [key, value] of Object.entries(path)) {
 					router.post(covertKOAURL(key), async(ctx, next) => {
 						let token = ctx.session.token
 						console.log('token node', token)
-						if( token === null ){
+						if( !token){
 							ctx.status = 401
 							ctx.body = ' node token null'
 							return
@@ -199,7 +199,7 @@ for (let [key, value] of Object.entries(path)) {
 					router.delete(covertKOAURL(key), async(ctx, next) => {
 						let token = ctx.session.token
 						console.log('token node', token)
-						if( token === null ){
+						if( !token){
 							ctx.status = 401
 							ctx.body = ' node token null'
 							return
