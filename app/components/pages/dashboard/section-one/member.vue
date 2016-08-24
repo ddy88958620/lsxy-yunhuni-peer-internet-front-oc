@@ -147,4 +147,8 @@ export default {
   }
 }
 
+.panel-heading{
+    font-size: 1.6rem;
+  }
+
 </style>

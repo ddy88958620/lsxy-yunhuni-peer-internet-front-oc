@@ -51,8 +51,8 @@ export default {
   components: {
     pie
   },
-  ready(){
-    this.getAppCount()
+	ready(){
+      this.getAppCount()
   }
 }
 </script>
@@ -88,5 +88,10 @@ export default {
   .title-box{
     padding-top: 10px;
   }
+
+  .panel-heading{
+    font-size: 1.6rem;
+  }
+
 
 </style>

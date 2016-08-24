@@ -17,7 +17,7 @@ const YUNHUNIHOSTPORT = ADMINPROCESSENV ? '80' : ''
 
 const API_ROOT = 'http://'+YUNHUNIHOST + '/api'
 
-const API_ROOT_AUDIO = 'http://192.168.10.75:18082/ossfile/img'
+const API_ROOT_AUDIO = API_ROOT+'/ossfile/img'
 
 
 
