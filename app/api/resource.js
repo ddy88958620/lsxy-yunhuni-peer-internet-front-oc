@@ -14,7 +14,7 @@ Vue.http.interceptors.push(
       // 每次请求判断一次401
       if(response.status === 401){
 		    window.location= '/#!/auth/login'
-	    }
+      }
     })
   }
 )

@@ -20,7 +20,7 @@ export default {
     'section-five': require('./section-five/index.vue'),
     'section-six': require('./section-six/index.vue'),
   },
-
+	
 }
 </script>
 <style lang='sass'>

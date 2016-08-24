@@ -20,6 +20,7 @@ export default function(router){
       component: (resolve) =>  require(['../components/pages/admin.vue'], resolve),
       subRoutes: {
         '/dashboard': {
+          name: 'dashboard',
           component: (resolve) => require(['../components/pages/dashboard/index.vue'], resolve),
         },
         '/tenant': {
@@ -228,7 +229,8 @@ export default function(router){
   
   // set the default router-view
   router.redirect({
-    '/': '/admin',
+    '/': '/auth/login',
+    // '/admin': '/admin/dashboard',
     '/admin/service': '/admin/service/list',
 	  '/admin/message': '/admin/message/list',
     '/admin/tenant': '/admin/tenant/list',
@@ -250,7 +252,7 @@ export default function(router){
       next()
     } else {
       // redirect, status 401 or 403 ...
-      redirect('/auth/login')
+      go('/auth/login')
     }
   })
 }

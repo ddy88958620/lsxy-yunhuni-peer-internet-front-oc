@@ -96,8 +96,6 @@ export default {
   },
   ready(){
     this.getMemberCount()
-
-
   }
 }
 

@@ -62,7 +62,7 @@
               </div>
 
               <div class="validate-field form-group flex mt-15">
-                <input type="checkbox"    />  记住密码
+                <input type="checkbox"    />  记住用户名
               </div>
 
               <div class="form-group flex flex-1 mt-15">
@@ -120,7 +120,6 @@ export default {
   },
   route:{
   	data(){
-    
       this.refreshVerCode()
     }
   }
