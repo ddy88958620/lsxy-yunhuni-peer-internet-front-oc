@@ -4,14 +4,13 @@
     <div class="child-box flex flex-1  padding-right-10 ">
       <div class="flex flex-1 flex-direction-column whilebg admin-padding admin-border">
         <div class="flex section-time-box">
-          <a @click="previousMonth" >上个月</a>
-          <span>{{chartOneDate ? chartOneDate.year+'-0'+chartOneDate.month : '0'}}</span>
+          <datetime-picker :uuid="'preview-section-four1'" :action="chartSessionQuery" :type.sync="chartSessionDate.type" :value.sync="chartSessionDate.value"></datetime-picker>
         </div>
         <div class="flex flex-1">
           <chart
             :uuid="'sectionThreeChart2'"
             :type="['line','line']"
-            :ydata1="chartOneValue"
+            :ydata1="chartSessionValue"
             :title="['会话量统计', '']"
             :xtitle="['会话量(次)','']"
             :color="[['rgba(246,239,232,0.2)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
@@ -25,10 +24,7 @@
     <div class="child-box flex flex-1  padding-left-10 ">
       <div class="flex flex-1 flex-direction-column whilebg admin-padding admin-border">
         <div class="flex section-time-box">
-          <a >本月</a>
-          <a @click="previousMonthApi"  >上一月</a>
-          <a @click="nextMonthApi" >下一月</a>
-          <span>{{chartApiDate ? chartApiDate.year+'-0'+chartApiDate.month : '0'}}</span>
+          <datetime-picker :uuid="'preview-section-four2'" :action="chartApiQuery" :type.sync="chartApiDate.type" :value.sync="chartApiDate.value"></datetime-picker>
         </div>
         <div class="flex flex-1">
           <chart
@@ -52,65 +48,40 @@
   export default{
     data(){
       return {
-        chartOneValue: [],
-        chartOneDate: null,
+        chartSessionValue: [],
+        chartSessionDate: {
+				  type: 'month',
+          value: DATE.todayString('month'),
+        },
         chartApiValue: [],
-        chartApiDate: null,
-      }
-    },
-    watch: {
-      chartOneDate: {
-        handler(newDate, old){
-          this.chartOneQuery()
+        chartApiDate: {
+          type: 'month',
+          value: DATE.todayString('month'),
         },
-        deep: true
-      },
-      chartApiDate:{
-        handler(newDate, old){
-          this.chartApiQuery()
-        },
-        deep: true
       }
     },
     components:{
-      'chart': require('../../../../ui/chart.vue')
+      'chart': require('../../../../ui/chart.vue'),
+      'datetime-picker': require('../../../../ui/datetimepicker.vue')
     },
     methods: {
-      previousMonth(){
-        this.chartOneDate.month = this.chartOneDate.month > 1 ? this.chartOneDate.month - 1 : 1
-      },
-      nextMonth(){
-        this.chartOneDate.month = this.chartOneDate.month < 12 ? this.chartOneDate.month + 1 : 12
-      },
-	    previousMonthApi(){
-		    this.chartApiDate.month = this.chartApiDate.month > 1 ? this.chartApiDate.month - 1 : 1
-	    },
-	    nextMonthApi(){
-		    this.chartApiDate.month = this.chartApiDate.month < 12 ? this.chartApiDate.month + 1 : 12
-	    },
-    	chartOneQuery(){
+    	chartSessionQuery(){
         let uid = this.$route.params.uid
         let self = this
-		    if (this.chartOneDate === null){
-			    this.chartOneDate = DATE.today('month')
-        }
-        $.get('/tenant/tenants/'+uid+'/session/statistic', self.chartOneDate).then((res)=>{
-          self.chartOneValue = res.data
+        $.get('/tenant/tenants/'+uid+'/session/statistic', DATE.dateParse(self.chartSessionDate.value)).then((res)=>{
+          self.chartSessionValue = res.data
         })
       },
       chartApiQuery(){
         let uid = this.$route.params.uid
         let self = this
-        if (this.chartApiDate === null){
-          this.chartApiDate = DATE.today('month')
-        }
-        $.get('/tenant/tenants/'+uid+'/session/statistic', self.chartApiDate).then((res)=>{
+        $.get('/tenant/tenants/'+uid+'/interfaceInvoke/statistic', DATE.dateParse(self.chartApiDate.value)).then((res)=>{
           self.chartApiValue = res.data
         })
       }
     },
     ready(){
-    	this.chartOneQuery()
+    	this.chartSessionQuery()
 	    this.chartApiQuery()
     }
   }

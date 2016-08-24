@@ -38,3 +38,29 @@ export function img(filename) {
 	return fileurl
 }
 
+
+export function fileSize(size){
+	let comSize = ''
+	//b
+	if(size<1024){
+		comSize = size+'b'
+	}
+
+	//kb
+	if(size>=1024 && size< 1024 *1024){
+		comSize = (size/1024 ).toFixed(2)+'kb'
+	}
+
+
+	//M
+	if(size>=1024*1024 && size< 1024 *1024*1024){
+		comSize = (size/1024/1024).toFixed(2) +'M'
+	}
+
+	//G
+	if(size>=1024*1024*1024 && size< 1024 * 1024 * 1024 * 1024 ){
+		comSize = (size/1024/1024/1024).toFixed(2)+'G'
+	}
+
+	return comSize
+}

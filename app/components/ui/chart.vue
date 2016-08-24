@@ -79,10 +79,11 @@ import uuid from 'node-uuid';
 	  methods: {
     	initChart() {
         let self = this
-        //计算当前月份日数
-        var data = {
-          labels: self.label === 'month' ? self.month : self.year,
-          datasets: [
+		    // 对多个chart进行处理
+		    let datasets = []
+		    let yAxes = []
+        if(this.ydata1.length > 0 && this.ydata2.length > 0) {
+          datasets =  [
             {
               label: self.title[0],
               type: self.type[0],
@@ -129,6 +130,71 @@ import uuid from 'node-uuid';
               yAxisID: 'y-axis-2',
             }
           ]
+          yAxes = [
+            {
+              type: "linear",
+              display: true,
+              scaleLabel: {
+                display: true,
+                labelString: self.xtitle[0],
+              },
+              position: "left",
+              id: "y-axis-1"
+            },
+            {
+              type: "linear",
+              scaleLabel: {
+                display: true,
+                labelString: self.xtitle[1],
+              },
+              display: true,
+              position: "right",
+              id: "y-axis-2"
+            },
+          ]
+        }else {
+          datasets =  [
+            {
+              label: self.title[0],
+              type: self.type[0],
+              // 曲线
+              // lineTension: 0.1,
+              backgroundColor: self.color[0][0],
+              borderColor: self.color[0][1],
+              borderCapStyle: 'butt',
+              borderDash: [],
+              borderDashOffset: 0.0,
+              borderJoinStyle: 'miter',
+              pointBorderColor: self.color[0][2],
+              pointBackgroundColor: self.color[0][3],
+              pointBorderWidth: 5,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: self.color[0][4],
+              pointHoverBorderColor: self.color[0][5],
+              pointHoverBorderWidth: 2,
+              pointRadius: 1,
+              pointHitRadius: 10,
+              data: self.ydata1,
+              yAxisID: 'y-axis-1',
+            }]
+          
+            yAxes = [
+              {
+                type: "linear",
+                display: true,
+                scaleLabel: {
+                  display: true,
+                  labelString: self.xtitle[0],
+                },
+                position: "left",
+                id: "y-axis-1"
+              },
+            ]
+        }
+        //计算当前月份日数
+        var data = {
+          labels: self.label === 'month' ? self.month : self.year,
+	        datasets: datasets
         };
         
         if (this.chart) {
@@ -155,32 +221,32 @@ import uuid from 'node-uuid';
               mode: 'label'
             },
             scales: {
-              yAxes: [
-                {
-                  type: "linear",
-                  display: true,
-                  scaleLabel: {
-                    display: true,
-                    labelString: self.xtitle[0],
-                  },
-                  position: "left",
-                  id: "y-axis-1"
-                },
-                {
-                  type: "linear",
-                  scaleLabel: {
-                    display: true,
-                    labelString: self.xtitle[1],
-                  },
-                  display: true,
-                  position: "right",
-                  id: "y-axis-2"
-                },
-              ]
+            	yAxes: yAxes
+//              yAxes: [
+//                {
+//                  type: "linear",
+//                  display: true,
+//                  scaleLabel: {
+//                    display: true,
+//                    labelString: self.xtitle[0],
+//                  },
+//                  position: "left",
+//                  id: "y-axis-1"
+//                },
+//                {
+//                  type: "linear",
+//                  scaleLabel: {
+//                    display: true,
+//                    labelString: self.xtitle[1],
+//                  },
+//                  display: true,
+//                  position: "right",
+//                  id: "y-axis-2"
+//                },
+//              ]
             }
           }
         })
-      
       }
     },
     ready(){
