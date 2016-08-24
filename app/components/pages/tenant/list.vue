@@ -2,7 +2,7 @@
   <div>
     <div class="flex flex-direction-column admin-table-header">
       <h4>会员列表</h4>
-      <div class="flex align-items-c bg-section-margin  remove-margin-bottom">
+      <div class="flex align-items-c remove-margin-bottom">
         <div class="select-box">
           <search placeholder="请输入会员名称" :value.sync='page.query.name' :action="query" ></search>
         </div>

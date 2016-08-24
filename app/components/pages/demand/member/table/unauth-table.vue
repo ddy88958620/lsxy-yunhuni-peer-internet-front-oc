@@ -4,7 +4,9 @@
 			<div class="select-box">
 				<search
 					:value.sync="search"
+					:action="query"
 					placeholder="请输入会员名称"
+					
 				></search>
 			</div>
 			<span class='datetime-picker-label '>申请时间:</span>
@@ -41,7 +43,7 @@
 				</thead>
 				<tbody>
 				<tr v-for='message in demand.result'>
-					<td class="message-time text-align-c">{{message.date | date }}</td>
+					<td class="message-time text-align-c">{{message.date | totalDate }}</td>
 					<td><a v-link="'/admin/tenant/detail/'+message.uid" >{{message.name}}</a></td>
 					<td>{{message.mobile}}</td>
 					<td>{{message.email}}</td>

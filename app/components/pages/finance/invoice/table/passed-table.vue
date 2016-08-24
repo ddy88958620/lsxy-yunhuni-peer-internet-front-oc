@@ -4,7 +4,8 @@
 			<div class="select-box">
 				<search
 					:value.sync="search"
-					placeholder="请输入姓名、会员名称"
+					:action="query"
+					placeholder="请输入会员名称"
 				></search>
 			</div>
 			<span class='datetime-picker-label'>发票类型: </span>
@@ -37,7 +38,7 @@
 				</thead>
 				<tbody>
 				<tr v-for='message in invoice.result'>
-					<td class="message-time text-align-c">{{message.applyTime | date }}</td>
+					<td class="message-time text-align-c">{{message.applyTime | totalDate }}</td>
 					<td><a>{{message.tenant.tenantName}}</a></td>
 					<td>{{message.amount}}</td>
 					<td v-if='message.type==1'>个人增值税普通发票</td>
