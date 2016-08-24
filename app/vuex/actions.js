@@ -27,7 +27,14 @@ export const localLogin = ({dispatch, router}, user) => {
     if(login&&login.data) {
     	saveCookie('user', user.userName)
       dispatch(types.LOCAL_LOGIN, user.userName)
-      router.go({path:'/admin/dashboard'})
+      router.go(
+        {
+          path:'/admin',
+          query: {
+            init: 'login'
+          }
+        }
+			)
       showMsg({dispatch}, {type:'success', content: '欢迎您登入!!'})
     }else{
 	    showMsg({dispatch}, {type:'danger', content: (login && login.errorMsg) || '未知错误'})

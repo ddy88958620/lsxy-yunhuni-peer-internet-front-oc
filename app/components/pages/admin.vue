@@ -23,6 +23,11 @@ export default {
     headerbar,
     footerbar,
     asidebar
+  },
+  route: {
+    data(){
+      if(this.$route.query.init === 'login') this.$route.router.go({name:'dashboard'})
+    }
   }
 }
 </script>

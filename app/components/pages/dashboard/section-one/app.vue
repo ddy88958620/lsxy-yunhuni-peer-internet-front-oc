@@ -53,7 +53,7 @@ export default {
   },
 	ready(){
       this.getAppCount()
-  }
+  },
 }
 </script>
 <style lang="sass" scoped>
