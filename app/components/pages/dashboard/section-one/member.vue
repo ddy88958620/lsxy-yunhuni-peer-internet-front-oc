@@ -1,11 +1,11 @@
 <template>
-  <div class="section_left">
+  <div class="section_left" >
     <div class="panel panel-default flex-1">
       <div class="panel-heading"><i class="iconfont icon-oc-member"></i>会员数据</div>
       <div class="panel-body flex align-items-c justify-content-c">
 
-        <div class='flex flex-1 '>
-          <div class="flex pie_wrap align-items-c">
+        <div class='flex flex-1 ' >
+          <div class="flex pie_wrap align-items-c ">
             <pie
               :max.sync="member.regist_total"
               :value.sync="member.regist_total"
@@ -26,13 +26,13 @@
 
         <div class="border-span flex align-items-c "><span></span></div>
 
-        <div class='flex flex-1 '>
+        <div class='flex flex-1' >
           <div class="flex pie_wrap align-items-c">
             <pie
-              :max.sync="member.auth_total"
-              :value.sync="member.consume"
+              :max.sync="member.regist_total"
+              :value.sync="member.auth_total"
               :uuid="'memberpie2'"
-              :bgcolor.sync="color[1]">
+              :bgcolor.sync="color[1]" >
             </pie>
           </div>
           <div class="flex flex-1 align-items-c" >
@@ -109,7 +109,6 @@ export default {
     padding-right: 10px;
   }
 }
-
 .section_left {
   display: flex;
   flex: 3;

@@ -15,8 +15,8 @@
 
         <div class="border-span flex align-items-c "><span></span></div>
 
-        <div class='flex flex-1 flex-direction-column align-items-c justify-content-c'>
-          <div class="flex  pie_wrap align-items-c ">
+        <div class='flex flex-1 flex-direction-column align-items-c justify-content-c' style="z-index:999">
+          <div class="flex  pie_wrap align-items-c " style="z-index:11">
             <pie :uuid="'appie2'" :max="app.total" :value="app.online" :bgcolor="'#80d1ff'" ></pie>
           </div>
           <div class="flex align-items-c title-box">

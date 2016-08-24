@@ -3,7 +3,7 @@
 		<ul class='app-main-left'>
 			<li class="wrapper"><span></span>发票管理</li>
 			<li>
-				<a v-link="'/admin/finance/invoice'">发票审核<span class="app-menu-count">12</span></a>
+				<a v-link="'/admin/finance/invoice'">发票审核<span class="app-menu-count" style="display:none">12</span></a>
 			</li>
 			<li>
 				<a v-link="'/admin/finance/delivery'">发票邮寄</a>

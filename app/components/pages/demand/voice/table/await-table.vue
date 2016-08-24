@@ -41,7 +41,7 @@
 					<td><a>{{message.tenant.tenantName}}</a></td>
 					<td>{{message.app.name}}</td>
 					<td>{{message.name}}</td>
-					<td>{{message.size}}b</td>
+					<td>{{message.size | fileSize }}</td>
 					<td class="text-align-c">
 						<span><a @click="playAudio($index)">试听</a></span>
 						<span><a @click="pass(message.id,$index)">通过</a></span>
