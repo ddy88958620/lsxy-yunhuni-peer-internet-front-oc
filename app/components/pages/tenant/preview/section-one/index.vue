@@ -12,8 +12,9 @@
                   <span class="flex flex-1 name align-items-c justify-content-c" >{{tenant.tenantName}}</span>
                 </div>
                 <div class="message flex flex-1 flex-direction-column ">
-                  <span class="flex overflow-x-h">REST API: http://api.yunhuni.com/{{cert && cert.id}}</span>
-                  <span class="flex overflow-x-h">SercreKey：{{cert && cert.secretKey}}</span>
+                  <div class=" " >REST API: http://api.yunhuni.com/{{cert && cert.id}}/</div>
+                  <span class="">SercreKey：{{cert && cert.secretKey}}</span>
+                  <span class="">鉴权ID：{{cert && cert.id}}</span>
                 </div>
               </div>
             </div>
@@ -197,15 +198,19 @@
           self.consumes = [];
         }
 
-        console.log(params)
+    
 
         $.get('/tenant/tenants/'+this.$route.params.uid+'/consumes', params).then((res)=> {
           self.page.loading = false
           if (res.data && res.data.consumes && res.data.consumes.result) {
             if (init) {
               self.consumes = res.data.consumes.result
+                          console.log('chengli-one')
+
             } else {
               self.consumes = self.consumes.concat(res.data.consumes.result)
+                          console.log('chengli-two')
+
             }
             self.page.query.pageNo = pageNo
           }
