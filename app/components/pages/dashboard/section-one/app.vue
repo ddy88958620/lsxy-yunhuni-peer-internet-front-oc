@@ -51,8 +51,8 @@ export default {
   components: {
     pie
   },
-  ready(){
-    this.getAppCount()
+	ready(){
+      this.getAppCount()
   }
 }
 </script>

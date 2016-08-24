@@ -244,7 +244,7 @@ export default function(router){
     '/admin/demand/voice': '/admin/demand/voice/list/await',
   })
 
-  router.beforeEach(function({to, next, redirect}){
+  router.beforeEach(function({to, next, go}){
   	// http only YUNHUNISESSIONID 不可在 document.cookie中打印，所以用自己设置的
     if(to.auth || getCookie('user')) {
       next()
