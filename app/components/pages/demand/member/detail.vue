@@ -2,8 +2,15 @@
 	<div class="section_right">
 		<h4>查看详情</h4>
 		<div class="admin-panel">
-			<div class="panel-heading">会员信息</div>
+			<div class="panel-heading flex flex-1 ">
+				<span class="flex flex-1">会员信息</span>
+				<a class="flex" >查看</a>
+			</div>
 		</div>
+
+		
+
+
 		<div class="admin-panel flex-1">
 			<div class="panel-heading">认证信息</div>
 			<div class="panel-body">
@@ -23,6 +30,7 @@
 					<li>公司名称:{{messages.realname.name}}</li>
 					<li>公司地址:{{messages.realname.addr}}</li>
 					<li>所属行业:{{messages.realname.industry}}</li>
+					<li>申请人：{{messages.proposer}}</li>
 					<li>证件类型: 
 						<span v-if="messages.realname.authType==0">三证合一（一照一码）</span>
 						<span v-if="messages.realname.authType==1">三证合一 </span>
@@ -79,9 +87,7 @@
 			</div>	
 		</div>
 
-
-
-		<div class="panel panel-default flex-1">
+		<div class="panel panel-default flex-1" v-if="messages.list.length!==0 && messages.list[0].status!=0 ">
 			<div class="panel-heading">历史认证信息</div>
 			<div class="panel-body  admin-bg flex-1">
 				<div class="admin-table table-responsive remove-border">
@@ -108,7 +114,7 @@
 						type: '个人认证',
 						result: '审核不通过',
 						reason: '（原因 ：上传的身份证照片不清晰）' -->
-						<tr v-for='message in messages.list'>
+						<tr v-for='message in messages.list' v-if="message.status!=0" >
 							<td colspan="3">
 								<div class="flex flex-1 flex-direction-row">
 									<div class="flex title-time justify-content-c">
@@ -145,6 +151,7 @@
 										<li>公司名称:{{message.name}}</li>
 										<li>公司地址:{{message.addr}}</li>
 										<li>所属行业:{{message.industry}}</li>
+										<li>申请人：{{message.proposer}}</li>
 										<li>证件类型: 
 											<span v-if="message.authType==0">三证合一（一照一码）</span>
 											<span v-if="message.authType==1">三证合一 </span>
@@ -234,6 +241,7 @@
 		        })
 			},
 			fail(){
+
 				let params = {}
 				let id = this.$route.params.id
 				// type 0 个人认证 1实名认证
@@ -247,6 +255,7 @@
 					params.status=-2
 				}
 				params.type = type
+
 				$.put('/demand/member/edit/'+id,params).then((res)=>{
 					this.showMsg({content: '审核不通过', type: 'success'})
 					//成功

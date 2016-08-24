@@ -38,7 +38,7 @@
 				<tbody>
 				<tr v-for='message in voice.result'>
 					<td class="message-time text-align-c">{{message.createTime | totalDate}}</td>
-					<td><a>{{message.tenant.tenantName}}</a></td>
+					<td v-link="'/admin/tenant/detail/'+message.tenant.id" ><a>{{message.tenant.tenantName}}</a></td>
 					<td>{{message.app.name}}</td>
 					<td>{{message.name}}</td>
 					<td>{{message.size | fileSize }}</td>

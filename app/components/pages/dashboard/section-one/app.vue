@@ -89,4 +89,9 @@ export default {
     padding-top: 10px;
   }
 
+  .panel-heading{
+    font-size: 1.6rem;
+  }
+
+
 </style>

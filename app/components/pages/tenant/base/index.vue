@@ -62,6 +62,7 @@
 								<li>公司名称: {{authinfo.name}}</li>
 								<li>公司地址: {{authinfo.addr}}</li>
 								<li>所属行业: {{authinfo.industry}}</li>
+								<li>申请人：{{authinfo.proposer}}</li>
 								<li>证件类型:
 									<span v-if="authinfo.authType == '0'">三证合一（一照一码）</span>
 									<span v-if="authinfo.authType == '1'">三证合一</span>
