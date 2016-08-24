@@ -7,10 +7,10 @@
           <search placeholder="请输入会员名称" :value.sync='page.query.name' :action="query" ></search>
         </div>
         <span class='datetime-picker-label'>注册时间:</span>
-        <datetime-picker :uuid="'datetimepicker3'" :type.sync="'month'"
+        <datetime-picker :uuid="'datetimepicker3'" :type.sync="'day'"
                          :value.sync="page.query.begin"></datetime-picker>
         <span class='datetime-picker-label'>至</span>
-        <datetime-picker :uuid="'datetimepicker2'" :type.sync="'month'" :value.sync="page.query.end"></datetime-picker>
+        <datetime-picker :uuid="'datetimepicker2'" :type.sync="'day'" :value.sync="page.query.end"></datetime-picker>
         <span class='datetime-picker-label'>认证状态: </span>
         <select class="form-control" v-model='page.query.authStatus'>
           <option value="">全部</option>

@@ -6,8 +6,8 @@
 			id="{{uuid}}"
 			class="form_datetime _month form-control"
 			data-date-end-date="0m" readonly/>
-		<span v-if='buttonStatus === 1' class="add-on" @click="clearDate"><i class="iconfont icon-oc-delete"></i></span>
-		<span v-if='buttonStatus === 0' class="iconfont icon-oc-date" @click="clearDate" ></span>
+		<!--<span v-if='buttonStatus === 1' class="add-on" @click="clearDate"><i class="iconfont icon-oc-delete"></i></span>-->
+		<span class="iconfont icon-oc-date" @click="clearDate" ></span>
 	</div>
 </template>
 <script>
@@ -116,8 +116,10 @@
 					}
 				}).on('show', function(){
 					self.buttonStatus = 1
+//					this.value = ''
 				}).on('hide', function(){
-					self.buttonStatus = 0
+//					self.buttonStatus = 0
+					self.value = ''
 				});
 			},
 			clearDate(){
