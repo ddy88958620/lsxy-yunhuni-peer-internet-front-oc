@@ -4,6 +4,7 @@
 			<div class="select-box">
 				<search
 					:value.sync="search"
+					:action="query"
 					placeholder="请输入会员名称"
 				></search>
 			</div>
@@ -105,8 +106,14 @@
 				if(this.type!=-1){
 					params.type = this.type
 				}
+				if(this.search!=''){
+					params.search = this.search
+				}
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
+
+				console.log(params)
+
 				this.getDemandList(params)
 			}
 		},

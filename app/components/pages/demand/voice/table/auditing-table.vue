@@ -3,6 +3,7 @@
 		<div class="flex align-items-c bg-section-margin remove-margin-bottom ">
 			<div class="select-box" ><search
 				:value.sync = 'search'
+				:action="query"
 				placeholder="请输入会员名称"
 			></search></div>
 			<span class='datetime-picker-label '>申请时间:</span>
@@ -94,13 +95,32 @@
 		methods: {
 			query(){
 				let params = {}
+				if(this.name!=''){
+					params.name = this.name
+				}
 				params.type =  this.type
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
-				params.search = this.search
+				params.name = this.search
+				console.log(params)
+
 				this.getVoiceList(params)
 			},
-			moreMessage(){},
+			moreMessage(){
+				let params = {}
+				let nextPage = this.voice.currentPageNo+1
+				if(this.name!=''){
+					params.name = this.name
+				}
+				params.type =  this.type
+				params.startTime = this.startdate.value
+				params.endTime = this.enddate.value
+				params.name = this.search
+				
+				params.pageNo = nextPage
+				this.getMoreVoiceList(params)
+
+			},
 			playAudio(index){
 //				console.log(this.voice.result[index].fileKey)
 				this.audioURI = domain.API_ROOT_AUDIO + '?uri='+this.voice.result[index].fileKey
