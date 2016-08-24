@@ -40,7 +40,7 @@
               <div class="sort flex-1 flex flex-direction-column yellowborder ">
                 <div class="flex justify-content-s top-title">
                   <i class="icon iconfont icon-oc-storage"></i>
-                  <span class="flex align-items-c unit">存储容量（G）</span>
+                  <span class="flex align-items-c unit">存储容量（M）</span>
                 </div>
                 <div class="flex flex-1">
                   <span class="green money">{{filesize}}</span>
@@ -196,6 +196,9 @@
         if(init){
           self.consumes = [];
         }
+
+        console.log(params)
+
         $.get('/tenant/tenants/'+this.$route.params.uid+'/consumes', params).then((res)=> {
           self.page.loading = false
           if (res.data && res.data.consumes && res.data.consumes.result) {
@@ -229,7 +232,7 @@
         return (((this.bill && this.bill.fileRemainSize) || 0) / 1024 / 1024 / 1024).toFixed(2)
       },
       filesize: function () {
-        return (((this.bill && this.bill.fileTotalSize) || 0) / 1024 / 1024 / 1024).toFixed(2)
+        return (((this.bill && this.bill.fileTotalSize) || 0) / 1024 / 1024 ).toFixed(2)
       }
     },
     ready(){

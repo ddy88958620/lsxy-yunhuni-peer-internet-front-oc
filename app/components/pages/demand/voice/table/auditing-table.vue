@@ -35,12 +35,12 @@
 				</tr>
 				</thead>
 				<tbody>
-				<tr v-for='message in messages'>
-					<td class="message-time text-align-c">{{message.createTime}}</td>
-					<td><a>{{message.name}}</a></td>
-					<td>{{message.mobile}}</td>
-					<td>{{message.email}}</td>
-					<td>{{message.type}}</td>
+				<tr v-for='message in voice.result'>
+					<td class="message-time text-align-c">{{message.createTime | totalDate}}</td>
+					<td><a>{{message.tenant.tenantName}}</a></td>
+					<td>{{message.app.name}}</td>
+					<td>{{message.name}}</td>
+					<td>{{message.size | fileSize }}</td>
 					<td class="text-align-c">
 						<span><a @click="playAudio($index)">试听</a></span>
 					</td>
