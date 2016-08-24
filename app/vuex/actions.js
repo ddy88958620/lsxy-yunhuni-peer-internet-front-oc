@@ -273,8 +273,6 @@ export const getMoreService = ({dispatch},params) =>{
 export const getInvoiceList = ({dispatch},params) =>{
   api.getInvoiceList(params).then(response=> {
     let invoice_list = response.json()
-    console.log(params.status)
-
     switch(params.status){
       case 'await':
         dispatch(types.INVOICE_PENDING_LIST,invoice_list.data)
@@ -432,17 +430,19 @@ export const getDemandDetail = ({dispatch},params) =>{
 export const getVoiceList = ({dispatch},params) =>{
   api.getVoiceLlist(params).then(response=> {
     let voice_list = response.json()
-    switch(params.type){
-      case 'await':
-        dispatch(types.VOICE_AWAIT_LIST,voice_list.data)
-        break;
-      case 'auditing':
-        dispatch(types.VOICE_AUDITING_LIST,voice_list.data)
-        break;
-      case 'unauth':
-        dispatch(types.VOICE_UNAUTH_LIST,voice_list.data)
-        break;  
-    }
+   
+      switch(params.type){
+        case 'await':
+          dispatch(types.VOICE_AWAIT_LIST,voice_list.data)
+          break;
+        case 'auditing':
+          dispatch(types.VOICE_AUDITING_LIST,voice_list.data)
+          break;
+        case 'unauth':
+          dispatch(types.VOICE_UNAUTH_LIST,voice_list.data)
+          break;  
+      }
+ 
   },response =>{
   })
 }

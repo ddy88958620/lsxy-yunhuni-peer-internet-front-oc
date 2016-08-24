@@ -4,6 +4,7 @@
 			<div class="select-box">
 				<search
 					:value.sync="search"
+					:action="query"
 					placeholder="请输入会员名称"
 				></search>
 			</div>
@@ -102,8 +103,8 @@
 			query(){
 				let params = {}
 				params.status = this.status
-				if(this.search){
-					params.name=this.search
+				if(this.search!=''){
+					params.name = this.status
 				}
 				if(this.type!=0){
 					params.type = this.type

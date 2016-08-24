@@ -1,16 +1,12 @@
 <template>
 	<div class="section_right">
-		<h4>查看详情</h4>
+		<h4>会员审核认证</h4>
 		<div class="admin-panel">
 			<div class="panel-heading flex flex-1 ">
 				<span class="flex flex-1">会员信息</span>
-				<a class="flex" >查看</a>
+				<a class="flex" target="_blank" v-link="'/admin/tenant/detail/'+messages.realname.tenant.id"  >查看</a>
 			</div>
 		</div>
-
-		
-
-
 		<div class="admin-panel flex-1">
 			<div class="panel-heading">认证信息</div>
 			<div class="panel-body">
@@ -63,7 +59,7 @@
 					<li>
 						<button class="btn btn-primary" @click="pass" >通过</button>
 						<button class="btn btn-primary" @click="showModal = true">不通过</button>
-						<button class="btn btn-default" >取消</button>
+						<button class="btn btn-default" v-link="'admin/member/list/await'" >取消</button>
 					</li>
 				</ul>
 

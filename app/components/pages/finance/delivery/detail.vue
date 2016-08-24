@@ -50,8 +50,6 @@
 					<li>收取地址：{{ detail.receiveAddress }}</li>
 					<li>收件人：{{ detail.receivePeople }}</li>
 					<li>手机号码: {{ detail.receiveMobile }}</li>
-					
-
 					<li v-if="detail.status==0">
 						<button class="btn btn-primary" @click="abnormalModal = true">异常</button>
 						<button class="btn btn-primary" @click="passModal = true">通过</button>

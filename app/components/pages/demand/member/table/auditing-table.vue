@@ -4,6 +4,7 @@
 			<div class="select-box">
 				<search
 					:value.sync="search"
+					:action="query"
 					placeholder="请输入会员名称"
 				></search>
 			</div>

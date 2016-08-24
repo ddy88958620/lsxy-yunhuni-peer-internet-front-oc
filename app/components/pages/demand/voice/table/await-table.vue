@@ -4,6 +4,7 @@
 			<div class="select-box">
 				<search
 					:value.sync ='search'
+					:action="query"
 				placeholder="请输入会员名称"
 			></search></div>
 			<span class='datetime-picker-label '>申请时间:</span>
@@ -133,6 +134,18 @@
 				this.getVoiceList(params)
 			},
 			moreMessage(){
+				let params = {}
+				let nextPage = this.voice.currentPageNo+1
+				if(this.name!=''){
+					params.name = this.name
+				}
+				params.type =  this.type
+				params.startTime = this.startdate.value
+				params.endTime = this.enddate.value
+				params.name = this.search
+				
+				params.pageNo = nextPage
+				this.getMoreVoiceList(params)
 			},
 			playAudio(index){
 //				console.log(this.voice.result[index].fileKey)
