@@ -127,7 +127,7 @@
 				params.type =  this.type
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
-				params.search = this.search
+				params.name = this.search
 				console.log(params)
 
 				this.getVoiceList(params)

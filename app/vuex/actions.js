@@ -12,9 +12,9 @@ export const showMsg = ({dispatch}, message) => {
   }, 1500)
 }
 //
-// export const hideMsg = ({dispatch}) => {
-//   dispatch(types.HIDE_MSG)
-// }
+export const hideMsg = ({dispatch}) => {
+  dispatch(types.HIDE_MSG)
+}
 
 export const localLogin = ({dispatch, router}, user) => {
   api.localLogin(user).then(response => {
@@ -28,12 +28,12 @@ export const localLogin = ({dispatch, router}, user) => {
     	saveCookie('user', user.userName)
       dispatch(types.LOCAL_LOGIN, user.userName)
       router.go({path:'/admin/dashboard'})
-      dispatch(types.HIDE_MSG)
+      showMsg({dispatch}, {type:'success', content: '欢迎您登入!!'})
     }else{
-      dispatch(types.SHOW_MSG, {content:(login && login.errorMsg) || '未知错误'})
+	    showMsg({dispatch}, {type:'danger', content: (login && login.errorMsg) || '未知错误'})
     }
   }, response => {
-    dispatch(types.SHOW_MSG, {content:'未知错误'})
+    dispatch(types.SHOW_MSG, {type:'danger', content: (login && login.errorMsg) || '未知错误'})
   })
 }
 

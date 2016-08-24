@@ -83,7 +83,7 @@
     <router-view></router-view>
 </template>
 <script>
-import {showMsg, hideMsg, localLogin} from '../../vuex/actions'
+import {showMsg, localLogin} from '../../vuex/actions'
 import toaster from '../ui/toaster.vue'
 import domain from '../../config/domain'
 export default {
@@ -105,7 +105,7 @@ export default {
       messege: ({showmsg}) => showmsg.message
     },
     actions: {
-      showMsg,hideMsg,localLogin
+      showMsg, localLogin
     }
   },
   methods: {
@@ -118,8 +118,11 @@ export default {
       this.verCodeUrl = domain.API_ROOT+'verCode?'+new Date().getTime()
     }
   },
-  ready(){
-    this.refreshVerCode()
+  route:{
+  	data(){
+    
+      this.refreshVerCode()
+    }
   }
 }
 </script>
