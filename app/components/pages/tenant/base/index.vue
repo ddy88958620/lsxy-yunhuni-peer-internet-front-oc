@@ -8,7 +8,7 @@
 					<div class="panel-body admin-bg flex-1">
 						<ul class="list-none-style">
 							<li>会员名称:{{info.tenantName}}</li>
-							<li>账号:{{info.userName}}</li>
+							<li>账号ID:{{info.userName}}</li>
 							<li>注册时间:{{info.createTime | totalDate}}</li>
 							<li>绑定手机号:{{info.mobile}}</li>
 							<li>邮箱绑定:{{info.email}}</li>
@@ -23,7 +23,7 @@
 					<div class="panel-heading panel-base-heading">业务信息</div>
 					<div class="panel-body admin-bg flex-1">
 						<ul class="list-none-style">
-							<li>所属行业: {{info.industry}}</li>
+							<li>应用行业: {{info.industry}}</li>
 							<li>主营业务: {{info.business}}</li>
 							<li>网站: {{info.url}}</li>
 						</ul>
