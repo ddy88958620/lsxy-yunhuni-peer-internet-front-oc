@@ -158,4 +158,9 @@
 		border-left: none;
 	}
 
+	.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+	    background-color: #FFF !important;
+	    opacity: 1 !important;
+	}
+
 </style>

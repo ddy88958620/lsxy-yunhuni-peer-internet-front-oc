@@ -44,6 +44,8 @@
 					<td>{{message.size}}b</td>
 					<td class="text-align-c">
 						<span><a @click="playAudio($index)">试听</a></span>
+						<span><a @click="pass(message.id,$index)">通过</a></span>
+						<span><a @click="showfail(message.id,$index)">不通过</a></span>
 					</td>
 				</tr>
 				</tbody>
@@ -56,9 +58,24 @@
 			<audio :src="audioURI"></audio>
 		</div>
 	</div>
+
+
+	<modal :show.sync="showModal" title="审核" :action="fail">
+		<div slot="body">
+			<div class="flex flex-1 ">
+				<span class="flex flex-1 align-items-c justify-content-c">不通过原因</span>
+				<span class="flex flex-2 "><input type="text" class="form-control " v-model="del.reason" /></span>
+			</div>
+		</div>
+	</modal>
+
+
+
+
 </template>
 <script>
-	import { getVoiceList } from '../../../../../vuex/actions'
+	
+	import { getVoiceList,delVoice,showMsg } from '../../../../../vuex/actions'
 	import domain from '../../../../../config/domain'
 	export default {
 		vuex: {
@@ -66,12 +83,15 @@
 				voice: ({demand}) => demand.voicelist.await,
 			},
 			actions: {
-				getVoiceList
+				getVoiceList,
+				delVoice,
+				showMsg
 			}
 		},
 		components: {
 			'datetime-picker': require('../../../../ui/datetimepicker.vue'),
-			'search' : require('../../../../ui/search-input.vue')
+			'search' : require('../../../../ui/search-input.vue'),
+			'modal' : require('../../../../ui/modal.vue')
 		},
 		data(){
 			return {
@@ -89,6 +109,12 @@
 					value:'',
 				},
 				audioURI: '',
+				showModal: false,
+				del:{
+					id:'',
+					reason:'',
+					index:''
+				}
 				
 			}
 		},
@@ -111,6 +137,41 @@
 			playAudio(index){
 //				console.log(this.voice.result[index].fileKey)
 				this.audioURI = domain.API_ROOT_AUDIO + '?uri='+this.voice.result[index].fileKey
+			},
+			//通过
+			pass(id,index){
+				
+				let self = this 
+				let params = {} 
+				params.status = 1
+				params.reason=''
+				$.put('/demand/member/voice/edit/'+id,params).then((res)=>{
+					if(res.data){
+						this.showMsg({content: '审核通过', type: 'success'})
+						this.delVoice(index)
+					}
+					//this.todos.splice(index, 1)
+				})	
+
+			},
+			//不通过
+			fail(){
+				let self = this 
+				let params = {} 
+				params.status = -1
+				params.reason = this.del.reason
+				$.put('/demand/member/voice/edit/'+this.del.id,params).then((res)=>{
+					if(res.data){
+						this.showMsg({content: '审核不通过', type: 'success'})
+						this.delVoice(index)
+						this.showModal = false 
+					}
+				})	
+			},
+			showfail(id,index){
+				this.del.index = index
+				this.del.id = id
+				this.showModal = true 
 			}
 		},
 		route: {

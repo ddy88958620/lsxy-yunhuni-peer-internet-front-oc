@@ -71,7 +71,7 @@
 									<li>统一社会信用代码：{{authinfo.type01Prop02}}</li>
 									<li class="flex  flex-direction-row ">
 										<span class=" padding-right-10">营业执照: </span>
-										<img :src="authinfo.type01Prop01 | img" alt="" class="padding-right-10" >
+										<img :src="authinfo.type01Prop01 | img" alt="" class="padding-right-10"  width="250" height="100%">
 									</li>
 								</template>
 								<template v-if="authinfo.authType == '1'">
@@ -79,7 +79,7 @@
 									<li>税务登记号：{{authinfo.type02Prop02}}</li>
 									<li class="flex  flex-direction-row ">
 										<span class=" padding-right-10">营业执照: </span>
-										<img :src="authinfo.type02Prop03 | img" alt="" class="padding-right-10" >
+										<img :src="authinfo.type02Prop03 | img" alt="" class="padding-right-10" width="250" height="100%" >
 									</li>
 								</template>
 								<template v-if="authinfo.authType == '2'">
@@ -87,7 +87,7 @@
 									<li>营业执照号：{{authinfo.type03Prop03}}</li>
 									<li class="flex  flex-direction-row ">
 										<span class=" padding-right-10">营业执照: </span>
-										<img :src="authinfo.type03_prop04 | img" alt="" class="padding-right-10" >
+										<img :src="authinfo.type03_prop04 | img" alt="" class="padding-right-10" width="250" height="100%" >
 									</li>
 								</template>
 							</template>
@@ -100,7 +100,7 @@
 								<li>证件号码：{{authinfo.idNumber}}</li>
 								<li class="flex  flex-direction-row ">
 									<span class=" padding-right-10">证件照: </span>
-									<img :src="authinfo.idPhoto | img" alt="" class="padding-right-10" >
+									<img :src="authinfo.idPhoto | img" alt="" width="230" height="200" class="padding-right-10" width="250" height="100%" >
 								</li>
 							</template>
 						</ul>
