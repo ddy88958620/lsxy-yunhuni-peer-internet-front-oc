@@ -1,0 +1,131 @@
+.hr-title{
+  padding: 14px 0;
+}
+
+.hr-title {
+  color: #333;
+  position: relative;   /*定位横线（当横线的父元素）*/
+}
+
+.hr-title:before, .hr-title:after{
+  content: '';                 /*CSS伪类用法*/
+  position: absolute;         /*定位背景横线的位置*/
+  top: 51%;
+  background: #ddd;       /*宽和高做出来的背景横线*/
+  width: 30%;
+  height: 1px;
+}
+.hr-title:before{
+  left: -35%;
+}
+.hr-title:after {
+  right: -35%;
+}
+
+//右边框
+.append-solid::after {
+  border-left: solid 1px #dddddd;
+  content: '';
+  height: 50%;
+  display: flex;
+  align-self: center;
+}
+
+//右边框div
+.append-solid{
+  border-right: 1px solid #dddddd;
+  height: 50%;
+}
+
+
+
+
+
+//日月时间插件
+.app-chart-header {
+  input {
+    margin: 0px;
+  }
+
+  label {
+    margin-bottom: 0px;
+    font-weight: 300;
+    padding-right: 10px;
+  }
+
+  .datepicker-wrap {
+    padding-left: 15px;
+  }
+}
+
+
+//选择框
+.admin-toolbar .v-link-active,.admin-toolbar .toolbar:hover {
+  color:#333 !important;
+  font-weight:500;
+  background-color: #f6f6f6 !important;
+}
+.admin-toolbar{
+  height: 40px;
+  border-radius: 4px;
+  border:1px solid #ddd;
+  .first-toolbar{
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+  .last-toolbar{
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+  .toolbar{
+    padding: 10px;
+    background-color: #f0f4fb;
+    width: 130px;
+    border-right: 1px solid #ddd;
+    text-align: center;
+  }
+}
+
+
+
+//选择框
+.admin-small-toolbar .v-link-active,.admin-small-toolbar .toolbar:hover {
+  font-weight:500;
+  background-color: #ececec;
+}
+.admin-small-toolbar{
+  height: 40px;
+  border:1px solid #ececec;
+  .toolbar{
+    color:#333;
+    padding: 10px;
+    width: 110px;
+    border-right: 1px solid #ececec;
+    text-align: center;
+  }
+}
+
+//日月
+.app-chart-header input[type="radio"]{
+  margin: 0;
+}
+
+#nprogress {
+  $color: #48e79a;
+
+  .bar {
+    background: $color;
+  }
+  .peg {
+    box-shadow: 0 0 10px $color, 0 0 5px $color;
+  }
+
+  .spinner-icon {
+    border-top-color: $color;
+    border-left-color: $color;
+  }
+}
+
+
+
+

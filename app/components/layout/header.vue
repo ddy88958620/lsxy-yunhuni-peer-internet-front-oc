@@ -1,21 +1,56 @@
-<style lang='sass'>
-@import '../../scss/variable.scss';
-
-.app-header {
-  border: 1px solid red;
-  position: fixed;
-  min-height: $header-height;
-  line-height: $header-height;
-  width: 100%;
-  text-align: center;
-}
-
+<style lang='sass' scope>
+  @import '../../scss/variable.scss';
+  .app-header{
+    height:$header-height;
+    border-bottom: 1px solid #eeeeee;
+    color:#666;
+    font-size: 1.4rem;
+    .nav-left{
+    }
+    .nav-right{
+      width: 200px;
+      padding-right: 15px;
+    }
+    .topbar-btn{
+      padding: 15px 10px;
+    }
+  }
 </style>
+
 <template>
-  <header class='app-header'>
-    hello header!
+  <header class='app-header flex align-items-c'>
+    <div class="nav-left flex flex-1 justify-content-s align-items-c overflow">
+      <span class="topbar-btn flex" >欢迎您来到云呼你运营中心， 您有&nbsp;<a href="#">3</a>&nbsp;件事项未处理</span><i class="iconfont icon-oc-handle"></i>
+    </div>
+    <div class="nav-right">
+      <search
+        :value.sync= 'value'
+        :action="search"
+        placeholder='请输入会员名称'>
+      </search>
+    </div>
   </header>
 </template>
 <script>
+import {localLogout} from '../../vuex/actions.js'
 
+
+export default {
+  data(){
+    return{
+      value: '',
+    }
+  },
+  components: {
+    'search': require('../ui/search-input.vue'),
+  },
+  methods:{
+    search: function() {
+      this.$route.router.go({
+        name: 'tenantlist',
+        query: {searchName: this.value}
+      })
+    }
+  },
+}
 </script>

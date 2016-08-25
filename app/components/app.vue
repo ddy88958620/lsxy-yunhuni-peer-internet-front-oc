@@ -1,32 +1,26 @@
 <template>
-  <div id="topbox">
-    <headerbar></headerbar>
-    <asidebar></asidebar>
-    <section class='app-main'>
-      <div class="container">
-        <router-view
-          class=''
-          transition='fade'
-          transition-mode='out-in'
-          keep-live>
-        </router-view>
-      </div>
-    </section>
-    <footerbar></footerbar>
+  <div>
+    <router-view keep-alive></router-view>
+    <toaster :show.sync="message.show" :content='message.content' :type="message.type" :title="message.title"></toaster>
   </div>
 </template>
 <script>
-import headerbar from './layout/header.vue'
-import footerbar from './layout/footer.vue'
-import asidebar from './layout/aside.vue'
+import toaster from './ui/toaster.vue'
+import store from '../vuex/store'
+import '../utils/fetch'
 
 export default {
+  store,
+  vuex: {
+    getters:{
+      message: ({showmsg}) => showmsg.message
+    }
+  },
   components: {
-    headerbar,
-    footerbar,
-    asidebar
+    toaster
   }
 }
+
 </script>
 <style lang='sass'>
 @import '../scss/index.scss';

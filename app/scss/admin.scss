@@ -1,0 +1,394 @@
+//333
+.normal-font-color{
+  color:$normal-font-color;
+}
+
+//666
+.middle-font-color{
+  color:$middle-font-color;
+}
+
+//#999
+.small-font-color{
+  color:$small-font-color;
+}
+
+
+
+//1.4rem
+.normal-font-size{
+  font-size: $normal-font-size;
+}
+
+//1.6rem
+.middle-font-size{
+  font-size: $middle-font-size;
+}
+
+//1.8rem
+.bigger-font-size{
+  font-size: $bigger-font-size;
+}
+
+//1.2rem
+.small-font-size{
+  font-size: $small-font-size;
+}
+
+
+
+.admin-font-color {
+  color: $admin-font-color;
+}
+
+.admin-bg {
+  background-color: #EFF5FA;
+}
+
+.admin-border{
+  border: 1px solid #e9edf4;
+}
+
+.admin-button-margin {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.admin-padding {
+  padding: $admin-padding;
+}
+
+.admin-padding-l-r{
+  padding: 0 $admin-padding;
+}
+
+.admin-margin-l {
+  margin-left: 15px;
+}
+
+//统一后台 section 之间的margin
+.bg-section-margin{
+  margin: 20px 0;
+}
+
+// admin table
+.admin-table {
+  .message-time {
+    color: $small-font-color;
+  }
+  .more {
+    a {
+      color: $middle-font-color;
+    }
+    .iconfont{
+      font-size:8px;
+    }
+
+    $height: 40px;
+    color: $middle-font-color;
+    background-color: #ffffff;
+    border:1px solid #dbe2ee;
+    text-align: center;
+    height: $height;
+    line-height: $height;
+  }
+
+  .table-total{
+    padding-bottom: 8px;
+    font-size: 1.4rem;
+  }
+
+  table {
+    border: 1px solid #dbe2ee;
+
+    font-size: 1.4rem;
+    thead  tr{
+      background-color: #f6f7fb;
+    }
+    thead tr th{
+      border-bottom: none;
+      font-weight: 400;
+      color:$middle-font-color;
+    }
+    tbody > tr > td{
+      padding-bottom: 10px;
+      padding-top: 10px;
+      border-top:0;
+    }
+
+    tbody tr:nth-child(even) {
+     background-color: #f6f7fb;
+    }
+    tbody tr:nth-child(odd) {
+      background-color: #ffffff;
+    }
+  }
+}
+
+.admin-table-header {
+  $input-height: 32px;
+  color: $middle-font-color;
+  font-size: 1.4rem;
+
+  .datetime-picker-label {
+    display: inline-block;
+    padding: 15px;
+    color: $middle-font-color;
+  }
+
+  select {
+    width: 150px;
+  }
+
+  .search{
+    width: 300px;
+    padding: 15px;
+  }
+}
+
+// 覆盖一些 bootstrap 的默认设置
+a {
+  cursor: pointer;
+}
+
+.panel {
+  margin-bottom: 0;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  border: 1px solid #e9edf4;
+}
+
+//基础信息
+.panel-base{
+  border-radius: 0;
+  border: 1px solid #d3d7e4 !important;
+}
+
+.panel-heading{
+  background-color: #f8f9fc !important;
+  color:$middle-font-color !important;
+  font-size: 1.4rem;
+  border-bottom: 1px solid #e9edf4 !important;
+}
+
+//基础信息
+.panel-base-heading{
+  color:$normal-font-color !important;
+  background: #eaeff7 !important;
+}
+
+
+.panel-body {
+  padding: 0px;
+}
+
+table {
+  background-color: #FFFFFF;
+}
+
+//导航统计
+.app-menu-count{
+  background-color: #FF3D81;
+  height: 15px;
+  overflow-y: hidden;
+  color:#FFF;
+  border-radius: 5px;
+  padding: 1px 2px 1px 1px;
+  font-size: 1rem;
+  margin-left: 5px;
+}
+
+
+
+.app-main-content {
+  display: flex;
+
+  // 存在二级导航时布局
+  .app-main-left {
+
+    .wrapper{
+      span{
+        border-left: 2px solid #616b88;
+        padding-left: 5px;
+        font-weight: bold;
+        font-size: 10px;
+      }
+      padding:47px 0 20px 24px;
+      font-weight: 500;
+      color:#333;
+      font-size: 1.4rem;
+    }
+
+    // 待改进
+    & {
+      background-color: #d0daec;
+      width: 150px;
+      padding: 0px;
+      list-style: none;
+      margin-bottom: 0;
+    }
+
+    a {
+      color: #333;
+      font-size: 1.4rem;
+      display: flex;
+      flex:1;
+      height: 40px;
+      line-height: 1;
+      padding: 15px 15px 15px 35px;
+    }
+
+
+    a.v-link-active {
+      background-color: white;
+    }
+
+    width: 200px;
+    padding: 0;
+  }
+  .app-main-right {
+    flex: 1;
+  }
+}
+
+.text-danger {
+  color: red !important;
+}
+
+.form-control {
+  display: inline-block !important;
+}
+
+.btn {
+  border-radius: 4px;
+  padding: 6px 15px;
+  border-color: rgba(0,0,0,0);
+}
+
+.btn.btn-primary {
+  background-color: #008dd0;
+}
+
+.btn.btn-default{
+  background-color: #e3eef4;
+}
+
+
+// admin tab
+
+.admin-main-tab{
+  border-bottom: 1px solid #d3d7e4;
+  height: 53px;
+  .tab{
+    padding:15px 12px;
+  }
+  a{
+    font-size: 1.8rem;
+    min-width: 110px;
+    padding:0 0 10px 0 ;
+    justify-content: center;
+    color:#969eb4;
+    text-decoration: none;
+    &:hover{
+      color:#586381;
+      border-bottom:2px solid #586381;
+    }
+  }
+  a.v-link-active {
+    color:#586381;
+    border-bottom:2px solid #586381;
+  }
+}
+
+// 一些初始化的配置
+.list-none-style {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0px;
+}
+
+//溢出显示省略号
+.overflow{
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  overflow:hidden;
+}
+
+//隐藏下划线
+.text-none{
+  text-decoration: none;
+  &:hover{
+    text-decoration: none;
+  }
+}
+
+//
+.admin-panel{
+  margin-top: 20px;
+  .panel-heading{
+    background-color: #ebf1fa !important;
+  }
+}
+
+//section 时间标签
+.section-time-box {
+  a{
+    margin-right: 20px;
+  }
+}
+
+//默认下拉框
+.select-box{
+  width: 200px;
+}
+
+//padding-right-20
+.padding-right-20{
+  padding-right: 20px;
+}
+
+//padding-left-20
+.padding-left-20{
+  padding-left: 20px;
+}
+
+//去除右边框
+.remove-border-right{
+  border-right: 1px solid transparent !important;
+}
+
+//去除底部margin
+.remove-margin-bottom{
+  margin-bottom: 0 !important;
+}
+
+//内间距15px
+.modal-padding-bottom{
+  padding-bottom: 15px;
+}
+
+.modal-label {
+  display: inline-block;
+  padding: 15px;
+  color: $middle-font-color;
+}
+
+//去除所有边框
+.remove-border{
+  border: 0 !important;
+}
+
+//左边距
+.padding-left-10{
+  padding-left: 10px;
+}
+
+//右边距
+.padding-right-10{
+  padding-right: 10px;
+}
+
+.modal-table{
+  height: 400px;
+  overflow-y: scroll;
+}
+

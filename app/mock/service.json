@@ -1,0 +1,60 @@
+[
+  {
+    "desc": "客服中心"
+  },
+  {
+    "desc": "客服中心的列表",
+    "req": {
+      "url": "/service/list?page=1&start_time=2016-06-06&end_time=2016-06-08&auth_status='认证状态'"
+    },
+    "res": {
+      "success": true,
+      "errorCode": null,
+      "errorMsg": "null,",
+      "messages": [
+        {
+          "commit_date": "2016-06-06 16:00",
+          "author": "CPHJY",
+          "status": 0,
+          "content": "云呼你有新的讯息，新的活动，市场活动，滚动播出-----点击查看详情"
+        }
+      ]
+    }
+  },
+  {
+    "desc": "客服已阅 单个",
+    "req": {
+      "methods": "put",
+      "url": "/service/list/:lid",
+      "params": {
+        "auth_status": "通过|不通过"
+      }
+    },
+    "res": {
+      "error": 0,
+      "success": true,
+      "errorCode": null,
+      "errorMsg": null
+    }
+  },
+  {
+    "desc": "客服已阅 多个",
+    "req": {
+      "methods": "put",
+      "url": "/service/list",
+      "params": {
+        "list": [
+          1,
+          2,
+          3
+        ]
+      }
+    },
+    "res": {
+      "error": 0,
+      "success": true,
+      "errorCode": null,
+      "errorMsg": null
+    }
+  }
+]

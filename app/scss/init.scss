@@ -1,0 +1,75 @@
+
+// 覆盖一些 bootstrap 的默认设置
+.panel {
+  margin-bottom: 0;
+}
+
+.panel-heading{
+  background-color: #f8f9fc;
+}
+
+.panel-body {
+  padding: 0px;
+}
+
+.text-danger {
+  color: red !important;
+}.form-control {
+  display: inline-block !important;
+}
+
+// Bootstrap init . Fuck sass, it is don't support dynamic import !
+
+// $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+
+// Core variables and mixins
+
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_mixins.scss';
+
+// // Reset and dependencies
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_normalize.scss';
+// @import "bootstrap/print";
+//
+// // Core CSS
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_scaffolding.scss';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_type.scss';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_code.scss';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_grid.scss';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_tables.scss';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_buttons.scss';
+//
+// // Components
+// @import "bootstrap/component-animations";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_dropdowns.scss';
+// @import "bootstrap/button-groups";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_input-groups.scss';
+// @import "bootstrap/navs";
+// @import "bootstrap/navbar";
+// @import "bootstrap/breadcrumbs";
+// @import "bootstrap/pagination";
+// @import "bootstrap/pager";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_labels.scss';
+// @import "bootstrap/badges";
+// @import "bootstrap/jumbotron";
+// @import "bootstrap/thumbnails";
+// @import "bootstrap/alerts";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/progress-bars';
+// @import "bootstrap/media";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_list-group.scss';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_panels.scss';
+// @import "bootstrap/responsive-embed";
+// @import "bootstrap/wells";
+// @import "bootstrap/close";
+
+// Components w/ JavaScript
+// @import "bootstrap/modals";
+// @import "bootstrap/tooltip";
+// @import "bootstrap/popovers";
+// @import "bootstrap/carousel";
+
+// Utility classes
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_utilities.scss';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_responsive-utilities.scss';
+
