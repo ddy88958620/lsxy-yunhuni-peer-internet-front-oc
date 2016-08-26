@@ -3,7 +3,7 @@ function today(type) {
 	let obj = null
 	
 	let year = date.getFullYear()
-	let month = date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth()
+	let month = (date.getMonth()+1) < 10 ? '0' + (date.getMonth()+1) : (date.getMonth()+1)
 	let day = date.getDate().toString().length < 2 ? '0' + date.getDate() : date.getDate()
 
 
@@ -45,7 +45,7 @@ function todayString(type){
 	let string = ''
 	
 	let year = date.getFullYear()
-	let month = date.getMonth() < 10 ? '0'+date.getMonth() : date.getMonth()
+	let month = (date.getMonth()+1) < 10 ? '0' + (date.getMonth()+1) : (date.getMonth()+1)
 	let day = date.getDate().toString().length < 2 ? '0'+ date.getDate() : date.getDate()
 
 	//2016
