@@ -53,7 +53,7 @@
           <td class="text-align-c">{{tenant.app_count ? tenant.app_count: 0 }}</td>
           <td class="{{tenant.auth_status.toString() === '1' ? '' : 'text-danger'}}">{{tenant.auth_status.toString() === '1' ? '已认证' : '未认证'}}</td>
         
-          <td class="text-align-c">{{tenant.remain_coin>0 ? tenant.remain_coin : '欠费'+tenant.remain_coin }}</td>
+          <td class="text-align-c">{{ tenant.remain_coin>=0 ? tenant.remain_coin ?  tenant.remain_coin : 0 : '欠费'+-tenant.remain_coin }}</td>
 
 
           <td class="text-align-c">{{tenant.cost_coin ? tenant.cost_coin : 0 }}</td>

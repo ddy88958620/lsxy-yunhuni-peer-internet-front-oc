@@ -44,8 +44,7 @@
 						<span class=" padding-right-10">营业执照: </span>
 						<img :src="messages.realname.type02Prop03 | img" class="padding-right-10" width="400" height="100%" >
 					</li>
-					
-
+				
 					<li v-if="messages.realname.authType==2">税务登记号:{{messages.realname.type03Prop01}} </li>
 
 					<!-- <li v-if="messages.realname.authType==2">税务登记证:{{messages.realname.type03Prop02}} </li> -->
@@ -66,7 +65,7 @@
 					<li>
 						<button class="btn btn-primary" @click="pass" >通过</button>
 						<button class="btn btn-primary" @click="showModal = true">不通过</button>
-						<button class="btn btn-default" v-link="'admin/member/list/await'" >取消</button>
+						<button class="btn btn-default" v-link="'/admin/demand/member/list/await'" >取消</button>
 					</li>
 				</ul>
 
@@ -78,14 +77,13 @@
 			<div class="panel-heading">认证信息</div>
 			<div class="panel-body">
 				<ul class="list-none-style" >
-					<li>审批结果: 
+					<li>审核结果: 
 						<span v-if="messages.realname.status==1 || messages.realname.status==2" class="darkgreen">通过</span>
 						<span v-if="messages.realname.status==-1 || messages.realname.status==-2" class="text-danger">不通过</span>
 					</li>
 					<li>
 						审核时间：{{messages.realname.lastTime | totalDate }}
 					</li>
-
 				</ul>
 			</div>	
 		</div>
