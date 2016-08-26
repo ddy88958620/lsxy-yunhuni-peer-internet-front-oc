@@ -3,7 +3,7 @@ import domain from '../config/domain'
 export function date(timestamp) {
 	let date = new Date(timestamp)
 	let year = date.getFullYear()
-	let month = date.getMonth() < 10 ? '0'+date.getMonth() : date.getMonth()
+	let month = (date.getMonth()+1) < 10 ? '0'+(date.getMonth()+1) : (date.getMonth()+1)
 	let day = date.getDate().toString().length < 2 ? '0'+ date.getDate() : date.getDate()
 	
 	return `${year}-${month}-${day}`
@@ -12,7 +12,7 @@ export function date(timestamp) {
 export function totalDate(timestamp) {
 	let date = new Date(timestamp)
 	let year = date.getFullYear()
-	let month = date.getMonth() < 10 ? '0'+(date.getMonth()+1) : (date.getMonth()+1)
+	let month = (date.getMonth()+1) < 10 ? '0'+(date.getMonth()+1) : (date.getMonth()+1)
 	let day = date.getDate().toString().length < 2 ? '0'+ date.getDate() : date.getDate()
 	
 	let hour = date.getHours().toString().length < 2 ? '0'+ date.getHours() : date.getHours()
@@ -25,7 +25,7 @@ export function totalDate(timestamp) {
 export function totalDateWithNoSeconds(timestamp) {
 	let date = new Date(timestamp)
 	let year = date.getFullYear()
-	let month = date.getMonth() < 10 ? '0'+date.getMonth() : date.getMonth()
+	let month = (date.getMonth()+1) < 10 ? '0'+(date.getMonth()+1) : (date.getMonth()+1)
 	let day = date.getDate().toString().length < 2 ? '0'+ date.getDate() : date.getDate()
 	
 	let hour = date.getHours().toString().length < 2 ? '0'+ date.getHours() : date.getHours()
@@ -71,3 +71,13 @@ export function fileSize(size){
 
 	return comSize
 }
+
+//截取字符串
+export function subStr(text){
+	let substring = ''
+	if(text!==''){
+		substring = text.substring(0,50)
+	}
+	return substring
+}	
+

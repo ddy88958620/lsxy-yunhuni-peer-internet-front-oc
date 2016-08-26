@@ -12,9 +12,9 @@
                   <span class="flex flex-1 name align-items-c justify-content-c" >{{tenant.tenantName}}</span>
                 </div>
                 <div class="message flex flex-1 flex-direction-column ">
-                  <div class=" " >REST API: http://api.yunhuni.com/{{cert && cert.id}}/</div>
+                  <div class=" " >REST API: <span v-if="cert">http://api.yunhuni.com/{{cert && cert.id}}/</span></div>
                   <span class="">SercreKey：{{cert && cert.secretKey}}</span>
-                  <span class="">鉴权ID：{{cert && cert.id}}</span>
+                  <span class="">鉴权ID：{{cert && cert.certId}}</span>
                 </div>
               </div>
             </div>
@@ -27,11 +27,12 @@
                   <span class="flex align-items-c unit">余额（元）</span>
                 </div>
                 <div class="flex flex-1 green money">
-                    <span v-if="bill.balance >= 0">
+                  <!--{{ tenant.remain_coin>=0 ? tenant.remain_coin ?  tenant.remain_coin : 0 : '欠费'+-tenant.remain_coin }}-->
+                    <span v-if="bill.balance >=0 || bill.balance==null ">
                        ￥{{(bill && bill.balance) || 0}}
                     </span>
                     <span v-else>
-                       欠费{{(bill && bill.balance) || 0}}
+                       {{(bill && bill.balance) ? '欠费'+-bill.balance : '￥0' }}
                     </span>
                 </div>
                 <div class="flex flex-direction-row-reverse">
@@ -209,13 +210,9 @@
           self.page.loading = false
           if (res.data && res.data.consumes && res.data.consumes.result) {
             if (init) {
-              self.consumes = res.data.consumes.result
-                          console.log('chengli-one')
-
+              self.consumes = res.data.consumes.result  
             } else {
               self.consumes = self.consumes.concat(res.data.consumes.result)
-                          console.log('chengli-two')
-
             }
             self.page.query.pageNo = pageNo
           }
