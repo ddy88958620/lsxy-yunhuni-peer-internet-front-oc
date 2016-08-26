@@ -5,7 +5,7 @@
 		<div class="admin-panel">
 			<div class="panel-heading flex flex-1 ">
 				<span class="flex flex-1">会员信息</span>
-				<a class="flex" target="_blank" v-link="'/admin/tenant/detail/'+messages.realname.tenant.id"  >查看</a>
+				<a class="flex"  v-link="'/admin/tenant/detail/'+messages.realname.tenant.id" >查看</a>
 			</div>
 		</div>
 		<div class="admin-panel flex-1">
@@ -16,7 +16,6 @@
 					<li  >真实姓名: {{ messages.realname.name}}</li>
 					<li >证件类型: <span v-if="messages.realname.idType==0">身份证</span><span v-if="messages.realname.idType==1" >护照</span></li>
 					<li >证件号码: {{messages.realname.idNumber}}</li>
-					
 					<li class="flex  flex-direction-row ">
 						<span class=" padding-right-10">持证照片: </span>
 						<img :src="messages.realname.idPhoto | img" class="padding-right-10" width="400" height="100%" >
@@ -85,7 +84,7 @@
 					<li>
 						审核时间：{{messages.realname.lastTime | totalDate }}
 					</li>
-					<li>
+					<li  v-if="messages.realname.status==-1 || messages.realname.status==-2">
 						不通过原因:
 						<span v-if="messages.realname.status==-1 || messages.realname.status==-2">{{messages.realname.reason}}</span>
 					</li>
@@ -141,9 +140,7 @@
 									</div>
 								</div>
 								<div class="flex flex-1 table-detail" v-show="show[$index]">
-									<ul class="list-none-style">
-										<li>临时数据 {{message | json}}</li>
-									</ul>
+									
 									<ul class="list-none-style" v-if="message.status==-1 || message.status==1" >
 										<!--个人认证-->
 										<li  >真实姓名: {{ message.name}}</li>
@@ -166,10 +163,10 @@
 											<span v-if="message.authType==1">三证合一 </span>
 											<span v-if="message.authType==2">三证分离</span>
 										</li>
-										<li v-if="message.authType==0">统一社会信用代码：{{message.type01Prop01 }}</li>
+										<li v-if="message.authType==0">统一社会信用代码：{{message.type01Prop02 }}</li>
 										<li class="flex  flex-direction-row " v-if="message.authType==0">
 											<span class=" padding-right-10">营业执照: </span>
-											<img :src="message.type01Prop02 | img" class="padding-right-10" width="400" height="100%" >
+											<img :src="message.type01Prop01 | img" class="padding-right-10" width="400" height="100%" >
 										</li>
 
 										<li v-if="message.authType==1">注册号:{{message.type02Prop01}} </li>
@@ -208,7 +205,7 @@
 		<div slot="body">
 			<div class="flex flex-1 ">
 				<span class="flex flex-1 align-items-c justify-content-c">不通过原因</span>
-				<span class="flex flex-2 "><input type="text" class="form-control "/></span>
+				<span class="flex flex-2 "><input type="text" class="form-control" v-model="reason"/></span>
 			</div>
 		</div>
 	</modal>
@@ -233,6 +230,7 @@
 				this.show.$set(index, !this.show[index])
 			},
 			pass(){
+				let self = this 
 				let params = {}
 				let id = this.$route.params.id
 				// type 0 个人认证 1实名认证
@@ -248,13 +246,19 @@
 				params.type = type
 		
 				$.put('/demand/member/edit/'+id,params).then((res)=>{
-					this.showMsg({content: '审核通过', type: 'success'})
-					//成功
-					this.detail()
+					if(res.success === 'false'){
+						self.showMsg({content: res.errorMsg, type: 'danger'})
+						return
+					}
+				    self.showMsg({content: '审核通过', type: 'success'})
+					self.$route.router.go({path:'/admin/demand/member/list/await'})
+			
+					
+					
 		        })
 			},
 			fail(){
-
+				let self = this 	
 				let params = {}
 				let id = this.$route.params.id
 				// type 0 个人认证 1实名认证
@@ -268,12 +272,15 @@
 					params.status=-2
 				}
 				params.type = type
-
+				params.reason = self.reason
 				$.put('/demand/member/edit/'+id,params).then((res)=>{
-					this.showMsg({content: '审核不通过', type: 'success'})
-					//成功
-					this.showModal = false
-					this.detail()
+					if(res.success === 'false'){
+						self.showMsg({content: res.errorMsg, type: 'danger'})
+						return
+					}
+					self.showModal = false
+				    self.showMsg({content: '审核不通过', type: 'success'})
+					self.$route.router.go({path:'/admin/demand/member/list/await'})	
 		        })
 			},
 			detail(){
@@ -285,6 +292,7 @@
  					this.messages.realname = res.data.realname
 		        })
 
+ 				
 			}
 		},
 		data(){
