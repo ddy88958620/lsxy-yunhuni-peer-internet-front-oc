@@ -33,6 +33,7 @@
 					<th>应用名称</th>
 					<th>标题</th>
 					<th>大小</th>
+					<th>原因</th>
 					<th class="text-align-c">操作</th>
 				</tr>
 				</thead>
@@ -43,6 +44,7 @@
 					<td>{{message.app.name}}</td>
 					<td>{{message.name}}</td>
 					<td>{{message.size | fileSize }}</td>
+					<td>{{message.reason}}</td>
 					<td class="text-align-c">
 						<span><a @click="playAudio($index)">试听</a></span>
 					</td>

@@ -129,7 +129,7 @@
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
 				params.name = this.search
-				console.log(params)
+			
 
 				this.getVoiceList(params)
 			},
@@ -159,6 +159,10 @@
 				params.status = 1
 				params.reason=''
 				$.put('/demand/member/voice/edit/'+id,params).then((res)=>{
+					if(res.success==false){
+						this.showMsg({content: res.errorMsg, type: 'danger'})
+						return
+					}
 					if(res.data){
 						this.showMsg({content: '审核通过', type: 'success'})
 						this.delVoice(index)
@@ -174,6 +178,10 @@
 				params.status = -1
 				params.reason = this.del.reason
 				$.put('/demand/member/voice/edit/'+this.del.id,params).then((res)=>{
+					if(res.success==false){
+						this.showMsg({content: res.errorMsg, type: 'danger'})
+						return
+					}
 					if(res.data){
 						this.showMsg({content: '审核不通过', type: 'success'})
 						this.delVoice(index)
