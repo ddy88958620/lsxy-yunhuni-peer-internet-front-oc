@@ -17,7 +17,8 @@ export function totalDate(timestamp) {
 	
 	let hour = date.getHours().toString().length < 2 ? '0'+ date.getHours() : date.getHours()
 	let minute = date.getMinutes().toString().length < 2 ? '0'+ date.getMinutes() : date.getMinutes()
-	let second = date.getSeconds().toString().length < 2 ? '0'+ date.getSeconds() : date.getMinutes()
+	
+	let second = date.getSeconds().toString().length < 2  ? '0'+ date.getSeconds() : date.getSeconds()
 
 	return `${year}-${month}-${day} ${hour}:${minute}:${second}`
 }
