@@ -140,14 +140,15 @@
 </template>
 <script>
 
-	import {getInvoiceDetail} from '../../../../vuex/actions.js'
+	import {getInvoiceDetail,showMsg} from '../../../../vuex/actions.js'
 	export default {
 		vuex:{
 	       getters: {
 	       	  detail: ({finance}) => finance.invoice
 	       },
 	       actions: {
-		      getInvoiceDetail
+		      getInvoiceDetail,
+		      showMsg
 	       }
 		},
 		components: {
@@ -164,7 +165,14 @@
 				params.status = 2
 				$.put('/finance/invoice/edit/'+id, params).then((res) => {
 					this.abnormalModal = false
+					if( res.success === 'false'){
+						this.showMsg({content: res.errorMsg, type: 'danger'})
+						return
+					}
+					//成功处理
 					this.getInvoiceDetail({id:id})
+					this.showMsg({content: '不通过成功', type: 'success'})
+					this.$route.router.go({path:'/admin/finance/list/pending'})
 				})
 			},
 			pass(){
@@ -173,8 +181,14 @@
 				let params = {}
 				params.status = 1
 				$.put('/finance/invoice/edit/'+id, params).then((res) => {
+					if( res.success === 'false'){
+						this.showMsg({content: res.errorMsg, type: 'danger'})
+						return
+					}
 					//成功处理
 					this.getInvoiceDetail({id:id})
+					this.showMsg({content: '通过成功', type: 'success'})
+					this.$route.router.go({path:'/admin/finance/list/pending'})
 				})
 			},
 			query(more){
@@ -218,6 +232,7 @@
 			this.getInvoiceDetail(params)
 			//消费记录
 			this.query()
+			
 /*			let arr = []
 			Array.from(this.messages, function(i, index){
 				arr.push(false)
