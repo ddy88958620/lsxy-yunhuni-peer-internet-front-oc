@@ -40,7 +40,7 @@
       return {
         date: {
           type: 'month',
-          value: DATE.todayString('month')
+          value: DATE.todayString('month')+1
         },
       }
     },
