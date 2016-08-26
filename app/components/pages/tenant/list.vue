@@ -52,7 +52,10 @@
           <td><a v-link="'/admin/tenant/detail/'+tenant.uid" >{{tenant.name}}</a></td>
           <td class="text-align-c">{{tenant.app_count ? tenant.app_count: 0 }}</td>
           <td class="{{tenant.auth_status.toString() === '1' ? '' : 'text-danger'}}">{{tenant.auth_status.toString() === '1' ? '已认证' : '未认证'}}</td>
-          <td class="text-align-c">{{tenant.remain_coin ? tenant.remain_coin : 0}}</td>
+        
+          <td class="text-align-c">{{tenant.remain_coin>0 ? tenant.remain_coin : '欠费'+tenant.remain_coin }}</td>
+
+
           <td class="text-align-c">{{tenant.cost_coin ? tenant.cost_coin : 0 }}</td>
           <td class="text-align-c">{{tenant.total_coin ? tenant.total_coin : 0 }}</td>
           <td class="text-align-c">{{tenant.session_count ? tenant.session_count : 0 }}</td>
