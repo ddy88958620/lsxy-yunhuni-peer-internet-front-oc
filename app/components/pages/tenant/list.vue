@@ -48,7 +48,7 @@
         </thead>
         <tbody>
         <tr v-for='tenant in tenants'>
-          <td class="tenant-time text-align-c">{{tenant.registe_date}}</td>
+          <td class="tenant-time text-align-c">{{tenant.registe_date | totalDate}}</td>
           <td><a v-link="'/admin/tenant/detail/'+tenant.uid" >{{tenant.name}}</a></td>
           <td class="text-align-c">{{tenant.app_count ? tenant.app_count: 0 }}</td>
           <td class="{{tenant.auth_status.toString() === '1' ? '' : 'text-danger'}}">{{tenant.auth_status.toString() === '1' ? '已认证' : '未认证'}}</td>
