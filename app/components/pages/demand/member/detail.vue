@@ -1,6 +1,7 @@
 <template>
 	<div class="section_right">
-		<h4>会员审核认证</h4>
+		<h4 v-if="messages.realname.status==0" >会员审核认证</h4>
+		<h4 v-else>查看详情</h4>
 		<div class="admin-panel">
 			<div class="panel-heading flex flex-1 ">
 				<span class="flex flex-1">会员信息</span>
@@ -26,16 +27,16 @@
 					<li>公司名称:{{messages.realname.name}}</li>
 					<li>公司地址:{{messages.realname.addr}}</li>
 					<li>所属行业:{{messages.realname.industry}}</li>
-					<li>申请人：{{messages.proposer}}</li>
+					<li>申请人：{{messages.realname.proposer}}</li>
 					<li>证件类型: 
 						<span v-if="messages.realname.authType==0">三证合一（一照一码）</span>
 						<span v-if="messages.realname.authType==1">三证合一 </span>
 						<span v-if="messages.realname.authType==2">三证分离</span>
 					</li>
 					<li v-if="messages.realname.authType==0">统一社会信用代码：{{messages.realname.type01Prop02 }}</li>
-					<li class="flex  flex-direction-row " v-if="messages.realname.authType==0" width="400" height="100%">
+					<li class="flex  flex-direction-row " v-if="messages.realname.authType==0" >
 						<span class=" padding-right-10">营业执照: </span>
-						<img :src="messages.realname.type01Prop01 | img" class="padding-right-10" >
+						<img :src="messages.realname.type01Prop01 | img" class="padding-right-10" width="400" height="100%" >
 					</li>
 
 					<li v-if="messages.realname.authType==1">注册号:{{messages.realname.type02Prop01}} </li>
@@ -73,7 +74,7 @@
 			</div>
 		</div>
 
-		<div class="admin-panel">
+		<div class="admin-panel"  v-if="messages.realname.status!=0" >
 			<div class="panel-heading">认证信息</div>
 			<div class="panel-body">
 				<ul class="list-none-style" >
@@ -83,6 +84,10 @@
 					</li>
 					<li>
 						审核时间：{{messages.realname.lastTime | totalDate }}
+					</li>
+					<li>
+						不通过原因:
+						<span v-if="messages.realname.status==-1 || messages.realname.status==-2">{{messages.realname.reason}}</span>
 					</li>
 				</ul>
 			</div>	
@@ -116,6 +121,7 @@
 						result: '审核不通过',
 						reason: '（原因 ：上传的身份证照片不清晰）' -->
 						<tr v-for='message in messages.list' v-if="message.status!=0" >
+
 							<td colspan="3">
 								<div class="flex flex-1 flex-direction-row">
 									<div class="flex title-time justify-content-c">
@@ -123,19 +129,21 @@
 									</div>
 									<div class="flex title-type justify-content-c">
 										<span v-if="message.status==-1 || message.status==1" >个人认证</span>
-										<span v-if="message.status==-2 || message.status==2" >企业认证</span>
+										<span v-if="message.status==-2 || message.status==2" >公司认证</span>
 									</div>
 									<div class="flex flex-1 ">
 										<div class="flex flex-1 justify-content-c">
 											<span v-if="message.status==-1 || message.status==-2" >审核不通过</span>
 											<span v-if="message.status==1 || message.status==2" >通过</span>
-											
 											{{message.reason}}
 										</div>
 										<div class="flex"><span @click="showDetail($index)" class="cursor"><i class="icon iconfont icon-oc-dropdown"></i></span></div>
 									</div>
 								</div>
 								<div class="flex flex-1 table-detail" v-show="show[$index]">
+									<ul class="list-none-style">
+										<li>临时数据 {{message | json}}</li>
+									</ul>
 									<ul class="list-none-style" v-if="message.status==-1 || message.status==1" >
 										<!--个人认证-->
 										<li  >真实姓名: {{ message.name}}</li>
