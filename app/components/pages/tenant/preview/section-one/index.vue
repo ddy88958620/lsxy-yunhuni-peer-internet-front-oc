@@ -27,7 +27,12 @@
                   <span class="flex align-items-c unit">余额（元）</span>
                 </div>
                 <div class="flex flex-1 green money">
-                    ￥{{(bill && bill.balance) || 0}}
+                    <span v-if="bill.balance >= 0">
+                       ￥{{(bill && bill.balance) || 0}}
+                    </span>
+                    <span v-else>
+                       欠费{{(bill && bill.balance) || 0}}
+                    </span>
                 </div>
                 <div class="flex flex-direction-row-reverse">
                   <button class="btn btn-default" @click="openModal" >消费记录</button>

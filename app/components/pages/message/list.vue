@@ -68,9 +68,17 @@
 	</div>
 </template>
 <script>
-	import {getMessageList} from '../../../vuex/actions'
+	import {getMessageList,showMsg} from '../../../vuex/actions'
 
 	export default {
+		vuex:{
+			getter:{
+
+			},
+			actions:{
+				showMsg
+			}
+		},
 		components: {
 			'datetime-picker': require('../../ui/datetimepicker.vue')
 		},
@@ -107,7 +115,7 @@
 				
 				if(type === 'more') {
 					params.pageNo = this.messages.currentPageNo + 1
-					console.log(params.pageNo)
+					
 				}
 				
 				let self = this
@@ -134,6 +142,16 @@
 				let self = this
 				
 				$.put('/message/edit/'+messageObj.id, params).then((res) => {
+					if( res.success === 'false'){
+						this.showMsg({content: res.errorMsg, type: 'danger'})
+						return
+					}
+					if(type === 'up'){
+						this.showMsg({content: '上线成功', type: 'success'})
+					}
+					if(type === 'down' ){
+						this.showMsg({content: '下线成功', type: 'success'})
+					}
 					self.messagesList.$set(index, res.data)
 				})
 			}
