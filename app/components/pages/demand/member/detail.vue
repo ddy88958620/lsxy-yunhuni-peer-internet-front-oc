@@ -134,7 +134,7 @@
 										<div class="flex flex-1 justify-content-c">
 											<span v-if="message.status==-1 || message.status==-2" >审核不通过</span>
 											<span v-if="message.status==1 || message.status==2" >通过</span>
-											{{message.reason}}
+											<span v-if="message.status==-1 || message.status==-2" class="text-danger">&nbsp; ({{message.reason}}) &nbsp;</span>
 										</div>
 										<div class="flex"><span @click="showDetail($index)" class="cursor"><i class="icon iconfont icon-oc-dropdown"></i></span></div>
 									</div>
@@ -146,7 +146,6 @@
 										<li  >真实姓名: {{ message.name}}</li>
 										<li >证件类型: <span v-if="message.idType==0">身份证</span><span v-if="message.idType==1" >护照</span></li>
 										<li >证件号码: {{message.idNumber}}</li>
-										
 										<li class="flex  flex-direction-row ">
 											<span class=" padding-right-10">持证照片: </span>
 											<img :src="message.idPhoto | img" class="padding-right-10" width="400" height="100%" >
