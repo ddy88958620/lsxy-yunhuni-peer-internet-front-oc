@@ -47,7 +47,7 @@
 					<td>{{message.phone}}</td>
 					<td>{{message.email}}</td>
 					<td v-if="message.type==0">个人认证</td>
-					<td v-if="message.type==1">企业认证</td>
+					<td v-if="message.type==1">公司认证</td>
 					<td class="text-align-c">
 						<span><a v-link="'/admin/demand/member/detail/auditing/'+message.uid+'/'+message.type">查看</a></span>
 					</td>
