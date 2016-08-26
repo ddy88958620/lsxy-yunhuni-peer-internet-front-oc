@@ -159,7 +159,7 @@
 				params.status = 1
 				params.reason=''
 				$.put('/demand/member/voice/edit/'+id,params).then((res)=>{
-					if(res.success==false){
+					if(res.success === 'false'){
 						this.showMsg({content: res.errorMsg, type: 'danger'})
 						return
 					}
@@ -178,7 +178,7 @@
 				params.status = -1
 				params.reason = this.del.reason
 				$.put('/demand/member/voice/edit/'+this.del.id,params).then((res)=>{
-					if(res.success==false){
+					if(res.success === 'false'){
 						this.showMsg({content: res.errorMsg, type: 'danger'})
 						return
 					}

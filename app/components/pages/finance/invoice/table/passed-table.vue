@@ -39,7 +39,7 @@
 				<tbody>
 				<tr v-for='message in invoice.result'>
 					<td class="message-time text-align-c">{{message.applyTime | totalDate }}</td>
-					<td><a>{{message.tenant.tenantName}}</a></td>
+					<td><a  v-link="'/admin/tenant/detail/'+message.tenant.id" >{{message.tenant.tenantName}}</a></td>
 					<td>{{message.amount}}</td>
 					<td v-if='message.type==1'>个人增值税普通发票</td>
 					<td v-if='message.type==2'>企业增值税普通票</td>
