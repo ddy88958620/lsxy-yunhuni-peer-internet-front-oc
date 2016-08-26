@@ -31,16 +31,16 @@
 					<th class="text-align-c">状态</th>
 					<th>会员名称</th>
 					<th class="text-align-c">提交时间</th>
-					<th>反馈内容</th>
+					<th style="width:50%">反馈内容</th>
 					<th class="text-align-c">操作</th>
 				</tr>
 				</thead>
 				<tbody>
 				<tr v-for='message in serviceList'>
 					<td :class="[message.status===0 ? 'text-danger' : '', 'text-align-c']">{{message.status===0 ? '未读' : '已读'}}</td>
-					<td>{{message.account.tenant.tenantName}}</td>
+					<td ><a v-link="'/admin/tenant/detail/'+message.account.tenant.id" >{{message.account.tenant.tenantName}}</a></td>	
 					<td class="message-time text-align-c">{{message.createTime | totalDate }}</td>
-					<td>{{message.content}}</td>
+					<td style="width:50%" ><a @click="showConent(message.content)">{{ message.content | subStr}}</a></td>
 					<td class="text-align-c">
 						<span><a v-if="message.status === 0" @click="readed($index, message.id)">已阅</a></span>
 						<span v-if="message.status !== 0" >已阅</span>
@@ -53,11 +53,19 @@
 				<a @click="query('more')" class="text-none" v-show='service.totalPageCount!=service.currentPageNo && service.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
 			</div>
 		</div>
+
+		<modal :show.sync="content.showModal" title="反馈内容" :action="closeModal" >
+			<div slot="body">
+				<div class="flex flex-1">{{content.text}}</div>
+			</div>
+		</modal>
+
 </template>
 <script>
 	export default {
 		components: {
-			'datetime-picker': require('../../ui/datetimepicker.vue')
+			'datetime-picker': require('../../ui/datetimepicker.vue'),
+			'modal': require('../../ui/modal.vue')
 		},
 		data(){
 			return {
@@ -75,6 +83,10 @@
 					type:'day',
 					value:'',
 				},
+				content :{
+					showModal:false,
+					text:''
+				}
 			}
 		},
 		methods: {
@@ -83,15 +95,12 @@
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
 				params.status = this.status
-				
-				// more
 				//console.log(typeof this.service)
 				if(type=='more'){
 					let pageNo = this.service.currentPageNo + 1
 					//console.log(pageNo)
 					params.pageNo = pageNo
 				}
-				
 				let self = this
 				$.get('/service/list', params).then((res)=>{
 					self.service = res.data
@@ -102,6 +111,14 @@
 						self.serviceList = res.data.result
 				
 				})
+			},
+			showConent(txt){
+				this.content.showModal= true
+				this.content.text = txt
+			},
+			closeModal(){
+				this.content.showModal= false
+				this.content.text = ''
 			},
 			readed(index, mid){
 				console.log(mid)
