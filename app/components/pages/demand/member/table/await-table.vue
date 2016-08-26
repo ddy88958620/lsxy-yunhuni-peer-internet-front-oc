@@ -18,7 +18,7 @@
 			<select class="form-control" v-model='type' >
 				<option value="-1">全部</option>
 				<option value="0">个人认证</option>
-				<option value="1">企业认证</option>
+				<option value="1">公司认证</option>
 			</select>
 			<button class="btn btn-primary admin-button-margin" @click='query'>查询</button>
 
@@ -46,7 +46,7 @@
 					<td class="message-time text-align-c">{{message.date | totalDate}}</td>
 
 					<td><a v-link="'/admin/tenant/detail/'+message.uid" >{{message.name}}</a></td>
-					<td>{{message.mobile}}</td>
+					<td>{{message.phone}}</td>
 					<td>{{message.email}}</td>
 					<td v-if="message.type==0">个人认证</td>
 					<td v-if="message.type==1">企业认证</td>

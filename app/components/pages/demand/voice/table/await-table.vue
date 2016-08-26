@@ -183,9 +183,10 @@
 						return
 					}
 					if(res.data){
+						this.showModal = false 
 						this.showMsg({content: '审核不通过', type: 'success'})
 						this.delVoice(index)
-						this.showModal = false 
+						
 					}
 				})	
 			},

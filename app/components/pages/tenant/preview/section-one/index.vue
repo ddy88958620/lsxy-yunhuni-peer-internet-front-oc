@@ -12,7 +12,7 @@
                   <span class="flex flex-1 name align-items-c justify-content-c" >{{tenant.tenantName}}</span>
                 </div>
                 <div class="message flex flex-1 flex-direction-column ">
-                  <div class=" " >REST API: <span v-if="cert">http://api.yunhuni.com/{{cert && cert.id}}/</span></div>
+                  <div class=" " >REST API: <span v-if="cert">http://api.yunhuni.com/{{cert && cert.certId}}/</span></div>
                   <span class="">SercreKey：{{cert && cert.secretKey}}</span>
                   <span class="">鉴权ID：{{cert && cert.certId}}</span>
                 </div>
