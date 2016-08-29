@@ -3,7 +3,7 @@
 
   <div class="flex flex-1 flex-direction-column section-right whilebg admin-padding admin-border bg-section-margin">
     <div class="app-chart-header flex align-items-c">
-      <input name='app-chart-type'  @click="changeDate('month')"  type="radio" checked=checked/>
+      <input name='app-chart-type'  @click="changeDate('month')"  type="radio" checked=checked />
       <label for="">日统计</label>
       <input name='app-chart-type'  @click="changeDate('year')" type="radio"/>
       <label for="">月统计</label>
@@ -143,9 +143,11 @@
 
       }
     },
-    ready(){
-       this.changeDate('month')
-       this.changeSessionDate('month')
+    route:{
+       data(){
+         this.changeDate('month')
+         this.changeSessionDate('month')
+       }
     }
   }
 </script>

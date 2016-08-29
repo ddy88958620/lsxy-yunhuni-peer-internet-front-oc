@@ -7,7 +7,7 @@
 	</div>
 	<div class="admin-table table-responsive">
 		<div class="table-total flex flex-1 justify-content-e">
-			共<span  class="green">{{((capacity.fileTotalSize || 0)/1024/1024).toFixed(2)}}</span>MB,
+			共<span  class="green">{{ capacity.fileTotalSize | fileSize}}</span>MB,
 			已使用<span class="text-danger">{{((capacity.fileRemainSize || 0)/1024/1024).toFixed(2)}}</span>MB,
 			共<span class="text-danger">{{page.total || 0}}</span>条
 		</div>
@@ -16,7 +16,7 @@
 			<tr>
 				<th class="text-align-c">时间</th>
 				<th>录音文件名</th>
-				<th>大小(MB)</th>
+				<th>大小</th>
 				<th class="text-align-c">时长(秒)</th>
 				<th class="text-align-c">操作</th>
 			</tr>
@@ -25,7 +25,7 @@
 			<tr v-for='record in records'>
 				<td class="message-time text-align-c">{{record.createTime}}</td>
 				<td><a class="text-none">{{record.name}}</a></td>
-				<td>{{record.size}}</td>
+				<td>{{record.size | fileSize}}</td>
 				<td class="text-align-c">{{record.duration}}</td>
 				<td class="text-align-c"><a @click="download(record.url)">下载</a></td>
 			</tr>

@@ -60,8 +60,10 @@
         }
       }
     },
-    ready(){
-
+    route:{
+      data(){
+        
+      }
     }
   }
 </script>

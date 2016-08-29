@@ -145,7 +145,7 @@
 				params.appid = appid
 			}
 			params.month = this.consumedate.value
-			console.log(params)
+		
 
 			$.get('/tenant/tenants/'+this.$route.params.uid+'/consume_month',params).then((res) => {
 				self.comsumelist = res.data
@@ -153,10 +153,12 @@
 		  },
 
 		},
-		ready(){
-			console.log(2)
-			this.doGetComsume()
-			this.changeDate('month')
+		route:{
+			data(){
+				
+				this.doGetComsume()
+				this.changeDate('month')
+			}
 		}
 	}
 </script>

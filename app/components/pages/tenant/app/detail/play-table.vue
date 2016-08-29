@@ -8,7 +8,7 @@
 
 	<div class="admin-table table-responsive">
 		<div class="table-total flex flex-1 justify-content-e">
-			共<span  class="green">{{((capacity.fileTotalSize || 0)/1024/1024).toFixed(2)}}</span>MB,
+			共<span  class="green">{{ capacity.fileTotalSize | fileSize }}</span>MB,
 			已使用<span class="text-danger">{{((capacity.fileRemainSize || 0)/1024/1024).toFixed(2)}}</span>MB,
 			共<span class="text-danger">{{page.total || 0}}</span>条
 		</div>
@@ -17,7 +17,7 @@
 			<tr>
 				<th class="text-align-c">审核时间</th>
 				<th>文件</th>
-				<th>大小(MB)</th>
+				<th>大小</th>
 				<th class="text-align-c">备注</th>
 			</tr>
 			</thead>
@@ -25,7 +25,7 @@
 			<tr v-for='play in plays'>
 				<td class="message-time text-align-c">{{play.checkTime || '未审核'}}</td>
 				<td>{{play.name}}</td>
-				<td>{{((play.size+0.1)/1024/1024).toFixed(2)}}</td>
+				<td>{{ play.size | fileSize}}</td>
 				<td class="text-align-c">{{play.remark}}</td>
 			</tr>
 			</tbody>

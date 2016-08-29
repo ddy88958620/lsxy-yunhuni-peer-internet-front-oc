@@ -2,12 +2,14 @@
 
 
 
-	<div class="headbox flex flex-1 align-items-c bg-section-margin">
-		<span class='datetime-picker-label padding-right-20'>选择应用: </span>
-		<select class="form-control flex select-box" v-model='seletedApp'  >
-			<option value="all">全部</option>
-			<option v-for="app in apps"  value="{{app.id}}">{{app.name}} </option>
-		</select>
+	<div class="headbox flex flex-1 align-items-c bg-section-margin" >
+		<div v-if="this.module !='recharge'">
+			<span class='datetime-picker-label padding-right-20'>选择应用: </span>
+			<select class="form-control flex select-box" v-model='seletedApp'  >
+				<option value="all">全部</option>
+				<option v-for="app in apps"  value="{{app.id}}">{{app.name}} </option>
+			</select>
+		</div>
 	</div>	
 
 	<div class="flex flex-1 ">
@@ -30,6 +32,7 @@
 				apps:[
 				],
 				seletedApp:'all',
+				module:'consume'
 			}
 		},
 		watch:{
@@ -39,12 +42,15 @@
 				self.$route.router.go('/admin/tenant/detail/'+params.uid+'/statistic/'+this.seletedApp+'/'+params.module+'/'+params.module)
 			}
 		},
-		ready(){
-			$.get('/app/list/'+this.$route.params.uid).then((res) => {
-				if(res.data.length>0){
-					this.apps = res.data
-				}
-			})
+		route: {
+			data(){
+				this.module = this.$route.params.module
+				$.get('/app/list/'+this.$route.params.uid).then((res) => {
+					if(res.data.length>0){
+						this.apps = res.data
+					}
+				})
+			}
 		}
 	}
 </script>
