@@ -50,10 +50,11 @@
 			})
 		  }
 		},
-		ready(){
-			this.doGetRechargeChart()
+		route:{
+			data(){
+				this.doGetRechargeChart()
+			}
 		}
-
 	}
 </script>
 
