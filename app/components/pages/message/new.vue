@@ -70,10 +70,10 @@ export default {
         return false
       }
       // 时间不能为空
-     /* if(this.line === ''){
+      if(this.line === ''){
         this.showMsg({content: '时间不能为空', type: 'danger'})
         return false
-      }*/
+      }
       return true
     },
     newMessage(){

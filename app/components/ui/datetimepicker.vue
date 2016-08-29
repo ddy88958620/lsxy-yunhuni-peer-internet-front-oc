@@ -67,6 +67,9 @@
 				let year = date.getFullYear()
 				let month = (date.getMonth()+1) < 10 ? '0' + (date.getMonth()+1) : (date.getMonth()+1)
 				let day = date.getDate().toString().length < 2 ? '0'+ date.getDate() : date.getDate()
+				let hours = date.getHours().toString.length < 2 ? '0'+date.getHours() : date.getHours()
+				let minutes = date.getMinutes().toString.length < 2 ? '0'+date.getMinutes() : date.getMinutes()
+				let seconds = date.getSeconds().toString.length < 2 ? '0'+date.getSeconds() : date.getSeconds()
 
 				switch (type) {
 					case 'year':
@@ -105,7 +108,7 @@
 							todayBtn: true,
 							startView: 'month',
 							minView: 'hour',
-							startDate: self.isstartday==='true' ? year+'-'+month+'-'+day : null,
+							startDate: self.isstartday==='true' ? year+'-'+month+'-'+day+' '+hours+':'+minutes : null,
 							endDate:null
 						}
 						break;
