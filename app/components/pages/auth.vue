@@ -11,7 +11,7 @@
                 class="validate-field form-group relative ">
                 <i class="iconfont icon-oc-login-user input-icon"></i>
                 <input
-                  value="user001"
+                  
                   type="text"
                   class='form-control form-input'
                   v-model='user.userName'
@@ -28,7 +28,7 @@
                 class="validate-field form-group relative">
                 <i class="iconfont icon-oc-login-pwd input-icon"></i>
                 <input
-                  value="123456"
+                 
                   type="password"
                   class='form-control form-input'
                   v-model='user.password'
@@ -62,7 +62,7 @@
               </div>
 
               <div class="validate-field form-group flex mt-15">
-                <input type="checkbox"    />  记住用户名
+                <input type="checkbox"  v-model="user.remember"  />  记住用户名
               </div>
 
               <div class="form-group flex flex-1 mt-15">
@@ -86,13 +86,15 @@
 import {showMsg, localLogin} from '../../vuex/actions'
 import toaster from '../ui/toaster.vue'
 import domain from '../../config/domain'
+import {getCookie} from '../../utils/cookieAuth.js'
 export default {
   data(){
     return{
       user: {
         userName: '',
         password: '',
-        code:''
+        code:'',
+        remember:'true'
       },
       verCodeUrl:''
     }
@@ -120,6 +122,15 @@ export default {
   },
   route:{
   	data(){
+      let self = this 
+      let cookieUser = getCookie('interimUser')
+      console.log("cookie"+cookieUser)
+      if(cookieUser!='' && cookieUser!=undefined){
+        self.user.userName = cookieUser
+        self.user.remember = true
+      }else{
+        self.user.remember = false
+      }
       this.refreshVerCode()
     }
   }
