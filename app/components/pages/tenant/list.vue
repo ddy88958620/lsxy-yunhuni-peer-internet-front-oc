@@ -52,12 +52,9 @@
           <td><a v-link="'/admin/tenant/detail/'+tenant.uid" >{{tenant.name}}</a></td>
           <td class="text-align-c">{{tenant.app_count ? tenant.app_count: 0 }}</td>
           <td class="{{tenant.auth_status.toString() === '1' ? '' : 'text-danger'}}">{{tenant.auth_status.toString() === '1' ? '已认证' : '未认证'}}</td>
-        
-          <td class="text-align-c">{{ tenant.remain_coin>=0 ? tenant.remain_coin ?  tenant.remain_coin : 0 : '欠费'+-tenant.remain_coin }}</td>
-
-
-          <td class="text-align-c">{{tenant.cost_coin ? tenant.cost_coin : 0 }}</td>
-          <td class="text-align-c">{{tenant.total_coin ? tenant.total_coin : 0 }}</td>
+          <td class="text-align-c">{{ tenant.remain_coin>=0 ? tenant.remain_coin>0 ?  tenant.remain_coin.toFixed(2) : '0.00' : '欠费'+-tenant.remain_coin }}</td>
+          <td class="text-align-c">{{tenant.cost_coin>0 ? tenant.cost_coin.toFixed(2) : '0.00' }}</td>
+          <td class="text-align-c">{{tenant.total_coin>0 ? tenant.total_coin.toFixed(2) : '0.00' }}</td>
           <td class="text-align-c">{{tenant.session_count ? tenant.session_count : 0 }}</td>
           <td class="text-align-c">{{tenant.session_time ? tenant.session_time : 0 }}</td>
           <td v-if="tenant.account_status == 2" class="darkgreen">启用</td>
@@ -81,6 +78,7 @@
   </div>
 </template>
 <script>
+
   export default {
     components: {
       'datetime-picker': require('../../ui/datetimepicker.vue'),

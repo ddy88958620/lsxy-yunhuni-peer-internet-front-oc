@@ -43,6 +43,10 @@
 			width: {
 				type: Number,
 				default: 130
+			},
+			isstartday: {
+				type: String,
+				default: 'false'
 			}
 		},
 		watch: {
@@ -60,6 +64,10 @@
 				// 当前日期
 				var type = self.type
 				var date = new Date()
+				let year = date.getFullYear()
+				let month = (date.getMonth()+1) < 10 ? '0' + (date.getMonth()+1) : (date.getMonth()+1)
+				let day = date.getDate().toString().length < 2 ? '0'+ date.getDate() : date.getDate()
+
 				switch (type) {
 					case 'year':
 						self.dateConfig = {
@@ -87,6 +95,7 @@
 							format: 'yyyy-mm-dd',
 							startView: 'month',
 							minView: 'month',
+
 						}
 						break;
 					case 'time':
@@ -96,15 +105,23 @@
 							todayBtn: true,
 							startView: 'month',
 							minView: 'hour',
+							startDate: self.isstartday==='true' ? year+'-'+month+'-'+day : null,
+							endDate:null
 						}
 						break;
+
 				}
 				
+				
+
+
+
 				this.datetimepicker = $('#'+self.uuid)
 				
 				if(this.datetimepicker) {
 					this.datetimepicker.datetimepicker('remove')
 				}
+				
 				
 				let once = 1
 				this.datetimepicker.datetimepicker(self.dateConfig).on('changeDate', function (ev) {

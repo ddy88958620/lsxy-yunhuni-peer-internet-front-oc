@@ -124,7 +124,12 @@
 		  changeDate(type){
 		  	let self = this
 		    self.chartdate.type = type
-		   
+		   	if(type=='month'){
+		   		self.chartdate.value = DATE.todayString('month')
+		   	}
+		   	if(type=='year'){
+		   		self.chartdate.value = DATE.todayString('year')
+		   	}
 		    this.doGetComsumeChart()
 		  },
 		  //获取月结账单

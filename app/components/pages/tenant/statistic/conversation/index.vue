@@ -107,12 +107,24 @@
       changeDate(type){
         let self = this
         self.chartdate.type = type
+        if(type=='month'){
+          self.chartdate.value = DATE.todayString('month')
+        }
+        if(type=='year'){
+          self.chartdate.value = DATE.todayString('year')
+        }
         this.doGetComsumeChart()
       },
       //获取会话量统计
       changeSessionDate(type){
         let self = this
         self.sessiondate.type = type
+        if(type=='month'){
+          self.sessiondate.value = DATE.todayString('month')
+        }
+        if(type=='year'){
+          self.sessiondate.value = DATE.todayString('year')
+        }
         this.doGetSessionChart()
       },
       doGetSessionChart(){

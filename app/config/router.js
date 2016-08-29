@@ -55,7 +55,7 @@ export default function(router){
                 '/base': {
                   component: (resolve) => require(['../components/pages/tenant/base/index.vue'], resolve)
                 },
-                '/session/:aid/:day': {
+                '/session/:aid/:day/:module': {
                   component: (resolve) => require(['../components/pages/tenant/session/index.vue'], resolve),
                   subRoutes: {
                     '/call': {
@@ -78,7 +78,7 @@ export default function(router){
                     }
                   }
                 },
-                '/statistic/:aid': {
+                '/statistic/:aid/:module': {
                   component: (resolve) => require(['../components/pages/tenant/statistic/index.vue'], resolve),
                   subRoutes: {
                     '/consume': {
@@ -239,8 +239,8 @@ export default function(router){
     '/admin/finance/delivery': '/admin/finance/delivery/list/unsend',
     '/admin/tenant/detail/:uid/': '/admin/tenant/detail/:uid/preview',
     '/admin/tenant/detail/:uid/app': '/admin/tenant/detail/:uid/app/list',
-    '/admin/tenant/detail/:uid/statistic': '/admin/tenant/detail/:uid/statistic/all/consume',
-    '/admin/tenant/detail/:uid/session': '/admin/tenant/detail/:uid/session/1/1/call',
+    '/admin/tenant/detail/:uid/statistic': '/admin/tenant/detail/:uid/statistic/all/consume/consume',
+    '/admin/tenant/detail/:uid/session': '/admin/tenant/detail/:uid/session/1/1/call/call',
     '/admin/demand': '/admin/demand/member',
     '/admin/demand/member': '/admin/demand/member/list/await',
     '/admin/demand/voice': '/admin/demand/voice/list/await',
