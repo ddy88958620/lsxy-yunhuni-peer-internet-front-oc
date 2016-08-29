@@ -29,7 +29,7 @@
                 <div class="flex flex-1 green money">
                   <!--{{ tenant.remain_coin>=0 ? tenant.remain_coin ?  tenant.remain_coin : 0 : '欠费'+-tenant.remain_coin }}-->
                     <span v-if="bill.balance >=0 || bill.balance==null ">
-                       ￥{{(bill && bill.balance) || '0.00'}}
+                       ￥{{(bill && bill.balance)}}.{{bill.balanceDec}}
                     </span>
                     <span v-else>
                        {{(bill && bill.balance) ? '欠费'+-bill.balance : '￥0.00' }}
