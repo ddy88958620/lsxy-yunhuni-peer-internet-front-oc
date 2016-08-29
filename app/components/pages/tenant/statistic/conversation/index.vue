@@ -16,8 +16,8 @@
            :type="['line','bar']"
            :dateType="dateType"
            :label.sync="chartdate.type"
-           :ydata1="list.cost"
-           :ydata2="list.session"
+           :ydata1="list.session"
+           :ydata2="list.cost"
            :title="['话务量','消费额']"
            :xtitle="['话务量(分钟)','消费额(元)']"
            :color="[['rgba(246,239,232,0.2)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
