@@ -35,7 +35,7 @@
 </template>
 <script>
 	import Simditor from 'simditor'
-	import {NewMessage} from '../../../vuex/actions.js'
+	import {NewMessage,showMsg} from '../../../vuex/actions.js'
 	import * as filter from '../../../utils/filters'
 	export default {
 		vuex: {
@@ -43,7 +43,7 @@
 				
 			},
 			actions :{
-				NewMessage
+				NewMessage,showMsg
 			}
 		},
 		data(){
@@ -61,7 +61,7 @@
 		},
 		methods:{
 			newMessage(){
-				console.log(this.editor.getValue())
+				 if (!this.check()) return
 				let params = {
 					title: this.title,
 					content: this.editor.getValue(),
@@ -75,7 +75,25 @@
 						this.$route.router.go('/admin/message/list')
 					}
 				})
-			}
+			},
+			check(){
+		      // 标题不能为空
+		      if(this.title === ''){
+		        this.showMsg({content: '标题不能为空', type: 'danger'})
+		        return false
+		      }
+		      // 内容不能为空
+		      if(this.editor.getValue() === ''){
+		        this.showMsg({content: '正文内容不能为空', type: 'danger'})
+		        return false
+		      }
+		      // 时间不能为空
+		      if(this.line === ''){
+		        this.showMsg({content: '时间不能为空', type: 'danger'})
+		        return false
+		      }
+		      return true
+		    },
 		},
 		ready(){
 			let mid = this.$route.params.mid
