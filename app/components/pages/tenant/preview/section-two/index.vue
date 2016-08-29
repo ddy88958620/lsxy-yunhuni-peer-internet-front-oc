@@ -8,7 +8,7 @@
           <div class="flex flex-1 flex-direction-column box border-right">
             <div class="flex flex-1 align-items-c ">
               <i class="icon iconfont icon-oc-wallet bigicon"></i>
-              <span class="green money">{{ indicant.cost_coin }}</span>
+              <span class="green money">{{ indicant.cost_coin >0 ? indicant.cost_coin.toFixed(2) : '0.00' }}</span>
               <i class="iconfont icon-oc-up"></i><span class='text-danger'>{{indicant.cost_coin_rate}}%</span>
             </div>
             <div class="flex flex-1 middle-font-size middle-font-color">
@@ -18,7 +18,7 @@
           <div class="flex flex-1 flex-direction-column box border-right">
             <div class="flex flex-1 align-items-c ">
               <i class="icon iconfont icon-oc-recharge bigicon"></i>
-              <span class="green money">{{ indicant.recharge_coin }}</span>
+              <span class="green money">{{ indicant.recharge_coin >0 ? indicant.recharge_coin.toFixed(2) : '0.00' }}</span>
               <i class="iconfont icon-oc-up"></i><span class='text-danger'>{{indicant.recharge_coin_rate}}%</span>
             </div>
             <div class="flex flex-1 middle-font-size middle-font-color">
@@ -89,14 +89,7 @@
     data(){
       return{
         showModal: false,
-        alldata:[
-          {total:'54365.33',percent:'20%',trend:'0'},
-          {total:'1200',percent:'20%',trend:'1'},
-          {total:'300',percent:'20%',trend:'1'},
-          {total:'111',percent:'20%',trend:'0'},
-          {total:'111',percent:'20%',trend:'0'},
-          {total:'99%',percent:'20%',trend:'0'}
-        ]
+        
       }
     },
     ready(){

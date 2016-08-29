@@ -53,11 +53,11 @@
 					<td>{{message.title}}</td>
 					<td>{{message.type ? '活动消息' : '用户消息'　}}</td>
 					<td class="text-align-c">
-						<span v-if="message.status != -1" ><a v-link="'/admin/message/edit/'+message.id">编辑</a></span>
-						<span><a v-if="message.status == -1" v-link="'/admin/message/edit/'+message.id">查看</a></span>
+						<span v-if="message.status == 0 " ><a v-link="'/admin/message/edit/'+message.id">编辑</a></span>
+						<span><a  v-link="'/admin/message/detail/'+message.id">查看</a></span>
 						<span v-if='message.status==0 || message.status==null' @click="changeStatus($index, 'up')"><a>上线</a></span>
 						<span v-if='message.status==1'  @click="changeStatus($index, 'down')"><a>下线</a></span>
-						<span v-if='message.status==-1' @click="deleteMsg($index)"><a>删除</a></span>
+						<span v-if='message.status!=1' @click="deleteMsg($index)"><a>删除</a></span>
 					</td>
 				</tr>
 				</tbody>
@@ -168,7 +168,6 @@
 					}
 					self.messagesList.splice(index,1)
 					this.showMsg({content: '删除成功', type: 'success'})
-					
 
 					/*if( res.success === 'false'){
 						this.showMsg({content: res.errorMsg, type: 'danger'})

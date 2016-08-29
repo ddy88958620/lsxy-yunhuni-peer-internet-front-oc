@@ -116,6 +116,9 @@
 		  	}else{
 		  		params.year = this.chartdate.value.split('-')[0]
 		  	}
+
+		  	console.log(params)
+		  	
 		  	//GET /tenant/tenants/{tenant}/consume/statistic
 			$.get('/tenant/tenants/'+this.$route.params.uid+'/consume/statistic',params).then((res) => {
 				self.chart = res.data
@@ -142,6 +145,8 @@
 				params.appid = appid
 			}
 			params.month = this.consumedate.value
+			console.log(params)
+
 			$.get('/tenant/tenants/'+this.$route.params.uid+'/consume_month',params).then((res) => {
 				self.comsumelist = res.data
 			})
@@ -149,8 +154,9 @@
 
 		},
 		ready(){
-			 this.doGetComsume()
-			 this.changeDate('month')
+			console.log(2)
+			this.doGetComsume()
+			this.changeDate('month')
 		}
 	}
 </script>

@@ -129,6 +129,9 @@ export default function(router){
             '/edit/:mid': {
               component: (resolve) => require(['../components/pages/message/edit.vue'], resolve),
             },
+            '/detail/:mid': {
+              component: (resolve) => require(['../components/pages/message/detail.vue'], resolve),
+            },
           }
         },
         '/finance': {

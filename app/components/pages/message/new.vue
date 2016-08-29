@@ -19,7 +19,7 @@
         <div class="admin-form flex flex-direction-row align-items-s">
           <label for="content"></label>
           <div class="flex align-items-c">
-            选择上线时间 &nbsp;&nbsp;<datetimepicker :width="200" :type="'time'" :value.sync="line" uuid='newtime' :isstartday="true" ></datetimepicker>
+            选择上线时间 &nbsp;&nbsp;<datetimepicker :width="200" :type="'time'" :value.sync="line" uuid='newtime' :isstartday="'true'" ></datetimepicker>
           </div>
         </div>
         <div class="admin-form flex flex-direction-row align-items-s">
@@ -88,7 +88,8 @@ export default {
         content: this.editor.getValue(),
         type: 1,
         status: 0,
-        line: this.line
+        line: this.line,
+        name:'管理员'
       }
 	    
       $.post('/message/new',params).then((res)=>{

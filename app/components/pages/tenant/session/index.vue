@@ -16,7 +16,7 @@
 			<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/meeting/meeting'" >会话服务</span>
 			<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/verification/verification'" >语音验证码</span>
 			<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/record/record'">录音服务</span>
-			<span type="button" class="toolbar remove-border-right last-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/ivr'" >IVR定制服务</span>
+			<span type="button" class="toolbar remove-border-right last-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/ivr/ivr'" >IVR定制服务</span>
 		</div>
 	</div>
 	<router-view></router-view>

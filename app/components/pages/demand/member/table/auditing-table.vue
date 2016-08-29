@@ -5,7 +5,7 @@
 				<search
 					:value.sync="search"
 					:action="query"
-					placeholder="请输入会员名称"
+					 placeholder="请输入会员名称"
 				></search>
 			</div>
 			<span class='datetime-picker-label '>申请时间:</span>
@@ -43,7 +43,7 @@
 				<tbody>
 				<tr v-for='message in demand.result'>
 					<td class="message-time text-align-c">{{message.date | totalDate}}</td>
-					<td><a v-link="'/admin/tenant/detail/'+message.uid" >{{message.name}}</a></td>
+					<td><a v-link="'/admin/tenant/detail/'+message.tenantId" >{{message.name}}</a></td>
 					<td>{{message.phone}}</td>
 					<td>{{message.email}}</td>
 					<td v-if="message.type==0">个人认证</td>
