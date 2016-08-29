@@ -55,7 +55,6 @@
 	</div>
 
 	<div class="flex flex-1 flex-direction-column whilebg admin-padding admin-border">
-
 		<div class="app-chart-header flex align-items-c">
 			<input name='app-chart-type'  @click="changeDate('month')"  type="radio" checked=checked/>
 			<label for="">日统计</label>
@@ -116,8 +115,12 @@
 		  	}else{
 		  		params.year = this.chartdate.value.split('-')[0]
 		  	}
-
-		  	console.log(params)
+		  	let appId =  this.$route.params.aid 
+			//params.month = this.$route.params.uid
+			if(appId!='all'){
+				params.appId = appId
+			}
+		 
 		  	
 		  	//GET /tenant/tenants/{tenant}/consume/statistic
 			$.get('/tenant/tenants/'+this.$route.params.uid+'/consume/statistic',params).then((res) => {
@@ -139,10 +142,10 @@
 		  doGetComsume(){
 		  	let params = {}
 			let self = this 
-			let appid =  this.$route.params.aid 
+			let appId =  this.$route.params.aid 
 			//params.month = this.$route.params.uid
-			if(appid!='all'){
-				params.appid = appid
+			if(appId!='all'){
+				params.appId = appId
 			}
 			params.month = this.consumedate.value
 		
@@ -155,10 +158,12 @@
 		},
 		route:{
 			data(){
-				
 				this.doGetComsume()
 				this.changeDate('month')
 			}
+		},
+		ready(){
+
 		}
 	}
 </script>
