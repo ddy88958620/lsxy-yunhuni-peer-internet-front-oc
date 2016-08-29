@@ -47,15 +47,17 @@
 					<td>{{message.name}}</td>
 
 					<td v-if='message.status==-1' >已下线</td>
-					<td v-if='message.status==0' class='text-danger'>未上线</td>
+					<td v-if='message.status==0 || message.status==null' class='text-danger'>未上线</td>
 					<td v-if='message.status==1' class="text-success" >已上线</td>
+
 					<td>{{message.title}}</td>
 					<td>{{message.type ? '活动消息' : '用户消息'　}}</td>
 					<td class="text-align-c">
 						<span v-if="message.status != -1" ><a v-link="'/admin/message/edit/'+message.id">编辑</a></span>
 						<span><a v-if="message.status == -1" v-link="'/admin/message/edit/'+message.id">查看</a></span>
-						<span v-if='message.status==0' @click="changeStatus($index, 'up')"><a>上线</a></span>
+						<span v-if='message.status==0 || message.status==null' @click="changeStatus($index, 'up')"><a>上线</a></span>
 						<span v-if='message.status==1'  @click="changeStatus($index, 'down')"><a>下线</a></span>
+						<span v-if='message.status==-1' @click="deleteMsg($index)"><a>删除</a></span>
 					</td>
 				</tr>
 				</tbody>
@@ -137,7 +139,6 @@
 				else if( type === 'down'){
 					params.status = -1
 				}
-				
 				let messageObj = this.messagesList[index]
 				let self = this
 				
@@ -154,6 +155,39 @@
 					}
 					self.messagesList.$set(index, res.data)
 				})
+			},
+			deleteMsg(index){
+				let messageObj = this.messagesList[index]
+				let self = this
+
+				$.delete('/message/'+messageObj.id).then((res) => {
+					console.log(res)
+					if( res.success === 'false'){
+						this.showMsg({content: res.errorMsg, type: 'danger'})
+						return
+					}
+					self.messagesList.splice(index,1)
+					this.showMsg({content: '删除成功', type: 'success'})
+					
+
+					/*if( res.success === 'false'){
+						this.showMsg({content: res.errorMsg, type: 'danger'})
+						return
+					}
+					if(type === 'up'){
+						this.showMsg({content: '上线成功', type: 'success'})
+					}
+					if(type === 'down' ){
+						this.showMsg({content: '下线成功', type: 'success'})
+					}
+					self.messagesList.$set(index, res.data)*/
+				})
+
+				
+				console.log(index)
+
+
+
 			}
 		},
 		ready(){

@@ -11,18 +11,18 @@
 	</div>
 	<div class="flex flex-1 bg-section-margin ">
 		<div class="admin-toolbar flex normal-font-size small-font-color cursor" >
-			<span type="button" class="toolbar first-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/call'" >语音呼叫{{selectedApp}}</span>
-			<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/callback'" >语音回拨</span>
-			<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/meeting'" >会话服务</span>
-			<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/verification'" >语音验证码</span>
-			<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/record'">录音服务</span>
+			<span type="button" class="toolbar first-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/call/call'" >语音呼叫{{selectedApp}}</span>
+			<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/callback/callback'" >语音回拨</span>
+			<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/meeting/meeting'" >会话服务</span>
+			<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/verification/verification'" >语音验证码</span>
+			<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/record/record'">录音服务</span>
 			<span type="button" class="toolbar remove-border-right last-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/ivr'" >IVR定制服务</span>
 		</div>
 	</div>
 	<router-view></router-view>
 </template>
 <script>
-
+	import DATE from '../../../../utils/date'
 	export default{
 		components: {
 			'datetime-picker': require('../../../ui/datetimepicker.vue')
@@ -32,11 +32,31 @@
 				apps:[
 				
 				],
-				seletedApp:'4028b88155e262f40155e2d19b0e0004',
+				seletedApp:'all',
 				startdate :{
 					type:'day',
-					value:'2016-08-17',
+					value:DATE.todayString('day'),
 				}
+			}
+		},
+		watch: {
+			'startdate.value':function(){
+				this.go()	
+
+			},
+			'seletedApp':function(){
+				this.go()
+			}
+		},
+		methods:{
+			go(){
+				let self = this 
+				let params = self.$route.params
+				if(this.startdate.value==''){
+					this.startdate.value = DATE.todayString('day')
+				}
+				self.$route.router.go('/admin/tenant/detail/'+params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/'+params.module+'/'+params.module)
+
 			}
 		},
 		ready(){
