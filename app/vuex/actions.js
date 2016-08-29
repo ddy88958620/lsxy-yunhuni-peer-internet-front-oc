@@ -25,6 +25,14 @@ export const localLogin = ({dispatch, router}, user) => {
     }
 	  // 登入成功
     if(login&&login.data) {
+
+      
+      if(user.remember ===true ){
+        saveCookie('interimUser', user.userName)
+      }else{
+        removeCookie('interimUser')
+      }
+
     	saveCookie('user', user.userName)
       dispatch(types.LOCAL_LOGIN, user.userName)
       router.go(
