@@ -92,12 +92,17 @@
       doGetComsumeChart(){
         let params = {}
         let self = this 
-        let appid =  this.$route.params.aid  
+       
         if(this.chartdate.type == 'month'){
           params.year = this.chartdate.value.split('-')[0]
           params.month = this.chartdate.value.split('-')[1]
         }else{
           params.year = this.chartdate.value.split('-')[0]
+        }
+
+         let appId =  this.$route.params.aid 
+        if(appId!='all'){
+          params.appId = appId
         }
         $.get('/tenant/tenants/'+this.$route.params.uid+'/consumeAnduration/statistic',params).then((res) => {
           self.list.cost = res.data.cost
@@ -130,7 +135,10 @@
       doGetSessionChart(){
         let params = {}
         let self = this 
-        let appid =  this.$route.params.aid  
+        let appId =  this.$route.params.aid 
+        if(appId!='all'){
+          params.appId = appId
+        }
         if(this.sessiondate.type == 'month'){
           params.year = this.sessiondate.value.split('-')[0]
           params.month = this.sessiondate.value.split('-')[1]

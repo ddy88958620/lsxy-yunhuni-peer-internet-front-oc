@@ -65,15 +65,23 @@
 	    },
       chartApiQuery(date){
         let uid = this.$route.params.uid
-	      let params = date ? date : this.date.value
-	      let self = this
-        $.get('/tenant/tenants/'+uid+'/interfaceInvoke/statistic', DATE.dateParse(params)).then((res)=>{
+	    let datetime = date ? date : this.date.value
+		let params = DATE.dateParse(datetime)
+	    let appId =  this.$route.params.aid 
+		if(appId!='all'){
+			params.appId = appId
+		}
+
+	    let self = this
+        $.get('/tenant/tenants/'+uid+'/interfaceInvoke/statistic',params).then((res)=>{
           self.chartApiValue = res.data
         })
       }
     },
-    ready(){
-    	this.chartApiQuery()
+    route: {
+    	data(){
+    		this.changeDate('month')
+    	}
     }
   }
 </script>
