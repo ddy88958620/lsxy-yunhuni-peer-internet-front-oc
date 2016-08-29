@@ -16,11 +16,11 @@
 					<option value=0 >未上线</option>
 					<option value=-1>已下线</option>
 				</select>
-				<span class='datetime-picker-label'>消息类型: </span>
+<!-- 				<span class='datetime-picker-label'>消息类型: </span>
 				<select class="form-control"  v-model='type'>
 					<option value=1 >活动消息</option>
 					<option value=0 >用户消息</option>
-				</select>
+				</select> -->
 
 				<button class="btn btn-primary admin-button-margin" @click="query" >查询</button>
 				<a class="btn btn-primary " v-link="{path: '/admin/message/new', exact: true}">发布新消息</a>
@@ -37,7 +37,7 @@
 					<th>发布人</th>
 					<th>发布状态</th>
 					<th>发布标题</th>
-					<th>消息类型</th>
+					<!-- <th>消息类型</th> -->
 					<th class="text-align-c">操作</th>
 				</tr>
 				</thead>
@@ -51,7 +51,7 @@
 					<td v-if='message.status==1' class="text-success" >已上线</td>
 
 					<td>{{message.title}}</td>
-					<td>{{message.type ? '活动消息' : '用户消息'　}}</td>
+					<!-- <td>{{message.type ? '活动消息' : '用户消息'　}}</td> -->
 					<td class="text-align-c">
 						<span v-if="message.status == 0 " ><a v-link="'/admin/message/edit/'+message.id">编辑</a></span>
 						<span><a  v-link="'/admin/message/detail/'+message.id">查看</a></span>
