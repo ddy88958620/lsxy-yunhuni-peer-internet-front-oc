@@ -82,3 +82,8 @@ export function subStr(text){
 	return substring
 }	
 
+
+//保留两位小数
+export function fixed(num){
+	return num.toFixed(2)
+}
