@@ -16,7 +16,9 @@
         <tr v-for='message in rechargeList'>
           <td class="message-time text-align-c">{{message.createTime | totalDate}}</td>
           <td>{{message.amount}}</td>
-          <td>{{message.type}}</td>
+          <td v-if="message.type==='RENGONG'">人工充值</td>
+          <td v-if="message.type==='UNIONPAY'">银联</td>
+          <td v-if="message.type==='ALIPAY'">支付宝</td>
         </tr>
         </tbody>
       </table>
