@@ -17,7 +17,7 @@
         <div class="flex flex-1 flex-1align-items-c flex-direction-column session-small-box">
           <div>
             <span class='iconfont icon-oc-wallet'></span>
-            <span class='admin-font-color ranknumber'>{{duration.consume_day >0 ? duration.consume_day.toFixed(2) : '0.00' }}</span>
+            <span class='admin-font-color ranknumber'>{{duration.duration_day >0 ? duration.duration_day.toFixed(2) : '0.00' }}</span>
           </div>
           <ul class="list-none-style">
             <li class='title'>昨日消费额 ( 元 )</li>

@@ -93,7 +93,7 @@
 									<li>营业执照号：{{authinfo.type03Prop03}}</li>
 									<li class="flex  flex-direction-row ">
 										<span class=" padding-right-10">营业执照: </span>
-										<img :src="authinfo.type03Prop04 | img" alt="" class="padding-right-10"  height="200"  data-action="zoom" >
+										<img :src="authinfo.type03Prop04 | img"  class="padding-right-10"  height="200"  data-action="zoom" >
 									</li>
 								</template>
 							</template>
@@ -106,7 +106,7 @@
 								<li>证件号码：{{authinfo.idNumber}}</li>
 								<li class="flex  flex-direction-row ">
 									<span class=" padding-right-10">证件照: </span>
-									<img :src="authinfo.idPhoto | img" alt=""  class="padding-right-10" height="200" data-action="zoom">
+									<img :src="authinfo.idPhoto | img"  class="padding-right-10" height="200" data-action="zoom">
 								</li>
 							</template>
 						</ul>
