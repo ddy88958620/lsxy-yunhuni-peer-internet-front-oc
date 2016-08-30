@@ -93,6 +93,7 @@ export const getMemberRankList = ({dispatch},top) => {
 export const getLastDayComsume = ({dispatch}) => {
   api.getLastDayComsume().then(response =>{
     let comsume = response.json()
+
     dispatch(types.LASTDAY_COMSUME, comsume.data)
   }, response => {
     console.log('fail');
