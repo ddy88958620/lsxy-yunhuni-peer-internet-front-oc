@@ -148,6 +148,7 @@
 				params.appId = appId
 			}
 			if(this.consumedate.value==''){
+				this.comsumelist = []
 				return
 			}
 			params.month = this.consumedate.value
