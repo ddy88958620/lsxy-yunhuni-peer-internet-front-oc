@@ -12,8 +12,8 @@
 			<select class="form-control" v-model='type'>
 				<option value="0">全部</option>
 				<option value="1">个人增值税普通发票</option>
-				<option value="2">企业增值税普通票</option>
-				<option value="3">企业增值税专用票</option>
+				<option value="2">企业增值税普通发票</option>
+				<option value="3">企业增值税专用发票</option>
 			</select>
 			<button class="btn btn-primary admin-button-margin" @click="query" >查询</button>
 
@@ -43,8 +43,8 @@
 					<td><a v-link="'/admin/tenant/detail/'+message.tenant.id" >{{message.tenant.tenantName}}</a></td>
 					<td>{{message.amount}}</td>
 					<td v-if='message.type==1'>个人增值税普通发票</td>
-					<td v-if='message.type==2'>企业增值税普通票</td>
-					<td v-if='message.type==3'>企业增值税专用票</td>
+					<td v-if='message.type==2'>企业增值税普通发票</td>
+					<td v-if='message.type==3'>企业增值税专用发票</td>
 					<td>{{message.title}}</td>
 					<td>{{message.receivePeople}}</td>
 					<td class="text-align-c">

@@ -20,7 +20,7 @@
 <template>
   <header class='app-header flex align-items-c'>
     <div class="nav-left flex flex-1 justify-content-s align-items-c overflow">
-      <span class="topbar-btn flex" >欢迎您来到云呼你运营中心， 您有&nbsp;<a href="#">3</a>&nbsp;件事项未处理</span><i class="iconfont icon-oc-handle"></i>
+      <span class="topbar-btn flex" >欢迎您来到云呼你运营中心<!-- ， 您有&nbsp;<a href="#">3</a>&nbsp;件事项未处理</span><i class="iconfont icon-oc-handle"></i> -->
     </div>
     <div class="nav-right">
       <search

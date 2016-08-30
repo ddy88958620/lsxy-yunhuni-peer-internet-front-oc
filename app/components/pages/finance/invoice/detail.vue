@@ -9,7 +9,7 @@
 			<div class="panel-body">
 				<ul class="list-none-style">
 					<li>开具发票金额：{{detail.amount}}元</li>
-					<li>开票时间：{{ detail.start | totalDate }}  至  {{ detail.end | totalDate}}</li>
+					<li>开票时间：{{ detail.start | month }}  至  {{ detail.end | month}}</li>
 					<li>申请时间： {{detail.applyTime | totalDate }}</li>
 				</ul>
 			</div>
@@ -20,15 +20,15 @@
 				<ul class="list-none-style" v-if='detail.type==1 || detail.type==2 '>
 					<li>发票类型：
 						<span v-if='detail.type==1'>个人增值税普通发票</span>
-						<span v-if='detail.type==2'>企业增值税普通票</span>
+						<span v-if='detail.type==2'>企业增值税普通发票</span>
 					</li>
 					<li>发票抬头：{{ detail.title }}</li>
 				</ul>
 				<ul class="list-none-style" v-if='detail.type==3'>
 					<li>发票类型：
 						<span v-if='detail.type==1'>个人增值税普通发票</span>
-						<span v-if='detail.type==2'>企业增值税普通票</span>
-						<span v-if='detail.type==3'>企业增值税专用票</span>
+						<span v-if='detail.type==2'>企业增值税普通发票</span>
+						<span v-if='detail.type==3'>企业增值税专用发票</span>
 					</li>
 					<li>发票抬头：{{ detail.title }}</li>
 					<li>纳税人识别号: {{detail.taxpayerNum}}</li>
@@ -93,15 +93,15 @@
 	</modal>
 
 
-	<modal :show.sync="showModal" :title=''>
+	<modal :show.sync="showModal" title='消费详情' :action="hideModal">
 		<div slot="body" class="flex flex-1 flex-direction-column">
 
 			<div class="flex flex-direction-column admin-table-header">
 				<div class="flex align-items-c">
 					<span class='datetime-picker-label clear-padding-left'>提交时间:</span>
-					{{ detail.start | totalDate }}   
+					{{ detail.start | month }}   
 					<span class='datetime-picker-label'>至</span>
-					{{ detail.end | totalDate}}
+					{{ detail.end | month}}
 				</div>
 			</div>
 			<div class="admin-table table-responsive flex-1 flex flex-direction-column">
@@ -159,10 +159,17 @@
 			showDetail:function(index){
 				this.show.$set(index, !this.show[index])
 			},
+			hideModal(){
+				this.showModal = false
+			},
 			abnormal(){
 				//异常处理
 				let id = this.$route.params.id
+				let params = {}
 				params.status = 2
+				params.reason = this.reason
+
+				let self = this
 				$.put('/finance/invoice/edit/'+id, params).then((res) => {
 					this.abnormalModal = false
 					if( res.success === 'false'){
@@ -172,13 +179,17 @@
 					//成功处理
 					this.getInvoiceDetail({id:id})
 					this.showMsg({content: '不通过成功', type: 'success'})
-					this.$route.router.go({path:'/admin/finance/list/pending'})
+					
+					setTimeout(function(){
+						self.$route.router.go({path:'/admin/finance/invoice/list/pending'})
+					},3000)
 				})
 			},
 			pass(){
 				//通过
 				let id = this.$route.params.id
 				let params = {}
+				let self = this
 				params.status = 1
 				$.put('/finance/invoice/edit/'+id, params).then((res) => {
 					if( res.success === 'false'){
@@ -188,7 +199,10 @@
 					//成功处理
 					this.getInvoiceDetail({id:id})
 					this.showMsg({content: '通过成功', type: 'success'})
-					this.$route.router.go({path:'/admin/finance/list/pending'})
+					setTimeout(function() {
+				        self.$route.router.go({path:'/admin/finance/invoice/list/pending'})
+				    },3000)
+					
 				})
 			},
 			query(more){
@@ -232,6 +246,9 @@
 			this.getInvoiceDetail(params)
 			//消费记录
 			this.query()
+
+			let self  = this
+
 			
 /*			let arr = []
 			Array.from(this.messages, function(i, index){
