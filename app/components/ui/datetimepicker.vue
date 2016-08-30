@@ -88,8 +88,8 @@
 							format: 'yyyy-mm',
 							startView: 'year',
 							minView: 'year',
-							startDate: '2016-06',
-							endDate: '2017-01'
+							/*startDate: '2016-06',
+							endDate: '2017-01'*/
 						}
 						break;
 					case 'day':
