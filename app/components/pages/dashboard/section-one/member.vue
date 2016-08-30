@@ -7,9 +7,9 @@
         <div class='flex flex-1 ' >
           <div class="flex pie_wrap align-items-c ">
             <pie
-              :max.sync="member.regist_total"
-              :value.sync="member.regist_total"
-              :bgcolor.sync="color[0]"
+              :max="member.regist_total"
+              :value="member.regist_total"
+              :bgcolor="color[0]"
               :uuid="'memberpie'"
               >
             </pie>
@@ -29,10 +29,10 @@
         <div class='flex flex-1' >
           <div class="flex pie_wrap align-items-c">
             <pie
-              :max.sync="member.regist_total"
-              :value.sync="member.auth_total"
+              :max="member.regist_total"
+              :value="member.auth_total"
               :uuid="'memberpie2'"
-              :bgcolor.sync="color[1]" >
+              :bgcolor="color[1]" >
             </pie>
           </div>
           <div class="flex flex-1 align-items-c" >
@@ -50,10 +50,10 @@
         <div class='flex flex-1'>
           <div class="flex pie_wrap align-items-c" >
             <pie
-              :max.sync="member.regist_total"
-              :value.sync="member.consume"
+              :max="member.regist_total"
+              :value="member.consume"
               :uuid="'memberpie3'"
-              :bgcolor.sync="color[2]">
+              :bgcolor="color[2]">
             </pie>
           </div>
           <div class="flex flex-1 align-items-c" >
@@ -77,7 +77,7 @@ import pie from '../../../ui/pie.vue'
 export default {
   vuex:{
     getters:{
-      member : ({ member }) =>member.count
+      membertest : ({ member }) =>member.count
     },
     actions:{
       getMemberCount
@@ -88,14 +88,34 @@ export default {
       color:['#89d9e3','#80d1ff','#f4ebb6'],
       pie1: { 'max': 999,  'value': 100},
       pie2: { 'max': 1000, 'value': 200},
-      pie3: { 'max': 1000, 'value': 500}
+      pie3: { 'max': 1000, 'value': 500},
+      member:{
+        regist_total: 0,
+        regist_tatal_day: 0,
+        regist_tatal_week: 0,
+        regist_tatal_month: 0,
+        auth_total: 0,
+        auth_total_day: 0,
+        auth_total_week: 0,
+        auth_total_month: 0,
+        consume: 0,
+        consume_day: 0,
+        consume_week: 0,
+        consume_month: 0
+      }
     }
   },
   components: {
     pie
   },
   ready(){
-    this.getMemberCount()
+    let self = this
+    $.get('/dashboard/member/indicant').then((res) => {
+          if(res.success==true){
+            self.member = res.data
+          }
+     })
+    //this.getMemberCount()
   }
 }
 
