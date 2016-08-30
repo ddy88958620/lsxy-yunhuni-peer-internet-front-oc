@@ -123,8 +123,15 @@ export default {
   route:{
   	data(){
       let self = this 
+      //初始化
+      self.user  = {
+         userName: '',
+         password: '',
+         code:'',
+         remember:'true'
+      }
       let cookieUser = getCookie('interimUser')
-      console.log("cookie"+cookieUser)
+    
       if(cookieUser!='' && cookieUser!=undefined){
         self.user.userName = cookieUser
         self.user.remember = true
