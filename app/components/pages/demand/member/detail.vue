@@ -126,7 +126,7 @@
 						result: '审核不通过',
 						reason: '（原因 ：上传的身份证照片不清晰）' -->
 						<tr v-for='message in messages.list' v-if="message.status!=0" >
-
+							{{message | json }}
 							<td colspan="3">
 								<div class="flex flex-1 flex-direction-row">
 									<div class="flex title-time justify-content-c">
@@ -141,7 +141,7 @@
 											<span v-if="message.status==-1 || message.status==-2" >审核不通过</span>
 											<span v-if="message.status==1 || message.status==2" >通过</span>
 
-											<span v-if="(message.status==-1 || message.status==-2) && !message.reason " class="text-danger" > &nbsp; ({{message.reason}}) &nbsp; </span>
+											<span v-if="(message.status==-1 || message.status==-2) && message.reason!='' " class="text-danger" > &nbsp; ({{message.reason}}) &nbsp; </span>
 										</div>
 										<div class="flex"><span @click="showDetail($index)" class="cursor"><i class="icon iconfont icon-oc-dropdown"></i></span></div>
 									</div>

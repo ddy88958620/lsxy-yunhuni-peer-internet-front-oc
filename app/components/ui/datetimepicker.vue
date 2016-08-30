@@ -143,7 +143,7 @@
 				});
 			},
 			clearDate(){
-				console.log(2)
+				
 				this.value = ''
 			}
 		},

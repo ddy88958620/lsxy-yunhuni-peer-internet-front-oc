@@ -16,7 +16,7 @@
         <div class="border-span flex align-items-c "><span></span></div>
 
         <div class='flex flex-1 flex-direction-column align-items-c justify-content-c' style="z-index:999">
-          <div class="flex  pie_wrap align-items-c " style="z-index:11">
+          <div class="flex  pie_wrap align-items-c ">
             <pie :uuid="'appie2'" :max="app.total" :value="app.online" :bgcolor="'#80d1ff'" ></pie>
           </div>
           <div class="flex align-items-c title-box">
@@ -35,7 +35,7 @@ import pie from '../../../ui/pie.vue'
 export default {
   vuex: {
     getters:{
-      app: ({app}) => app.count
+      apptest: ({app}) => app.count
     },
     actions:{
       getAppCount
@@ -45,14 +45,24 @@ export default {
     return {
       color:'#89d9e3',
       colorTwo:'#80d1ff',
-      colorThree: '#f4ebb6'
+      colorThree: '#f4ebb6',
+      app:{
+        total : 0,
+        online : 0
+      }
     }
   },
   components: {
     pie
   },
 	ready(){
-      this.getAppCount()
+    let self = this
+    $.get('/dashboard/app/indicant').then((res) => {
+          if(res.success==true){
+            self.app = res.data
+          }
+     })
+    //this.getAppCount()
   },
 }
 </script>

@@ -1,17 +1,22 @@
 <template>
-	<div>
-		<input
-			data-angleOffset="360"
-			data-linecap="round"
-			data-rotation="anticlockwise"
-			data-thickness="0.1"
-			type="text"
-			class="{{uuid}}"
-			data-width="100"
-			data-height="100"
-			v-model="value"
-		/>
-	</div>
+
+  <a >
+    <input
+      data-angleOffset="360"
+      data-linecap="round"
+      data-rotation="anticlockwise"
+      data-thickness="0.1"
+      type="text"
+      class="{{uuid}}"
+      data-width="100"
+      data-height="100"
+      v-model="value"
+    />
+  </a>
+
+
+
+	
 </template>
 
 <script>
@@ -30,7 +35,7 @@
 	      default: 0 },
       value: {
         type: Number,
-        default: 50
+        default: 0
       },
       bgcolor: {
         type: String,
@@ -46,7 +51,6 @@
     },
     watch: {
     	max: function(state, old) {
-        console.log('watch')
     		this.initPie()
 	    }
     },
@@ -69,12 +73,25 @@
 		  if( this.max !== 0) {
 			  this.initPie()
 		  }
+
+
+/*
+      $('.unclick').on('click', function(event) {
+          console.log(event.preventDefault())
+         
+      })
+*/
+    
+
 	  }
   }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
   .dial{
     font-size: 20px !important;
   }
+
+
+
 </style>

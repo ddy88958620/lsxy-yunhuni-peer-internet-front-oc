@@ -56,7 +56,7 @@
 				<a @click="moreMessage" class="text-none" v-show='this.voice.totalPageCount!=this.voice.currentPageNo && this.voice.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
 			</div>
 			<!--放音文件隐藏-->
-			<audio :src="audioURI"></audio>
+			<audio :src="audioURI" autoplay></audio>
 		</div>
 	</div>
 
