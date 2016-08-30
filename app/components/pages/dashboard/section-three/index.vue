@@ -2,28 +2,33 @@
     <section class="section-three flex admin-border bg-section-margin whilebg">
      <div class="flex section-left flex-direction-column ">
         <div class="flex flex-1 flex-1align-items-c flex-direction-column session-small-box border-bottom">
+       
           <div>
             <span class='iconfont icon-oc-mobile'></span>
-            <span class='admin-font-color ranknumber'>{{comsume.consume_day}}</span>
+            <span class='admin-font-color ranknumber'>{{duration.duration_day}}</span>
           </div>
           <ul class="list-none-style">
             <li class='title'>昨日话务量 ( 分钟 )</li>
-            <li>日 <i class="iconfont small {{ comsume.consume_day >= 0 ? 'icon-oc-up' : 'icon-oc-down'}} "></i><span class='text-danger'>{{comsume.consume_day}}%</span></li>
-            <li>周 <i class="iconfont {{ comsume.consume_day >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}  small"></i><span class='text-danger'>{{comsume.week_rate}}%</span></li>
-            <li>月 <i class="iconfont {{ comsume.consume_day >= 0 ? 'icon-oc-up' : 'icon-oc-down'}} small"></i><span class='text-danger'>{{comsume.month_rate}}%</span></li>
-           
+
+             <li>日 <i class="iconfont icon-oc-up small {{ duration.month_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{duration.day_rate}}%</span></li>
+            <li>周 <i class="iconfont icon-oc-up small {{ duration.month_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}} "></i><span class='text-danger'>{{duration.week_rate}}%</span></li>
+            <li>月 <i class="iconfont small {{ duration.month_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{duration.month_rate}}%</span></li>
+
+              
           </ul>
         </div>
         <div class="flex flex-1 flex-1align-items-c flex-direction-column session-small-box">
+          
           <div>
             <span class='iconfont icon-oc-wallet'></span>
-            <span class='admin-font-color ranknumber'>{{duration.duration_day >0 ? duration.duration_day.toFixed(2) : '0.00' }}</span>
+            <span class='admin-font-color ranknumber'>{{duration.consume_day >0 ? duration.consume_day.toFixed(2) : '0.00' }}</span>
           </div>
           <ul class="list-none-style">
             <li class='title'>昨日消费额 ( 元 )</li>
-            <li>日 <i class="iconfont icon-oc-up small {{ duration.month_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{duration.day_rate}}%</span></li>
-            <li>周 <i class="iconfont icon-oc-up small {{ duration.month_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}} "></i><span class='text-danger'>{{duration.week_rate}}%</span></li>
-            <li>月 <i class="iconfont small {{ duration.month_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{duration.month_rate}}%</span></li>
+            <li>日 <i class="iconfont small {{ comsume.consume_day >= 0 ? 'icon-oc-up' : 'icon-oc-down'}} "></i><span class='text-danger'>{{comsume.consume_day}}%</span></li>
+            <li>周 <i class="iconfont {{ comsume.consume_day >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}  small"></i><span class='text-danger'>{{comsume.week_rate}}%</span></li>
+            <li>月 <i class="iconfont {{ comsume.consume_day >= 0 ? 'icon-oc-up' : 'icon-oc-down'}} small"></i><span class='text-danger'>{{comsume.month_rate}}%</span></li>
+     
           </ul>
         </div>
      </div>
