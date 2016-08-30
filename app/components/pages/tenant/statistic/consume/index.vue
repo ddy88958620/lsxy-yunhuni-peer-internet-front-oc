@@ -147,9 +147,10 @@
 			if(appId!='all'){
 				params.appId = appId
 			}
+			if(this.consumedate.value==''){
+				return
+			}
 			params.month = this.consumedate.value
-		
-
 			$.get('/tenant/tenants/'+this.$route.params.uid+'/consume_month',params).then((res) => {
 				self.comsumelist = res.data
 			})

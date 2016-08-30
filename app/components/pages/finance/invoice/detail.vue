@@ -38,7 +38,7 @@
 					<li>企业电话：{{detail.phone}}</li>
 					<li class="flex  flex-direction-row " >
 						<span class=" padding-right-10">一般纳税人认证资格证书: </span>
-						<img :src="detail.qualificationUrl | img" class="padding-right-10" width="400" height="100%" >
+						<img :src="detail.qualificationUrl | img" class="padding-right-10" width="400" height="100%"  data-action="zoom" >
 					</li>
 				</ul>
 			</div>
