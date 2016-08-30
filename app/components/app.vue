@@ -8,7 +8,7 @@
 import toaster from './ui/toaster.vue'
 import store from '../vuex/store'
 import '../utils/fetch'
-
+import '../assets/js/zoom.js'
 export default {
   store,
   vuex: {
