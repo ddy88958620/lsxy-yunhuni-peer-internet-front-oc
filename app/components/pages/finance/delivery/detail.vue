@@ -38,7 +38,7 @@
 					<li>企业电话：{{detail.phone}}</li>
 					<li class="flex  flex-direction-row " >
 						<span class=" padding-right-10">一般纳税人认证资格证书: </span>
-						<img :src="detail.qualificationUrl | img" class="padding-right-10" width="400" height="100%"  data-action="zoom">
+						<img :src="detail.qualificationUrl | img" class="padding-right-10" height="200" data-action="zoom" >
 					</li>
 				</ul>
 			</div>
@@ -82,6 +82,20 @@
 		</div>
 		
 	</div>
+
+
+	<modal :show.sync="abnormalModal" title='操作' :action="abnormal">
+		<div slot="body" class="flex flex-1 flex-direction-column">
+			<div class="flex flex-direction admin-table-header">
+				<div class="flex align-items-c ">
+					<span class=''>异常原因:</span>
+				</div>
+				<div class="flex flex-1">
+					<input type="text" class="form-control flex flex-1" v-model='reason'  >
+				</div>
+			</div>
+		</div>
+	</modal>
 
 
 	<modal :show.sync="showModal" title='消费详情' :action="hideModal">
@@ -150,36 +164,71 @@
 				this.show.$set(index, !this.show[index])
 			},
 			moreMessage: function(){
-				this.messages.push(
-					{
-						date: '2016-06-06 16:00',
-						money: '100元',
-						type: '套餐加油包',
-						remark: '100分钟语音加油包'
-					})
 			},
 			send(){
-			
 		       	let params = {}
-				 //异常处理
+		       	let self = this
+				 //确认寄出
 				let id = this.$route.params.id
 				params.expressCom = this.expressCom
 				params.expressNo = this.expressNo
 				params.status =1
-
  				$.put('/finance/invoice/edit/send'+id,params).then((res)=>{
 		           	this.abnormalModal = false
-		           	this.getInvoiceDetail({id:id})
-		        })
-
-
-		       
-				params.status = 2
-				$.put('/finance/invoice/edit/'+id, params).then((res) => {
+					if( res.success === 'false'){
+						this.showMsg({content: res.errorMsg, type: 'danger'})
+						return
+					}
+					//成功处理
+					this.getInvoiceDetail({id:id})
+					this.showMsg({content: '寄出成功', type: 'success'})
 					
-				
-				})
+					setTimeout(function(){
+						self.$route.router.go({path:'/admin/finance/delivery/list/send'})
+					},3000)
 
+		        })
+			},
+			unsend(){
+				let params = {}
+				let self = this
+				 //异常处理
+				let id = this.$route.params.id
+				params.status =2
+				params.reason = this.reason
+ 				$.put('/finance/invoice/edit/send'+id,params).then((res)=>{
+		           	this.abnormalModal = false
+					if( res.success === 'false'){
+						this.showMsg({content: res.errorMsg, type: 'danger'})
+						return
+					}
+					//成功处理
+					this.getInvoiceDetail({id:id})
+					this.showMsg({content: '异常处理完成', type: 'success'})
+					setTimeout(function(){
+						self.$route.router.go({path:'/admin/finance/delivery/list/unsend'})
+					},3000)
+
+		        })
+			},
+			query(more){
+				let params = {} 
+				params.id = this.$route.params.id
+				if(more){
+					let pageNo = this.invoice.list.currentPageNo + 1
+					params.pageNo = pageNo
+				}
+				let self = this
+				$.get('/finance/invoice/detail/list/'+this.$route.params.id,params).then((res)=>{
+					console.log(res)
+					if(res){
+			            self.invoice = res.data
+			            if(more)
+			              self.invoiceList = self.invoiceList.concat(res.data.list.result)
+			            else
+			              self.invoiceList = res.data.list.result
+			        }
+				})
 			}
 		},
 		data(){
@@ -190,32 +239,8 @@
 				abnormalModal: false,
 				expressCom:'',
 				expressNo:'',
-				messages: [
-					{
-						date: '2016-06-06 16:00',
-						money: '100元',
-						type: '套餐加油包',
-						remark: '100分钟语音加油包'
-					},
-					{
-						date: '2016-06-06 16:00',
-						money: '100元',
-						type: '会议',
-						remark: '回拨扣费0.02/6s 10min'
-					},
-					{
-						date: '2016-06-06 16:00',
-						money: '100元',
-						type: '套餐加油包',
-						remark: '100分钟语音加油包'
-					},
-					{
-						date: '2016-06-06 16:00',
-						money: '100元',
-						type: '套餐加油包',
-						remark: '100分钟语音加油包'
-					},
-				]
+				reason:'',
+				messages: []
 			}
 		},
 		ready(){
@@ -223,6 +248,10 @@
 			params.id = this.$route.params.id
 			
 			this.getInvoiceDetail(params)
+			//消费记录
+			this.query()
+
+
 			let arr = []
 			Array.from(this.messages, function(i, index){
 				arr.push(false)

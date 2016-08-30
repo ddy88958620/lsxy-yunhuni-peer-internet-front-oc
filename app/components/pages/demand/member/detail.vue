@@ -18,7 +18,7 @@
 					<li >证件号码: {{messages.realname.idNumber}}</li>
 					<li class="flex  flex-direction-row ">
 						<span class=" padding-right-10">持证照片: </span>
-						<img :src="messages.realname.idPhoto | img" class="padding-right-10" width="400" height="100%" data-action="zoom" >
+						<img :src="messages.realname.idPhoto | img" class="padding-right-10" height="200"  data-action="zoom" >
 					</li>
 				</ul>
 				<ul class="list-none-style" v-if="this.type==1" >
@@ -35,7 +35,7 @@
 					<li v-if="messages.realname.authType==0">统一社会信用代码：{{messages.realname.type01Prop02 }}</li>
 					<li class="flex  flex-direction-row " v-if="messages.realname.authType==0" >
 						<span class=" padding-right-10">营业执照: </span>
-						<img :src="messages.realname.type01Prop01 | img" class="padding-right-10" width="400" height="100%"  data-action="zoom" >
+						<img :src="messages.realname.type01Prop01 | img" class="padding-right-10"   data-action="zoom" >
 
 						<!-- <div>
 							{{ messages.realname.type01Prop01 | createImg | html }}
@@ -48,7 +48,7 @@
 					<li v-if="messages.realname.authType==1">税务登记号:{{messages.realname.type02Prop02}} </li>
 					<li class="flex  flex-direction-row " v-if="messages.realname.authType==1">
 						<span class=" padding-right-10">营业执照: </span>
-						<img :src="messages.realname.type02Prop03 | img" class="padding-right-10" width="400" height="100%" data-action="zoom">
+						<img :src="messages.realname.type02Prop03 | img" class="padding-right-10"  data-action="zoom">
 					</li>
 				
 					<li v-if="messages.realname.authType==2">税务登记号:{{messages.realname.type03Prop01}} </li>
@@ -56,14 +56,14 @@
 					<!-- <li v-if="messages.realname.authType==2">税务登记证:{{messages.realname.type03Prop02}} </li> -->
 					<li class="flex  flex-direction-row " v-if="messages.realname.authType==2">
 						<span class=" padding-right-10">税务登记证: </span>
-						<img :src="messages.realname.type03Prop02 | img" class="padding-right-10" width="400" height="100%" data-action="zoom" >
+						<img :src="messages.realname.type03Prop02 | img" class="padding-right-10" data-action="zoom" >
 					</li>
 
 
 					<li v-if="messages.realname.authType==2">营业执照号:{{messages.realname.type03Prop03}} </li>
 					<li class="flex  flex-direction-row " v-if="messages.realname.authType==2">
 						<span class=" padding-right-10">营业执照: </span>
-						<img :src="messages.realname.type03Prop04 | img" class="padding-right-10" width="400" height="100%" data-action="zoom">
+						<img :src="messages.realname.type03Prop04 | img" class="padding-right-10"  data-action="zoom">
 					</li>
 
 				</ul>
