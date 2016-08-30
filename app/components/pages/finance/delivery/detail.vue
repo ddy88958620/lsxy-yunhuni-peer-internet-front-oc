@@ -9,7 +9,7 @@
 			<div class="panel-body">
 				<ul class="list-none-style">
 					<li>开具发票金额：{{detail.amount}}元</li>
-					<li>开票时间：{{ detail.start | date }}  至  {{ detail.end | date}}</li>
+					<li>开票时间：{{ detail.start | month }}  至  {{ detail.end | month}}</li>
 					<li>申请时间： {{detail.applyTime | date }}</li>
 				</ul>
 			</div>
@@ -84,21 +84,20 @@
 	</div>
 
 
-	<modal :show.sync="showModal" :title=''>
+	<modal :show.sync="showModal" title='消费详情' :action="hideModal">
 		<div slot="body" class="flex flex-1 flex-direction-column">
 
 			<div class="flex flex-direction-column admin-table-header">
 				<div class="flex align-items-c">
 					<span class='datetime-picker-label clear-padding-left'>提交时间:</span>
-					<datetime-picker disable="disable"></datetime-picker>
+					{{ detail.start | month }}   
 					<span class='datetime-picker-label'>至</span>
-					<datetime-picker></datetime-picker>
+					{{ detail.end | month}}
 				</div>
 			</div>
-
 			<div class="admin-table table-responsive flex-1 flex flex-direction-column">
 				<div class="table-total flex flex-1 justify-content-e">
-					消费总金额：<span class="brown">2400</span>元 共<span class="text-danger">20</span>条
+					消费总金额：<span class="brown">{{invoice.sum!==0 ? invoice.sum :  '' }}</span>元 共<span class="text-danger">{{invoice.list.totalCount }}</span>条
 				</div>
 				<div class="flex modal-table" >
 					<table class="table">
@@ -111,16 +110,20 @@
 						</tr>
 						</thead>
 						<tbody >
-						<tr v-for='message in messages'>
-							<td class="message-time text-align-c">{{message.date}}</td>
-							<td>{{message.money}}</td>
-							<td>{{message.type}}</td>
-							<td>{{message.remark}}</td>
+						<tr v-for='message in invoiceList'>
+							<td class="message-time text-align-c">{{message.createTime | date}}</td>
+				            <td>{{message.amount}}</td>
+				            <td>{{message.type}}</td>
+				            <td>{{message.remark}}</td>
 						</tr>
 						</tbody>
 					</table>
 				</div>
-				<div class="more"><a @click="moreMessage" class="text-none">加载更多<i class="icon iconfont icon-oc-dropdown" ></i></a></div>
+				<div class="more">
+					<a v-show='invoice.list.totalPageCount==invoice.list.currentPageNo || invoice.list.totalPageCount==0'>加载完毕</a>
+					<a @click="query('more')" class="text-none" v-show='invoice.list.totalPageCount!=invoice.list.currentPageNo && invoice.list.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+				</div>	
+				
 			</div>
 		</div>
 

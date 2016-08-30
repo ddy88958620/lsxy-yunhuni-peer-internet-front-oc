@@ -141,7 +141,7 @@
 											<span v-if="message.status==-1 || message.status==-2" >审核不通过</span>
 											<span v-if="message.status==1 || message.status==2" >通过</span>
 
-											<span v-if="(message.status==-1 || message.status==-2) && message.reason!='' " class="text-danger" > &nbsp; ({{message.reason}}) &nbsp; </span>
+											<span v-if="(message.status==-1 || message.status==-2) && message.reason!=null && message.reason!='' " class="text-danger" > &nbsp; ({{message.reason}}) &nbsp; </span>
 										</div>
 										<div class="flex"><span @click="showDetail($index)" class="cursor"><i class="icon iconfont icon-oc-dropdown"></i></span></div>
 									</div>
