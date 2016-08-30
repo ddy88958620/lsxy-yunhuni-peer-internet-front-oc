@@ -204,7 +204,7 @@
 					}
 					//成功处理
 					this.getInvoiceDetail({id:id})
-					this.showMsg({content: '异常处理完成', type: 'success'})
+					this.showMsg({content: '异常处理成功', type: 'success'})
 					setTimeout(function(){
 						self.$route.router.go({path:'/admin/finance/delivery/list/unsend'})
 					},3000)
