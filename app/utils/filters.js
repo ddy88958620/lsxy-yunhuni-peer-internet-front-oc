@@ -87,3 +87,11 @@ export function subStr(text){
 export function fixed(num){
 	return num.toFixed(2)
 }
+
+export function createImg(filename){
+	let fileurl = domain.API_ROOT_AUDIO+'?uri='+filename
+
+	let img = '<img src="'+fileurl+'" class="padding-right-10" width="400" height="100%"  data-action="zoom" >'
+	
+	return img
+}
