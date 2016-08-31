@@ -40,7 +40,7 @@ p{
   padding: 15px;
   width: 300px;
   text-align: center;
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 30px;
   transform: translate(-50%, -50%);
