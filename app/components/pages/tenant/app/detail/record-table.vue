@@ -23,7 +23,7 @@
 			</thead>
 			<tbody>
 			<tr v-for='record in records'>
-				<td class="message-time text-align-c">{{record.createTime}}</td>
+				<td class="message-time text-align-c">{{record.createTime | totalDate}}</td>
 				<td><a class="text-none">{{record.name}}</a></td>
 				<td>{{record.size | fileSize}}</td>
 				<td class="text-align-c">{{record.duration}}</td>

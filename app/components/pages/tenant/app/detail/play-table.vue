@@ -23,7 +23,7 @@
 			</thead>
 			<tbody>
 			<tr v-for='play in plays'>
-				<td class="message-time text-align-c">{{play.checkTime || '未审核'}}</td>
+				<td class="message-time text-align-c">{{ play.checkTime | totalDate || '未审核'}}</td>
 				<td>{{play.name}}</td>
 				<td>{{ play.size | fileSize}}</td>
 				<td class="text-align-c">{{play.remark}}</td>
