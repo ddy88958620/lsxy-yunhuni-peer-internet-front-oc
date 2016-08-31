@@ -73,7 +73,7 @@
 					<li>快递单号：<input type="text" class="form-control select-box" v-model="expressNo" /></li>
 					<li>
 						<button class="btn btn-primary" @click="send">确认寄出</button>
-						<button class="btn btn-default" >取消</button>
+						<button class="btn btn-default"   v-link="'/admin/finance/delivery/list/unsend'"  >取消</button>
 					</li>
 				</ul>
 
@@ -145,14 +145,15 @@
 </template>
 <script>
 
-	import {getInvoiceDetail} from '../../../../vuex/actions.js'
+	import {getInvoiceDetail,showMsg} from '../../../../vuex/actions.js'
 	export default {
 		vuex:{
 	       getters: {
 	       	  detail: ({finance}) => finance.invoice
 	       },
 	       actions: {
-		      getInvoiceDetail
+		      getInvoiceDetail,
+		      showMsg
 	       }
 		},
 		components: {
@@ -175,12 +176,13 @@
 				params.status =1
  				$.put('/finance/invoice/edit/send'+id,params).then((res)=>{
 		           	this.abnormalModal = false
-					if( res.success === 'false'){
+					if( res.success === false){
 						this.showMsg({content: res.errorMsg, type: 'danger'})
 						return
 					}
 					//成功处理
 					this.getInvoiceDetail({id:id})
+					
 					this.showMsg({content: '寄出成功', type: 'success'})
 					
 					setTimeout(function(){

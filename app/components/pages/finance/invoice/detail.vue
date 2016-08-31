@@ -92,10 +92,9 @@
 		</div>
 	</modal>
 
-
+	<!--消费统计 细致版本-->
 	<modal :show.sync="showModal" title='消费详情' :action="hideModal">
 		<div slot="body" class="flex flex-1 flex-direction-column">
-
 			<div class="flex flex-direction-column admin-table-header">
 				<div class="flex align-items-c">
 					<span class='datetime-picker-label clear-padding-left'>提交时间:</span>
@@ -108,6 +107,7 @@
 				<div class="table-total flex flex-1 justify-content-e">
 					消费总金额：<span class="brown">{{invoice.sum!==0 ? invoice.sum :  '' }}</span>元 共<span class="text-danger">{{invoice.list.totalCount }}</span>条
 				</div>
+
 				<div class="flex modal-table" >
 					<table class="table">
 						<thead>
@@ -135,8 +135,106 @@
 				
 			</div>
 		</div>
+	</modal>
+
+
+	<!--消费统计 发票版本-->
+	<modal :show.sync="showDetailModal" title='消费详情' :action="hideDetailModal" >
+		<div slot="body" class="flex flex-1 flex-direction-column">
+			<div class="flex flex-direction-column admin-table-header">
+				<div class="flex align-items-c">
+					<span class='datetime-picker-label clear-padding-left'>提交时间:</span>
+					{{ detail.start | month }}  
+					<span class='datetime-picker-label'>至</span>
+					{{ detail.end | month}} 
+				</div>
+			</div>
+			<div class="admin-table table-responsive flex-1 flex flex-direction-column">
+				<div class="table-total flex flex-1 justify-content-e">
+					消费总金额：<span class="brown">{{invoice.sum!==0 ? invoice.sum :  '' }}</span>元 共<span class="text-danger">{{invoice.list.totalCount }}</span>条
+				</div>
+
+				<div class="flex modal-table" >
+										<table class="table remove-margin-bottom remove-border">
+						<thead>
+						<tr>
+							<th colspan="3">
+								<div class="flex flex-1 flex-direction-row">
+									<div class="flex title-time justify-content-c">
+										消费时间
+									</div>
+									<div class="flex title-type justify-content-c">
+										消费金额
+									</div>
+									<div class="flex flex-1 justify-content-e">
+										操作
+									</div>
+								</div>
+							</th>
+						</tr>
+						</thead>
+						<tbody>
+					<!-- 	date: '2016-06-06 16:00',
+						type: '个人认证',
+						result: '审核不通过',
+						reason: '（原因 ：上传的身份证照片不清晰）' -->
+						<tr v-for='message in messages.list'  >
+							
+							<td colspan="3">
+								<div class="flex flex-1 flex-direction-row">
+									<div class="flex title-time justify-content-c">
+										{{message.createTime | totalDate }}
+									</div>
+									<div class="flex title-type justify-content-c">
+										{{message.amount}}
+									</div>
+									<div class="flex flex-1 justify-content-e ">
+										
+										<div class="flex"><span @click="showDetail($index)" class="cursor"><i class="icon iconfont icon-oc-dropdown"></i></span></div>
+									</div>
+								</div>
+								<div class="flex flex-1 table-detail" v-show="show[$index]">
+									<div class="flex flex-1 flex-wrap " >
+										<div class="codedetail width-50">
+											<div class="flex ">
+												<span class="width-50">ivr语音： </span>
+												<span class="width-50">79.84</span>
+											</div>
+										</div>
+
+										<div class="codedetail width-50">
+											<div class="flex ">
+												<span class="width-50">ivr语音： </span>
+												<span class="width-50">79.84</span>
+											</div>
+										</div>
+
+										<div class="codedetail width-50">
+											<div class="flex ">
+												<span class="width-50">ivr语音： </span>
+												<span class="width-50">79.84</span>
+											</div>
+										</div>
+	
+
+										
+									</div>
+								</div>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="more">
+					<a v-show='invoice.list.totalPageCount==invoice.list.currentPageNo || invoice.list.totalPageCount==0'>加载完毕</a>
+					<a @click="query('more')" class="text-none" v-show='invoice.list.totalPageCount!=invoice.list.currentPageNo && invoice.list.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+				</div>	
+				
+			</div>
+		</div>
 
 	</modal>
+
 </template>
 <script>
 
@@ -161,6 +259,12 @@
 			},
 			hideModal(){
 				this.showModal = false
+			},
+			hideDetailModal(){
+				this.hideDetailModal = false
+			},
+			showDetail:function(index){
+				this.show.$set(index, !this.show[index])
 			},
 			abnormal(){
 				//异常处理
@@ -228,9 +332,14 @@
 		data(){
 			return {
 				show: [],
+				messages:{
+					list:[],
+					realname:{},
+				},
 				showModal: false,
 				passModal: false,
 				abnormalModal: false,
+				showDetailModal: false,
 				reason:'',
 				invoice:{
 					list: { totalCount :0}
@@ -239,6 +348,27 @@
 			}
 		},
 		ready(){
+
+			/**测试**/
+			
+		     let self = this
+ 			 $.get('/demand/member/detail/8a2bc5f656c1194c0156c46efb19000b',{type:0}).then((res)=>{
+ 			 	console.log(res)
+ 					this.messages.list = res.data.list
+ 					this.messages.realname = res.data.realname
+		     })
+
+			let arr = []
+				Array.from(this.messages, function(i, index){
+					arr.push(false)
+			})
+			this.show = arr
+
+
+			console.log(this.messages)
+
+
+
 			let params = {}
 			params.id = this.$route.params.id
 
@@ -247,14 +377,10 @@
 			//消费记录
 			this.query()
 
-			let self  = this
+			
 
 			
-/*			let arr = []
-			Array.from(this.messages, function(i, index){
-				arr.push(false)
-			})
-			this.show = arr*/
+		
 		}
 	}
 </script>
@@ -272,4 +398,28 @@
 		overflow-y: scroll;
 		margin-bottom: 10px;
 	}
+	.title-time{
+		width: 150px;
+	}
+
+	.title-type{
+		width: 250px;
+	}
+
+	.table-detail{
+		border-top:1px dashed #c5c5c5;
+		padding: 10px 0;
+	}
+
+	.width-50{
+		width: 50%;
+	}
+
+	.codedetail{
+
+		padding:  3px 0;
+	}
+
+
+
 </style>
