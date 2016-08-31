@@ -82,7 +82,7 @@
 			return {
 				messages: [],
 				total: 0,
-				status:'auditing',
+				status:'await',
 				type: 0,
 				search:''
 			}
@@ -114,6 +114,8 @@
 		ready(){
 			let params = {}
 			params.status = this.status
+			console.log(params)
+
 			this.getDeliveryList(params)
 		}
 
