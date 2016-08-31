@@ -82,7 +82,7 @@
 			return {
 				messages: [],
 				total: 0,
-				status:'await',
+				status:'auditing',
 				type: 0,
 				search:''
 			}

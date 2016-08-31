@@ -345,7 +345,7 @@ export const getInvoiceDetail = ({dispatch},params) =>{
 export const getDeliveryList = ({dispatch},params) =>{
   api.getInvoiceSendList(params).then(response=> {
     let invoice_list = response.json()
-    console.log
+    
 
     switch(params.status){
       case 'await':
