@@ -74,16 +74,16 @@
             unit: '(元)'
           },
           {
-            title:'按会话周增量排名',
+            title:'按话务周增量排名',
             color: 'purple',
             icon: 'icon-oc-msg-small',
-            unit: '(次)'
+            unit: '(分钟)'
           },
           {
-            title:'按话务周增量排名',
+            title:'按会话周增量排名',
             color: 'pink',
             icon: 'icon-oc-mobile',
-            unit: '(分钟)'
+            unit: '(次)'
           }
         ]
       }

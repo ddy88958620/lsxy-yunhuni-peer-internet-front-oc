@@ -39,7 +39,7 @@
             <ul class="list-none-style flex flex-1 flex-direction-column  justify-content-c">
               <li>总认证会员 ( 个 )</li>
               <li>日 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>{{member.auth_total_day}}</span></li>
-              <li>周 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>{{member.regist_tatal_week}}</span></li>
+              <li>周 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>{{member.auth_total_week}}</span></li>
               <li>月 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>{{member.auth_total_month}}</span></li>
             </ul>
           </div>
