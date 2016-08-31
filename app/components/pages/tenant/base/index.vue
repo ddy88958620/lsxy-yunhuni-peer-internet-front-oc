@@ -58,8 +58,8 @@
 								<span class="text-danger padding-right-10" >{{authinfo.status}}</span> <a class="btn btn-primary" v-if="authinfo.status === '未审核'" v-link="'/admin/demand/member/list/await'">去审核</a>
 							</li>
 
-							<li v-if="authinfo.status !='未认证' ">认证类型: {{authinfo.type}}</li>
-							<template v-if="authinfo.type === '公司'">
+							<li v-if="authinfo.status !='未认证' && authinfo.status !='认证失败'  ">认证类型: {{authinfo.type}}</li>
+							<template v-if="authinfo.type === '公司' &&  authinfo.status !='认证失败' ">
 								<li>公司名称: {{authinfo.name}}</li>
 								<li>公司地址: {{authinfo.addr}}</li>
 								<li>所属行业: {{authinfo.industry}}</li>
@@ -98,7 +98,7 @@
 									</li>
 								</template>
 							</template>
-							<template v-if="authinfo.type === '个人' && authinfo.status !='未认证'"  >
+							<template v-if="authinfo.type === '个人' && authinfo.status !='未认证' && authinfo.status !='认证失败' "  >
 								<li>真实姓名：{{authinfo.name}}</li>
 								<li>证件类型：
 									<span class="padding-right-10" v-if="authinfo.idType ==='0'">身份证</span>

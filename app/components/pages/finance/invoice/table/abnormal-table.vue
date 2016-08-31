@@ -32,6 +32,7 @@
 					<th>开票金额</th>
 					<th>发票类型</th>
 					<th>发票抬头</th>
+					<th>异常原因</th>
 					<th>收件人</th>
 					<th class="text-align-c">操作</th>
 				</tr>
@@ -45,6 +46,7 @@
 					<td v-if='message.type==2'>企业增值税普通发票</td>
 					<td v-if='message.type==3'>企业增值税专用发票</td>
 					<td>{{message.title}}</td>
+					<td>{{message.reason}}</td>
 					<td>{{message.receivePeople}}</td>
 					<td class="text-align-c">
 						<a v-link="'/admin/finance/invoice/detail/'+message.id" >查看详情</a>
