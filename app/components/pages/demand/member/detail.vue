@@ -257,9 +257,9 @@
 						return
 					}
 				    self.showMsg({content: '审核通过', type: 'success'})
-					self.$route.router.go({path:'/admin/demand/member/list/await'})
-			
-					
+				    setTimeout(function(){
+						self.$route.router.go({path:'/admin/demand/member/list/await'})
+					},3000)
 					
 		        })
 			},
@@ -286,7 +286,10 @@
 					}
 					self.showModal = false
 				    self.showMsg({content: '审核不通过', type: 'success'})
-					self.$route.router.go({path:'/admin/demand/member/list/await'})	
+				    setTimeout(function(){
+						self.$route.router.go({path:'/admin/demand/member/list/await'})	
+					},3000)
+					
 		        })
 			},
 			detail(){
