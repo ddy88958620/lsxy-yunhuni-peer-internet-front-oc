@@ -135,7 +135,7 @@
 </template>
 
 <script>
-  import {getTenantBilling,getTenantCert} from '../../../../../vuex/actions.js'
+  import {getTenantBilling,getTenantCert,showMsg} from '../../../../../vuex/actions.js'
   export default{
     vuex: {
       getters: {
@@ -144,7 +144,8 @@
       },
       actions: {
         getTenantBilling,
-        getTenantCert
+        getTenantCert,
+        showMsg
       }
     },
     components:{
@@ -225,9 +226,17 @@
         let self = this;
         if(this.recharge.amount>0 && this.recharge.amount<1000000){
           $.put('/tenant/tenants/'+this.$route.params.uid+'/recharge',this.recharge).then((res) => {
+
+            if(res.success === 'false'){
+              self.showMsg({content: res.errorMsg, type: 'danger'})
+              return
+            }
+        
             if(res.data){
               self.recharge.amount = 0
               self.recharge.showModal = false
+              //充值成功提示
+              self.showMsg({content: '充值成功', type: 'success'})
               self.getTenantBilling({id:self.$route.params.uid})
             }
           })
