@@ -1,6 +1,4 @@
 cd /opt/yunhuni-peer-internet-front-oc
-git reset HEAD --hard
-git pull orgin develop
-npm run clean
+git pull
+npm install
 npm run build
-cp -rf ./app/mock ./static
