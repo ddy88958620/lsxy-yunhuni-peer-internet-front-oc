@@ -149,7 +149,7 @@
 		<div slot="body" class="flex flex-1 flex-direction-column">
 			<div class="flex flex-direction-column admin-table-header">
 				<div class="flex align-items-c">
-					<span class='datetime-picker-label clear-padding-left'>提交时间:</span>
+					
 					{{ detail.start | month }}  
 					<span class='datetime-picker-label'>至</span>
 					{{ detail.end | month}} 
@@ -160,10 +160,9 @@
 					消费总金额：<span class="brown">{{invoice.sum!==0 ? invoice.sum :  '' }}</span>元 共<span class="text-danger">{{invoice.list.totalCount }}</span>条
 				</div>
 
-				<div class="flex modal-table" >
-					
+				<div class="flex">
 					<table class="table remove-margin-bottom remove-border">
-						<thead>
+					<thead>
 						<tr>
 							<th colspan="3">
 								<div class="flex flex-1 flex-direction-row">
@@ -173,13 +172,19 @@
 									<div class="flex title-type justify-content-c">
 										消费金额
 									</div>
-									<div class="flex flex-1 justify-content-e">
+									<div class="flex flex-1 justify-content-e padding-right-10">
 										操作
 									</div>
 								</div>
 							</th>
 						</tr>
 						</thead>
+					</table>
+				</div>
+
+				<div class="flex modal-table" >
+					
+					<table class="table remove-margin-bottom remove-border">
 						<tbody>
 						<tr v-for='message in invoiceList'  >
 							
@@ -348,6 +353,9 @@
 				expressNo:'',
 				reason:'',
 				messages: [],
+				invoice:{
+					list: { totalCount :0}
+				},
 				invoiceList:[],
 				invoiceDetail:[],
 			}
