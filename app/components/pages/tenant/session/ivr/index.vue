@@ -71,12 +71,11 @@
       }
     },
     route: {
-
-    },
-    ready(){
-      this.query()
+      data(){
+            this.query()
+      }
     }
-
+    
   }
 
 </script>

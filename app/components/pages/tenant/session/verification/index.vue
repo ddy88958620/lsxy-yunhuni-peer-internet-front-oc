@@ -67,10 +67,12 @@
       }
     },
     route: {
-
+      data(){
+        this.query()
+      }
     },
     ready(){
-      this.query()
+      
     }
 
   }
