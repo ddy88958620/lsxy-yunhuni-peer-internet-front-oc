@@ -11,7 +11,7 @@
 		</header>
 		<main class="flex whilebg middle-font-color  flex-direction-column main-box ">
 			<div class="flex justify-content-c align-items-c">
-				<div class="hr-title flex middle-font-size middle-font-color">本月指标</div>
+				<div class="hr-title flex middle-font-size middle-font-color">上月指标</div>
 			</div>
 			<div class="flex flex-1 justify-content-c align-items-c ">
 				<div class="flex flex-1 flex-direction-column align-items-c append-solid ">
