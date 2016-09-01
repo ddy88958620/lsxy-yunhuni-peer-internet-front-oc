@@ -248,7 +248,7 @@
 			moreMessage: function(){
 			},
 			hideDetailModal(){
-				this.hideDetailModal = false
+				this.showDetailModal = false
 			},
 			showDetail:function(index,time){
 				
