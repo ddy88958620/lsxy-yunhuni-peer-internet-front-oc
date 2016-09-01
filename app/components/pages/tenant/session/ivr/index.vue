@@ -63,7 +63,7 @@
             self.sessionTotal =res.data.total
             self.session = res.data.page
             if(more)
-              self.sessionList = self.serviceList.concat(res.data.page.result)
+              self.sessionList = self.sessionList.concat(res.data.page.result)
             else
               self.sessionList = res.data.page.result
           }
