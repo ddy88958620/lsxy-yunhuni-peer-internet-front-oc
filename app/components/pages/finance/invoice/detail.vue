@@ -149,7 +149,7 @@
 					{{ detail.end | month}} 
 				</div>
 			</div>
-			<div class="admin-table table-responsive flex-1 flex flex-direction-column">
+			<div class="admin-table flex-1 flex flex-direction-column">
 				<div class="table-total flex flex-1 justify-content-e">
 					消费总金额：<span class="brown">{{invoice.sum!==0 ? invoice.sum :  '' }}</span>元 共<span class="text-danger">{{invoice.list.totalCount }}</span>条
 				</div>
@@ -215,7 +215,6 @@
 												<span class="width-50">79.84</span>
 											</div>
 										</div>
-	
 
 										
 									</div>
@@ -320,12 +319,12 @@
 				$.get('/finance/invoice/detail/list/'+this.$route.params.id,params).then((res)=>{
 					console.log(res)
 					if(res){
-			            self.invoice = res.data
-			            if(more)
-			              self.invoiceList = self.invoiceList.concat(res.data.list.result)
-			            else
-			              self.invoiceList = res.data.list.result
-			        }
+            self.invoice = res.data
+            if(more)
+              self.invoiceList = self.invoiceList.concat(res.data.list.result)
+            else
+              self.invoiceList = res.data.list.result
+			    }
 				})
 			}
 		},
@@ -348,9 +347,7 @@
 			}
 		},
 		ready(){
-
 			/**测试**/
-			
 		     let self = this
  			 $.get('/demand/member/detail/8a2bc5f656c1194c0156c46efb19000b',{type:0}).then((res)=>{
  			 	console.log(res)
@@ -363,11 +360,7 @@
 					arr.push(false)
 			})
 			this.show = arr
-
-
 			console.log(this.messages)
-
-
 
 			let params = {}
 			params.id = this.$route.params.id
@@ -375,12 +368,8 @@
 			//详情
 			this.getInvoiceDetail(params)
 			//消费记录
-			this.query()
-
-			
-
-			
-		
+			this.query()	
+	
 		}
 	}
 </script>
