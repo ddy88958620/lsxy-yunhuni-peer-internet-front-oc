@@ -13,7 +13,7 @@
         <div class="admin-form flex flex-direction-row align-items-s">
           <label for="content">正文:</label>
           <div class="flex">
-              <textarea v-model='content' id="editor" placeholder="Balabala" autofocus></textarea>
+              <textarea v-model='content' id="editor" placeholder="请输入消息内容" autofocus></textarea>
           </div>
         </div>
         <div class="admin-form flex flex-direction-row align-items-s">
