@@ -3,12 +3,12 @@
 
 	<div class="flex flex-1 bg-section-margin ">
 		<div class="admin-toolbar flex normal-font-size small-font-color cursor" >
-			<span type="button" class="toolbar first-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/call/call'" >语音呼叫{{selectedApp}}</span>
+			<span type="button" class="toolbar first-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/call/call'" >语音呼叫</span>
 			<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/callback/callback'" >语音回拨</span>
-			<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/meeting/meeting'" >会话服务</span>
+			<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/meeting/meeting'" >语音会议</span>
 			<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/verification/verification'" >语音验证码</span>
-			<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/record/record'">录音服务</span>
-			<span type="button" class="toolbar remove-border-right last-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/ivr/ivr'" >IVR定制服务</span>
+			<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/record/record'">通话录音</span>
+			<span type="button" class="toolbar remove-border-right last-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/ivr/ivr'" >自定义IVR</span>
 		</div>
 	</div>
 
