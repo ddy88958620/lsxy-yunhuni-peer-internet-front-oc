@@ -292,6 +292,7 @@
 						self.$route.router.go({path:'/admin/finance/delivery/list/send'})
 					},3000)
 
+
 		        })
 			},
 			unsend(){
