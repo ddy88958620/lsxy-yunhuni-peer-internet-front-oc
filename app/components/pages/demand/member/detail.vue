@@ -101,7 +101,7 @@
 		<div class="panel panel-default flex-1" v-if="messages.list.length!==0 && messages.list[0].status!=0 ">
 			<div class="panel-heading">历史认证信息</div>
 			<div class="panel-body  admin-bg flex-1">
-				<div class="admin-table table-responsive remove-border">
+				<div class="admin-table  remove-border">
 					<table class="table remove-margin-bottom remove-border">
 						<thead>
 						<tr>
@@ -155,7 +155,7 @@
 										<li >证件号码: {{message.idNumber}}</li>
 										<li class="flex  flex-direction-row ">
 											<span class=" padding-right-10">持证照片: </span>
-											<img :src="message.idPhoto | img" class="padding-right-10" width="400" height="100%"  data-action="zoom" >
+											<img :src="message.idPhoto | img" class="padding-right-10" height="200"  data-action="zoom" >
 										</li>
 									</ul>
 									<ul class="list-none-style" v-if="message.status==-2 || message.status==2" >
@@ -172,14 +172,14 @@
 										<li v-if="message.authType==0">统一社会信用代码：{{message.type01Prop02 }}</li>
 										<li class="flex  flex-direction-row " v-if="message.authType==0">
 											<span class=" padding-right-10">营业执照: </span>
-											<img :src="message.type01Prop01 | img" class="padding-right-10" width="400" height="100%"  data-action="zoom" >
+											<img :src="message.type01Prop01 | img" class="padding-right-10" height="200" data-action="zoom" >
 										</li>
 
 										<li v-if="message.authType==1">注册号:{{message.type02Prop01}} </li>
 										<li v-if="message.authType==1">税务登记号:{{message.type02Prop02}} </li>
 										<li class="flex  flex-direction-row " v-if="message.authType==1">
 											<span class=" padding-right-10">营业执照: </span>
-											<img :src="message.type02Prop03 | img" class="padding-right-10" width="400" height="100%"  data-action="zoom" >
+											<img :src="message.type02Prop03 | img" class="padding-right-10" height="200"  data-action="zoom" >
 										</li>
 										
 
@@ -187,12 +187,12 @@
 
 										<li class="flex  flex-direction-row " v-if="message.authType==2">
 											<span class=" padding-right-10">税务登记证: </span>
-											<img :src="message.type03Prop02 | img" class="padding-right-10" width="400" height="100%"  data-action="zoom" >
+											<img :src="message.type03Prop02 | img" class="padding-right-10" height="200"  data-action="zoom" >
 										</li>
 										<li v-if="message.authType==2">营业执照号:{{message.type03Prop03}} </li>
 										<li class="flex  flex-direction-row " v-if="message.authType==2">
 											<span class=" padding-right-10">营业执照: </span>
-											<img :src="message.type03Prop04 | img" class="padding-right-10" width="400" height="100%"  data-action="zoom" >
+											<img :src="message.type03Prop04 | img" class="padding-right-10" height="200"  data-action="zoom" >
 										</li>
 									</ul>
 								</div>
