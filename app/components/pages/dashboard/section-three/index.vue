@@ -5,14 +5,19 @@
        
           <div>
             <span class='iconfont icon-oc-mobile'></span>
-            <span class='admin-font-color ranknumber'>{{duration.duration_day}}</span>
+            <span class='admin-font-color ranknumber'>{{duration.dto.duration_day}}</span>
           </div>
           <ul class="list-none-style">
             <li class='title'>昨日话务量 ( 分钟 )</li>
 
-             <li>日 <i class="iconfont icon-oc-up small {{ duration.month_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{duration.day_rate}}%</span></li>
-            <li>周 <i class="iconfont icon-oc-up small {{ duration.month_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}} "></i><span class='text-danger'>{{duration.week_rate}}%</span></li>
-            <li>月 <i class="iconfont small {{ duration.month_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{duration.month_rate}}%</span></li>
+             <li v-if="duration.dto1.rateOfDay===true" >日<i class="iconfont icon-oc-up small {{ duration.dto.day_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{duration.dto.day_rate}}%</span></li>
+             <li v-else>日 --</li>
+
+             <li v-if="duration.dto1.rateOfWeek===true" >周<i class="iconfont icon-oc-up small {{ duration.dto.week_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{duration.dto.week_rate}}%</span></li>
+             <li v-else>周 --</li>
+
+             <li v-if="duration.dto1.rateOfMonth===true" >月<i class="iconfont icon-oc-up small {{ duration.dto.month_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{duration.dto.month_rate}}%</span></li>
+             <li v-else>y月 --</li>
 
               
           </ul>
@@ -25,10 +30,12 @@
           </div>
           <ul class="list-none-style">
             <li class='title'>昨日消费额 ( 元 )</li>
-            <li>日 <i class="iconfont small {{ comsume.consume_day >= 0 ? 'icon-oc-up' : 'icon-oc-down'}} "></i><span class='text-danger'>{{comsume.consume_day}}%</span></li>
-            <li>周 <i class="iconfont {{ comsume.consume_day >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}  small"></i><span class='text-danger'>{{comsume.week_rate}}%</span></li>
-            <li>月 <i class="iconfont {{ comsume.consume_day >= 0 ? 'icon-oc-up' : 'icon-oc-down'}} small"></i><span class='text-danger'>{{comsume.month_rate}}%</span></li>
-     
+            <li v-if="comsume.dto1.rateOfDay===true" >日<i class="iconfont icon-oc-up small {{ comsume.dto.day_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{comsume.dto.day_rate}}%</span></li>
+            <li v-else>日 --</li>
+            <li v-if="comsume.dto1.rateOfWeek===true" >周<i class="iconfont icon-oc-up small {{ comsume.dto.week_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{comsume.dto.week_rate}}%</span></li>
+            <li v-else>周 --</li>
+            <li v-if="comsume.dto1.rateOfMonth===true" >月<i class="iconfont icon-oc-up small {{ comsume.dto.month_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{comsume.dto.month_rate}}%</span></li>
+            <li v-else>月 --</li>
           </ul>
         </div>
      </div>
