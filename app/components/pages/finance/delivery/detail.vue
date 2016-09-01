@@ -4,7 +4,7 @@
 		<div class="admin-panel flex-1">
 			<div class="panel-heading flex flex-1 ">
 				<span class="flex flex-1">开票信息</span>
-				<a class="flex" @click="showModal = true">消费详情</a>
+				<a class="flex" @click="showDetailModal = true">消费详情</a>
 			</div>
 			<div class="panel-body">
 				<ul class="list-none-style">
@@ -142,9 +142,90 @@
 		</div>
 
 	</modal>
+
+
+		<!--消费统计 发票版本-->
+	<modal :show.sync="showDetailModal" title='消费详情' :action="hideDetailModal" >
+		<div slot="body" class="flex flex-1 flex-direction-column">
+			<div class="flex flex-direction-column admin-table-header">
+				<div class="flex align-items-c">
+					<span class='datetime-picker-label clear-padding-left'>提交时间:</span>
+					{{ detail.start | month }}  
+					<span class='datetime-picker-label'>至</span>
+					{{ detail.end | month}} 
+				</div>
+			</div>
+			<div class="admin-table flex-1 flex flex-direction-column">
+				<div class="table-total flex flex-1 justify-content-e">
+					消费总金额：<span class="brown">{{invoice.sum!==0 ? invoice.sum :  '' }}</span>元 共<span class="text-danger">{{invoice.list.totalCount }}</span>条
+				</div>
+
+				<div class="flex modal-table" >
+					
+					<table class="table remove-margin-bottom remove-border">
+						<thead>
+						<tr>
+							<th colspan="3">
+								<div class="flex flex-1 flex-direction-row">
+									<div class="flex title-time justify-content-c">
+										消费时间
+									</div>
+									<div class="flex title-type justify-content-c">
+										消费金额
+									</div>
+									<div class="flex flex-1 justify-content-e">
+										操作
+									</div>
+								</div>
+							</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr v-for='message in invoiceList'  >
+							
+							<td colspan="3">
+								<div class="flex flex-1 flex-direction-row">
+									<div class="flex title-time justify-content-c">
+										{{message.dt | date }}
+									</div>
+									<div class="flex title-type justify-content-c">
+										{{message.amongAmount}}
+									</div>
+									<div class="flex flex-1 justify-content-e ">
+										<div class="flex"><span @click="showDetail($index,message.dt)" class="cursor"><i class="icon iconfont icon-oc-dropdown"></i></span></div>
+									</div>
+								</div>
+								<div class="flex flex-1 table-detail" v-show="show[$index]">
+									<div class="flex flex-1 flex-wrap " >
+
+										<div class="codedetail width-50" v-for="detail in invoiceDetail[$index]" >
+											<div class="flex ">
+												<span class="width-50">{{detail.type}}</span>
+												<span class="width-50">{{detail.amongAmount}}</span>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="more">
+					<a v-show='invoice.list.totalPageCount==invoice.list.currentPageNo || invoice.list.totalPageCount==0'>加载完毕</a>
+					<a @click="query('more')" class="text-none" v-show='invoice.list.totalPageCount!=invoice.list.currentPageNo && invoice.list.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+				</div>	
+				
+			</div>
+		</div>
+
+	</modal>
+
+
 </template>
 <script>
-
+	import DATE from '../../../../utils/date'
 	import {getInvoiceDetail,showMsg} from '../../../../vuex/actions.js'
 	export default {
 		vuex:{
@@ -165,6 +246,28 @@
 				this.show.$set(index, !this.show[index])
 			},
 			moreMessage: function(){
+			},
+			hideDetailModal(){
+				this.hideDetailModal = false
+			},
+			showDetail:function(index,time){
+				
+				//获取当日数据
+				let self = this 
+				let id = self.$route.params.id
+				let params = {}
+
+
+				params.id = id
+				params.time = DATE.date(time)
+				//GET /finance/invoice/detail/list/{id}/detail
+				$.get('/finance/invoice/detail/list/'+id+'/detail',params).then((res) => {
+					 if(res.data.length>0){
+					 		self.invoiceDetail.$set(index, res.data)
+					 }
+				})
+
+				this.show.$set(index, !this.show[index])
 			},
 			send(){
 		       	let params = {}
@@ -239,10 +342,13 @@
 				showModal: false,
 				passModal: false,
 				abnormalModal: false,
+				showDetailModal: false,
 				expressCom:'',
 				expressNo:'',
 				reason:'',
-				messages: []
+				messages: [],
+				invoiceList:[],
+				invoiceDetail:[],
 			}
 		},
 		ready(){
@@ -275,5 +381,26 @@
 		height: 400px;
 		overflow-y: scroll;
 		margin-bottom: 10px;
+	}
+	.title-time{
+		width: 150px;
+	}
+
+	.title-type{
+		width: 250px;
+	}
+
+	.table-detail{
+		border-top:1px dashed #c5c5c5;
+		padding: 10px 0;
+	}
+
+	.width-50{
+		width: 50%;
+	}
+
+	.codedetail{
+
+		padding:  3px 0;
 	}
 </style>

@@ -27,7 +27,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="text-align-c" >会议服务</td>
+					<td class="text-align-c" >语音会议</td>
 					<td>{{ switchs.isSessionService ===0 ? '关闭' : '开启'}}</td>
 					<td class="text-align-c">
 						<a @click="edit('isSessionService')">{{ switchs.isSessionService ? '关闭' : '开启'}}</a>
@@ -41,14 +41,14 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="text-align-c" >录音服务</td>
+					<td class="text-align-c" >通话录音</td>
 					<td>{{ switchs.isVoiceValidate ===0 ? '关闭' : '开启'}}</td>
 					<td class="text-align-c">
 						<a @click="edit('isVoiceValidate')">{{ switchs.isVoiceValidate ? '关闭' : '开启'}}</a>
 					</td>
 				</tr>
 				<tr>
-					<td class="text-align-c" >IVR定制服务</td>
+					<td class="text-align-c" >自定义IVR</td>
 					<td>{{ switchs.isIvrService ===0 ? '关闭' : '开启'}}</td>
 					<td class="text-align-c">
 						<a @click="edit('isIvrService')">{{ switchs.isIvrService ? '关闭' : '开启'}}</a>
