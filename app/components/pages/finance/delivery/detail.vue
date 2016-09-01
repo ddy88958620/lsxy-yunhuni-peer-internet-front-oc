@@ -277,7 +277,7 @@
 				params.expressCom = this.expressCom
 				params.expressNo = this.expressNo
 				params.status =1
- 				$.put('/finance/invoice/edit/send'+id,params).then((res)=>{
+ 				$.put('/finance/invoice/edit/send/'+id,params).then((res)=>{
 		           	this.abnormalModal = false
 					if( res.success === false){
 						this.showMsg({content: res.errorMsg, type: 'danger'})

@@ -4,7 +4,7 @@
       <div class="table-total flex flex-1 justify-content-e">
         
 
-        总消费金额: <span class="brown">{{sessionTotal}}</span>元&nbsp;&nbsp;存储容量:<span class="brown">{{sessionSize ? sessionSize : '0.00' }}</span>M &nbsp;&nbsp;共<span class="text-danger">{{session.totalCount ? session.totalCount : 0 }}</span>条
+        总消费金额: <span class="brown">{{sessionTotal}}</span>元&nbsp;&nbsp;存储容量:<span class="brown">{{sessionSize ? sessionSize | fileSize : '0.0M' }}</span> &nbsp;&nbsp;共<span class="text-danger">{{session.totalCount ? session.totalCount : 0 }}</span>条
       </div>
       <table class="table">
         <thead>
@@ -23,7 +23,7 @@
           <td >{{message.fromNum}}</td>
           <td >{{message.toNum}}</td>
           <td >{{message.callTimeLong}}</td>
-          <td ></td>
+          <td >{{message.recordSize ? message.recordSize | fileSize : ''}}</td>
           <td>{{ message.cost }}</td>
         </tr>
         </tbody>
@@ -64,6 +64,7 @@
           console.log(res)
           if(res.data.page.totalCount>0){
             self.sessionTotal =res.data.total
+          
             self.sessionSize = res.data.size
             self.session = res.data.page
             if(more)
