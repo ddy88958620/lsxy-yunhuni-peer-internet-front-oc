@@ -338,7 +338,7 @@
 				showModal: false,
 				passModal: false,
 				abnormalModal: false,
-				showDetailModal: false,
+				showDetailModal: true,
 				reason:'',
 				invoice:{
 					list: { totalCount :0}
