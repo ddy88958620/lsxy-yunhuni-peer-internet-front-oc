@@ -71,13 +71,13 @@
             else
               self.sessionList = res.data.page.result
           }
-
-       
         })
       }
     },
     route: {
-
+       data(){
+        this.query()
+      }
     },
     ready(){
       this.query()
