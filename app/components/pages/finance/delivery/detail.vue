@@ -275,15 +275,17 @@
 				this.show.$set(index, !this.show[index])
 			},
 			send(){
-		       	let params = {}
-		       	let self = this
+				if (!this.check()) return
+
+       	let params = {}
+       	let self = this
 				 //确认寄出
-				let id = this.$route.params.id
-				params.expressCom = this.expressCom
-				params.expressNo = this.expressNo
+				let id = self.$route.params.id
+				params.expressCom = self.expressCom
+				params.expressNo = self.expressNo
 				params.status =1
  				$.put('/finance/invoice/edit/send/'+id,params).then((res)=>{
-		           	this.abnormalModal = false
+		           	self.abnormalModal = false
 					if( res.success === false){
 						this.showMsg({content: res.errorMsg, type: 'danger'})
 						return
@@ -300,6 +302,22 @@
 
 		        })
 			},
+			check(){
+				  // 验证消息
+      		
+		      // 标题不能为空
+		      if(this.expressCom === ''){
+		        this.showMsg({content: '快递公司不能为空', type: 'danger'})
+		        return false
+		      }
+		     
+		      // 时间不能为空
+		      if(this.expressNo === ''){
+		        this.showMsg({content: '快递单号不能为空', type: 'danger'})
+		        return false
+		      }
+		      return true
+    	},
 			unsend(){
 				let params = {}
 				let self = this
