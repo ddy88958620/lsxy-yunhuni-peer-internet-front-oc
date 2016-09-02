@@ -26,7 +26,7 @@
           
           <div>
             <span class='iconfont icon-oc-wallet'></span>
-            <span class='admin-font-color ranknumber'>{{duration.dto.consume_day >0 ? duration.dto.consume_day.toFixed(2) : '0.00' }}</span>
+            <span class='admin-font-color ranknumber'>{{comsume.dto.consume_day >0 ? comsume.dto.consume_day.toFixed(2) : '0.00' }}</span>
           </div>
           <ul class="list-none-style">
             <li class='title'>昨日消费额 ( 元 )</li>
