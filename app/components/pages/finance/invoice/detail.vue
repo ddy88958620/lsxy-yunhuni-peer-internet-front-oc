@@ -33,7 +33,7 @@
 					<li>发票抬头：{{ detail.title }}</li>
 					<li>纳税人识别号: {{detail.taxpayerNum}}</li>
 					<li>银行账户：{{detail.bankAccount}}</li>
-					<li>开户行：{{ detail.taxpayerNum}}</li>
+					<li>开户行：{{ detail.bank}}</li>
 					<li>注册地址：{{detail.regAddress}}</li>
 					<li>企业电话：{{detail.phone}}</li>
 					<li class="flex  flex-direction-row " >
