@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import VueValidator from 'vue-validator'
-// import NProgress from 'nprogress'
+import NProgress from 'nprogress'
 
 
 import {sync} from 'vuex-router-sync'
@@ -24,14 +24,14 @@ const router = new VueRouter({
 })
 
 
-// router.beforeEach(({ next }) => {
-//   NProgress.start()
-//   next()
-// })
-//
-// router.afterEach(() => {
-//   NProgress.done()
-// })
+router.beforeEach(({ next }) => {
+  NProgress.start()
+  next()
+})
+
+router.afterEach(() => {
+  NProgress.done()
+})
 
 
 // test

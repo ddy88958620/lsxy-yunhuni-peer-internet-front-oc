@@ -18,11 +18,25 @@ import {
 
 const state = {
   invoicelist: {
-    pending: {},
-    passed: {},
-    abnormal: {}
+    pending: {
+     totalCount:0,
+     totalPageCount:0,
+     result:[]
+    },
+    passed: {
+     totalCount:0,
+     totalPageCount:0,
+     result:[]
+    },
+    abnormal: {
+     totalCount:0,
+     totalPageCount:0,
+     result:[]
+    }
   },
-  invoice:{},
+  invoice:{
+
+  },
   deliverylist: {
     unsend: {},
     send: {}
