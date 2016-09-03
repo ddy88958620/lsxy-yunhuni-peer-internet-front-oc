@@ -78,8 +78,14 @@
   </div>
 </template>
 <script>
-
+  import {showMsg} from '../../../vuex/actions'
+ 
   export default {
+    vuex:{
+      actions:{
+        showMsg
+      }
+    },
     components: {
       'datetime-picker': require('../../ui/datetimepicker.vue'),
       'search': require('../../ui/search-input.vue')
@@ -105,9 +111,6 @@
     },
     methods: {
       query(init){
-
-        console.log(init)
-
         let self = this
         let pageNo = (init && 1) || self.page.query.pageNo + 1
         let params = $.extend(true, {}, self.page.query);
@@ -117,6 +120,11 @@
           self.tenants = [];
         }
         $.get('/tenant/tenants', params).then((res)=> {
+          if(res.success===false){
+            showMsg({dispatch}, {type:'danger', content: (res && res.errorMsg) || '未知错误'})
+            return
+          }
+
           self.page.loading = false
           if (res.data && res.data.result) {
             if (init) {

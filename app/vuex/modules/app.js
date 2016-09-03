@@ -12,16 +12,30 @@ const state = {
     total: 0
   },
   duration: {
-    duration_day : 0,
-    day_rate : 0,
-    week_rate : 0,
-    month_rate : 0
+    dto1:{
+      rateOfDay: false,
+      rateOfWeek: false,
+      rateOfMonth: false,
+    },
+    dto:{
+      duration_day : 0,
+      day_rate : 0,
+      week_rate : 0,
+      month_rate : 0
+    }
   },
   comsume: {
-    consume_day : 0,
-    day_rate : 0,
-    week_rate : 0,
-    month_rate : 0
+    dto1:{
+      rateOfDay: false,
+      rateOfWeek: false,
+      rateOfMonth: false,
+    },
+    dto:{
+      consume_day : 0,
+      day_rate : 0,
+      week_rate : 0,
+      month_rate : 0
+    }
   },
   statistic :{
     memberapp: {
