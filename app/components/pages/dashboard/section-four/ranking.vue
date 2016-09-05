@@ -76,13 +76,13 @@
           {
             title:'按话务周增量排名',
             color: 'purple',
-            icon: 'icon-oc-msg-small',
+            icon: 'icon-oc-mobile',
             unit: '(分钟)'
           },
           {
             title:'按会话周增量排名',
             color: 'pink',
-            icon: 'icon-oc-mobile',
+            icon: 'icon-oc-msg-small',
             unit: '(次)'
           }
         ]
