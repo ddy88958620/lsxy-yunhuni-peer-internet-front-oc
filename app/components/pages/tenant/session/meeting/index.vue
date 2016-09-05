@@ -56,7 +56,7 @@
         //1.语音呼叫2.双向回拨3.会议服务4.IVR定制服务5.语音验证码6.录音服务
         
         let uid = this.$route.params.uid
-        let type = 'conf_call'
+        let type = 'sys_conf'
         let appId = this.$route.params.aid
         let time = this.$route.params.day
         let params = {type:type,appId:appId,time:time}
