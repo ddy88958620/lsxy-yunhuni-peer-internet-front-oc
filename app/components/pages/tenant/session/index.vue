@@ -3,7 +3,7 @@
 
 	<div class="flex flex-1 bg-section-margin ">
 		<div class="admin-toolbar flex normal-font-size small-font-color cursor" >
-			<span type="button" class="toolbar first-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/call/call'" >语音呼叫</span>
+			<span type="button" class="toolbar first-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/call/call'" >语音通知</span>
 			<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/callback/callback'" >语音回拨</span>
 			<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/meeting/meeting'" >语音会议</span>
 			<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/'+this.seletedApp+'/'+this.startdate.value+'/verification/verification'" >语音验证码</span>
