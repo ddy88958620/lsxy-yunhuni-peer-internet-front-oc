@@ -17,7 +17,30 @@ const state = {
   detail:{
     bill:{},
     cert:{},
-    indicant:{}
+    indicant:{
+      dto1: {
+        sessionCountRate: false,
+        rechargeCoinRate: false,
+        avgSessionTimeRate: false,
+        costCoin: false,
+        connectedRateRate: false,
+        sessionTimeRate: false
+      },
+      dto: {
+        cost_coin: 0,
+        recharge_coin: 0,
+        session_count: 0,
+        session_time: 0,
+        age_session_time: 0,
+        connected_rate: 0,
+        cost_coin_rate: 0,
+        recharge_coin_rate: 0,
+        session_count_rate: 0,
+        session_time_rate: 0,
+        age_session_time_rate: 0,
+        connected_rate_rate: 0,
+      }
+    }
   },
   base:{
     info:{},
