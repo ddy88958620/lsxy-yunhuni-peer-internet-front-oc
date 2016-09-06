@@ -13,7 +13,7 @@
 				</thead>
 				<tbody>
 				<tr>
-					<td class="text-align-c" >语音呼叫</td>
+					<td class="text-align-c" >语音通知</td>
 					<td>{{ switchs.isVoiceDirectly === 0 ? '关闭' : '开启'}}</td>
 					<td class="text-align-c">
 						<a @click="edit('isVoiceDirectly')">{{ switchs.isVoiceDirectly ? '关闭' : '开启'}}</a>
