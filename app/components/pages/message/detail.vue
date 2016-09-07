@@ -12,7 +12,7 @@
 			</div>
 			<div class="admin-form flex flex-direction-row align-items-s">
 				<label for="content" class="lable flex">正文:</label>
-				<div class="" id="cont">
+				<div class="defulatfont" id="cont">
 				</div>
 			</div>
 
@@ -71,9 +71,10 @@
 	}
 </script>
 <style lang="sass" >
-	@import '~simditor/styles/simditor.css';
-	
-	.label {
+	.defulatfont{
+		font-size: 16px;
+	}
+	.label {	
 		width: 50px;
 		margin-bottom: 0px;
 	}
