@@ -12,7 +12,7 @@
 			</div>
 			<div class="admin-form flex flex-direction-row align-items-s">
 				<label for="content" class="lable flex">正文:</label>
-				<div class="flex-1 flex" id="cont">
+				<div class="" id="cont">
 				</div>
 			</div>
 
