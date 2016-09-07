@@ -102,7 +102,8 @@
 				console.log(res.data)
 				
 				self.editor = new Simditor({
-					textarea: $('#editor')
+					textarea: $('#editor'),
+					toolbar:['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'],
 				});
 				
 				self.status = res.data.status
