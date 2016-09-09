@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "scripts": {
     "start": "cross-env NODE_ENV=production ./node_modules/.bin/nodemon bin/run",
-    "dev": "./node_modules/.bin/nodemon bin/run",
+    "dev": "cross-env NODE_ENV=develop ./node_modules/.bin/nodemon bin/run",
+    "test": "cross-env NODE_ENV=test ./node_modules/.bin/nodemon bin/run",
     "doc": "node ./doc/getDoc.js",
     "koa": "./node_modules/.bin/runkoa bin/www",
-    "pm2": "pm2 start bin/run ",
-    "test": "./node_modules/.bin/mocha -u bdd"
+    "pm2": "pm2 start bin/run "
   },
   "dependencies": {
     "co": "^4.6.0",
