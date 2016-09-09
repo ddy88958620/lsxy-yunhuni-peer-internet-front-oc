@@ -3,10 +3,10 @@ const env = process.env.NODE_ENV
 if(env === 'production') {
   // 生产
 	module.exports = {
-		COOKIEDOAIM: 'oc.dev.yunhuni.com',
+		COOKIEDOAIM: 'oc.yunhuni.cn',
 		COOKIENAME: 'YUNHUNISESSIONID',
-		JAVAAPI: 'http://10.171.69.136:18082',
-		REDISHOST: '10.162.199.238',
+		JAVAAPI: 'http://rest.portal.internal.yunhuni.cn',
+		REDISHOST: '10.163.3.165',
 		REDISPORT: 6379
 	}
 }
