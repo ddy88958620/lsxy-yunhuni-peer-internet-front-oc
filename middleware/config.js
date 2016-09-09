@@ -7,7 +7,7 @@ if(env === 'production') {
 	module.exports = {
 		COOKIEDOAIM: 'oc.yunhuni.cn',
 		COOKIENAME: 'YUNHUNISESSIONID',
-		JAVAAPI: 'http://rest.portal.internal.yunhuni.cn',
+		JAVAAPI: 'http://rest.oc.internal.yunhuni.cn',
 		REDISHOST: '10.163.3.165',
 		REDISPORT: 6379
 	}
@@ -17,7 +17,7 @@ else if (env === 'test') {
 		// 测试
 		COOKIEDOAIM: 'oc.yunhuni.cn',
 		COOKIENAME: 'YUNHUNISESSIONID',
-		JAVAAPI: 'http://rest.portal.internal.yunhuni.cn',
+		JAVAAPI: 'http://rest.oc.internal.yunhuni.cn',
 		REDISHOST: '10.163.3.165',
 		REDISPORT: 6379
 	}
