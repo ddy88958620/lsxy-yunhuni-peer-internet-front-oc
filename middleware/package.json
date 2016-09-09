@@ -10,7 +10,6 @@
     "test": "./node_modules/.bin/mocha -u bdd"
   },
   "dependencies": {
-    "ccap": "^0.6.10",
     "co": "^4.6.0",
     "debug": "^2.2.0",
     "ioredis": "^2.3.0",
