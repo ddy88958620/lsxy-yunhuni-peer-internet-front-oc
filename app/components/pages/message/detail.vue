@@ -5,14 +5,14 @@
 		</div>
 		<div class="">
 			<div class="admin-form flex flex-direction-row align-items-c">
-				<label for="title">标题:</label>
-				<div class="">
+				<label for="title" class="lable flex">标题:</label>
+				<div class="flex-1">
 					{{title}}
 				</div>
 			</div>
 			<div class="admin-form flex flex-direction-row align-items-s">
-				<label for="content">正文:</label>
-				<div class="flex" id="cont">
+				<label for="content" class="lable flex">正文:</label>
+				<div class="defulatfont" id="cont">
 				</div>
 			</div>
 
@@ -70,9 +70,15 @@
 		}
 	}
 </script>
-<style lang="sass">
-	@import '~simditor/styles/simditor.css';
-	
+<style lang="sass" >
+	.defulatfont{
+		font-size: 16px;
+	}
+	.label {	
+		width: 50px;
+		margin-bottom: 0px;
+	}
+
 	.admin-form {
 		margin-top: 20px;
 		$input-width: 900px;

@@ -87,7 +87,10 @@
 		data(){
 			return {
 				messagesList: [],
-				messages: null,
+				messages: {
+					totalCount : 0,
+					totalPageCount : 0
+				},
 				startTime: '',
 				endTime: '',
 				type: 1,
@@ -123,7 +126,7 @@
 				let self = this
 				$.get('/message/list', params).then((res) => {
 					self.messages = res.data
-					console.log(res)
+					
 					if(type=='more')
 						self.messagesList = self.messagesList.concat(res.data.result)
 					else
@@ -161,7 +164,7 @@
 				let self = this
 
 				$.delete('/message/'+messageObj.id).then((res) => {
-					console.log(res)
+				
 					if( res.success === 'false'){
 						this.showMsg({content: res.errorMsg, type: 'danger'})
 						return

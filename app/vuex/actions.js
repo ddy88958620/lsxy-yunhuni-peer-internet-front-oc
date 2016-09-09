@@ -289,6 +289,10 @@ export const getMoreService = ({dispatch},params) =>{
 export const getInvoiceList = ({dispatch},params) =>{
   api.getInvoiceList(params).then(response=> {
     let invoice_list = response.json()
+    if(invoice_list.success===false){
+      showMsg({dispatch}, {type:'danger', content: (invoice_list && invoice_list.errorMsg) || '未知错误'})
+      return
+    }
     switch(params.status){
       case 'await':
         dispatch(types.INVOICE_PENDING_LIST,invoice_list.data)

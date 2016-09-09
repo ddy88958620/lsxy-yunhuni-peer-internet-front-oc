@@ -4,7 +4,7 @@
 		<div class="admin-panel flex-1">
 			<div class="panel-heading flex flex-1 ">
 				<span class="flex flex-1">开票信息</span>
-				<a class="flex" @click="showModal = true">消费详情</a>
+				<a class="flex" @click="showDetailModal = true">消费详情</a>
 			</div>
 			<div class="panel-body">
 				<ul class="list-none-style">
@@ -33,7 +33,7 @@
 					<li>发票抬头：{{ detail.title }}</li>
 					<li>纳税人识别号: {{detail.taxpayerNum}}</li>
 					<li>银行账户：{{detail.bankAccount}}</li>
-					<li>开户行：{{ detail.taxpayerNum}}</li>
+					<li>开户行：{{ detail.bank}}</li>
 					<li>注册地址：{{detail.regAddress}}</li>
 					<li>企业电话：{{detail.phone}}</li>
 					<li class="flex  flex-direction-row " >
@@ -133,6 +133,7 @@
 					<a @click="query('more')" class="text-none" v-show='invoice.list.totalPageCount!=invoice.list.currentPageNo && invoice.list.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
 				</div>	
 				
+
 			</div>
 		</div>
 	</modal>
@@ -143,7 +144,7 @@
 		<div slot="body" class="flex flex-1 flex-direction-column">
 			<div class="flex flex-direction-column admin-table-header">
 				<div class="flex align-items-c">
-					<span class='datetime-picker-label clear-padding-left'>提交时间:</span>
+				
 					{{ detail.start | month }}  
 					<span class='datetime-picker-label'>至</span>
 					{{ detail.end | month}} 
@@ -153,10 +154,9 @@
 				<div class="table-total flex flex-1 justify-content-e">
 					消费总金额：<span class="brown">{{invoice.sum!==0 ? invoice.sum :  '' }}</span>元 共<span class="text-danger">{{invoice.list.totalCount }}</span>条
 				</div>
-
-				<div class="flex modal-table" >
-										<table class="table remove-margin-bottom remove-border">
-						<thead>
+				<div class="flex">
+					<table class="table remove-margin-bottom remove-border">
+					<thead>
 						<tr>
 							<th colspan="3">
 								<div class="flex flex-1 flex-direction-row">
@@ -166,57 +166,43 @@
 									<div class="flex title-type justify-content-c">
 										消费金额
 									</div>
-									<div class="flex flex-1 justify-content-e">
+									<div class="flex flex-1 justify-content-e padding-right-10">
 										操作
 									</div>
 								</div>
 							</th>
 						</tr>
 						</thead>
+					</table>
+				</div>
+				<div class="flex modal-table" >
+					
+					<table class="table remove-margin-bottom remove-border">
 						<tbody>
-					<!-- 	date: '2016-06-06 16:00',
-						type: '个人认证',
-						result: '审核不通过',
-						reason: '（原因 ：上传的身份证照片不清晰）' -->
-						<tr v-for='message in messages.list'  >
+						<tr v-for='message in invoiceList'  >
 							
 							<td colspan="3">
 								<div class="flex flex-1 flex-direction-row">
 									<div class="flex title-time justify-content-c">
-										{{message.createTime | totalDate }}
+										{{message.dt | date }}
 									</div>
 									<div class="flex title-type justify-content-c">
-										{{message.amount}}
+										{{message.amongAmount}}
 									</div>
 									<div class="flex flex-1 justify-content-e ">
-										
-										<div class="flex"><span @click="showDetail($index)" class="cursor"><i class="icon iconfont icon-oc-dropdown"></i></span></div>
+										<div class="flex"><span @click="showDetail($index,message.dt)" class="cursor"><i class="icon iconfont icon-oc-dropdown"></i></span></div>
 									</div>
 								</div>
 								<div class="flex flex-1 table-detail" v-show="show[$index]">
 									<div class="flex flex-1 flex-wrap " >
-										<div class="codedetail width-50">
+
+										<div class="codedetail width-50" v-for="detail in invoiceDetail[$index]" >
 											<div class="flex ">
-												<span class="width-50">ivr语音： </span>
-												<span class="width-50">79.84</span>
+												<span class="width-50">{{detail.type}}</span>
+												<span class="width-50">{{detail.amongAmount}}</span>
 											</div>
 										</div>
 
-										<div class="codedetail width-50">
-											<div class="flex ">
-												<span class="width-50">ivr语音： </span>
-												<span class="width-50">79.84</span>
-											</div>
-										</div>
-
-										<div class="codedetail width-50">
-											<div class="flex ">
-												<span class="width-50">ivr语音： </span>
-												<span class="width-50">79.84</span>
-											</div>
-										</div>
-
-										
 									</div>
 								</div>
 							</td>
@@ -236,7 +222,7 @@
 
 </template>
 <script>
-
+  import DATE from '../../../../utils/date'
 	import {getInvoiceDetail,showMsg} from '../../../../vuex/actions.js'
 	export default {
 		vuex:{
@@ -260,9 +246,25 @@
 				this.showModal = false
 			},
 			hideDetailModal(){
-				this.hideDetailModal = false
+				this.showDetailModal = false
 			},
-			showDetail:function(index){
+			showDetail:function(index,time){
+				
+				//获取当日数据
+				let self = this 
+				let id = self.$route.params.id
+				let params = {}
+
+
+				params.id = id
+				params.time = DATE.date(time)
+				//GET /finance/invoice/detail/list/{id}/detail
+				$.get('/finance/invoice/detail/list/'+id+'/detail',params).then((res) => {
+					 if(res.data.length>0){
+					 		self.invoiceDetail.$set(index, res.data)
+					 }
+				})
+
 				this.show.$set(index, !this.show[index])
 			},
 			abnormal(){
@@ -344,24 +346,23 @@
 					list: { totalCount :0}
 				},
 				invoiceList:[],
+				invoiceDetail:[],
 			}
 		},
 		ready(){
 			/**测试**/
 		     let self = this
- 			 $.get('/demand/member/detail/8a2bc5f656c1194c0156c46efb19000b',{type:0}).then((res)=>{
- 			 	console.log(res)
- 					this.messages.list = res.data.list
- 					this.messages.realname = res.data.realname
-		     })
+			$.get('/demand/member/detail/8a2bc5f656c1194c0156c46efb19000b',{type:0}).then((res)=>{
+				this.messages.list = res.data.list
+				this.messages.realname = res.data.realname
+	    })
 
 			let arr = []
 				Array.from(this.messages, function(i, index){
 					arr.push(false)
 			})
 			this.show = arr
-			console.log(this.messages)
-
+			
 			let params = {}
 			params.id = this.$route.params.id
 
@@ -378,9 +379,9 @@
 	ul {
 		padding: 15px 15px 0 15px;
 		font-size: 1.4rem;
-	li {
-		padding-bottom: 25px;
-	}
+		li {
+			padding-bottom: 25px;
+		}
 	}
 	.modal-table{
 		height: 400px;
@@ -408,7 +409,5 @@
 
 		padding:  3px 0;
 	}
-
-
 
 </style>
