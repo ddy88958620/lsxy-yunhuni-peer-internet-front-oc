@@ -96,6 +96,21 @@
 		},
 		methods: {
 			moreMessage(){
+				let params = {}
+				let nextPage = this.demand.currentPageNo+1
+				params.authStatus = this.authStatus
+
+				if(this.type!=-1){
+					params.type = this.type
+				}
+				if(this.search!=''){
+					params.search = this.search
+				}
+				params.startTime = this.startdate.value
+				params.endTime = this.enddate.value
+				
+				params.pageNo = nextPage
+				this.getMoreDemandList(params)
 			
 			},
 			query(){
