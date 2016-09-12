@@ -2,14 +2,15 @@
   "name": "koa2-demo",
   "version": "0.1.0",
   "scripts": {
-    "start": "./node_modules/.bin/nodemon bin/run",
+    "start": "nohup cross-env NODE_ENV=production ./node_modules/.bin/nodemon bin/run &",
+    "local": "cross-env NODE_ENV=local ./node_modules/.bin/nodemon bin/run",
+    "dev": "cross-env NODE_ENV=develop ./node_modules/.bin/nodemon bin/run",
+    "test": "nohup cross-env NODE_ENV=test ./node_modules/.bin/nodemon bin/run &",
     "doc": "node ./doc/getDoc.js",
     "koa": "./node_modules/.bin/runkoa bin/www",
-    "pm2": "pm2 start bin/run ",
-    "test": "./node_modules/.bin/mocha -u bdd"
+    "pm2": "pm2 start bin/run "
   },
   "dependencies": {
-    "ccap": "^0.6.10",
     "co": "^4.6.0",
     "debug": "^2.2.0",
     "ioredis": "^2.3.0",
@@ -30,6 +31,7 @@
     "runkoa": "^1.5.2"
   },
   "devDependencies": {
+    "cross-env": "^2.0.1",
     "mocha": "^2.4.5",
     "nodemon": "^1.9.1",
     "should": "^8.3.0",

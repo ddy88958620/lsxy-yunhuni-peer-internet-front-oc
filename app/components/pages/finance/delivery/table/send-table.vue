@@ -61,14 +61,15 @@
 	</div>
 </template>
 <script>
-	import {getDeliveryList} from '../../../../../vuex/actions.js'
+	import {getDeliveryList,getMoreDeliveryList} from '../../../../../vuex/actions.js'
 	export default {
 		vuex:{
 			getters: {
 				delivery: ({finance}) =>finance.deliverylist.send
 			},
 			actions: {
-				getDeliveryList
+				getDeliveryList,
+				getMoreDeliveryList
 			}
 		},
 		components: {
