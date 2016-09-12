@@ -94,7 +94,7 @@ export default {
         userName: '',
         password: '',
         code:'',
-        remember:'true'
+        remember:'true',
       },
       verCodeUrl:''
     }
@@ -104,10 +104,10 @@ export default {
   },
   vuex: {
     getters: {
-      messege: ({showmsg}) => showmsg.message
+      messege: ({showmsg}) => showmsg.message,
     },
     actions: {
-      showMsg, localLogin
+      showMsg, localLogin,
     }
   },
   methods: {
@@ -118,6 +118,13 @@ export default {
     },
     refreshVerCode(){
       this.verCodeUrl = domain.API_ROOT+'verCode?'+new Date().getTime()
+    }
+  },
+  watch:{
+    'messege':function(){
+      if(this.messege.content!=''){
+          this.refreshVerCode()
+      }
     }
   },
   route:{
@@ -131,7 +138,6 @@ export default {
          remember:'true'
       }
       let cookieUser = getCookie('interimUser')
-    
       if(cookieUser!='' && cookieUser!=undefined){
         self.user.userName = cookieUser
         self.user.remember = true
