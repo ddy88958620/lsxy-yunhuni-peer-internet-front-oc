@@ -468,18 +468,17 @@ export const getVoiceList = ({dispatch},params) =>{
 }
 
 
-
 //放音列表 加载更多
 export const getMoreVoiceList = ({dispatch},params) =>{
   api.getVoiceLlist(params).then(response=> {
     let voice_list = response.json()
     if(voice_list.data.result.length>0){
-      switch(params.status){
+      switch(params.type){
         case 'await':
           dispatch(types.VOICE_MORE_PENDING_LIST,voice_list.data)
           break;
         case 'auditing':
-          dispatch(types.VOICE_AUDITING_LIST,voice_list.data)
+          dispatch(types.VOICE_MORE_AUDITING_LIST,voice_list.data)
           break;
         case 'unauth':
           dispatch(types.VOICE_MORE_UNAUTH_LIST,voice_list.data)
