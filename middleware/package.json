@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "scripts": {
     "start": "nohup cross-env NODE_ENV=production ./node_modules/.bin/nodemon bin/run &",
-    "local": "cross-env NODE_ENV=local ./node_modules/.bin/nodemon bin/run",
-    "dev": "cross-env NODE_ENV=develop ./node_modules/.bin/nodemon bin/run",
+    "local": "cross-env NODE_ENV=local ./node_modules/.bin/nodemon bin/run &",
+    "dev": "nohup cross-env NODE_ENV=develop ./node_modules/.bin/nodemon bin/run &",
     "test": "nohup cross-env NODE_ENV=test ./node_modules/.bin/nodemon bin/run &",
     "doc": "node ./doc/getDoc.js",
     "koa": "./node_modules/.bin/runkoa bin/www",
