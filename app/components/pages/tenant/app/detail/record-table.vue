@@ -1,7 +1,7 @@
 <template>
 	<div class="flex search-box bg-section-margin remove-margin-bottom">
 		<div class="select-box">
-			<search  placeholder='请输入关键字' :value.sync='page.query.name' :action="query(true)"></search>
+			<search  placeholder='请输入关键字' :value.sync='searchName' :action="query(true)"></search>
 		</div>
 		<button class="btn btn-primary admin-button-margin " @click="showModal=true">批量下载</button>
 	</div>
@@ -75,7 +75,8 @@
 					loading: true,
 					hasMore: true,
 					total:0
-				}
+				},
+				searchName:''
 			}
 		},
 		methods: {
@@ -91,6 +92,7 @@
 			query(init){
 				let self = this
 				let pageNo = (init && 1) || self.page.query.pageNo + 1
+				self.page.query.name = self.searchName
 				let params = $.extend(true, {}, self.page.query);
 				params.pageNo = pageNo;
 				self.page.loading = true

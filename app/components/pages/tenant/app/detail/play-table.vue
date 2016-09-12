@@ -2,7 +2,7 @@
 
 	<div class="flex search-box bg-section-margin remove-margin-bottom">
 		<div class="select-box">
-			<search  placeholder='请输入关键字' :value.sync='page.query.name' :action="query(true)"></search>
+			<search  placeholder='请输入关键字' :value.sync='searchName' :action=""></search>
 		</div>
 	</div>
 
@@ -58,7 +58,8 @@
 					loading: true,
 					hasMore: true,
 					total:0
-				}
+				},
+				searchName:''
 			}
 		},
 		methods: {
@@ -71,6 +72,7 @@
 			query(init){
 				let self = this
 				let pageNo = (init && 1) || self.page.query.pageNo + 1
+				self.page.query.name = self.searchName
 				let params = $.extend(true, {}, self.page.query);
 				params.pageNo = pageNo;
 				self.page.loading = true
@@ -79,6 +81,7 @@
 				}
 				$.get('/tenant/tenants/'+this.$route.params.uid+'/apps/'+this.$route.params.appid+'/plays', params).then((res)=> {
 					self.page.loading = false
+
 					if (res.data && res.data.result) {
 						if (init) {
 							self.plays = res.data.result
