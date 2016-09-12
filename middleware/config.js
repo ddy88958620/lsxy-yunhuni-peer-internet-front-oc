@@ -27,7 +27,7 @@ else if (env === 'develop') {
  		// 开发
     COOKIEDOAIM: 'oc.dev.yunhuni.com',
     COOKIENAME: 'YUNHUNISESSIONID',
-    JAVAAPI: 'http://192.168.10.201:18082',
+    JAVAAPI: 'http://10.171.69.118:8080',
     REDISHOST: '127.0.0.1',
     REDISPORT: 6379
   }
