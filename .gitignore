@@ -6,4 +6,3 @@ venv
 *.pyc
 .idea
 static/
-update.sh
