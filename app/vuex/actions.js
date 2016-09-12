@@ -417,9 +417,9 @@ export const getMoreDemandList = ({dispatch},params) =>{
   api.getDemandList(params).then(response=> {
     let delivery_list = response.json()
     if(delivery_list.data.result.length>0){
-      switch(params.status){
+      switch(params.authStatus){
         case 'await':
-          dispatch(types.DEMAND_MORE_PENDING_LIST,demand_list.data)
+          dispatch(types.DEMAND_MORE_PENDING_LIST,delivery_list.data)
           break;
         case 'auditing':
           dispatch(types.DEMAND_MORE_AUDITING_LIST,delivery_list.data)

@@ -61,14 +61,15 @@
 	</div>
 </template>
 <script>
-	import {getInvoiceList} from '../../../../../vuex/actions'
+	import {getInvoiceList,getMoreInvoiceList } from '../../../../../vuex/actions'
 	export default {
 		vuex:{
 			getters: {
 				invoice: ({finance}) =>finance.invoicelist.pending
 			},
 			actions: {
-				getInvoiceList
+				getInvoiceList,
+				getMoreInvoiceList
 			}
 		},
 		components: {
