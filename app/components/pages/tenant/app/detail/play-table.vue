@@ -2,7 +2,8 @@
 
 	<div class="flex search-box bg-section-margin remove-margin-bottom">
 		<div class="select-box">
-			<search  placeholder='请输入关键字' :value.sync='searchName' :action=""></search>
+
+			<search  placeholder='请输入关键字' :value.sync='searchName' :action="search"></search>
 		</div>
 	</div>
 
@@ -33,7 +34,7 @@
 		<div class="more">
 			<a v-show='page.loading'>正在加载</a>
 			<a v-show='!page.loading && !page.hasMore'>加载完毕</a>
-			<a @click="query()" class="text-none" v-show='!page.loading && page.hasMore'>加载更多<i
+			<a @click="query('')" class="text-none" v-show='!page.loading && page.hasMore'>加载更多<i
 				class="icon iconfont icon-oc-dropdown"></i></a>
 		</div>
 	</div>
@@ -69,19 +70,22 @@
 					return res.data && (self.capacity = res.data)
 				})
 			},
+			search(){
+				this.query(true)
+			},
 			query(init){
 				let self = this
 				let pageNo = (init && 1) || self.page.query.pageNo + 1
 				self.page.query.name = self.searchName
 				let params = $.extend(true, {}, self.page.query);
 				params.pageNo = pageNo;
+				params.pageSize = 20;
 				self.page.loading = true
 				if(init){
 					self.plays = [];
 				}
 				$.get('/tenant/tenants/'+this.$route.params.uid+'/apps/'+this.$route.params.appid+'/plays', params).then((res)=> {
 					self.page.loading = false
-
 					if (res.data && res.data.result) {
 						if (init) {
 							self.plays = res.data.result

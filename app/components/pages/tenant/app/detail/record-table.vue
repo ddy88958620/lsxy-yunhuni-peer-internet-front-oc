@@ -1,7 +1,7 @@
 <template>
 	<div class="flex search-box bg-section-margin remove-margin-bottom">
 		<div class="select-box">
-			<search  placeholder='请输入关键字' :value.sync='searchName' :action="query(true)"></search>
+			<search  placeholder='请输入关键字' :value.sync='searchName' :action="search"></search>
 		</div>
 		<button class="btn btn-primary admin-button-margin " @click="showModal=true">批量下载</button>
 	</div>
@@ -88,6 +88,9 @@
 			},
 			download(url){
 				console.log('下载',url);
+			},
+			search(){
+				this.query(true)
 			},
 			query(init){
 				let self = this
