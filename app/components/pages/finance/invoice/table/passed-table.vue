@@ -102,7 +102,7 @@
 				let params = {}
 				params.status = this.status
 				if(this.search!=''){
-					params.name = this.status
+					params.name = this.search
 				}
 				if(this.type!=0){
 					params.type = this.type
