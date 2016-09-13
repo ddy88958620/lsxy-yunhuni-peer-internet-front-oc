@@ -5,9 +5,9 @@ console.log(env)
 if(env === 'production') {
   // 生产
 	module.exports = {
-		COOKIEDOAIM: 'oc.yunhuni.cn',
+		COOKIEDOAIM: 'oc.yunhuni.com',
 		COOKIENAME: 'YUNHUNISESSIONID',
-		JAVAAPI: 'http://rest.oc.internal.yunhuni.cn',
+		JAVAAPI: 'http://wwww.oc.internal.yunhuni.com',
 		REDISHOST: '10.163.3.165',
 		REDISPORT: 6379
 	}
@@ -23,14 +23,14 @@ else if (env === 'test') {
 	}
 }
 else if (env === 'develop') {
-	module.exports = {
-  // 开发
-		COOKIEDOAIM: 'oc.dev.yunhuni.com',
-		COOKIENAME: 'YUNHUNISESSIONID',
-		JAVAAPI: 'http://192.168.10.201:18082',
-		REDISHOST: '127.0.0.1',
-		REDISPORT: 6379
-	}
+  module.exports = {
+ 		// 开发
+    COOKIEDOAIM: 'oc.dev.yunhuni.com',
+    COOKIENAME: 'YUNHUNISESSIONID',
+    JAVAAPI: 'http://10.171.69.118:18082',
+    REDISHOST: '10.162.199.238',
+    REDISPORT: 6379
+  }
 }
 
 else if (env === 'local') {

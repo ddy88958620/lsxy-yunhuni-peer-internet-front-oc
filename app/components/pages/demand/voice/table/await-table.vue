@@ -76,7 +76,7 @@
 </template>
 <script>
 	
-	import { getVoiceList,delVoice,showMsg } from '../../../../../vuex/actions'
+	import { getVoiceList,delVoice,showMsg,getMoreVoiceList } from '../../../../../vuex/actions'
 	import domain from '../../../../../config/domain'
 	export default {
 		vuex: {
@@ -86,7 +86,8 @@
 			actions: {
 				getVoiceList,
 				delVoice,
-				showMsg
+				showMsg,
+				getMoreVoiceList
 			}
 		},
 		components: {
@@ -153,7 +154,6 @@
 			},
 			//通过
 			pass(id,index){
-				
 				let self = this 
 				let params = {} 
 				params.status = 1
@@ -164,8 +164,8 @@
 						return
 					}
 					if(res.data){
-						this.showMsg({content: '审核通过', type: 'success'})
 						this.delVoice(index)
+						this.showMsg({content: '审核通过', type: 'success'})
 					}
 					//this.todos.splice(index, 1)
 				})	
@@ -185,7 +185,7 @@
 					if(res.data){
 						this.showModal = false 
 						this.showMsg({content: '审核不通过', type: 'success'})
-						this.delVoice(index)
+						this.delVoice(self.del.index)
 						
 					}
 				})	

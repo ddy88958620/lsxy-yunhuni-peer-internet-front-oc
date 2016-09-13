@@ -127,10 +127,21 @@ export default {
       menus: menus,
     }
   },
+  methods:{
+    getNum(){
+      $.get('/message/await/num').then((res)=> {
+        console.log("结果")
+        console.log(res)
+      })
+    }
+  },
   vuex:{
     actions: {
       localLogout
     }
+  },
+  ready(){
+    this.getNum()
   }
 }
 

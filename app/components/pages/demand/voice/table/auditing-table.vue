@@ -59,7 +59,7 @@
 	</div>
 </template>
 <script>
-	import { getVoiceList } from '../../../../../vuex/actions'
+	import { getVoiceList,getMoreVoiceList } from '../../../../../vuex/actions'
 	import domain from '../../../../../config/domain'
 	export default {
 		vuex: {
@@ -67,7 +67,8 @@
 				voice: ({demand}) => demand.voicelist.auditing,
 			},
 			actions: {
-				getVoiceList
+				getVoiceList,
+				getMoreVoiceList
 			}
 		},
 		components: {

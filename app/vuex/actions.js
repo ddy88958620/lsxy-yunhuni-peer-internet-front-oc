@@ -336,8 +336,6 @@ export const getMoreInvoiceList = ({dispatch},params) =>{
 export const getInvoiceDetail = ({dispatch},params) =>{
   api.getInvoiceDetail(params).then(response=> {
     let detail = response.json()
-    console.log('数据')
-    console.log(detail)
 
     dispatch(types.INVOICE_DETAIL,detail.data)
   }, response =>{
@@ -348,18 +346,18 @@ export const getInvoiceDetail = ({dispatch},params) =>{
 
 export const getDeliveryList = ({dispatch},params) =>{
   api.getInvoiceSendList(params).then(response=> {
-    let invoice_list = response.json()
+    let delivery_list = response.json()
     
 
     switch(params.status){
       case 'await':
-        if(invoice_list.data){
-          dispatch(types.DELIVERY_UNSEND_LIST,invoice_list.data)
+        if(delivery_list.data){
+          dispatch(types.DELIVERY_UNSEND_LIST,delivery_list.data)
         }
         break;
       case 'auditing': 
-        if(invoice_list.data){
-          dispatch(types.DELIVERY_SEND_LIST,invoice_list.data)
+        if(delivery_list.data){
+          dispatch(types.DELIVERY_SEND_LIST,delivery_list.data)
         }
         break;  
     }
@@ -374,13 +372,13 @@ export const getDeliveryList = ({dispatch},params) =>{
 export const getMoreDeliveryList = ({dispatch},params) =>{
   api.getInvoiceSendList(params).then(response=> {
     let delivery_list = response.json()
-    if(invoice_list.data.result.length>0){
+    if(delivery_list.data.result.length>0){
       switch(params.status){
-        case 'auditing':
-          dispatch(types.DELIVERY_UNSEND_LIST,delivery_list.data)
+        case 'await':
+          dispatch(types.DELIVERY_MORE_UNSEND_LIST,delivery_list.data)
         break;
-        case 'unauth':
-          dispatch(types.DELIVERY_SEND_LIST,delivery_list.data)
+        case 'auditing':
+          dispatch(types.DELIVERY_MORE_SEND_LIST,delivery_list.data)
         break;  
       }
     }
@@ -468,18 +466,17 @@ export const getVoiceList = ({dispatch},params) =>{
 }
 
 
-
 //放音列表 加载更多
 export const getMoreVoiceList = ({dispatch},params) =>{
   api.getVoiceLlist(params).then(response=> {
     let voice_list = response.json()
     if(voice_list.data.result.length>0){
-      switch(params.status){
+      switch(params.type){
         case 'await':
           dispatch(types.VOICE_MORE_PENDING_LIST,voice_list.data)
           break;
         case 'auditing':
-          dispatch(types.VOICE_AUDITING_LIST,voice_list.data)
+          dispatch(types.VOICE_MORE_AUDITING_LIST,voice_list.data)
           break;
         case 'unauth':
           dispatch(types.VOICE_MORE_UNAUTH_LIST,voice_list.data)

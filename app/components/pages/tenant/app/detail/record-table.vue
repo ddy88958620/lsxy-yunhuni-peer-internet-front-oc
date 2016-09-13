@@ -1,15 +1,13 @@
 <template>
 	<div class="flex search-box bg-section-margin remove-margin-bottom">
 		<div class="select-box">
-			<search  placeholder='请输入关键字' :value.sync='page.query.name' :action="query(true)"></search>
+			<search  placeholder='请输入关键字' :value.sync='searchName' :action="search"></search>
 		</div>
 		<button class="btn btn-primary admin-button-margin " @click="showModal=true">批量下载</button>
 	</div>
 	<div class="admin-table table-responsive">
 		<div class="table-total flex flex-1 justify-content-e">
-			共<span  class="green">{{ capacity.fileTotalSize | fileSize}}</span>MB,
-			已使用<span class="text-danger">{{((capacity.fileRemainSize || 0)/1024/1024).toFixed(2)}}</span>MB,
-			共<span class="text-danger">{{page.total || 0}}</span>条
+			录音文件总计占用<span class="text-danger">0</span>b
 		</div>
 		<table class="table remove-margin-bottom">
 			<thead>
@@ -77,7 +75,8 @@
 					loading: true,
 					hasMore: true,
 					total:0
-				}
+				},
+				searchName:''
 			}
 		},
 		methods: {
@@ -90,9 +89,13 @@
 			download(url){
 				console.log('下载',url);
 			},
+			search(){
+				this.query(true)
+			},
 			query(init){
 				let self = this
 				let pageNo = (init && 1) || self.page.query.pageNo + 1
+				self.page.query.name = self.searchName
 				let params = $.extend(true, {}, self.page.query);
 				params.pageNo = pageNo;
 				self.page.loading = true

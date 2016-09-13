@@ -61,7 +61,7 @@
 	</div>
 </template>
 <script>
-	import { getVoiceList } from '../../../../../vuex/actions'
+	import { getVoiceList,getMoreVoiceList } from '../../../../../vuex/actions'
 	import domain from '../../../../../config/domain'
 	export default {
 		vuex: {
@@ -69,7 +69,8 @@
 				voice: ({demand}) => demand.voicelist.unauth,
 			},
 			actions: {
-				getVoiceList
+				getVoiceList,
+				getMoreVoiceList
 			}
 		},
 		components: {
