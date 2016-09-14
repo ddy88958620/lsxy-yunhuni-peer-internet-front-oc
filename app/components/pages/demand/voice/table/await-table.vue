@@ -76,7 +76,7 @@
 </template>
 <script>
 	
-	import { getVoiceList,delVoice,showMsg,getMoreVoiceList } from '../../../../../vuex/actions'
+	import { getVoiceList,delVoice,showMsg,getMoreVoiceList} from '../../../../../vuex/actions'
 	import domain from '../../../../../config/domain'
 	export default {
 		vuex: {
