@@ -112,8 +112,12 @@
       </li>
       <li class="flex " v-for='menu in menus'>
         <a class="flex sub border align-items-c " v-link="menu.link">
-          <i class="iconfont {{menu.icon}}"></i>
-          {{ menu.title }}</a>
+          <i class="iconfont {{menu.icon}}"></i>{{ menu.title }}
+
+          <span class="menu-count" v-if="menu.label=='Custom' && num.awaitService!=0" >{{num.awaitService}}</span>
+          <span class="menu-count" v-if="menu.label=='Finance' && num.awaitInvoice!=0" >{{num.awaitInvoice}}</span>
+          <span class="menu-count" v-if="menu.label=='Demand' && num.awaitDemand!=0" >{{num.awaitDemand}}</span>
+          </a>
       </li>
     </ul>
   </aside>
@@ -125,13 +129,20 @@ export default {
   data() {
     return {
       menus: menus,
+      num:{
+        awaitDemand:0,
+        awaitInvoice:0,
+        awaitService:0
+      }
     }
   },
   methods:{
     getNum(){
+      let self = this;
       $.get('/message/await/num').then((res)=> {
-        console.log("结果")
-        console.log(res)
+        if(res.success){
+          self.num = res.data
+        }
       })
     }
   },

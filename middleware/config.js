@@ -32,6 +32,7 @@ else if (env === 'develop') {
     REDISPORT: 6379
   }
 }
+
 else if (env === 'local') {
 	module.exports = {
   // 本地
