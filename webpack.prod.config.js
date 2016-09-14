@@ -17,7 +17,6 @@ config.plugins = (config.plugins || []).concat([
         }
     }),
     new htmlwebpackplugin({
-      title: 'yunhuni',
       filename: 'index.html',
       template: './template/product-index.html'
     })
