@@ -185,7 +185,7 @@ table {
   background-color: #FFFFFF;
 }
 
-//导航统计
+//子导航统计
 .app-menu-count{
   background-color: #FF3D81;
   height: 15px;
@@ -196,6 +196,22 @@ table {
   font-size: 1rem;
   margin-left: 5px;
 }
+
+//主导航统计
+.menu-count{
+    background-color: #FF3D81;
+    max-width: 40px;
+    color: #FFF;
+    border-radius: 5px;
+    padding: 0px 3px 0px 3px;
+    font-size: 1rem;
+    margin-left: 5px;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 
 
 

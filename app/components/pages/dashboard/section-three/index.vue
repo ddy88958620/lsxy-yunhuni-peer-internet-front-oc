@@ -17,7 +17,7 @@
              <li v-else>周 --</li>
 
              <li v-if="duration.dto1.rateOfMonth===true" >月<i class="iconfont icon-oc-up small {{ duration.dto.month_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{duration.dto.month_rate}}%</span></li>
-             <li v-else>y月 --</li>
+             <li v-else>月 --</li>
 
               
           </ul>
