@@ -526,12 +526,11 @@ export const getMoreVoiceList = ({dispatch},params) =>{
 
 //删除放音列表 数据
 export const delVoice = ({dispatch},index) =>{
-
-  console.log(index)
-  //
-  //let index = params.index
+  let self = this 
   dispatch(types.VOICE_DETAIL,index)
-
-
 }
 
+
+export const getDemandNumer =  ({dispatch}) =>{
+   dispatch(types.VOICE_DETAIL)
+}

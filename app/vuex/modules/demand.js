@@ -15,8 +15,6 @@ import {
   DEMAND_NUM,
 } from '../mutation-types'
 
-
-
 const state = {
   memberlist: {
     await: {},
@@ -30,7 +28,8 @@ const state = {
     unauth: {}
   },
   num:{
-
+    tenant: 0,
+    voiceFilePlay: 0
   }
 
 }
@@ -87,7 +86,6 @@ const mutations = {
     state.num = list
   }
 }
-
 
 export default {
   state,

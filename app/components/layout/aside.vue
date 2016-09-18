@@ -149,8 +149,14 @@ export default {
       num: ({message}) => message.num
     },
   },
+  route: {
+    data(){
+      
+    }
+  },
   ready(){
-    this.getMessageNum()
+    let self = this 
+    self.getMessageNum()
   }
 }
 

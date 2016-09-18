@@ -250,8 +250,6 @@ export default function(router){
   })
 
   router.beforeEach(function({to, next, go}){
-    console.log("用户数据："+getCookie('user'))
-
   	// http only YUNHUNISESSIONID 不可在 document.cookie中打印，所以用自己设置的
     if(to.auth || getCookie('user')) {
       next()

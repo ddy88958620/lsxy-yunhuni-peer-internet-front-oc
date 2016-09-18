@@ -5,7 +5,6 @@ console.log(domain);
 const cookieConfig =  {domain: domain.COOKIE_DOMAIN, expires: 3}
 
 export function saveCookie(key ,value) {
-
   Cookie.set(key, value)
   //IE 浏览器下不支持 cookieConfig
   //Cookie.set(key, value, cookieConfig)
