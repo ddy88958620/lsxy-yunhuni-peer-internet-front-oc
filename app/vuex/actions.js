@@ -57,7 +57,7 @@ export const localLogout = ({dispatch, router}) => {
 
 
 //导航消息数
-export const messageNum = ({dispatch}) => {
+export const getMessageNum = ({dispatch}) => {
   return api.messageNum().then(response => {
     let num = response.json()
     if(num.success){
