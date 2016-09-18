@@ -123,7 +123,7 @@
 </template>
 <script>
 import menus from '../../config/menu.js'
-import {localLogout,messageNum} from '../../vuex/actions.js'
+import {localLogout,getMessageNum} from '../../vuex/actions.js'
 export default {
   data() {
     return {
@@ -143,14 +143,14 @@ export default {
   vuex:{
     actions: {
       localLogout,
-      messageNum
+      getMessageNum
     },
     getters:{
       num: ({message}) => message.num
     },
   },
   ready(){
-    this.messageNum()
+    this.getMessageNum()
   }
 }
 
