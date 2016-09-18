@@ -15,25 +15,24 @@
 		</div>
 </template>
 <script>
+	import { getDemandNum } from '../../../vuex/actions'
 	export default {
-		data(){
-			return{
-				num:{
-					voiceFilePlay:0,
-					tenant:0
-				}
+		vuex:{
+			actions: {
+				getDemandNum
+			},
+			getters: {
+				num: ({demand}) => demand.num,
 			}
 		},
 		route: {
-			data(){}
+			data(){
+				let self = this 
+				self.getDemandNum()
+			}
 		},
 		ready(){
-			let self = this
-		   $.get('/demand/await/num').then((res) => {
-		   		if(res.success){
-		   			self.num = res.data
-		   		}
-		   })
+			
 		}
 	}
 </script>

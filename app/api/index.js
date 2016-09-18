@@ -17,10 +17,8 @@ import {
   ServiceList,
   DemandDetail,DemandEdit,DemandList,
   VoiceLlist,VoiceEdit,
+  MessageNum,InvoiceNum,DemandNum,
 } from './resource.js'
-
-
-
 
 
 export default {
@@ -134,6 +132,19 @@ export default {
   editVoiceEdit(param){
     return VoiceEdit.post(param)
   },
+  //导航消息数
+  getMessageNum(){
+    return MessageNum.get()
+  },
+  //审核消息数
+  getInvoiceNum(){
+    return InvoiceNum.get()
+  },
+  //财务消息数
+  getDemandNum(){
+    return DemandNum.get()
+  },
+
 }
 
 

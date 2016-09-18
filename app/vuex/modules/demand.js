@@ -12,9 +12,8 @@ import {
   VOICE_UNAUTH_LIST,
   VOICE_MORE_UNAUTH_LIST,
   VOICE_DETAIL,
+  DEMAND_NUM,
 } from '../mutation-types'
-
-
 
 const state = {
   memberlist: {
@@ -27,7 +26,12 @@ const state = {
     await: {},
     auditing: {},
     unauth: {}
+  },
+  num:{
+    tenant: 0,
+    voiceFilePlay: 0
   }
+
 }
 
 const mutations = {
@@ -75,10 +79,13 @@ const mutations = {
   },
   [VOICE_DETAIL] (state, index){
     //this.todos.splice(index, 1)
+    state.voicelist.await.totalCount = state.voicelist.await.totalCount-1
     state.voicelist.await.result.splice(index,1)
+  },
+  [DEMAND_NUM] (state, list){
+    state.num = list
   }
 }
-
 
 export default {
   state,

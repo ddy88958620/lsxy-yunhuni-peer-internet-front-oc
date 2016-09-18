@@ -25,14 +25,11 @@ export const localLogin = ({dispatch, router}, user) => {
     }
 	  // 登入成功
     if(login&&login.data) {
-
-      
       if(user.remember ===true ){
         saveCookie('interimUser', user.userName)
       }else{
         removeCookie('interimUser')
       }
-
     	saveCookie('user', user.userName)
       dispatch(types.LOCAL_LOGIN, user.userName)
       router.go(
@@ -55,6 +52,44 @@ export const localLogin = ({dispatch, router}, user) => {
 export const localLogout = ({dispatch, router}) => {
   removeCookie('user')
   router.go({path: '/auth/login'})
+}
+
+
+
+//导航消息数
+export const getMessageNum = ({dispatch}) => {
+  return api.getMessageNum().then(response => {
+    let num = response.json()
+    if(num.success){
+       dispatch(types.MESSAGE_NUM, num.data)
+    }
+  }, response => {
+    console.log('fail');
+  })
+}
+
+//审核管理消息数
+export const getDemandNum = ({dispatch}) =>{
+  return api.getDemandNum().then(response => {
+    let num = response.json()
+    if(num.success){
+       dispatch(types.DEMAND_NUM, num.data)
+    }
+  }, response => {
+    console.log('fail');
+  })
+}
+
+//财务中心管理消息数
+export const getInvoiceNum = ({dispatch}) =>{
+  return api.getInvoiceNum().then(response => {
+    let num = response.json()
+    if(num.success){
+       dispatch(types.DEMAND_NUM, num.data)
+    }
+  }, response => {
+    console.log('fail');
+  })
 }
 
 
@@ -387,6 +422,7 @@ export const getMoreDeliveryList = ({dispatch},params) =>{
   })
 }
 
+
 //审核列表
 export const getDemandList = ({dispatch},params) =>{
   api.getDemandList(params).then(response=> {
@@ -490,12 +526,11 @@ export const getMoreVoiceList = ({dispatch},params) =>{
 
 //删除放音列表 数据
 export const delVoice = ({dispatch},index) =>{
-
-  console.log(index)
-  //
-  //let index = params.index
+  let self = this 
   dispatch(types.VOICE_DETAIL,index)
-
-
 }
 
+
+export const getDemandNumer =  ({dispatch}) =>{
+   dispatch(types.VOICE_DETAIL)
+}
