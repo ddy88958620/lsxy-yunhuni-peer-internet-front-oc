@@ -223,7 +223,7 @@
 </template>
 <script>
   import DATE from '../../../../utils/date'
-	import {getInvoiceDetail,showMsg} from '../../../../vuex/actions.js'
+	import {getInvoiceDetail,showMsg,getInvoiceNum,getMessageNum} from '../../../../vuex/actions.js'
 	export default {
 		vuex:{
 	       getters: {
@@ -231,7 +231,9 @@
 	       },
 	       actions: {
 		      getInvoiceDetail,
-		      showMsg
+		      showMsg,
+		      getInvoiceNum,
+		      getMessageNum,
 	       }
 		},
 		components: {
@@ -284,7 +286,8 @@
 					//成功处理
 					this.getInvoiceDetail({id:id})
 					this.showMsg({content: '审核不通过', type: 'success'})
-					
+		      self.getInvoiceNum()
+					self.getMessageNum()
 					setTimeout(function(){
 						self.$route.router.go({path:'/admin/finance/invoice/list/pending'})
 					},3000)
@@ -304,6 +307,8 @@
 					//成功处理
 					this.getInvoiceDetail({id:id})
 					this.showMsg({content: '通过成功', type: 'success'})
+					self.getInvoiceNum()
+					self.getMessageNum()
 					setTimeout(function() {
 				        self.$route.router.go({path:'/admin/finance/invoice/list/pending'})
 				    },3000)

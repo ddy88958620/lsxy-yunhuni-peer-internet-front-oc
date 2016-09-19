@@ -18,7 +18,7 @@ export default {
   },
   components: {
     toaster
-  }
+  },
 }
 
 </script>
