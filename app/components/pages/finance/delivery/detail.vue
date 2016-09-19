@@ -231,7 +231,7 @@
 </template>
 <script>
 	import DATE from '../../../../utils/date'
-	import {getInvoiceDetail,showMsg} from '../../../../vuex/actions.js'
+	import {getInvoiceDetail,showMsg,getMessageNum,getInvoiceNum} from '../../../../vuex/actions.js'
 	export default {
 		vuex:{
 	       getters: {
@@ -239,7 +239,9 @@
 	       },
 	       actions: {
 		      getInvoiceDetail,
-		      showMsg
+		      showMsg,
+		      getMessageNum,
+		      getInvoiceNum
 	       }
 		},
 		components: {
@@ -268,6 +270,8 @@
 				//GET /finance/invoice/detail/list/{id}/detail
 				$.get('/finance/invoice/detail/list/'+id+'/detail',params).then((res) => {
 					 if(res.data.length>0){
+					 		self.getInvoiceNum()
+					 		self.getMessageNum()
 					 		self.invoiceDetail.$set(index, res.data)
 					 }
 				})
@@ -285,13 +289,15 @@
 				params.expressNo = self.expressNo
 				params.status =1
  				$.put('/finance/invoice/edit/send/'+id,params).then((res)=>{
-		           	self.abnormalModal = false
+		      self.abnormalModal = false
 					if( res.success === false){
 						this.showMsg({content: res.errorMsg, type: 'danger'})
 						return
 					}
 					//成功处理
 					this.getInvoiceDetail({id:id})
+					self.getInvoiceNum()
+					self.getMessageNum()
 					
 					this.showMsg({content: '寄出成功', type: 'success'})
 					

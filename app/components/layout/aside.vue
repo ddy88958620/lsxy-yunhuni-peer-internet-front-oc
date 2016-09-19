@@ -148,15 +148,6 @@ export default {
     getters:{
       num: ({message}) => message.num
     },
-  },
-  route: {
-    data(){
-      
-    }
-  },
-  ready(){
-    let self = this 
-    self.getMessageNum()
   }
 }
 

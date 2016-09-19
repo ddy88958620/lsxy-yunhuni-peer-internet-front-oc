@@ -62,7 +62,13 @@
 
 </template>
 <script>
+	import {getMessageNum} from '../../../vuex/actions'
 	export default {
+		vuex:{
+			actions:{
+				getMessageNum
+			}
+		},
 		components: {
 			'datetime-picker': require('../../ui/datetimepicker.vue'),
 			'modal': require('../../ui/modal.vue')
@@ -121,11 +127,13 @@
 				this.content.text = ''
 			},
 			readed(index, mid){
-				console.log(mid)
 				let self = this
-				
 				$.patch('/service/edit/' + mid).then((res) => {
-					self.serviceList.$set(index, res.data)
+					if(res.success){
+						self.getMessageNum()
+						self.serviceList.$set(index, res.data)
+					}
+
 				})
 			},
 			readedAll(){
@@ -133,8 +141,8 @@
 					return e.id
 				})
 				let self = this
-				
 				$.put('/service/edit', {ids: ids}).then((res) => {
+					self.getMessageNum()
 					self.serviceList.map(function(e, index){
 						e.status =  1
 					})

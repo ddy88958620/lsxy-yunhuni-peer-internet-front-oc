@@ -17,8 +17,14 @@
 import headerbar from '../layout/header.vue'
 import footerbar from '../layout/footer.vue'
 import asidebar from '../layout/aside.vue'
+import {getMessageNum} from '../../vuex/actions.js'
 
 export default {
+  vuex:{
+    actions:{
+      getMessageNum
+    }
+  },
   components: {
     headerbar,
     footerbar,
@@ -26,6 +32,7 @@ export default {
   },
   route: {
     data(){
+      this.getMessageNum()
       if(this.$route.query.init === 'login') this.$route.router.go({name:'dashboard'})
     }
   }
