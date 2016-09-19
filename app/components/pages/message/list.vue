@@ -184,12 +184,15 @@
 				let self = this
 
 				$.delete('/message/'+messageObj.id).then((res) => {
-				
+					
 					if( res.success === 'false'){
 						this.showMsg({content: res.errorMsg, type: 'danger'})
 						return
 					}
 					self.messagesList.splice(index,1)
+					self.messages.totalCount = self.messages.totalCount -1
+
+
 					this.showMsg({content: '删除成功', type: 'success'})
 
 					/*if( res.success === 'false'){
