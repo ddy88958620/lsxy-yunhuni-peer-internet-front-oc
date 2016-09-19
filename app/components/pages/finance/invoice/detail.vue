@@ -306,7 +306,7 @@
 					}
 					//成功处理
 					this.getInvoiceDetail({id:id})
-					this.showMsg({content: '通过成功', type: 'success'})
+					this.showMsg({content: '审核通过', type: 'success'})
 					self.getInvoiceNum()
 					self.getMessageNum()
 					setTimeout(function() {
