@@ -75,8 +75,7 @@
 
 </template>
 <script>
-	
-	import { getVoiceList,delVoice,showMsg,getMoreVoiceList } from '../../../../../vuex/actions'
+	import { getVoiceList,delVoice,showMsg,getMoreVoiceList,getDemandNum,getMessageNum} from '../../../../../vuex/actions'
 	import domain from '../../../../../config/domain'
 	export default {
 		vuex: {
@@ -87,7 +86,9 @@
 				getVoiceList,
 				delVoice,
 				showMsg,
-				getMoreVoiceList
+				getMoreVoiceList,
+				getDemandNum,
+				getMessageNum,
 			}
 		},
 		components: {
@@ -154,6 +155,7 @@
 			},
 			//通过
 			pass(id,index){
+
 				let self = this 
 				let params = {} 
 				params.status = 1
@@ -165,6 +167,8 @@
 					}
 					if(res.data){
 						this.delVoice(index)
+						this.getDemandNum()
+						this.getMessageNum()
 						this.showMsg({content: '审核通过', type: 'success'})
 					}
 					//this.todos.splice(index, 1)

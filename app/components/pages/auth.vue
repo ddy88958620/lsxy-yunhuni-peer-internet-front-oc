@@ -1,6 +1,6 @@
 <template>
     <validator  name="validation">
-      <div class="flex flex-1 login-bg align-items-c justify-content-c ">
+      <div class="flex flex-1 login-bg align-items-c justify-content-c">
         <div class="flex login-form   flex-direction-column ">
           <div class="login-header flex justify-content-c align-items-c ">
             <img src="../../assets/images/loginlogo.png" alt="" width="277" height="83" class="flex">
@@ -11,7 +11,6 @@
                 class="validate-field form-group relative ">
                 <i class="iconfont icon-oc-login-user input-icon"></i>
                 <input
-                  
                   type="text"
                   class='form-control form-input'
                   v-model='user.userName'

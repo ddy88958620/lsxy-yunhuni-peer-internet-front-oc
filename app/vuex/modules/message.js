@@ -3,12 +3,18 @@ import {
   MESSAGE_MORE_LIST,
   NEW_MESSAGE,
   EDIT_MESSAGE,
-  MESSAGE_DETAIL
+  MESSAGE_DETAIL,
+  MESSAGE_NUM,
 } from '../mutation-types'
 
 const state = {
    list : {},
-   detail: {}
+   detail: {},
+   num:{
+      awaitDemand:0,
+      awaitInvoice:0,
+      awaitService:0
+   }
 }
 
 const mutations = {
@@ -21,6 +27,9 @@ const mutations = {
   },
   [MESSAGE_DETAIL] (state, detail){
     state.detail = detail
+  },
+  [MESSAGE_NUM] (state, list){
+    state.num = list
   }
 }
 
