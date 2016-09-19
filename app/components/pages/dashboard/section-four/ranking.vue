@@ -10,7 +10,7 @@
           <i class="icon iconfont icon-oc-member {{ box[index]['color'] }}"></i>
         </div>
         <div class="flex flex-1 flex-direction-column ranking-two" >
-          <span class="name overflow-y-h" title="">{{ rank.length === 0  ? '暂无数据' : rank[0].name }}</span>
+          <span class="name overflow-y-h" title="{{ rank.length === 0  ? '暂无数据' : rank[0].name }}">{{ rank.length === 0  ? '暂无数据' : rank[0].name }}</span>
           <div class="flex flex-1  align-items-c  " >
             <i class="iconfont {{box[index]['icon']}} grey"></i>
             <span class="count align-items-e">{{ rank.length === 0  ? '0' : rank[0].value }}</span>
@@ -19,10 +19,10 @@
         </div>
       </div>
       <div class="sort2 flex flex-1 flex-direction-column" >
-        <div class="flex flex-1 ranking-three" ><i class="number flex" title="" ><strong>2</strong></i><span title="" class="overflow-y-h">{{ rank.length <= 1  ? '暂无数据' : rank[1].name }}</span></div>
+        <div class="flex flex-1 ranking-three" title="{{ rank.length <= 1  ? '暂无数据' : rank[1].name }}" ><i class="number flex" title="" ><strong>2</strong></i><span  class="overflow-y-h">{{ rank.length <= 1  ? '暂无数据' : rank[1].name }}</span></div>
       </div>
       <div class="sort2 flex flex-1 flex-direction-column" >
-        <div class="flex flex-1 ranking-three" ><i class="number flex" title="" ><strong>3</strong></i><span title="" class="overflow-y-h">{{ rank.length <= 2  ? '暂无数据' : rank[2].name }}</span></div>
+        <div class="flex flex-1 ranking-three" title="{{ rank.length <= 2  ? '暂无数据' : rank[2].name }}"><i class="number flex" title="" ><strong>3</strong></i><span  class="overflow-y-h">{{ rank.length <= 2  ? '暂无数据' : rank[2].name }}</span></div>
       </div>
     </div>
 
