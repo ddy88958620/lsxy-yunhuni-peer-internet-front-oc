@@ -170,3 +170,9 @@ img.zoom-img {
 .zoom-overlay-transitioning {
   cursor: default;
 }
+
+//纯数字换行
+.word-break{
+  word-break : break-all; overflow:hidden;
+}
+
