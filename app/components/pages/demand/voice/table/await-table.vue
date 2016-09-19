@@ -188,6 +188,8 @@
 					}
 					if(res.data){
 						this.showModal = false 
+						this.getDemandNum()
+						this.getMessageNum()
 						this.showMsg({content: '审核不通过', type: 'success'})
 						this.delVoice(self.del.index)
 						

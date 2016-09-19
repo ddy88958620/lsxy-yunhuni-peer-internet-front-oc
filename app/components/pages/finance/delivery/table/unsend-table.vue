@@ -69,7 +69,7 @@
 			},
 			actions: {
 				getDeliveryList,
-				getMoreDeliveryList
+				getMoreDeliveryList,
 			}
 		},
 		components: {
@@ -115,8 +115,6 @@
 		ready(){
 			let params = {}
 			params.status = this.status
-			console.log(params)
-
 			this.getDeliveryList(params)
 		}
 

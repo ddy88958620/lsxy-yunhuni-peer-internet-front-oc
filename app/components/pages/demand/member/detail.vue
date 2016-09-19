@@ -218,14 +218,16 @@
 </template>
 
 <script>
-	import { showMsg } from '../../../../vuex/actions'
+	import { showMsg,getMessageNum,getDemandNum } from '../../../../vuex/actions'
 	export default {
 		vuex: {
 			getters:{
 				
 			},
 			actions: {
-				showMsg
+				showMsg,
+				getMessageNum,
+				getDemandNum,
 			}
 		},
 		components: {
@@ -256,12 +258,14 @@
 						self.showMsg({content: res.errorMsg, type: 'danger'})
 						return
 					}
-				    self.showMsg({content: '审核通过', type: 'success'})
-				    setTimeout(function(){
+				  self.showMsg({content: '审核通过', type: 'success'})
+				  self.getMessageNum()
+				  self.getDemandNum()
+				  setTimeout(function(){
 						self.$route.router.go({path:'/admin/demand/member/list/await'})
 					},3000)
 					
-		        })
+		    })
 			},
 			fail(){
 				let self = this 	
@@ -285,12 +289,13 @@
 						return
 					}
 					self.showModal = false
-				    self.showMsg({content: '审核不通过', type: 'success'})
-				    setTimeout(function(){
+				  self.showMsg({content: '审核不通过', type: 'success'})
+				  self.getMessageNum()
+				  self.getDemandNum()  
+				  setTimeout(function(){
 						self.$route.router.go({path:'/admin/demand/member/list/await'})	
 					},3000)
-					
-		        })
+		    })
 			},
 			detail(){
 				let uid = this.$route.params.id
