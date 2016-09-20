@@ -56,9 +56,9 @@
 
 	<div class="flex flex-1 flex-direction-column whilebg admin-padding admin-border">
 		<div class="app-chart-header flex align-items-c">
-			<input name='app-chart-type'  @click="changeDate('month')"  type="radio" checked=checked/>
+			<input name='app-chart-type'  @click="changeDate('month')"  type="radio" value="month" v-model="radioDates"  checked=checked />
 			<label for="">日统计</label>
-			<input name='app-chart-type'  @click="changeDate('year')" type="radio"/>
+			<input name='app-chart-type'  @click="changeDate('year')" type="radio" value="year" v-model="radioDates" />
 			<label for="">月统计</label>
 			<div class="datepicker-wrap">
 				<datetime-picker :uuid="'consumeChartDate'" :action="doGetComsumeChart"   :type.sync="chartdate.type" :value.sync="chartdate.value"></datetime-picker>
@@ -96,7 +96,8 @@
 					value:DATE.todayString('month')
 				},
 				comsumelist:[],
-				chart:[]
+				chart:[],
+				radioDates:'month'
 			}
 		},
 		components: {
@@ -161,7 +162,7 @@
 		route:{
 			data(){
 				this.doGetComsume()
-				this.changeDate('month')
+				this.changeDate(this.radioDates)
 			}
 		},
 		ready(){
