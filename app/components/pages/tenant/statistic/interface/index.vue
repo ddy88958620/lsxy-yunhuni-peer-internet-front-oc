@@ -2,9 +2,9 @@
 
   <div class="flex flex-1 flex-direction-column admin-padding admin-border bg-section-margin whilebg ">
     <div class="app-chart-header flex align-items-c">
-	    <input name='app-chart-type' @click="changeDate('month')"  type="radio" checked=checked/>
+	    <input name='app-chart-type' @click="changeDate('month')"  type="radio" value="month" v-model="radioDates"  checked=checked/>
 	    <label for="">日统计</label>
-	    <input name='app-chart-type' @click="changeDate('year')"  type="radio"/>
+	    <input name='app-chart-type' @click="changeDate('year')"  type="radio" value="year" v-model="radioDates" />
 	    <label for="">月统计 </label>
 	    <div class="datepicker-wrap">
 		    <datetime-picker :uuid="'datetimepicker1'" :action="chartApiQuery" :type.sync="date.type" :value.sync="date.value"></datetime-picker>
@@ -39,7 +39,8 @@
 			  date: {
   				type: 'month',
 				  value: DATE.todayString('month'),
-			  }
+			  },
+        radioDates: 'month',
       }
     },
     components:{
@@ -80,7 +81,8 @@
     },
     route: {
     	data(){
-    		this.changeDate('month')
+
+    		this.changeDate(this.radioDates)
     	}
     }
   }
