@@ -62,10 +62,10 @@
 
 
 	<modal :show.sync="showModal" title="审核" :action="fail">
-		<div slot="body">
-			<div class="flex flex-1 ">
+		<div slot="body" class="flex flex-1">
+			<div class="flex flex-1">
 				<span class="flex flex-1 align-items-c justify-content-c">不通过原因</span>
-				<span class="flex flex-2 "><input type="text" class="form-control " v-model="del.reason" /></span>
+				<span class="flex flex-4 "><input type="text" class="form-control " v-model="del.reason" /></span>
 			</div>
 		</div>
 	</modal>
@@ -187,12 +187,12 @@
 						return
 					}
 					if(res.data){
+						self.del = {reason:'',id:'',index:''}
 						this.showModal = false 
 						this.getDemandNum()
 						this.getMessageNum()
 						this.showMsg({content: '审核不通过', type: 'success'})
 						this.delVoice(self.del.index)
-						
 					}
 				})	
 			},

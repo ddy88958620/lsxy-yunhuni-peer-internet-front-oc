@@ -332,7 +332,8 @@
 				params.status =2
 				params.reason = this.reason
  				$.put('/finance/invoice/edit/send'+id,params).then((res)=>{
-		           	this.abnormalModal = false
+		      this.abnormalModal = false
+					this.reason = ''
 					if( res.success === 'false'){
 						this.showMsg({content: res.errorMsg, type: 'danger'})
 						return
