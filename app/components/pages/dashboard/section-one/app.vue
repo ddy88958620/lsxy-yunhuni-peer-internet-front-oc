@@ -3,9 +3,8 @@
     <div class="panel panel-default flex-1">
       <div class="panel-heading"><i class="iconfont icon-oc-app"></i>应用数据</div>
       <div class="panel-body flex flex-1">
-
-        <div class='flex flex-1 flex-direction-column align-items-c justify-content-c'>
-          <div class="flex  pie_wrap">
+        <div class=''>
+          <div class="pie_wrap">
             <pie :uuid="'apppie'" :max="app.total" :value="app.total" :bgcolor="'#89d9e3'"></pie>
           </div>
           <div class="flex  align-items-c title-box">
@@ -32,6 +31,7 @@
 <script>
 import { getAppCount } from '../../../../vuex/actions.js'
 import pie from '../../../ui/pie.vue'
+
 export default {
   vuex: {
     getters:{
@@ -84,7 +84,7 @@ export default {
       padding: 0px 0;
       border-left: 1px solid #ddd;
     }
-    width: 1px;
+    width:1px;
   }
 
   .panel-body{

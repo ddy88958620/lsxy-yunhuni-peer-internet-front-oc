@@ -50,6 +50,20 @@ module.exports = {
     ],
     noParse: [],
   },
+  vue: {
+    // use custom postcss plugins
+    postcss: [
+      // 让import '*.scss' 也生效
+      require('postcss-import')({
+        addDependencyTo: webpack
+      }),
+      require('autoprefixer')({
+        browsers: ['last 3 versions']
+      })
+    ],
+    // configure autoprefixer
+    autoprefixer: false
+  },
   plugins: [
     new webpack.ProvidePlugin({
       $: 'jquery',

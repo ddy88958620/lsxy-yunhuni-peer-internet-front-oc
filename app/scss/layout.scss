@@ -2,8 +2,46 @@
   display: inline-block;
 }
 
+// table 型水平居中
+
+.table-layout {
+  display: table;
+  width: 100%;
+}
+
+.table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.table-container {
+  display: block;
+  margin: 0 auto;
+}
+
+
+// transform 水平居中
+
+.position-layout {
+  position: relative;
+}
+
+.position-center {
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  overflow: hidden;
+}
+
+.width-100 {
+  width: 100%;
+}
+
 .flex {
-  display: flex;
+  display: block;
 }
 
 .flex-1 {
@@ -113,7 +151,6 @@
 }
 
 //  padding
-
 .clear-padding-left {
   padding-left: 0px !important;
 }
