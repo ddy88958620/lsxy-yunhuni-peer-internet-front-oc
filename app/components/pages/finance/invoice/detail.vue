@@ -279,6 +279,7 @@
 				let self = this
 				$.put('/finance/invoice/edit/'+id, params).then((res) => {
 					this.abnormalModal = false
+					this.reason = ''
 					if( res.success === 'false'){
 						this.showMsg({content: res.errorMsg, type: 'danger'})
 						return
