@@ -284,6 +284,7 @@
 				params.type = type
 				params.reason = self.reason
 				$.put('/demand/member/edit/'+id,params).then((res)=>{
+					self.reason = ''
 					if(res.success === 'false'){
 						self.showMsg({content: res.errorMsg, type: 'danger'})
 						return
@@ -300,13 +301,13 @@
 			detail(){
 				let uid = this.$route.params.id
 		 		this.type = this.$route.params.type 
-		        let self = this
+		    let self = this
  				$.get('/demand/member/detail/'+uid,{type:this.type}).then((res)=>{
  					this.messages.list = res.data.list
  					this.messages.realname = res.data.realname
-		        })
+		    })
 
- 				
+ 
 			}
 		},
 		data(){
