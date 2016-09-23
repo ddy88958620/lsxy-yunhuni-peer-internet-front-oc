@@ -1,5 +1,47 @@
+.ofh {
+  overflow: hidden;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.block {
+  display: block;
+}
+
 .inline-block {
   display: inline-block;
+}
+
+
+.height-100 {
+  height: 100%;
+}
+
+.height-50 {
+  height: 50%;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.width-50 {
+  width: 50%;
+}
+
+.width-33 {
+  width: 33.333%;
+}
+// float
+
+.float-r {
+  float: right;
+}
+
+.float-l {
+  float: left;
 }
 
 // table 型水平居中
@@ -34,10 +76,6 @@
   top: 50%;
   transform: translate(-50%,-50%);
   overflow: hidden;
-}
-
-.width-100 {
-  width: 100%;
 }
 
 .flex {

@@ -5,6 +5,9 @@
   width: $sidebar-width;
   background-color: #616b88;
   color: #d9dbe8;
+  position: fixed;
+  height: 100%;
+
   a {
     color: #d9dbe8;
   }
@@ -76,6 +79,7 @@
       .sub{
         width: 100%;
         height: 46px;
+        line-height: 46px;
         padding: 0 15px 0 50px;
         &:hover{
           @extend .active;
@@ -94,24 +98,28 @@
 }
 </style>
 <template>
-  <aside class='app-sidebar'>
-    <ul class="flex-direction-column-reverse fex fex-1 ">
-      <li class="logo-box flex flex-1 flex-direction-column justify-content-c align-items-c">
-        <img src="../../assets/images/logo.png" class="logo " />
-        <span>云呼你运营中心</span>
-      </li>
-      <li class="avatar-box flex justify-content-c align-items-c flex-direction-column border">
-        <div class="canvas flex justify-content-c align-items-c ">
-          <img class="avatar" src="../../assets/images/avatar.png" />
+  <aside class='app-sidebar height-100'>
+    <ul class="height-100">
+      <li class="logo-box text-align-c position-layout">
+        <div class="position-center width-100">
+          <img src="../../assets/images/logo.png" class="logo " /><br/>
+          <span>云呼你运营中心</span>
         </div>
-        <a class="flex flex-1 identity text-center cursor text-none" title='管理员'>管理员</a>
-        <a class="flex flex-1 exitbox iconfont icon-oc-exit cursor text-none" @click='localLogout' title='退出'></a>
       </li>
-      <li class="flex menu-box align-items-c justify-content-c border">
-        <i class="submenu"></i>
+      <li class="avatar-box position-layout">
+	      <div class="position-center width-100 text-align-c ">
+          <div class="canvas table-container position-layout">
+            <img class="avatar position-center" src="../../assets/images/avatar.png"/>
+          </div>
+          <a class="block identity text-center cursor text-none" title='管理员'>管理员</a>
+          <a class="block inline-block exitbox iconfont icon-oc-exit cursor text-none" @click='localLogout' title='退出'></a>
+        </div>
       </li>
-      <li class="flex " v-for='menu in menus'>
-        <a class="flex sub border align-items-c " v-link="menu.link">
+      <li class="menu-box border width-100 position-layout">
+        <i class="submenu inline-block position-center"></i>
+      </li>
+      <li class="block " v-for='menu in menus'>
+        <a class="block sub border align-items-c " v-link="menu.link">
           <i class="iconfont {{menu.icon}}"></i>{{ menu.title }}
           <span class="menu-count" v-if="menu.label=='Custom' && num.awaitService!=0" >{{num.awaitService}}</span>
           <span class="menu-count" v-if="menu.label=='Finance' && num.awaitInvoice!=0" >{{num.awaitInvoice}}</span>

@@ -1,24 +1,26 @@
 <template>
-  <div class="section_right">
-    <div class="panel panel-default flex-1">
+  <div class="section_right ofh">
+    <div class="panel panel-default">
       <div class="panel-heading"><i class="iconfont icon-oc-app"></i>应用数据</div>
-      <div class="panel-body flex flex-1">
-        <div class=''>
+      <div class="panel-body">
+        
+        <div class='inline-block width-50'>
           <div class="pie_wrap">
             <pie :uuid="'apppie'" :max="app.total" :value="app.total" :bgcolor="'#89d9e3'"></pie>
           </div>
-          <div class="flex  align-items-c title-box">
+          <div class="title-box">
             总应用数（个）
           </div>
         </div>
 
-        <div class="border-span flex align-items-c "><span></span></div>
+        <!--<div class="border-span flex align-items-c "><span></span></div>-->
 
-        <div class='flex flex-1 flex-direction-column align-items-c justify-content-c' style="z-index:999">
-          <div class="flex  pie_wrap align-items-c ">
+        <div class='inline-block width-50' style="z-index:999">
+          
+          <div class=" pie_wrap">
             <pie :uuid="'appie2'" :max="app.total" :value="app.online" :bgcolor="'#80d1ff'" ></pie>
           </div>
-          <div class="flex align-items-c title-box">
+          <div class=" title-box">
             总上线应用数（个)
           </div>
         </div>
@@ -67,15 +69,14 @@ export default {
 }
 </script>
 <style lang="sass" scoped>
+  .section_right {
+    display: inline-block;
+    width: 40%;
+  }
   .panel-heading{
     .iconfont{
       padding-right: 10px;
     }
-  }
-
-  .section_right {
-    display: flex;
-    flex: 2;
   }
 
   .border-span{

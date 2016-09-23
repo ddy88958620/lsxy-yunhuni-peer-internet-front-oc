@@ -7,15 +7,8 @@
     './admin.scss',
     './mixin.scss';
 
-html {
-  height: 100%
-}
-
 body {
-  min-height: 100%;
-  height: 100%;
   font-size: 12px;
-  display: flex;
   font-family: 'Microsoft YaHei','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 
@@ -25,7 +18,11 @@ a:link {
 
 #app {
   width: 100%;
-  height: 100%;
+  position: absolute;
+  bottom: 0;
+  top:0;
+  right: 0;
+  left: 0;
 }
 
 

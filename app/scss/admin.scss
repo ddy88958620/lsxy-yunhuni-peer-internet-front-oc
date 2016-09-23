@@ -54,6 +54,10 @@
   margin-left: 20px;
 }
 
+.admin-top {
+  margin-top: 60px;
+}
+
 .admin-padding {
   padding: $admin-padding;
 }
@@ -141,7 +145,7 @@
   }
 
   .search{
-    width: 300px;
+    //width: 300px;
     padding: 15px;
   }
 }
@@ -212,15 +216,21 @@ table {
     text-overflow: ellipsis;
 }
 
-
-
-
 .app-main-content {
-  display: flex;
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  right: 0px;
+  left: 200px;
 
   // 存在二级导航时布局
   .app-main-left {
-
+    position: fixed;
+    left: 200px;
+    right: 0;
+    bottom: 0;
+    top: 60px;
+    padding: 0;
     .wrapper{
       span{
         border-left: 2px solid #616b88;
@@ -247,7 +257,6 @@ table {
       color: #333;
       font-size: 1.4rem;
       display: flex;
-      flex:1;
       height: 40px;
       line-height: 1;
       padding: 15px 15px 15px 35px;
@@ -257,12 +266,15 @@ table {
     a.v-link-active {
       background-color: white;
     }
-
-    width: 200px;
-    padding: 0;
   }
   .app-main-right {
-    flex: 1;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin-left: 150px;
+    display: inline-block;
   }
 }
 

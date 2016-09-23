@@ -1,11 +1,12 @@
 <template>
-  <div class="section_left" >
-    <div class="panel panel-default flex-1">
+  <div class="section_left ofh" >
+	  
+    <div class="panel panel-default">
       <div class="panel-heading"><i class="iconfont icon-oc-member"></i>会员数据</div>
-      <div class="panel-body flex align-items-c justify-content-c">
+      <div class="panel-body">
 
-        <div class='flex flex-1 ' >
-          <div class="flex pie_wrap align-items-c ">
+        <div class='inline-block width-33' >
+          <div class="pie_wrap inline-block ">
             <pie
               :max="member.regist_total"
               :value="member.regist_total"
@@ -14,8 +15,8 @@
               >
             </pie>
           </div>
-          <div class="flex flex-1 ">
-            <ul class="list-none-style flex flex-1 flex-direction-column  justify-content-c">
+          <div class="inline-block">
+            <ul class="list-none-style">
               <li>总注册会员 ( 个 )</li>
               <li>日 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>{{member.regist_tatal_day}}</span></li>
               <li>周 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>{{member.regist_tatal_week}}</span></li>
@@ -24,10 +25,10 @@
           </div>
         </div>
 
-        <div class="border-span flex align-items-c "><span></span></div>
+        <!--<div class="border-span flex align-items-c "><span></span></div>-->
 
-        <div class='flex flex-1' >
-          <div class="flex pie_wrap align-items-c">
+        <div class='inline-block width-33' >
+          <div class="pie_wrap inline-block">
             <pie
               :max="member.regist_total"
               :value="member.auth_total"
@@ -35,8 +36,8 @@
               :bgcolor="color[1]" >
             </pie>
           </div>
-          <div class="flex flex-1 align-items-c" >
-            <ul class="list-none-style flex flex-1 flex-direction-column  justify-content-c">
+          <div class="inline-block" >
+            <ul class="list-none-style">
               <li>总认证会员 ( 个 )</li>
               <li>日 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>{{member.auth_total_day}}</span></li>
               <li>周 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>{{member.auth_total_week}}</span></li>
@@ -45,10 +46,10 @@
           </div>
         </div>
 
-        <div class="border-span flex align-items-c "><span></span></div>
+        <!--<div class="border-span"><span></span></div>-->
 
-        <div class='flex flex-1'>
-          <div class="flex pie_wrap align-items-c" >
+        <div class='inline-block width-33'>
+          <div class="pie_wrap inline-block" >
             <pie
               :max="member.regist_total"
               :value="member.consume"
@@ -56,8 +57,8 @@
               :bgcolor="color[2]">
             </pie>
           </div>
-          <div class="flex flex-1 align-items-c" >
-            <ul class="list-none-style flex flex-1 flex-direction-column  justify-content-c">
+          <div class="inline-block" >
+            <ul class="list-none-style ">
               <li>总产生消费会员 ( 个 )</li>
               <li>日 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>{{member.consume_day}}</span></li>
               <li>周 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>{{member.consume_week}}</span></li>
@@ -65,7 +66,6 @@
             </ul>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -122,21 +122,16 @@ export default {
 </script>
 <style lang='sass' scoped>
 @import '../../../../scss/variable.scss';
+
+.section_left {
+  display: inline-block;
+  width: 60%;
+}
+
 .panel-heading{
   .iconfont {
     padding-right: 10px;
   }
-}
-.section_left {
-  display: flex;
-  flex: 3;
-  margin-right: $admin-padding;
-}
-
-.pie_wrap {
-  padding: 15px;
-  width: 125px;
-  padding-right: 0px;
 }
 
 .icon-oc-up{

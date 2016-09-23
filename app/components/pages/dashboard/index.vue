@@ -1,5 +1,5 @@
 <template>
-  <div class="app-main-content admin-padding flex-direction-column">
+  <div class="app-main-content admin-padding">
     <section-one></section-one>
     <section-two></section-two>
     <section-three></section-three>

@@ -1,5 +1,5 @@
 <template>
-  <section class='flex section_one bg-section-margin'>
+  <section class='dashboard-section_one bg-section-margin no-wrap'>
     <member></member>
     <app></app>
   </section>
@@ -16,10 +16,17 @@ export default {
 
 </script>
 
-<style lang="sass" scoped>
-  .section_one{
+<style lang="sass">
+  .dashboard-section_one{
     font-size: 1.4rem;
     color:#666;
   }
+
+  .pie_wrap {
+    padding: 15px;
+    width: 125px;
+    padding-right: 0px;
+  }
+
 
 </style>

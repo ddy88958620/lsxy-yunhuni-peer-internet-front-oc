@@ -1,5 +1,5 @@
 <template>
-  <div class="search-box flex flex-1">
+  <div class="search-box">
     <input class="form-control search"
       placeholder="{{placeholder}}" 
       v-model="value"

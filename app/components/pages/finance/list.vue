@@ -2,9 +2,9 @@
 </style>
 <template>
 	<div>
-		<div class="flex flex-direction-column admin-table-header">
+		<div class="admin-table-header">
 			<h4>反馈意见</h4>
-			<div class="flex align-items-c remove-margin-bottom">
+			<div class="remove-margin-bottom">
 				<span class='datetime-picker-label clear-padding-left'>提交时间:</span>
 				<datetime-picker></datetime-picker>
 				<span class='datetime-picker-label'>至</span>
@@ -15,9 +15,7 @@
 					<option>已上线</option>
 					<option>未上线</option>
 				</select>
-
 				<a class="btn btn-primary admin-button-margin" >查询</a>
-
 				<a class="btn btn-primary " v-link="'/admin/service'">全部标记为已读</a>
 			</div>
 		</div>
