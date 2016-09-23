@@ -22,7 +22,7 @@
           <td v-if="message.ivrType==2">呼出</td>
           <td>{{ message.fromNum }}</td>
           <td>{{ message.toNum }}</td>
-          <td>{{ message.callTimeLong }}</td>
+          <td>{{ message.costTimeLong }}</td>
           <td>{{ message.cost }}</td>
         </tr>
         </tbody>
