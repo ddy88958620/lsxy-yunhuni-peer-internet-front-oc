@@ -27,7 +27,7 @@
           <td v-if="message.joinType==0">创建</td>
           <td v-if="message.joinType==1">邀请加入</td>
           <td v-if="message.joinType==2">呼入加入</td>
-          <td>{{ message.callTimeLong }}</td>
+          <td>{{ message.costTimeLong }}</td>
           <td>{{ message.cost }}</td>
         </tr>
         </tbody>
