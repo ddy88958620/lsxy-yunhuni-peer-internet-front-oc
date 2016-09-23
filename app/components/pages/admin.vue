@@ -46,7 +46,6 @@ export default {
   position: absolute;
   min-height: 100%;
   width: 100%;
-  background-color: #eff5fa
 }
 .app-main {
 	margin-left: $sidebar-width;
