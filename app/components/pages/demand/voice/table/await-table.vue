@@ -44,7 +44,7 @@
 					<td>{{message.name}}</td>
 					<td>{{message.size | fileSize }}</td>
 					<td class="text-align-c">
-						<span><a @click="playAudio($index)">试听</a></span>
+						
 						<span><a @click="pass(message.id,$index)">通过</a></span>
 						<span><a @click="showfail(message.id,$index)">不通过</a></span>
 					</td>
@@ -56,10 +56,23 @@
 				<a @click="moreMessage" class="text-none" v-show='this.voice.totalPageCount!=this.voice.currentPageNo && this.voice.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
 			</div>
 			<!--放音文件隐藏-->
-			<audio :src="audioURI" autoplay></audio>
+			
+			
 		</div>
 	</div>
 
+	<modal :show.sync="audioModal.show" title="播放" :action="hideAudioModal">
+		<div slot="body">
+			<div class="flex flex-1 ">
+			
+				<audio class="audio flex flex-1" :src="audioURI" controls=""  autoplay></audio>
+				<button class="btn btn-primary admin-button-margin" @click="pass(audioModal.id,audioModal.index)">通过</button>
+				<button class="btn" @click="showfail(audioModal.id,audioModal.index)">不通过</button>
+				<button class="btn admin-button-margin" @click="hideAudioModal">取消</button>
+			</div>
+		</div>
+		<div slot="footer"></div>
+	</modal>
 
 	<modal :show.sync="showModal" title="审核" :action="fail">
 		<div slot="body" class="flex flex-1">
@@ -70,10 +83,13 @@
 		</div>
 	</modal>
 
-
-
-
 </template>
+
+<style lang='sass' scoped>
+
+</style>
+
+
 <script>
 	import { getVoiceList,delVoice,showMsg,getMoreVoiceList,getDemandNum,getMessageNum} from '../../../../../vuex/actions'
 	import domain from '../../../../../config/domain'
@@ -113,6 +129,11 @@
 				},
 				audioURI: '',
 				showModal: false,
+				audioModal:{
+					show:false,
+					id:'',
+					index:'',
+				},
 				del:{
 					id:'',
 					reason:'',
@@ -131,8 +152,6 @@
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
 				params.name = this.search
-			
-
 				this.getVoiceList(params)
 			},
 			moreMessage(){
@@ -149,13 +168,35 @@
 				params.pageNo = nextPage
 				this.getMoreVoiceList(params)
 			},
-			playAudio(index){
-//				console.log(this.voice.result[index].fileKey)
+			playAudio(id,index){
+				this.audioModal = {
+					show:true,
+					index:index,
+					id:id,
+				}
+				//console.log(this.voice.result[index].fileKey)
 				this.audioURI = domain.API_ROOT_AUDIO + '?uri='+this.voice.result[index].fileKey
+			},
+			testAudio(index){
+				var audio = document.querySelector('.audio')
+				audio.play()
+				
+			},
+			hideAudioModal(){
+				this.audioModal = {
+					show:false,
+					index:'',
+					id:'',
+				}
+			},
+			//暂停
+			pauseAudio(index){
+				//let audio = document.getElementById('audio')
+				var audio = document.querySelector('.audio')
+				audio.pause()
 			},
 			//通过
 			pass(id,index){
-
 				let self = this 
 				let params = {} 
 				params.status = 1
@@ -166,6 +207,7 @@
 						return
 					}
 					if(res.data){
+						this.hideAudioModal()
 						this.delVoice(index)
 						this.getDemandNum()
 						this.getMessageNum()
