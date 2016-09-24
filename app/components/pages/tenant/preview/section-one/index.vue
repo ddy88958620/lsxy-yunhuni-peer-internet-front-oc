@@ -12,9 +12,20 @@
                   <span class="flex flex-1 name align-items-c justify-content-c" >{{tenant.tenantName}}</span>
                 </div>
                 <div class="message flex flex-1 flex-direction-column ">
-                  <div class=" " >接口API: <span v-if="cert.apiUrl">{{cert && cert.apiUrl}}/</span></div>
-                  <span class="">密钥：{{cert && cert.cert.secretKey}}</span>
-                  <span class="">鉴权账号：{{cert && cert.cert.certId}}</span>
+                  <div class="flex flex-1" >
+                    <div class="title"><span class="flex flex-1">接口API:</span></div>
+                    <span class=" overflow-x-h word-wrap"  v-if="cert.apiUrl">{{cert && cert.apiUrl}}</span>
+                  </div>
+
+                  <div class="flex flex-1">
+                    <div class="titleid"><span class="flex flex-1">密钥：</span></div>
+                    <span class="overflow-x-h word-wrap"  > {{cert && cert.cert.secretKey}}</span>
+                  </div>
+
+                  <div class="flex flex-1">
+                    <div class="titleid"><span class="flex flex-1">鉴权账号：</span></div>
+                    <span class="overflow-x-h word-wrap" >{{cert && cert.cert.certId}}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -298,6 +309,17 @@
 
     .message{
       color:#999;
+      .title{
+        width: 100px;
+      }
+      .titleid{
+        width: 67px;
+        
+      }
+    }
+
+    .word-wrap{
+       word-wrap:break-word;
     }
 
     .money{

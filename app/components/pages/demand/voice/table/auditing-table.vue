@@ -103,7 +103,7 @@
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
 				params.name = this.search
-				console.log(params)
+		
 
 				this.getVoiceList(params)
 			},
