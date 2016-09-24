@@ -44,7 +44,7 @@
 					<td>{{message.name}}</td>
 					<td>{{message.size | fileSize }}</td>
 					<td class="text-align-c">
-						
+						<span><a @click="playAudio(message.id,$index)">试听</a></span>
 						<span><a @click="pass(message.id,$index)">通过</a></span>
 						<span><a @click="showfail(message.id,$index)">不通过</a></span>
 					</td>
@@ -207,6 +207,7 @@
 						return
 					}
 					if(res.data){
+
 						this.hideAudioModal()
 						this.delVoice(index)
 						this.getDemandNum()
@@ -229,12 +230,14 @@
 						return
 					}
 					if(res.data){
+						this.delVoice(self.del.index)
 						self.del = {reason:'',id:'',index:''}
+						this.hideAudioModal()
 						this.showModal = false 
 						this.getDemandNum()
 						this.getMessageNum()
 						this.showMsg({content: '审核不通过', type: 'success'})
-						this.delVoice(self.del.index)
+						
 					}
 				})	
 			},
