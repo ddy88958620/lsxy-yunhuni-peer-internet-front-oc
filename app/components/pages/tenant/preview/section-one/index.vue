@@ -12,9 +12,9 @@
                   <span class="flex flex-1 name align-items-c justify-content-c" >{{tenant.tenantName}}</span>
                 </div>
                 <div class="message flex flex-1 flex-direction-column ">
-                  <div class=" " >REST API: <span v-if="cert.apiUrl">{{cert && cert.apiUrl}}/</span></div>
-                  <span class="">SercreKey：{{cert && cert.cert.secretKey}}</span>
-                  <span class="">鉴权ID：{{cert && cert.cert.certId}}</span>
+                  <div class=" " >接口API: <span v-if="cert.apiUrl">{{cert && cert.apiUrl}}/</span></div>
+                  <span class="">密钥：{{cert && cert.cert.secretKey}}</span>
+                  <span class="">鉴权账号：{{cert && cert.cert.certId}}</span>
                 </div>
               </div>
             </div>
