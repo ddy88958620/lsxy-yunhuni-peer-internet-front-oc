@@ -11,7 +11,7 @@
                   </div>
                   <span class="flex flex-1 name align-items-c justify-content-c" >{{tenant.tenantName}}</span>
                 </div>
-                <div class="message flex flex-1 flex-direction-column" @click="api.showModal = true">
+                <div class="message flex flex-1 flex-direction-column">
                   <div class="flex flex-1" title="{{cert && cert.apiUrl}}">
                    <span class="titleid">接口API: </span>  <span class="overflow-x-h word-space" >{{cert && cert.apiUrl}}</span> 
                   </div>
@@ -138,27 +138,6 @@
     </div>
   </modal>
 
-  <modal :show.sync="api.showModal" title="开发者账号" :action="hideApi">
-    <div slot="body" class="flex flex-1 flex-direction-column" >
-      <div class="flex flex-1 flex-direction-column apimodal">
-          <div class="flex" >
-            <span class="title" >api接口: </span>
-            <span>{{cert && cert.apiUrl}}</span>
-          </div>
-          <div class="flex flex-1" >
-            <span class="titleid">密钥: </span><span class="overflow-x-h word-space" >{{cert && cert.cert.secretKey}}</span>
-          </div>
-
-          <div class="flex flex-1" >
-           <span class="titleid">鉴权账号: </span>  <span class="overflow-x-h word-space" >{{cert && cert.cert.certId}}</span>
-          </div>
-
-      </div>
-    </div>
-    <div slot="footer">
-    </div>
-
-  </modal>
 
 </template>
 
@@ -199,9 +178,6 @@
         recharge:{
           showModal:false,
           amount:0
-        },
-        api:{
-          showModal:false,
         }
       }
     },
