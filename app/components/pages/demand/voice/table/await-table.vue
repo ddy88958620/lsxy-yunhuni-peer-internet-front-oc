@@ -179,12 +179,16 @@
 				//console.log(this.voice.result[index].fileKey)
 				this.audioURI = domain.API_ROOT_AUDIO + '?uri='+this.voice.result[index].fileKey
 			},
+			stopAudio(){
+				this.audioURI = '';
+			},
 			testAudio(index){
 				var audio = document.querySelector('.audio')
 				audio.play()
 				
 			},
 			hideAudioModal(){
+				this.stopAudio()
 				this.audioModal = {
 					show:false,
 					index:'',
@@ -209,7 +213,7 @@
 						return
 					}
 					if(res.data){
-
+						this.stopAudio()
 						this.hideAudioModal()
 						this.delVoice(index)
 						this.getDemandNum()
@@ -232,6 +236,7 @@
 						return
 					}
 					if(res.data){
+						this.stopAudio()
 						this.delVoice(self.del.index)
 						self.del = {reason:'',id:'',index:''}
 						this.hideAudioModal()
@@ -244,6 +249,7 @@
 				})	
 			},
 			showfail(id,index){
+				this.stopAudio()
 				this.del.index = index
 				this.del.id = id
 				this.showModal = true 
