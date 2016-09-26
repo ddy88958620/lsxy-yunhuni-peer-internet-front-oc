@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="admin-table table-responsive">
+        <div class="admin-table">
             <table class="table">
                 <thead>
                 <tr class="total">

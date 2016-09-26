@@ -2,23 +2,23 @@
     <section class='section_one bg-section-margin'>
         <div class="no-wrap">
           <div class="box inline-block ofh">
-            <div class=" flex-grow-1 flex flex-1 flex-direction-column ">
-              <div class="sort flex flex-1 flex-direction-column greenborder">
-                <div class="flex justify-content-s company">
-                  <div class="canvas flex justify-content-c align-items-c ">
+            <div class=" flex-grow-1 flex flex-1  ">
+              <div class="sort flex  greenborder">
+                <div class="flex  company">
+                  <div class="canvas inline-block justify-content-c align-items-c ">
                     <img class="avatar" src="/avatar.png?a226ccef62bc02b7f799d54e4c5b27dd">
                   </div>
-                  <span class="flex flex-1 name align-items-c justify-content-c" >{{tenant.tenantName}}</span>
+                  <span class="inline-block name " >{{tenant.tenantName}}</span>
                 </div>
-                <div class="message flex flex-1 flex-direction-column" @click="api.showModal = true">
-                  <div class="flex flex-1" title="{{cert && cert.apiUrl}}">
-                   <span class="titleid">接口API: </span>  <span class="overflow-x-h word-space" >{{cert && cert.apiUrl}}</span> 
+                <div class="message inline-block ">
+                  <div class="flex " title="{{cert && cert.apiUrl}}">
+                     <span class="inline-block white-space" >接口API: {{cert && cert.apiUrl}}</span>
                   </div>
-                  <div class="flex flex-1" title="{{cert && cert.cert.secretKey}}">
-                    <span class="titleid">密钥: </span>  <span class="overflow-x-h word-space" >{{cert && cert.cert.secretKey}}</span>
+                  <div class="flex " title="{{cert && cert.cert.secretKey}}">
+                     <span class="inline-block white-space" >密钥: {{cert && cert.cert.secretKey}}</span>
                   </div>
-                  <div class="flex flex-1" title="">
-                   <span class="titleid">鉴权账号: </span>  <span class="overflow-x-h word-space" >{{cert && cert.cert.certId}}</span>
+                  <div class="flex " title="">
+                     <span class="inline-block  white-space" >鉴权账号: {{cert && cert.cert.certId}}</span>
                   </div>
                 </div>
               </div>
@@ -94,8 +94,8 @@
           &nbsp;&nbsp;<button class="btn btn-primary" @click="query(true)">查询</button>
         </div>
       </div>
-      <div class="admin-table table-responsive flex-1 flex flex-direction-column">
-        <div class="table-total flex flex-1 justify-content-e">
+      <div class="admin-table flex-1 flex flex-direction-column">
+        <div class="table-total flex flex-1 justify-content-e float-r">
           消费总金额：<span class="brown">{{page.totalAmount}}</span>元 共<span class="text-danger">{{page.total}}</span>条
         </div>
         <div class="flex modal-table" >

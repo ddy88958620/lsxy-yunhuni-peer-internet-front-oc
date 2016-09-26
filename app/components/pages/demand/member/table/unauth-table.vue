@@ -26,7 +26,7 @@
 	</div>
 	<div>
 		<div class="admin-table table-responsive">
-			<div class="table-total flex flex-1 justify-content-e">
+			<div class="table-total flex flex-1 justify-content-e float-r">
 				共<span class="text-danger">{{ demand.totalCount }}</span>条
 			</div>
 			<table class="table">

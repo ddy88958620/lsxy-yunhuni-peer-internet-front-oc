@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="admin-table table-responsive">
-      <div class="table-total flex flex-1 justify-content-e">
+    <div class="admin-table">
+      <div class="table-total flex flex-1 justify-content-e float-r">
         <!-- 消费金额: <span class="brown">{{sessionTotal}}</span>元 --> 共<span class="text-danger">{{session.totalCount ? session.totalCount : 0 }}</span>条
         
       </div>

@@ -22,10 +22,16 @@ export default {
     color:#666;
   }
 
-  .pie_wrap {
-    padding: 15px;
-    width: 125px;
-    padding-right: 0px;
+  .pie-wrap-start{
+    width: 100%;
+  }
+  .pie_wrap{
+    padding: 30px 0 ;
+    width: 100px;
+  }
+  .pie-wrap {
+    padding: 15px 0 10px 0;
+    width: 100px;
   }
 
 

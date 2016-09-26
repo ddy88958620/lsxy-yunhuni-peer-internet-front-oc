@@ -4,22 +4,29 @@
       <div class="panel-heading"><i class="iconfont icon-oc-app"></i>应用数据</div>
       <div class="panel-body">
         
-        <div class='inline-block width-50'>
-          <div class="pie_wrap">
-            <pie :uuid="'apppie'" :max="app.total" :value="app.total" :bgcolor="'#89d9e3'"></pie>
+        <div class='inline-block width-50 text-align-c'>
+          <div class="pie-wrap-start text-align-c">
+            <div class="pie-wrap inline-block">
+              <pie :uuid="'apppie'" :max="app.total" :value="app.total" :bgcolor="'#89d9e3'"></pie>
+            </div>
           </div>
+
           <div class="title-box">
             总应用数（个）
           </div>
+
         </div>
 
         <!--<div class="border-span flex align-items-c "><span></span></div>-->
 
-        <div class='inline-block width-50' style="z-index:999">
-          
-          <div class=" pie_wrap">
-            <pie :uuid="'appie2'" :max="app.total" :value="app.online" :bgcolor="'#80d1ff'" ></pie>
+        <div class='inline-block width-50 text-align-c' >
+
+          <div class="pie-wrap-start text-align-c">
+            <div class="pie-wrap inline-block">
+              <pie :uuid="'appie2'" :max="app.total" :value="app.online" :bgcolor="'#80d1ff'" ></pie>
+            </div>
           </div>
+
           <div class=" title-box">
             总上线应用数（个)
           </div>
@@ -92,12 +99,11 @@ export default {
     height: 160px;
     ul{
       width: 110px;
-      overflow-y: hidden;
     }
   }
 
   .title-box{
-    padding-top: 10px;
+    text-align: center;
   }
 
   .panel-heading{

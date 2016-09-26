@@ -104,9 +104,9 @@
 <style lang='sass'>
 
 .section-three {
-  height: 394px;
+  height: 415px;
   .section-left {
-    width: 20%;
+    width: 280px;
 	  display: inline-block;
   }
   
@@ -117,12 +117,12 @@
   }
   .section-right {
 	  width: 100%;
-	  max-height: 384px;
+	  max-height: 416px;
     max-width: 990px;
   }
   
   .session-small-box {
-    padding: 30px;
+    padding: 30px 30px 39px 30px;
     border-right: 1px solid rgba(0, 0, 0, 0.1);
     ul {
       color: #888;

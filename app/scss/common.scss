@@ -177,3 +177,8 @@ img.zoom-img {
   word-break : break-all; overflow:hidden;
 }
 
+//省略号
+.white-space{
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+

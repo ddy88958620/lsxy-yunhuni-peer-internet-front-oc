@@ -14,7 +14,7 @@
 				<datetime-picker :uuid="'consumeDate'" :action="doGetComsume"  :type.sync="consumedate.type" :value.sync="consumedate.value" ></datetime-picker>
 			</span>
 		</div>
-		<div class="admin-table table-responsive flex flex-1">
+		<div class="admin-table flex flex-1">
 			<table class="table remove-border ">
 				<tr v-for="list in comsumelist">
 					<td>{{list.type}}</td>
@@ -67,7 +67,7 @@
 			<label for="">日统计</label>
 			<input name='app-chart-type'  @click="changeDate('year')" type="radio" value="year" v-model="radioDates" />
 			<label for="">月统计</label>
-			<div class="datepicker-wrap">
+			<div class="datepicker-wrap inline-block">
 				<datetime-picker :uuid="'consumeChartDate'" :action="doGetComsumeChart"   :type.sync="chartdate.type" :value.sync="chartdate.value"></datetime-picker>
 			</div>
 		</div>

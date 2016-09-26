@@ -1,6 +1,6 @@
 <template>
   <div class="section_left ofh" >
-	  
+
     <div class="panel panel-default">
       <div class="panel-heading"><i class="iconfont icon-oc-member"></i>会员数据</div>
       <div class="panel-body">
@@ -15,8 +15,9 @@
               >
             </pie>
           </div>
-          <div class="inline-block">
-            <ul class="list-none-style">
+
+          <div class="inline-block ">
+            <ul class="list-none-style ">
               <li>总注册会员 ( 个 )</li>
               <li>日 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>{{member.regist_tatal_day}}</span></li>
               <li>周 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>{{member.regist_tatal_week}}</span></li>
@@ -37,8 +38,8 @@
             </pie>
           </div>
           <div class="inline-block" >
-            <ul class="list-none-style">
-              <li>总认证会员 ( 个 )</li>
+            <ul class="list-none-style white-space">
+              <li class="">总认证会员 ( 个 )</li>
               <li>日 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>{{member.auth_total_day}}</span></li>
               <li>周 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>{{member.auth_total_week}}</span></li>
               <li>月 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>{{member.auth_total_month}}</span></li>
@@ -57,9 +58,10 @@
               :bgcolor="color[2]">
             </pie>
           </div>
+
           <div class="inline-block" >
-            <ul class="list-none-style ">
-              <li>总产生消费会员 ( 个 )</li>
+            <ul class="list-none-style white-space">
+              <li class="white-space">总产生消费会员 ( 个 )</li>
               <li>日 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>{{member.consume_day}}</span></li>
               <li>周 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>{{member.consume_week}}</span></li>
               <li>月 <i class="iconfont icon-oc-up "></i><span class='text-danger s-font'>{{member.consume_month}}</span></li>
@@ -147,6 +149,7 @@ export default {
   span{
     height: 60px;
     padding: 0;
+    display: inline-block;
     border-left: 1px solid #ddd;
   }
   width: 1px;
@@ -155,13 +158,14 @@ export default {
 .panel-body{
   height: 160px;
   ul{
-    width: 110px;
-    overflow-y: hidden;
+    max-width: 130px;
   }
+  padding: 0 10px;
 }
 
 .panel-heading{
     font-size: 1.6rem;
-  }
+}
+
 
 </style>

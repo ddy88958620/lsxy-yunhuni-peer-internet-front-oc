@@ -110,8 +110,8 @@
 					{{ detail.end | month}}
 				</div>
 			</div>
-			<div class="admin-table table-responsive flex-1 flex flex-direction-column">
-				<div class="table-total flex flex-1 justify-content-e">
+			<div class="admin-table flex-1 flex flex-direction-column">
+				<div class="table-total flex flex-1 justify-content-e float-r">
 					消费总金额：<span class="brown">{{invoice.sum!==0 ? invoice.sum :  '' }}</span>元 共<span class="text-danger">{{invoice.list.totalCount }}</span>条
 				</div>
 				<div class="flex modal-table" >
@@ -157,7 +157,7 @@
 				</div>
 			</div>
 			<div class="admin-table flex-1 flex flex-direction-column">
-				<div class="table-total flex flex-1 justify-content-e">
+				<div class="table-total flex flex-1 justify-content-e float-r">
 					消费总金额：<span class="brown">{{invoice.sum!==0 ? invoice.sum :  '' }}</span>元 共<span class="text-danger">{{invoice.list.totalCount }}</span>条
 				</div>
 

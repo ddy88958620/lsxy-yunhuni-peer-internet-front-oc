@@ -5,15 +5,15 @@
     </div>
     <div>
       <div class="sort flex flex-direction-column {{ box[index]['color'] }}border">
-        <div class="flex justify-content-b ranking-one">
-          <i class="flex align-items-e band {{ box[index]['color'] }}bg" >NO.1</i>
-          <i class="icon iconfont icon-oc-member {{ box[index]['color'] }}"></i>
+        <div class=" ranking-one">
+          <i class=" band inline-block {{ box[index]['color'] }}bg" >NO.1</i>
+          <i class="icon iconfont icon-oc-member block  float-r {{ box[index]['color'] }}"></i>
         </div>
         <div class="flex flex-1 flex-direction-column ranking-two" >
          <span class="name overflow-y-h" v-if="rank.length === 0">暂无数据</span>
          <span class="name overflow-y-h cursor" v-link="'/admin/tenant/detail/'+rank[0].id" title="{{rank[0].name}}" v-else>{{rank[0].name}}</span>
 
-         
+
           <div class="flex flex-1  align-items-c  " >
             <i class="iconfont {{box[index]['icon']}} grey"></i>
             <span class="count align-items-e">{{ rank.length === 0  ? '0' : rank[0].value }}</span>
@@ -21,21 +21,19 @@
           </div>
         </div>
       </div>
-      <div class="sort2 flex flex-1 flex-direction-column" >
 
-        <div class="flex flex-1 ranking-three" title="{{ rank.length <= 1  ? '暂无数据' : rank[1].name }}" ><i class="number flex" title="" ><strong>2</strong></i>
+      <div class="sort2 flex flex-1 flex-direction-column" >
+        <div class="flex flex-1 ranking-three" title="{{ rank.length <= 1  ? '暂无数据' : rank[1].name }}" ><i class="number inline-block" title="" ><strong>2</strong></i>
          <span class="name overflow-y-h" v-if="rank.length <=1">暂无数据</span>
          <span class="name overflow-y-h cursor" v-link="'/admin/tenant/detail/'+rank[1].id"  v-else>{{rank[1].name}}</span>
         </div>
-
       </div>
-      <div class="sort2 flex flex-1 flex-direction-column" >
 
-        <div class="flex flex-1 ranking-three" title="{{ rank.length <= 2  ? '暂无数据' : rank[2].name }}" ><i class="number flex" title="" ><strong>2</strong></i>
+      <div class="sort2 flex flex-1 flex-direction-column" >
+        <div class="flex flex-1 ranking-three" title="{{ rank.length <= 2  ? '暂无数据' : rank[2].name }}" ><i class="number inline-block" title="" ><strong>3</strong></i>
          <span class="name overflow-y-h" v-if="rank.length <=2">暂无数据</span>
          <span class="name overflow-y-h cursor" v-link="'/admin/tenant/detail/'+rank[2].id"  v-else>{{rank[2].name}}</span>
         </div>
-
       </div>
     </div>
 
@@ -109,7 +107,7 @@
         type:Number,
         default:0
       },
-    
+
     },
     computed: {
     },
@@ -130,7 +128,7 @@
       .ranking-one{
         color:#00A000;
         .band{
-          padding: 0 3px;
+          padding: 2px 3px;
           color:#FFF;
         }
         .icon{
