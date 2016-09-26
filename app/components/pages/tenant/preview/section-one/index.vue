@@ -12,19 +12,14 @@
                   <span class="flex flex-1 name align-items-c justify-content-c" >{{tenant.tenantName}}</span>
                 </div>
                 <div class="message flex flex-1 flex-direction-column ">
-                  <div class="flex flex-1" >
-                    <div class="title"><span class="flex flex-1">接口API:</span></div>
-                    <span class=" overflow-x-h word-wrap"  v-if="cert.apiUrl">{{cert && cert.apiUrl}}</span>
+                  <div class="flex flex-1" title="{{cert && cert.apiUrl}}">
+                   <span class="titleid">接口API: </span>  <span class="overflow-x-h word-space" >{{cert && cert.apiUrl}}</span> 
                   </div>
-
-                  <div class="flex flex-1">
-                    <div class="titleid"><span class="flex flex-1">密钥：</span></div>
-                    <span class="overflow-x-h word-wrap"  > {{cert && cert.cert.secretKey}}</span>
+                  <div class="flex flex-1" title="{{cert && cert.cert.secretKey}}">
+                    <span class="titleid">密钥: </span>  <span class="overflow-x-h word-space" >{{cert && cert.cert.secretKey}}</span>
                   </div>
-
-                  <div class="flex flex-1">
-                    <div class="titleid"><span class="flex flex-1">鉴权账号：</span></div>
-                    <span class="overflow-x-h word-wrap" >{{cert && cert.cert.certId}}</span>
+                  <div class="flex flex-1" title="">
+                   <span class="titleid">鉴权账号: </span>  <span class="overflow-x-h word-space" >{{cert && cert.cert.certId}}</span>
                   </div>
                 </div>
               </div>
@@ -313,13 +308,15 @@
         width: 100px;
       }
       .titleid{
-        width: 67px;
+        min-width: 60px;
+        width: 60px;
         
       }
     }
 
-    .word-wrap{
-       word-wrap:break-word;
+    .word-space{
+      
+       display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
 
     .money{
