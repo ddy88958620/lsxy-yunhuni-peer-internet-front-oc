@@ -7,7 +7,7 @@
 			<div class="flex flex-1 flex-direction-column justify-content-c align-items-c">
 				<img src="../../../../../assets/images/app.png" width="100" height="100">
 				<p class="bigger-font-size name">{{ app.name}}</p>
-				<p>APPID: {{ app.id}}</p>
+				<p>应用标识: {{ app.id}}</p>
 				<p class="text-center">{{ app.description ? app.description :'这家伙很懒，什么都没留下'}}</p>
 			</div>
 		</header>
