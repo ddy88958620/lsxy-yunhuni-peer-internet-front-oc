@@ -1,7 +1,7 @@
 <template>
     <section class='section_four flex bg-section-margin flex-direction-column justify-content-s '>
         <head-box></head-box>
-        <div class="">
+        <div class="no-wrap">
           <div class="box inline-block width-20"  v-for="rank in ranklist" >
             <ranking :rank='rank' :index=$index></ranking>
           </div>
