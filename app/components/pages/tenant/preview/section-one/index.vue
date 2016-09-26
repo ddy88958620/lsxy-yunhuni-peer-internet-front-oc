@@ -11,7 +11,7 @@
                   </div>
                   <span class="flex flex-1 name align-items-c justify-content-c" >{{tenant.tenantName}}</span>
                 </div>
-                <div class="message flex flex-1 flex-direction-column ">
+                <div class="message flex flex-1 flex-direction-column">
                   <div class="flex flex-1" title="{{cert && cert.apiUrl}}">
                    <span class="titleid">接口API: </span>  <span class="overflow-x-h word-space" >{{cert && cert.apiUrl}}</span> 
                   </div>
@@ -137,6 +137,7 @@
       </div>
     </div>
   </modal>
+
 
 </template>
 
@@ -315,7 +316,6 @@
     }
 
     .word-space{
-      
        display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
 
@@ -334,6 +334,12 @@
     }
     button{
       margin: 0 5px;
+    }
+  }
+
+  .apimodal{
+    .title{
+      width:55px !important;
     }
   }
 
