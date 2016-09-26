@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "product": "cross-env NODE_ENV=production pm2 start --name='oc-koa-product' bin/run",
-    "local": "cross-env NODE_ENV=local pm2 start --name='oc-koa-local' bin/run",
+    "local": "cross-env NODE_ENV=local node bin/run",
     "dev": "cross-env NODE_ENV=develop pm2 start --name='oc-koa-dev' bin/run",
     "test": "cross-env NODE_ENV=test pm2 start --name='oc-koa-test' bin/run",
     "doc": "node ./doc/getDoc.js",
@@ -27,7 +27,6 @@
     "koa-static": "^1.5.2",
     "koa-views": "^5.0.1",
     "node-uuid": "^1.4.7",
-    "pm2": "^1.1.3",
     "request": "^2.74.0",
     "runkoa": "^1.5.2"
   },
