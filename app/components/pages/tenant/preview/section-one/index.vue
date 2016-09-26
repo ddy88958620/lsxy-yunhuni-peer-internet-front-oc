@@ -1,8 +1,7 @@
 <template>
-    <section class='section_one flex bg-section-margin flex-direction-column justify-content-s '>
-        <div class="flex flex-direction-row justify-content-b">
-
-          <div class="box">
+    <section class='section_one bg-section-margin'>
+        <div class="no-wrap">
+          <div class="box inline-block ofh">
             <div class=" flex-grow-1 flex flex-1 flex-direction-column ">
               <div class="sort flex flex-1 flex-direction-column greenborder">
                 <div class="flex justify-content-s company">
@@ -19,7 +18,7 @@
               </div>
             </div>
           </div>
-          <div class="flex box">
+          <div class=" box inline-block ofh">
             <div class="flex-grow-1 flex flex-1 flex-direction-column">
               <div class="sort flex flex-1 flex-direction-column blueborder ">
                 <div class="flex justify-content-s top-title">
@@ -42,7 +41,7 @@
               </div>
             </div>
           </div>
-          <div class="flex box">
+          <div class="inline-block box ofh">
             <div class="flex-grow-1 flex flex-1 flex-direction-column">
               <div class="sort flex-1 flex flex-direction-column yellowborder ">
                 <div class="flex justify-content-s top-title">
@@ -59,7 +58,7 @@
             </div>
           </div>
 
-          <div class="flex box">
+          <div class="inline-block box ofh">
             <div class="flex-grow-1 flex flex-1 flex-direction-column">
               <div class="sort flex flex-1 flex-direction-column pinkborder">
                 <div class="flex justify-content-s top-title">
@@ -265,7 +264,7 @@
   .section_one {
     .box {
       background-color: #fff;
-      width: 23%;
+      width: 25%;
       min-width: 235px;
       height: 172px;
     }

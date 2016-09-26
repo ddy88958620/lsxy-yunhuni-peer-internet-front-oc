@@ -1,10 +1,11 @@
 <template>
 
-	<div class="flex flex-1 bg-section-margin ">
-		<div class="flex flex-1 padding-right-10">
-			<div class="flex flex-1" >
-				<div class="panel panel-base flex flex-direction-column flex-1">
-					<div class="panel-heading panel-base-heading flex flex-1 justify-content-b"><span class="flex">基础信息</span><a @click="showModal=true" >密码重置</a></div>
+	<div class="bg-section-margin no-wrap base-section">
+		<div class="inline-block width-50 ofh padding-right-10">
+			<div class="panel panel-base">
+					<div class="panel-heading panel-base-heading flex flex-1 justify-content-b">
+						<span class="inline-block">基础信息</span>
+						<a @click="showModal=true" class="float-r ofh">密码重置</a></div>
 					<div class="panel-body admin-bg flex-1">
 						<ul class="list-none-style">
 							<li>会员名称:{{info.tenantName}}</li>
@@ -15,28 +16,24 @@
 						</ul>
 					</div>
 				</div>
-			</div>
 		</div>
-		<div class="flex flex-1 padding-left-10">
-			<div class="flex flex-1" >
-				<div class="panel panel-base flex flex-direction-column flex-1">
-					<div class="panel-heading panel-base-heading">业务信息</div>
-					<div class="panel-body admin-bg flex-1">
-						<ul class="list-none-style">
-							<li>应用行业: {{info.industry}}</li>
-							<li>主营业务: {{info.business}}</li>
-							<li>网站: {{info.url}}</li>
-						</ul>
-					</div>
+		<div class="inline-block width-50 ofh padding-left-10">
+			<div class="panel panel-base">
+				<div class="panel-heading panel-base-heading">业务信息</div>
+				<div class="panel-body admin-bg flex-1">
+					<ul class="list-none-style">
+						<li>应用行业: {{info.industry}}</li>
+						<li>主营业务: {{info.business}}</li>
+						<li>网站: {{info.url}}</li>
+					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="flex flex-1 bg-section-margin ">
-		<div class="flex flex-1 padding-right-10">
-			<div class="flex flex-1" >
-				<div class="panel panel-base flex flex-direction-column flex-1">
+	<div class="bg-section-margin base-section no-wrap">
+		<div class="inline-block width-50 ofh padding-right-10">
+			<div class="panel panel-base">
 					<div class="panel-heading panel-base-heading ">联系信息</div>
 					<div class="panel-body admin-bg flex-1">
 						<ul class="list-none-style">
@@ -46,11 +43,9 @@
 						</ul>
 					</div>
 				</div>
-			</div>
 		</div>
-		<div class="flex flex-1 padding-left-10">
-			<div class="flex flex-1" >
-				<div class="panel panel-base flex flex-direction-column flex-1">
+		<div class="inline-block width-50 ofh padding-left-10">
+			<div class="panel panel-base">
 					<div class="panel-heading panel-base-heading">认证信息</div>
 					<div class="panel-body admin-bg flex-1">
 						<ul class="list-none-style">
@@ -113,7 +108,6 @@
 						</ul>
 					</div>
 				</div>
-			</div>
 		</div>
 	</div>
 
@@ -164,10 +158,14 @@
 
 
 <style lang="sass" scoped>
-	.down-btn{
-		height: 35px;
+	.base-section {
+		height: 300px;
+		
+		.panel-body {
+			height: 235px;
+		}
 	}
-
+	
 	ul {
 		padding: 15px 15px 0 15px;
 		font-size: 1.4rem;

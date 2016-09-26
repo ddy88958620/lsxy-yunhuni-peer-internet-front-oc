@@ -8,8 +8,11 @@
     bottom: 0;
     height:$header-height;
     border-bottom: 1px solid #eeeeee;
+    box-shadow: #eee 0px 1px 1px;
+    background: #eff5fa;
     color:#666;
     font-size: 1.4rem;
+    z-index: 999;
     .nav-left{
 	    float: left;
       padding-top: 15px;

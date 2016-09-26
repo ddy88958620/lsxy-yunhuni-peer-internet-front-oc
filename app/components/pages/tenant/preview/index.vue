@@ -3,7 +3,7 @@
 	  <section-two></section-two>
 		<section-three></section-three>
 		<section-four></section-four>
-		<section-five></section-five>
+		<!--<section-five></section-five>-->
 </template>
 <script>
 	export default {

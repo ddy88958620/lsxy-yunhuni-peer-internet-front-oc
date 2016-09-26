@@ -3,9 +3,9 @@
     <div class="panel panel-default flex-1">
       <div class="panel-heading">上月数据</div>
       <div class="panel-body flex flex-1">
-        <div class="flex flex-1 flex-direction-row justify-content-b">
+        <div class="no-wrap">
           
-          <div class="flex flex-1 flex-direction-column box border-right">
+          <div class="inline-block box border-right">
             <div class="flex flex-1 align-items-c ">
               <i class="icon iconfont icon-oc-wallet bigicon"></i>
               <span class="green money">{{ indicant.dto.cost_coin >0 ? indicant.dto.cost_coin.toFixed(2) : '0.00' }}</span>
@@ -20,7 +20,7 @@
               消费额(元)
             </div>
           </div>
-          <div class="flex flex-1 flex-direction-column box border-right">
+          <div class="inline-block box border-right">
             <div class="flex flex-1 align-items-c ">
               <i class="icon iconfont icon-oc-recharge bigicon"></i>
               <span class="green money">{{ indicant.dto.recharge_coin >0 ? indicant.dto.recharge_coin.toFixed(2) : '0.00' }}</span>
@@ -36,7 +36,7 @@
               充值额(元)
             </div>
           </div>
-          <div class="flex flex-1 flex-direction-column box border-right">
+          <div class="inline-block box border-right">
             <div class="flex flex-1 align-items-c ">
               <i class="icon iconfont icon-oc-wallet bigicon"></i>
               <span class="green money">{{ indicant.dto.session_count }}</span>
@@ -51,7 +51,7 @@
               会话量(次)
             </div>
           </div>
-          <div class="flex flex-1 flex-direction-column box border-right">
+          <div class="inline-block box border-right">
             <div class="flex flex-1 align-items-c ">
               <i class="icon iconfont icon-oc-msg1 bigicon"></i>
               <span class="green money">{{ indicant.dto.session_time }}</span>
@@ -69,7 +69,7 @@
               话务量(分钟)
             </div>
           </div>
-          <div class="flex flex-1 flex-direction-column box border-right">
+          <div class="inline-block box border-right">
             <div class="flex flex-1 align-items-c ">
               <i class="icon iconfont icon-oc-talktime bigicon"></i>
               <span class="green money">{{ indicant.dto.age_session_time }}</span>
@@ -86,7 +86,7 @@
               平均通话时长(分钟)
             </div>
           </div>
-          <div class="flex flex-1 flex-direction-column box">
+          <div class="inline-block box">
             <div class="flex flex-1 align-items-c ">
               <i class="icon iconfont icon-oc-callrate bigicon"></i>
               <span class="green money">{{ indicant.dto.connected_rate }}</span>
@@ -158,6 +158,7 @@
 
  .box{
       height: 140px;
+			width: 16.66666%;
       padding:20px;
   }
 

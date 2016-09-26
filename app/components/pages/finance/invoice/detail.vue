@@ -1,8 +1,8 @@
 <template>
 	<div class="section_right">
 		<h4>开票申请</h4>
-		<div class="admin-panel flex-1">
-			<div class="panel-heading flex flex-1 ">
+		<div class="admin-panel">
+			<div class="panel-heading">
 				<span class="flex flex-1">开票信息</span>
 				<a class="flex" @click="showDetailModal = true">消费详情</a>
 			</div>

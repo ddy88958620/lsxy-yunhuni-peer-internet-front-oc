@@ -1,7 +1,7 @@
 <template>
-    <div class="flex flex-direction-column admin-table-header">
-		<div class="flex align-items-c bg-section-margin remove-margin-bottom  ">
-			<div class="select-box">
+    <div class="admin-table-header">
+		<div class="bg-section-margin remove-margin-bottom  ">
+			<div class="select-box inline-block">
 				<search
 					:value.sync="search"
 					:action="query"

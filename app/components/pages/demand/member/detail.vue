@@ -106,14 +106,14 @@
 						<thead>
 						<tr>
 							<th colspan="3">
-								<div class="flex flex-1 flex-direction-row">
-									<div class="flex title-time justify-content-c">
+								<div class="">
+									<div class="title-time inline-block">
 										申请时间
 									</div>
-									<div class="flex title-type justify-content-c">
+									<div class="title-type inline-block">
 										认证类型
 									</div>
-									<div class="flex flex-1 justify-content-c">
+									<div class="inline-block">
 										审核结果
 									</div>
 								</div>
@@ -128,16 +128,16 @@
 						<tr v-for='message in messages.list' v-if="message.status!=0" >
 							{{message | json }}
 							<td colspan="3">
-								<div class="flex flex-1 flex-direction-row">
-									<div class="flex title-time justify-content-c">
+								<div class="">
+									<div class="title-time inline-block">
 										{{message.createTime | totalDate }}
 									</div>
-									<div class="flex title-type justify-content-c">
+									<div class="title-type inline-block">
 										<span v-if="message.status==-1 || message.status==1" >个人认证</span>
 										<span v-if="message.status==-2 || message.status==2" >公司认证</span>
 									</div>
-									<div class="flex flex-1 ">
-										<div class="flex flex-1 justify-content-c">
+									<div class="inline-block">
+										<div class="">
 											<span v-if="message.status==-1 || message.status==-2" >审核不通过</span>
 											<span v-if="message.status==1 || message.status==2" >通过</span>
 

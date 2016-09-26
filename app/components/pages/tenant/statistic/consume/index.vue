@@ -1,9 +1,16 @@
+<style lang="sass" scoped>
+	.admin-panel {
+		.admin-label {
+			line-height: 34px;
+		}
+	}
+</style>
 <template>
 
 	<div class="admin-panel admin-border">
-		<div class="panel-heading flex-direction-row flex align-items-c justify-content-b ">
-			<span class="flex ">消费月结账单</span>
-			<span class="flex ">
+		<div class="panel-heading ofh">
+			<span class="inline-block admin-label">消费月结账单</span>
+			<span class="float-r">
 				<datetime-picker :uuid="'consumeDate'" :action="doGetComsume"  :type.sync="consumedate.type" :value.sync="consumedate.value" ></datetime-picker>
 			</span>
 		</div>

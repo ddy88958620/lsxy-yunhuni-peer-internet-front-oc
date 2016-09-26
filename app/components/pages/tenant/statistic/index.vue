@@ -1,8 +1,4 @@
 <template>
-
-
-
-
 	<div class="flex flex-1 bg-section-margin " >
 		<div class="admin-toolbar flex normal-font-size small-font-color cursor" >
 			<span class="toolbar first-toolbar" v-link="'/admin/tenant/detail/'+$route.params.uid+'/statistic/'+this.seletedApp+'/consume/consume'" >消费统计</span>
@@ -12,9 +8,6 @@
 			<span class="toolbar remove-border-right last-toolbar" v-link="'/admin/tenant/detail/'+$route.params.uid+'/statistic/'+this.seletedApp+'/line/line'" >线路负载量</span>
 		</div>
 	</div>
-
-
-
 	<div class="headbox flex flex-1 align-items-c bg-section-margin whilebg"  v-if="this.module !='recharge' && this.module !='line' " >
 		<div>
 			<span class='datetime-picker-label padding-right-20'>选择应用: </span>
@@ -24,7 +17,6 @@
 			</select>
 		</div>
 	</div>	
-
 	<router-view></router-view>
 </template>
 
