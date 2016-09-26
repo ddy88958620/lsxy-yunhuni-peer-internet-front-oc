@@ -85,16 +85,17 @@
 
 
 	<modal :show.sync="abnormalModal" title='操作' :action="abnormal">
-		<div slot="body" class="flex flex-1 flex-direction-column">
-			<div class="flex flex-direction admin-table-header">
-				<div class="flex align-items-c ">
-					<span class=''>异常原因:</span>
-				</div>
-				<div class="flex flex-1">
-					<input type="text" class="form-control flex flex-1" v-model='reason'  >
-				</div>
+
+		<div slot="body" class="flex flex-1">
+			<div class="flex flex-1">
+				<span class="flex flex-1  justify-content-c">异常原因</span>
+				<span class="flex flex-4 flex-direction-column">
+				  <textarea class="form-control"  v-model="reason" maxlength="50"></textarea>
+					<span class="flex flex-1 small-font-color justify-content-e ">50字以内</span>
+				</span>
 			</div>
 		</div>
+
 	</modal>
 
 
@@ -263,8 +264,6 @@
 				let self = this 
 				let id = self.$route.params.id
 				let params = {}
-
-
 				params.id = id
 				params.time = DATE.date(time)
 				//GET /finance/invoice/detail/list/{id}/detail
@@ -275,7 +274,6 @@
 					 		self.invoiceDetail.$set(index, res.data)
 					 }
 				})
-
 				this.show.$set(index, !this.show[index])
 			},
 			send(){
