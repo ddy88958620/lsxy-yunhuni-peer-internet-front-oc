@@ -35,13 +35,13 @@
         <tr>
           <th class="text-align-c">注册时间</th>
           <th>会员名称</th>
-          <th class="text-align-c">应用数</th>
+          <th class="text-align-c">应用数(个)</th>
           <th>认证状态</th>
-          <th class="text-align-c">余额</th>
-          <th class="text-align-c">消费额</th>
-          <th class="text-align-c">充值金额</th>
-          <th class="text-align-c">会话量</th>
-          <th class="text-align-c">话务量</th>
+          <th class="text-align-c">余额(元)</th>
+          <th class="text-align-c">消费额(元)</th>
+          <th class="text-align-c">充值金额(元)</th>
+          <th class="text-align-c">会话量(次)</th>
+          <th class="text-align-c">话务量(分钟)</th>
           <th>账号状态</th>
           <th class="text-align-c">操作</th>
         </tr>

@@ -21,7 +21,6 @@
 				<option value="1">公司认证</option>
 			</select>
 			<button class="btn btn-primary admin-button-margin" @click='query'>查询</button>
-
 		</div>
 	</div>
 	<div>

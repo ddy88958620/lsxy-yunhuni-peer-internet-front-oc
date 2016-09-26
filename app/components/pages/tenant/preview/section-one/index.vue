@@ -10,10 +10,16 @@
                   </div>
                   <span class="flex flex-1 name align-items-c justify-content-c" >{{tenant.tenantName}}</span>
                 </div>
-                <div class="message flex flex-1 flex-direction-column ">
-                  <div class=" " >REST API: <span v-if="cert">http://api.yunhuni.com/{{cert && cert.certId}}/</span></div>
-                  <span class="">SercreKey：{{cert && cert.secretKey}}</span>
-                  <span class="">鉴权ID：{{cert && cert.certId}}</span>
+                <div class="message flex flex-1 flex-direction-column" @click="api.showModal = true">
+                  <div class="flex flex-1" title="{{cert && cert.apiUrl}}">
+                   <span class="titleid">接口API: </span>  <span class="overflow-x-h word-space" >{{cert && cert.apiUrl}}</span> 
+                  </div>
+                  <div class="flex flex-1" title="{{cert && cert.cert.secretKey}}">
+                    <span class="titleid">密钥: </span>  <span class="overflow-x-h word-space" >{{cert && cert.cert.secretKey}}</span>
+                  </div>
+                  <div class="flex flex-1" title="">
+                   <span class="titleid">鉴权账号: </span>  <span class="overflow-x-h word-space" >{{cert && cert.cert.certId}}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -52,7 +58,7 @@
                   <span class="green money">{{filesize}}</span>
                 </div>
                 <div class="flex flex-direction-row-reverse">
-
+                  
                 </div>
               </div>
             </div>
@@ -131,6 +137,28 @@
     </div>
   </modal>
 
+  <modal :show.sync="api.showModal" title="开发者账号" :action="hideApi">
+    <div slot="body" class="flex flex-1 flex-direction-column" >
+      <div class="flex flex-1 flex-direction-column apimodal">
+          <div class="flex" >
+            <span class="title" >api接口: </span>
+            <span>{{cert && cert.apiUrl}}</span>
+          </div>
+          <div class="flex flex-1" >
+            <span class="titleid">密钥: </span><span class="overflow-x-h word-space" >{{cert && cert.cert.secretKey}}</span>
+          </div>
+
+          <div class="flex flex-1" >
+           <span class="titleid">鉴权账号: </span>  <span class="overflow-x-h word-space" >{{cert && cert.cert.certId}}</span>
+          </div>
+
+      </div>
+    </div>
+    <div slot="footer">
+    </div>
+
+  </modal>
+
 </template>
 
 <script>
@@ -170,6 +198,9 @@
         recharge:{
           showModal:false,
           amount:0
+        },
+        api:{
+          showModal:false,
         }
       }
     },
@@ -297,6 +328,18 @@
 
     .message{
       color:#999;
+      .title{
+        width: 100px;
+      }
+      .titleid{
+        min-width: 60px;
+        width: 60px;
+        
+      }
+    }
+
+    .word-space{
+       display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
 
     .money{
@@ -314,6 +357,12 @@
     }
     button{
       margin: 0 5px;
+    }
+  }
+
+  .apimodal{
+    .title{
+      width:55px !important;
     }
   }
 

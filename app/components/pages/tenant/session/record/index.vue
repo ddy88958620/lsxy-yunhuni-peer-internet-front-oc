@@ -22,7 +22,7 @@
           <td class="message-time text-align-c">{{message.callStartDt | totalDate}}</td>
           <td >{{message.fromNum}}</td>
           <td >{{message.toNum}}</td>
-          <td >{{message.callTimeLong}}</td>
+          <td >{{message.costTimeLong}}</td>
           <td >{{message.recordSize ? message.recordSize | fileSize : ''}}</td>
           <td>{{ message.cost }}</td>
         </tr>
