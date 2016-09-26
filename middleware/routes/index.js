@@ -7,6 +7,11 @@ const fs = require('fs')
 
 const config = require('../config')
 
+//请求拦截器，解决session中间件只会在内容改变的时候更新过期时间的bug
+router.use(async (ctx, next) => {
+	ctx.session.counter = ctx.session.refresh?false:true;
+});
+
 // 下面代码还需重构
 
 function request(url, method, data, token) {
