@@ -313,7 +313,8 @@ table {
     font-size: 1.8rem;
     min-width: 110px;
     padding:0 0 10px 0 ;
-    justify-content: center;
+    display: inline-block;
+    text-align: center;
     color:#969eb4;
     text-decoration: none;
     &:hover{

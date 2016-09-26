@@ -1,8 +1,8 @@
 <template>
 
-	<div class="flex  flex-direction-column single-box  while" v-for="app in appdata" v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+app.id+'/play'">
+	<div class="single-box inline-block while" v-for="app in appdata" v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+app.id+'/play'">
 		<header class="flex flex-1 flex-direction-column header-box normal-font-size">
-			<span v-if="app.status == 1" class="flex  justify-content-e down">已上线</span>
+			<span v-if="app.status == 1" class="inline-block  justify-content-e down">已上线</span>
 			<span v-else class="flex  justify-content-e down">未上线</span>
 			<div class="flex flex-1 flex-direction-column justify-content-c align-items-c">
 				<img src="../../../../../assets/images/app.png" width="100" height="100">
@@ -52,6 +52,7 @@
 		margin-bottom: 20px;
 	}
 	.header-box{
+		text-align: center;
 		padding: 20px;
 		background-color:#97a1be;
 		.name{
@@ -62,9 +63,7 @@
 		height: 183px;
 		width: 100%;
 		padding: 10px 0;
-	}
-	.data-box{
-		padding-left: 20px;
+		text-align: center;
 	}
 	.money{
 		font-size: 2.6rem;
