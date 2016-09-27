@@ -3,8 +3,8 @@
 		<h4>开票申请</h4>
 		<div class="admin-panel flex-1">
 			<div class="panel-heading flex flex-1 ">
-				<span class="flex flex-1">开票信息</span>
-				<a class="flex" @click="showDetailModal = true">消费详情</a>
+				<span class="inline-block">开票信息</span>
+				<a class="inline-block float" @click="showDetailModal = true">消费详情</a>
 			</div>
 			<div class="panel-body">
 				<ul class="list-none-style">

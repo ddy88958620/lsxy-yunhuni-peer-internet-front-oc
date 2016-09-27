@@ -7,7 +7,7 @@
       <label for="">日统计</label>
       <input name='app-chart-type'  @click="changeDate('year')" type="radio" value="year" v-model="radioDates"  />
       <label for="">月统计</label>
-      <div class="datepicker-wrap">
+      <div class="datepicker-wrap inline-block">
         <datetime-picker :uuid="'consumeChartDate'" :action="doGetComsumeChart"   :type.sync="chartdate.type" :value.sync="chartdate.value"></datetime-picker>
       </div>
     </div>

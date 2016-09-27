@@ -158,7 +158,7 @@ export default {
 .panel-body{
   height: 160px;
   ul{
-    max-width: 130px;
+    max-width: 140px;
   }
   padding: 0 10px;
 }
