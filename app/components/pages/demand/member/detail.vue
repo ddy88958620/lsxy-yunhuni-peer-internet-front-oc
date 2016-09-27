@@ -4,8 +4,8 @@
 		<h4 v-else>查看详情</h4>
 		<div class="admin-panel">
 			<div class="panel-heading flex flex-1 ">
-				<span class="flex flex-1">会员信息</span>
-				<a class="flex"  v-link="'/admin/tenant/detail/'+messages.realname.tenant.id" >查看</a>
+				<span class="inline-block ">会员信息</span>
+				<a class="inline-block float-r"  v-link="'/admin/tenant/detail/'+messages.realname.tenant.id" >查看</a>
 			</div>
 		</div>
 		<div class="admin-panel flex-1">
@@ -113,7 +113,7 @@
 									<div class="title-type inline-block">
 										认证类型
 									</div>
-									<div class="inline-block">
+									<div class="title-reason inline-block text-align-c">
 										审核结果
 									</div>
 								</div>
@@ -136,14 +136,13 @@
 										<span v-if="message.status==-1 || message.status==1" >个人认证</span>
 										<span v-if="message.status==-2 || message.status==2" >公司认证</span>
 									</div>
-									<div class="inline-block">
-										<div class="">
+									<div class="title-reason inline-block text-align-c ">
+										<div class="inline-block ">
 											<span v-if="message.status==-1 || message.status==-2" >审核不通过</span>
-											<span v-if="message.status==1 || message.status==2" >通过</span>
-
-											<span v-if="(message.status==-1 || message.status==-2) && message.reason!=null && message.reason!='' " class="text-danger" > &nbsp; ({{message.reason}}) &nbsp; </span>
+											<span v-if="message.status==1 || message.status==2" class="darkgreen" >通过</span>
+											<span v-if="(message.status==-1 || message.status==-2) && message.reason!=null && message.reason!='' " class="text-danger" >({{message.reason}})</span>
 										</div>
-										<div class="flex"><span @click="showDetail($index)" class="cursor"><i class="icon iconfont icon-oc-dropdown"></i></span></div>
+										<div class="inline-block float-r"><span @click="showDetail($index)" class="cursor"><i class="icon iconfont icon-oc-dropdown"></i></span></div>
 									</div>
 								</div>
 								<div class="flex flex-1 table-detail" v-show="show[$index]">
@@ -354,16 +353,18 @@
 	}
 
 	.title-time{
-		width: 200px;
+		width: 15%;
 	}
 
 	.title-type{
-		width: 200px;
+		width: 15%;
 	}
 
 	.table-detail{
-
 		border-top:1px solid #e9edf4;
+	}
+	.title-reason{
+		width: 68%;
 	}
 
 	.detail{

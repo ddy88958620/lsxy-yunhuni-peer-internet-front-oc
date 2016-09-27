@@ -34,8 +34,8 @@
         </ul>
       </div>
     </div>
-    <div class="section-right--wrap inline-block position-layout ">
-      <div class="section-right admin-padding position-center">
+    <div class="section-right--wrap inline-block  ">
+      <div class="section-right admin-padding ">
         <datetime-picker :uuid="'sectionThreeDate'" :action="doGetConsumeAnduraion" :type.sync="date.type" :value.sync="date.value"></datetime-picker>
         <div class="width-100 ">
           <chart
@@ -113,6 +113,7 @@
   .section-right--wrap{
     height: 100%;
     width: 80%;
+    padding: 0 10%;
     vertical-align: top;
   }
   .section-right {

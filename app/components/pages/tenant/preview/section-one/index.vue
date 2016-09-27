@@ -95,11 +95,11 @@
         </div>
       </div>
       <div class="admin-table flex-1 flex flex-direction-column">
-        <div class="table-total flex flex-1 justify-content-e float-r">
+        <div class="table-total flex flex-1 justify-content-e">
           消费总金额：<span class="brown">{{page.totalAmount}}</span>元 共<span class="text-danger">{{page.total}}</span>条
         </div>
         <div class="flex modal-table" >
-          <table class="table"  >
+          <table class="table" >
             <thead>
             <tr>
               <th class="text-align-c">消费时间</th>

@@ -76,11 +76,11 @@
 
 	<modal :show.sync="showModal" title="审核" :action="fail">
 		<div slot="body" class="flex flex-1">
-			<div class="flex flex-1">
-				<span class="flex flex-1  justify-content-c">不通过原因</span>
-				<span class="flex flex-4 flex-direction-column">
+			<div class="flex">
+				<span class="inline-block float-l">不通过原因</span>
+				<span class="inline-block nopassText">
 				  <textarea class="form-control"  v-model="del.reason" maxlength="50"></textarea>
-					<span class="flex flex-1 small-font-color justify-content-e ">50字以内</span>
+					<span class="flex float-r">50字以内</span>
 				</span>
 			</div>
 		</div>
