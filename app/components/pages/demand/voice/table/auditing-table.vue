@@ -44,11 +44,8 @@
 					<td>{{message.name}}</td>
 					<td>{{message.size | fileSize }}</td>
 					<td v-if="message.sync === 1" class="darkgreen">同步成功</td>
-					
-					<td  v-if="message.sync == 0">未同步</td>
+					<td  v-if="message.sync == 0 || message.sync ==null || message.sync == '' " >未同步</td>
 					<td  v-if="message.sync == -1" class="text-danger">同步失败</td>
-
-
 					<td class="text-align-c">
 						<span><a @click="playAudio($index)">试听</a></span>
 					</td>
