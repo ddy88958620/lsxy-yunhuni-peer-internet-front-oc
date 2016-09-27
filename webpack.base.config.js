@@ -5,7 +5,7 @@ var path = require('path')
 module.exports = {
   entry: './app/main.js',
   output: {
-    path: './staticnew',
+    path: path.resolve(__dirname, './staticnew'),
     //Watching your source files for changes and when changes are made the
     //bundle will be recompiled. This modified bundle is served from memory at
     // the relative path specified in publicPath (see API).
@@ -15,12 +15,6 @@ module.exports = {
   resolve: {
     modulesDirectories: [
       'node_modules',
-      'bower_components'
-    ],
-    plugins: [
-      new webpack.ResolverPlugin(
-          new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
-          )
     ],
     alias: {
       // 'components': path.resolve(__dirname, 'app/components'),
@@ -39,6 +33,10 @@ module.exports = {
         },
       },
       {
+        test: /\.json$/,
+        loader: 'json'
+      },
+      {
         test: /\.vue$/,
         loader: 'vue',
       },
@@ -51,18 +49,16 @@ module.exports = {
     noParse: [],
   },
   vue: {
-    // use custom postcss plugins
     postcss: [
       // 让import '*.scss' 也生效
       require('postcss-import')({
         addDependencyTo: webpack
       }),
       require('autoprefixer')({
-        browsers: ['last 3 versions']
-      })
+        browsers: ['last 3 versions'],
+      }),
+      require('cssnano')({ safe: true })
     ],
-    // configure autoprefixer
-    autoprefixer: false
   },
   plugins: [
     new webpack.ProvidePlugin({
