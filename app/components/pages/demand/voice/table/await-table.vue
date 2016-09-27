@@ -62,9 +62,13 @@
 	</div>
 
 	<modal :show.sync="audioModal.show" title="播放" :action="hideAudioModal">
+		<div slot="header">
+			播放
+		</div>
+
+
 		<div slot="body">
 			<div class="flex flex-1 ">
-			
 				<audio class="audio flex flex-1" :src="audioURI" controls=""  autoplay></audio>
 				<button class="btn btn-primary admin-button-margin" @click="pass(audioModal.id,audioModal.index)">通过</button>
 				<button class="btn" @click="showfail(audioModal.id,audioModal.index)">不通过</button>
@@ -180,6 +184,7 @@
 				this.audioURI = domain.API_ROOT_AUDIO + '?uri='+this.voice.result[index].fileKey
 			},
 			stopAudio(){
+				console.log("tingzhi")
 				this.audioURI = '';
 			},
 			testAudio(index){
@@ -250,6 +255,7 @@
 			},
 			showfail(id,index){
 				this.stopAudio()
+				this.del.reason = ''
 				this.del.index = index
 				this.del.id = id
 				this.showModal = true 
