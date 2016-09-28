@@ -16,7 +16,8 @@ config.plugins = (config.plugins || []).concat([
   new webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: false,
-    }
+      pure_funcs: [ 'console.log', 'console.info' ]
+    },
   }),
   new htmlwebpackplugin({
     filename: 'index.html',
