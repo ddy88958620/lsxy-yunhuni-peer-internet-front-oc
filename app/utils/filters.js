@@ -94,8 +94,10 @@ export function subStr(text){
 
 //保留两位小数
 export function fixed(num){
-	return num.toFixed(2)
+	return num.toFixed(3)
 }
+
+
 
 export function createImg(filename){
 	let fileurl = domain.API_ROOT_AUDIO+'?uri='+filename

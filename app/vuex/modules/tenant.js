@@ -15,7 +15,9 @@ import {
 const state = {
   list: {},
   detail:{
-    bill:{},
+    bill:{
+      balance:0,
+    },
     cert:{
       cert:{
         apiUrl:'',
