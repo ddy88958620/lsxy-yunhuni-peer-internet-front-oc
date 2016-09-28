@@ -69,10 +69,10 @@
 
 		<div slot="body">
 			<div class="flex flex-1 ">
-				<audio class="audio flex flex-1" :src="audioURI" controls=""  autoplay></audio>
-				<button class="btn btn-primary admin-button-margin" @click="pass(audioModal.id,audioModal.index)">通过</button>
-				<button class="btn" @click="showfail(audioModal.id,audioModal.index)">不通过</button>
-				<button class="btn admin-button-margin" @click="hideAudioModal">取消</button>
+				<audio class="audio inline-block " :src="audioURI" controls=""  autoplay></audio>
+				<button class=" inline-block btn btn-primary admin-button-margin" @click="pass(audioModal.id,audioModal.index)">通过</button>
+				<button class="inline-block btn" @click="showfail(audioModal.id,audioModal.index)">不通过</button>
+				<button class=" inline-block btn admin-button-margin" @click="hideAudioModal">取消</button>
 			</div>
 		</div>
 		<div slot="footer"></div>
@@ -93,6 +93,10 @@
 </template>
 
 <style lang='sass' scoped>
+	.audio{
+		width: 200px;
+		
+	}
 </style>
 
 
