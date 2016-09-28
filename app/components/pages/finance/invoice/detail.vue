@@ -74,14 +74,13 @@
 
 
 	<modal :show.sync="abnormalModal" title='操作' :action="abnormal">
-		<div slot="body" class="flex flex-1 flex-direction-column">
-			<div class="flex flex-direction admin-table-header">
-				<div class="flex align-items-c ">
-					<span class=''>异常原因:</span>
-				</div>
-				<div class="flex flex-1">
-					<input type="text" class="form-control flex flex-1" v-model='reason'  >
-				</div>
+		<div slot="body" class="flex flex-1">
+			<div class="flex flex-1">
+				<span class="flex flex-1  justify-content-c">异常原因</span>
+				<span class="flex flex-4 flex-direction-column">
+				  <textarea class="form-control"  v-model="reason" maxlength="50"></textarea>
+					<span class="flex flex-1 small-font-color justify-content-e ">50字以内</span>
+				</span>
 			</div>
 		</div>
 	</modal>
@@ -223,7 +222,7 @@
 </template>
 <script>
   import DATE from '../../../../utils/date'
-	import {getInvoiceDetail,showMsg} from '../../../../vuex/actions.js'
+	import {getInvoiceDetail,showMsg,getInvoiceNum,getMessageNum} from '../../../../vuex/actions.js'
 	export default {
 		vuex:{
 	       getters: {
@@ -231,7 +230,9 @@
 	       },
 	       actions: {
 		      getInvoiceDetail,
-		      showMsg
+		      showMsg,
+		      getInvoiceNum,
+		      getMessageNum,
 	       }
 		},
 		components: {
@@ -277,6 +278,7 @@
 				let self = this
 				$.put('/finance/invoice/edit/'+id, params).then((res) => {
 					this.abnormalModal = false
+					this.reason = ''
 					if( res.success === 'false'){
 						this.showMsg({content: res.errorMsg, type: 'danger'})
 						return
@@ -284,7 +286,8 @@
 					//成功处理
 					this.getInvoiceDetail({id:id})
 					this.showMsg({content: '审核不通过', type: 'success'})
-					
+		      self.getInvoiceNum()
+					self.getMessageNum()
 					setTimeout(function(){
 						self.$route.router.go({path:'/admin/finance/invoice/list/pending'})
 					},3000)
@@ -303,7 +306,9 @@
 					}
 					//成功处理
 					this.getInvoiceDetail({id:id})
-					this.showMsg({content: '通过成功', type: 'success'})
+					this.showMsg({content: '审核通过', type: 'success'})
+					self.getInvoiceNum()
+					self.getMessageNum()
 					setTimeout(function() {
 				        self.$route.router.go({path:'/admin/finance/invoice/list/pending'})
 				    },3000)

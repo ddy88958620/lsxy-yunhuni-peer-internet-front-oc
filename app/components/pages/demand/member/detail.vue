@@ -208,24 +208,29 @@
 	</div>
 
 	<modal :show.sync="showModal" title="审核" :action="fail">
-		<div slot="body">
-			<div class="flex flex-1 ">
-				<span class="flex flex-1 align-items-c justify-content-c">不通过原因</span>
-				<span class="flex flex-2 "><input type="text" class="form-control" v-model="reason"/></span>
+		<div slot="body" class="flex flex-1">
+			<div class="flex flex-1">
+				<span class="flex flex-1  justify-content-c">不通过原因</span>
+				<span class="flex flex-4 flex-direction-column">
+				  <textarea class="form-control"  v-model="reason" maxlength="50"></textarea>
+					<span class="flex flex-1 small-font-color justify-content-e ">50字以内</span>
+				</span>
 			</div>
 		</div>
 	</modal>
 </template>
 
 <script>
-	import { showMsg } from '../../../../vuex/actions'
+	import { showMsg,getMessageNum,getDemandNum } from '../../../../vuex/actions'
 	export default {
 		vuex: {
 			getters:{
 				
 			},
 			actions: {
-				showMsg
+				showMsg,
+				getMessageNum,
+				getDemandNum,
 			}
 		},
 		components: {
@@ -256,12 +261,14 @@
 						self.showMsg({content: res.errorMsg, type: 'danger'})
 						return
 					}
-				    self.showMsg({content: '审核通过', type: 'success'})
-				    setTimeout(function(){
+				  self.showMsg({content: '审核通过', type: 'success'})
+				  self.getMessageNum()
+				  self.getDemandNum()
+				  setTimeout(function(){
 						self.$route.router.go({path:'/admin/demand/member/list/await'})
 					},3000)
 					
-		        })
+		    })
 			},
 			fail(){
 				let self = this 	
@@ -280,28 +287,30 @@
 				params.type = type
 				params.reason = self.reason
 				$.put('/demand/member/edit/'+id,params).then((res)=>{
+					self.reason = ''
 					if(res.success === 'false'){
 						self.showMsg({content: res.errorMsg, type: 'danger'})
 						return
 					}
 					self.showModal = false
-				    self.showMsg({content: '审核不通过', type: 'success'})
-				    setTimeout(function(){
+				  self.showMsg({content: '审核不通过', type: 'success'})
+				  self.getMessageNum()
+				  self.getDemandNum()  
+				  setTimeout(function(){
 						self.$route.router.go({path:'/admin/demand/member/list/await'})	
 					},3000)
-					
-		        })
+		    })
 			},
 			detail(){
 				let uid = this.$route.params.id
 		 		this.type = this.$route.params.type 
-		        let self = this
+		    let self = this
  				$.get('/demand/member/detail/'+uid,{type:this.type}).then((res)=>{
  					this.messages.list = res.data.list
  					this.messages.realname = res.data.realname
-		        })
+		    })
 
- 				
+ 
 			}
 		},
 		data(){

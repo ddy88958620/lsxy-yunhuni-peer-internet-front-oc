@@ -33,8 +33,6 @@
 </template>
 <script>
 import {localLogout} from '../../vuex/actions.js'
-
-
 export default {
   data(){
     return{

@@ -32,6 +32,7 @@
 					<th>应用名称</th>
 					<th>标题</th>
 					<th>大小</th>
+					<th>同步状态</th>
 					<th class="text-align-c">操作</th>
 				</tr>
 				</thead>
@@ -42,6 +43,9 @@
 					<td>{{message.app.name}}</td>
 					<td>{{message.name}}</td>
 					<td>{{message.size | fileSize }}</td>
+					<td v-if="message.sync === 1" class="darkgreen">同步成功</td>
+					<td  v-if="message.sync == 0 || message.sync ==null || message.sync == '' " >未同步</td>
+					<td  v-if="message.sync == -1" class="text-danger">同步失败</td>
 					<td class="text-align-c">
 						<span><a @click="playAudio($index)">试听</a></span>
 					</td>
@@ -103,7 +107,7 @@
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
 				params.name = this.search
-				console.log(params)
+		
 
 				this.getVoiceList(params)
 			},
@@ -125,6 +129,9 @@
 			playAudio(index){
 //				console.log(this.voice.result[index].fileKey)
 				this.audioURI = domain.API_ROOT_AUDIO + '?uri='+this.voice.result[index].fileKey
+			},
+			stopAudio(){
+				this.audioURI = '';
 			}
 		},
 		route: {

@@ -19,7 +19,7 @@ import App from './components/app.vue'
 import configRouter from './config/router.js'
 
 const router = new VueRouter({
-  // history: true,
+transitionOnLoad:true,
   saveScrollPosition: true,
 })
 

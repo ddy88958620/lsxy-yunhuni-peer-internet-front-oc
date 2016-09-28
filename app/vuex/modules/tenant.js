@@ -16,7 +16,13 @@ const state = {
   list: {},
   detail:{
     bill:{},
-    cert:{},
+    cert:{
+      cert:{
+        apiUrl:'',
+        secretKey:'',
+        certId:''
+      }
+    },
     indicant:{
       dto1: {
         sessionCountRate: false,

@@ -13,7 +13,7 @@
         </thead>
         <tbody>
         <tr v-for='message in value' track-by="$index">
-          <td class="message-time text-align-c">2016-{{ month ? month+'-' : '' }}{{value.length-$index}}</td>
+          <td class="message-time text-align-c">2016-{{ month ? month+'-' : '' }}{{$index+1}} </td>
           <td>{{ message }}</td>
         </tr>
         </tbody>
@@ -38,9 +38,15 @@
     	month(){
         let self = this
     		let month = DATE.dateParse(self.date).month
+
+        //self.day = value.length
 		    
         return month
       }
+    },
+    ready(){
+      console.log(1)
+      console.log(this.value)
     }
   }
 

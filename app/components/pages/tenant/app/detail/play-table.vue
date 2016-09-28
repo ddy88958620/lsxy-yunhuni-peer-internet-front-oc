@@ -17,7 +17,7 @@
 			<thead>
 			<tr>
 				<th class="text-align-c">审核时间</th>
-				<th>文件</th>
+				<th>文件名</th>
 				<th>大小</th>
 				<th class="text-align-c">备注</th>
 			</tr>
