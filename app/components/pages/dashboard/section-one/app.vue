@@ -1,34 +1,34 @@
 <template>
-  <div class="section_right">
-    <div class="panel panel-default flex-1">
+  <div class="section_right ofh">
+    <div class="panel panel-default">
       <div class="panel-heading"><i class="iconfont icon-oc-app"></i>应用数据</div>
-      <div class="panel-body flex flex-1">
-
-        <div class='flex flex-1 flex-direction-column align-items-c justify-content-c'>
-          <div class="flex  pie_wrap">
-            <pie
-              :max="pie1.max",
-              :value="pie1.value",
-              :bgcolor="color[0]"
-            ></pie>
+      <div class="panel-body">
+        
+        <div class='inline-block width-50 text-align-c'>
+          <div class="pie-wrap-start text-align-c">
+            <div class="pie-wrap inline-block">
+              <pie :uuid="'apppie'" :max="app.total" :value="app.total" :bgcolor="'#89d9e3'"></pie>
+            </div>
           </div>
-          <div class="flex  align-items-c title-box">
+
+          <div class="title-box">
             总应用数（个）
           </div>
+
         </div>
 
-        <div class="border-span flex align-items-c "><span></span></div>
+        <!--<div class="border-span flex align-items-c "><span></span></div>-->
 
-        <div class='flex flex-1 flex-direction-column align-items-c justify-content-c'>
-          <div class="flex  pie_wrap align-items-c ">
-            <pie
-              :max="pie2.max",
-              :value="pie2.value",
-              :bgcolor="color[1]"
-            ></pie>
+        <div class='inline-block width-50 text-align-c' >
+
+          <div class="pie-wrap-start text-align-c">
+            <div class="pie-wrap inline-block">
+              <pie :uuid="'appie2'" :max="app.total" :value="app.online" :bgcolor="'#80d1ff'" ></pie>
+            </div>
           </div>
-          <div class="flex align-items-c title-box">
-            总上线应用数（个）
+
+          <div class=" title-box">
+            总上线应用数（个)
           </div>
         </div>
 
@@ -38,31 +38,52 @@
 
 </template>
 <script>
-  import pie from '../../../ui/pie.vue'
+import { getAppCount } from '../../../../vuex/actions.js'
+import pie from '../../../ui/pie.vue'
 
 export default {
+  vuex: {
+    getters:{
+      apptest: ({app}) => app.count
+    },
+    actions:{
+      getAppCount
+    }
+  },
   data(){
     return {
-      color:['#89d9e3','#80d1ff','#f4ebb6'],
-      pie1: { 'max': 1000, 'value': 400 },
-      pie2: { 'max': 1000, 'value': 600 }
+      color:'#89d9e3',
+      colorTwo:'#80d1ff',
+      colorThree: '#f4ebb6',
+      app:{
+        total : 0,
+        online : 0
+      }
     }
   },
   components: {
     pie
-  }
+  },
+	ready(){
+    let self = this
+    $.get('/dashboard/app/indicant').then((res) => {
+          if(res.success==true){
+            self.app = res.data
+          }
+     })
+    //this.getAppCount()
+  },
 }
 </script>
 <style lang="sass" scoped>
+  .section_right {
+    display: inline-block;
+    width: 40%;
+  }
   .panel-heading{
     .iconfont{
       padding-right: 10px;
     }
-  }
-
-  .section_right {
-    display: flex;
-    flex: 2;
   }
 
   .border-span{
@@ -71,21 +92,23 @@ export default {
       padding: 0px 0;
       border-left: 1px solid #ddd;
     }
-    width: 1px;
+    width:1px;
   }
 
   .panel-body{
     height: 160px;
     ul{
       width: 110px;
-      overflow-y: hidden;
     }
   }
 
   .title-box{
-    padding-top: 10px;
+    text-align: center;
   }
 
+  .panel-heading{
+    font-size: 1.6rem;
+  }
 
 
 </style>

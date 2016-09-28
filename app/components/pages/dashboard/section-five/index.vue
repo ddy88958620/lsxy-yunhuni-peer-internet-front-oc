@@ -10,7 +10,8 @@
 export default {
   components: {
     'chart': require('../../../ui/realtime-chart.vue'),
-  }
+  },
+  
 }
 </script>
 

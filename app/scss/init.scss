@@ -18,9 +18,17 @@
   display: inline-block !important;
 }
 
+.input, .input-group {
+  vertical-align: middle;
+}
+
 // Bootstrap init . Fuck sass, it is don't support dynamic import !
 
 // $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+
+//nprogress 
+@import '~nprogress/nprogress.css';
+
 
 // Core variables and mixins
 

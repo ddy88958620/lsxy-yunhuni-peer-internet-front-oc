@@ -1,96 +1,100 @@
 <template>
     <validator  name="validation">
-      <div class="flex flex-1 login-bg align-items-c justify-content-c ">
-        <div class="flex login-form   flex-direction-column ">
-          <div class="login-header flex justify-content-c align-items-c ">
-            <img src="../../assets/images/loginlogo.png" alt="" width="277" height="83" class="flex">
+      <div class="table-layout login-bg">
+        <div class="table-cell">
+          <div class="table-container login-form">
+						<div class="login-header table-layout">
+							<div class="table-cell">
+								<img class="table-container" src="../../assets/images/loginlogo.png" alt="" width="277" height="83">
+							</div>
+						</div>
+						<div class="login-content position-layout">
+							<form novalidate id='auth-form' class="position-center">
+								<div
+									class="validate-field form-group relative ">
+									<i class="iconfont icon-oc-login-user input-icon"></i>
+									<input
+										type="text"
+										class='form-control form-input'
+										v-model='user.userName'
+										placeholder="请输入账号"
+										:id="username"
+										:field="username"
+										v-validate:username="{maxlength: 16, minlength: 3, required: true}">
+										<div class="error" v-if="$validation.username.modified">
+											<span v-if="$validation.username.required || $validation.username.maxlength || $validation.username.minlength">账号长度为3-16位</span>
+										</div>
+								</div>
+
+								<div
+									class="validate-field form-group relative">
+									<i class="iconfont icon-oc-login-pwd input-icon"></i>
+									<input
+									 
+										type="password"
+										class='form-control form-input'
+										v-model='user.password'
+										placeholder="请输入密码"
+										:id="password"
+										:field="password"
+										v-validate:password="{maxlength:16, minlength: 3, required: true}">
+									<div class="error" v-if="$validation.password.modified">
+										<span v-if="$validation.password.required || $validation.password.maxlength || $validation.password.minlength">密码长度为3-16位</span>
+									</div>
+								</div>
+
+								<div class="validate-field form-group flex-direction-row flex">
+									<div class="relative inline-block">
+										<input
+											value=""
+											type="text"
+											class="form-control vercode"
+											placeholder="请输入验证码"
+											v-model='user.code'
+											:id="code"
+											:field="code"
+											v-validate:code="{maxlength:4, minlength: 4, required: true}">
+										<div class="error" v-if="$validation.code.modified">
+											<span v-if="$validation.code.required || $validation.code.maxlength || $validation.code.minlength">验证码长度为4位</span>
+										</div>
+									</div>
+									<div class="inline-block recode">
+										<img :src="verCodeUrl" @click="refreshVerCode" height="40px"/>
+									</div>
+								</div>
+
+								<div class="validate-field form-group flex mt-15">
+									<input type="checkbox"  v-model="user.remember"  />  记住用户名
+								</div>
+
+								<div class="form-group mt-15 width-100">
+									<button class="btn btn-login width-100" :disabled='!$validation.valid' @click.prevent='login($validation)'>登录</button>
+								</div>
+
+							</form>
+						</div>
+	          <div class="copy text-align-c" >Copyright 2016 云呼你 粤ICP备16048993号 All Rights Reserved 广州流水行云科技有限公司</div>
           </div>
-          <div class="login-content flex flex-1 justify-content-c">
-            <form novalidate id='auth-form'>
-              <div
-                class="validate-field form-group relative ">
-                <i class="iconfont icon-oc-login-user input-icon"></i>
-                <input
-                  type="text"
-                  class='form-control form-input'
-                  v-model='user.name'
-                  placeholder="请输入账号"
-                  :id="username"
-                  :field="username"
-                  v-validate:username="{maxlength: 16, minlength: 3, required: true}">
-                  <div class="error" v-if="$validation.username.modified">
-                    <span v-if="$validation.username.required || $validation.username.maxlength || $validation.username.minlength">账号长度为3-16位</span>
-                  </div>
-              </div>
-
-              <div
-                class="validate-field form-group relative">
-                <i class="iconfont icon-oc-login-pwd input-icon"></i>
-                <input
-                  type="password"
-                  class='form-control form-input'
-                  v-model='user.password'
-                  placeholder="请输入密码"
-                  :id="password"
-                  :field="password"
-                  v-validate:password="{maxlength:16, minlength: 3, required: true}">
-                <div class="error" v-if="$validation.password.modified">
-                  <span v-if="$validation.password.required || $validation.password.maxlength || $validation.password.minlength">密码长度为3-16位</span>
-                </div>
-              </div>
-
-              <div class="validate-field form-group flex-direction-row flex">
-                <div class="flex flex-1 relative">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="请输入验证码"
-                    v-model='user.code'
-                    :id="code"
-                    :field="code"
-                    v-validate:code="{maxlength:4, minlength: 4, required: true}">
-                  <div class="error" v-if="$validation.code.modified">
-                    <span v-if="$validation.code.required || $validation.code.maxlength || $validation.code.minlength">验证码长度为4位</span>
-                  </div>
-                </div>
-
-
-                <div class="flex  flex-1"></div>
-              </div>
-
-              <div class="validate-field form-group flex mt-15">
-                <input type="checkbox"    />  记住密码
-              </div>
-
-              <div class="form-group flex flex-1 mt-15">
-                <button class="btn btn-login flex flex-1 justify-content-c" :disabled='!$validation.valid' @click.prevent='login($validation)'>登录</button>
-              </div>
-
-            </form>
-          </div>
-
-
-          <div class="copy flex justify-content-c" >Copyright 2016 云呼你 粤ICP备16048993号 All Rights Reserved 广州流水行云科技有限公司</div>
         </div>
       </div>
-
-
-
     </validator>
     <router-view></router-view>
 </template>
 <script>
-import {showMsg, hideMsg, localLogin} from '../../vuex/actions'
+import {showMsg, localLogin} from '../../vuex/actions'
 import toaster from '../ui/toaster.vue'
-
+import domain from '../../config/domain'
+import {getCookie} from '../../utils/cookieAuth.js'
 export default {
   data(){
     return{
       user: {
-        name: '',
+        userName: '',
         password: '',
-        code:''
-      }
+        code:'',
+        remember:'true',
+      },
+      verCodeUrl:''
     }
   },
   components: {
@@ -98,10 +102,10 @@ export default {
   },
   vuex: {
     getters: {
-      messege: ({showmsg}) => showmsg.message
+      messege: ({showmsg}) => showmsg.message,
     },
     actions: {
-      showMsg,hideMsg,localLogin
+      showMsg, localLogin,
     }
   },
   methods: {
@@ -109,6 +113,36 @@ export default {
       if(val.valid) {
         this.localLogin(this.user)
       }
+    },
+    refreshVerCode(){
+      this.verCodeUrl = domain.API_ROOT+'verCode?'+new Date().getTime()
+    }
+  },
+  watch:{
+    'messege':function(){
+      if(this.messege.content!=''){
+          this.refreshVerCode()
+      }
+    }
+  },
+  route:{
+  	data(){
+      let self = this 
+      //初始化
+      self.user  = {
+         userName: '',
+         password: '',
+         code:'',
+         remember:'true'
+      }
+      let cookieUser = getCookie('interimUser')
+      if(cookieUser!='' && cookieUser!=undefined){
+        self.user.userName = cookieUser
+        self.user.remember = true
+      }else{
+        self.user.remember = false
+      }
+      this.refreshVerCode()
     }
   }
 }
@@ -120,6 +154,8 @@ export default {
   background-position: center top;
   background-attachment: fixed;
   background-size: cover;
+	height: 100%;
+  width: 100%;
 }
 
 .btn-login{
@@ -140,9 +176,15 @@ export default {
   }
   .login-content{
     background-color: #eff0f5;
-
+    height: 345px;
     .relative{
       position: relative;
+    }
+    .recode{
+      padding: 0 10px;
+    }
+    .vercode {
+	    width: 180px;
     }
 
     .form-group{

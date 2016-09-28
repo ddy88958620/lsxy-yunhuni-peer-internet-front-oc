@@ -2,8 +2,7 @@
 </style>
 <template>
 	<div>
-
-		<div class="admin-table table-responsive">
+		<div class="admin-table">
 			<table class="table">
 				<thead>
 				<tr>
@@ -13,58 +12,115 @@
 				</tr>
 				</thead>
 				<tbody>
-				<tr v-for='message in messages'>
-					<td class="text-align-c">{{ message.name}}</td>
-					<td class="{{ message.status ? 'text-danger' : ''}}">{{message.status ? '关闭' : '开启'}}</td>
+				<tr>
+					<td class="text-align-c" >语音通知</td>
+					<td>{{ switchs.isVoiceDirectly === 0 ? '关闭' : '开启'}}</td>
 					<td class="text-align-c">
-						<span><a @click="">{{!message.status ? '关闭' : '开启'}}</a></span>
+						<a @click="edit('isVoiceDirectly')">{{ switchs.isVoiceDirectly ? '关闭' : '开启'}}</a>
 					</td>
 				</tr>
+				<tr>
+					<td class="text-align-c" >语音回拨</td>
+					<td>{{ switchs.isVoiceCallback ===0 ? '关闭' : '开启'}}</td>
+					<td class="text-align-c">
+						<a @click="edit('isVoiceCallback')">{{ switchs.isVoiceCallback ? '关闭' : '开启'}}</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="text-align-c" >语音会议</td>
+					<td>{{ switchs.isSessionService ===0 ? '关闭' : '开启'}}</td>
+					<td class="text-align-c">
+						<a @click="edit('isSessionService')">{{ switchs.isSessionService ? '关闭' : '开启'}}</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="text-align-c" >语音验证码</td>
+					<td>{{ switchs.isRecording ===0 ? '关闭' : '开启'}}</td>
+					<td class="text-align-c">
+						<a @click="edit('isRecording')">{{ switchs.isRecording ? '关闭' : '开启'}}</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="text-align-c" >通话录音</td>
+					<td>{{ switchs.isVoiceValidate ===0 ? '关闭' : '开启'}}</td>
+					<td class="text-align-c">
+						<a @click="edit('isVoiceValidate')">{{ switchs.isVoiceValidate ? '关闭' : '开启'}}</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="text-align-c" >自定义IVR</td>
+					<td>{{ switchs.isIvrService ===0 ? '关闭' : '开启'}}</td>
+					<td class="text-align-c">
+						<a @click="edit('isIvrService')">{{ switchs.isIvrService ? '关闭' : '开启'}}</a>
+					</td>
+				</tr>
+			
 				</tbody>
 			</table>
 		</div>
 	</div>
 </template>
 <script>
+	import {} from '../../../../vuex/actions'
 	export default {
 		data(){
 			return {
-				messages: [
-					{
-						name: '语音呼叫',
-						status: false,
-					},
-					{
-						name: '语音回拨',
-						status: false,
-					},
-					{
-						name: '会议服务',
-						status: false,
-					},
-					{
-						name: '语音验证码',
-						status: false,
-					},
-					{
-						name: '录音服务',
-						status: true,
-					},
-					{
-						name: 'IVR定制服务',
-						status: true,
-					},
-					{
-						name: '语音呼叫',
-						status: true,
-					},
-				]
+				switchs:{
+					isVoiceDirectly:0,
+					isVoiceCallback:0,
+					isSessionService:0,
+					isRecording:0,
+					isVoiceValidate:0,
+					isIvrService:0
+				},
 			}
 		},
 		methods: {
-			moreMessage(){
-
+			edit(type){
+			switch(type){
+				case 'isVoiceDirectly':
+					this.switchs.isVoiceDirectly = this.switchs.isVoiceDirectly===0 ? 1:0
+					break;
+				case 'isVoiceCallback':
+					this.switchs.isVoiceCallback = this.switchs.isVoiceCallback===0  ? 1:0
+					break;
+				case 'isSessionService':
+					this.switchs.isSessionService = this.switchs.isSessionService===0  ? 1:0
+					break;
+				case 'isRecording':
+					this.switchs.isRecording = this.switchs.isRecording===0 ? 1:0
+					break;
+				case 'isVoiceValidate':
+					this.switchs.isVoiceValidate = this.switchs.isVoiceValidate===0  ? 1:0
+					break;
+				case 'isIvrService':
+					this.switchs.isIvrService = this.switchs.isIvrService===0  ? 1:0
+					break;					
 			}
+			let uid = this.$route.params.uid
+			let params = {}
+			params =  this.switchs
+			$.put('/tenant/tenants/'+uid+'/switch',params).then((res) => {
+				if(res.success){
+					//修改成功提示
+				}
+			})
+
+				
+			}
+		},
+		ready(){
+			let self = this
+			let uid = this.$route.params.uid
+			$.get('/tenant/tenants/'+uid+'/switchs').then((res) => {
+				self.switchs.isIvrService = res.data.isIvrService
+				self.switchs.isRecording = res.data.isRecording
+				self.switchs.isSessionService = res.data.isSessionService
+				self.switchs.isVoiceDirectly = res.data.isVoiceDirectly
+				self.switchs.isVoiceValidate = res.data.isVoiceValidate
+				self.switchs.isVoiceCallback = res.data.isVoiceCallback
+			})
+
 		}
 	}
 

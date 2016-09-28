@@ -5,7 +5,7 @@ var path = require('path')
 module.exports = {
   entry: './app/main.js',
   output: {
-    path: './static',
+    path: path.resolve(__dirname, './staticnew'),
     //Watching your source files for changes and when changes are made the
     //bundle will be recompiled. This modified bundle is served from memory at
     // the relative path specified in publicPath (see API).
@@ -15,12 +15,6 @@ module.exports = {
   resolve: {
     modulesDirectories: [
       'node_modules',
-      'bower_components'
-    ],
-    plugins: [
-      new webpack.ResolverPlugin(
-          new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
-          )
     ],
     alias: {
       // 'components': path.resolve(__dirname, 'app/components'),
@@ -31,7 +25,7 @@ module.exports = {
   module: {
     loaders:[
       {
-        test: /.js$/,
+        test: /\.js$/,
         loader: 'babel',
         exclude: /(node_modules|bower_components)/,
         query: {
@@ -39,16 +33,32 @@ module.exports = {
         },
       },
       {
-        test: /.vue$/,
+        test: /\.json$/,
+        loader: 'json'
+      },
+      {
+        test: /\.vue$/,
         loader: 'vue',
       },
       {
-        test: /.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif)$/,
         loader: 'file?name=[name].[ext]?[hash]'
       },
-      { test: /.(woff|woff2|ttf|eot|svg)(?v=[0-9].[0-9].[0-9])?$/, loader: 'url?limit=10000&name=fonts/[hash:8].[name].[ext]'},
+      { test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url?limit=10000&name=fonts/[hash:8].[name].[ext]'},
     ],
     noParse: [],
+  },
+  vue: {
+    postcss: [
+      // 让import '*.scss' 也生效
+      require('postcss-import')({
+        addDependencyTo: webpack
+      }),
+      require('autoprefixer')({
+        browsers: ['last 3 versions'],
+      }),
+      require('cssnano')({ safe: true })
+    ],
   },
   plugins: [
     new webpack.ProvidePlugin({

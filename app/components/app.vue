@@ -1,12 +1,15 @@
 <template>
   <div>
-    <router-view></router-view>
-    <toaster :content.sync='message.content'></toaster>
+    <router-view keep-alive></router-view>
+    <toaster :show.sync="message.show" :content='message.content' :type="message.type" :title="message.title"></toaster>
   </div>
 </template>
 <script>
 import toaster from './ui/toaster.vue'
 import store from '../vuex/store'
+import '../utils/fetch'
+import '../assets/js/zoom.js'
+require('es6-promise').polyfill()
 
 export default {
   store,
@@ -17,6 +20,8 @@ export default {
   },
   components: {
     toaster
+  },
+	ready(){
   }
 }
 

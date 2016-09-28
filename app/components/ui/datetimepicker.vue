@@ -1,63 +1,154 @@
 <template>
-	<div class="input-group date-component" :style="{width: `${width}px`}">
+	<div class="input-group date date-component input-append" :style="{width: `${width}px`}" >
 		<input
+			v-model="value"
 			type="text"
-			:value.sync='date'
+			id="{{uuid}}"
 			class="form_datetime _month form-control"
-			data-date-end-date="0m" />
-		<span class="iconfont icon-oc-date"></span>
+			data-date-end-date="0m" readonly/>
+		<!--<span v-if='buttonStatus === 1' class="add-on" @click="clearDate"><i class="iconfont icon-oc-delete"></i></span>-->
+		<span class="iconfont icon-oc-date" @click="clearDate" ></span>
 	</div>
 </template>
 <script>
 	require("bootstrap-datetime-picker")
+	require("bootstrap-datetime-picker/js/locales/bootstrap-datetimepicker.zh-CN.js")
 	
 	export default {
 		data(){
 			return {
-				date: ''
+				dateConfig: {},
+				buttonStatus: 0
 			}
 		},
 		props: {
+			value: {
+				twoWays: true,
+				type: String,
+			},
+			action: {
+				type: Function,
+				default: function(){
+					return
+				}
+			},
+			uuid: {
+				type: String,
+			},
 			type: {
 				type: String,
+				twoWays: true,
 				default: 'year'
 			},
 			width: {
 				type: Number,
-				default: 120
+				default: 130
+			},
+			isstartday: {
+				type: String,
+				default: 'false'
 			}
 		},
-		watch: {},
-		ready(){
-			const self = this
-			// 当前日期
-			let date = new Date()
-			let type = self.type
-			let datetimepickerObj = null
-			switch (type){
-				case 'year':
-					datetimepickerObj = {
-						format: 'yyyy-mm',
-						startView: 'year',
-						minView: 'year',
-					}
-					break;
-				case 'time':
-					datetimepickerObj = {
-						format: 'yyyy-mm-dd hh:ii',
-						startView: 'month',
-						minView: 'hour',
-					}
-					break;
-			}
-			
-			$('.form_datetime').datetimepicker(datetimepickerObj).on('changeDate',function(e){
-				$(this).datetimepicker('hide')
+		watch: {
+			type: function () {
+				this.initDateTimePicker()
+			},
+			value: function () {
+				this.initDateTimePicker()
+				this.action()
+			},
+		},
+		methods: {
+			initDateTimePicker(){
+				var self = this
+				// 当前日期
+				var type = self.type
+				var date = new Date()
+				let year = date.getFullYear()
+				let month = (date.getMonth()+1) < 10 ? '0' + (date.getMonth()+1) : (date.getMonth()+1)
+				let day = date.getDate().toString().length < 2 ? '0'+ date.getDate() : date.getDate()
+				let hours = date.getHours().toString.length < 2 ? '0'+date.getHours() : date.getHours()
+				let minutes = date.getMinutes().toString.length < 2 ? '0'+date.getMinutes() : date.getMinutes()
+				let seconds = date.getSeconds().toString.length < 2 ? '0'+date.getSeconds() : date.getSeconds()
+
+				switch (type) {
+					case 'year':
+						self.dateConfig = {
+							language: 'zh-CN',
+							format: 'yyyy',
+							startView: 'decade',
+							minView: 'decade',
+							startDate: '2016',
+							endDate: '2017',
+						}
+						break;
+					case 'month':
+						self.dateConfig = {
+							language: 'zh-CN',
+							format: 'yyyy-mm',
+							startView: 'year',
+							minView: 'year',
+							/*startDate: '2016-06',
+							endDate: '2017-01'*/
+						}
+						break;
+					case 'day':
+						self.dateConfig = {
+							language: 'zh-CN',
+							format: 'yyyy-mm-dd',
+							startView: 'month',
+							minView: 'month',
+
+						}
+						break;
+					case 'time':
+						self.dateConfig = {
+							language: 'zh-CN',
+							format: 'yyyy-mm-dd hh:ii',
+							todayBtn: true,
+							startView: 'month',
+							minView: 'hour',
+							startDate: self.isstartday==='true' ? year+'-'+month+'-'+day+' '+hours+':'+minutes : null,
+							endDate:null
+						}
+						break;
+
+				}
 				
-				let currenSelectDate = $(this)[0].value
-				console.log(currenSelectDate);
-				self.date = currenSelectDate ? currenSelectDate : self.date
-			});
+				
+
+
+
+				this.datetimepicker = $('#'+self.uuid)
+				
+				if(this.datetimepicker) {
+					this.datetimepicker.datetimepicker('remove')
+				}
+				
+				
+				let once = 1
+				this.datetimepicker.datetimepicker(self.dateConfig).on('changeDate', function (ev) {
+					if (once){
+						$(this).datetimepicker('hide')
+						let currenSelectDate = $(this)[0].value
+						self.value = currenSelectDate ? currenSelectDate : self.value
+						once = null
+					}
+				}).on('show', function(){
+					self.buttonStatus = 1
+//					this.value = ''
+				}).on('hide', function(){
+//					self.buttonStatus = 0
+					self.value = ''
+				});
+			},
+			clearDate(){
+				
+				this.value = ''
+			}
+		},
+		ready(){
+			this.initDateTimePicker('month')
 		}
 	}
 </script>
@@ -73,16 +164,23 @@
 		position: absolute;
 		right: 8px;
 		top: 2px;
-		z-index: 2;
+		z-index: 300;
 	}
-	.form-control {
-		display: inline-block;
-	}
+		.form-control {
+			display: inline-block;
+			border-bottom-right-radius: 4px !important;
+    		border-top-right-radius: 4px !important;
+		}
 	}
 	
 	.input-group-addon {
 		background: none;
 		border-left: none;
+	}
+
+	.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+	    background-color: #FFF !important;
+	    opacity: 1 !important;
 	}
 
 </style>

@@ -20,6 +20,7 @@ export default function(router){
       component: (resolve) =>  require(['../components/pages/admin.vue'], resolve),
       subRoutes: {
         '/dashboard': {
+          name: 'dashboard',
           component: (resolve) => require(['../components/pages/dashboard/index.vue'], resolve),
         },
         '/tenant': {
@@ -54,7 +55,7 @@ export default function(router){
                 '/base': {
                   component: (resolve) => require(['../components/pages/tenant/base/index.vue'], resolve)
                 },
-                '/session': {
+                '/session/:aid/:day/:module': {
                   component: (resolve) => require(['../components/pages/tenant/session/index.vue'], resolve),
                   subRoutes: {
                     '/call': {
@@ -77,7 +78,7 @@ export default function(router){
                     }
                   }
                 },
-                '/statistic': {
+                '/statistic/:aid/:module': {
                   component: (resolve) => require(['../components/pages/tenant/statistic/index.vue'], resolve),
                   subRoutes: {
                     '/consume': {
@@ -103,6 +104,7 @@ export default function(router){
               }
             },
             '/list' : {
+              name: 'tenantlist',
               component: (resolve) => require(['../components/pages/tenant/list.vue'], resolve)
             }
           }
@@ -123,7 +125,13 @@ export default function(router){
             },
             '/new': {
               component: (resolve) => require(['../components/pages/message/new.vue'], resolve),
-            }
+            },
+            '/edit/:mid': {
+              component: (resolve) => require(['../components/pages/message/edit.vue'], resolve),
+            },
+            '/detail/:mid': {
+              component: (resolve) => require(['../components/pages/message/detail.vue'], resolve),
+            },
           }
         },
         '/finance': {
@@ -211,7 +219,7 @@ export default function(router){
                     }
                   }
                 },
-                '/detail/:id':{
+                '/detail/:authStatus/:id/:type':{
                   component: (resolve) => require(['../components/pages/demand/member/detail.vue'],resolve)
                 }
               }
@@ -224,7 +232,8 @@ export default function(router){
   
   // set the default router-view
   router.redirect({
-    '/': '/admin',
+    '/': '/auth/login',
+    // '/admin': '/admin/dashboard',
     '/admin/service': '/admin/service/list',
 	  '/admin/message': '/admin/message/list',
     '/admin/tenant': '/admin/tenant/list',
@@ -233,19 +242,20 @@ export default function(router){
     '/admin/finance/delivery': '/admin/finance/delivery/list/unsend',
     '/admin/tenant/detail/:uid/': '/admin/tenant/detail/:uid/preview',
     '/admin/tenant/detail/:uid/app': '/admin/tenant/detail/:uid/app/list',
-    '/admin/tenant/detail/:uid/statistic': '/admin/tenant/detail/:uid/statistic/consume',
-    '/admin/tenant/detail/:uid/session': '/admin/tenant/detail/:uid/session/call',
+    '/admin/tenant/detail/:uid/statistic': '/admin/tenant/detail/:uid/statistic/all/consume/consume',
+    '/admin/tenant/detail/:uid/session': '/admin/tenant/detail/:uid/session/1/1/call/call',
     '/admin/demand': '/admin/demand/member',
     '/admin/demand/member': '/admin/demand/member/list/await',
     '/admin/demand/voice': '/admin/demand/voice/list/await',
   })
 
-  router.beforeEach(function({to, next, redirect}){
+  router.beforeEach(function({to, next, go}){
+  	// http only YUNHUNISESSIONID 不可在 document.cookie中打印，所以用自己设置的
     if(to.auth || getCookie('user')) {
       next()
     } else {
       // redirect, status 401 or 403 ...
-      redirect('/auth/login')
+      go('/auth/login')
     }
   })
 }

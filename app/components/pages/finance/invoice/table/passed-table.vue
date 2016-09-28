@@ -1,8 +1,28 @@
 <template>
+	<div class="admin-table-header">
+		<div class="bg-section-margin remove-margin-bottom  ">
+			<div class="select-box inline-block">
+				<search
+					:value.sync="search"
+					:action="query"
+					placeholder="请输入会员名称"
+				></search>
+			</div>
+			<span class='datetime-picker-label'>发票类型: </span>
+			<select class="form-control"  v-model='type'>
+				<option value="0">全部</option>
+				<option value="1">个人增值税普通发票</option>
+				<option value="2">企业增值税普通发票</option>
+				<option value="3">企业增值税专用发票</option>
+			</select>
+			<button class="btn btn-primary admin-button-margin" @click="query" >查询</button>
+
+		</div>
+	</div>
 	<div>
-		<div class="admin-table table-responsive">
-			<div class="table-total flex flex-1 justify-content-e">
-				共<span class="text-danger">20</span>条
+		<div class="admin-table">
+			<div class="table-total flex flex-1 justify-content-e float-r">
+				共<span class="text-danger">{{invoice.totalCount}}</span>条
 			</div>
 			<table class="table">
 				<thead>
@@ -17,94 +37,87 @@
 				</tr>
 				</thead>
 				<tbody>
-				<tr v-for='message in messages'>
-					<td class="message-time text-align-c">{{message.date}}</td>
-					<td><a>{{message.name}}</a></td>
-					<td>{{message.money}}</td>
-					<td>{{message.type}}</td>
-					<td>{{message.supports}}</td>
-					<td>{{message.recipient}}</td>
+				<tr v-for='message in invoice.result'>
+					<td class="message-time text-align-c">{{message.applyTime | totalDate }}</td>
+					<td><a  v-link="'/admin/tenant/detail/'+message.tenant.id" >{{message.tenant.tenantName}}</a></td>
+					<td>{{message.amount}}</td>
+					<td v-if='message.type==1'>个人增值税普通发票</td>
+					<td v-if='message.type==2'>企业增值税普通发票</td>
+					<td v-if='message.type==3'>企业增值税专用发票</td>
+					<td>{{message.title}}</td>
+					<td>{{message.receivePeople}}</td>
 					<td class="text-align-c">
 						<a v-link="'/admin/finance/invoice/detail/'+message.id" >查看详情</a>
 					</td>
 				</tr>
 				</tbody>
 			</table>
-			<div class="more"><a @click="moreMessage" class="text-none">加载更多<i class="icon iconfont icon-oc-dropdown" ></i></a></div>
+			<div class="more">
+				<a v-show='this.invoice.totalPageCount==this.invoice.currentPageNo || this.invoice.totalPageCount==0'>加载完毕</a>
+				<a @click="moreMessage" class="text-none" v-show='this.invoice.totalPageCount!=this.invoice.currentPageNo && this.invoice.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+			</div>
 		</div>
 	</div>
 </template>
 <script>
+	import {getInvoiceList,getMoreInvoiceList } from '../../../../../vuex/actions'
 	export default {
-		compontens:{
-
+		vuex:{
+			getters: {
+				invoice: ({finance}) =>finance.invoicelist.passed
+			},
+			actions: {
+				getInvoiceList,
+				getMoreInvoiceList
+			}
+		},
+		components: {
+			'datetime-picker': require('../../../../ui/datetimepicker.vue'),
+			'search': require('../../../../ui/search-input.vue')
 		},
 		data(){
 			return {
 				messages: [],
-				total: 100
+				total: 0,
+				type: 0,
+				status:'auditing',
+				search:''
 			}
 		},
 		methods: {
 			moreMessage(){
-				this.messages.push(
-					{
-						id: 4,
-						date: '2016-06-06 16:00',
-						money:'110',
-						name: 'cpcxm',
-						supports: '流水行云',
-						recipient:'小明',
-						type:'企业增值税专用票'
-					}
-				)
+				let params = {}
+				let nextPage = this.invoice.currentPageNo+1
+				params.status = this.status
+				if(this.search){
+					params.name=this.search
+				}
+				if(this.type!=0){
+					params.type = this.type
+				}
+				params.pageNo = nextPage
+				this.getMoreInvoiceList(params)
+			},
+			query(){
+				let params = {}
+				params.status = this.status
+				if(this.search!=''){
+					params.name = this.search
+				}
+				if(this.type!=0){
+					params.type = this.type
+				}
+				this.getInvoiceList(params)
 			}
+
 		},
 		route: {
-			data(){
-				let wait_array = 	[
-					{
-						id: 1,
-						date: '2016-06-06 16:00',
-						money:'110',
-						name: 'cpcxm',
-						supports: '流水行云',
-						recipient:'小明',
-						type:'企业增值税专用票'
-					},
-					{
-						id: 2,
-						date: '2016-06-06 16:00',
-						money:'110',
-						name: 'cpcxm',
-						supports: '流水行云',
-						recipient:'小明',
-						type:'企业增值税专用票'
-					},
-					{
-						id: 3,
-						date: '2016-06-06 16:00',
-						money:'110',
-						name: 'cpcxm',
-						supports: '流水行云',
-						recipient:'小明',
-						type:'企业增值税普通票'
-					},
-					{
-						id: 4,
-						date: '2016-06-06 16:00',
-						money:'110',
-						name: 'cpcxm',
-						supports: '流水行云',
-						recipient:'小明',
-						type:'个人增值税普通票'
-					},
-				]
-				this.messages=wait_array;
-			}
+			
 		},
 		ready(){
-
+			let params = {}
+			params.status = 'auditing'
+			this.getInvoiceList(params)
 		}
 
 	}

@@ -1,8 +1,29 @@
 <template>
+	<div class="admin-table-header">
+		<div class="bg-section-margin remove-margin-bottom ">
+			<div class="select-box inline-block">
+				<search
+					:value.sync ='search'
+					:action="query"
+					placeholder="请输入会员名称"
+			></search></div>
+			<span class='datetime-picker-label '>申请时间:</span>
+			<datetime-picker :uuid="'demandVoiceStartDate'"  :type.sync="startdate.type" :value.sync="startdate.value"></datetime-picker>
+			<span class='datetime-picker-label'>至</span>
+			<datetime-picker :uuid="'demandVoiceEndDate'"  :type.sync="enddate.type" :value.sync="enddate.value"></datetime-picker>
+			<!-- <span class='datetime-picker-label'>认证类型: </span>
+			<select class="form-control">
+				<option>全部</option>
+				<option>已上线</option>
+				<option>未上线</option>
+			</select> -->
+			<button class="btn btn-primary admin-button-margin" @click="query">查询</button>
+		</div>
+	</div>
 	<div>
-		<div class="admin-table table-responsive">
-			<div class="table-total flex flex-1 justify-content-e">
-				共<span class="text-danger">20</span>条
+		<div class="admin-table">
+			<div class="table-total flex flex-1 justify-content-e float-r">
+				共<span class="text-danger">{{voice.totalCount}}</span>条
 			</div>
 			<table class="table">
 				<thead>
@@ -12,98 +33,108 @@
 					<th>应用名称</th>
 					<th>标题</th>
 					<th>大小</th>
+					<th>原因</th>
 					<th class="text-align-c">操作</th>
 				</tr>
 				</thead>
 				<tbody>
-				<tr v-for='message in messages'>
-					<td class="message-time text-align-c">{{message.date}}</td>
-					<td><a>{{message.name}}</a></td>
-					<td>{{message.mobile}}</td>
-					<td>{{message.email}}</td>
-					<td>{{message.type}}</td>
+				<tr v-for='message in voice.result'>
+					<td class="message-time text-align-c">{{message.createTime | totalDate}}</td>
+					<td><a v-link="'/admin/tenant/detail/'+message.tenant.id" >{{message.tenant.tenantName}}</a></td>
+					<td>{{message.app.name}}</td>
+					<td>{{message.name}}</td>
+					<td>{{message.size | fileSize }}</td>
+					<td>{{message.reason}}</td>
 					<td class="text-align-c">
-						<span><a @click="showModal=true" >试听</a></span>
-						<span><a>通过</a></span>
-						<span><a>不通过</a></span>
+						<span><a @click="playAudio($index)">试听</a></span>
 					</td>
 				</tr>
 				</tbody>
 			</table>
-			<div class="more"><a @click="moreMessage" class="text-none">加载更多<i class="icon iconfont icon-oc-dropdown" ></i></a></div>
+			<div class="more">
+				<a v-show='this.voice.totalPageCount==this.voice.currentPageNo || this.voice.totalPageCount==0'>加载完毕</a>
+				<a @click="moreMessage" class="text-none" v-show='this.voice.totalPageCount!=this.voice.currentPageNo && this.voice.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+			</div>
+			<!--放音文件隐藏-->
+			<audio :src="audioURI" autoplay ></audio>
 		</div>
 	</div>
 </template>
 <script>
+	import { getVoiceList,getMoreVoiceList } from '../../../../../vuex/actions'
+	import domain from '../../../../../config/domain'
 	export default {
+		vuex: {
+			getters:{
+				voice: ({demand}) => demand.voicelist.unauth,
+			},
+			actions: {
+				getVoiceList,
+				getMoreVoiceList
+			}
+		},
+		components: {
+			'datetime-picker': require('../../../../ui/datetimepicker.vue'),
+			'search' : require('../../../../ui/search-input.vue')
+		},
 		data(){
 			return {
 				messages: [],
-				total: 100
+				search: '',
+				total: 0,
+				type : 'unauth',
+				name:'',
+				startdate :{
+					type:'day',
+					value:'',
+				},
+				enddate :{
+					type:'day',
+					value:'',
+				},
+				audioURI: '',
+				
 			}
 		},
 		methods: {
+			query(){
+				let params = {}
+				if(this.name!=''){
+					params.name = this.name
+				}
+				params.type =  this.type
+				params.startTime = this.startdate.value
+				params.endTime = this.enddate.value
+				params.name = this.search
+				console.log(params)
+
+				this.getVoiceList(params)
+			},
 			moreMessage(){
-				this.messages.push(
-					{
-						id: 4,
-						date: '2016-06-06 16:00',
-						name: '流水行云科技有限公司',
-						mobile: '1155945658462',
-						email: '475647150@qq.com',
-						type:'个人'
-					}
-				)
+				let params = {}
+				let nextPage = this.voice.currentPageNo+1
+				if(this.name!=''){
+					params.name = this.name
+				}
+				params.type =  this.type
+				params.startTime = this.startdate.value
+				params.endTime = this.enddate.value
+				params.name = this.search
+				
+				params.pageNo = nextPage
+				this.getMoreVoiceList(params)
+			},
+			playAudio(index){
+//				console.log(this.voice.result[index].fileKey)
+				this.audioURI = domain.API_ROOT_AUDIO + '?uri='+this.voice.result[index].fileKey
 			}
 		},
 		route: {
-			data(){
-
-
-				let wait_array = 	[
-					{
-						id: 1,
-						date: '2016-06-06 16:00',
-						name: '流水行云科技有限公司',
-						mobile: '1155945658462',
-						email: '475647150@qq.com',
-						type:'个人'
-					},
-					{
-						id: 2,
-						date: '2016-06-06 16:00',
-						name: '流水行云科技有限公司',
-						mobile: '1155945658462',
-						email: '475647150@qq.com',
-						type:'个人'
-					},
-					{
-						id: 3,
-						date: '2016-06-06 16:00',
-						name: '流水行云科技有限公司',
-						mobile: '1155945658462',
-						email: '475647150@qq.com',
-						type:'个人'
-					},
-					{
-						id: 4,
-						date: '2016-06-06 16:00',
-						name: '流水行云科技有限公司',
-						mobile: '1155945658462',
-						email: '475647150@qq.com',
-						type:'个人'
-					},
-				]
-
-
-
-
-				this.messages=wait_array;
-
-			}
 		},
 		ready(){
-
+			let params = {}
+			params.type = this.type
+			this.getVoiceList(params)
 		}
 
 	}

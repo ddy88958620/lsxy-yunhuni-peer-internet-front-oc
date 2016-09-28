@@ -1,7 +1,11 @@
 <template>
-  <div class="search-box flex flex-1">
-    <input class="form-control search" placeholder="{{placeholder}}" @keyup.enter="search" v-model="searchName" value="{{ searchName }}"/>
-    <i class="iconfont icon-oc-search cursor" @click='search'></i>
+  <div class="search-box">
+    <input class="form-control search"
+      placeholder="{{placeholder}}" 
+      v-model="value"
+      type="text"
+       />
+    <i class="iconfont icon-oc-search cursor" @click="action" ></i>
   </div>
 </template>
 
@@ -22,22 +26,28 @@
   export default {
     data(){
       return{
-        searchName: ''
+        searchName: '',
       }
     },
     props: {
+      value:{
+        type: String,
+        twoWays:true,
+        default:''
+      },
+	    action: {
+      	type: Function,
+        default: function(){
+      		console.log('defaut action')
+      	  return
+        }
+      },
       placeholder: {
+      	type: String,
         default: ''
       },
     },
-    methods: {
-      search(){
-         console.log('搜索内容'+this.searchName);
-      }
-    },
-    ready(){
-    }
-
+    methods: {},
+    ready(){}
   }
-
 </script>

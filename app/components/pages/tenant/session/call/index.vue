@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<div class="admin-table table-responsive">
-			<div class="table-total flex flex-1 justify-content-e">
-				消费金额: <span class="brown">100</span>元 共<span class="text-danger">20</span>条
+		<div class="admin-table">
+			<div class="table-total flex flex-1 justify-content-e float-r">
+				消费金额: <span class="brown">{{sessionTotal}}</span>元 共<span class="text-danger">{{session.totalCount ? session.totalCount : 0 }}</span>条
 			</div>
 			<table class="table">
 				<thead>
@@ -15,17 +15,19 @@
 				</tr>
 				</thead>
 				<tbody>
-				<tr v-for='message in messages'>
-					<td class="message-time text-align-c">{{message.date}}</td>
-					<td>{{ message.calling }}</td>
-					<td>{{ message.called }}</td>
-					<td>{{ message.time }}</td>
-					<td>{{ message.money }}</td>
+				<tr v-for='message in sessionList'>
+					<td class="message-time text-align-c">{{message.callStartDt | totalDate}}</td>
+					<td>{{ message.fromNum }}</td>
+					<td>{{ message.toNum }}</td>
+					<td>{{ message.costTimeLong }}</td>
+					<td>{{ message.cost }}</td>
 				</tr>
 				</tbody>
 			</table>
-			<div class="more"><a @click="moreMessage" class="text-none">加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
-			</div>
+			<div class="more">
+				<a v-show='session.totalPageCount==session.currentPageNo || session.totalPageCount==0'>加载完毕</a>
+				<a @click="query('more')" class="text-none" v-show='session.totalPageCount!=session.currentPageNo && session.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+			</div>	
 		</div>
 	</div>
 </template>
@@ -33,77 +35,42 @@
 	export default {
 		data(){
 			return {
-				messages: [],
+				session:{},
+				sessionTotal : 0,
+				sessionList: [],
+				messages:[],
 				total: 100
 			}
 		},
 		methods: {
-			moreMessage(){
-				this.messages.push(
-					{
-						id: 4,
-						calling: '13611460986',
-						called: '13611452022',
-						status: '正常',
-						time: '1.23',
-						money: '10',
-						date: '2016-06-06 16:00',
-						name: '流水行云科技有限公司',
-					}
-				)
+			query(more){
+				//notify_call.语音呼叫,duo_call.双向回拨,conf_call.会议服务,ivr_call.IVR定制服务,captcha_call.语音验证码,voice_recording.录音服务
+				let uid = this.$route.params.uid
+				let type = 'notify_call'
+				let appId = this.$route.params.aid
+				let time = this.$route.params.day
+				let params = {type:type,appId:appId,time:time}
+				if(more){
+					let pageNo = this.session.currentPageNo + 1
+					params.pageNo = pageNo
+				}
+				let self = this
+				$.get('/tenant/'+uid+'/session', params).then((res) => {
+					 if(res.data.page.totalCount>0){
+			            self.sessionTotal =res.data.total
+			            self.session = res.data.page
+			            if(more)
+			              self.sessionList = self.sessionList.concat(res.data.page.result)
+			            else
+			              self.sessionList = res.data.page.result
+			          }
+				})
 			}
 		},
 		route: {
 			data(){
-				let id = this.$route.params.tabid;
-				let wait_array = [
-					{
-						id: 4,
-						calling: '13611460986',
-						called: '13611452022',
-						status: '正常',
-						time: '1.23',
-						money: '10',
-						date: '2016-06-06 16:00',
-						name: '流水行云科技有限公司',
-					},
-					{
-						id: 4,
-						calling: '13611460986',
-						called: '13611452022',
-						status: '正常',
-						time: '1.23',
-						money: '10',
-						date: '2016-06-06 16:00',
-						name: '流水行云科技有限公司',
-					},
-					{
-						id: 4,
-						calling: '13611460986',
-						called: '13611452022',
-						status: '正常',
-						time: '1.23',
-						money: '10',
-						date: '2016-06-06 16:00',
-						name: '流水行云科技有限公司',
-					},
-					{
-						id: 4,
-						calling: '13611460986',
-						called: '13611452022',
-						status: '正常',
-						time: '1.23',
-						money: '10',
-						date: '2016-06-06 16:00',
-						name: '流水行云科技有限公司',
-					},
-				]
-
-				this.messages = wait_array;
-			}
-		},
-		ready(){
-
+        this.query()
+      }
 		}
 
 	}

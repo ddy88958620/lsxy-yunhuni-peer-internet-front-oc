@@ -54,6 +54,10 @@
   margin-left: 20px;
 }
 
+.admin-top {
+  margin-top: 60px;
+}
+
 .admin-padding {
   padding: $admin-padding;
 }
@@ -141,8 +145,7 @@
   }
 
   .search{
-    width: 300px;
-    padding: 15px;
+    //width: 300px;
   }
 }
 
@@ -166,7 +169,7 @@ a {
 .panel-heading{
   background-color: #f8f9fc !important;
   color:$middle-font-color !important;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   border-bottom: 1px solid #e9edf4 !important;
 }
 
@@ -185,26 +188,48 @@ table {
   background-color: #FFFFFF;
 }
 
-//导航统计
+//子导航统计
 .app-menu-count{
   background-color: #FF3D81;
   height: 15px;
   overflow-y: hidden;
   color:#FFF;
   border-radius: 5px;
-  padding: 1px 2px 1px 1px;
+  padding: 1px 3px 2px 3px;
   font-size: 1rem;
   margin-left: 5px;
 }
 
-
+//主导航统计
+.menu-count{
+    background-color: #FF3D81;
+    max-width: 40px;
+    color: #FFF;
+    border-radius: 5px;
+    padding: 0px 3px 0px 3px;
+    font-size: 1rem;
+    margin-left: 5px;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 .app-main-content {
-  display: flex;
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  right: 0px;
+  left: 200px;
 
   // 存在二级导航时布局
   .app-main-left {
-
+    position: fixed;
+    left: 200px;
+    right: 0;
+    bottom: 0;
+    top: 60px;
+    padding: 0;
     .wrapper{
       span{
         border-left: 2px solid #616b88;
@@ -230,23 +255,25 @@ table {
     a {
       color: #333;
       font-size: 1.4rem;
-      display: flex;
-      flex:1;
+      display: inline-block;
+      width: 100%;
       height: 40px;
       line-height: 1;
       padding: 15px 15px 15px 35px;
     }
 
-
     a.v-link-active {
       background-color: white;
     }
-
-    width: 200px;
-    padding: 0;
   }
   .app-main-right {
-    flex: 1;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin-left: 150px;
+    display: inline-block;
   }
 }
 
@@ -285,7 +312,8 @@ table {
     font-size: 1.8rem;
     min-width: 110px;
     padding:0 0 10px 0 ;
-    justify-content: center;
+    display: inline-block;
+    text-align: center;
     color:#969eb4;
     text-decoration: none;
     &:hover{
@@ -346,6 +374,11 @@ table {
   padding-right: 20px;
 }
 
+//padding-left-20
+.padding-left-20{
+  padding-left: 20px;
+}
+
 //去除右边框
 .remove-border-right{
   border-right: 1px solid transparent !important;
@@ -387,3 +420,7 @@ table {
   overflow-y: scroll;
 }
 
+.nopassText{
+  padding-left: 10px;
+  width: 460px;
+}

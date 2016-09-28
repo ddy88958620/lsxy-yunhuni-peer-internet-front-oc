@@ -5,13 +5,13 @@
 			<div class="flex flex-direction-column justify-content-c align-items-c">
 				<img src="../../../../assets/images/app.png" width="100" height="100" alt="">
 				<p class="bigger-font-size name">{{ app.name}}</p>
-				<p>APPID: {{ app.appid}}</p>
+				<p>应用标识: {{ app.appid}}</p>
 				<p class="text-center">{{ app.introduce ? app.introduce :'这家伙很懒，什么都没留下'}}</p>
 			</div>
 		</header>
 		<main class="flex whilebg middle-font-color  flex-direction-column main-box ">
 			<div class="flex justify-content-c align-items-c">
-				<div class="hr-title flex middle-font-size middle-font-color">本月指标</div>
+				<div class="hr-title flex middle-font-size middle-font-color">上月指标</div>
 			</div>
 			<div class="flex flex-1 justify-content-c align-items-c ">
 				<div class="flex flex-1 flex-direction-column align-items-c append-solid ">

@@ -14,7 +14,7 @@ import chance from 'chance'
   export default {
     data(){
       return {
-        class: '',
+        class: ''
       }
     },
     props: {
@@ -22,8 +22,15 @@ import chance from 'chance'
         require: true,
         type: String
       },
+	    value: {
+      	type: Array,
+        twoWay: true,
+		    default: function () {
+      		return []
+        }
+      },
       label: {
-        type: Array
+        type: Array,
       },
       color: {
         type: Array,
@@ -34,8 +41,13 @@ import chance from 'chance'
         default:['实时并发量','并发量']
       }
     },
+    watch: {
+    	value: function() {
+    		console.log('watch initChart')
+    		this.initChart()
+      }
+    },
     methods: {
-
       randomScalingFactor() {
         return (Math.random() > 0.5 ? 1.0 : 2.0) * Math.round(Math.random() * 100);
       },
@@ -43,6 +55,7 @@ import chance from 'chance'
         let self = this
         let datasets = []
         let i = this.label.length
+	      let fake =  [self.randomScalingFactor(),self.randomScalingFactor(),self.randomScalingFactor(),self.randomScalingFactor(),self.randomScalingFactor(),self.randomScalingFactor(),self.randomScalingFactor(),self.randomScalingFactor()]
         while(i) {
           i--
           let dataObj = {
@@ -63,58 +76,63 @@ import chance from 'chance'
               pointHoverBorderWidth: 5,
               pointRadius: 1,
               pointHitRadius: 1,
-              data: [self.randomScalingFactor(),self.randomScalingFactor(),self.randomScalingFactor(),self.randomScalingFactor(),self.randomScalingFactor(),self.randomScalingFactor(),self.randomScalingFactor(),self.randomScalingFactor()]
+              data: self.value.length === 0 ? fake : self.value[i]
             }
           datasets.push(dataObj)
         }
         return datasets
-      }
+      },
+      initChart(){
+        let self = this
+        var data = {
+          labels: ["1时", "2时", "3时","4时","5时","6时","7时","8时"],
+          datasets: self.getDatasets()
+        };
+  
+        const ctx = document.querySelector("."+self.uuid).getContext('2d')
+  
+        if (this.chart) {
+          this.chart.chart.config.data = data
+          this.chart.update()
+          return
+        }
+  
+        this.chart = new Chart(ctx, {
+          type: 'line',
+          data: data,
+          options: {
+            responsive: true,
+            title:{
+              display:true,
+              text:self.title[0]
+            },
+            tooltips: {
+              mode: 'label',
+            },
+            hover: {
+              mode: 'label'
+            },
+            scales: {
+              yAxes: [
+                {
+                  type: "linear",
+                  display: true,
+                  scaleLabel: {
+                    display: true,
+                    labelString: self.title[1]
+                  },
+                },
+              ]
+            }
+          }
+        })
+     }
     },
     ready(){
-      let self = this
-      this.getDatasets()
-      var data = {
-        labels: ["1时", "2时", "3时","4时","5时","6时","7时","8时"],
-        datasets: self.getDatasets()
-      };
-
-      const ctx = document.querySelector("."+self.uuid).getContext('2d')
-
-      new Chart(ctx, {
-        type: 'line',
-        data: data,
-        options: {
-          responsive: true,
-          title:{
-            display:true,
-            text:self.title[0]
-          },
-          tooltips: {
-            mode: 'label',
-          },
-          hover: {
-            mode: 'label'
-          },
-          scales: {
-            yAxes: [
-              {
-                type: "linear",
-                display: true,
-                  scaleLabel: {
-                  display: true,
-                  labelString: self.title[1]
-                },
-              },
-            ]
-          }
-        }
-      })
-
-
-      $(window).resize(function()
-      {
-        $('canvas').css('width','100%');
-      });
+      if (this.value.length !== 0) {
+        console.log('ready initChart')
+      	this.initChart()
+      }
     }
   }
 </script>

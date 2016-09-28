@@ -7,18 +7,18 @@
 						<button class="btn btn-primary" v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/list'">返回应用列表
 						</button>
 					</li>
-					<li>应用名称: 飞飞语22333音</li>
-					<li>应用类型: 网页</li>
-					<li>应用描述: 这家伙很懒什么都没留下</li>
-					<li>所属行业: 金融</li>
-					<li>服务器白名单: 192.168.1.1</li>
-					<li>回调URL http://www.bibi.com/callback</li>
-					<li>监听通知: 启用监听 启用鉴权</li>
-					<li>绑定测试号: 1477777552 1477777552 1477777552 1477777552 1477777552 1477777552</li>
-					<li>应用状态: <span class="text-danger">未上线</span></li>
+					<li>应用名称: {{app.name}}</li>
+					<li>应用类型: {{app.type}}</li>
+					<li>应用描述: {{app.description || '这家伙很懒，什么都没留下'}}</li>
+					<li>所属行业: {{app.industry}}</li>
+					<li>服务器白名单: {{app.whiteList}}</li>
+					<li>回调URL {{app.url}}</li>
+					<li v-if="app.isAuth == 1">监听通知: 启用监听 启用鉴权</li>
+					<li v-else>监听通知: 没有启用监听</li>
+					<li>绑定测试号: {{app.testPhone}}</li>
+					<li v-if="app.status == 1">应用状态: <span class="text-danger">已上线</span></li>
+					<li v-else>应用状态: <span class="text-danger">未上线</span></li>
 				</ul>
-
-
 
 				<div class="flex   ">
 					<div class="admin-toolbar flex normal-font-size small-font-color cursor" >
@@ -26,7 +26,6 @@
 						<span type="button" class="toolbar remove-border-right last-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/record'" >录音文件</span>
 					</div>
 				</div>
-
 
 			</div>
 		</div>
@@ -56,22 +55,16 @@
 		},
 		data(){
 			return {
-				showModal: false,
-				messages: [
-					{
-						date: '2016-06-06',
-						type: '1.wav',
-						size: '1.1',
-						remark: '语音通知推文件'
-					},
-					{
-						date: '2016-06-06',
-						type: '1.wav',
-						size: '1.1',
-						remark: '语音通知推文件'
-					}
-				]
+				app:{}
 			}
+		},
+		ready(){
+			let uid = this.$route.params.uid;
+			let appId = this.$route.params.appid;
+			let self = this;
+			$.get('/tenant/tenants/'+uid+'/apps/'+ appId).then((res)=> {
+				return res.data && (self.app = res.data);
+			})
 		}
 	}
 </script>

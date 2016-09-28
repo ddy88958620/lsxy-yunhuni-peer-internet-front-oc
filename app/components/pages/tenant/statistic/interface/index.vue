@@ -1,29 +1,89 @@
 <template>
 
-  <div class="headbox flex flex-1 align-items-c ">
-    <span class="padding-right-20">选择应用</span>
-    <select class="form-control flex select-box">
-      <option value="">全部</option>
-      <option value="">飞飞应用</option>
-    </select>
-  </div>
-
-
-  <div class="flex flex-1 admin-padding admin-border bg-section-margin whilebg ">
-    <chart :uuid="'realtime-app-chart1'" :label="['']" :color="['#deef70']" :title="['API调用次数统计','次数(次)']"></chart>
+  <div class="flex flex-1 flex-direction-column admin-padding admin-border bg-section-margin whilebg ">
+    <div class="app-chart-header flex align-items-c">
+	    <input name='app-chart-type' @click="changeDate('month')"  type="radio" value="month" v-model="radioDates"  checked=checked/>
+	    <label for="">日统计</label>
+	    <input name='app-chart-type' @click="changeDate('year')"  type="radio" value="year" v-model="radioDates" />
+	    <label for="">月统计 </label>
+	    <div class="datepicker-wrap inline-block">
+		    <datetime-picker :uuid="'datetimepicker1'" :action="chartApiQuery" :type.sync="date.type" :value.sync="date.value"></datetime-picker>
+	    </div>
+    </div>
+    <div class="flex-1">
+			<chart
+				:uuid="'sectionThreeChart1'"
+				:type="['line','line']"
+				:label.sync="date.type"
+				:ydata1.sync="chartApiValue"
+				:title="['API调用', '']"
+				:xtitle="['话务量(分钟)','消费额(元)']"
+				:color="[['rgba(246,239,232,0.2)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
+											['#ebeecc','rgba(214,235,78,0.8)','rgba(214,235,78,1)','#FFF','rgba(214,235,78,0.1)','rgba(220,220,220,0.1)']]"
+			></chart>
+		</div>
   </div>
   <div class="flex-flex-1 bg-section-margin">
-    <admin-table></admin-table>
+    <admin-table :value.sync="chartApiValue" :date.sync='date.value'></admin-table>
   </div>
 </template>
 <style lang="sass" scoped>
 
 </style>
 <script>
+  import DATE from '../../../../../utils/date'
   export default{
+  	data(){
+  		return {
+  			chartApiValue: [],
+			  date: {
+  				type: 'month',
+				  value: DATE.todayString('month'),
+			  },
+        radioDates: 'month',
+      }
+    },
     components:{
-      'chart': require('../../../../ui/realtime-chart.vue'),
-      'admin-table': require('./table.vue')
+      'chart': require('../../../../ui/chart.vue'),
+      'admin-table': require('./table.vue'),
+	    'datetime-picker': require('../../../../ui/datetimepicker.vue')
+    },
+    methods: {
+	    changeDate(type){
+		    let self = this
+		    self.date.type = type
+		    
+		    if(type=='year'){
+			    this.chartApiQuery(DATE.todayString('year'))
+			    this.date.value = DATE.todayString('year')
+		    }
+		
+		    if(type === 'month'){
+			    this.chartApiQuery(DATE.todayString('month'))
+			    this.date.value = DATE.todayString('month')
+		    }
+		    
+	    },
+      chartApiQuery(date){
+        let uid = this.$route.params.uid
+	    let datetime = date ? date : this.date.value
+		let params = DATE.dateParse(datetime)
+	    let appId =  this.$route.params.aid 
+		if(appId!='all'){
+			params.appId = appId
+		}
+
+	    let self = this
+        $.get('/tenant/tenants/'+uid+'/interfaceInvoke/statistic',params).then((res)=>{
+          self.chartApiValue = res.data
+        })
+      }
+    },
+    route: {
+    	data(){
+
+    		this.changeDate(this.radioDates)
+    	}
     }
   }
 </script>
