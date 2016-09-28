@@ -35,16 +35,16 @@
 				</tr>
 				<tr>
 					<td class="text-align-c" >语音验证码</td>
-					<td>{{ switchs.isRecording ===0 ? '关闭' : '开启'}}</td>
+					<td>{{ switchs.isVoiceValidate ===0 ? '关闭' : '开启'}}</td>
 					<td class="text-align-c">
-						<a @click="edit('isRecording')">{{ switchs.isRecording ? '关闭' : '开启'}}</a>
+						<a @click="edit('isVoiceValidate')">{{ switchs.isVoiceValidate ? '关闭' : '开启'}}</a>
 					</td>
 				</tr>
 				<tr>
 					<td class="text-align-c" >通话录音</td>
-					<td>{{ switchs.isVoiceValidate ===0 ? '关闭' : '开启'}}</td>
+					<td>{{ switchs.isRecording ===0 ? '关闭' : '开启'}}</td>
 					<td class="text-align-c">
-						<a @click="edit('isVoiceValidate')">{{ switchs.isVoiceValidate ? '关闭' : '开启'}}</a>
+						<a @click="edit('isRecording')">{{ switchs.isRecording ? '关闭' : '开启'}}</a>
 					</td>
 				</tr>
 				<tr>

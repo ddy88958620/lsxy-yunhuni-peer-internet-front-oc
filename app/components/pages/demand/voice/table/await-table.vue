@@ -62,9 +62,13 @@
 	</div>
 
 	<modal :show.sync="audioModal.show" title="播放" :action="hideAudioModal">
+		<div slot="header">
+			播放
+		</div>
+
+
 		<div slot="body">
 			<div class="flex flex-1 ">
-			
 				<audio class="audio flex flex-1" :src="audioURI" controls=""  autoplay></audio>
 				<button class="btn btn-primary admin-button-margin" @click="pass(audioModal.id,audioModal.index)">通过</button>
 				<button class="btn" @click="showfail(audioModal.id,audioModal.index)">不通过</button>
@@ -179,12 +183,17 @@
 				//console.log(this.voice.result[index].fileKey)
 				this.audioURI = domain.API_ROOT_AUDIO + '?uri='+this.voice.result[index].fileKey
 			},
+			stopAudio(){
+				console.log("tingzhi")
+				this.audioURI = '';
+			},
 			testAudio(index){
 				var audio = document.querySelector('.audio')
 				audio.play()
 				
 			},
 			hideAudioModal(){
+				this.stopAudio()
 				this.audioModal = {
 					show:false,
 					index:'',
@@ -209,7 +218,7 @@
 						return
 					}
 					if(res.data){
-
+						this.stopAudio()
 						this.hideAudioModal()
 						this.delVoice(index)
 						this.getDemandNum()
@@ -232,6 +241,7 @@
 						return
 					}
 					if(res.data){
+						this.stopAudio()
 						this.delVoice(self.del.index)
 						self.del = {reason:'',id:'',index:''}
 						this.hideAudioModal()
@@ -244,6 +254,8 @@
 				})	
 			},
 			showfail(id,index){
+				this.stopAudio()
+				this.del.reason = ''
 				this.del.index = index
 				this.del.id = id
 				this.showModal = true 
