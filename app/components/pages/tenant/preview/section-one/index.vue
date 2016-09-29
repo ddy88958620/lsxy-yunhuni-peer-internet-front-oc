@@ -1,8 +1,8 @@
 <template>
     <section class='section_one bg-section-margin'>
         <div class="no-wrap">
-          <div class="box inline-block ofh">
-            <div class=" flex-grow-1 flex flex-1  ">
+          <div class="box inline-block ofh margin-right-one-percent">
+            <div class=" flex-grow-1 flex flex-1 ">
               <div class="sort flex  greenborder">
                 <div class="flex  company">
                   <div class="canvas inline-block justify-content-c align-items-c ">
@@ -24,7 +24,7 @@
               </div>
             </div>
           </div>
-          <div class=" box inline-block ofh">
+          <div class=" box inline-block ofh  margin-right-one-percent margin-left-one-percent">
             <div class="flex-grow-1 flex flex-1 flex-direction-column">
               <div class="sort flex flex-1 flex-direction-column blueborder ">
                 <div class="flex justify-content-s top-title">
@@ -34,10 +34,11 @@
                 <div class="flex flex-1 green money">
                   <!--{{ tenant.remain_coin>=0 ? tenant.remain_coin ?  tenant.remain_coin : 0 : '欠费'+-tenant.remain_coin }}-->
                     <span v-if="bill.balance >=0 || bill.balance==null ">
-                       ￥{{(bill && bill.balance)}}.{{bill.balanceDec}}
+                       ￥{{ bill.balance.toFixed(3)}}
                     </span>
                     <span v-else>
-                       {{(bill && bill.balance) ? '欠费'+-bill.balance : '￥0.00' }}
+                        欠费{{ }}
+                       {{(bill && bill.balance) ? '欠费'+-bill.balance : '￥0.000' }}
                     </span>
                 </div>
                 <div class="flex flex-direction-row-reverse">
@@ -47,7 +48,7 @@
               </div>
             </div>
           </div>
-          <div class="inline-block box ofh">
+          <div class="inline-block box ofh  margin-right-one-percent margin-left-one-percent">
             <div class="flex-grow-1 flex flex-1 flex-direction-column">
               <div class="sort flex-1 flex flex-direction-column yellowborder ">
                 <div class="flex justify-content-s top-title">
@@ -64,7 +65,7 @@
             </div>
           </div>
 
-          <div class="inline-block box ofh">
+          <div class="inline-block box ofh margin-left-one-percent">
             <div class="flex-grow-1 flex flex-1 flex-direction-column">
               <div class="sort flex flex-1 flex-direction-column pinkborder">
                 <div class="flex justify-content-s top-title">
@@ -295,10 +296,19 @@
   .section_one {
     .box {
       background-color: #fff;
-      width: 24.8%;
+      width: 23.3%;
       min-width: 235px;
       height: 172px;
     }
+
+    .margin-right-one-percent{
+      margin-right: 1%;
+    }
+
+    .margin-left-one-percent{
+      margin-left: 1%;
+    }
+
 
     .sort {
       border-top: 4px solid #00A000;

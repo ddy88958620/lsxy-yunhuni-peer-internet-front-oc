@@ -7,7 +7,7 @@
           <span class='admin-font-color ranknumber'>{{duration.dto.duration_day}}</span>
         </div>
         <ul class="list-none-style">
-          <li class='title'>昨日话务量 ( 分钟 )</li>
+          <li class='title white-space'>昨日话务量 ( 分钟 )</li>
           <li v-if="duration.dto1.rateOfDay===true" >日<i class="iconfont icon-oc-up small {{ duration.dto.day_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{duration.dto.day_rate}}%</span></li>
           <li v-else>日 --</li>
 
@@ -24,7 +24,7 @@
           <span class='admin-font-color ranknumber'>{{comsume.dto.consume_day >0 ? comsume.dto.consume_day.toFixed(2) : '0.00' }}</span>
         </div>
         <ul class="list-none-style">
-          <li class='title'>昨日消费额 ( 元 )</li>
+          <li class='title white-space'>昨日消费额 ( 元 )</li>
           <li v-if="comsume.dto1.rateOfDay===true" >日<i class="iconfont icon-oc-up small {{ comsume.dto.day_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{comsume.dto.day_rate}}%</span></li>
           <li v-else>日 --</li>
           <li v-if="comsume.dto1.rateOfWeek===true" >周<i class="iconfont icon-oc-up small {{ comsume.dto.week_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{comsume.dto.week_rate}}%</span></li>
@@ -106,51 +106,48 @@
   .section-three {
     width:100%;
 
-  .section-left {
-    width: 20%;
-    float:left;
+    .section-left {
+      width: 20%;
+      float:left;
+      display: inline-block;
+      border-right: 1px solid rgba(0, 0, 0, 0.1);
+    }
 
-    display: inline-block;
-  }
+    .section-right--wrap{
+      display: block;
+    }
+    .section-right {
+      width: 79%;
+      display: inline-block;
 
-  .section-right--wrap{
-    display: block;
+    }
 
-  }
-  .section-right {
-    width: 79%;
-    float:right;
-    display: inline-block;
-    border-left: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .session-small-box {
-    padding: 30px;
-
-  ul {
-    color: #888;
-  .title {
-    font-size: 1.8rem;
-    color:#666;
-    font-weight: 500;
-    padding-top: 10px;
-  }
-  }
-  .iconfont {
-    font-size: 3.5rem;
-  }
-  .ranknumber {
-    font-size: 2.5rem;
-    padding-left: 10px;
-    font-weight: 500;
-  }
-  .small{
-    font-size: 8px;
-  }
-  }
-  .border-bottom{
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
+    .session-small-box {
+      padding: 30px;
+      ul {
+        color: #888;
+        .title {
+          font-size: 1.8rem;
+          color:#666;
+          font-weight: 500;
+          padding-top: 10px;
+        }
+      }
+      .iconfont {
+        font-size: 3.5rem;
+      }
+      .ranknumber {
+        font-size: 2.5rem;
+        padding-left: 10px;
+        font-weight: 500;
+      }
+      .small{
+         font-size: 8px;
+      }
+     }
+    .border-bottom{
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
   }
 
 

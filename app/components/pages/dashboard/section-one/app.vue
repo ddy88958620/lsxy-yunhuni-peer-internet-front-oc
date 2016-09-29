@@ -10,23 +10,19 @@
               <pie :uuid="'apppie'" :max="app.total" :value="app.total" :bgcolor="'#89d9e3'"></pie>
             </div>
           </div>
-
           <div class="title-box">
             总应用数（个）
           </div>
-
         </div>
 
-        <!--<div class="border-span flex align-items-c "><span></span></div>-->
+        <div class="border-span  float-l"><span></span></div>
 
         <div class='inline-block width-50 text-align-c' >
-
           <div class="pie-wrap-start text-align-c">
             <div class="pie-wrap inline-block">
               <pie :uuid="'appie2'" :max="app.total" :value="app.online" :bgcolor="'#80d1ff'" ></pie>
             </div>
           </div>
-
           <div class=" title-box">
             总上线应用数（个)
           </div>
@@ -87,13 +83,21 @@ export default {
   }
 
   .border-span{
+    padding-top:50px;
     span{
       height: 60px;
-      padding: 0px 0;
+      padding: 0;
+      display: inline-block;
       border-left: 1px solid #ddd;
     }
-    width:1px;
+    width: 1%;
   }
+
+  .width-50{
+    width: 49%;
+    float: left;
+  }
+
 
   .panel-body{
     height: 160px;

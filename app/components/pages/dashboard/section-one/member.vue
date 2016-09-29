@@ -5,8 +5,8 @@
       <div class="panel-heading"><i class="iconfont icon-oc-member"></i>会员数据</div>
       <div class="panel-body">
 
-        <div class='inline-block width-33' >
-          <div class="pie_wrap inline-block   ">
+        <div class='flex width-33 float-l' >
+          <div class="pie_wrap inline-block ">
             <pie
               :max="member.regist_total"
               :value="member.regist_total"
@@ -16,7 +16,7 @@
             </pie>
           </div>
 
-          <div class="inline-block">
+          <div class="inline-block ">
             <ul class="list-none-style ">
               <li>总注册会员 ( 个 )</li>
               <li>日 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>{{member.regist_tatal_day}}</span></li>
@@ -26,9 +26,9 @@
           </div>
         </div>
 
-        <!--<div class="border-span flex align-items-c "><span></span></div>-->
+        <div class="border-span float-l"><span></span></div>
 
-        <div class='inline-block width-33' >
+        <div class='flex width-33 float-l' >
           <div class="pie_wrap inline-block">
             <pie
               :max="member.regist_total"
@@ -47,9 +47,9 @@
           </div>
         </div>
 
-        <!--<div class="border-span"><span></span></div>-->
+        <div class="border-span float-l"><span></span></div>
 
-        <div class='inline-block width-33'>
+        <div class='flex width-33 float-l'>
           <div class="pie_wrap inline-block" >
             <pie
               :max="member.regist_total"
@@ -146,19 +146,25 @@ export default {
 }
 
 .border-span{
+  padding-top:50px;
   span{
     height: 60px;
     padding: 0;
     display: inline-block;
     border-left: 1px solid #ddd;
   }
-  width: 1px;
+  width: 1%;
+}
+
+.width-33{
+  width: 32%;
 }
 
 .panel-body{
   height: 160px;
   ul{
-    max-width: 140px;
+    padding-top: 40px;
+    padding-left: 3px;
   }
   padding: 0 10px;
 }

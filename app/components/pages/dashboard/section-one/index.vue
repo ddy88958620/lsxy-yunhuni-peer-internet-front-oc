@@ -28,6 +28,7 @@ export default {
   .pie_wrap{
     padding: 30px 0 ;
     width: 100px;
+    vertical-align:top;
   }
   .pie-wrap {
     padding: 15px 0 10px 0;

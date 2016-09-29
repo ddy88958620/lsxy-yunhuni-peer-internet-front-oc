@@ -38,9 +38,9 @@
           <th>会员名称</th>
           <th class="text-align-c">应用数(个)</th>
           <th>认证状态</th>
-          <th class="text-align-c">余额(元)</th>
-          <th class="text-align-c">消费额(元)</th>
-          <th class="text-align-c">充值金额(元)</th>
+          <th class="text-align-r">余额</th>
+          <th class="text-align-r">消费额</th>
+          <th class="text-align-r">充值金额</th>
           <th class="text-align-c">会话量(次)</th>
           <th class="text-align-c">话务量(分钟)</th>
           <th>账号状态</th>
@@ -53,9 +53,9 @@
           <td><a v-link="'/admin/tenant/detail/'+tenant.uid" >{{tenant.name}}</a></td>
           <td class="text-align-c">{{tenant.app_count ? tenant.app_count: 0 }}</td>
           <td class="{{tenant.auth_status.toString() === '1' ? '' : 'text-danger'}}">{{tenant.auth_status.toString() === '1' ? '已认证' : '未认证'}}</td>
-          <td class="text-align-c">{{ tenant.remain_coin>=0 ? tenant.remain_coin>0 ?  tenant.remain_coin.toFixed(2) : '0.00' : '欠费'+-tenant.remain_coin }}</td>
-          <td class="text-align-c">{{tenant.cost_coin>0 ? tenant.cost_coin.toFixed(2) : '0.00' }}</td>
-          <td class="text-align-c">{{tenant.total_coin>0 ? tenant.total_coin.toFixed(2) : '0.00' }}</td>
+          <td class="text-align-r">￥{{ tenant.remain_coin>=0 ? tenant.remain_coin>0 ?  tenant.remain_coin.toFixed(3) : '0.000' : '欠费'+-tenant.remain_coin }}</td>
+          <td class="text-align-r">￥{{tenant.cost_coin>0 ? tenant.cost_coin.toFixed(3) : '0.000' }}</td>
+          <td class="text-align-r">￥{{tenant.total_coin>0 ? tenant.total_coin.toFixed(3) : '0.000' }}</td>
           <td class="text-align-c">{{tenant.session_count ? tenant.session_count : 0 }}</td>
           <td class="text-align-c">{{tenant.session_time ? tenant.session_time : 0 }}</td>
           <td v-if="tenant.account_status == 2" class="darkgreen">启用</td>
@@ -74,7 +74,6 @@
         <a @click="query()" class="text-none" v-show='!page.loading && page.hasMore'>加载更多<i
           class="icon iconfont icon-oc-dropdown"></i></a>
       </div>
-
     </div>
   </div>
 </template>
