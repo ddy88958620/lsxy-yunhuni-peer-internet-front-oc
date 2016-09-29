@@ -68,8 +68,8 @@
 
 
 		<div slot="body">
-			<div class="flex flex-1 ">
-				<audio class="audio inline-block " :src="audioURI" controls=""  autoplay></audio>
+			<div class="flex">
+				<audio class="audio inline-block float-l" :src="audioURI" controls=""  autoplay></audio>
 				<button class=" inline-block btn btn-primary admin-button-margin" @click="pass(audioModal.id,audioModal.index)">通过</button>
 				<button class="inline-block btn" @click="showfail(audioModal.id,audioModal.index)">不通过</button>
 				<button class=" inline-block btn admin-button-margin" @click="hideAudioModal">取消</button>
@@ -94,8 +94,8 @@
 
 <style lang='sass' scoped>
 	.audio{
-		width: 200px;
-		
+		width: 250px;
+		padding-top: 20px;
 	}
 </style>
 

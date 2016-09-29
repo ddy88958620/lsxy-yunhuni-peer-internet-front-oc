@@ -6,7 +6,7 @@
       <div class="panel-body">
 
         <div class='inline-block width-33' >
-          <div class="pie_wrap inline-block ">
+          <div class="pie_wrap inline-block   ">
             <pie
               :max="member.regist_total"
               :value="member.regist_total"
@@ -16,7 +16,7 @@
             </pie>
           </div>
 
-          <div class="inline-block ">
+          <div class="inline-block">
             <ul class="list-none-style ">
               <li>总注册会员 ( 个 )</li>
               <li>日 <i class="iconfont icon-oc-up"></i><span class='text-danger s-font'>{{member.regist_tatal_day}}</span></li>

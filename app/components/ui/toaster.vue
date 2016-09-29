@@ -39,6 +39,7 @@ export default {
 p{
   padding: 15px;
   width: 300px;
+	z-index: 9999;
   text-align: center;
   position: fixed;
   left: 50%;

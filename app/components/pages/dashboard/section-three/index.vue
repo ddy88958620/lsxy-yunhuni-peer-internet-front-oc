@@ -1,5 +1,5 @@
 <template>
-  <section class="section-three admin-border bg-section-margin whilebg no-wrap">
+  <section class="section-three inline-block admin-border bg-section-margin whilebg no-wrap">
     <div class="section-left">
       <div class="session-small-box border-bottom">
         <div>
@@ -18,7 +18,7 @@
           <li v-else>月 --</li>
         </ul>
       </div>
-      <div class="session-small-box">
+      <div class="session-small-box ">
         <div>
           <span class='iconfont icon-oc-wallet'></span>
           <span class='admin-font-color ranknumber'>{{comsume.dto.consume_day >0 ? comsume.dto.consume_day.toFixed(2) : '0.00' }}</span>
@@ -34,10 +34,10 @@
         </ul>
       </div>
     </div>
-    <div class="section-right--wrap inline-block  ">
+    <div class="section-right--wrap  ">
       <div class="section-right admin-padding ">
         <datetime-picker :uuid="'sectionThreeDate'" :action="doGetConsumeAnduraion" :type.sync="date.type" :value.sync="date.value"></datetime-picker>
-        <div class="width-100 ">
+        <div>
           <chart
             :uuid="'sectionThreeChart'"
             :type="['line','bar']"
@@ -104,27 +104,29 @@
 <style lang='sass'>
 
   .section-three {
-    height: 394px;
+    width:100%;
+
   .section-left {
     width: 20%;
+    float:left;
+
     display: inline-block;
   }
 
   .section-right--wrap{
-    height: 100%;
-    width: 80%;
-    padding: 0 10%;
-    vertical-align: top;
+    display: block;
+
   }
   .section-right {
-    width: 100%;
-    max-height: 384px;
-    max-width: 990px;
+    width: 79%;
+    float:right;
+    display: inline-block;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   .session-small-box {
     padding: 30px;
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
+
   ul {
     color: #888;
   .title {

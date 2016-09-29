@@ -1,7 +1,7 @@
 <template>
   <div class="rankbox flex flex-1 flex-direction-column flex-grow-1 ">
-    <div class="flex justify-content-c overflow">
-      <div class="hr-title">{{ box[index].title  }}</div>
+    <div class="flex text-center">
+      <div class="inline-block  hr-title">{{ box[index].title  }}</div>
     </div>
     <div>
       <div class="sort flex flex-direction-column {{ box[index]['color'] }}border">

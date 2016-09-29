@@ -295,7 +295,7 @@
   .section_one {
     .box {
       background-color: #fff;
-      width: 25%;
+      width: 24.8%;
       min-width: 235px;
       height: 172px;
     }
