@@ -95,7 +95,6 @@
 <style lang='sass' scoped>
 	.audio{
 		width: 250px;
-		padding-top: 20px;
 	}
 </style>
 
