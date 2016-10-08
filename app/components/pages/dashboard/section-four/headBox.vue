@@ -1,4 +1,4 @@
-<style>
+<style lang="sass" scoped>
   .headbox{
     background-color: white;
     padding-left: 15px;
