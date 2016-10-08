@@ -1,7 +1,7 @@
 <template>
-	<div class="flex flex-direction-column admin-table-header">
-		<div class="flex align-items-c bg-section-margin remove-margin-bottom ">
-			<div class="select-box">
+	<div class="admin-table-header">
+		<div class="bg-section-margin remove-margin-bottom ">
+			<div class="select-box inline-block">
 				<search
 					:value.sync ='search'
 					:action="query"
@@ -21,8 +21,8 @@
 		</div>
 	</div>
 	<div>
-		<div class="admin-table table-responsive">
-			<div class="table-total flex flex-1 justify-content-e">
+		<div class="admin-table">
+			<div class="table-total flex flex-1 justify-content-e float-r">
 				共<span class="text-danger">{{voice.totalCount}}</span>条
 			</div>
 			<table class="table">
@@ -31,7 +31,7 @@
 					<th class="text-align-c">申请时间</th>
 					<th>会员名称</th>
 					<th>应用名称</th>
-					<th>标题</th>
+					<th>文件名</th>
 					<th>大小</th>
 					<th>原因</th>
 					<th class="text-align-c">操作</th>

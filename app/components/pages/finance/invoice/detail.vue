@@ -1,8 +1,8 @@
 <template>
 	<div class="section_right">
 		<h4>开票申请</h4>
-		<div class="admin-panel flex-1">
-			<div class="panel-heading flex flex-1 ">
+		<div class="admin-panel">
+			<div class="panel-heading">
 				<span class="flex flex-1">开票信息</span>
 				<a class="flex" @click="showDetailModal = true">消费详情</a>
 			</div>
@@ -102,8 +102,8 @@
 					{{ detail.end | month}}
 				</div>
 			</div>
-			<div class="admin-table table-responsive flex-1 flex flex-direction-column">
-				<div class="table-total flex flex-1 justify-content-e">
+			<div class="admin-table flex-1 flex flex-direction-column">
+				<div class="table-total flex flex-1 justify-content-e float-r">
 					消费总金额：<span class="brown">{{invoice.sum!==0 ? invoice.sum :  '' }}</span>元 共<span class="text-danger">{{invoice.list.totalCount }}</span>条
 				</div>
 
@@ -150,7 +150,7 @@
 				</div>
 			</div>
 			<div class="admin-table flex-1 flex flex-direction-column">
-				<div class="table-total flex flex-1 justify-content-e">
+				<div class="table-total flex flex-1 justify-content-e float-r">
 					消费总金额：<span class="brown">{{invoice.sum!==0 ? invoice.sum :  '' }}</span>元 共<span class="text-danger">{{invoice.list.totalCount }}</span>条
 				</div>
 				<div class="flex">

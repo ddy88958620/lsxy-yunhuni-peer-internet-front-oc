@@ -1,7 +1,7 @@
 <template>
-	<div class="flex flex-direction-column admin-table-header">
-		<div class="flex align-items-c bg-section-margin remove-margin-bottom ">
-			<div class="select-box">
+	<div class="admin-table-header">
+		<div class="bg-section-margin remove-margin-bottom ">
+			<div class="select-box inline-block">
 				<search
 					:value.sync ='search'
 					:action="query"
@@ -21,8 +21,8 @@
 		</div>
 	</div>
 	<div>
-		<div class="admin-table table-responsive">
-			<div class="table-total flex flex-1 justify-content-e">
+		<div class="admin-table">
+			<div class="table-total flex flex-1 justify-content-e float-r">
 				共<span class="text-danger">{{voice.totalCount}}</span>条
 			</div>
 			<table class="table">
@@ -31,7 +31,7 @@
 					<th class="text-align-c">申请时间</th>
 					<th>会员名称</th>
 					<th>应用名称</th>
-					<th>标题</th>
+					<th>文件名</th>
 					<th>大小</th>
 					<th class="text-align-c">操作</th>
 				</tr>
@@ -68,11 +68,11 @@
 
 
 		<div slot="body">
-			<div class="flex flex-1 ">
-				<audio class="audio flex flex-1" :src="audioURI" controls=""  autoplay></audio>
-				<button class="btn btn-primary admin-button-margin" @click="pass(audioModal.id,audioModal.index)">通过</button>
-				<button class="btn" @click="showfail(audioModal.id,audioModal.index)">不通过</button>
-				<button class="btn admin-button-margin" @click="hideAudioModal">取消</button>
+			<div class="flex">
+				<audio class="audio inline-block float-l" :src="audioURI" controls=""  autoplay></audio>
+				<button class=" inline-block btn btn-primary admin-button-margin" @click="pass(audioModal.id,audioModal.index)">通过</button>
+				<button class="inline-block btn" @click="showfail(audioModal.id,audioModal.index)">不通过</button>
+				<button class=" inline-block btn admin-button-margin" @click="hideAudioModal">取消</button>
 			</div>
 		</div>
 		<div slot="footer"></div>
@@ -80,11 +80,11 @@
 
 	<modal :show.sync="showModal" title="审核" :action="fail">
 		<div slot="body" class="flex flex-1">
-			<div class="flex flex-1">
-				<span class="flex flex-1  justify-content-c">不通过原因</span>
-				<span class="flex flex-4 flex-direction-column">
+			<div class="flex">
+				<span class="inline-block float-l">不通过原因</span>
+				<span class="inline-block nopassText">
 				  <textarea class="form-control"  v-model="del.reason" maxlength="50"></textarea>
-					<span class="flex flex-1 small-font-color justify-content-e ">50字以内</span>
+					<span class="flex float-r">50字以内</span>
 				</span>
 			</div>
 		</div>
@@ -93,6 +93,10 @@
 </template>
 
 <style lang='sass' scoped>
+	.audio{
+		width: 250px;
+		padding-top: 20px;
+	}
 </style>
 
 

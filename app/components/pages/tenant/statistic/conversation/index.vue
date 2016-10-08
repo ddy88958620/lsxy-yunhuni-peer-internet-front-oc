@@ -7,7 +7,7 @@
       <label for="">日统计</label>
       <input name='app-chart-type'  @click="changeDate('year')" type="radio" value="year" v-model="radioDates"  />
       <label for="">月统计</label>
-      <div class="datepicker-wrap">
+      <div class="datepicker-wrap inline-block">
         <datetime-picker :uuid="'consumeChartDate'" :action="doGetComsumeChart"   :type.sync="chartdate.type" :value.sync="chartdate.value"></datetime-picker>
       </div>
     </div>
@@ -28,16 +28,13 @@
   </div>
 
 
-
-
   <div class="flex flex-1 flex-direction-column whilebg admin-padding admin-border bg-section-margin">
-
     <div class="app-chart-header flex align-items-c">
       <input name='app-chart-type1'  @click="changeSessionDate('month')"  type="radio"  value="month" v-model="radioSessionDates"  checked=checked/>
       <label for="">日统计</label>
       <input name='app-chart-type1'  @click="changeSessionDate('year')" type="radio" value="year" v-model="radioSessionDates" />
       <label for="">月统计</label>
-      <div class="datepicker-wrap">
+      <div class="datepicker-wrap inline-block">
         <datetime-picker :uuid="'sessionChartDate'" :action="doGetSessionChart"   :type.sync="sessiondate.type" :value.sync="sessiondate.value"></datetime-picker>
       </div>
     </div>

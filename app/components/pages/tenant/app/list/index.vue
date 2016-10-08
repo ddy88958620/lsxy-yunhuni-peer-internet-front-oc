@@ -1,6 +1,6 @@
 <template>
-	<div class="flex flex-direction-column bg-section-margin">
-		<div class="flex justify-content-b flex-wrap">
+	<div class="bg-section-margin">
+		<div class="">
 			<single-one-app
 				:appdata="singledata"
 			></single-one-app>

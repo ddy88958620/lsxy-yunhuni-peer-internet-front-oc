@@ -1,5 +1,5 @@
 <template>
-    <section class="section-three flex admin-padding  bg-section-margin admin-border whilebg">
+    <section class="section-three inline-block admin-padding bg-section-margin admin-border whilebg">
      <div class="flex flex-1 flex-direction-column">
        <div class="flex-1">
          <div class="flex flex-1 section-time-box">
@@ -18,7 +18,6 @@
          ></chart>
        </div>
      </div>
-
     </section>
 </template>
 <script>
@@ -63,5 +62,7 @@
   }
 </script>
 <style lang='sass' scoped>
-
+  .section-three{
+    width: 100%;
+  }
 </style>

@@ -32,7 +32,7 @@
 
 		<div class="panel panel-default flex-1">
 			<div class="panel-body  admin-bg flex-1">
-				<div class="admin-table table-responsive">
+				<div class="admin-table">
 					<table class="table remove-margin-bottom">
 						<thead>
 						<tr>

@@ -1,8 +1,8 @@
 <template>
     <section class='section_four flex bg-section-margin flex-direction-column justify-content-s '>
         <head-box></head-box>
-        <div class="flex flex-direction-row justify-content-b">
-          <div class="flex box"  v-for="rank in ranklist" >
+        <div class="no-wrap">
+          <div class="box inline-block width-20"  v-for="rank in ranklist" >
             <ranking :rank='rank' :index=$index></ranking>
           </div>
         </div>
@@ -46,7 +46,10 @@
 <style lang="sass">
   .section_four {
     .box{
-      width: 18%;
     }
+  }
+  .width-20 {
+    width: 20%;
+	  padding: 0 10px;
   }
 </style>

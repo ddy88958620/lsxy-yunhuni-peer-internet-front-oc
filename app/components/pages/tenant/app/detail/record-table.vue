@@ -1,15 +1,15 @@
 <template>
 	<div class="flex search-box bg-section-margin remove-margin-bottom">
-		<div class="select-box">
-			<search  placeholder='请输入关键字' :value.sync='searchName' :action="search"></search>
+		<div class="select-box inline-block">
+			<search  placeholder='搜索文件名' :value.sync='searchName' :action="search"></search>
 		</div>
 		<button class="btn btn-primary admin-button-margin " @click="showModal=true">批量下载</button>
 	</div>
-	<div class="admin-table table-responsive">
-		<div class="table-total flex flex-1 justify-content-e">
+	<div class="admin-table">
+		<div class="table-total flex flex-1 justify-content-e float-r">
 			录音文件总计占用<span class="text-danger">0</span>b
 		</div>
-		<table class="table remove-margin-bottom">
+		<table class="table ">
 			<thead>
 			<tr>
 				<th class="text-align-c">时间</th>
@@ -29,6 +29,7 @@
 			</tr>
 			</tbody>
 		</table>
+
 		<div class="more">
 			<a v-show='page.loading'>正在加载</a>
 			<a v-show='!page.loading && !page.hasMore'>加载完毕</a>

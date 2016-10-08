@@ -21,8 +21,8 @@
 				<a class="btn btn-primary " @click="readedAll">全部标记为已读</a>
 			</div>
 		</div>
-		<div class="admin-table table-responsive">
-			<div class="table-total flex flex-1 justify-content-e">
+		<div class="admin-table">
+			<div class="table-total flex flex-1 justify-content-e float-r">
 				共<span class="text-danger">{{service.totalCount}}</span>条
 			</div>
 			<table class="table">

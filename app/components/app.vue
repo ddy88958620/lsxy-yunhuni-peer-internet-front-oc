@@ -9,6 +9,8 @@ import toaster from './ui/toaster.vue'
 import store from '../vuex/store'
 import '../utils/fetch'
 import '../assets/js/zoom.js'
+require('es6-promise').polyfill()
+
 export default {
   store,
   vuex: {
@@ -19,6 +21,8 @@ export default {
   components: {
     toaster
   },
+	ready(){
+  }
 }
 
 </script>

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="admin-table table-responsive">
-      <div class="table-total flex flex-1 justify-content-e">
-        消费金额: <span class="brown">{{sessionTotal}}</span>元 共<span class="text-danger">{{session.totalCount ? session.totalCount : 0 }}</span>条
+    <div class="admin-table">
+      <div class="table-total flex flex-1 justify-content-e float-r">
+        消费金额: <span class="brown">{{ sessionTotal ? sessionTotal : 0 }}</span>元 共<span class="text-danger">{{session.totalCount ? session.totalCount : 0 }}</span>条
       </div>
       <table class="table">
         <thead>
@@ -12,7 +12,7 @@
           <th>参与者</th>
           <th>参与类型</th>
           <th>时长(秒)</th>
-          <th>消费金额(元)</th>
+          <th class="text-align-r">消费金额(元)</th>
         </tr>
         </thead>
         <tbody>
@@ -28,7 +28,7 @@
           <td v-if="message.joinType==1">邀请加入</td>
           <td v-if="message.joinType==2">呼入加入</td>
           <td>{{ message.costTimeLong }}</td>
-          <td>{{ message.cost }}</td>
+          <td class="text-align-r" >{{ message.cost }}</td>
         </tr>
         </tbody>
       </table>
@@ -66,7 +66,7 @@
         }
         let self = this
         $.get('/tenant/'+uid+'/session', params).then((res) => {
-           if(res.data.page.totalCount>0){
+           if(res.data.page.totalCount>=0){
             self.sessionTotal =res.data.total
             self.session = res.data.page
             if(more)

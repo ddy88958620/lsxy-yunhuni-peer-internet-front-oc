@@ -3,7 +3,7 @@ const ADMINPROCESSENV =  process.env.NODE_ENV
 console.info('NODE_ENV', ADMINPROCESSENV);
 
 // API Root
-const YUNHUNIHOST = ADMINPROCESSENV ? window.location.host : 'localhost'
+const YUNHUNIHOST = window.location.host
 const API_ROOT = 'http://'+YUNHUNIHOST + '/api/'
 const API_ROOT_AUDIO = API_ROOT+'/ossfile/img'
 
