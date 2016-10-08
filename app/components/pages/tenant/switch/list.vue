@@ -14,42 +14,42 @@
 				<tbody>
 				<tr>
 					<td class="text-align-c" >语音通知</td>
-					<td>{{ switchs.isVoiceDirectly === 0 ? '关闭' : '开启'}}</td>
+					<td class="{{ switchs.isVoiceDirectly === 0 ? 'text-danger' : 'darkgreen'}}" >{{ switchs.isVoiceDirectly === 0 ? '关闭' : '开启'}}</td>
 					<td class="text-align-c">
 						<a @click="edit('isVoiceDirectly')">{{ switchs.isVoiceDirectly ? '关闭' : '开启'}}</a>
 					</td>
 				</tr>
 				<tr>
 					<td class="text-align-c" >语音回拨</td>
-					<td>{{ switchs.isVoiceCallback ===0 ? '关闭' : '开启'}}</td>
+					<td class="{{ switchs.isVoiceCallback === 0 ? 'text-danger' : 'darkgreen'}}">{{ switchs.isVoiceCallback ===0 ? '关闭' : '开启'}}</td>
 					<td class="text-align-c">
 						<a @click="edit('isVoiceCallback')">{{ switchs.isVoiceCallback ? '关闭' : '开启'}}</a>
 					</td>
 				</tr>
 				<tr>
 					<td class="text-align-c" >语音会议</td>
-					<td>{{ switchs.isSessionService ===0 ? '关闭' : '开启'}}</td>
+					<td class="{{ switchs.isSessionService === 0 ? 'text-danger' : 'darkgreen'}}" >{{ switchs.isSessionService ===0 ? '关闭' : '开启'}}</td>
 					<td class="text-align-c">
 						<a @click="edit('isSessionService')">{{ switchs.isSessionService ? '关闭' : '开启'}}</a>
 					</td>
 				</tr>
 				<tr>
 					<td class="text-align-c" >语音验证码</td>
-					<td>{{ switchs.isVoiceValidate ===0 ? '关闭' : '开启'}}</td>
+					<td class="{{ switchs.isVoiceValidate === 0 ? 'text-danger' : 'darkgreen'}}" >{{ switchs.isVoiceValidate ===0 ? '关闭' : '开启'}}</td>
 					<td class="text-align-c">
 						<a @click="edit('isVoiceValidate')">{{ switchs.isVoiceValidate ? '关闭' : '开启'}}</a>
 					</td>
 				</tr>
 				<tr>
 					<td class="text-align-c" >通话录音</td>
-					<td>{{ switchs.isRecording ===0 ? '关闭' : '开启'}}</td>
+					<td class="{{ switchs.isRecording === 0 ? 'text-danger' : 'darkgreen'}}" >{{ switchs.isRecording ===0 ? '关闭' : '开启'}}</td>
 					<td class="text-align-c">
 						<a @click="edit('isRecording')">{{ switchs.isRecording ? '关闭' : '开启'}}</a>
 					</td>
 				</tr>
 				<tr>
 					<td class="text-align-c" >自定义IVR</td>
-					<td>{{ switchs.isIvrService ===0 ? '关闭' : '开启'}}</td>
+					<td class="{{ switchs.isIvrService === 0 ? 'text-danger' : 'darkgreen'}}" >{{ switchs.isIvrService ===0 ? '关闭' : '开启'}}</td>
 					<td class="text-align-c">
 						<a @click="edit('isIvrService')">{{ switchs.isIvrService ? '关闭' : '开启'}}</a>
 					</td>

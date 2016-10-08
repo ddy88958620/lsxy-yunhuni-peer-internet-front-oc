@@ -9,10 +9,10 @@
             <div class="flex flex-1 align-items-c ">
               <i class="icon iconfont icon-oc-wallet bigicon"></i>
               <span class="green money">{{ indicant.dto.cost_coin >0 ? indicant.dto.cost_coin.toFixed(2) : '0.00' }}</span>
-              <div v-if="indicant.dto1.costCoin === true" >
+              <div class="inline-block" v-if="indicant.dto1.costCoin === true" >
                  <i class="iconfont {{ indicant.dto.cost_coin_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{indicant.dto.cost_coin_rate}}%</span>
               </div>
-              <div v-else>
+              <div class="inline-block" v-else>
                 --
               </div>
             </div>
@@ -25,10 +25,10 @@
               <i class="icon iconfont icon-oc-recharge bigicon"></i>
               <span class="green money">{{ indicant.dto.recharge_coin >0 ? indicant.dto.recharge_coin.toFixed(2) : '0.00' }}</span>
 
-              <div v-if="indicant.dto1.rechargeCoinRate === true" >
+              <div class="inline-block" v-if="indicant.dto1.rechargeCoinRate === true" >
                  <i class="iconfont {{ indicant.dto.recharge_coin_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{indicant.dto.recharge_coin_rate}}%</span>
               </div>
-              <div v-else>
+              <div class="inline-block" v-else>
                 --
               </div>       
             </div>
@@ -38,12 +38,12 @@
           </div>
           <div class="inline-block box border-right">
             <div class="flex flex-1 align-items-c ">
-              <i class="icon iconfont icon-oc-wallet bigicon"></i>
+              <i class="icon iconfont icon-oc-msg1 bigicon"></i>
               <span class="green money">{{ indicant.dto.session_count }}</span>
-              <div v-if="indicant.dto1.sessionCountRate === true" >
+              <div class="inline-block" v-if="indicant.dto1.sessionCountRate === true" >
                  <i class="iconfont {{ indicant.dto.session_count_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{indicant.dto.session_count_rate}}%</span>
               </div>
-              <div v-else>
+              <div class="inline-block" v-else>
                 --
               </div>
             </div> 
@@ -53,16 +53,14 @@
           </div>
           <div class="inline-block box border-right">
             <div class="flex flex-1 align-items-c ">
-              <i class="icon iconfont icon-oc-msg1 bigicon"></i>
+              <i class="icon iconfont icon-oc-mobile bigicon"></i>
               <span class="green money">{{ indicant.dto.session_time }}</span>
-
-              <div v-if="indicant.dto1.sessionTimeRate === true" >
+              <div class="inline-block" v-if="indicant.dto1.sessionTimeRate === true" >
                  <i class="iconfont {{ indicant.dto.session_time_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{indicant.dto.session_time_rate}}%</span>
               </div>
-              <div v-else>
+              <div class="inline-block"  v-else>
                 --
               </div>
-
              <!--  <i class="iconfont icon-oc-up"></i><span class='text-danger'>{{indicant.dto.session_time_rate}}%</span> -->
             </div>
             <div class="flex flex-1 middle-font-size middle-font-color">
@@ -73,11 +71,10 @@
             <div class="flex flex-1 align-items-c ">
               <i class="icon iconfont icon-oc-talktime bigicon"></i>
               <span class="green money">{{ indicant.dto.age_session_time }}</span>
-
-              <div v-if="indicant.dto1.avgSessionTimeRate === true" >
+              <div class="inline-block" v-if="indicant.dto1.avgSessionTimeRate === true" >
                  <i class="iconfont {{ indicant.dto.age_session_time >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{indicant.dto.age_session_time}}%</span>
               </div>
-              <div v-else>
+              <div class="inline-block"  v-else>
                 --
               </div>
               <!-- <i class="iconfont icon-oc-up"></i><span class='text-danger'>{{indicant.dto.age_session_time_rate}}%</span> -->
@@ -93,7 +90,7 @@
               <div v-if="indicant.dto1.connectedRateRate === true" >
                  <i class="iconfont {{ indicant.dto.connected_rate_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{indicant.dto.connected_rate_rate}}%</span>
               </div>
-              <div v-else>
+              <div class="inline-block"  v-else>
                 --
               </div>
             </div>

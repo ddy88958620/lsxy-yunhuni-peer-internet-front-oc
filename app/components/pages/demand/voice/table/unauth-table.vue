@@ -31,7 +31,7 @@
 					<th class="text-align-c">申请时间</th>
 					<th>会员名称</th>
 					<th>应用名称</th>
-					<th>标题</th>
+					<th>文件名</th>
 					<th>大小</th>
 					<th>原因</th>
 					<th class="text-align-c">操作</th>

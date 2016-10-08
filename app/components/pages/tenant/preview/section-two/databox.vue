@@ -29,12 +29,12 @@
           },
           {
             title: '会话量',
-            icon: 'icon-oc-msg1',
+            icon: 'icon-oc-mobile',
             unit: '(次)',
           },
           {
             title: '话务量',
-            icon: 'icon-oc-mobile',
+            icon: 'icon-oc-msg1',
             unit: '(分钟)'
           },
           {

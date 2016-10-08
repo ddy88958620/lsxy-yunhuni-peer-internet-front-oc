@@ -2,7 +2,7 @@
 
 	<div class="flex search-box bg-section-margin remove-margin-bottom">
 		<div class="select-box">
-			<search  placeholder='请输入关键字' :value.sync='searchName' :action="search"></search>
+			<search  placeholder='搜索文件名' :value.sync='searchName' :action="search"></search>
 		</div>
 	</div>
 
@@ -12,7 +12,7 @@
 			已使用<span class="text-danger">{{((capacity.fileRemainSize || 0)/1024/1024).toFixed(2)}}</span>MB,
 			共<span class="text-danger">{{page.total || 0}}</span>条
 		</div>
-		<table class="table remove-margin-bottom">
+		<table class="table ">
 			<thead>
 			<tr>
 				<th class="text-align-c">审核时间</th>

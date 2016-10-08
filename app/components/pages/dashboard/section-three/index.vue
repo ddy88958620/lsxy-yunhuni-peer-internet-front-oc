@@ -98,7 +98,19 @@
       this.getLastDayComsume()
       this.getLastDayDuration()
       this.doGetConsumeAnduraion()
-    }
+
+      $(window).resize(function()
+      {
+        var h = $('.section-three').height()
+        $('.section-left').css('height',h+'px')
+        $('.session-small-box').css('height',h/2+'px')
+
+      });
+      var h = $('.section-three').height()
+      h = h+100
+      $('.section-left').css('height',h+'px')
+      $('.session-small-box').css('height',h/2+'px')
+    },
   }
 </script>
 <style lang='sass'>

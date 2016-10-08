@@ -11,7 +11,9 @@
           <th class="text-align-c">发送时间</th>
           <th>主叫</th>
           <th>被叫</th>
+          <th>时长(秒)</th>
           <th>挂机时间</th>
+          <th class="text-align-r">消费金额(元)</th>
         </tr>
         </thead>
         <tbody>
@@ -19,7 +21,9 @@
           <td class="message-time text-align-c">{{message.callStartDt | totalDate}}</td>
           <td>{{ message.fromNum }}</td>
           <td>{{ message.toNum }}</td>
+          <td >{{message.costTimeLong}}</td>
           <td>{{ message.callEndDt | totalDate }}</td>
+          <td class="text-align-r" >{{ message.cost }}</td>
         </tr>
         </tbody>
       </table>
@@ -56,7 +60,8 @@
         }
         let self = this
         $.get('/tenant/'+uid+'/session', params).then((res) => {
-          if(res.data.page.totalCount>0){
+          console.log(res)
+          if(res.data.page.totalCount>=0){
             self.sessionTotal =res.data.total
             self.session = res.data.page
             if(more)

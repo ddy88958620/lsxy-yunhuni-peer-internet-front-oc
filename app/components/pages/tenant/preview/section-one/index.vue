@@ -29,7 +29,7 @@
               <div class="sort flex flex-1 flex-direction-column blueborder ">
                 <div class="flex justify-content-s top-title">
                   <i class="icon iconfont icon-oc-recharge"></i>
-                  <span class="flex align-items-c unit">余额（元）</span>
+                  <span class="inline-block unit">余额（元）</span>
                 </div>
                 <div class="flex flex-1 green money">
                   <!--{{ tenant.remain_coin>=0 ? tenant.remain_coin ?  tenant.remain_coin : 0 : '欠费'+-tenant.remain_coin }}-->
@@ -41,7 +41,7 @@
                        {{(bill && bill.balance) ? '欠费'+-bill.balance : '￥0.000' }}
                     </span>
                 </div>
-                <div class="flex flex-direction-row-reverse">
+                <div class="inline-block float-r">
                   <button class="btn btn-default" @click="openModal" >消费记录</button>
                   <button class="btn btn-primary" @click="recharge.showModal = true">充值</button>
                 </div>
@@ -53,7 +53,7 @@
               <div class="sort flex-1 flex flex-direction-column yellowborder ">
                 <div class="flex justify-content-s top-title">
                   <i class="icon iconfont icon-oc-storage"></i>
-                  <span class="flex align-items-c unit">存储容量（M）</span>
+                  <span class="inline-block unit">存储容量（M）</span>
                 </div>
                 <div class="flex flex-1">
                   <span class="green money">{{filesize}}</span>
@@ -70,7 +70,7 @@
               <div class="sort flex flex-1 flex-direction-column pinkborder">
                 <div class="flex justify-content-s top-title">
                   <i class="icon iconfont icon-oc-surplus"></i>
-                  <span class="flex align-items-c unit">套餐剩余量</span>
+                  <span class="inline-block unit">套餐剩余量</span>
                 </div>
                 <div class="flex flex-1 flex-direction-column surplus">
                   <div class="flex flex-1">会议剩余：<span class="green">{{(bill && bill.conferenceRemain) || 0}}</span>分钟</div>
@@ -129,11 +129,11 @@
     </div>
   </modal>
 
-  <modal :show.sync="recharge.showModal" title="充值" :action="doRecharge">
+  <modal :show.sync="recharge.showModal" title="充值" :action="doRecharge" classname="small">
     <div slot="body" class="flex flex-1 flex-direction-column" >
       <div class="flex flex-1 ">
-        <span class="flex flex-1 align-items-c justify-content-c">充值金额</span>
-        <span class="flex flex-5 "><input type="text" class="form-control " v-model='recharge.amount' /></span>
+        <span class="inline-block ">充值金额</span>
+        <span class="inline-block admin-button-margin"><input type="number" class="form-control" v-model='recharge.amount' /></span>
       </div>
     </div>
   </modal>
@@ -257,12 +257,10 @@
         let self = this;
         if(this.recharge.amount>0 && this.recharge.amount<1000000){
           $.put('/tenant/tenants/'+this.$route.params.uid+'/recharge',this.recharge).then((res) => {
-
             if(res.success === 'false'){
               self.showMsg({content: res.errorMsg, type: 'danger'})
               return
             }
-        
             if(res.data){
               self.recharge.amount = 0
               self.recharge.showModal = false
@@ -271,6 +269,9 @@
               self.getTenantBilling({id:self.$route.params.uid})
             }
           })
+        }else{
+          self.recharge.amount = 0
+          self.showMsg({content: '充值失败,充值金额必须大于0元', type: 'danger'})
         }
       }
     },

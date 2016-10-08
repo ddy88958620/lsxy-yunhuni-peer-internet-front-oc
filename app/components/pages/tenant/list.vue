@@ -14,7 +14,7 @@
         <span class='datetime-picker-label'>认证状态: </span>
         <select class="form-control" v-model='page.query.authStatus'>
           <option value="">全部</option>
-          <option value="1">认证</option>
+          <option value="1">已认证</option>
           <option value="0">未认证</option>
         </select>
         <span class='datetime-picker-label'>账号状态: </span>
