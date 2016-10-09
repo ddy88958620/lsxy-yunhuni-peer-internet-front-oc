@@ -119,13 +119,13 @@
         <i class="submenu inline-block position-center"></i>
       </li>
       <li class="block " v-for='menu in menus'>
-        <a class="block sub border align-items-c " v-link="menu.link">
-          <i class="iconfont {{menu.icon}}"></i>{{ menu.title }}
-          <span class="menu-count" v-if="menu.label=='Custom' && num.awaitService!=0" >{{num.awaitService}}</span>
-          <span class="menu-count" v-if="menu.label=='Finance' && num.awaitInvoice!=0" >{{num.awaitInvoice}}</span>
-          <span class="menu-count" v-if="menu.label=='Demand' && num.awaitDemand!=0" >{{num.awaitDemand}}</span>
-          </a>
-      </li>
+      <a class="block sub border align-items-c " v-link="menu.link">
+        <i class="iconfont {{menu.icon}}"></i>{{ menu.title }}
+        <span class="menu-count" v-if="menu.label=='Custom' && num.awaitService!=0" >{{num.awaitService}}</span>
+        <span class="menu-count" v-if="menu.label=='Finance' && num.awaitInvoice!=0" >{{num.awaitInvoice}}</span>
+        <span class="menu-count" v-if="menu.label=='Demand' && num.awaitDemand!=0" >{{num.awaitDemand}}</span>
+      </a>
+    </li>
     </ul>
   </aside>
 </template>

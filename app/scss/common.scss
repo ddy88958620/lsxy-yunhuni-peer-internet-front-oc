@@ -186,3 +186,16 @@ img.zoom-img {
   word-wrap: break-word;
 }
 
+//不通过原因
+.modal-nopass{
+   height: 70px;
+  .title{
+    width: 100px;
+  }
+  .textarea{
+    width: 420px;
+  }
+  .numbertips{
+    margin-right: 20px;
+  }
+}

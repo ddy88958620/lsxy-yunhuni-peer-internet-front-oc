@@ -79,13 +79,11 @@
 	</modal>
 
 	<modal :show.sync="showModal" title="审核" :action="fail">
-		<div slot="body" class="flex flex-1">
-			<div class="flex">
-				<span class="inline-block float-l">不通过原因</span>
-				<span class="inline-block nopassText">
-				  <textarea class="form-control"  v-model="del.reason" maxlength="50"></textarea>
-					<span class="flex float-r">50字以内</span>
-				</span>
+		<div slot="body" class="flex">
+			<div class="flex flex-1 modal-nopass" >
+				<span class="flex float-l title">不通过原因</span>
+				<span class="flex admin-button-margin flaot-l" ><textarea class="form-control textarea"  v-model="del.reason" maxlength="50" ></textarea></span>
+				<span class="flex float-r numbertips">50字以内</span>
 			</div>
 		</div>
 	</modal>

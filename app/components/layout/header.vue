@@ -62,5 +62,7 @@ export default {
       })
     }
   },
+  ready(){
+  }
 }
 </script>
