@@ -426,3 +426,15 @@ table {
 }
 
 a:focus{outline:none;}
+
+input[type="text"]::-ms-clear{
+  display:none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+  -webkit-appearance: none !important;
+  margin: 0;
+}
+
+input[type="number"]{-moz-appearance:textfield;}
