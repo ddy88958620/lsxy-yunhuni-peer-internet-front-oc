@@ -1,7 +1,7 @@
 <template>
-  <div class="section-four flex flex-1  bg-section-margin  flex-direction-row">
+  <div class="section-four bg-section-margin no-wrap ">
 
-    <div class="child-box flex flex-1  padding-right-10 ">
+    <div class="child-box inline-block width-50 padding-right-10 ">
       <div class="flex flex-1 flex-direction-column whilebg admin-padding admin-border">
         <div class="flex section-time-box">
           <datetime-picker :uuid="'preview-section-four1'" :action="chartSessionQuery" :type.sync="chartSessionDate.type" :value.sync="chartSessionDate.value"></datetime-picker>
@@ -21,12 +21,12 @@
     </div>
 
 
-    <div class="child-box flex flex-1  padding-left-10 ">
+    <div class="child-box inline-block width-50  padding-left-10 ">
       <div class="flex flex-1 flex-direction-column whilebg admin-padding admin-border">
         <div class="flex section-time-box">
           <datetime-picker :uuid="'preview-section-four2'" :action="chartApiQuery" :type.sync="chartApiDate.type" :value.sync="chartApiDate.value"></datetime-picker>
         </div>
-        <div class="flex flex-1">
+        <div class="">
           <chart
             :uuid="'sectionThreeChart1'"
             :type="['line','line']"
@@ -36,7 +36,6 @@
             :color="[['rgba(246,239,232,0.2)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
                     ['#ebeecc','rgba(214,235,78,0.8)','rgba(214,235,78,1)','#FFF','rgba(214,235,78,0.1)','rgba(220,220,220,0.1)']]"
           ></chart>
-	        
         </div>
       </div>
     </div>

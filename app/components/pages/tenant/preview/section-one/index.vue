@@ -1,88 +1,88 @@
 <template>
-    <section class='section_one flex bg-section-margin flex-direction-column justify-content-s '>
-        <div class="flex flex-direction-row justify-content-b">
-
-          <div class="box">
-            <div class=" flex-grow-1 flex flex-1 flex-direction-column ">
-              <div class="sort flex flex-1 flex-direction-column greenborder">
-                <div class="flex justify-content-s company">
-                  <div class="canvas flex justify-content-c align-items-c ">
-                    <img class="avatar" src="/avatar.png?a226ccef62bc02b7f799d54e4c5b27dd">
-                  </div>
-                  <span class="flex flex-1 name align-items-c justify-content-c" >{{tenant.tenantName}}</span>
-                </div>
-                <div class="message flex flex-1 flex-direction-column">
-                  <div class="flex flex-1" title="{{cert && cert.apiUrl}}">
-                   <span class="titleid">接口API: </span>  <span class="overflow-x-h word-space" >{{cert && cert.apiUrl}}</span> 
-                  </div>
-                  <div class="flex flex-1" title="{{cert && cert.cert.secretKey}}">
-                    <span class="titleid">密钥: </span>  <span class="overflow-x-h word-space" >{{cert && cert.cert.secretKey}}</span>
-                  </div>
-                  <div class="flex flex-1" title="">
-                   <span class="titleid">鉴权账号: </span>  <span class="overflow-x-h word-space" >{{cert && cert.cert.certId}}</span>
-                  </div>
-                </div>
+  <section class='section_one bg-section-margin'>
+    <div class="no-wrap">
+      <div class="box inline-block ofh margin-right-one-percent">
+        <div class=" flex-grow-1 flex flex-1 ">
+          <div class="sort flex  greenborder">
+            <div class="flex  company">
+              <div class="canvas inline-block justify-content-c align-items-c ">
+                <img class="avatar" src="/avatar.png?a226ccef62bc02b7f799d54e4c5b27dd">
+              </div>
+              <span class="inline-block name " >{{tenant.tenantName}}</span>
+            </div>
+            <div class="message inline-block ">
+              <div class="flex " title="{{cert && cert.apiUrl}}">
+                <span class="inline-block white-space" >接口API: {{cert && cert.apiUrl}}</span>
+              </div>
+              <div class="flex " title="{{cert && cert.cert.secretKey}}">
+                <span class="inline-block white-space" >密钥: {{cert && cert.cert.secretKey}}</span>
+              </div>
+              <div class="flex " title="">
+                <span class="inline-block  white-space" >鉴权账号: {{cert && cert.cert.certId}}</span>
               </div>
             </div>
           </div>
-          <div class="flex box">
-            <div class="flex-grow-1 flex flex-1 flex-direction-column">
-              <div class="sort flex flex-1 flex-direction-column blueborder ">
-                <div class="flex justify-content-s top-title">
-                  <i class="icon iconfont icon-oc-recharge"></i>
-                  <span class="flex align-items-c unit">余额（元）</span>
-                </div>
-                <div class="flex flex-1 green money">
-                  <!--{{ tenant.remain_coin>=0 ? tenant.remain_coin ?  tenant.remain_coin : 0 : '欠费'+-tenant.remain_coin }}-->
-                    <span v-if="bill.balance >=0 || bill.balance==null ">
-                       ￥{{ bill.balance | fixed }}
-                    </span>
-                    <span v-else>
-                       欠费 {{ bill.balance | fixed }}
-                    </span>
-                </div>
-                <div class="flex flex-direction-row-reverse">
-                  <button class="btn btn-default" @click="openModal" >消费记录</button>
-                  <button class="btn btn-primary" @click="recharge.showModal = true">充值</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="flex box">
-            <div class="flex-grow-1 flex flex-1 flex-direction-column">
-              <div class="sort flex-1 flex flex-direction-column yellowborder ">
-                <div class="flex justify-content-s top-title">
-                  <i class="icon iconfont icon-oc-storage"></i>
-                  <span class="flex align-items-c unit">存储容量（M）</span>
-                </div>
-                <div class="flex flex-1">
-                  <span class="green money">{{filesize}}</span>
-                </div>
-                <div class="flex flex-direction-row-reverse">
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex box">
-            <div class="flex-grow-1 flex flex-1 flex-direction-column">
-              <div class="sort flex flex-1 flex-direction-column pinkborder">
-                <div class="flex justify-content-s top-title">
-                  <i class="icon iconfont icon-oc-surplus"></i>
-                  <span class="flex align-items-c unit">套餐剩余量</span>
-                </div>
-                <div class="flex flex-1 flex-direction-column surplus">
-                  <div class="flex flex-1">会议剩余：<span class="green">{{(bill && bill.conferenceRemain) || 0}}</span>分钟</div>
-                  <div class="flex flex-1">语音剩余：<span class="green">{{(bill && bill.voiceRemain) || 0}}</span>分钟</div>
-                  <div class="flex flex-1">短信剩余：<span class="green">{{(bill && bill.smsRemain) || 0}}</span>条</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
-    </section>
+      </div>
+      <div class=" box inline-block ofh  margin-right-one-percent margin-left-one-percent">
+        <div class="flex-grow-1 flex flex-1 flex-direction-column">
+          <div class="sort flex flex-1 flex-direction-column blueborder ">
+            <div class="flex justify-content-s top-title">
+              <i class="icon iconfont icon-oc-recharge"></i>
+              <span class="inline-block unit">余额（元）</span>
+            </div>
+            <div class="flex flex-1 green money">
+              <!--{{ tenant.remain_coin>=0 ? tenant.remain_coin ?  tenant.remain_coin : 0 : '欠费'+-tenant.remain_coin }}-->
+              <span v-if="bill.balance >=0 || bill.balance==null ">
+                       ￥{{ bill.balance.toFixed(3)}}
+                    </span>
+              <span v-else>
+                        欠费{{ }}
+                       {{(bill && bill.balance) ? '欠费'+-bill.balance : '￥0.000' }}
+                    </span>
+            </div>
+            <div class="inline-block float-r">
+              <button class="btn btn-default" @click="openModal" >消费记录</button>
+              <button class="btn btn-primary" @click="recharge.showModal = true">充值</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="inline-block box ofh  margin-right-one-percent margin-left-one-percent">
+        <div class="flex-grow-1 flex flex-1 flex-direction-column">
+          <div class="sort flex-1 flex flex-direction-column yellowborder ">
+            <div class="flex justify-content-s top-title">
+              <i class="icon iconfont icon-oc-storage"></i>
+              <span class="inline-block unit">存储容量（M）</span>
+            </div>
+            <div class="flex flex-1">
+              <span class="green money">{{filesize}}</span>
+            </div>
+            <div class="flex flex-direction-row-reverse">
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="inline-block box ofh margin-left-one-percent">
+        <div class="flex-grow-1 flex flex-1 flex-direction-column">
+          <div class="sort flex flex-1 flex-direction-column pinkborder">
+            <div class="flex justify-content-s top-title">
+              <i class="icon iconfont icon-oc-surplus"></i>
+              <span class="inline-block unit">套餐剩余量</span>
+            </div>
+            <div class="flex flex-1 flex-direction-column surplus">
+              <div class="flex flex-1">会议剩余：<span class="green">{{(bill && bill.conferenceRemain) || 0}}</span>分钟</div>
+              <div class="flex flex-1">语音剩余：<span class="green">{{(bill && bill.voiceRemain) || 0}}</span>分钟</div>
+              <div class="flex flex-1">短信剩余：<span class="green">{{(bill && bill.smsRemain) || 0}}</span>条</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
 
 
   <modal :show.sync="showModal" title='消费记录' :width='table'  :action="closeModal"  >
@@ -95,12 +95,12 @@
           &nbsp;&nbsp;<button class="btn btn-primary" @click="query(true)">查询</button>
         </div>
       </div>
-      <div class="admin-table table-responsive flex-1 flex flex-direction-column">
+      <div class="admin-table flex-1 flex flex-direction-column">
         <div class="table-total flex flex-1 justify-content-e">
           消费总金额：<span class="brown">{{page.totalAmount}}</span>元 共<span class="text-danger">{{page.total}}</span>条
         </div>
         <div class="flex modal-table" >
-          <table class="table"  >
+          <table class="table" >
             <thead>
             <tr>
               <th class="text-align-c">消费时间</th>
@@ -129,15 +129,36 @@
     </div>
   </modal>
 
-  <modal :show.sync="recharge.showModal" title="充值" :action="doRecharge">
+  <modal :show.sync="recharge.showModal" title="充值" :action="doRecharge" classname="small">
     <div slot="body" class="flex flex-1 flex-direction-column" >
       <div class="flex flex-1 ">
-        <span class="flex flex-1 align-items-c justify-content-c">充值金额</span>
-        <span class="flex flex-5 "><input type="text" class="form-control " v-model='recharge.amount' /></span>
+        <span class="inline-block ">充值金额</span>
+        <span class="inline-block admin-button-margin"><input type="number" class="form-control" v-model='recharge.amount' /></span>
       </div>
     </div>
   </modal>
 
+  <modal :show.sync="api.showModal" title="开发者账号" :action="hideApi">
+    <div slot="body" class="flex flex-1 flex-direction-column" >
+      <div class="flex flex-1 flex-direction-column apimodal">
+        <div class="flex" >
+          <span class="title" >api接口: </span>
+          <span>{{cert && cert.apiUrl}}</span>
+        </div>
+        <div class="flex flex-1" >
+          <span class="titleid">密钥: </span><span class="overflow-x-h word-space" >{{cert && cert.cert.secretKey}}</span>
+        </div>
+
+        <div class="flex flex-1" >
+          <span class="titleid">鉴权账号: </span>  <span class="overflow-x-h word-space" >{{cert && cert.cert.certId}}</span>
+        </div>
+
+      </div>
+    </div>
+    <div slot="footer">
+    </div>
+
+  </modal>
 
 </template>
 
@@ -178,6 +199,9 @@
         recharge:{
           showModal:false,
           amount:0
+        },
+        api:{
+          showModal:false,
         }
       }
     },
@@ -212,13 +236,13 @@
           self.consumes = [];
         }
 
-    
+
 
         $.get('/tenant/tenants/'+this.$route.params.uid+'/consumes', params).then((res)=> {
           self.page.loading = false
           if (res.data && res.data.consumes && res.data.consumes.result) {
             if (init) {
-              self.consumes = res.data.consumes.result  
+              self.consumes = res.data.consumes.result
             } else {
               self.consumes = self.consumes.concat(res.data.consumes.result)
             }
@@ -233,12 +257,10 @@
         let self = this;
         if(this.recharge.amount>0 && this.recharge.amount<1000000){
           $.put('/tenant/tenants/'+this.$route.params.uid+'/recharge',this.recharge).then((res) => {
-
             if(res.success === 'false'){
               self.showMsg({content: res.errorMsg, type: 'danger'})
               return
             }
-        
             if(res.data){
               self.recharge.amount = 0
               self.recharge.showModal = false
@@ -247,6 +269,9 @@
               self.getTenantBilling({id:self.$route.params.uid})
             }
           })
+        }else{
+          self.recharge.amount = 0
+          self.showMsg({content: '充值失败,充值金额必须大于0元', type: 'danger'})
         }
       }
     },
@@ -270,77 +295,86 @@
 
 <style lang="sass" scoped>
   .section_one {
-    .box {
-      background-color: #fff;
-      width: 23%;
-      min-width: 235px;
-      height: 172px;
-    }
+  .box {
+    background-color: #fff;
+    width: 23.3%;
+    min-width: 235px;
+    height: 172px;
+  }
 
-    .sort {
-      border-top: 4px solid #00A000;
-      padding: 10px;
-      .top-title{
-        i{ font-size: 2rem;}
-        padding-bottom: 15px;
-      }
-    }
+  .margin-right-one-percent{
+    margin-right: 1%;
+  }
 
-    .company{
-      height: 80px;
-      .canvas {
-        width: 80px;
-        height: 80px;
-        .avatar {
-          width: 60px;
-          height: 60px;
-          border-radius: 30px;
-        }
-      }
-      .name{
-        color:#666;
-        font-size: 1.6rem;
-      }
-    }
+  .margin-left-one-percent{
+    margin-left: 1%;
+  }
 
-    .message{
-      color:#999;
-      .title{
-        width: 100px;
-      }
-      .titleid{
-        min-width: 60px;
-        width: 60px;
-        
-      }
-    }
 
-    .word-space{
-       display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-    }
+  .sort {
+    border-top: 4px solid #00A000;
+    padding: 10px;
+  .top-title{
+  i{ font-size: 2rem;}
+  padding-bottom: 15px;
+  }
+  }
 
-    .money{
-      font-size: 2.6rem;
-    }
+  .company{
+    height: 80px;
+  .canvas {
+    width: 80px;
+    height: 80px;
+  .avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+  }
+  }
+  .name{
+    color:#666;
+    font-size: 1.6rem;
+  }
+  }
 
-    .unit{
-      color:#666;
-      padding-left: 10px;
-      font-size: 1.4rem;
-    }
+  .message{
+    color:#999;
+  .title{
+    width: 100px;
+  }
+  .titleid{
+    min-width: 60px;
+    width: 60px;
 
-    .surplus{
-      font-size:1.4rem;
-    }
-    button{
-      margin: 0 5px;
-    }
+  }
+  }
+
+  .word-space{
+    display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+
+  .money{
+    font-size: 2.6rem;
+  }
+
+  .unit{
+    color:#666;
+    padding-left: 10px;
+    font-size: 1.4rem;
+  }
+
+  .surplus{
+    font-size:1.4rem;
+  }
+  button{
+    margin: 0 5px;
+  }
   }
 
   .apimodal{
-    .title{
-      width:55px !important;
-    }
+  .title{
+    width:55px !important;
+  }
   }
 
 

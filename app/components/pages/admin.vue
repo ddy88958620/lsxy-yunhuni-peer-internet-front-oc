@@ -1,5 +1,5 @@
 <template>
-  <div id="topbox">
+  <div id="topbox" class="height-100">
     <asidebar></asidebar>
     <section class='app-main'>
         <headerbar></headerbar>
@@ -42,15 +42,14 @@ export default {
 @import '../../scss/variable.scss';
 
 #topbox {
-  flex: 1;
-  flex-direction: row;
-  display: flex;
-  .app-main {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    background-color: #EFF5FA;
-  }
+	height: auto !important;
+  position: absolute;
+  min-height: 100%;
+  width: 100%;
+}
+.app-main {
+	margin-left: $sidebar-width;
+	margin-top: 60px;
 }
 
 </style>

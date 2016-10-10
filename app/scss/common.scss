@@ -78,6 +78,7 @@
     border-bottom-right-radius: 4px;
   }
   .toolbar{
+    display: inline-block;
     padding: 10px;
     background-color: #f0f4fb;
     width: 130px;
@@ -136,8 +137,8 @@ img[data-action="zoom"] {
 }
 .zoom-img,
 .zoom-img-wrap {
-  position: relative;
-  z-index: 666;
+  position: fixed;
+  z-index: 9999;
   -webkit-transition: all 300ms;
        -o-transition: all 300ms;
           transition: all 300ms;
@@ -148,7 +149,7 @@ img.zoom-img {
   cursor: -moz-zoom-out;
 }
 .zoom-overlay {
-  z-index: 420;
+  z-index: 9998;
   background: #000;
   position: fixed;
   top: 0;
@@ -176,3 +177,25 @@ img.zoom-img {
   word-break : break-all; overflow:hidden;
 }
 
+//省略号
+.white-space{
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+
+.word-wrap{
+  word-wrap: break-word;
+}
+
+//不通过原因
+.modal-nopass{
+   height: 70px;
+  .title{
+    width: 100px;
+  }
+  .textarea{
+    width: 420px;
+  }
+  .numbertips{
+    margin-right: 20px;
+  }
+}

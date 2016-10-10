@@ -1,25 +1,29 @@
 <template>
-  <div class="section_right">
-    <div class="panel panel-default flex-1">
+  <div class="section_right ofh">
+    <div class="panel panel-default">
       <div class="panel-heading"><i class="iconfont icon-oc-app"></i>应用数据</div>
-      <div class="panel-body flex flex-1">
-
-        <div class='flex flex-1 flex-direction-column align-items-c justify-content-c'>
-          <div class="flex  pie_wrap">
-            <pie :uuid="'apppie'" :max="app.total" :value="app.total" :bgcolor="'#89d9e3'"></pie>
+      <div class="panel-body">
+        
+        <div class='inline-block width-50 text-align-c'>
+          <div class="pie-wrap-start text-align-c">
+            <div class="pie-wrap inline-block">
+              <pie :uuid="'apppie'" :max="app.total" :value="app.total" :bgcolor="'#89d9e3'"></pie>
+            </div>
           </div>
-          <div class="flex  align-items-c title-box">
+          <div class="title-box">
             总应用数（个）
           </div>
         </div>
 
-        <div class="border-span flex align-items-c "><span></span></div>
+        <div class="border-span  float-l"><span></span></div>
 
-        <div class='flex flex-1 flex-direction-column align-items-c justify-content-c' style="z-index:999">
-          <div class="flex  pie_wrap align-items-c ">
-            <pie :uuid="'appie2'" :max="app.total" :value="app.online" :bgcolor="'#80d1ff'" ></pie>
+        <div class='inline-block width-50 text-align-c' >
+          <div class="pie-wrap-start text-align-c">
+            <div class="pie-wrap inline-block">
+              <pie :uuid="'appie2'" :max="app.total" :value="app.online" :bgcolor="'#80d1ff'" ></pie>
+            </div>
           </div>
-          <div class="flex align-items-c title-box">
+          <div class=" title-box">
             总上线应用数（个)
           </div>
         </div>
@@ -32,6 +36,7 @@
 <script>
 import { getAppCount } from '../../../../vuex/actions.js'
 import pie from '../../../ui/pie.vue'
+
 export default {
   vuex: {
     getters:{
@@ -67,36 +72,42 @@ export default {
 }
 </script>
 <style lang="sass" scoped>
+  .section_right {
+    display: inline-block;
+    width: 40%;
+  }
   .panel-heading{
     .iconfont{
       padding-right: 10px;
     }
   }
 
-  .section_right {
-    display: flex;
-    flex: 2;
-  }
-
   .border-span{
+    padding-top:50px;
     span{
       height: 60px;
-      padding: 0px 0;
+      padding: 0;
+      display: inline-block;
       border-left: 1px solid #ddd;
     }
-    width: 1px;
+    width: 1%;
   }
+
+  .width-50{
+    width: 49%;
+    float: left;
+  }
+
 
   .panel-body{
     height: 160px;
     ul{
       width: 110px;
-      overflow-y: hidden;
     }
   }
 
   .title-box{
-    padding-top: 10px;
+    text-align: center;
   }
 
   .panel-heading{

@@ -3,16 +3,16 @@
     <div class="panel panel-default flex-1">
       <div class="panel-heading">上月数据</div>
       <div class="panel-body flex flex-1">
-        <div class="flex flex-1 flex-direction-row justify-content-b">
+        <div class="no-wrap">
           
-          <div class="flex flex-1 flex-direction-column box border-right">
+          <div class="inline-block box border-right">
             <div class="flex flex-1 align-items-c ">
               <i class="icon iconfont icon-oc-wallet bigicon"></i>
               <span class="green money">{{ indicant.dto.cost_coin >0 ? indicant.dto.cost_coin.toFixed(2) : '0.00' }}</span>
-              <div v-if="indicant.dto1.costCoin === true" >
+              <div class="inline-block" v-if="indicant.dto1.costCoin === true" >
                  <i class="iconfont {{ indicant.dto.cost_coin_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{indicant.dto.cost_coin_rate}}%</span>
               </div>
-              <div v-else>
+              <div class="inline-block" v-else>
                 --
               </div>
             </div>
@@ -20,15 +20,15 @@
               消费额(元)
             </div>
           </div>
-          <div class="flex flex-1 flex-direction-column box border-right">
+          <div class="inline-block box border-right">
             <div class="flex flex-1 align-items-c ">
               <i class="icon iconfont icon-oc-recharge bigicon"></i>
               <span class="green money">{{ indicant.dto.recharge_coin >0 ? indicant.dto.recharge_coin.toFixed(2) : '0.00' }}</span>
 
-              <div v-if="indicant.dto1.rechargeCoinRate === true" >
+              <div class="inline-block" v-if="indicant.dto1.rechargeCoinRate === true" >
                  <i class="iconfont {{ indicant.dto.recharge_coin_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{indicant.dto.recharge_coin_rate}}%</span>
               </div>
-              <div v-else>
+              <div class="inline-block" v-else>
                 --
               </div>       
             </div>
@@ -36,14 +36,14 @@
               充值额(元)
             </div>
           </div>
-          <div class="flex flex-1 flex-direction-column box border-right">
+          <div class="inline-block box border-right">
             <div class="flex flex-1 align-items-c ">
-              <i class="icon iconfont icon-oc-wallet bigicon"></i>
+              <i class="icon iconfont icon-oc-msg1 bigicon"></i>
               <span class="green money">{{ indicant.dto.session_count }}</span>
-              <div v-if="indicant.dto1.sessionCountRate === true" >
+              <div class="inline-block" v-if="indicant.dto1.sessionCountRate === true" >
                  <i class="iconfont {{ indicant.dto.session_count_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{indicant.dto.session_count_rate}}%</span>
               </div>
-              <div v-else>
+              <div class="inline-block" v-else>
                 --
               </div>
             </div> 
@@ -51,33 +51,30 @@
               会话量(次)
             </div>
           </div>
-          <div class="flex flex-1 flex-direction-column box border-right">
+          <div class="inline-block box border-right">
             <div class="flex flex-1 align-items-c ">
-              <i class="icon iconfont icon-oc-msg1 bigicon"></i>
+              <i class="icon iconfont icon-oc-mobile bigicon"></i>
               <span class="green money">{{ indicant.dto.session_time }}</span>
-
-              <div v-if="indicant.dto1.sessionTimeRate === true" >
+              <div class="inline-block" v-if="indicant.dto1.sessionTimeRate === true" >
                  <i class="iconfont {{ indicant.dto.session_time_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{indicant.dto.session_time_rate}}%</span>
               </div>
-              <div v-else>
+              <div class="inline-block"  v-else>
                 --
               </div>
-
              <!--  <i class="iconfont icon-oc-up"></i><span class='text-danger'>{{indicant.dto.session_time_rate}}%</span> -->
             </div>
             <div class="flex flex-1 middle-font-size middle-font-color">
               话务量(分钟)
             </div>
           </div>
-          <div class="flex flex-1 flex-direction-column box border-right">
+          <div class="inline-block box border-right">
             <div class="flex flex-1 align-items-c ">
               <i class="icon iconfont icon-oc-talktime bigicon"></i>
               <span class="green money">{{ indicant.dto.age_session_time }}</span>
-
-              <div v-if="indicant.dto1.avgSessionTimeRate === true" >
+              <div class="inline-block" v-if="indicant.dto1.avgSessionTimeRate === true" >
                  <i class="iconfont {{ indicant.dto.age_session_time >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{indicant.dto.age_session_time}}%</span>
               </div>
-              <div v-else>
+              <div class="inline-block"  v-else>
                 --
               </div>
               <!-- <i class="iconfont icon-oc-up"></i><span class='text-danger'>{{indicant.dto.age_session_time_rate}}%</span> -->
@@ -86,14 +83,14 @@
               平均通话时长(分钟)
             </div>
           </div>
-          <div class="flex flex-1 flex-direction-column box">
+          <div class="inline-block box">
             <div class="flex flex-1 align-items-c ">
               <i class="icon iconfont icon-oc-callrate bigicon"></i>
               <span class="green money">{{ indicant.dto.connected_rate }}</span>
               <div v-if="indicant.dto1.connectedRateRate === true" >
                  <i class="iconfont {{ indicant.dto.connected_rate_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{indicant.dto.connected_rate_rate}}%</span>
               </div>
-              <div v-else>
+              <div class="inline-block"  v-else>
                 --
               </div>
             </div>
@@ -158,6 +155,7 @@
 
  .box{
       height: 140px;
+			width: 16.66666%;
       padding:20px;
   }
 

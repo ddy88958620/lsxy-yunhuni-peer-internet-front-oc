@@ -1,12 +1,12 @@
 <template>
   <div class="modal-mask" v-show="show" transition="modal" >
     <div class="modal-wrapper">
-      <div class="modal-container flex flex-1 flex-direction-column {{classname}}">
+      <div class="modal-container position-center {{classname}}">
 
         <div class="modal-header flex flex-1 justify-content-b">
-          <slot name="header">
-            <div class="title">{{title}}</div>
-            <i class="icon iconfont icon-oc-close-middle cursor close" @click="show = false"></i>
+          <slot name="header flex">
+            <div class="title inline-block">{{title}}</div>
+            <i class="icon iconfont icon-oc-close-middle cursor close float-r" @click="show = false"></i>
           </slot>
         </div>
 
@@ -16,7 +16,7 @@
           </slot>
         </div>
 
-        <div class="modal-footer justify-content-e flex flex-1 ">
+        <div class="modal-footer inline-block float-r ">
           <slot name="footer">
             <button class="btn btn-primary margin-left-right-10" @click="action">确认</button>
             <button class="btn btn-default" @click="show = false">取消</button>
@@ -56,7 +56,7 @@
 <style lang="sass" scoped>
   .modal-mask {
     position: fixed;
-    z-index: 9998;
+    z-index: 999;
     top: 0;
     left: 0;
     width: 100%;
@@ -69,6 +69,10 @@
   .modal-wrapper {
     display: table-cell;
     vertical-align: middle;
+  }
+
+  .small{
+    width: 400px;
   }
 
   .normal{

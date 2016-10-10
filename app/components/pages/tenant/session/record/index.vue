@@ -1,10 +1,8 @@
 <template>
   <div>
-    <div class="admin-table table-responsive">
-      <div class="table-total flex flex-1 justify-content-e">
-        
-
-        总消费金额: <span class="brown">{{sessionTotal}}</span>元&nbsp;&nbsp;存储容量:<span class="brown">{{sessionSize ? sessionSize | fileSize : '0.0M' }}</span> &nbsp;&nbsp;共<span class="text-danger">{{session.totalCount ? session.totalCount : 0 }}</span>条
+    <div class="admin-table">
+      <div class="table-total flex flex-1 justify-content-e float-r">
+        总消费金额: <span class="brown">{{ sessionTotal ? sessionTotal : 0 }}</span>元&nbsp;&nbsp;存储容量:<span class="brown">{{sessionSize ? sessionSize | fileSize : '0.0M' }}</span> &nbsp;&nbsp;共<span class="text-danger">{{session.totalCount ? session.totalCount : 0 }}</span>条
       </div>
       <table class="table">
         <thead>
@@ -12,9 +10,9 @@
           <th class="text-align-c">呼叫时间</th>
           <th>主叫</th>
           <th>被叫</th>
-          <th>时长（秒）</th>
+          <th>时长(秒)</th>
           <th>大小</th>
-          <th>消费金额（元）</th>
+          <th class="text-align-r">消费金额（元）</th>
         </tr>
         </thead>
         <tbody>
@@ -24,7 +22,7 @@
           <td >{{message.toNum}}</td>
           <td >{{message.costTimeLong}}</td>
           <td >{{message.recordSize ? message.recordSize | fileSize : ''}}</td>
-          <td>{{ message.cost }}</td>
+          <td class="text-align-r">{{ message.cost }}</td>
         </tr>
         </tbody>
       </table>
@@ -64,9 +62,8 @@
         let self = this
         $.get('/tenant/'+uid+'/session', params).then((res) => {
           console.log(res)
-          if(res.data.page.totalCount>0){
+          if(res.data.page.totalCount>=0){
             self.sessionTotal =res.data.total
-          
             self.sessionSize = res.data.size
             self.session = res.data.page
             if(more)

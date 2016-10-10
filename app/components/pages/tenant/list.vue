@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="flex flex-direction-column admin-table-header">
+    <div class="admin-table-header">
       <h4>会员列表</h4>
-      <div class="flex align-items-c remove-margin-bottom">
-        <div class="select-box">
+      <div class="remove-margin-bottom">
+        <div class="select-box inline-block">
           <search placeholder="请输入会员名称" :value.sync='page.query.name' :action="query" ></search>
         </div>
         <span class='datetime-picker-label'>注册时间:</span>
@@ -14,7 +14,7 @@
         <span class='datetime-picker-label'>认证状态: </span>
         <select class="form-control" v-model='page.query.authStatus'>
           <option value="">全部</option>
-          <option value="1">认证</option>
+          <option value="1">已认证</option>
           <option value="0">未认证</option>
         </select>
         <span class='datetime-picker-label'>账号状态: </span>
@@ -26,8 +26,9 @@
         <button class="btn btn-primary admin-button-margin" @click="query(true)">查询</button>
       </div>
     </div>
-    <div class="admin-table table-responsive ">
-      <div class="table-total flex flex-1 justify-content-e">
+    <div class="admin-table ">
+      <div class="table-total flex flex-1 justify-content-e float-r">
+
         共<span class="text-danger">{{page.total}}</span>条
       </div>
       <table class="table">
@@ -37,9 +38,9 @@
           <th>会员名称</th>
           <th class="text-align-c">应用数(个)</th>
           <th>认证状态</th>
-          <th class="text-align-c">余额(元)</th>
-          <th class="text-align-c">消费额(元)</th>
-          <th class="text-align-c">充值金额(元)</th>
+          <th class="text-align-r">余额</th>
+          <th class="text-align-r">消费额</th>
+          <th class="text-align-r">充值金额</th>
           <th class="text-align-c">会话量(次)</th>
           <th class="text-align-c">话务量(分钟)</th>
           <th>账号状态</th>
@@ -52,9 +53,9 @@
           <td><a v-link="'/admin/tenant/detail/'+tenant.uid" >{{tenant.name}}</a></td>
           <td class="text-align-c">{{tenant.app_count ? tenant.app_count: 0 }}</td>
           <td class="{{tenant.auth_status.toString() === '1' ? '' : 'text-danger'}}">{{tenant.auth_status.toString() === '1' ? '已认证' : '未认证'}}</td>
-          <td class="text-align-c">{{ tenant.remain_coin>=0 ? tenant.remain_coin>0 ?  tenant.remain_coin.toFixed(2) : '0.00' : '欠费'+-tenant.remain_coin }}</td>
-          <td class="text-align-c">{{tenant.cost_coin>0 ? tenant.cost_coin.toFixed(2) : '0.00' }}</td>
-          <td class="text-align-c">{{tenant.total_coin>0 ? tenant.total_coin.toFixed(2) : '0.00' }}</td>
+          <td class="text-align-r">￥{{ tenant.remain_coin>=0 ? tenant.remain_coin>0 ?  tenant.remain_coin.toFixed(3) : '0.000' : '欠费'+-tenant.remain_coin }}</td>
+          <td class="text-align-r">￥{{tenant.cost_coin>0 ? tenant.cost_coin.toFixed(3) : '0.000' }}</td>
+          <td class="text-align-r">￥{{tenant.total_coin>0 ? tenant.total_coin.toFixed(3) : '0.000' }}</td>
           <td class="text-align-c">{{tenant.session_count ? tenant.session_count : 0 }}</td>
           <td class="text-align-c">{{tenant.session_time ? tenant.session_time : 0 }}</td>
           <td v-if="tenant.account_status == 2" class="darkgreen">启用</td>
@@ -73,7 +74,6 @@
         <a @click="query()" class="text-none" v-show='!page.loading && page.hasMore'>加载更多<i
           class="icon iconfont icon-oc-dropdown"></i></a>
       </div>
-
     </div>
   </div>
 </template>
@@ -153,3 +153,5 @@
     }
   }
 </script>
+<style lang="sass">
+</style>

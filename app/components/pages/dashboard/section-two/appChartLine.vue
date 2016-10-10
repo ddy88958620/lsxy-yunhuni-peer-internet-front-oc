@@ -5,7 +5,7 @@
       <label for="">日统计</label>
       <input name='app-chart-type' @click="changeDate('year')"  type="radio"/>
       <label for="">月统计 </label>
-      <div class="datepicker-wrap">
+      <div class="datepicker-wrap inline-block">
         <datetime-picker :uuid="'datetimepicker1'" :action="doGetNewMemberAndApp" :type.sync="date.type" :value.sync="date.value"></datetime-picker>
       </div>
     </div>
