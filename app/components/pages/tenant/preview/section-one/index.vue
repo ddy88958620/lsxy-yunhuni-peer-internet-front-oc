@@ -44,6 +44,7 @@
             <div class="inline-block float-r">
               <button class="btn btn-default" @click="openModal" >消费记录</button>
               <button class="btn btn-primary" @click="recharge.showModal = true">充值</button>
+              <button class="btn btn-primary" @click="flat.showModal = true">平账</button>
             </div>
           </div>
         </div>
@@ -138,6 +139,16 @@
     </div>
   </modal>
 
+  <modal :show.sync="flat.showModal" title="平账" :action="doFlat" classname="small">
+    <div slot="body" class="flex flex-1 flex-direction-column" >
+      <div class="flex flex-1 ">
+        <span class="inline-block ">平账金额</span>
+        <span class="inline-block admin-button-margin"><input type="number" class="form-control" v-model='flat.amount' /></span>
+      </div>
+    </div>
+  </modal>
+
+
   <modal :show.sync="api.showModal" title="开发者账号" :action="hideApi">
     <div slot="body" class="flex flex-1 flex-direction-column" >
       <div class="flex flex-1 flex-direction-column apimodal">
@@ -200,6 +211,10 @@
           showModal:false,
           amount:0
         },
+        flat:{
+          showModal:false,
+          amount:0
+        },
         api:{
           showModal:false,
         }
@@ -253,7 +268,7 @@
           self.page.totalAmount = (res.data && res.data && res.data.sumAmount) || 0
         })
       },
-      doRecharge:function(){
+      doRecharge(){
         let self = this;
         if(this.recharge.amount>0 && this.recharge.amount<1000000){
           $.put('/tenant/tenants/'+this.$route.params.uid+'/recharge',this.recharge).then((res) => {
@@ -272,6 +287,27 @@
         }else{
           self.recharge.amount = 0
           self.showMsg({content: '充值失败,充值金额必须大于0元', type: 'danger'})
+        }
+      },
+      doFlat(){
+        let self = this
+        if(self.flat.amount>0 && self.flat.amount<1000000){
+          $.put('/tenant/tenants/'+this.$route.params.uid+'/flat_balance',self.flat).then((res) => {
+            if(res.success === 'false'){
+              self.showMsg({content: res.errorMsg, type: 'danger'})
+              return
+            }
+            if(res.data){
+              self.flat.amount = 0
+              self.flat.showModal = false
+              //充值成功提示
+              self.showMsg({content: '平账成功', type: 'success'})
+              self.getTenantBilling({id:self.$route.params.uid})
+            }
+          })
+        }else{
+          self.recharge.amount = 0
+          self.showMsg({content: '平账失败,平账金额必须大于0元', type: 'danger'})
         }
       }
     },
