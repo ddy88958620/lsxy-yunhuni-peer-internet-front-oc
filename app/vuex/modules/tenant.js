@@ -52,7 +52,11 @@ const state = {
   },
   base:{
     info:{},
-    authinfo:{}
+    authinfo:{
+      realnamePrivate:{},
+      realnameCorp:{},
+      status:100
+    }
   },
   statistic:{
   	comsumeduration: {},
