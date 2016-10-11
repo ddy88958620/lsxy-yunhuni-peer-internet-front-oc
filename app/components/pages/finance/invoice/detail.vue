@@ -3,8 +3,8 @@
 		<h4>开票申请</h4>
 		<div class="admin-panel">
 			<div class="panel-heading">
-				<span class="flex flex-1">开票信息</span>
-				<a class="flex" @click="showDetailModal = true">消费详情</a>
+				<span class="inline-block flex-1">开票信息</span>
+				<a class="inline-block float-r" @click="showDetailModal = true">消费详情</a>
 			</div>
 			<div class="panel-body">
 				<ul class="list-none-style">
@@ -73,7 +73,7 @@
 	</div>
 
 
-	<modal :show.sync="showModal" title="操作" :action="fail">
+	<modal :show.sync="abnormalModal" title="操作" :action="fail">
 		<div slot="body" class="flex">
 			<div class="flex flex-1 modal-nopass" >
 				<span class="flex float-l title">异常原因</span>
@@ -105,7 +105,6 @@
 				<div class="table-total flex flex-1 justify-content-e float-r">
 					消费总金额：<span class="brown">{{invoice.sum!==0 ? invoice.sum :  '' }}</span>元 共<span class="text-danger">{{invoice.list.totalCount }}</span>条
 				</div>
-
 				<div class="flex modal-table" >
 					<table class="table">
 						<thead>
@@ -119,9 +118,9 @@
 						<tbody >
 						<tr v-for='message in invoiceList'>
 							<td class="message-time text-align-c">{{message.createTime | date}}</td>
-				            <td>{{message.amount}}</td>
-				            <td>{{message.type}}</td>
-				            <td>{{message.remark}}</td>
+							<td>{{message.amount}}</td>
+							<td>{{message.type}}</td>
+							<td>{{message.remark}}</td>
 						</tr>
 						</tbody>
 					</table>
@@ -129,9 +128,7 @@
 				<div class="more">
 					<a v-show='invoice.list.totalPageCount==invoice.list.currentPageNo || invoice.list.totalPageCount==0'>加载完毕</a>
 					<a @click="query('more')" class="text-none" v-show='invoice.list.totalPageCount!=invoice.list.currentPageNo && invoice.list.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
-				</div>	
-				
-
+				</div>
 			</div>
 		</div>
 	</modal>
@@ -142,7 +139,6 @@
 		<div slot="body" class="flex flex-1 flex-direction-column">
 			<div class="flex flex-direction-column admin-table-header">
 				<div class="flex align-items-c">
-				
 					{{ detail.start | month }}  
 					<span class='datetime-picker-label'>至</span>
 					{{ detail.end | month}} 
@@ -158,13 +154,13 @@
 						<tr>
 							<th colspan="3">
 								<div class="flex flex-1 flex-direction-row">
-									<div class="flex title-time justify-content-c">
+									<div class="inline-block title-time">
 										消费时间
 									</div>
-									<div class="flex title-type justify-content-c">
+									<div class="inline-block title-type ">
 										消费金额
 									</div>
-									<div class="flex flex-1 justify-content-e padding-right-10">
+									<div class="inline-block float-r flex-1 padding-right-10">
 										操作
 									</div>
 								</div>
@@ -177,25 +173,24 @@
 					
 					<table class="table remove-margin-bottom remove-border">
 						<tbody>
+
 						<tr v-for='message in invoiceList'  >
-							
 							<td colspan="3">
 								<div class="flex flex-1 flex-direction-row">
-									<div class="flex title-time justify-content-c">
+									<div class="inline-block title-time">
 										{{message.dt | date }}
 									</div>
-									<div class="flex title-type justify-content-c">
+									<div class="inline-block title-type">
 										{{message.amongAmount}}
 									</div>
-									<div class="flex flex-1 justify-content-e ">
+									<div class="inline-block float-r">
 										<div class="flex"><span @click="showDetail($index,message.dt)" class="cursor"><i class="icon iconfont icon-oc-dropdown"></i></span></div>
 									</div>
 								</div>
 								<div class="flex flex-1 table-detail" v-show="show[$index]">
 									<div class="flex flex-1 flex-wrap " >
-
-										<div class="codedetail width-50" v-for="detail in invoiceDetail[$index]" >
-											<div class="flex ">
+										<div class="codedetail width-50 float-l" v-for="detail in invoiceDetail[$index]" >
+											<div class="inline-block">
 												<span class="width-50">{{detail.type}}</span>
 												<span class="width-50">{{detail.amongAmount}}</span>
 											</div>
