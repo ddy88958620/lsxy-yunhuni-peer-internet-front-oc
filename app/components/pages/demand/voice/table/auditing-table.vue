@@ -28,17 +28,20 @@
 				<thead>
 				<tr>
 					<th class="text-align-c">申请时间</th>
+
 					<th>会员名称</th>
 					<th>应用名称</th>
 					<th>文件名</th>
 					<th>大小</th>
 					<th>同步状态</th>
+					<th class="text-align-c">审核时间</th>
 					<th class="text-align-c">操作</th>
 				</tr>
 				</thead>
 				<tbody>
 				<tr v-for='message in voice.result'>
 					<td class="message-time text-align-c">{{message.createTime | totalDate}}</td>
+
 					<td><a v-link="'/admin/tenant/detail/'+message.tenant.id" >{{message.tenant.tenantName}}</a></td>
 					<td>{{message.app.name}}</td>
 					<td>{{message.name}}</td>
@@ -46,6 +49,7 @@
 					<td v-if="message.sync === 1" class="darkgreen">同步成功</td>
 					<td  v-if="message.sync == 0 || message.sync ==null || message.sync == '' " >未同步</td>
 					<td  v-if="message.sync == -1" class="text-danger">同步失败</td>
+					<td class="message-time text-align-c">{{message.checkTime | totalDate}}</td>
 					<td class="text-align-c">
 						<span><a @click="playAudio($index)">试听</a></span>
 					</td>
@@ -56,11 +60,25 @@
 				<a v-show='this.voice.totalPageCount==this.voice.currentPageNo || this.voice.totalPageCount==0'>加载完毕</a>
 				<a @click="moreMessage" class="text-none" v-show='this.voice.totalPageCount!=this.voice.currentPageNo && this.voice.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
 			</div>
-			<!--放音文件隐藏-->
-			<audio :src="audioURI" autoplay></audio>
-
 		</div>
 	</div>
+
+	<modal :show.sync="audioModal" title="播放" :action="hideAudioModal" classname="small">
+		<div slot="header">
+			播放
+		</div>
+		<div slot="body">
+			<div class="flex">
+				<audio class="audio inline-block float-l" :src="audioURI" controls="" autoplay></audio>
+			</div>
+		</div>
+		<div slot="footer">
+			<div class="modal-footer inline-block float-r" >
+				<button class="btn btn-default" @click="audioModal=false">关闭</button>
+			</div>
+		</div>
+	</modal>
+
 </template>
 <script>
 	import { getVoiceList,getMoreVoiceList } from '../../../../../vuex/actions'
@@ -77,7 +95,8 @@
 		},
 		components: {
 			'datetime-picker': require('../../../../ui/datetimepicker.vue'),
-			'search' : require('../../../../ui/search-input.vue')
+			'search' : require('../../../../ui/search-input.vue'),
+			'modal' : require('../../../../ui/modal.vue'),
 		},
 		data(){
 			return {
@@ -94,6 +113,7 @@
 					type:'day',
 					value:'',
 				},
+				audioModal:false,
 				audioURI: '',
 			}
 		},
@@ -107,8 +127,6 @@
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
 				params.name = this.search
-		
-
 				this.getVoiceList(params)
 			},
 			moreMessage(){
@@ -121,17 +139,16 @@
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
 				params.name = this.search
-				
 				params.pageNo = nextPage
 				this.getMoreVoiceList(params)
-
 			},
 			playAudio(index){
-//				console.log(this.voice.result[index].fileKey)
+				this.audioModal = true
 				this.audioURI = domain.API_ROOT_AUDIO + '?uri='+this.voice.result[index].fileKey
 			},
-			stopAudio(){
-				this.audioURI = '';
+			hideAudioModal(){
+				this.audioURI = ''
+				this.audioModal = false
 			}
 		},
 		route: {
@@ -141,7 +158,6 @@
 			params.type = this.type
 			this.getVoiceList(params)
 		}
-
 	}
 
 </script>
