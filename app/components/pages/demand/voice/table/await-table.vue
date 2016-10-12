@@ -96,7 +96,6 @@
 	}
 </style>
 
-
 <script>
 	import { getVoiceList,delVoice,showMsg,getMoreVoiceList,getDemandNum,getMessageNum} from '../../../../../vuex/actions'
 	import domain from '../../../../../config/domain'
@@ -185,7 +184,6 @@
 				this.audioURI = domain.API_ROOT_AUDIO + '?uri='+this.voice.result[index].fileKey
 			},
 			stopAudio(){
-				console.log("tingzhi")
 				this.audioURI = '';
 			},
 			testAudio(index){
