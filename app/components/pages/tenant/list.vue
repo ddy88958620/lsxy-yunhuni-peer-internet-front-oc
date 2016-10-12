@@ -101,7 +101,7 @@
             authStatus: '',
             accStatus: '',
             pageNo: 0,
-            pageSize: 10
+            pageSize: 20
           },
           loading: true,
           hasMore: true,
