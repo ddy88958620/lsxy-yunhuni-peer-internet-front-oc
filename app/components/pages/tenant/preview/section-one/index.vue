@@ -37,7 +37,6 @@
                        ￥{{ bill.balance.toFixed(3)}}
                     </span>
               <span v-else>
-                        欠费{{ }}
                        {{(bill && bill.balance) ? '欠费'+-bill.balance : '￥0.000' }}
                     </span>
             </div>
