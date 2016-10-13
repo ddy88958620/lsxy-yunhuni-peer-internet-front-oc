@@ -61,16 +61,18 @@
 								<a class="btn btn-primary" v-if="authinfo.status ===6" v-link="'/admin/demand/member/list/await'">去审核</a>
 								<span v-if="authinfo.status==100">未认证</span>
 							</li>
-							<li>真实姓名：{{authinfo.realnamePrivate.name}}</li>
-							<li>证件类型：
-								<span class="padding-right-10" v-if="authinfo.realnamePrivate.idType ==='0'">身份证</span>
-								<span class="padding-right-10" v-if="authinfo.realnamePrivate.idType ==='1'">护照</span>
-							</li>
-							<li>证件号码：{{authinfo.realnamePrivate.idNumber}}</li>
-							<li class="flex  flex-direction-row ">
-								<span class=" padding-right-10">证件照: </span>
-								<img :src="authinfo.realnamePrivate.idPhoto | img"  class="padding-right-10" height="200" data-action="zoom">
-							</li>
+							<template v-if="authinfo.status!=100">
+								<li>真实姓名：{{authinfo.realnamePrivate.name}}</li>
+								<li>证件类型：
+									<span class="padding-right-10" v-if="authinfo.realnamePrivate.idType ==='0'">身份证</span>
+									<span class="padding-right-10" v-if="authinfo.realnamePrivate.idType ==='1'">护照</span>
+								</li>
+								<li>证件号码：{{authinfo.realnamePrivate.idNumber}}</li>
+								<li class="flex  flex-direction-row ">
+									<span class=" padding-right-10">证件照: </span>
+									<img :src="authinfo.realnamePrivate.idPhoto | img"  class="padding-right-10" height="200" data-action="zoom">
+								</li>
+							</template>
 						</ul>
 
 						<ul class="list-none-style" id="company"  v-if="this.authradio =='corp'" >
@@ -80,7 +82,7 @@
 								<a class="btn btn-primary" v-if="authinfo.status ===3 || authinfo.status ===0" v-link="'/admin/demand/member/list/await'">去审核</a>
 								<span v-if="authinfo.status==100 || authinfo.status==1 || authinfo.status==-1">未认证</span>
 							</li>
-							<template v-if="authinfo.status !=1 && authinfo.status !=-1  ">
+							<template v-if="authinfo.status !=1 && authinfo.status !=-1 && authinfo.status!=100">
 								<li>公司名称: {{authinfo.realnameCorp.name}}</li>
 								<li>公司地址: {{authinfo.realnameCorp.addr}}</li>
 								<li>所属行业: {{authinfo.realnameCorp.industry}}</li>
