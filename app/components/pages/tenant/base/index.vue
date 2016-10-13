@@ -31,11 +31,11 @@
 		</div>
 	</div>
 
-	<div class="bg-section-margin base-section no-wrap">
-		<div class="inline-block width-50 ofh padding-right-10">
+	<div class="bg-section-margin base-section no-wrap inline-block">
+		<div class="inline-block width-50 ofh padding-right-10 float-l">
 			<div class="panel panel-base">
 					<div class="panel-heading panel-base-heading ">联系信息</div>
-					<div class="panel-body admin-bg flex-1">
+					<div class="panel-body admin-bg flex-1 contactbox ">
 						<ul class="list-none-style">
 							<li>所在地区: {{info.province}}{{info.city}}</li>
 							<li>通讯地址: {{info.address}}</li>
@@ -44,68 +44,82 @@
 					</div>
 				</div>
 		</div>
-		<div class="inline-block width-50 ofh padding-left-10">
+		<div class="inline-block width-50 ofh padding-left-10 " >
 			<div class="panel panel-base">
 					<div class="panel-heading panel-base-heading">认证信息</div>
-					<div class="panel-body admin-bg flex-1">
-						<ul class="list-none-style">
-							<li>认证状态:
-								<span class="text-danger padding-right-10" >{{authinfo.status}}</span> <a class="btn btn-primary" v-if="authinfo.status === '未审核'" v-link="'/admin/demand/member/list/await'">去审核</a>
+					<div class="panel-body admin-bg flex-1 authbox">
+						<ul class="list-none-style remove-padding-bottom">
+							<li class="padding-bottom-10">
+								 <input type="radio" name="auth-radio" value="private" v-model="authradio" @click="autoheight()" />个人认证
+								 <input type="radio" value="corp" name="auth-radio" v-model="authradio" @click="autoheight()" class="authradio" /> 企业认证
 							</li>
+						</ul>
+						<ul class="list-none-style" v-if="authradio == 'private'">
+							<li>认证状态:
+								<span class="padding-right-10" v-if="authinfo.status==1 || authinfo.status==2 || authinfo.status==3 || authinfo.status==4 || authinfo.status==5 || authinfo.status==-2">认证成功</span>
+								<span class="text-danger padding-right-10" v-if="authinfo.status==-1 ">认证失败</span>
+								<a class="btn btn-primary" v-if="authinfo.status ===6" v-link="'/admin/demand/member/list/await'">去审核</a>
+								<span v-if="authinfo.status==100">未认证</span>
+							</li>
+							<li>真实姓名：{{authinfo.realnamePrivate.name}}</li>
+							<li>证件类型：
+								<span class="padding-right-10" v-if="authinfo.realnamePrivate.idType ==='0'">身份证</span>
+								<span class="padding-right-10" v-if="authinfo.realnamePrivate.idType ==='1'">护照</span>
+							</li>
+							<li>证件号码：{{authinfo.realnamePrivate.idNumber}}</li>
+							<li class="flex  flex-direction-row ">
+								<span class=" padding-right-10">证件照: </span>
+								<img :src="authinfo.realnamePrivate.idPhoto | img"  class="padding-right-10" height="200" data-action="zoom">
+							</li>
+						</ul>
 
-							<li v-if="authinfo.status !='未认证' && authinfo.status !='认证失败'  ">认证类型: {{authinfo.type}}</li>
-							<template v-if="authinfo.type === '公司' &&  authinfo.status !='认证失败' ">
-								<li>公司名称: {{authinfo.name}}</li>
-								<li>公司地址: {{authinfo.addr}}</li>
-								<li>所属行业: {{authinfo.industry}}</li>
-								<li>申请人：{{authinfo.proposer}}</li>
+						<ul class="list-none-style" id="company"  v-if="this.authradio =='corp'" >
+							<li>认证状态:
+								<span class="padding-right-10" v-if="authinfo.status==2 || authinfo.status==4">认证成功</span>
+								<span class="text-danger padding-right-10" v-if="authinfo.status==-2 || authinfo.status==5">认证失败</span>
+								<a class="btn btn-primary" v-if="authinfo.status ===3 || authinfo.status ===0" v-link="'/admin/demand/member/list/await'">去审核</a>
+								<span v-if="authinfo.status==100 || authinfo.status==1 || authinfo.status==-1">未认证</span>
+							</li>
+							<template v-if="authinfo.status !=1 && authinfo.status !=-1  ">
+								<li>公司名称: {{authinfo.realnameCorp.name}}</li>
+								<li>公司地址: {{authinfo.realnameCorp.addr}}</li>
+								<li>所属行业: {{authinfo.realnameCorp.industry}}</li>
+								<li>申请人：{{authinfo.realnameCorp.proposer}}</li>
 								<li>证件类型:
-									<span v-if="authinfo.authType == '0'">三证合一（一照一码）</span>
-									<span v-if="authinfo.authType == '1'">三证合一</span>
-									<span v-if="authinfo.authType == '2'">三证分离</span>
+									<span v-if="authinfo.realnameCorp.authType == '0'">三证合一（一照一码）</span>
+									<span v-if="authinfo.realnameCorp.authType == '1'">三证合一</span>
+									<span v-if="authinfo.realnameCorp.authType == '2'">三证分离</span>
 								</li>
-								<template v-if="authinfo.authType == '0'">
-									<li>统一社会信用代码：{{authinfo.type01Prop02}}</li>
+								<template v-if="authinfo.realnameCorp.authType == '0'">
+									<li>统一社会信用代码：{{authinfo.realnameCorp.type01Prop02}}</li>
 									<li class="flex  flex-direction-row ">
 										<span class=" padding-right-10">营业执照: </span>
-										<img :src="authinfo.type01Prop01 | img" alt="" class="padding-right-10"   height="200" data-action="zoom"  >
+										<img :src="authinfo.realnameCorp.type01Prop01 | img" alt="" class="padding-right-10"   height="200" data-action="zoom"  >
 									</li>
 								</template>
-								<template v-if="authinfo.authType == '1'">
-									<li>注册号：{{authinfo.type02Prop01}}</li>
-									<li>税务登记号：{{authinfo.type02Prop02}}</li>
+								<template v-if="authinfo.realnameCorp.authType == '1'">
+									<li>注册号：{{authinfo.realnameCorp.type02Prop01}}</li>
+									<li>税务登记号：{{authinfo.realnameCorp.type02Prop02}}</li>
 									<li class="flex  flex-direction-row ">
 										<span class=" padding-right-10">营业执照: </span>
-										<img :src="authinfo.type02Prop03 | img" alt="" class="padding-right-10"  height="200" data-action="zoom" >
+										<img :src="authinfo.realnameCorp.type02Prop03 | img" alt="" class="padding-right-10"  height="200" data-action="zoom" >
 									</li>
 								</template>
-								<template v-if="authinfo.authType == '2'">
-									<li>税务登记号：{{authinfo.type03Prop01}}</li>
+								<template v-if="authinfo.realnameCorp.authType == '2'">
+									<li>税务登记号：{{authinfo.realnameCorp.type03Prop01}}</li>
 									<li class="flex  flex-direction-row ">
 										<span class=" padding-right-10">税务登记证: </span>
-										<img :src="authinfo.type03Prop02 | img" alt="" class="padding-right-10"  height="200" data-action="zoom" >
+										<img :src="authinfo.realnameCorp.type03Prop02 | img" alt="" class="padding-right-10"  height="200" data-action="zoom" >
 									</li>
-
-									<li>营业执照号：{{authinfo.type03Prop03}}</li>
+									<li>营业执照号：{{authinfo.realnameCorp.type03Prop03}}</li>
 									<li class="flex  flex-direction-row ">
 										<span class=" padding-right-10">营业执照: </span>
-										<img :src="authinfo.type03Prop04 | img"  class="padding-right-10"  height="200"  data-action="zoom" >
+										<img :src="authinfo.realnameCorp.type03Prop04 | img"  class="padding-right-10"  height="200"  data-action="zoom" >
 									</li>
 								</template>
 							</template>
-							<template v-if="authinfo.type === '个人' && authinfo.status !='未认证' && authinfo.status !='认证失败' "  >
-								<li>真实姓名：{{authinfo.name}}</li>
-								<li>证件类型：
-									<span class="padding-right-10" v-if="authinfo.idType ==='0'">身份证</span>
-									<span class="padding-right-10" v-if="authinfo.idType ==='1'">护照</span>
-								</li>
-								<li>证件号码：{{authinfo.idNumber}}</li>
-								<li class="flex  flex-direction-row ">
-									<span class=" padding-right-10">证件照: </span>
-									<img :src="authinfo.idPhoto | img"  class="padding-right-10" height="200" data-action="zoom">
-								</li>
-							</template>
 						</ul>
+
 					</div>
 				</div>
 		</div>
@@ -135,7 +149,8 @@
 		},
 		data(){
 			return {
-				showModal : false
+				showModal : false,
+				authradio:'private',
 			}
 		},
 		methods:{
@@ -144,6 +159,14 @@
 				$.patch('/tenant/tenants/' + this.$route.params.uid + '/resetPass').then((res) => {
 				});
 				self.showModal = false
+			},
+			autoheight(){
+				setInterval(function(){
+					var h = $('.authbox').height()
+					$('.contactbox').css('height',h+'px')
+					console.log(h)
+				},100);
+
 			}
 		},
 		ready(){
@@ -151,6 +174,7 @@
 			params.id = this.$route.params.uid
 			this.getTenantAuthInfo(params)
 			this.getTenantInfo(params)
+			this.autoheight()
 		}
 	}
 </script>
@@ -159,10 +183,10 @@
 
 <style lang="sass" scoped>
 	.base-section {
-		height: 300px;
-		
+		min-height: 300px;
+	  width:100%;
 		.panel-body {
-			height: 235px;
+			min-height: 235px;
 		}
 	}
 	
@@ -172,6 +196,17 @@
 		li {
 			padding-bottom: 25px;
 		}
+	}
+
+	.remove-padding-bottom{
+		padding-bottom: 0;
+	}
+	.padding-bottom-10{
+		padding-bottom: 10px;
+	}
+
+	.authradio{
+		margin-left: 10px;
 	}
 </style>
 
