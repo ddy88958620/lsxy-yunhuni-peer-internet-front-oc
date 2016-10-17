@@ -135,11 +135,11 @@
         <span class="inline-block ">充值类型</span>
         <span class="inline-block admin-button-margin">
           <select name="source" class="form-control" v-model="recharge.source" >
-            <option value="1">用户充值</option>
-            <option value="2">手工-活动赠送</option>
-            <option value="3">手工-线下商户</option>
-            <option value="4">手工-其他</option>
-            <option value="5">手工-测试</option>
+            <option value="USER">用户充值</option>
+            <option value="MANUAL_ACTIVITY">活动赠送</option>
+            <option value="MANUAL_BUSINESS">线下商户</option>
+            <option value="MANUAL_OTHER">其他</option>
+            <option value="MANUAL_TEST">测试</option>
           </select>
         </span>
       </div>
@@ -221,7 +221,7 @@
         recharge:{
           showModal:false,
           amount:0,
-          source:1
+          source:'USER'
         },
         flat:{
           showModal:false,
@@ -263,8 +263,6 @@
           self.consumes = [];
         }
 
-
-
         $.get('/tenant/tenants/'+this.$route.params.uid+'/consumes', params).then((res)=> {
           self.page.loading = false
           if (res.data && res.data.consumes && res.data.consumes.result) {
@@ -290,6 +288,7 @@
             }
             if(res.data){
               self.recharge.amount = 0
+              self.recharge.source = 'USER'
               self.recharge.showModal = false
               //充值成功提示
               self.showMsg({content: '充值成功', type: 'success'})
@@ -318,7 +317,7 @@
             }
           })
         }else{
-          self.recharge.amount = 0
+          self.flat.amount = 0
           self.showMsg({content: '平账失败,平账金额必须大于0元', type: 'danger'})
         }
       }
