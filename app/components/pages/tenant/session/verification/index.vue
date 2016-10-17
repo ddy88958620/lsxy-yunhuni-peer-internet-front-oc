@@ -12,7 +12,7 @@
           <th>主叫</th>
           <th>被叫</th>
           <th>挂机时间</th>
-          <th class="text-align-r">消费金额(元)</th>
+          <th class="text-align-r">消费金额</th>
           <th class="text-align-c">时长(秒)</th>
         </tr>
         </thead>
