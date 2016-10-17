@@ -4,7 +4,7 @@
 		<div class="admin-panel flex-1">
 			<div class="panel-heading flex flex-1 ">
 				<span class="inline-block">开票信息</span>
-				<a class="inline-block float" @click="showDetailModal = true">消费详情</a>
+				<a class="inline-block float-r" @click="showDetailModal = true">消费详情</a>
 			</div>
 			<div class="panel-body">
 				<ul class="list-none-style">
@@ -167,13 +167,13 @@
 						<tr>
 							<th colspan="3">
 								<div class="flex flex-1 flex-direction-row">
-									<div class="flex title-time justify-content-c">
+									<div class="inline-block title-time ">
 										消费时间
 									</div>
-									<div class="flex title-type justify-content-c">
+									<div class="inline-block title-type ">
 										消费金额
 									</div>
-									<div class="flex flex-1 justify-content-e padding-right-10">
+									<div class="inline-block float-r padding-right-10">
 										操作
 									</div>
 								</div>
@@ -191,26 +191,24 @@
 							
 							<td colspan="3">
 								<div class="flex flex-1 flex-direction-row">
-									<div class="flex title-time justify-content-c">
+									<div class="inline-block title-time">
 										{{message.dt | date }}
 									</div>
-									<div class="flex title-type justify-content-c">
+									<div class="inline-block title-type">
 										{{message.amongAmount}}
 									</div>
-									<div class="flex flex-1 justify-content-e ">
+									<div class="inline-block float-r">
 										<div class="flex"><span @click="showDetail($index,message.dt)" class="cursor"><i class="icon iconfont icon-oc-dropdown"></i></span></div>
 									</div>
 								</div>
 								<div class="flex flex-1 table-detail" v-show="show[$index]">
 									<div class="flex flex-1 flex-wrap " >
-
-										<div class="codedetail width-50" v-for="detail in invoiceDetail[$index]" >
-											<div class="flex ">
+										<div class="codedetail width-50 float-l" v-for="detail in invoiceDetail[$index]" >
+											<div class="inline-block ">
 												<span class="width-50">{{detail.type}}</span>
 												<span class="width-50">{{detail.amongAmount}}</span>
 											</div>
 										</div>
-
 									</div>
 								</div>
 							</td>
