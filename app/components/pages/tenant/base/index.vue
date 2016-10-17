@@ -61,7 +61,7 @@
 								<a class="btn btn-primary" v-if="authinfo.status ===6" v-link="'/admin/demand/member/list/await'">去审核</a>
 								<span v-if="authinfo.status==100">未认证</span>
 							</li>
-							<template v-if="authinfo.status!=100">
+							<div v-if="authinfo.status!=100">
 								<li>真实姓名：{{authinfo.realnamePrivate.name}}</li>
 								<li>证件类型：
 									<span class="padding-right-10" v-if="authinfo.realnamePrivate.idType ==='0'">身份证</span>
@@ -72,7 +72,7 @@
 									<span class=" padding-right-10">证件照: </span>
 									<img :src="authinfo.realnamePrivate.idPhoto | img"  class="padding-right-10" height="200" data-action="zoom">
 								</li>
-							</template>
+							</div>
 						</ul>
 
 						<ul class="list-none-style" id="company"  v-if="this.authradio =='corp'" >
@@ -82,7 +82,7 @@
 								<a class="btn btn-primary" v-if="authinfo.status ===3 || authinfo.status ===0" v-link="'/admin/demand/member/list/await'">去审核</a>
 								<span v-if="authinfo.status==100 || authinfo.status==1 || authinfo.status==-1">未认证</span>
 							</li>
-							<template v-if="authinfo.status !=1 && authinfo.status !=-1 && authinfo.status!=100">
+							<div v-if="authinfo.status !=1 && authinfo.status !=-1 && authinfo.status!=100">
 								<li>公司名称: {{authinfo.realnameCorp.name}}</li>
 								<li>公司地址: {{authinfo.realnameCorp.addr}}</li>
 								<li>所属行业: {{authinfo.realnameCorp.industry}}</li>
@@ -92,22 +92,22 @@
 									<span v-if="authinfo.realnameCorp.authType == '1'">三证合一</span>
 									<span v-if="authinfo.realnameCorp.authType == '2'">三证分离</span>
 								</li>
-								<template v-if="authinfo.realnameCorp.authType == '0'">
+								<div v-if="authinfo.realnameCorp.authType == '0'">
 									<li>统一社会信用代码：{{authinfo.realnameCorp.type01Prop02}}</li>
 									<li class="flex  flex-direction-row ">
 										<span class=" padding-right-10">营业执照: </span>
 										<img :src="authinfo.realnameCorp.type01Prop01 | img" alt="" class="padding-right-10"   height="200" data-action="zoom"  >
 									</li>
-								</template>
-								<template v-if="authinfo.realnameCorp.authType == '1'">
+								</div>
+								<div v-if="authinfo.realnameCorp.authType == '1'">
 									<li>注册号：{{authinfo.realnameCorp.type02Prop01}}</li>
 									<li>税务登记号：{{authinfo.realnameCorp.type02Prop02}}</li>
 									<li class="flex  flex-direction-row ">
 										<span class=" padding-right-10">营业执照: </span>
 										<img :src="authinfo.realnameCorp.type02Prop03 | img" alt="" class="padding-right-10"  height="200" data-action="zoom" >
 									</li>
-								</template>
-								<template v-if="authinfo.realnameCorp.authType == '2'">
+								</div>
+								<div v-if="authinfo.realnameCorp.authType == '2'">
 									<li>税务登记号：{{authinfo.realnameCorp.type03Prop01}}</li>
 									<li class="flex  flex-direction-row ">
 										<span class=" padding-right-10">税务登记证: </span>
@@ -118,10 +118,9 @@
 										<span class=" padding-right-10">营业执照: </span>
 										<img :src="authinfo.realnameCorp.type03Prop04 | img"  class="padding-right-10"  height="200"  data-action="zoom" >
 									</li>
-								</template>
-							</template>
+								</div>
+							</div>
 						</ul>
-
 					</div>
 				</div>
 		</div>
@@ -163,13 +162,13 @@
 				self.showModal = false
 			},
 			autoheight(){
-				setInterval(function(){
+				var iscount = setInterval(function(){
 					var h = $('.authbox').height()
 					$('.contactbox').css('height',h+'px')
-					console.log(h)
-				},100);
-
+					clearInterval(iscount)
+				},10);
 			}
+
 		},
 		ready(){
 			let params = {}
