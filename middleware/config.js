@@ -7,8 +7,8 @@ if(env === 'production') {
 	module.exports = {
 		COOKIEDOAIM: 'oc.yunhuni.com',
 		COOKIENAME: 'YUNHUNISESSIONID',
-		JAVAAPI: 'http://wwww.oc.internal.yunhuni.com',
-		REDISHOST: '10.163.3.165',
+		JAVAAPI: 'http://rest.oc.internal.yunhuni.com',
+		REDISHOST: 'p04a',
 		REDISPORT: 6379
 	}
 }
