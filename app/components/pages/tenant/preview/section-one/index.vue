@@ -137,7 +137,7 @@
           <select name="source" class="form-control" v-model="recharge.source" >
             <option value="USER">用户充值</option>
             <option value="MANUAL_ACTIVITY">活动赠送</option>
-            <option value="MANUAL_BUSINESS">线下商户</option>
+            <option value="MANUAL_BUSINESS">线下商务</option>
             <option value="MANUAL_OTHER">其他</option>
             <option value="MANUAL_TEST">测试</option>
           </select>
