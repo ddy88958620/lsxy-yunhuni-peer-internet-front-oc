@@ -131,7 +131,19 @@
 
   <modal :show.sync="recharge.showModal" title="充值" :action="doRecharge" classname="small">
     <div slot="body" class="flex flex-1 flex-direction-column" >
-      <div class="flex flex-1 ">
+      <div class="flex">
+        <span class="inline-block ">充值类型</span>
+        <span class="inline-block admin-button-margin">
+          <select name="source" class="form-control" v-model="recharge.source" >
+            <option value="1">用户充值</option>
+            <option value="2">手工-活动赠送</option>
+            <option value="3">手工-线下商户</option>
+            <option value="4">手工-其他</option>
+            <option value="5">手工-测试</option>
+          </select>
+        </span>
+      </div>
+      <div class="flex flex-1 margin-top-20 ">
         <span class="inline-block ">充值金额</span>
         <span class="inline-block admin-button-margin"><input type="number" class="form-control" v-model='recharge.amount' /></span>
       </div>
@@ -208,7 +220,8 @@
         },
         recharge:{
           showModal:false,
-          amount:0
+          amount:0,
+          source:1
         },
         flat:{
           showModal:false,
