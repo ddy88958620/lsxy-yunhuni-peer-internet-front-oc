@@ -161,12 +161,12 @@
 				});
 				self.showModal = false
 			},
-			autoheight(){
-				var iscount = setInterval(function(){
+			autoheight(num){
+				if(num!==500)num=100
+				 setTimeout(function(){
 					var h = $('.authbox').height()
 					$('.contactbox').css('height',h+'px')
-					clearInterval(iscount)
-				},10);
+				},num);
 			}
 
 		},
@@ -175,7 +175,7 @@
 			params.id = this.$route.params.uid
 			this.getTenantAuthInfo(params)
 			this.getTenantInfo(params)
-			this.autoheight()
+			this.autoheight(500)
 		}
 	}
 </script>
