@@ -11,8 +11,8 @@
           <th>呼叫类型</th>
           <th>主叫</th>
           <th>被叫</th>
-          <th>时长(秒)</th>
-          <th class="text-align-r">消费金额(元)</th>
+          <th class="text-align-r">消费金额</th>
+          <th class="text-align-c">时长(秒)</th>
         </tr>
         </thead>
         <tbody>
@@ -22,8 +22,8 @@
           <td v-if="message.ivrType==2">呼出</td>
           <td>{{ message.fromNum }}</td>
           <td>{{ message.toNum }}</td>
-          <td>{{ message.costTimeLong }}</td>
-          <td class="text-align-r">{{ message.cost }}</td>
+          <td class="text-align-r">￥{{ message.cost }}</td>
+          <td class="text-align-c">{{ message.costTimeLong }}</td>
         </tr>
         </tbody>
       </table>
