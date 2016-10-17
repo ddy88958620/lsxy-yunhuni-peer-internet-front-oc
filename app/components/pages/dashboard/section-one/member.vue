@@ -1,5 +1,5 @@
 <template>
-  <div class="section_left ofh" >
+  <div class="section_left" >
 
     <div class="panel panel-default">
       <div class="panel-heading"><i class="iconfont icon-oc-member"></i>会员数据</div>
