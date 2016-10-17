@@ -1,5 +1,5 @@
 <template>
-  <div class="section_right ofh">
+  <div class="section_right">
     <div class="panel panel-default">
       <div class="panel-heading"><i class="iconfont icon-oc-app"></i>应用数据</div>
       <div class="panel-body">
