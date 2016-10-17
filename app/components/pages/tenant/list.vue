@@ -53,7 +53,7 @@
           <td><a v-link="'/admin/tenant/detail/'+tenant.uid" >{{tenant.name}}</a></td>
           <td class="text-align-c">{{tenant.app_count ? tenant.app_count: 0 }}</td>
           <td class="{{tenant.auth_status.toString() === '1' ? '' : 'text-danger'}}">{{tenant.auth_status.toString() === '1' ? '已认证' : '未认证'}}</td>
-          <td class="text-align-r">￥{{ tenant.remain_coin>=0 ? tenant.remain_coin>0 ?  tenant.remain_coin.toFixed(3) : '0.000' : '欠费￥'+-tenant.remain_coin.toFixed(3) }}</td>
+          <td class="text-align-r">{{ tenant.remain_coin>=0 ? tenant.remain_coin>0 ?  tenant.remain_coin.toFixed(3) : '0.000' : '欠费￥'+-tenant.remain_coin.toFixed(3) }}</td>
           <td class="text-align-r">￥{{tenant.cost_coin>0 ? tenant.cost_coin.toFixed(3) : '0.000' }}</td>
           <td class="text-align-r">￥{{tenant.total_coin>0 ? tenant.total_coin.toFixed(3) : '0.000' }}</td>
           <td class="text-align-c">{{tenant.session_count ? tenant.session_count : 0 }}</td>
