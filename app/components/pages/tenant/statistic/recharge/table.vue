@@ -10,6 +10,7 @@
           <th class="text-align-c">充值时间</th>
           <th>充值额（元）</th>
           <th>充值方式</th>
+          <th>充值类型</th>
         </tr>
         </thead>
         <tbody>
@@ -19,6 +20,11 @@
           <td v-if="message.type==='RENGONG'">人工充值</td>
           <td v-if="message.type==='UNIONPAY'">银联</td>
           <td v-if="message.type==='ALIPAY'">支付宝</td>
+          <td v-if="message.source==='USER'">用户充值</td>
+          <td v-if="message.source==='MANUAL_ACTIVITY'">活动赠送</td>
+          <td v-if="message.source==='MANUAL_BUSINESS'">线下商务</td>
+          <td v-if="message.source==='MANUAL_OTHER'">其他</td>
+          <td v-if="message.source==='MANUAL_TEST'">测试</td>
         </tr>
         </tbody>
       </table>
