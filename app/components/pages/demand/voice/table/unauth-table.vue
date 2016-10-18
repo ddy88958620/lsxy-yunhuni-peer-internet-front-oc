@@ -29,7 +29,6 @@
 				<thead>
 				<tr>
 					<th class="text-align-c">申请时间</th>
-
 					<th>会员名称</th>
 					<th>应用名称</th>
 					<th>文件名</th>
@@ -71,7 +70,7 @@
 				</div>
 				<div slot="footer">
 					<div class="modal-footer inline-block float-r" >
-						<button class="btn btn-default" @click="audioModal=false">关闭</button>
+						<button class="btn btn-default" @click="hideAudioModal">关闭</button>
 					</div>
 				</div>
 			</modal>
