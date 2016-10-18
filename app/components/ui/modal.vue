@@ -4,7 +4,7 @@
       <div class="modal-container position-center {{classname}}">
 
         <div class="modal-header flex flex-1 justify-content-b">
-          <slot name="header flex">
+          <slot name="header" class="flex">
             <div class="title inline-block">{{title}}</div>
             <i class="icon iconfont icon-oc-close-middle cursor close float-r" @click="show = false"></i>
           </slot>
