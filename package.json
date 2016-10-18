@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --config webpack.dev.config.js",
     "test": "webpack --watch --config webpack.dev.config.js",
-    "clean": "rm -rf ./static/*",
     "build": "webpack --progress --hide-modules --progress --config webpack.prod.config.js",
     "mock": "yaml2json -p -s -r ./app/mock"
   },
