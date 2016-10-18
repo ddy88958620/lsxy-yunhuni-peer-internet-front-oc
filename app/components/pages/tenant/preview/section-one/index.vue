@@ -135,11 +135,10 @@
         <span class="inline-block ">充值类型</span>
         <span class="inline-block admin-button-margin">
           <select name="source" class="form-control" v-model="recharge.source" >
-            <option value="USER">用户充值</option>
-            <option value="MANUAL_ACTIVITY">活动赠送</option>
-            <option value="MANUAL_BUSINESS">线下商务</option>
-            <option value="MANUAL_OTHER">其他</option>
-            <option value="MANUAL_TEST">测试</option>
+            <option value="MANUAL_ACTIVITY">手工-活动赠送</option>
+            <option value="MANUAL_BUSINESS">手工-线下商务</option>
+            <option value="MANUAL_TEST">手工-测试</option>
+            <option value="MANUAL_OTHER">手工-其他</option>
           </select>
         </span>
       </div>
@@ -221,7 +220,7 @@
         recharge:{
           showModal:false,
           amount:0,
-          source:'USER'
+          source:'MANUAL_ACTIVITY'
         },
         flat:{
           showModal:false,
