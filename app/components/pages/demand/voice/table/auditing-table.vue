@@ -76,7 +76,7 @@
 		</div>
 		<div slot="footer">
 			<div class="modal-footer inline-block float-r" >
-				<button class="btn btn-default" @click="audioModal=false">关闭</button>
+				<button class="btn btn-default" @click="hideAudioModal">关闭</button>
 			</div>
 		</div>
 	</modal>
