@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div class="flex flex-direction-column admin-table-header">
       <div class="flex align-items-c remove-margin-bottom">
         <span class='datetime-picker-label clear-padding-left'>充值渠道:</span>
@@ -10,18 +9,18 @@
           <option value='ALIPAY'>支付宝</option>
           <option value='RENGONG'>运营充值</option>
         </select>
-        <span class='datetime-picker-label'  v-if="type=='RENGONG' || type==''">充值类型: </span>
-        <select class="form-control" v-model='source' v-if="type=='RENGONG' || type==''">
+        <span class='datetime-picker-label'>充值类型: </span>
+        <select class="form-control" v-model='source'">
           <option value=''>全部</option>
-          <option value='MANUAL_ACTIVITY' >手工-活动赠送</option>
-          <option value='MANUAL_BUSINESS'>手工-线下商务</option>
-          <option vaule='MANUAL_OTHER' >手工-其他</option>
-          <option vaule='MANUAL_TEST' >手工-测试</option>
+          <option value='USER' v-if="type=='ALIPAY' || type=='UNIONPAY' || type==''">用户自充</option>
+          <option value='MANUAL_ACTIVITY'  v-if="type=='RENGONG' || type==''">手工-活动赠送</option>
+          <option value='MANUAL_BUSINESS' v-if="type=='RENGONG' || type==''">手工-线下商务</option>
+          <option value='MANUAL_OTHER'  v-if="type=='RENGONG' || type==''">手工-其他</option>
+          <option value='MANUAL_TEST'  v-if="type=='RENGONG' || type==''">手工-测试</option>
         </select>
         <a class="btn btn-primary admin-button-margin" @click="query()" >查询</a>
       </div>
     </div>
-
     <div class="admin-table">
       <div class="table-total flex flex-1 justify-content-e float-r">
         共<span class="text-danger">{{recharge.totalCount}}</span>条
@@ -40,8 +39,9 @@
           <td class="message-time text-align-c">{{message.createTime | totalDate}}</td>
           <td>{{message.amount}}</td>
           <td>
-            <span v-if="message.type==='UNIONPAY' || message.type==='ALIPAY'">自助充值</span>
-            <span v-else>人工充值</span>
+            <span v-if="message.type==='UNIONPAY'">银联</span>
+            <span v-if="message.type==='ALIPAY'">支付宝</span>
+            <span v-if="message.type==='RENGONG'">运营充值</span>
           </td>
           <td>
             <span v-if="message.source==='USER'">用户自充</span>
@@ -74,22 +74,17 @@
     },
     methods: {
       query(more){
+         let self = this
         let uid = this.$route.params.uid
-        let type = 3
-        let appId = this.$route.params.aid
-        let time = this.$route.params.day
-        let params = {}
-        params.type=this.type
-        if(this.type=='RENGONG'){
-          params.source = this.source
-        }
+        let params = {type:this.type,source:this.source}
+
         if(more){
           let pageNo = this.recharge.currentPageNo + 1
           params.pageNo = pageNo
         }
-        let self = this
+
         $.get('/tenant/tenants/'+uid+'/recharges', params).then((res) => {
-           if(res.data.totalCount>0){
+           if(res.data.totalCount>=0){
             self.rechargeTotal =res.data.total
             self.recharge = res.data
             if(more)
