@@ -15,8 +15,8 @@
           <option value='USER' v-if="type=='ALIPAY' || type=='UNIONPAY' || type==''">用户自充</option>
           <option value='MANUAL_ACTIVITY'  v-if="type=='RENGONG' || type==''">手工-活动赠送</option>
           <option value='MANUAL_BUSINESS' v-if="type=='RENGONG' || type==''">手工-线下商务</option>
-          <option value='MANUAL_OTHER'  v-if="type=='RENGONG' || type==''">手工-其他</option>
           <option value='MANUAL_TEST'  v-if="type=='RENGONG' || type==''">手工-测试</option>
+          <option value='MANUAL_OTHER'  v-if="type=='RENGONG' || type==''">手工-其他</option>
         </select>
         <a class="btn btn-primary admin-button-margin" @click="query()" >查询</a>
       </div>
