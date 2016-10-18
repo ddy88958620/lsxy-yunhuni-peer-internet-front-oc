@@ -74,12 +74,15 @@
     },
     methods: {
       query(more){
-
         let uid = this.$route.params.uid
         let type = 3
         let appId = this.$route.params.aid
         let time = this.$route.params.day
-        let params = {type:type,appId:appId,time:time}
+        let params = {}
+        params.type=this.type
+        if(this.type=='RENGONG'){
+          params.source = this.source
+        }
         if(more){
           let pageNo = this.recharge.currentPageNo + 1
           params.pageNo = pageNo
