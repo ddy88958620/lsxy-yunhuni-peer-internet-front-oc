@@ -1,12 +1,3 @@
-# koa2-demo
-
-[![npm version](https://badge.fury.io/js/koa2-demo.svg)](http://badge.fury.io/js/runkoa)
-[![Build](https://travis-ci.org/17koa/koa2-demo.svg?branch=master)](https://travis-ci.org/17koa/koa2-demo)
-
-
-
-这个项目是express风格的最新的Koa 2项目的示例，已集成到[koa-generator](https://github.com/17koa/koa-generator)里，算是集成一些所谓的最佳实践吧
-
 ## Tech Stack
 
 - Koa 2
@@ -154,8 +145,57 @@ app.use(views(__dirname + '/views-ejs', {
 - views-ejs是放ejs文件
 
 
-## 推荐
+## 业务环境
 
-如果你喜欢express风格的生成，推荐[koa-generator](https://github.com/17koa/koa-generator)
+```js
+//node server listen 3000
+const env = process.env.NODE_ENV
 
-如果你喜欢babel + koa2可以参考[Minimal koa v2 boilerplate.](https://github.com/geekplux/koa2-boilerplate)
+console.log(env)
+if(env === 'production') {
+  // 生产
+	module.exports = {
+		REDISHOST: 'p04a',
+		REDISPORT: 6379
+	}
+}
+else if (env === 'test') {
+	module.exports = {
+		// 测试
+		REDISHOST: '10.163.3.165',
+		REDISPORT: 6379
+	}
+}
+else if (env === 'develop') {
+  module.exports = {
+ 		// 开发
+    REDISHOST: '10.162.199.238',
+    REDISPORT: 6379
+  }
+}
+
+else if (env === 'local') {
+	module.exports = {
+  // 本地
+		REDISHOST: '127.0.0.1',
+		REDISPORT: 6379
+	}
+}
+```
+
+以上用nginx 代理取代
+
+```sh
+stream {
+    upstream redis_servers {
+      server 127.0.0.1:6379;
+    }
+
+    server {
+      listen 6379;
+      proxy_connect_timeout 1000s;
+      proxy_timeout 3000s;
+      proxy_pass redis_servers;
+    }
+}
+```
