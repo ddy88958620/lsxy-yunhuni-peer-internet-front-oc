@@ -2,8 +2,10 @@
   "name": "koa2-demo",
   "version": "0.1.0",
   "scripts": {
-    "back": "cross-env NODE_ENV=production pm2 start --name='oc-koa' bin/run",
-    "dev": "cross-env NODE_ENV=local node bin/run",
+    "product": "cross-env NODE_ENV=production pm2 start --name='oc-koa' bin/run",
+    "local": "cross-env NODE_ENV=local node bin/run",
+    "dev": "cross-env NODE_ENV=develop pm2 start --name='oc-koa' bin/run",
+    "test": "cross-env NODE_ENV=test pm2 start --name='oc-koa' bin/run",
     "doc": "node ./doc/getDoc.js"
   },
   "dependencies": {

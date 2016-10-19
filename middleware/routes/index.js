@@ -5,7 +5,8 @@ var checkType = require('../utils/checkType')
 const UUID = require('node-uuid')
 const fs = require('fs')
 
-const JAVA_API_ORIGIN = 'http://localhost:3001'
+const config = require('../config')
+const prefix = config.JAVAAPI
 	
 //请求拦截器，解决session中间件只会在内容改变的时候更新过期时间的bug
 router.use(async (ctx, next) => {
@@ -22,7 +23,7 @@ function request(url, method, data, token) {
 			case 'patch':
 			case 'post':
 				REQUEST({
-					url: JAVA_API_ORIGIN + url,
+					url: prefix + url,
 					method: method,
 					json: true,
 					headers: {
@@ -37,7 +38,7 @@ function request(url, method, data, token) {
 			case 'delete':
 			case 'get':
 				REQUEST({
-					url: JAVA_API_ORIGIN + url,
+					url: prefix + url,
 					method: method,
 					headers: {
 						"X-YUNHUNI-API-TOKEN": token
@@ -74,7 +75,7 @@ router.get('/verCode', async (ctx, next) => {
 	let code = generate()
   //调用java生成图片的接口
 	let stream = REQUEST({
-		url: JAVA_API_ORIGIN + '/vc/code?code='+code,
+		url: prefix + '/vc/code?code='+code,
 		method: 'get'
 	})
 	ctx.session.verCode=code
@@ -129,7 +130,7 @@ for (let [key, value] of Object.entries(path)) {
 			let data = ctx.request.body ?  ctx.request.body : {}
 			
 			let stream = REQUEST({
-				url: JAVA_API_ORIGIN + req_url,
+				url: prefix + req_url,
 				method: 'get',
 				headers: {
 					"X-YUNHUNI-API-TOKEN": token,
