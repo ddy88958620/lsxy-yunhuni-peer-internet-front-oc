@@ -4,7 +4,7 @@
   "scripts": {
     "back": "cross-env NODE_ENV=production pm2 start --name='oc-koa' bin/run",
     "dev": "cross-env NODE_ENV=local node bin/run",
-    "doc": "node ./doc/getDoc.js",
+    "doc": "node ./doc/getDoc.js"
   },
   "dependencies": {
     "co": "^4.6.0",
