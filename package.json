@@ -7,7 +7,6 @@
     "dev": "webpack-dev-server --inline --hot --config webpack.dev.config.js",
     "test": "webpack --watch --config webpack.dev.config.js",
     "build": "webpack --progress --hide-modules --progress --config webpack.prod.config.js",
-    "mock": "yaml2json -p -s -r ./app/mock"
   },
   "keywords": [
     "webpack"
