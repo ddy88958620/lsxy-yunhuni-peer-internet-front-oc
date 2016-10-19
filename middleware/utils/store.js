@@ -1,9 +1,8 @@
 import Redis from "ioredis"
-const config = require('../config')
 
 export default class RedisStore  {
 	constructor() {
-		this.redis = new Redis(config.REDISPORT,config.REDISHOST);
+		this.redis = new Redis();
 	}
 	
 	async get(sid) {

@@ -2,13 +2,9 @@
   "name": "koa2-demo",
   "version": "0.1.0",
   "scripts": {
-    "product": "cross-env NODE_ENV=production pm2 start --name='oc-koa-product' bin/run",
-    "local": "cross-env NODE_ENV=local node bin/run",
-    "dev": "cross-env NODE_ENV=develop pm2 start --name='oc-koa-dev' bin/run",
-    "test": "cross-env NODE_ENV=test pm2 start --name='oc-koa-test' bin/run",
-    "doc": "node ./doc/getDoc.js",
-    "koa": "./node_modules/.bin/runkoa bin/www",
-    "pm2": "pm2 start bin/run "
+    "back": "cross-env NODE_ENV=production pm2 start --name='oc-koa' bin/run",
+    "dev": "cross-env NODE_ENV=local node bin/run",
+    "doc": "node ./doc/getDoc.js"
   },
   "dependencies": {
     "co": "^4.6.0",

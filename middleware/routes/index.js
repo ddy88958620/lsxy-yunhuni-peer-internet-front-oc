@@ -5,7 +5,8 @@ var checkType = require('../utils/checkType')
 const UUID = require('node-uuid')
 const fs = require('fs')
 
-const config = require('../config')
+const JAVA_API_ORIGIN = 'http://localhost:3001'
+	
 //请求拦截器，解决session中间件只会在内容改变的时候更新过期时间的bug
 router.use(async (ctx, next) => {
 	ctx.session.refresh = ctx.session.refresh?false:true;
@@ -16,13 +17,12 @@ router.use(async (ctx, next) => {
 
 function request(url, method, data, token) {
 	return new Promise((resolve, reject)=>{
-		let prefix = config.JAVAAPI
 		switch (method) {
 			case 'put':
 			case 'patch':
 			case 'post':
 				REQUEST({
-					url: prefix + url,
+					url: JAVA_API_ORIGIN + url,
 					method: method,
 					json: true,
 					headers: {
@@ -37,7 +37,7 @@ function request(url, method, data, token) {
 			case 'delete':
 			case 'get':
 				REQUEST({
-					url: prefix + url,
+					url: JAVA_API_ORIGIN + url,
 					method: method,
 					headers: {
 						"X-YUNHUNI-API-TOKEN": token
@@ -74,7 +74,7 @@ router.get('/verCode', async (ctx, next) => {
 	let code = generate()
   //调用java生成图片的接口
 	let stream = REQUEST({
-		url: config.JAVAAPI + '/vc/code?code='+code,
+		url: JAVA_API_ORIGIN + '/vc/code?code='+code,
 		method: 'get'
 	})
 	ctx.session.verCode=code
@@ -102,7 +102,7 @@ for (let [key, value] of Object.entries(path)) {
 			let swaggerData = await request(key, 'post', data)
 			// 登入成功后生成 session cookie
 			if(swaggerData.data && swaggerData.data.token){
-				ctx.cookies.set(config.COOKIENAME, uuid, {expires: new Date(), maxAge: 30*60*1000, domain: config.COOKIEDOAIM})
+				ctx.cookies.set('YUNHUNISESSIONID', uuid, {expires: new Date(), maxAge: 30*60*1000, domain: ctx.request.hostname})
 				ctx.session.token = swaggerData.data.token
 				delete swaggerData.data.token
 				ctx.body = {
@@ -128,9 +128,8 @@ for (let [key, value] of Object.entries(path)) {
 			let req_url = ctx.req.url
 			let data = ctx.request.body ?  ctx.request.body : {}
 			
-			let prefix = config.JAVAAPI
 			let stream = REQUEST({
-				url: prefix + req_url,
+				url: JAVA_API_ORIGIN + req_url,
 				method: 'get',
 				headers: {
 					"X-YUNHUNI-API-TOKEN": token,
