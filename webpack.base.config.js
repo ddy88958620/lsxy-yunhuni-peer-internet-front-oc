@@ -18,7 +18,9 @@ module.exports = {
     ],
     alias: {
       // 'components': path.resolve(__dirname, 'app/components'),
-      'font': path.resolve(__dirname, 'app/assets/fonts')
+      'font': path.resolve(__dirname, 'app/assets/fonts'),
+      'actions': path.resolve(__dirname, 'app/vuex/actions.js'),
+      'ui': path.resolve(__dirname, 'app/components/ui'),
     },
     extensions: ['', '.json', '.js', '.vue'],
   },
