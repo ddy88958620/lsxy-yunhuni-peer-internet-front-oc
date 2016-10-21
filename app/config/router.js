@@ -23,6 +23,18 @@ export default function(router){
           name: 'dashboard',
           component: (resolve) => require(['../components/pages/dashboard/index.vue'], resolve),
         },
+        '/inactive': {
+          name: 'inactive',
+          component: (resolve) => require(['../components/pages/inactive/index.vue'], resolve),
+          subRoutes: {
+          	'/wait': {
+              component: (resolve) => require(['../components/pages/inactive/waitActive.vue'], resolve),
+            },
+            'lose': {
+              component: (resolve) => require(['../components/pages/inactive/lose.vue'], resolve),
+            }
+          }
+        },
         '/tenant': {
           component: (resolve) => require(['../components/pages/tenant/index.vue'], resolve),
           subRoutes: {
@@ -247,6 +259,7 @@ export default function(router){
     '/admin/demand': '/admin/demand/member',
     '/admin/demand/member': '/admin/demand/member/list/await',
     '/admin/demand/voice': '/admin/demand/voice/list/await',
+    '/admin/inactive': '/admin/inactive/wait',
   })
 
   router.beforeEach(function({to, next, go}){

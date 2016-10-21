@@ -2,9 +2,8 @@
   <div class="section_left" >
 
     <div class="panel panel-default">
-      <div class="panel-heading"><i class="iconfont icon-oc-member"></i>会员数据</div>
+      <div class="panel-heading"><i class="iconfont icon-oc-member"></i>会员数据 <a v-link="{name: 'inactive'}" class="float-r">未激活账号 > ></a></ar></div>
       <div class="panel-body">
-
         <div class='flex width-33 float-l' >
           <div class="pie_wrap inline-block ">
             <pie
@@ -15,7 +14,6 @@
               >
             </pie>
           </div>
-
           <div class="inline-block ">
             <ul class="list-none-style ">
               <li>总注册会员 ( 个 )</li>
@@ -25,7 +23,6 @@
             </ul>
           </div>
         </div>
-
         <div class="border-span float-l"><span></span></div>
 
         <div class='flex width-33 float-l' >
