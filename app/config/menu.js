@@ -24,6 +24,12 @@ export default [
     link: '/admin/finance'
   },
   {
+    title: '配置中心',
+    label: 'Settings',
+    icon: 'icon-oc-msg',
+    link: '/admin/settings'
+  },
+  {
     title: '消息中心',
     label: 'Message',
     icon: 'icon-oc-msg',

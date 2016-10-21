@@ -129,6 +129,14 @@ export default function(router){
             }
           }
         },
+	      '/settings' : {
+          component: (resolve) => require(['../components/pages/settings/index.vue'], resolve),
+          subRoutes: {
+          	'/line' : {
+              component: (resolve) => require(['../components/pages/settings/line/list.vue'], resolve),
+            }
+          }
+        },
         '/message': {
           component: (resolve) => require(['../components/pages/message/index.vue'], resolve),
           subRoutes: {
