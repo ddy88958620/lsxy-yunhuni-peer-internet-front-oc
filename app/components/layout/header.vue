@@ -34,9 +34,7 @@
 
     .tipbar{
       position: absolute;
-      left: 185px;
       display: none;
-      top:50px;
       min-width: 300px;
       #tringle-up{
         width: 0;
@@ -62,12 +60,13 @@
 <template>
   <header class='app-header '>
     <div class="nav-left  overflow">
-      <div class="topbar-btn inline-block" >欢迎您来到云呼你运营中心 ，<div class="matter inline-block">您有&nbsp;3&nbsp;件事项未处理&nbsp;&nbsp;<i class="iconfont icon-oc-handle"></i>
+      <div class="topbar-btn inline-block" >欢迎您来到云呼你运营中心
+
+        <div class="matter inline-block">，您有 {{ num.awaitDemand + num.awaitInvoice + num.awaitService }} 件事项未处理&nbsp;&nbsp;
+        <i class="iconfont icon-oc-handle"></i>
         <div class="tipbar">
           <div id="tringle-up">
-
           </div>
-
           <div class="admin-table">
             <table class="table">
               <thead>
@@ -76,20 +75,24 @@
                 <th>事件</th>
               </tr>
               </thead>
-              <tbody>
-              <tr>
-                <td>1</td> <td>您有3个租户等待身份认证</td>
-              </tr>
-              <tr>
-                <td>2</td> <td>您有3个放音文件等待审核</td>
-              </tr>
-              <tr>
-                <td>3</td> <td>您有3个放音文件等待审核</td>
-              </tr>
+              <tbody v-if="num.awaitDemand + num.awaitInvoice + num.awaitService>0">
+                <tr v-for="n in num" track-by="$index">
+                  <td v-if="n>0">{{ n >0 ? $index+1 : 1}}</td>
+                  <td v-if="n>0 && $key=='awaitDemand'"><a v-link="'/admin/demand/voice/list/await'">您有{{ n }}个放音文件等待审核</a></td>
+                  <td v-if="n>0 && $key=='awaitInvoice'"><a>您有{{ n }}个发票申请等待审核</a></td>
+                  <td v-if="n>0 && $key=='awaitService'"><a>您有{{ n }}个客户反馈</a></td>
+                  <!--<td v-if="n>0 && $key=='awaitService'">您有{{ n }}个租户等待身份认证</td>-->
+                </tr>
+              </tbody>
+              <tbody v-else>
+                <tr>
+                  <td colspan="2" align="center">暂无事项处理</td>
+                </tr>
               </tbody>
             </table>
           </div>
         </div>
+
       </div>
       </div>
     </div>
@@ -103,11 +106,25 @@
   </header>
 </template>
 <script>
-import {localLogout} from '../../vuex/actions.js'
+import {getMessageNum} from '../../vuex/actions.js'
 export default {
+  vuex:{
+    actions: {
+        getMessageNum
+    },
+    getters:{
+      num: ({message}) => message.num
+    },
+  },
   data(){
     return{
       value: '',
+      number:0,
+/*      num:{
+        awaitDemand:2,
+        awaitInvoice:1,
+        awaitService:3
+      }*/
     }
   },
   components: {
