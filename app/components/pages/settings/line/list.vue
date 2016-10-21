@@ -71,7 +71,7 @@
 
 	<modal :show.sync="content.showModal" title="发布标题" :action="closeModal" >
 		<div slot="body">
-			<div class="word-break">{{content.text}}</div>
+			<div class="flex flex-1 word-break">{{content.text}}</div>
 		</div>
 	</modal>
 
@@ -82,13 +82,16 @@
 
 	export default {
 		vuex:{
+			getter:{
+
+			},
 			actions:{
 				showMsg
 			}
 		},
 		components: {
-			'datetime-picker': require('../../ui/datetimepicker.vue'),
-			'modal': require('../../ui/modal.vue')
+			'datetime-picker': require('ui/datetimepicker.vue'),
+			'modal': require('ui/modal.vue')
 		},
 		data(){
 			return {

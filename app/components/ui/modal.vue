@@ -18,8 +18,8 @@
 
         <div class="modal-footer inline-block float-r ">
           <slot name="footer">
-            <button class="btn btn-primary margin-left-right-10" @click="action">确认</button>
-            <button class="btn btn-default" @click="show = false">取消</button>
+            <button class="btn btn-primary margin-left-right-10" @click="sure">确认</button>
+            <button class="btn btn-default" @click="cancel">取消</button>
           </slot>
         </div>
       </div>
@@ -42,12 +42,23 @@
       action: {
       	type: Function,
         default: function(){
+          this.show = false
+          this.confirmVal = true
       		return
         }
       },
       classname:{
         type:String,
         default:'normal'
+      }
+    },
+	  methods: {
+    	sure(){
+    	  this.action()
+        this.show = false
+      },
+      cancel(){
+      	this.show = false
       }
     }
   }
