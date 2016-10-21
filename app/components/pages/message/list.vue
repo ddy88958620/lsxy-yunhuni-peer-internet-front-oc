@@ -71,20 +71,17 @@
 
 	<modal :show.sync="content.showModal" title="发布标题" :action="closeModal" >
 		<div slot="body">
-			<div class="flex flex-1 word-break">{{content.text}}</div>
+			<div class="word-break">{{content.text}}</div>
 		</div>
 	</modal>
 
 
 </template>
 <script>
-	import {getMessageList,showMsg} from '../../../vuex/actions'
+	import {showMsg} from 'actions'
 
 	export default {
 		vuex:{
-			getter:{
-
-			},
 			actions:{
 				showMsg
 			}
@@ -207,12 +204,7 @@
 					}
 					self.messagesList.$set(index, res.data)*/
 				})
-
-				
 				console.log(index)
-
-
-
 			}
 		},
 		ready(){
