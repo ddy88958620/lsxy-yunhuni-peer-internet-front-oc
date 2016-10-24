@@ -68,29 +68,6 @@ export const getMessageNum = ({dispatch}) => {
   })
 }
 
-//审核管理消息数
-export const getDemandNum = ({dispatch}) =>{
-  return api.getDemandNum().then(response => {
-    let num = response.json()
-    if(num.success){
-       dispatch(types.DEMAND_NUM, num.data)
-    }
-  }, response => {
-    console.log('fail');
-  })
-}
-
-//财务中心管理消息数
-export const getInvoiceNum = ({dispatch}) =>{
-  return api.getInvoiceNum().then(response => {
-    let num = response.json()
-    if(num.success){
-       dispatch(types.DEMAND_NUM, num.data)
-    }
-  }, response => {
-    console.log('fail');
-  })
-}
 
 
 //总应用数
