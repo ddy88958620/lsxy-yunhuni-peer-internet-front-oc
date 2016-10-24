@@ -47,7 +47,12 @@
         border-right: 10px solid transparent;
         border-bottom: 5px solid #dbe2ee;
       }
-
+      .admin-table{
+        border-bottom: 1px solid #dbe2ee;
+        table{
+          margin-bottom: 0;
+        }
+      }
     }
     .topbar-btn{
       padding: 0px 10px;
@@ -76,12 +81,13 @@
               </tr>
               </thead>
               <tbody v-if="num.awaitDemand + num.awaitInvoice + num.awaitService>0">
-                <tr v-for="n in num" track-by="$index">
-                  <td v-if="n>0">{{ n >0 ? $index+1 : 1}}</td>
-                  <td v-if="n>0 && $key=='awaitDemand'"><a v-link="'/admin/demand/voice/list/await'">您有{{ n }}个放音文件等待审核</a></td>
-                  <td v-if="n>0 && $key=='awaitInvoice'"><a>您有{{ n }}个发票申请等待审核</a></td>
-                  <td v-if="n>0 && $key=='awaitService'"><a>您有{{ n }}个客户反馈</a></td>
-                  <!--<td v-if="n>0 && $key=='awaitService'">您有{{ n }}个租户等待身份认证</td>-->
+                <tr v-for="n in num" track-by="$index" >
+                  <td v-if="n>0 && ($key=='awaitService' || $key=='awaitInvoiceApply' || $key=='awaitInvoiceApplySend' || $key=='awaitTenant' || $key=='awaitPlayVoiceFile')" > {{ $index }} </td>
+                  <td v-if="n>0 && $key=='awaitInvoiceApply'"><a v-link="'/admin/finance/invoice/list/pending'">您有{{ n }}个发票申请等待审核</a></td>
+                  <td v-if="n>0 && $key=='awaitInvoiceApplySend'"><a v-link="'/admin/finance/delivery/list/unsend'">您有{{ n }}个发票寄送等待审核</a></td>
+                  <td v-if="n>0 && $key=='awaitTenant'"><a v-link="'/admin/demand/member/list/await'">您有{{ n }}个会员认证等待审核</a></td>
+                  <td v-if="n>0 && $key=='awaitPlayVoiceFile'"><a v-link="'/admin/demand/voice/list/await'">您有{{ n }}个放音文件等待审核</a></td>
+                  <td v-if="n>0 && $key=='awaitService'"><a v-link="'/admin/service/list'">您有{{ n }}个客户反馈</a></td>
                 </tr>
               </tbody>
               <tbody v-else>
@@ -106,25 +112,15 @@
   </header>
 </template>
 <script>
-import {getMessageNum} from '../../vuex/actions.js'
 export default {
   vuex:{
-    actions: {
-        getMessageNum
-    },
     getters:{
       num: ({message}) => message.num
     },
   },
   data(){
-    return{
-      value: '',
-      number:0,
-/*      num:{
-        awaitDemand:2,
-        awaitInvoice:1,
-        awaitService:3
-      }*/
+    return {
+      value: ''
     }
   },
   components: {

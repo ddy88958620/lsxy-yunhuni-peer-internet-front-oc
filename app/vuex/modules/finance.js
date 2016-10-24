@@ -11,7 +11,6 @@ import {
   DELIVERY_SEND_LIST,
   DELIVERY_MORE_SEND_LIST,
   DELIVERY_DETAIL,
-  INVOICE_NUM,
 } from '../mutation-types'
 
 const state = {

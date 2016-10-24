@@ -97,7 +97,7 @@
 </style>
 
 <script>
-	import { getVoiceList,delVoice,showMsg,getMoreVoiceList,getDemandNum,getMessageNum} from '../../../../../vuex/actions'
+	import { getVoiceList,delVoice,showMsg,getMoreVoiceList,getMessageNum} from '../../../../../vuex/actions'
 	import domain from '../../../../../config/domain'
 	export default {
 		vuex: {
@@ -109,7 +109,6 @@
 				delVoice,
 				showMsg,
 				getMoreVoiceList,
-				getDemandNum,
 				getMessageNum,
 			}
 		},
@@ -220,7 +219,6 @@
 						this.stopAudio()
 						this.hideAudioModal()
 						this.delVoice(index)
-						this.getDemandNum()
 						this.getMessageNum()
 						this.showMsg({content: '审核通过', type: 'success'})
 					}
@@ -244,8 +242,7 @@
 						this.delVoice(self.del.index)
 						self.del = {reason:'',id:'',index:''}
 						this.hideAudioModal()
-						this.showModal = false 
-						this.getDemandNum()
+						this.showModal = false
 						this.getMessageNum()
 						this.showMsg({content: '审核不通过', type: 'success'})
 						
