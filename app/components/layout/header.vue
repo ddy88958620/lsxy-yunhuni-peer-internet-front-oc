@@ -67,7 +67,7 @@
     <div class="nav-left  overflow">
       <div class="topbar-btn inline-block" >欢迎您来到云呼你运营中心
 
-        <div class="matter inline-block">，您有 {{ num.awaitDemand + num.awaitInvoice + num.awaitService }} 件事项未处理&nbsp;&nbsp;
+        <div class="matter inline-block">，您有{{ num.awaitDemand + num.awaitInvoice + num.awaitService }} 件事项未处理&nbsp;&nbsp;
         <i class="iconfont icon-oc-handle"></i>
         <div class="tipbar">
           <div id="tringle-up">
@@ -81,13 +81,11 @@
               </tr>
               </thead>
               <tbody v-if="num.awaitDemand + num.awaitInvoice + num.awaitService>0">
-                <tr v-for="n in num" track-by="$index" >
-                  <td v-if="n>0 && ($key=='awaitService' || $key=='awaitInvoiceApply' || $key=='awaitInvoiceApplySend' || $key=='awaitTenant' || $key=='awaitPlayVoiceFile')" > {{ $index }} </td>
-                  <td v-if="n>0 && $key=='awaitInvoiceApply'"><a v-link="'/admin/finance/invoice/list/pending'">您有{{ n }}个发票申请等待审核</a></td>
-                  <td v-if="n>0 && $key=='awaitInvoiceApplySend'"><a v-link="'/admin/finance/delivery/list/unsend'">您有{{ n }}个发票寄送等待审核</a></td>
-                  <td v-if="n>0 && $key=='awaitTenant'"><a v-link="'/admin/demand/member/list/await'">您有{{ n }}个会员认证等待审核</a></td>
-                  <td v-if="n>0 && $key=='awaitPlayVoiceFile'"><a v-link="'/admin/demand/voice/list/await'">您有{{ n }}个放音文件等待审核</a></td>
-                  <td v-if="n>0 && $key=='awaitService'"><a v-link="'/admin/service/list'">您有{{ n }}个客户反馈</a></td>
+                <tr v-for="n in nums">
+                  <td>{{ $index+1}}</td>
+                  <td>
+                    <a v-link="item[$key].link">您有{{ n }}个{{ item[$key].title}}{{ item[$key].content}} </a>
+                  </td>
                 </tr>
               </tbody>
               <tbody v-else>
@@ -115,12 +113,32 @@
 export default {
   vuex:{
     getters:{
-      num: ({message}) => message.num
+      num: ({message}) => message.num,
     },
   },
   data(){
     return {
-      value: ''
+      value: '',
+      item:{
+        awaitInvoiceApply:{ title:'发票申请',link:'/admin/finance/invoice/list/pending',content:'等待审核'},
+        awaitInvoiceApplySend:{ title:'发票寄送',link:'/admin/finance/delivery/list/unsend',content:'等待审核'},
+        awaitTenant:{ title:'会员认证',link:'/admin/demand/member/list/await',content:'等待审核'},
+        awaitPlayVoiceFile:{ title:'放音文件',link:'/admin/demand/voice/list/await',content:'等待审核'},
+        awaitService:{ title:'客户反馈',link:'/admin/service/list',content:''}
+      }
+    }
+  },
+  computed: {
+    nums(){
+      let num = this.num.son
+      let temp = {}
+      let {keys, values, entries} = Object;
+      for (let [key, value] of entries(num)) {
+        if(value>0){
+          temp[key] = value
+        }
+      }
+      return temp
     }
   },
   components: {

@@ -18,7 +18,7 @@
 	export default {
 		vuex:{
 			getters: {
-				num: ({message}) => message.num
+				num: ({message}) => message.num.son
 			}
 		}
 	}
