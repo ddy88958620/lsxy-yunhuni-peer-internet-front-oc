@@ -1,27 +1,3 @@
-
-// 覆盖一些 bootstrap 的默认设置
-.panel {
-  margin-bottom: 0;
-}
-
-.panel-heading{
-  background-color: #f8f9fc;
-}
-
-.panel-body {
-  padding: 0px;
-}
-
-.text-danger {
-  color: red !important;
-}.form-control {
-  display: inline-block !important;
-}
-
-.input, .input-group {
-  vertical-align: middle;
-}
-
 // Bootstrap init . Fuck sass, it is don't support dynamic import !
 
 // $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
@@ -62,14 +38,14 @@
 // @import "bootstrap/badges";
 // @import "bootstrap/jumbotron";
 // @import "bootstrap/thumbnails";
-// @import "bootstrap/alerts";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/alerts";
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/progress-bars';
 // @import "bootstrap/media";
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/_list-group.scss';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/_panels.scss';
 // @import "bootstrap/responsive-embed";
 // @import "bootstrap/wells";
-// @import "bootstrap/close";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/close";
 
 // Components w/ JavaScript
 // @import "bootstrap/modals";
@@ -81,3 +57,44 @@
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/_utilities.scss';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/_responsive-utilities.scss';
 
+// 覆盖一些 bootstrap 的默认设置
+
+.form-control {
+  display: inline-block !important;
+}
+
+.form-group {
+  margin-bottom: 0;
+}
+
+.input, .input-group {
+  vertical-align: middle;
+}
+
+.panel {
+  margin-bottom: 0;
+}
+
+.panel-heading{
+  background-color: #f8f9fc;
+}
+
+.panel-body {
+  padding: 0px;
+}
+
+.text-danger {
+  color: red !important;
+}
+
+.close {
+  float: none;
+}
+
+select {
+  vertical-align: middle;
+}
+
+label {
+  font-weight: normal;
+}

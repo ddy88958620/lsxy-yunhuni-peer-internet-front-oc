@@ -107,6 +107,7 @@
   }
 
   .modal-header {
+    line-height: 1.3;
     margin-top: 0;
     padding: 10px;
     color: #FFF;
