@@ -146,7 +146,6 @@
 		},
 		components:{
 			'modal': require('../../../ui/modal.vue'),
-			'single': require('./single.vue')
 		},
 		data(){
 			return {
