@@ -1,7 +1,5 @@
 <template>
-
 	<div class="single-box inline-block while" v-for="app in appdata">
-
 		<header class="flex flex-1 flex-direction-column header-box normal-font-size"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+app.id+'/play'">
 			<div class="flex text-align-r">
 				<span v-if="app.status == 1" class="inline-block down">已上线</span>
@@ -11,6 +9,7 @@
 				<img src="../../../../../assets/images/app.png" width="100" height="100">
 				<p class="bigger-font-size name">{{ app.name}}</p>
 				<p>应用标识: {{ app.id}}</p>
+				<p>选择服务: <span v-if="app.service_type ==='voice'">语音</span><span	 v-if="service_type==='call_center'">呼叫中心</span></p>
 				<p class="text-center word-wrap">{{ app.description ? app.description :'这家伙很懒，什么都没留下'}}</p>
 			</div>
 		</header>

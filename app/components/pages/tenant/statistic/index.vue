@@ -5,7 +5,8 @@
 			<span class="toolbar" v-link="'/admin/tenant/detail/'+$route.params.uid+'/statistic/'+this.seletedApp+'/recharge/recharge'" >充值明细</span>
 			<span class="toolbar" v-link="'/admin/tenant/detail/'+$route.params.uid+'/statistic/'+this.seletedApp+'/conversation/conversation'" >会话统计</span>
 			<span class="toolbar" v-link="'/admin/tenant/detail/'+$route.params.uid+'/statistic/'+this.seletedApp+'/interface/interface'" >API调用统计</span>
-			<span class="toolbar remove-border-right last-toolbar" v-link="'/admin/tenant/detail/'+$route.params.uid+'/statistic/'+this.seletedApp+'/line/line'" >线路负载量</span>
+			<span class="toolbar" v-link="'/admin/tenant/detail/'+$route.params.uid+'/statistic/'+this.seletedApp+'/line/line'" >线路负载量</span>
+			<span class="toolbar remove-border-right last-toolbar {{ module=='callcenter' || module=='calldetail' ? 'active': ''}}" v-link="'/admin/tenant/detail/'+$route.params.uid+'/statistic/'+this.seletedApp+'/callcenter/callcenter'" >呼叫中心统计</span>
 		</div>
 	</div>
 

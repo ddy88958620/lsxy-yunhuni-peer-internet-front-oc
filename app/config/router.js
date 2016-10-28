@@ -54,6 +54,9 @@ export default function(router){
                     '/detail/:appid':{
                       component: (resolve) => require(['../components/pages/tenant/app/detail/index.vue'], resolve),
                       subRoutes:{
+                        '/extension':{
+                          component: (resolve) => require(['../components/pages/tenant/app/detail/extension-table.vue'], resolve),
+                        },
                         '/play':{
                           component: (resolve) => require(['../components/pages/tenant/app/detail/play-table.vue'], resolve),
                         },
@@ -98,6 +101,12 @@ export default function(router){
                     },
                     '/conversation': {
                       component: (resolve) => require(['../components/pages/tenant/statistic/conversation/index.vue'], resolve),
+                    },
+                    '/callcenter': {
+                      component: (resolve) => require(['../components/pages/tenant/statistic/callcenter/index.vue'], resolve),
+                    },
+                    '/calldetail': {
+                      component: (resolve) => require(['../components/pages/tenant/statistic/callcenter/detail.vue'], resolve),
                     },
                     '/recharge': {
                       component: (resolve) => require(['../components/pages/tenant/statistic/recharge/index.vue'], resolve),

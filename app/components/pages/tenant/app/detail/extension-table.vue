@@ -1,0 +1,111 @@
+<template>
+
+<!--	<div class="flex search-box bg-section-margin remove-margin-bottom">
+		<div class="select-box">
+			<search  placeholder='搜索文件名' :value.sync='searchName' :action="search"></search>
+		</div>
+	</div>-->
+
+	<div class="admin-table">
+		<div class="table-total flex flex-1 justify-content-e float-r">
+			共<span class="text-danger">{{page.total || 0}}</span>条
+		</div>
+		<table class="table ">
+			<thead>
+			<tr>
+				<th class="text-align-c">名称</th>
+				<th>账号</th>
+				<th>密码</th>
+				<th class="text-align-c">状态</th>
+				<th>鉴权方式</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr v-for='play in plays'>
+				<td class="message-time text-align-c"></td>
+				<td></td>
+				<td></td>
+				<td class="text-align-c"></td>
+				<td></td>
+			</tr>
+			</tbody>
+		</table>
+		<div class="more">
+			<a v-show='page.loading'>正在加载</a>
+			<a v-show='!page.loading && !page.hasMore'>加载完毕</a>
+			<a @click="query('')" class="text-none" v-show='!page.loading && page.hasMore'>加载更多<i
+				class="icon iconfont icon-oc-dropdown"></i></a>
+		</div>
+	</div>
+</template>
+
+
+<script>
+	export default{
+		components:{
+			'search': require('../../../../ui/search-input.vue')
+		},
+		data(){
+			return{
+				plays :[],
+				capacity:{},
+				page: {
+					query: {
+						name: '',
+						pageNo: 0,
+						pageSize: 10
+					},
+					loading: true,
+					hasMore: true,
+					total:0
+				},
+				searchName:''
+			}
+		},
+		methods: {
+			fileCapacity(){
+				let self = this;
+				$.get('/tenant/tenants/'+this.$route.params.uid+'/file/totalSize').then((res)=> {
+					return res.data && (self.capacity = res.data)
+				})
+			},
+			search(){
+				this.query(true)
+			},
+			query(init){
+				//接口未实现
+				return
+
+				let self = this
+				let pageNo = (init && 1) || self.page.query.pageNo + 1
+				self.page.query.name = self.searchName
+				let params = $.extend(true, {}, self.page.query);
+				params.pageNo = pageNo;
+				params.pageSize = 20;
+				self.page.loading = true
+				if(init){
+					self.plays = [];
+				}
+				$.get('/tenant/tenants/'+this.$route.params.uid+'/apps/'+this.$route.params.appid+'/plays', params).then((res)=> {
+					self.page.loading = false
+					if (res.data && res.data.result) {
+						if (init) {
+							self.plays = res.data.result
+						} else {
+							self.plays = self.plays.concat(res.data.result)
+						}
+						self.page.query.pageNo = pageNo
+					}
+					self.page.hasMore = res.data && ((res.data.totalPageCount || 0 ) > self.page.query.pageNo)
+					self.page.total = (res.data && res.data.totalCount) || 0
+				})
+			}
+		},
+		ready(){
+			this.query(true)
+			this.fileCapacity()
+		}
+	}
+</script>
+<style lang="sass">
+</style>
