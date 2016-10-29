@@ -12,7 +12,7 @@ export default [
     link: '/admin/tenant'
   },
   {
-    title: '客服中心',
+    title: '服务与支持',
     label: 'Custom',
     icon: 'icon-oc-custom',
     link: '/admin/service'
