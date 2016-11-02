@@ -41,8 +41,8 @@
 					<td v-if='message.status==0 || message.status==null' class='text-danger'>禁用</td>
 					<td v-if='message.status==1' class="text-success" >已上线</td>
 					<td class="text-align-c">
-						<span v-if='message.status!=1' @click="deleteMsg($index)"><a>禁用</a></span>
-						<span v-if='message.status!=1' @click="deleteMsg($index)"><a>删除</a></span>
+						<span @click="deleteMsg($index)"><a>禁用</a></span>
+						<span @click="deleteMsg($index)"><a>删除</a></span>
 					</td>
 				</tr>
 				</tbody>
@@ -66,8 +66,7 @@
 			</div>
 		</div>
 	</modal>
-
-
+	
 </template>
 <script>
 	import {showMsg} from 'actions'

@@ -1,6 +1,5 @@
 <template>
 	<div class="admin-table-header">
-		<h4>号码详情</h4>
 		<line-form class="margin-top-20"></line-form>
 		<div class="admin-bottom admin-top">
 			<button  class="btn btn-primary">保存</button>

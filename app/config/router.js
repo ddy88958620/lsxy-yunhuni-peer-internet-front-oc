@@ -113,6 +113,12 @@ export default function(router){
                 '/switch': {
                   component: (resolve) => require(['../components/pages/tenant/switch/index.vue'], resolve)
                 },
+                '/private': {
+                  component: (resolve) => require(['../components/pages/tenant/private/index.vue'], resolve)
+                },
+                '/number': {
+                  component: (resolve) => require(['../components/pages/tenant/numberlock/index.vue'], resolve)
+                },
               }
             },
             '/list' : {
@@ -139,6 +145,7 @@ export default function(router){
                   component: (resolve) => require(['../components/pages/settings/line/list.vue'], resolve),
                   subRoutes: {
 	                  '/all': {
+                      name: 'line',
                       component: (resolve) => require(['../components/pages/settings/line/all_line.vue'], resolve),
                     },
                     '/global': {
@@ -156,6 +163,7 @@ export default function(router){
                       component: (resolve) => require(['../components/pages/settings/line/detail/base.vue'], resolve),
                     },
                     '/number': {
+                      name:'telnum',
                       component: (resolve) => require(['../components/pages/settings/line/detail/number.vue'], resolve),
                     },
                     '/tenant': {
@@ -183,7 +191,15 @@ export default function(router){
                   component: (resolve) => require(['../components/pages/settings/number/detail/new_number.vue'], resolve),
                 },
                 '/detail/:nid' : {
-                  component: (resolve) => require(['../components/pages/settings/number/detail/edit_number.vue'], resolve),
+                  component: (resolve) => require(['../components/pages/settings/number/detail/index.vue'], resolve),
+                  subRoutes: {
+	                  '/base': {
+                      component: (resolve) => require(['../components/pages/settings/number/detail/edit_number.vue'], resolve),
+                    },
+                    '/relate': {
+                      component: (resolve) => require(['../components/pages/settings/number/detail/related.vue'], resolve),
+                    }
+                  }
                 }
               }
             }

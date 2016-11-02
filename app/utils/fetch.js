@@ -19,6 +19,27 @@ $.extend({
       })
     })
   },
+  file: function(url,data){
+    return new Promise((resolve, reject) => {
+      
+      $.ajax({
+        type: 'post',
+        url: domain.API_ROOT + url,
+        data: data,
+        contentType: 'multipart/form-data',
+        processData: false,
+        success: (e) => {
+          resolve(e)
+        },
+        error: (e) => {
+          if( e.status == 401) {
+            window.location = '/#!/auth/login'
+          }
+          reject(e)
+        }
+      })
+    })
+  },
   post: function(url,data){
     return new Promise((resolve, reject) => {
 

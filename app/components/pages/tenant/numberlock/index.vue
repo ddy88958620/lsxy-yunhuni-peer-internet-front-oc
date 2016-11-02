@@ -1,36 +1,8 @@
-<style lang="sass" scoped>
-</style>
 <template>
-	<div>
-		<div class="admin-table-header">
-			<div class="remove-margin-bottom">
-				<div class="select-box inline-block">
-					<search
-						:value.sync="search"
-						:action="query"
-						placeholder="模糊查询"
-					></search>
-				</div>
-				<span class='datetime-picker-label'>运营商: </span>
-				<select class="form-control" v-model='status' >
-					<option value=''>全部</option>
-					<option value=1 >已上线</option>
-					<option value=0 >未上线</option>
-					<option value=-1>已下线</option>
-				</select>
-				<span class='datetime-picker-label'>支持透传: </span>
-				<select class="form-control"  v-model='type'>
-					<option value=1 >活动消息</option>
-					<option value=0 >用户消息</option>
-				</select>
-				<span class='datetime-picker-label'>状态: </span>
-				<select class="form-control"  v-model='type'>
-					<option value=1 >活动消息</option>
-					<option value=0 >用户消息</option>
-				</select>
-				<button class="btn btn-primary admin-button-margin" @click="query" >查询</button>
-				<a class="btn btn-primary " v-link="{path: '/admin/settings/number/new', exact: true}">新增号码</a>
-			</div>
+	<div class="margin-top-20">
+		<div class="alert alert-danger" role="alert">
+			1、运营人员可手动为租户绑定号码，绑定的号码启用后会自动出现在租户的号码列表内。<br/>
+			2、运营人员需要在号码管理中，为租户绑定号码。
 		</div>
 		<div class="admin-table ">
 			<div class="table-total flex flex-1 justify-content-e float-r">
@@ -39,41 +11,37 @@
 			<table class="table">
 				<thead>
 				<tr>
-					<th class=" text-align-c">创建时间</th>
+					<th class=" text-align-c">绑定时间</th>
 					<th>号码</th>
 					<th>可主叫</th>
 					<th>可被叫</th>
-					<th>可透传</th>
+					<th>关联应用</th>
 					<th>号码来源</th>
 					<th>运营商</th>
 					<th>归属地</th>
 					<th>归属线路</th>
-					<th>绑定租户</th>
 					<th>状态</th>
-					<th class="text-align-c">操作</th>
+					<th class=" text-align-c">操作</th>
 				</tr>
 				</thead>
 				<tbody>
-					<tr v-for='message in messagesList'>
-						<td class="message-time text-align-c">{{message.lineTime | totalDate}}</td>
-						<td>23424324</td>
-						<td>✔</td>
-						<td>✘</td>
-						<td>✘</td>
-						<td>租户自带</td>
-						<td>电信</td>
-						<td>10000</td>
-						<td>无</td>
-						<td>流水行云</td>
-						<td v-if='message.status==-1' >启用</td>
-						<td v-if='message.status==0 || message.status==null' class='text-danger'>禁用</td>
-						<td v-if='message.status==1' class="text-success" >已上线</td>
-						<td class="text-align-c">
-							<span><a v-link="'/admin/settings/number/detail/1'">详情</a></span>
-							<span @click="deleteMsg($index)"><a>禁用</a></span>
-							<span @click="deleteMsg($index)"><a>删除</a></span>
-						</td>
-					</tr>
+				<tr v-for='message in messagesList'>
+					<td class="message-time text-align-c">{{message.lineTime | totalDate}}</td>
+					<td>15001203124</td>
+					<td>✔</td>
+					<td>✘</td>
+					<td>无</td>
+					<td>租户自带</td>
+					<td>电信</td>
+					<td>020</td>
+					<td>线路1</td>
+					<td v-if='message.status===-1' >启用</td>
+					<td v-if='message.status===1 || message.status==null' class='text-danger'>禁用</td>
+					<td class="text-align-c">
+						<span @click="deleteMsg($index)"><a>启用</a></span>
+						<span @click="deleteMsg($index)"><a>解除绑定</a></span>
+					</td>
+				</tr>
 				</tbody>
 			</table>
 			<div class="more">
@@ -82,31 +50,40 @@
 			</div>
 		</div>
 	</div>
-	<modal :show.sync="content.showModal" title="发布标题" :action="closeModal" >
+	
+	<modal :show.sync="show.newNumber" title="新增线路号码" :action="closeModal">
 		<div slot="body">
-			<div class="flex flex-1 word-break">{{content.text}}</div>
+			<input type="radio"> 可主叫 &nbsp;
+			<input type="radio"> 可被叫
+			<br/>
+			<br/>
+			<div class="form-group">
+				<label class="control-label">新增号码 : </label>
+				<input type="text" class="form-control input-width" placeholder="">
+			</div>
 		</div>
 	</modal>
+
 </template>
 <script>
 	import {showMsg} from 'actions'
 	
 	export default {
 		vuex:{
-			getter:{
-				
-			},
+			getter:{},
 			actions:{
 				showMsg
 			}
 		},
 		components: {
 			'datetime-picker': require('ui/datetimepicker.vue'),
-			'modal': require('ui/modal.vue'),
-			'search': require('ui/search-input.vue')
+			'modal': require('ui/modal.vue')
 		},
 		data(){
 			return {
+				show: {
+					newNumber: false
+				},
 				messagesList: [],
 				messages: {
 					totalCount : 0,
@@ -144,16 +121,21 @@
 			},
 			query(type){
 				let params = {}
+				
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
 				params.type = this.type
 				params.status = this.status
+				
 				if(type === 'more') {
 					params.pageNo = this.messages.currentPageNo + 1
+					
 				}
+				
 				let self = this
 				$.get('/message/list', params).then((res) => {
 					self.messages = res.data
+					
 					if(type=='more')
 						self.messagesList = self.messagesList.concat(res.data.result)
 					else
@@ -162,6 +144,7 @@
 			},
 			changeStatus(index, type){
 				let params = {}
+				
 				if( type === 'up') {
 					params.status = 1
 				}

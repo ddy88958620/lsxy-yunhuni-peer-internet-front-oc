@@ -39,9 +39,6 @@
 	import * as filter from '../../../utils/filters'
 	export default {
 		vuex: {
-			getters: {
-				
-			},
 			actions :{
 				NewMessage,showMsg
 			}

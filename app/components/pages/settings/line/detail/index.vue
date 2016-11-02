@@ -13,8 +13,3 @@
 		</divcl>
 	</div>
 </template>
-<script>
-	export default {
-		ready(){}
-	}
-</script>

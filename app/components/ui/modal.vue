@@ -55,7 +55,7 @@
 	  methods: {
     	sure(){
     	  this.action()
-        this.show = false
+//        this.show = false
       },
       cancel(){
       	this.show = false

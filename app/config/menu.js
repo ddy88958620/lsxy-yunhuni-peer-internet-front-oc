@@ -26,7 +26,7 @@ export default [
   {
     title: '配置中心',
     label: 'Settings',
-    icon: 'icon-oc-msg',
+    icon: 'icon-oc-setting',
     link: '/admin/settings'
   },
   {

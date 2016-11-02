@@ -202,5 +202,5 @@ $input-width-120: 120px;
 }
 .input-width-select {
   display: inline-block;
-  width: $input-width-120;
+  width: $input-width-120 !important;
 }
