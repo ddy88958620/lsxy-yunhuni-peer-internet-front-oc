@@ -4,7 +4,6 @@ var covertKOAURL = require('../utils/coverURLSwaggerToKoa.js')
 var checkType = require('../utils/checkType')
 const UUID = require('node-uuid')
 const fs = require('fs')
-
 const config = require('../config')
 const prefix = config.JAVAAPI
 	
@@ -15,39 +14,21 @@ router.use(async (ctx, next) => {
 });
 
 // 下面代码还需重构
-
-function request(url, method, data, token) {
+function request(method, ctx) {
+	let headers = ctx.headers
+	headers["X-YUNHUNI-API-TOKEN"] = ctx.session.token
+	console.log('token node', ctx.session.token)
+	let data = ctx.request.body ?  ctx.request.body : {}
+	let url = ctx.req.url
 	return new Promise((resolve, reject)=>{
-		switch (method) {
-			case 'put':
-			case 'patch':
-			case 'post':
-				REQUEST({
-					url: prefix + url,
-					method: method,
-					json: true,
-					headers: {
-						"content-type": "application/json",
-						"X-YUNHUNI-API-TOKEN": token
-					},
-					body: data
-				}, (error, res, body) => {
-					resolve(body)
-				})
-				break
-			case 'delete':
-			case 'get':
-				REQUEST({
-					url: prefix + url,
-					method: method,
-					headers: {
-						"X-YUNHUNI-API-TOKEN": token
-					},
-				}, (error, res, body) => {
-					resolve(body)
-				})
-				break
-		}
+		REQUEST({
+			url: prefix + url,
+			method: method,
+			headers: headers,
+			body: JSON.stringify(data)
+		}, (error, res, body) => {
+			resolve(body)
+		})
 	})
 }
 
@@ -127,8 +108,6 @@ for (let [key, value] of Object.entries(path)) {
 				return
 			}
 			let req_url = ctx.req.url
-			let data = ctx.request.body ?  ctx.request.body : {}
-			
 			let stream = REQUEST({
 				url: prefix + req_url,
 				method: 'get',
@@ -136,98 +115,30 @@ for (let [key, value] of Object.entries(path)) {
 					"X-YUNHUNI-API-TOKEN": token,
 				},
 			})
-			
 			if(checkType.checkImageType(req_url)){
 				let temp = req_url.split('.')
 				let type = temp[temp.length-1]
 				ctx.type = `image/${type};charset=UTF-8`
 			}
-			
 			if(checkType.checkAudioType(req_url)){
 				ctx.type = 'audio/wav;charset=UTF-8'
 			}
-			
 			ctx.body = stream
 		})
 	}
 	else {
 		// switch get post put
-		// console.log(value)
 		for(let method of Object.keys(value)){
-			switch (method){
-				case 'put':
-					router.put(covertKOAURL(key), async(ctx, next) => {
-						let token = ctx.session.token
-						console.log('token node', token)
-						if( token === null ){
-							ctx.status = 401
-							ctx.body = ' node token null'
-							return
-						}
-						let req_url = ctx.req.url
-						let data = ctx.request.body ?  ctx.request.body : {}
-						ctx.body = await request(req_url, method, data, token)
-					})
-					break
-				case 'patch':
-					router.patch(covertKOAURL(key), async(ctx, next) => {
-						let token = ctx.session.token
-						console.log('token node', token)
-						if( token === null ){
-							ctx.status = 401
-							ctx.body = ' node token null'
-							return
-						}
-						let req_url = ctx.req.url
-						let data = ctx.request.body ?  ctx.request.body : {}
-						ctx.body = await request(req_url, method, data, token)
-					})
-					break
-				case 'post':
-					router.post(covertKOAURL(key), async(ctx, next) => {
-						let token = ctx.session.token
-						console.log('token node', token)
-						if( !token){
-							ctx.status = 401
-							ctx.body = ' node token null'
-							return
-						}
-						let req_url = ctx.req.url
-						let data = ctx.request.body ?  ctx.request.body : {}
-						ctx.body = await request(req_url, method, data, token)
-					})
-					break
-				case 'delete':
-					router.delete(covertKOAURL(key), async(ctx, next) => {
-						let token = ctx.session.token
-						console.log('token node', token)
-						if( !token){
-							ctx.status = 401
-							ctx.body = ' node token null'
-							return
-						}
-						let req_url = ctx.req.url
-						let data = ctx.request.body ?  ctx.request.body : {}
-						ctx.body = await request(req_url, method, data, token)
-					})
-					break
-				case 'get':
-					router.get(covertKOAURL(key), async(ctx, next) => {
-						let token = ctx.session.token
-						console.log('token node', token)
-						if( !token ){
-							ctx.status = 401
-							ctx.body = ' node token null'
-							return
-						}
-						let req_url = ctx.req.url
-						let data = ctx.request.body ?  ctx.request.body : {}
-						ctx.body = await request(req_url, method, data, token)
-					})
-					break
-			}
+			router[method](covertKOAURL(key), async(ctx, next) => {
+				let token = ctx.session.token
+				if( token === null ){
+					ctx.status = 401
+					ctx.body = ' node token null'
+					return
+				}
+				ctx.body = await request(method, ctx)
+			})
 		}
 	}
 }
-
 module.exports = router;
