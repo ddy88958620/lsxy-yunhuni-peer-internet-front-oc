@@ -70,7 +70,7 @@ export default function(router){
                 '/base': {
                   component: (resolve) => require(['../components/pages/tenant/base/index.vue'], resolve)
                 },
-                '/session/:aid/:day/:module': {
+                '/session/': {
                   component: (resolve) => require(['../components/pages/tenant/session/index.vue'], resolve),
                   subRoutes: {
                     '/call': {
@@ -85,15 +85,18 @@ export default function(router){
                     '/record': {
                       component: (resolve) => require(['../components/pages/tenant/session/record/index.vue'], resolve),
                     },
-                    'verification': {
+                    '/verification': {
                       component: (resolve) => require(['../components/pages/tenant/session/verification/index.vue'], resolve),
                     },
-                    'ivr': {
+                    '/ivr': {
                       component: (resolve) => require(['../components/pages/tenant/session/ivr/index.vue'], resolve),
+                    },
+                    '/callcenter': {
+                      component: (resolve) => require(['../components/pages/tenant/session/callcenter/index.vue'], resolve),
                     }
                   }
                 },
-                '/statistic/:aid/:module': {
+                '/statistic': {
                   component: (resolve) => require(['../components/pages/tenant/statistic/index.vue'], resolve),
                   subRoutes: {
                     '/consume': {
@@ -105,7 +108,7 @@ export default function(router){
                     '/callcenter': {
                       component: (resolve) => require(['../components/pages/tenant/statistic/callcenter/index.vue'], resolve),
                     },
-                    '/calldetail': {
+                    '/calldetail/:appid': {
                       component: (resolve) => require(['../components/pages/tenant/statistic/callcenter/detail.vue'], resolve),
                     },
                     '/recharge': {
@@ -271,8 +274,8 @@ export default function(router){
     '/admin/finance/delivery': '/admin/finance/delivery/list/unsend',
     '/admin/tenant/detail/:uid/': '/admin/tenant/detail/:uid/preview',
     '/admin/tenant/detail/:uid/app': '/admin/tenant/detail/:uid/app/list',
-    '/admin/tenant/detail/:uid/statistic': '/admin/tenant/detail/:uid/statistic/all/consume/consume',
-    '/admin/tenant/detail/:uid/session': '/admin/tenant/detail/:uid/session/1/1/call/call',
+    '/admin/tenant/detail/:uid/statistic': '/admin/tenant/detail/:uid/statistic/consume',
+    '/admin/tenant/detail/:uid/session': '/admin/tenant/detail/:uid/session/call',
     '/admin/demand': '/admin/demand/member',
     '/admin/demand/member': '/admin/demand/member/list/await',
     '/admin/demand/voice': '/admin/demand/voice/list/await',

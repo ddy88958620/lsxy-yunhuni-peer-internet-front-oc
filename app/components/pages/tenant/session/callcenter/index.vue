@@ -12,34 +12,35 @@
     <!--表格-->
     <div class="admin-table">
       <div class="table-total flex flex-1 justify-content-e float-r">
-        <!-- 消费金额: <span class="brown">{{sessionTotal}}</span>元 --> 共<span class="text-danger">{{session.totalCount ? session.totalCount : 0 }}</span>条
+        消费金额: <span class="brown">{{ sessionTotal ? sessionTotal : 0 }}</span>元 共<span class="text-danger">{{session.totalCount ? session.totalCount : 0 }}</span>条
       </div>
       <table class="table">
         <thead>
         <tr>
-          <th class="text-align-c">发送时间</th>
+          <th class="text-align-c">呼叫时间</th>
+          <th>呼叫类型</th>
           <th>主叫</th>
           <th>被叫</th>
-          <th>挂机时间</th>
-          <th class="text-align-r">消费金额</th>
+          <!--<th>通话状态</th>-->
           <th class="text-align-c">时长(秒)</th>
+          <th class="text-align-r">消费金额(元)</th>
         </tr>
         </thead>
         <tbody>
         <tr v-for='message in sessionList'>
           <td class="message-time text-align-c">{{message.callStartDt | totalDate}}</td>
+          <td><span v-if="message.ivrType==1">呼入</span><span  v-if="message.ivrType==2">呼出</span></td>
           <td>{{ message.fromNum }}</td>
           <td>{{ message.toNum }}</td>
-          <td>{{ message.callEndDt | totalDate }}</td>
-          <td class="text-align-r" >￥{{ message.cost }}</td>
-          <td class="test-align-c">{{message.costTimeLong}}</td>
+          <td class="text-align-r">￥{{ message.cost }}</td>
+          <td class="text-align-c">{{ message.costTimeLong }}</td>
         </tr>
         </tbody>
       </table>
       <div class="more">
         <a v-show='session.totalPageCount==session.currentPageNo || session.totalPageCount==0'>加载完毕</a>
         <a @click="query('more')" class="text-none" v-show='session.totalPageCount!=session.currentPageNo && session.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
-      </div>  
+      </div>
     </div>
   </div>
 </template>
@@ -72,7 +73,7 @@
     },
     methods: {
       getApp(){
-        let param = { serviceType : 'voice'}
+        let param = { serviceType : 'call_center'}
         $.get('/app/list/'+this.$route.params.uid ,param).then((res) => {
           if(res.data.length>0){
             this.serach.apps = res.data
@@ -83,14 +84,13 @@
       },
       query(more){
         //voice_call.语音呼叫,duo_call.双向回拨,conf_call.会议服务,ivr_call.IVR定制服务,captcha_call.语音验证码,voice_recording.录音服务
-        let params = {type:'captcha_call',appId:this.serach.selectApp,time:this.serach.time.value}
+        let params = {type:'call_center',appId:this.serach.selectApp,time:this.serach.time.value}
         if(more){
           let pageNo = this.session.currentPageNo + 1
           params.pageNo = pageNo
         }
         let self = this
         $.get('/tenant/'+this.$route.params.uid+'/session', params).then((res) => {
-          console.log(res)
           if(res.data.page.totalCount>=0){
             self.sessionTotal =res.data.total
             self.session = res.data.page
@@ -107,6 +107,7 @@
         this.getApp()
       }
     }
+
   }
 
 </script>

@@ -22,11 +22,11 @@
 			</thead>
 			<tbody>
 			<tr v-for='play in plays'>
-				<td class="message-time text-align-c"></td>
-				<td></td>
-				<td></td>
-				<td class="text-align-c"></td>
-				<td></td>
+				<td class="message-time text-align-c">{{ play.name }}</td>
+				<td>{{ play.user}}</td>
+				<td>{{ play.password}}</td>
+				<td class="text-align-c">{{ play.type}}</td>
+				<td>{{ play.secret}}</td>
 			</tr>
 			</tbody>
 		</table>
@@ -73,9 +73,6 @@
 				this.query(true)
 			},
 			query(init){
-				//接口未实现
-				return
-
 				let self = this
 				let pageNo = (init && 1) || self.page.query.pageNo + 1
 				self.page.query.name = self.searchName
@@ -86,7 +83,7 @@
 				if(init){
 					self.plays = [];
 				}
-				$.get('/tenant/tenants/'+this.$route.params.uid+'/apps/'+this.$route.params.appid+'/plays', params).then((res)=> {
+				$.get('/tenant/tenants/'+this.$route.params.uid+'/app/extension/'+this.$route.params.appid, params).then((res)=> {
 					self.page.loading = false
 					if (res.data && res.data.result) {
 						if (init) {
@@ -103,7 +100,6 @@
 		},
 		ready(){
 			this.query(true)
-			this.fileCapacity()
 		}
 	}
 </script>
