@@ -19,14 +19,14 @@
         <option value="1">呼入</option>
         <option value="2">呼出</option>
       </select>
-      <button class="btn btn-primary admin-button-margin vertical-align-top" @click="query" >查询</button>
+      <button class="btn btn-primary admin-button-margin vertical-align-top" @click="query('')" >查询</button>
 
 
     </div>
 
     <div class="admin-table">
       <div class="table-total flex flex-1 justify-content-e float-r">
-        总消费金额: <span class="brown">{{ sessionTotal ? sessionTotal : 0 }}</span>元 &nbsp;共<span class="text-danger">{{session.totalCount ? session.totalCount : 0 }}</span>条
+        呼叫个数: <span class="brown">{{ sum.num ? sum.num : 0 }}</span> 个&nbsp; 总消费金额: <span class="brown">{{ sum.cost ? sum.cost.toFixed(3) : '0.000' }}</span>元 &nbsp;共<span class="text-danger">{{session.totalCount ? session.totalCount : 0 }}</span>条
       </div>
       <table class="table">
         <thead>
@@ -66,7 +66,7 @@
         </tbody>
       </table>
       <div class="more">
-        <a v-show='session.totalPageCount==session.currentPageNo || session.totalPageCount==0'>加载完毕</a>
+        <a v-show='session.currentPageNo>=session.totalCount'>加载完毕</a>
         <a @click="query('more')" class="text-none"
            v-show='session.totalPageCount!=session.currentPageNo && session.totalPageCount!=0'>加载更多<i
           class="icon iconfont icon-oc-dropdown"></i></a>
@@ -88,13 +88,14 @@
           agent: '',
           callnum: '',
           pageSize: 20,
-          pageNo: 1,
           type: 0
         },
         session: {},
-        sessionTotal: 0,
         sessionList: [],
-        total: 100
+        sum: {
+          num:0,
+          cost:0
+        }
       }
     },
     methods: {
@@ -108,13 +109,14 @@
           params.pageNo = pageNo
         }
         $.get('/tenant/tenants/' + this.$route.params.uid + '/call_center/detail', params).then((res) => {
-          if (res.data.totalCount >= 0) {
-            this.sessionTotal = res.data.total
-            this.session = res.data
+          if (res.data.pageObj.totalCount >= 0) {
+            this.sessionTotal = res.data.pageObj.totalCount
+            this.session = res.data.pageObj
+            this.sum = res.data.sum
             if (more)
-              this.sessionList = self.sessionList.concat(res.data.result)
+              this.sessionList = self.sessionList.concat(res.data.pageObj.result)
             else
-              this.sessionList = res.data.result
+              this.sessionList = res.data.pageObj.result
           }
         })
       }

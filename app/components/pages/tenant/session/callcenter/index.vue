@@ -12,16 +12,17 @@
     <!--表格-->
     <div class="admin-table">
       <div class="table-total flex flex-1 justify-content-e float-r">
-        消费金额: <span class="brown">{{ sessionTotal ? sessionTotal : 0 }}</span>元 共<span class="text-danger">{{session.totalCount ? session.totalCount : 0 }}</span>条
+        消费金额: <span class="brown">{{ sessionTotal ? sessionTotal.toFixed(3) : '0.000'}}</span>元 共<span class="text-danger">{{session.totalCount ? session.totalCount : 0 }}</span>条
       </div>
       <table class="table">
         <thead>
         <tr>
           <th class="text-align-c">呼叫时间</th>
+          <th>呼叫时间</th>
           <th>呼叫类型</th>
           <th>主叫</th>
           <th>被叫</th>
-          <!--<th>通话状态</th>-->
+          <th>通话状态</th>
           <th class="text-align-c">时长(秒)</th>
           <th class="text-align-r">消费金额(元)</th>
         </tr>
@@ -29,7 +30,8 @@
         <tbody>
         <tr v-for='message in sessionList'>
           <td class="message-time text-align-c">{{message.callStartDt | totalDate}}</td>
-          <td><span v-if="message.ivrType==1">呼入</span><span  v-if="message.ivrType==2">呼出</span></td>
+          <td v-if="message.ivrType==1">呼入</td>
+          <td v-if="message.ivrType==2">呼出</td>
           <td>{{ message.fromNum }}</td>
           <td>{{ message.toNum }}</td>
           <td class="text-align-r">￥{{ message.cost }}</td>
