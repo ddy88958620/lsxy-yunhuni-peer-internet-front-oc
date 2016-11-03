@@ -109,9 +109,9 @@
           params.pageNo = pageNo
         }
         $.get('/tenant/tenants/' + this.$route.params.uid + '/call_center/detail', params).then((res) => {
-          if (res.data.pageObj.totalCount >= 0) {
-            this.sessionTotal = res.data.pageObj.totalCount
-            this.session = res.data.pageObj
+          if (res.data.page.totalCount >= 0) {
+            this.sessionTotal = res.data.page.totalCount
+            this.session = res.data.page
             this.sum = res.data.sum
             if (more)
               this.sessionList = self.sessionList.concat(res.data.pageObj.result)
