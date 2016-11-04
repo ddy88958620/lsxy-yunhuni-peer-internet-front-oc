@@ -19,7 +19,7 @@ Vue.http.interceptors.push(
   }
 )
 
-export const AuthResource = Vue.resource(domain.API_ROOT+'/auth/login')
+export const AuthResource = Vue.resource(domain.API_ROOT+'auth/login')
 export const DemandMemberAwait = Vue.resource(domain.API_ROOT+'')
 
 //首页

@@ -42,15 +42,13 @@
 		},
 		methods: {
 			query(type){
+				let params = this.page
 				if (type === 'more') {
 					this.page.pageNo =  this.account_res.currentPageNo + 1
 				}
-				let params = {}
-				let self = this
-				params.pageNo  = this.page.pageNo
 				$.get('acount/expire/list', params).then((res) => {
-					self.account_res = res.data
-					self.account_list = type === 'more' ? self.account_list.concat(res.data.result) : res.data.result
+					this.account_res = res.data
+					this.account_list = type === 'more' ? this.account_list.concat(res.data.result) : res.data.result
 				})
 			},
 		},

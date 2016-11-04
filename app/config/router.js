@@ -125,6 +125,12 @@ export default function(router){
                 '/switch': {
                   component: (resolve) => require(['../components/pages/tenant/switch/index.vue'], resolve)
                 },
+                '/private': {
+                  component: (resolve) => require(['../components/pages/tenant/private/index.vue'], resolve)
+                },
+                '/number': {
+                  component: (resolve) => require(['../components/pages/tenant/numberlock/index.vue'], resolve)
+                },
               }
             },
             '/list' : {
@@ -141,14 +147,77 @@ export default function(router){
             }
           }
         },
-        // '/settings' : {
-        //   component: (resolve) => require(['../components/pages/settings/index.vue'], resolve),
-        //   subRoutes: {
-        //   	'/line' : {
-        //       component: (resolve) => require(['../components/pages/settings/line/list.vue'], resolve),
-        //     }
-        //   }
-        // },
+        '/settings' : {
+          component: (resolve) => require(['../components/pages/settings/index.vue'], resolve),
+          subRoutes: {
+          	'/line' : {
+              component: (resolve) => require(['../components/pages/settings/line/index.vue'], resolve),
+              subRoutes: {
+              	'/list': {
+                  component: (resolve) => require(['../components/pages/settings/line/list.vue'], resolve),
+                  subRoutes: {
+	                  '/all': {
+                      name: 'line',
+                      component: (resolve) => require(['../components/pages/settings/line/all_line.vue'], resolve),
+                    },
+                    '/global': {
+                      component: (resolve) => require(['../components/pages/settings/line/global_line.vue'], resolve),
+                    }
+                  }
+                },
+                '/new' : {
+                  component: (resolve) => require(['../components/pages/settings/line/new_line.vue'], resolve),
+                },
+                '/detail/:lid': {
+                  component: (resolve) => require(['../components/pages/settings/line/detail/index.vue'], resolve),
+                  subRoutes: {
+                  	'/base': {
+                      component: (resolve) => require(['../components/pages/settings/line/detail/base.vue'], resolve),
+                    },
+                    '/number': {
+                      name:'telnum',
+                      component: (resolve) => require(['../components/pages/settings/line/detail/number.vue'], resolve),
+                    },
+                    '/tenant': {
+                      component: (resolve) => require(['../components/pages/settings/line/detail/tenant.vue'], resolve),
+                    },
+                  }
+                }
+              }
+            },
+            '/number' : {
+              component: (resolve) => require(['../components/pages/settings/number/index.vue'], resolve),
+              subRoutes: {
+                '/list': {
+                  component: (resolve) => require(['../components/pages/settings/number/list.vue'], resolve),
+                  subRoutes: {
+                    '/all': {
+                      name: 'numberAll',
+                      component: (resolve) => require(['../components/pages/settings/number/all_number_list.vue'], resolve),
+                    },
+                    '/lock': {
+                      component: (resolve) => require(['../components/pages/settings/number/lock_list.vue'], resolve),
+                    }
+                  }
+                },
+                '/new' : {
+                  component: (resolve) => require(['../components/pages/settings/number/detail/new_number.vue'], resolve),
+                },
+                '/detail/:nid' : {
+                  component: (resolve) => require(['../components/pages/settings/number/detail/index.vue'], resolve),
+                  subRoutes: {
+	                  '/base': {
+                      component: (resolve) => require(['../components/pages/settings/number/detail/edit_number.vue'], resolve),
+                    },
+                    '/relate': {
+                      component: (resolve) => require(['../components/pages/settings/number/detail/related.vue'], resolve),
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         '/message': {
           component: (resolve) => require(['../components/pages/message/index.vue'], resolve),
           subRoutes: {
@@ -264,6 +333,7 @@ export default function(router){
   
   // set the default router-view
   router.redirect({
+    '*': '/admin/dashboard',
     '/': '/auth/login',
     // '/admin': '/admin/dashboard',
     '/admin/service': '/admin/service/list',
@@ -280,6 +350,11 @@ export default function(router){
     '/admin/demand/member': '/admin/demand/member/list/await',
     '/admin/demand/voice': '/admin/demand/voice/list/await',
     '/admin/inactive': '/admin/inactive/wait',
+    '/admin/settings': '/admin/settings/line/list/all',
+    '/admin/settings/line': '/admin/settings/line/list/all',
+    '/admin/settings/number': '/admin/settings/number/list/all',
+    '/admin/settings/number/detail/:nid': '/admin/settings/number/detail/:nid/base',
+    '/admin/settings/line/detail/:lid': '/admin/settings/line/detail/:lid/base',
   })
 
   router.beforeEach(function({to, next, go}){

@@ -22,12 +22,9 @@
             选择上线时间 &nbsp;&nbsp;<datetimepicker :width="200" :type="'time'" :value.sync="line" uuid='newtime' :isstartday="'true'" ></datetimepicker>
           </div>
         </div>
-        <div class="admin-form flex flex-direction-row align-items-s">
-          <label for="content"></label>
-          <div class="flex align-items-c">
+        <div class="admin-form">
             <button class="btn btn-primary" @click="newMessage">发布</button>
             <button class="btn btn-default admin-margin-l" v-link="'/admin/message/list'">取消</button>
-          </div>
         </div>
       </div>
     </div>

@@ -5,14 +5,14 @@
 				<li>
 					<a v-link="'/admin/settings/line'">线路管理</a>
 				</li>
-				<!--<li>-->
-					<!--<a v-link="'/admin/demand/voice'">号码管理</a>-->
-				<!--</li>-->
 				<li>
-					<a v-link="'/admin/demand/voice'">产品管理</a>
+					<a v-link="'/admin/settings/number'">号码管理</a>
 				</li>
+				<!--<li>-->
+					<!--<a v-link="'/admin/demand/voice'">产品管理</a>-->
+				<!--</li>-->
 			</ul>
-			<div class=" admin-padding app-main-right">
+			<div class="app-main-right">
 				<router-view></router-view>
 			</div>
 		</div>

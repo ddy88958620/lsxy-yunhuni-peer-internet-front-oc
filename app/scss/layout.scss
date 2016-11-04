@@ -75,7 +75,6 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%,-50%);
-  overflow: hidden;
 }
 
 .flex {
@@ -191,4 +190,17 @@
 //  padding
 .clear-padding-left {
   padding-left: 0px !important;
+}
+
+$input-width: 300px;
+$input-width-120: 120px;
+
+// form
+.input-width {
+  display: inline-block;
+  width: $input-width;
+}
+.input-width-select {
+  display: inline-block;
+  width: $input-width-120 !important;
 }

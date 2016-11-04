@@ -58,6 +58,10 @@
   margin-top: 60px;
 }
 
+.admin-bottom {
+  margin-bottom: 60px;
+}
+
 .admin-padding {
   padding: $admin-padding;
 }
@@ -466,4 +470,7 @@ input[type="number"]{-moz-appearance:textfield;}
   .border-right{
     border-right: 1px solid #ddd;
   }
+}
+.middle {
+  vertical-align: middle;
 }

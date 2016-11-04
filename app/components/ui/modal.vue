@@ -55,7 +55,7 @@
 	  methods: {
     	sure(){
     	  this.action()
-        this.show = false
+//        this.show = false
       },
       cancel(){
       	this.show = false
@@ -107,6 +107,7 @@
   }
 
   .modal-header {
+    line-height: 1.3;
     margin-top: 0;
     padding: 10px;
     color: #FFF;
