@@ -14,14 +14,14 @@
 			</tr>
 			</thead>
 			<tbody>
-			<tr>
-				<td class="message-time text-align-c">{{message.lineTime | totalDate}}</td>
-				<td>23424324</td>
-				<td>电信</td>
-				<td>020</td>
-				<td>是</td>
-				<td>2</td>
-				<td>10000</td>
+			<tr v-for="l in list.one">
+				<td class="message-time text-align-c">{{l.createTime | totalDate}}</td>
+				<td>{{ l.lineId}}</td>
+				<td>{{ l.operator }}</td>
+				<td>{{ l.areaCode }}</td>
+				<td>{{ l.isThrough === '1' ?  '是' : '否'}}</td>
+				<td>{{ l.quality }}</td>
+				<td>{{ l.capacity }}</td>
 			</tr>
 			</tbody>
 		</table>
@@ -39,16 +39,56 @@
 			</tr>
 			</thead>
 			<tbody>
-			<tr>
-				<td class="message-time text-align-c">{{message.lineTime | totalDate}}</td>
-				<td>23424324</td>
-				<td>电信</td>
-				<td>020</td>
-				<td>是</td>
-				<td>2</td>
-				<td>10000</td>
+			<tr v-for="l in list.more">
+				<td class="message-time text-align-c">{{l.createTime | totalDate}}</td>
+				<td>{{ l.lineId}}</td>
+				<td>{{ l.operator }}</td>
+				<td>{{ l.areaCode }}</td>
+				<td>{{ l.isThrough === '1' ?  '是' : '否'}}</td>
+				<td>{{ l.quality }}</td>
+				<td>{{ l.capacity }}</td>
 			</tr>
 			</tbody>
 		</table>
+		<div class="more">
+			<a v-if='origin.more.currentPageNo >= origin.more.totalPageCount'>加载完毕</a>
+			<a @click="query('more')" class="text-none" v-if='origin.more.currentPageNo < origin.more.totalPageCount' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+		</div>
 	</div>
 </template>
+<script>
+	export default {
+		data(){
+			return {
+				list: {
+					one: [],
+					more: []
+				},
+				pageNo: 1,
+				origin: {
+					more: {}
+				}
+			}
+		},
+		methods: {
+			fetchOne(){
+				$.get('config/telnum/line/one/'+this.$route.params.nid).then((e)=>{
+					this.list.one = e.data
+				})
+			},
+			fetchMore(type){
+				if(type === 'more') {
+					this.pageNo = this.origin.more.currentPageNo + 1
+				}
+				$.get('config/telnum/line/plist/'+this.$route.params.nid).then((res)=>{
+					this.origin.more = res.data
+					this.list.more = type === 'more' ? this.list.more.concat(res.data.result) : res.data.result
+				})
+			},
+		},
+		ready(){
+			this.fetchOne()
+			this.fetchMore()
+		}
+	}
+</script>

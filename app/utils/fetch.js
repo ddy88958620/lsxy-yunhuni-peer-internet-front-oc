@@ -19,13 +19,14 @@ $.extend({
       })
     })
   },
-  file: function(url,data){
+  file: function(url, element){
     return new Promise((resolve, reject) => {
-      
-      $.ajax({
+      $.ajaxFileUpload({
         type: 'post',
         url: domain.API_ROOT + url,
-        data: data,
+        secureuri :false,
+        fileElementId : element,//file控件id
+        dataType : 'json',
         contentType: 'multipart/form-data',
         processData: false,
         success: (e) => {
@@ -50,7 +51,7 @@ $.extend({
         contentType: 'application/json',
         processData: false,
         success: (e) => {
-          resolve(e)
+          resolve(JSON.parse(e))
         },
         error: (e) => {
           if( e.status == 401) {

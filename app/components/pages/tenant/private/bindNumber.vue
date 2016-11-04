@@ -1,25 +1,21 @@
 <template>
-	<modal :classname="'table'" :show.sync="show.self" title="新增透传号码" :action="closeModal">
+	<modal :classname="'table'" :show.sync="show.self" title="新增透传号码" :action="add">
 		<div slot="body">
 			<div class="form-group">
 				<div class="select-box inline-block">
 					<search
-						:value.sync="search"
+						:value.sync="post.line.lineNumber"
 						:action="query"
 						placeholder="模糊查询"
 					></search>
 				</div>
 				&nbsp;
 				<label class="">运营商 : </label>
-				<select class="form-control input-width-select" v-model='type'>
-					<option value=1>活动消息</option>
-					<option value=0>用户消息</option>
-				</select>
-				&nbsp;
-				<label class="">号码功能 : </label>
-				<select class="form-control input-width-select" v-model='type'>
-					<option value=1>活动消息</option>
-					<option value=0>用户消息</option>
+				<select class="form-control input-width-select" v-model='post.line.operator'>
+					<option value=''>全部</option>
+					<option value='中国移动'>中国移动</option>
+					<option value='中国联通'>中国联通</option>
+					<option value='中国电信'>中国电信</option>
 				</select>
 				&nbsp;
 				<button class="btn btn-primary admin-margin-l" @click="query">查询</button>
@@ -30,26 +26,26 @@
 					<tr>
 						<td>选择</td>
 						<th class=" text-align-c">创建时间</th>
-						<th>号码</th>
-						<th>可主叫</th>
-						<th>可被叫</th>
-						<th>号码来源</th>
+						<th>线路标识</th>
 						<th>运营商</th>
+						<th>区域</th>
 						<th>归属地</th>
-						<th>归属线路</th>
+						<th>支持透传</th>
+						<th>质量</th>
+						<th>并发容量</th>
 					</tr>
 					</thead>
 					<tbody>
-					<tr v-for='message in messagesList'>
-						<td><input type="checkbox"></td>
-						<td class="message-time text-align-c">{{message.lineTime | totalDate}}</td>
-						<td>23424324</td>
-						<td>✔</td>
-						<td>✘</td>
-						<td>租户自带</td>
-						<td>电信</td>
-						<td>10000</td>
-						<td>无</td>
+					<tr v-for='l in list.line'>
+						<td><input type="checkbox" v-model="lineIndex" value="{{$index}}"></td>
+						<td class="message-time text-align-c">{{l.createTime | totalDate}}</td>
+						<td>{{ l.lineNumber}}</td>
+						<td>{{ l.operator }}</td>
+						<td>{{ l.areaId }}</td>
+						<td>{{ l.areaCode }}</td>
+						<td>{{ l.isThrough === '1' ? '✔' : '✘'}}</td>
+						<td>{{ l.quality }}</td>
+						<td>{{ l.capacity }}</td>
 					</tr>
 					</tbody>
 				</table>
@@ -57,9 +53,9 @@
 			<div class="admin-table">
 				<div class="more">
 					<a
-						v-show='messages.totalPageCount >= messages.currentPageNo'>加载完毕</a>
+						v-show='origin.line.totalPageCount >= origin.line.currentPageNo'>加载完毕</a>
 					<a @click="query('more')" class="text-none"
-					   v-show='messages.totalPageCount!=messages.currentPageNo && messages.totalPageCount!=0'>加载更多<i
+					   v-show='origin.line.totalPageCount < origin.line.currentPageNo'>加载更多<i
 						class="icon iconfont icon-oc-dropdown"></i></a>
 				</div>
 			</div>
@@ -81,16 +77,20 @@
 						</tr>
 						</thead>
 						<tbody>
-						<tr v-for='message in messagesList'>
-							<td>&nbsp;<button @click="deleteBindNumberSelected($index)" type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button></td>
-							<td class="message-time text-align-c">{{message.lineTime | totalDate}}</td>
-							<td>23424324</td>
-							<td>✔</td>
-							<td>✘</td>
-							<td>租户自带</td>
-							<td>电信</td>
-							<td>10000</td>
-							<td>无</td>
+						<tr v-for='l in selected.line' v-if="selected.line.length !== 0">
+							<td>
+								&nbsp;
+								<button @click="deleteLine(l.k)" type="button" class="close"><span aria-hidden="true">&times;</span>
+									<span class="sr-only">Close</span></button>
+							</td>
+							<td class="message-time text-align-c">{{l.v.createTime | totalDate}}</td>
+							<td>{{ l.v.lineNumber}}</td>
+							<td>{{ l.v.operator }}</td>
+							<td>{{ l.v.areaId }}</td>
+							<td>{{ l.v.areaCode }}</td>
+							<td>{{ l.v.isThrough === '1' ? '✔' : '✘'}}</td>
+							<td>{{ l.v.quality }}</td>
+							<td>{{ l.v.capacity }}</td>
 						</tr>
 						</tbody>
 					</table>
@@ -100,16 +100,40 @@
 </template>
 <script>
 	export default {
+		vuex: {
+			actions: {showMsg: require('actions').showMsg}
+		},
 		data(){
 			return {
 				show: {
 					self: false
 				},
-				bindNumber: {
-					list: []
+				list: {
+					line: []
 				},
-				messages: [],
-				messagesList: []
+				post: {
+					line: {
+						pageNo: 1,
+						lineNumber: '',
+					}
+				},
+				origin: {
+					line: {}
+				},
+				selected: {
+					line: [],
+				},
+				lineIndex: []
+			}
+		},
+		watch: {
+			lineIndex: {
+				handler: function (e) {
+					this.selected.line = this.lineIndex.map((item)=> {
+						return {k: item, v: this.list.line[item]}
+					})
+				},
+				deep: true
 			}
 		},
 		components: {
@@ -118,24 +142,37 @@
 		},
 		methods: {
 			query(type){
-				let params = {}
-				
-				
-				if(type === 'more') {
-					params.pageNo = this.messages.currentPageNo + 1
-					
+				let params = this.post.line
+				if (type === 'more') {
+					params.pageNo = this.origin.line.currentPageNo + 1
 				}
-				
-				let self = this
-				$.get('/message/list', params).then((res) => {
-					self.messages = res.data
-					
-					if(type=='more')
-						self.messagesList = self.messagesList.concat(res.data.result)
-					else
-						self.messagesList = res.data.result
+				$.get('/config/tenant/line/plist/' + this.$route.params.uid, params).then((res) => {
+					this.origin.line = res.data
+					this.list.line = type === 'more' ? this.list.line.concat(res.data.result) : res.data.result
 				})
 			},
+			deleteLine(value){
+				this.lineIndex.splice(this.lineIndex.indexOf(value), 1)
+			},
+			add(){
+				let ids = this.selected.line.map((item)=> {
+					return item.v.id
+				})
+				$.post('config/tenant/add/' + this.$route.params.uid, {ids: ids}).then((e)=> {
+					if (e.errorMsg) {
+						this.showMsg({content: e.errorMsg, type: 'danger'})
+						return
+					}
+					this.showMsg({content: '更新成功', type: 'success'})
+					this.query()
+					this.show.self = false
+					this.lineIndex = []
+					this.$route.replace({
+						path: this.$route.path,
+						query: {t: new Date()}
+					})
+				})
+			}
 		},
 		ready(){
 			this.query()

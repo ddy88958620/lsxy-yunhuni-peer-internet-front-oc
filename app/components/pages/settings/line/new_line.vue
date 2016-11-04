@@ -12,7 +12,7 @@
 	import {showMsg} from 'actions'
 	export default {
 		vuex:{
-			actions:{ showMsg }
+			actions: { showMsg }
 		},
 		components: {
 			lineForm: require('./detail/form.vue')

@@ -27,7 +27,7 @@
 				<option value="">--市--</option>
 				<option v-for="city in cityList" :value="city.areaCode">{{ city.city}}</option>
 			</select>
-			当前区号: {{postData.areaCode}}
+			<span v-if="postData.areaCode">当前区号: {{postData.areaCode}}</span>
 		</div>
 		<div class="form-group">
 			<label class="control-label">呼入前主叫前缀 : </label>

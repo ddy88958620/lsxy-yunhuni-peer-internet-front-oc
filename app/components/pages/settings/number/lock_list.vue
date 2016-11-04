@@ -2,17 +2,16 @@
 </style>
 <template>
 	<div>
-		<div class="alert alert-danger" role="alert">
+		<div class="alert alert-success" role="alert">
 			禁止红名单号码作为被叫号码使用，禁止黑名单号码作为主叫号使用
 		</div>
 		<div class="admin-table-header">
 			<div class="remove-margin-bottom">
-				<span class='datetime-picker-label'>呼叫类型: </span>
-				<select class="form-control" v-model='status' >
+				<span class='datetime-picker-label'>号码类型: </span>
+				<select class="form-control" v-model='postData.type' >
 					<option value=''>全部</option>
-					<option value=1 >已上线</option>
-					<option value=0 >未上线</option>
-					<option value=-1>已下线</option>
+					<option value=1 >红名单</option>
+					<option value=2 >黑名单</option>
 				</select>
 				<button class="btn btn-primary admin-button-margin" @click="query" >查询</button>
 				<a class="btn btn-primary" @click="show.newNumber = true">新增号码</a>
@@ -20,7 +19,7 @@
 		</div>
 		<div class="admin-table ">
 			<div class="table-total flex flex-1 justify-content-e float-r">
-				共<span class="text-danger">{{messages.totalCount ? messages.totalCount : 0}}</span>条
+				共<span class="text-danger">{{originData.number.totalCount ? originData.number.totalCount : 0}}</span>条
 			</div>
 			<table class="table">
 				<thead>
@@ -33,36 +32,36 @@
 				</tr>
 				</thead>
 				<tbody>
-				<tr v-for='message in messagesList'>
-					<td class="message-time text-align-c">{{message.lineTime | totalDate}}</td>
-					<td>23424324</td>
-					<td>红名单</td>
-					<td v-if='message.status==-1' >启用</td>
-					<td v-if='message.status==0 || message.status==null' class='text-danger'>禁用</td>
-					<td v-if='message.status==1' class="text-success" >已上线</td>
+				<tr v-for='l in list.number'>
+					<td class="message-time text-align-c">{{l.createTime | totalDate}}</td>
+					<td>{{l.number}}</td>
+					<td>{{l.type === 1 ? '红名单' : '黑名单'}}</td>
+					<td v-if='l.status===1' class="text-success">启用</td>
+					<td class="text-danger" v-else >禁用</td>
 					<td class="text-align-c">
-						<span @click="deleteMsg($index)"><a>禁用</a></span>
-						<span @click="deleteMsg($index)"><a>删除</a></span>
+						<span @click="disabled($index, l.id)" v-if='l.status===1'><a>禁用</a></span>
+						<span @click="enabled($index, l.id)" v-else><a>启用</a></span>
+						<span @click="deleteNumber($index, l.id)"><a>删除</a></span>
 					</td>
 				</tr>
 				</tbody>
 			</table>
 			<div class="more">
-				<a v-show='this.messages.totalPageCount==this.messages.currentPageNo || this.messages.totalPageCount==0'>加载完毕</a>
-				<a @click="query('more')" class="text-none" v-show='this.messages.totalPageCount!=this.messages.currentPageNo && this.messages.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+				<a v-if='originData.number.currentPageNo >= originData.number.totalPageCount'>加载完毕</a>
+				<a @click="query('more')" class="text-none" v-if='originData.number.currentPageNo < originData.number.totalPageCount' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
 			</div>
 		</div>
 	</div>
 	
-	<modal :show.sync="show.newNumber" title="新增线路号码" :action="closeModal">
+	<modal :show.sync="show.newNumber" title="新增线路号码" :action="new">
 		<div slot="body">
-			<input type="radio"> 可主叫 &nbsp;
-			<input type="radio"> 可被叫
+			<input type="radio" v-model="postData.newNumber.type" value="1" number> 红名单 &nbsp;
+			<input type="radio" v-model="postData.newNumber.type" value="2" number> 黑名单
 			<br/>
 			<br/>
 			<div class="form-group">
 				<label class="control-label">新增号码 : </label>
-				<input type="text" class="form-control input-width" placeholder="">
+				<input type="text" class="form-control input-width" placeholder="" v-model="postData.newNumber.number">
 			</div>
 		</div>
 	</modal>
@@ -87,120 +86,67 @@
 				show: {
 					newNumber: false
 				},
-				messagesList: [],
-				messages: {
-					totalCount : 0,
-					totalPageCount : 0
+				postData: {
+					type: '',
+					pageNo: 1,
+					newNumber: {
+						type: 1,
+						number: '',
+					}
 				},
-				startTime: '',
-				endTime: '',
-				type: 1,
-				status: '',
-				total: '',
-				startdate: {
-					type:'day',
-					value:''
+				list: {
+					number: []
 				},
-				enddate: {
-					type:'day',
-					value:''
-				},
-				content :{
-					showModal:false,
-					text:''
+				originData: {
+					number: {}
 				}
 			}
 		},
 		methods: {
-			deleteMessage(index){
-				this.messages.splice(index, 1)
+			deleteNumber(index, id){
+				$.delete('/config/redblank/'+id).then(()=>{
+					this.list.number.splice(index, 1)
+					this.originData.number.totalCount -= 1
+					this.showMsg({content: '删除成功', type: 'success'})
+				})
 			},
-			showConent(txt){
-				this.content.showModal= true
-				this.content.text = txt
+			enabled(index, id) {
+				$.put('config/redblank/enabled/'+id).then(()=>{
+					let temp = this.list.number[index]
+					temp.status = 1
+					this.list.number.$set(index, temp)
+					this.showMsg({content: '启用成功', type: 'success'})
+				})
 			},
-			closeModal(){
-				this.content.showModal= false
+			disabled(index, id) {
+				$.put('/config/redblank/disabled/'+id).then(()=>{
+					let temp = this.list.number[index]
+					temp.status = 0
+					this.list.number.$set(index, temp)
+					this.showMsg({content: '禁用成功', type: 'success'})
+				})
 			},
 			query(type){
-				let params = {}
-				
-				params.startTime = this.startdate.value
-				params.endTime = this.enddate.value
-				params.type = this.type
-				params.status = this.status
-				
+				let params = this.postData
 				if(type === 'more') {
-					params.pageNo = this.messages.currentPageNo + 1
-					
+					params.pageNo = this.originData.number.currentPageNo + 1
 				}
-				
-				let self = this
-				$.get('/message/list', params).then((res) => {
-					self.messages = res.data
-					
-					if(type=='more')
-						self.messagesList = self.messagesList.concat(res.data.result)
-					else
-						self.messagesList = res.data.result
+				$.get('config/redblank/plist', params).then((res) => {
+					this.originData.number = res.data
+					this.list.number = type === 'more' ? this.list.number.concat(res.data.result) : res.data.result
 				})
 			},
-			changeStatus(index, type){
-				let params = {}
-				
-				if( type === 'up') {
-					params.status = 1
-				}
-				else if( type === 'down'){
-					params.status = -1
-				}
-				let messageObj = this.messagesList[index]
-				let self = this
-				
-				$.put('/message/edit/'+messageObj.id, params).then((res) => {
-					if( res.success === 'false'){
-						this.showMsg({content: res.errorMsg, type: 'danger'})
+			new(){
+				$.post('config/redblank/new', this.postData.newNumber).then((e)=> {
+					if(e.errorMsg){
+						this.showMsg({content: e.errorMsg, type: 'danger'})
 						return
 					}
-					if(type === 'up'){
-						this.showMsg({content: '上线成功', type: 'success'})
-					}
-					if(type === 'down' ){
-						this.showMsg({content: '下线成功', type: 'success'})
-					}
-					self.messagesList.$set(index, res.data)
+					this.showMsg({content: '新建成功', type: 'success'})
+					this.query()
+					this.show.newNumber = false
 				})
 			},
-			deleteMsg(index){
-				let messageObj = this.messagesList[index]
-				let self = this
-				
-				$.delete('/message/'+messageObj.id).then((res) => {
-					
-					if( res.success === 'false'){
-						this.showMsg({content: res.errorMsg, type: 'danger'})
-						return
-					}
-					self.messagesList.splice(index,1)
-					self.messages.totalCount = self.messages.totalCount -1
-					
-					
-					this.showMsg({content: '删除成功', type: 'success'})
-					
-					/*if( res.success === 'false'){
-					 this.showMsg({content: res.errorMsg, type: 'danger'})
-					 return
-					 }
-					 if(type === 'up'){
-					 this.showMsg({content: '上线成功', type: 'success'})
-					 }
-					 if(type === 'down' ){
-					 this.showMsg({content: '下线成功', type: 'success'})
-					 }
-					 self.messagesList.$set(index, res.data)*/
-				})
-				console.log(index)
-			}
 		},
 		ready(){
 			this.query()

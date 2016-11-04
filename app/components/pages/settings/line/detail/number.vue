@@ -21,7 +21,7 @@
 					<option value='3'>可透传</option>
 				</select>
 				<button class="btn btn-primary admin-margin-l" @click="query">查询</button>
-				<button class="btn btn-primary" @click="$refs.uploadnumber.show = true">导入线路号码</button>
+				<!--<button class="btn btn-primary" @click="$refs.uploadnumber.show = true">导入线路号码</button>-->
 				<button class="btn btn-primary" @click="$refs.newline.show = true" >新增线路号码</button>
 				<button class="btn btn-primary" @click="$refs.through.show = true">新增透传</button>
 				<a class="btn btn-primary" @click="deleteNumber">删除号码</a>

@@ -2,10 +2,12 @@
 	<!--导入线路号码-->
 	<modal :show.sync="show" title="导入线路号码" :action="closeModal">
 		<div slot="body">
-			<input type="file" @change="uploadNumber"/> 请上传文件
-			<p class="text-success margin-top-20">
-				请按照模板格式填写后上传（只支持Excel文件） <a href="">下载模板</a>
-			</p>
+			<form>
+				<div id="uploader"></div> <a @click="">上传</a>
+				<p class="text-success margin-top-20">
+					请按照模板格式填写后上传（只支持Excel文件） <a href="/api/ossfile/telnum">下载模板</a>
+				</p>
+			</form>
 		</div>
 	</modal>
 </template>
@@ -13,20 +15,14 @@
 	export default {
 		data(){
 			return {
-				show: false
+				show: false,
+				upload: {}
 			}
 		},
 		components: {
 			'modal': require('ui/modal.vue'),
 		},
-		methods: {
-			uploadNumber(e){
-				let file = e.target.files[0]
-				
-				$.file('config/line/telnum/upload/'+this.$route.params.lid, file).then((e)=>{
-					console.log(e)
-				})
-			}
-		}
+		methods: {},
+		ready(){}
 	}
 </script>

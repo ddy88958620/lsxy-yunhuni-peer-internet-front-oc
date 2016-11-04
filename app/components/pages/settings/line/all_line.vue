@@ -136,7 +136,11 @@
 				})
 			},
 			addGlobal(index, lid){
-				$.post('/config/public/add/'+lid).then(()=>{
+				$.post('/config/public/add/'+lid).then((e)=>{
+					if(!e.success) {
+						this.showMsg({content: e.errorMsg, type: 'danger'})
+						return
+					}
 					let line = this.list[index]
 					line.isPublicLine = '1'
 					this.list.$set(index, line)

@@ -180,6 +180,7 @@ export default function(router){
                   component: (resolve) => require(['../components/pages/settings/number/list.vue'], resolve),
                   subRoutes: {
                     '/all': {
+                      name: 'numberAll',
                       component: (resolve) => require(['../components/pages/settings/number/all_number_list.vue'], resolve),
                     },
                     '/lock': {
@@ -340,6 +341,7 @@ export default function(router){
     '/admin/settings': '/admin/settings/line/list/all',
     '/admin/settings/line': '/admin/settings/line/list/all',
     '/admin/settings/number': '/admin/settings/number/list/all',
+    '/admin/settings/number/detail/:nid': '/admin/settings/number/detail/:nid/base',
     '/admin/settings/line/detail/:lid': '/admin/settings/line/detail/:lid/base',
   })
 

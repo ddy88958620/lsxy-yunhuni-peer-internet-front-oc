@@ -4,7 +4,7 @@
 			<div class="remove-margin-bottom">
 				<div class="select-box inline-block">
 					<search
-						:value.sync="postData.search"
+						:value.sync="postData.listParams.tenantName"
 						:action="query"
 						placeholder="请输入会员名称"
 					></search>
@@ -47,7 +47,8 @@
 				list: [],
 				postData: {
 					listParams: {
-						pageNo: 1
+						pageNo: 1,
+						tenantName: '',
 					}
 				},
 				originData: {
@@ -61,7 +62,7 @@
 				if(type === 'more') {
 					 this.postData.listParams.pageNo = this.originData.list.currentPageNo += 1
 				}
-				$.get('/message/list', params).then((res) => {
+				$.get('config/line/tenant/plist/'+this.$route.params.lid, params).then((res) => {
 					this.originData.list = res.data
 					this.list = type === 'more' ? this.list.concat(res.data.result) : res.data.result
 				})
