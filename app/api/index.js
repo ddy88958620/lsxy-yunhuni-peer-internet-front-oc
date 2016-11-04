@@ -90,9 +90,6 @@ export default {
   getTenantAuthInfo(param){
     return TenantAuthInfo.get(param)
   },
-  getMessageList(param){
-    return MessageList.get(param)
-  },
   newMessage(param){
     return MessageNew.get(param)
   },

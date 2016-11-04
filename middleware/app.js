@@ -18,12 +18,12 @@ app.use(convert(logger()));
 app.use(convert(require('koa-static')(__dirname + '/public')));
 app.keys = ['session.id'];
 app.use(convert(session({
-      store: {
-        host: config.REDISHOST || '127.0.0.1',
-        port: config.REDISPORT || 6379,
-        ttl: 30*60, // 30*60
-      }
+    store: {
+      host: config.REDISHOST || '127.0.0.1',
+      port: config.REDISPORT || 6379,
+      ttl: 30*60, // 30*60
     }
+  }
 )));
 app.use(views(__dirname + '/views', {
   extension: 'jade'

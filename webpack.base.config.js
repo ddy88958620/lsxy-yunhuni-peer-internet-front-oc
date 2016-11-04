@@ -18,7 +18,10 @@ module.exports = {
     ],
     alias: {
       // 'components': path.resolve(__dirname, 'app/components'),
-      'font': path.resolve(__dirname, 'app/assets/fonts')
+      'font': path.resolve(__dirname, 'app/assets/fonts'),
+      'actions': path.resolve(__dirname, 'app/vuex/actions.js'),
+      'ui': path.resolve(__dirname, 'app/components/ui'),
+      'assets': path.resolve(__dirname, 'app/assets')
     },
     extensions: ['', '.json', '.js', '.vue'],
   },
@@ -62,8 +65,9 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
+      jQuery: 'jquery',
       $: 'jquery',
-      jQuery: 'jquery'
+	    
     }),
   ]
 }

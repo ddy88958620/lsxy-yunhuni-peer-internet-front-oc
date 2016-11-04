@@ -71,20 +71,17 @@
 
 	<modal :show.sync="content.showModal" title="发布标题" :action="closeModal" >
 		<div slot="body">
-			<div class="flex flex-1 word-break">{{content.text}}</div>
+			<div class="word-break">{{content.text}}</div>
 		</div>
 	</modal>
 
 
 </template>
 <script>
-	import {getMessageList,showMsg} from '../../../vuex/actions'
+	import {showMsg} from 'actions'
 
 	export default {
 		vuex:{
-			getter:{
-
-			},
 			actions:{
 				showMsg
 			}
@@ -182,37 +179,15 @@
 			deleteMsg(index){
 				let messageObj = this.messagesList[index]
 				let self = this
-
 				$.delete('/message/'+messageObj.id).then((res) => {
-					
 					if( res.success === 'false'){
 						this.showMsg({content: res.errorMsg, type: 'danger'})
 						return
 					}
 					self.messagesList.splice(index,1)
 					self.messages.totalCount = self.messages.totalCount -1
-
-
 					this.showMsg({content: '删除成功', type: 'success'})
-
-					/*if( res.success === 'false'){
-						this.showMsg({content: res.errorMsg, type: 'danger'})
-						return
-					}
-					if(type === 'up'){
-						this.showMsg({content: '上线成功', type: 'success'})
-					}
-					if(type === 'down' ){
-						this.showMsg({content: '下线成功', type: 'success'})
-					}
-					self.messagesList.$set(index, res.data)*/
 				})
-
-				
-				console.log(index)
-
-
-
 			}
 		},
 		ready(){

@@ -1,5 +1,5 @@
 <template>
-  <section class='section-two flex bg-section-margin flex-direction-column justify-content-s '>
+  <section class='section-two section-data-box flex bg-section-margin flex-direction-column justify-content-s '>
     <div class="panel panel-default flex-1">
       <div class="panel-heading">上月数据</div>
       <div class="panel-body flex flex-1">
@@ -135,45 +135,4 @@
 
 
 <style lang="sass" scoped>
-  .section-two {
-    .box{
-      height: 140px;
-      padding:20px;
-    }
-
-    .money{
-      font-size: 1.8rem;
-    }
-
-    .bigicon{
-      font-size: 2.8rem;
-    }
-    .icon-oc-up,.icon-oc-down{
-      font-size: 8px;
-    }
-  }
-
- .box{
-      height: 140px;
-			width: 16.66666%;
-      padding:20px;
-  }
-
-  .money{
-    padding: 0 10px;
-    font-size: 1.8rem;
-  }
-
-  .bigicon{
-      font-size: 2.8rem;
-  }
-
-  .icon-oc-up,.icon-oc-down{
-      font-size: 8px;
-  }
-
-  .border-right{
-      border-right: 1px solid #ddd;
-  }
-
 </style>

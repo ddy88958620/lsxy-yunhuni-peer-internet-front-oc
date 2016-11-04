@@ -25,12 +25,10 @@
 											<span v-if="$validation.username.required || $validation.username.maxlength || $validation.username.minlength">账号长度为3-16位</span>
 										</div>
 								</div>
-
 								<div
 									class="validate-field form-group relative">
 									<i class="iconfont icon-oc-login-pwd input-icon"></i>
 									<input
-									 
 										type="password"
 										class='form-control form-input'
 										v-model='user.password'

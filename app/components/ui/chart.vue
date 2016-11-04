@@ -3,7 +3,6 @@
  这是查询的chart组件,还有一个实时chart组件
  *
  ***/
-
 <template>
     <canvas :class="uuid" height='100'></canvas>
 </template>

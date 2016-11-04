@@ -1,8 +1,18 @@
 <template>
   <div>
+    <!--搜索-->
+    <div class="headbox flex flex-1 align-items-c bg-section-margin whilebg">
+      <span class='datetime-picker-label padding-right-20'>选择应用: </span>
+      <select class="form-control flex select-box padding-right-20" v-model='serach.selectApp' >
+        <option v-for="app in serach.apps"  value="{{app.id}}">{{app.name}} </option>
+      </select>
+      <span class='datetime-picker-label padding-right-20 padding-left-20'>时间:</span>
+      <datetime-picker :uuid="'sessionDate'"  :type.sync="serach.time.type" :value.sync="serach.time.value"></datetime-picker>
+    </div>
+    <!--表格-->
     <div class="admin-table">
       <div class="table-total flex flex-1 justify-content-e float-r">
-        消费金额: <span class="brown">{{ sessionTotal ? sessionTotal : 0 }}</span>元 共<span class="text-danger">{{session.totalCount ? session.totalCount : 0 }}</span>条
+        消费金额: <span class="brown">{{ sessionTotal ? sessionTotal.toFixed(3) : '0.000'}}</span>元 共<span class="text-danger">{{session.totalCount ? session.totalCount : 0 }}</span>条
       </div>
       <table class="table">
         <thead>
@@ -35,9 +45,21 @@
   </div>
 </template>
 <script>
+  import DATE from '../../../../../utils/date'
   export default {
+    components: {
+      'datetime-picker': require('ui/datetimepicker.vue'),
+    },
     data(){
       return {
+        serach :{
+          time:{
+            type:'day',
+            value:DATE.todayString('day'),
+          },
+          apps:[],
+          selectApp:'',
+        },
         session:{},
         sessionTotal : 0,
         sessionList: [],
@@ -45,21 +67,31 @@
         total: 100
       }
     },
+    watch:{
+      'serach.selectApp': function(){ this.query()},
+      'serach.time.value': function(){ this.query()}
+    },
     methods: {
+      getApp(){
+        let param = { serviceType : 'voice'}
+        $.get('/app/list/'+this.$route.params.uid ,param).then((res) => {
+          if(res.data.length>0){
+            this.serach.apps = res.data
+            this.serach.selectApp =res.data[0].id
+            this.query()
+          }
+        })
+      },
       query(more){
         //voice_call.语音呼叫,duo_call.双向回拨,conf_call.会议服务,ivr_call.IVR定制服务,captcha_call.语音验证码,voice_recording.录音服务
         //1.语音呼叫2.双向回拨3.会议服务4.IVR定制服务5.语音验证码6.录音服务
-        let uid = this.$route.params.uid
-        let type = 'ivr_call'
-        let appId = this.$route.params.aid
-        let time = this.$route.params.day
-        let params = {type:type,appId:appId,time:time}
+        let params = {type:'ivr_call',appId:this.serach.selectApp,time:this.serach.time.value}
         if(more){
           let pageNo = this.session.currentPageNo + 1
           params.pageNo = pageNo
         }
         let self = this
-        $.get('/tenant/'+uid+'/session', params).then((res) => {
+        $.get('/tenant/'+this.$route.params.uid+'/session', params).then((res) => {
            if(res.data.page.totalCount>=0){
             self.sessionTotal =res.data.total
             self.session = res.data.page
@@ -73,7 +105,7 @@
     },
     route: {
       data(){
-            this.query()
+        this.getApp()
       }
     }
     

@@ -34,6 +34,7 @@
 					<th>文件名</th>
 					<th>大小</th>
 					<th>同步状态</th>
+					<th>审核人</th>
 					<th class="text-align-c">审核时间</th>
 					<th class="text-align-c">操作</th>
 				</tr>
@@ -49,6 +50,7 @@
 					<td v-if="message.sync === 1" class="darkgreen">同步成功</td>
 					<td  v-if="message.sync == 0 || message.sync ==null || message.sync == '' " >未同步</td>
 					<td  v-if="message.sync == -1" class="text-danger">同步失败</td>
+					<td>管理员</td>
 					<td class="message-time text-align-c">{{message.checkTime | totalDate}}</td>
 					<td class="text-align-c">
 						<span><a @click="playAudio($index)">试听</a></span>
@@ -74,7 +76,7 @@
 		</div>
 		<div slot="footer">
 			<div class="modal-footer inline-block float-r" >
-				<button class="btn btn-default" @click="audioModal=false">关闭</button>
+				<button class="btn btn-default" @click="hideAudioModal">关闭</button>
 			</div>
 		</div>
 	</modal>

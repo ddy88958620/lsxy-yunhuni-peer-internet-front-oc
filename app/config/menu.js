@@ -12,7 +12,7 @@ export default [
     link: '/admin/tenant'
   },
   {
-    title: '客服中心',
+    title: '服务与支持',
     label: 'Custom',
     icon: 'icon-oc-custom',
     link: '/admin/service'
@@ -22,6 +22,12 @@ export default [
     label: 'Finance',
     icon: 'icon-oc-finance',
     link: '/admin/finance'
+  },
+  {
+    title: '配置中心',
+    label: 'Settings',
+    icon: 'icon-oc-setting',
+    link: '/admin/settings'
   },
   {
     title: '消息中心',

@@ -82,17 +82,17 @@
 	.admin-form {
 		margin-top: 20px;
 		$input-width: 900px;
-	label {
-		width: 50px;
-		margin-bottom: 0px;
-	}
-	
-	input, .simditor {
-		width: $input-width;
-	}
-	.linetime{
-		width: 60px;
-	}
+		label {
+			width: 50px;
+			margin-bottom: 0px;
+		}
+		
+		input, .simditor {
+			width: $input-width;
+		}
+		.linetime{
+			width: 60px;
+		}
 
 	}
 

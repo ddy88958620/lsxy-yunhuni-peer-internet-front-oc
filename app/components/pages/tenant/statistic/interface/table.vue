@@ -38,15 +38,8 @@
     	month(){
         let self = this
     		let month = DATE.dateParse(self.date).month
-
-        //self.day = value.length
-		    
         return month
       }
-    },
-    ready(){
-      console.log(1)
-      console.log(this.value)
     }
   }
 

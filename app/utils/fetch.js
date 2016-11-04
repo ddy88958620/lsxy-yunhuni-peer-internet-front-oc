@@ -19,6 +19,28 @@ $.extend({
       })
     })
   },
+  file: function(url, element){
+    return new Promise((resolve, reject) => {
+      $.ajaxFileUpload({
+        type: 'post',
+        url: domain.API_ROOT + url,
+        secureuri :false,
+        fileElementId : element,//file控件id
+        dataType : 'json',
+        contentType: 'multipart/form-data',
+        processData: false,
+        success: (e) => {
+          resolve(e)
+        },
+        error: (e) => {
+          if( e.status == 401) {
+            window.location = '/#!/auth/login'
+          }
+          reject(e)
+        }
+      })
+    })
+  },
   post: function(url,data){
     return new Promise((resolve, reject) => {
 
@@ -29,7 +51,7 @@ $.extend({
         contentType: 'application/json',
         processData: false,
         success: (e) => {
-          resolve(e)
+          resolve(JSON.parse(e))
         },
         error: (e) => {
           if( e.status == 401) {

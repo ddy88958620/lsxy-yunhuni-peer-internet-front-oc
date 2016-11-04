@@ -37,10 +37,6 @@
   height: 50%;
 }
 
-
-
-
-
 //日月时间插件
 .app-chart-header {
   input {
@@ -60,7 +56,7 @@
 
 
 //选择框
-.admin-toolbar .v-link-active,.admin-toolbar .toolbar:hover {
+.admin-toolbar .v-link-active,.admin-toolbar .active,.admin-toolbar .toolbar:hover {
   color:#333 !important;
   font-weight:500;
   background-color: #f6f6f6 !important;
@@ -198,4 +194,9 @@ img.zoom-img {
   .numbertips{
     margin-right: 20px;
   }
+}
+
+//顶部对齐
+.vertical-align-top{
+ vertical-align: top !important;
 }
