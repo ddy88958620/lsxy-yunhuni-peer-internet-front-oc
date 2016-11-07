@@ -128,8 +128,12 @@
 		},
 		methods: {
 			deleteNumber(){
-				$.delete('config/line/telnum/'+this.$route.params.lid, {ids: this.selected.deleteNumber}).then(()=>{
-					this.query()
+				$.delete('config/line/telnum/'+this.$route.params.lid, { ids: this.selected.deleteNumber}).then((e)=>{
+					if(e.success)
+						this.showMsg({content: '删除成功', type: 'success'})
+					else
+						this.showMsg({content: e, type: 'success'})
+
 				})
 			},
 			changeDialing(index, type){

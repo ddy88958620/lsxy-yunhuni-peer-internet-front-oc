@@ -51,7 +51,7 @@ $.extend({
         contentType: 'application/json',
         processData: false,
         success: (e) => {
-          resolve(JSON.parse(e))
+          resolve(e)
         },
         error: (e) => {
           if( e.status == 401) {
