@@ -25,7 +25,7 @@ function request(method, ctx) {
 	return new Promise((resolve, reject)=> {
 		REQUEST({
 			url: prefix + url,
-			method: method,
+			method: String.prototype.toLocaleLowerCase.call(method),
 			headers: headers,
 			body: JSON.stringify(data)
 		}, (error, res, body) => {
