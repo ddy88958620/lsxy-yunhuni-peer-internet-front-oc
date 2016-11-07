@@ -3,12 +3,14 @@
 		<div class="form-group">
 			<label class="control-label">线路标识 : </label>
 			<input type="text" class="form-control" v-model="postData.lineNumber" placeholder="">
+			<span class="text-danger">*</span>
 		</div>
 		<div class="form-group">
 			<label class="control-label">运营商 : </label>
 			<input type="checkbox" placeholder="" v-model="selected.operator" value="中国电信"> 电信 &nbsp;
 			<input type="checkbox" placeholder="" v-model="selected.operator" value="中国移动"> 移动 &nbsp;
 			<input type="checkbox" placeholder="" v-model="selected.operator" value="中国联通"> 联通 &nbsp;
+			<span class="text-danger">*</span>
 		</div>
 		<div class="form-group">
 			<label class="control-label">区域绑定 : </label>
@@ -49,6 +51,7 @@
 					<label class="control-label">鉴权方式 : </label>
 					<input type="radio" class="" placeholder="" v-model="postData.sipAuthType" value="1"> 用户名密码
 					<input type="radio" class="" placeholder="" v-model="postData.sipAuthType" value="2"> IP地址
+					<span class="text-danger">*</span>
 				</div>
 				<div class="" v-if="postData.sipAuthType === '1'">
 					<label class="control-label">用户名 : </label>
@@ -74,6 +77,7 @@
 						<input type="radio" class="" placeholder="" v-model="postData.mobileAreaRule" value="1">全部不加0 <br/>
 						<input type="radio" class="" placeholder="" v-model="postData.mobileAreaRule" value="2">被叫归属地与线路归属地不一致，加0
 					</div>
+					<span class="text-danger">*</span>
 				</div>
 				<div class="">
 					<label class="control-label">固话 : </label>
@@ -81,6 +85,7 @@
 						<input type="radio" class="" placeholder="" v-model="postData.telAreaRule" value="0">一律加区号 <br/>
 						<input type="radio" class="" placeholder="" v-model="postData.telAreaRule" value="2">非与线路属于同一个归属地加区号
 					</div>
+					<span class="text-danger">*</span>
 				</div>
 			</div>
 		</div>
@@ -93,6 +98,7 @@
 			<label class="control-label">支持透传 : </label>
 			<input type="radio" class="" placeholder="" v-model="postData.isThrough" value="1"> 是
 			<input type="radio" class="" placeholder="" v-model="postData.isThrough" value="0"> 否
+			<span class="text-danger">*</span>
 		</div>
 		<div class="form-group">
 			<label class="control-label">质量 : </label>
@@ -128,10 +134,10 @@
 					sipAuthAccount: '', // 鉴权账号
 					sipAuthPassword: '', // 鉴权密码
 					sipAuthIp: '', // ip地址
-					telAreaRule: '', // 固话罪有应得区号规则 0 一律加 1一律不 2 非
-					mobileAreaRule: '', // 手机, 同上
+					telAreaRule: 2, // 固话罪有应得区号规则 0 一律加 1一律不 2 非
+					mobileAreaRule: 2, // 手机, 同上
 					linePrice: 0, // 成本价
-					isThrough: '', // 是否透传
+					isThrough: 0, // 是否透传
 					quality: 1,  // 质量
 					capacity: 0, // 并发容量
 				},
@@ -166,6 +172,7 @@
 			fetchCityList(province){
 				$.get('/config/attribution/city/list/'+province).then((e)=>{
 					this.cityList = e.data
+					this.postData.areaCode = e.data[0].areaCode
 				})
 			}
 		},
@@ -173,8 +180,17 @@
 			slider: require('ui/slider.vue')
 		},
 		ready(){
+			console.log(this.$route.params.lid)
+
+			console.log(this.$refs)
+
 			this.fetchAreaList()
 			this.fetchProvinceList()
+/*			//编辑状态
+			if(this.$route.params.lid){
+				console.log(this.postData)
+			}*/
+
 		}
 	}
 </script>

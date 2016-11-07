@@ -4,7 +4,7 @@
 		<line-form v-ref:lineform class="margin-top-20"></line-form>
 		<div class="admin-bottom admin-top">
 			<button class="btn btn-primary" @click="newLine">创建</button>
-			<button  class="btn btn-default admin-margin-l" v-link="'/admin/settings/line/list'">取消</button>
+			<button  class="btn btn-default admin-margin-l" v-link="{name: 'line'}">取消</button>
 		</div>
 	</div>
 </template>
