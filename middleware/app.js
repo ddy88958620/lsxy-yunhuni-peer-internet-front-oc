@@ -11,11 +11,13 @@ const logger = require('koa-logger');
 const session = require('koa-session-redis');
 const index = require('./routes/index');
 const config = require('./config')
+
 // middlewares
 app.use(convert(bodyparser));
 app.use(convert(json()));
 app.use(convert(logger()));
 app.use(convert(require('koa-static')(__dirname + '/public')));
+
 app.keys = ['session.id'];
 app.use(convert(session({
     store: {

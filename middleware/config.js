@@ -1,7 +1,7 @@
 //node server listen 3000
 const env = process.env.NODE_ENV
 
-console.log(env)
+console.log('env: ',env)
 if(env === 'production') {
   // 生产
   module.exports = {

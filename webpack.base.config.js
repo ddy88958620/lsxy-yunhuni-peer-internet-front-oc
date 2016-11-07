@@ -21,7 +21,8 @@ module.exports = {
       'font': path.resolve(__dirname, 'app/assets/fonts'),
       'actions': path.resolve(__dirname, 'app/vuex/actions.js'),
       'ui': path.resolve(__dirname, 'app/components/ui'),
-      'assets': path.resolve(__dirname, 'app/assets')
+      'assets': path.resolve(__dirname, 'app/assets'),
+      'domain': path.resolve(__dirname, 'app/config/domain.js')
     },
     extensions: ['', '.json', '.js', '.vue'],
   },

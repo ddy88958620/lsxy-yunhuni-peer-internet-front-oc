@@ -6,6 +6,8 @@ const UUID = require('node-uuid')
 const fs = require('fs')
 const config = require('../config')
 const prefix = config.JAVAAPI
+const multer = require('koa-multer')
+const upload = multer({dest: __dirname + '/../uploads/'})
 
 //请求拦截器，解决session中间件只会在内容改变的时候更新过期时间的bug
 router.use(async(ctx, next) => {
@@ -32,8 +34,26 @@ function request(method, ctx) {
 	})
 }
 
-function handlerFile(){
-	
+function handlerUploadFile(method, ctx) {
+	const {originalname, path, mimetype} = ctx.req.file;
+	let req_url = ctx.req.url
+	return new Promise((resolve, reject)=> {
+		let req = REQUEST({
+			url: prefix + req_url,
+			method: 'post',
+			headers: {
+				"X-YUNHUNI-API-TOKEN": ctx.session.token
+			},
+		}, (err, res, body)=> {
+			if (err) { reject(err) }
+			if (res.statusCode === 200) {
+				console.log('upload ok')
+				resolve(body)
+			}
+		})
+		let form = req.form()
+		form.append('file', fs.createReadStream(path), {filename: originalname, contentType: mimetype})
+	})
 }
 
 // 生成cookie
@@ -103,8 +123,8 @@ for (let [key, value] of Object.entries(path)) {
 			ctx.body = swaggerData
 		})
 	}
-	else if (key.indexOf('/config/line/telnum/upload/') > -1){
-		router.post(covertKOAURL(key), async(ctx, next) => {
+	else if (key.indexOf('/config/line/telnum/upload') > -1) {
+		router.post(covertKOAURL(key), upload.single('file'), async(ctx, next) => {
 			let token = ctx.session.token
 			console.log('token node', token)
 			if (!token) {
@@ -112,29 +132,8 @@ for (let [key, value] of Object.entries(path)) {
 				ctx.body = ' node token null'
 				return
 			}
-			console.log(ctx.request.body)
-			console.log(ctx.request.get('content-type'))
-			ctx.status = 200
-			// let req_url = ctx.req.url
-			// let headers = ctx.headers
-			// headers["X-YUNHUNI-API-TOKEN"] = ctx.session.token ? ctx.session.token : ''
-			// let req = REQUEST({
-			// 	url: prefix + req_url,
-			// 	method: 'post',
-			// 	header: {
-			// 		'content-type': ctx.request.get('content-type')
-			// 	}
-			// },(err,res,body)=>{
-			// 	if(res.statusCode === 200){
-			// 		console.log('ok')
-			// 		console.log(body)
-			// 	}
-			// })
-			// let form = req.form()
-			// let files = ctx.request.body
-			// console.log(files)
-			// form.append('file', fs.createReadStream(file.path))
-	})
+			ctx.body = await handlerUploadFile(key, ctx)
+		})
 	}
 	else if (key === '/ossfile/img' || key === '/ossfile/telnum') {
 		router.get(covertKOAURL(key), async(ctx, next) => {
