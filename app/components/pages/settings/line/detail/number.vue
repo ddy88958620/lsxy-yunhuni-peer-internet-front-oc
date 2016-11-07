@@ -21,7 +21,7 @@
 					<option value='3'>可透传</option>
 				</select>
 				<button class="btn btn-primary admin-margin-l" @click="query">查询</button>
-				<!--<button class="btn btn-primary" @click="$refs.uploadnumber.show = true">导入线路号码</button>-->
+				<button class="btn btn-primary" @click="$refs.uploadnumber.show = true">导入线路号码</button>
 				<button class="btn btn-primary" @click="$refs.newline.show = true" >新增线路号码</button>
 				<button class="btn btn-primary" @click="$refs.through.show = true">新增透传</button>
 				<a class="btn btn-primary" @click="deleteNumber">删除号码</a>
@@ -128,8 +128,12 @@
 		},
 		methods: {
 			deleteNumber(){
-				$.delete('config/line/telnum/'+this.$route.params.lid, {ids: this.selected.deleteNumber}).then(()=>{
-					this.query()
+				$.delete('config/line/telnum/'+this.$route.params.lid, { ids: this.selected.deleteNumber}).then((e)=>{
+					if(e.success)
+						this.showMsg({content: '删除成功', type: 'success'})
+					else
+						this.showMsg({content: e, type: 'success'})
+
 				})
 			},
 			changeDialing(index, type){

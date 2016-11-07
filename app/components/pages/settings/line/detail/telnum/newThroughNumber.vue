@@ -20,7 +20,7 @@
 						placeholder="模糊查询"
 					></search>
 				</div>
-				<button class="btn btn-primary admin-margin-l" @click="query">查询</button>
+				<button class="btn btn-primary float-r" @click="query">查询</button>
 			</div>
 			<div class="pass_number_result margin-top-20">
 				<div v-for="l in list.number">
