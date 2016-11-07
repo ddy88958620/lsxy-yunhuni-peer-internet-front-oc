@@ -9,7 +9,7 @@ export const showMsg = ({dispatch}, message) => {
   let temp = setTimeout(()=>{
 		dispatch(types.HIDE_MSG)
     clearTimeout(temp)
-  }, 1500)
+  }, 2500)
 }
 //
 export const hideMsg = ({dispatch}) => {
