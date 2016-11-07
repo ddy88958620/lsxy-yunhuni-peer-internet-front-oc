@@ -22,10 +22,11 @@ function request(method, ctx) {
 	console.log('token node', ctx.session.token)
 	let data = ctx.request.body ? ctx.request.body : {}
 	let url = ctx.req.url
+	console.log(String.prototype.toLowerCase.call(method))
 	return new Promise((resolve, reject)=> {
 		REQUEST({
 			url: prefix + url,
-			method: String.prototype.toLocaleLowerCase.call(method),
+			method: String.prototype.toLowerCase.call(method),
 			headers: headers,
 			body: JSON.stringify(data)
 		}, (error, res, body) => {
