@@ -6,7 +6,7 @@
 					<search
 						:value.sync="postData.lineParams.number"
 						:action="query"
-						placeholder="模糊查询"
+						placeholder="请输入号码"
 					></search>
 				</div>
 				<span class='datetime-picker-label'>运营商: </span>

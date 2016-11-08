@@ -67,13 +67,13 @@
 						<tr>
 							<td>选择</td>
 							<th class=" text-align-c">创建时间</th>
-							<th>号码</th>
-							<th>可主叫</th>
-							<th>可被叫</th>
-							<th>号码来源</th>
+							<th>线路标识</th>
 							<th>运营商</th>
+							<th>区域</th>
 							<th>归属地</th>
-							<th>归属线路</th>
+							<th>支持透传</th>
+							<th>质量</th>
+							<th>并发容量</th>
 						</tr>
 						</thead>
 						<tbody>
@@ -132,6 +132,12 @@
 					this.selected.line = this.lineIndex.map((item)=> {
 						return {k: item, v: this.list.line[item]}
 					})
+				},
+				deep: true
+			},
+			show: {
+				handler: function(e) {
+					this.query()
 				},
 				deep: true
 			}

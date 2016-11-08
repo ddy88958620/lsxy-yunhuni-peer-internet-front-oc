@@ -22,7 +22,7 @@
 				</select>
 				<button class="btn btn-primary admin-margin-l" @click="query">查询</button>
 				<button class="btn btn-primary" @click="$refs.uploadnumber.show = true">导入线路号码</button>
-				<button class="btn btn-primary" @click="$refs.newline.show = true" >新增线路号码</button>
+				<button class="btn btn-primary" @click="$refs.newline.show = true">新增线路号码</button>
 				<button class="btn btn-primary" @click="$refs.through.show = true">新增透传</button>
 				<a class="btn btn-primary" @click="deleteNumber">删除号码</a>
 			</div>
@@ -40,7 +40,8 @@
 					<th>支持主叫</th>
 					<th>支持被叫</th>
 					<th>支持透传</th>
-				</tr> </thead>
+				</tr>
+				</thead>
 				<tbody>
 				<tr v-for='l in list.number'>
 					<td><input type="checkbox" v-model="selected.deleteNumber" value="{{l.id}}"></td>
@@ -57,7 +58,8 @@
 			</div>
 			<div class="more">
 				<a v-if='originData.number.currentPageNo >= originData.number.totalPageCount'>加载完毕</a>
-				<a @click="query('more')" class="text-none" v-show='originData.number.currentPageNo < originData.number.totalPageCount'>加载更多<i
+				<a @click="query('more')" class="text-none"
+				   v-show='originData.number.currentPageNo < originData.number.totalPageCount'>加载更多<i
 					class="icon iconfont icon-oc-dropdown"></i></a>
 			</div>
 		</div>
@@ -111,15 +113,15 @@
 				}
 			}
 		},
-		computed:{
+		computed: {
 			allChecked: {
 				set(value){
-					if(value === 0){
+					if (value === 0) {
 						// 不全选
-						this.selected.deleteNumber  = []
-					}else {
+						this.selected.deleteNumber = []
+					} else {
 						// 全选
-						this.selected.deleteNumber = this.list.number.map((obj)=>{
+						this.selected.deleteNumber = this.list.number.map((obj)=> {
 							return obj.id
 						})
 					}
@@ -128,12 +130,14 @@
 		},
 		methods: {
 			deleteNumber(){
-				$.delete('config/line/telnum/'+this.$route.params.lid, { ids: this.selected.deleteNumber}).then((e)=>{
-					if(e.success)
-						this.showMsg({content: '删除成功', type: 'success'})
-					else
-						this.showMsg({content: e, type: 'success'})
-
+				$.delete('config/line/telnum/' + this.$route.params.lid, {ids: this.selected.deleteNumber}).then((e) => {
+					if (e.errorMsg) {
+						this.showMsg({content: e.errorMsg, type: 'danger'})
+						return
+					}
+					this.showMsg({content: '新建成功', type: 'success'})
+					this.query()
+					this.show = false
 				})
 			},
 			changeDialing(index, type){
@@ -155,16 +159,16 @@
 				params.telnums.push(number)
 				
 				this.show.tableLoading = true
-				$.put('/config/line/telnum/edit/'+this.$route.params.lid, params).then((e)=> {
+				$.put('/config/line/telnum/edit/' + this.$route.params.lid, params).then((e)=> {
 					this.show.tableLoading = false
 				})
 			},
 			query(type){
 				let params = this.postData.lineParams
-				if(type === 'more') {
+				if (type === 'more') {
 					this.postData.lineParams.pageNo = this.originData.number.currentPageNo += 1
 				}
-				$.get('config/line/telnum/plist/'+ this.$route.params.lid, params).then((res) => {
+				$.get('config/line/telnum/plist/' + this.$route.params.lid, params).then((res) => {
 					this.originData.number = res.data
 					this.list.number = type === 'more' ? this.list.number.concat(res.data.result) : res.data.result
 				})
@@ -181,11 +185,13 @@
 	input[type=file] {
 		display: inline-block;
 	}
+	
 	.pass_number_result {
 		height: 200px;
 		padding: 30px 20px;
 		overflow-y: scroll;
 	}
+	
 	.pass_number_selected {
 		margin-top: 20px;
 		.selected_box {
@@ -194,6 +200,7 @@
 			padding: 3px;
 		}
 	}
+	
 	.table-wrap {
 		position: absolute;
 		top: 0;
@@ -201,9 +208,11 @@
 		background: rgba(128, 128, 128, 0.2);
 		width: 100%;
 	}
-	.admin-table table.text-align-c tr th{
+	
+	.admin-table table.text-align-c tr th {
 		text-align: center;
 	}
+	
 	.control-label {
 		width: 100px;
 	}
