@@ -17,16 +17,16 @@ router.use(async(ctx, next) => {
 
 // 下面代码还需重构
 function request(method, ctx) {
-	let headers = ctx.headers
-	headers["X-YUNHUNI-API-TOKEN"] = ctx.session.token ? ctx.session.token : ''
-	console.log('token node', ctx.session.token)
+  let headers = {
+    "content-type": "application/json",
+    "X-YUNHUNI-API-TOKEN": ctx.session.token ? ctx.session.token : ''
+  };
 	let data = ctx.request.body ? ctx.request.body : {}
 	let url = ctx.req.url
-	console.log(String.prototype.toLowerCase.call(method))
 	return new Promise((resolve, reject)=> {
 		REQUEST({
 			url: prefix + url,
-			method: String.prototype.toLowerCase.call(method),
+			method: method,
 			headers: headers,
 			body: JSON.stringify(data)
 		}, (error, res, body) => {
@@ -166,13 +166,15 @@ for (let [key, value] of Object.entries(path)) {
 				ctx.type = 'application/vnd.ms-excel;charset=UTF-8'
 				ctx.response.attachment('example.xlsx')
 			}
-			
+
 			ctx.body = stream
 		})
 	}
 	else {
 		// switch get post put
 		for (let method of Object.keys(value)) {
+
+
 			router[method](covertKOAURL(key), async(ctx, next) => {
 				let token = ctx.session.token
 				if (!token) {
