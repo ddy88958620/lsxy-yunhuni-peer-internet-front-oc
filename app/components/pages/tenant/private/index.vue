@@ -92,6 +92,7 @@
 					}
 					this.list.splice(index, 1)
 					this.showMsg({content: '删除成功', type: 'success'})
+					this.query()
 				})
 			},
 			priority(index, lid, type){

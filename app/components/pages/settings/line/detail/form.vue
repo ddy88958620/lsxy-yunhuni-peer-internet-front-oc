@@ -34,8 +34,9 @@
 			<span v-if="postData.areaCode">当前区号: {{postData.areaCode}}</span>
 		</div>
 		<div class="form-group">
-			<label class="control-label">呼入前主叫前缀 : </label>
+			<label class="control-label">呼入主叫前缀 : </label>
 			<input type="text" class="form-control" placeholder="" v-model="postData.fromPrefix">
+			呼入时，线路提供商在主叫号码前增加的前缀（选填）
 		</div>
 		<div class="form-group">
 			<label class="control-label">线路类型 : </label>
@@ -44,10 +45,12 @@
 				<div class="">
 					<label class="control-label">IP端口 : </label>
 					<input type="text" class="form-control" placeholder="" v-model="postData.sipProviderPort">
+					<span class="text-danger">*</span>
 				</div>
 				<div class="">
 					<label class="control-label">域名端口 : </label>
 					<input type="text" class="form-control" placeholder="" v-model="postData.sipProviderDomain">
+					<span class="text-danger">*</span>
 				</div>
 				<div class="">
 					<label class="control-label">鉴权方式 : </label>
@@ -58,14 +61,17 @@
 				<div class="" v-if="postData.sipAuthType === '1'">
 					<label class="control-label">用户名 : </label>
 					<input type="text" class="form-control" placeholder="" v-model="postData.sipAuthAccount">
+					<span class="text-danger">*</span>
 				</div>
 				<div class="" v-if="postData.sipAuthType === '1'">
 					<label class="control-label">密码 : </label>
 					<input type="text" class="form-control" placeholder="" v-model="postData.sipAuthPassword">
+					<span class="text-danger">*</span>
 				</div>
 				<div class="" v-if="postData.sipAuthType === '2'">
 					<label class="control-label">IP : </label>
 					<input type="text" class="form-control" placeholder="" v-model="postData.sipAuthIp">
+					<span class="text-danger">*</span>
 				</div>
 			</div>
 		</div>
@@ -95,6 +101,7 @@
 			<label class="control-label">成本价 : </label>
 			<input type="" class="form-control" placeholder="" v-model="postData.linePrice">
 			元/分钟
+			<span class="text-danger">*</span>
 		</div>
 		<div class="form-group">
 			<label class="control-label">支持透传 : </label>
@@ -108,11 +115,13 @@
 				<slider :value.sync="postData.quality" :min="1" :max="5" :step="1"></slider>
 			</div>
 			&nbsp; {{ postData.quality }}
+			<span class="text-danger">*</span>
 		</div>
 		<div class="form-group">
 			<label class="control-label">并发容量 : </label>
 			<input type="text" class="form-control" placeholder="" v-model="postData.capacity">
-			并发容量为线路同一时间内能够容纳的最多的在线通话数量
+			并发容量为线路同一时间内能够容纳的最多的在线通话数量（范围：1~1000）
+			<span class="text-danger">*</span>
 		</div>
 	</form>
 </template>
@@ -141,7 +150,7 @@
 					linePrice: 0, // 成本价
 					isThrough: 0, // 是否透传
 					quality: 1,  // 质量
-					capacity: 0, // 并发容量
+					capacity: 100, // 并发容量
 				},
 				areaList: [],
 				provinceList: [],

@@ -86,7 +86,7 @@
 					this.postData.operator = e.operator.join(',')
 				},
 				deep: true
-			}
+			},
 		},
 		components: {
 			'modal': require('ui/modal.vue'),

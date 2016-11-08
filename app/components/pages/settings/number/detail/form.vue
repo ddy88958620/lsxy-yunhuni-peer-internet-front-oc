@@ -5,16 +5,21 @@
 			<input type="radio" class="" placeholder="" value="0" v-model="postData.type"> 租户自带
 			<input type="radio" class="" placeholder="" value="1" v-model="postData.type"> 采购线路
 		</div>
+		<div v-else class="form-group">
+			<label class="control-label">号码来源 : </label>
+			<span>{{ postData.type === '0' ? '租户自带' : '采购线路'}}</span>
+		</div>
 		<!--<div class="form-group" v-if="numberType!==1">-->
 			<!--<label class="control-label">所属租户 : </label>-->
 			<!--<input type="text" class="form-control" placeholder="" v-model="selected.tenant.tenantName">-->
 		<!--</div>-->
-		<div class="form-group" v-if="numberType!==1">
+		<div class="form-group" v-if="postData.type !== '1'">
 			<label class="control-label">所属租户 : </label>
 			<!--<input type="text" class="form-control" placeholder="" v-model="selected.tenant.tenantName">-->
 			<v-select v-if="!postData.tenant" class="form-control" :value.sync="selected.tenant" :label.sync="'tenantName'"  :options="list.tenant"></v-select>
 			<span v-else>{{ postData.tenant.tenantName }}</span>
 			<button v-if="postData.tenant" @click="$refs.number.show = true" class="btn btn-primary">号码回收</button>
+			<span class="text-danger">*</span>
 		</div>
 		<div class="form-group">
 			<label class="control-label">线路绑定 : </label>
@@ -22,6 +27,7 @@
 				<option value=''>全部</option>
 				<option v-for="line in list.line" :value="line.id">{{ line.lineNumber }}</option>
 			</select>
+			<span class="text-danger">*</span>
 		</div>
 		<div class="form-group">
 			<label class="control-label">运营商 : </label>
@@ -31,6 +37,7 @@
 				<option value='中国联通'>中国联通</option>
 				<option value='中国电信'>中国电信</option>
 			</select>
+			<span class="text-danger">*</span>
 		</div>
 		<div class="form-group">
 			<label class="control-label">归属地 : </label>
@@ -43,6 +50,7 @@
 				<option v-for="city in list.city" :value="city.areaCode">{{ city.city}}</option>
 			</select>
 			<span v-if="postData.areaCode">当前区号: {{postData.areaCode}}</span>
+			<span class="text-danger">*</span>
 		</div>
 		<div class="form-group">
 			<label class="control-label">号码属性 : </label>
@@ -50,21 +58,25 @@
 			<input type="checkbox" v-model="postData.isCalled" :true-value="'1'" :false-value="'0'"> 可被叫
 			<input type="checkbox" v-model="postData.isThrough" :true-value="'1'" :false-value="'0'" :disabled="postData.type ===  '1' || postData.isCalled === '1' || postData.isDialing === '1'">
 			 <span>可透传</span>
+			<span class="text-danger">*</span>
 		</div>
 		<div class="form-group">
 			<label class="control-label">呼出URI : </label>
 			<input type="text" class="form-control" v-model="postData.callUri" placeholder="">
 			作主叫呼出号码时使用
+			<span class="text-danger">*</span>
 		</div>
 		<div class="form-group">
 			<label class="control-label">真实号码 : </label>
 			<input v-model="postData.telNumber" type="text" class="form-control" placeholder="">
 			呼出时作为来电显示，呼入时作为被叫号码
+			<span class="text-danger">*</span>
 		</div>
-		<div class="form-group" v-if="numberType===1">
+		<div class="form-group" v-if="postData.type==='1'">
 			<label class="control-label">号码占用费 : </label>
 			<input v-model="postData.amount" type="text" class="form-control" placeholder="">
 			元
+			<span class="text-danger">*</span>
 		</div>
 		<modal v-ref:number title="导入线路号码" :action="numberBack">
 			<div slot="body">
@@ -88,8 +100,8 @@
 					amount: 0,
 					areaCode: '',
 					callUri: '',
-					isCalled: '',
-					isDialing: '',
+					isCalled: '1',
+					isDialing: '1',
 					isThrough: '',
 					lineId: '',
 					operator: '',
@@ -155,7 +167,7 @@
 						return
 					}
 					this.showMsg({content: '修改成功', type: 'success'})
-					this.$route.router.go({name:'numberAll'})
+					this.$route.router.replace({name:'numberAll'})
 				})
 			}
 		},
