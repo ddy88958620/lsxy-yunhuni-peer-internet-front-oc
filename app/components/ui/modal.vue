@@ -32,7 +32,6 @@
     props: {
       show: {
         type: Boolean,
-        required: true,
         twoWay:true
       },
       title:{
@@ -94,6 +93,9 @@
     width: 800px;
   }
 
+  .table-big{
+    width: 1000px;
+  }
 
   .modal-container {
 

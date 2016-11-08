@@ -1,5 +1,6 @@
 import domain from '../config/domain'
 
+// 待重构
 $.extend({
   get: function(url,data){
     return new Promise((resolve, reject) => {
@@ -7,8 +8,9 @@ $.extend({
         type: 'get',
         url: domain.API_ROOT + url,
         data: data,
+	      dataType: 'json',
         success:(e) => {
-          resolve(JSON.parse(e))
+          resolve(e)
         },
         error:(e) => {
           if( e.status == 401) {
@@ -19,36 +21,14 @@ $.extend({
       })
     })
   },
-  file: function(url, element){
-    return new Promise((resolve, reject) => {
-      $.ajaxFileUpload({
-        type: 'post',
-        url: domain.API_ROOT + url,
-        secureuri :false,
-        fileElementId : element,//file控件id
-        dataType : 'json',
-        contentType: 'multipart/form-data',
-        processData: false,
-        success: (e) => {
-          resolve(e)
-        },
-        error: (e) => {
-          if( e.status == 401) {
-            window.location = '/#!/auth/login'
-          }
-          reject(e)
-        }
-      })
-    })
-  },
   post: function(url,data){
     return new Promise((resolve, reject) => {
-
       $.ajax({
         type: 'post',
         url: domain.API_ROOT + url,
         data: JSON.stringify(data),
         contentType: 'application/json',
+        dataType: 'json',
         processData: false,
         success: (e) => {
           resolve(e)
@@ -90,6 +70,7 @@ $.extend({
         data: JSON.stringify(data),
         contentType: 'application/json',
         processData: false,
+        dataType: 'json',
         success: (e) => {
           resolve(e)
         },
@@ -110,6 +91,7 @@ $.extend({
         data: JSON.stringify(data),
         contentType: 'application/json',
         processData: false,
+        dataType: 'json',
         success: (e) => {
           resolve(e)
         },

@@ -1,5 +1,5 @@
 <template>
-	<modal :classname="'table'" :show.sync="show.self" title="新增透传号码" :action="add">
+	<modal :classname="'table-big'" :show.sync="show.self" title="新增透传号码" :action="add">
 		<div slot="body">
 			<div class="form-group">
 				<div class="select-box inline-block">
@@ -167,7 +167,7 @@
 					this.query()
 					this.show.self = false
 					this.lineIndex = []
-					this.$route.replace({
+					this.$route.router.replace({
 						path: this.$route.path,
 						query: {t: new Date()}
 					})

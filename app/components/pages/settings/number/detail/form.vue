@@ -1,6 +1,6 @@
 <template>
 	<form class="form-horizontal line_form" role="form">
-		<div class="form-group">
+		<div v-if="!$route.params.nid" class="form-group">
 			<label class="control-label">号码来源 : </label>
 			<input type="radio" class="" placeholder="" value="0" v-model="postData.type"> 租户自带
 			<input type="radio" class="" placeholder="" value="1" v-model="postData.type"> 采购线路
@@ -12,13 +12,15 @@
 		<div class="form-group" v-if="numberType!==1">
 			<label class="control-label">所属租户 : </label>
 			<!--<input type="text" class="form-control" placeholder="" v-model="selected.tenant.tenantName">-->
-			<v-select class="form-control" :value.sync="selected.tenant" :label.sync="'tenantName'"  :options="list.tenant"></v-select>
+			<v-select v-if="!postData.tenant" class="form-control" :value.sync="selected.tenant" :label.sync="'tenantName'"  :options="list.tenant"></v-select>
+			<span v-else>{{ postData.tenant.tenantName }}</span>
+			<button v-if="postData.tenant" @click="$refs.number.show = true" class="btn btn-primary">号码回收</button>
 		</div>
 		<div class="form-group">
 			<label class="control-label">线路绑定 : </label>
 			<select class="form-control" v-model='postData.lineId' >
 				<option value=''>全部</option>
-				<option v-for="line in list.line" :value="line.id">{{ line.id }}</option>
+				<option v-for="line in list.line" :value="line.id">{{ line.lineNumber }}</option>
 			</select>
 		</div>
 		<div class="form-group">
@@ -64,13 +66,24 @@
 			<input v-model="postData.amount" type="text" class="form-control" placeholder="">
 			元
 		</div>
+		<modal v-ref:number title="导入线路号码" :action="numberBack">
+			<div slot="body">
+				<div>
+					请确认回收号码！
+				</div>
+			</div>
+		</modal>
 	</form>
 </template>
 <script>
 	import vSelect from "vue-select"
 	export default {
+		vuex: {
+			actions: {showMsg: require('actions').showMsg}
+		},
 		data(){
 			return {
+				search: false,
 				postData: {
 					amount: 0,
 					areaCode: '',
@@ -98,12 +111,13 @@
 			}
 		},
 		components: {
-			vSelect
+			vSelect,
+			'modal': require('ui/modal.vue'),
 		},
 		watch: {
 			selected: {
 				handler: function(e){
-					this.postData.tenantId = this.selected.tenant.id
+					this.postData.tenantId = this.selected.tenant ? this.selected.tenant.id : ''
 				},
 				deep: true
 			},
@@ -132,6 +146,16 @@
 			fetchTenant(){
 				$.get('/tenant/list').then((e)=>{
 					this.list.tenant = e.data
+				})
+			},
+			numberBack(){
+				$.put('config/telnum/release/'+this.$route.params.nid).then((e)=> {
+					if(e.errorMsg){
+						this.showMsg({content: e.errorMsg, type: 'danger'})
+						return
+					}
+					this.showMsg({content: '修改成功', type: 'success'})
+					this.$route.router.go({name:'numberAll'})
 				})
 			}
 		},
