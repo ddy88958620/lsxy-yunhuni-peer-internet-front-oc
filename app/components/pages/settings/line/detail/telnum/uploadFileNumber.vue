@@ -8,11 +8,7 @@
 				             :post-action="url"
 				             v-ref:upload
 				             :drop="drop"></fileupload>
-				&nbsp;
 				<span>{{ filename }}</span>
-				&nbsp;
-				&nbsp;
-				&nbsp;
 				<button v-if="upload.active" type="submit" @click.prevent="$refs.upload.active = !$refs.upload.active" class="btn btn-danger">停止上传</button>
 				<button v-else type="submit" @click.prevent="$refs.upload.active = !$refs.upload.active" class="btn btn-primary">开始上传</button>
 				<p class="text-success margin-top-20">
@@ -58,7 +54,7 @@
 				console.log('afterFileUpload');
 				let res = JSON.parse(file.data)
 				if(!res.success){
-					this.showMsg({content: res.data, type: 'danger'})
+					this.showMsg({content: res.errorMsg, type: 'danger'})
 					return
 				}
 				this.showMsg({content: res.data, type: 'success'})

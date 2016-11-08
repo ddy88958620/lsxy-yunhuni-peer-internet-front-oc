@@ -18,6 +18,7 @@
 				<option value="">-- 请选区域 --</option>
 				<option v-for="area in areaList" :value="area.id">{{ area.name}}</option>
 			</select>
+			<span class="text-danger">*</span>
 		</div>
 		<div class="form-group">
 			<label class="control-label">归属地 : </label>
@@ -29,6 +30,7 @@
 				<option value="">--市--</option>
 				<option v-for="city in cityList" :value="city.areaCode">{{ city.city}}</option>
 			</select>
+			<span class="text-danger">*</span>
 			<span v-if="postData.areaCode">当前区号: {{postData.areaCode}}</span>
 		</div>
 		<div class="form-group">

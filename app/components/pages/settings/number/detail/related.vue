@@ -14,14 +14,14 @@
 			</tr>
 			</thead>
 			<tbody>
-			<tr v-for="l in list.one">
-				<td class="message-time text-align-c">{{l.createTime | totalDate}}</td>
-				<td>{{ l.lineId}}</td>
-				<td>{{ l.operator }}</td>
-				<td>{{ l.areaCode }}</td>
-				<td>{{ l.isThrough === '1' ?  '是' : '否'}}</td>
-				<td>{{ l.quality }}</td>
-				<td>{{ l.capacity }}</td>
+			<tr v-if="list.l.lineGateway">
+				<td class="message-time text-align-c">{{list.l.lineGateway.createTime | totalDate}}</td>
+				<td>{{ list.l.lineGateway.lineNumber}}</td>
+				<td>{{ list.l.lineGateway.operator }}</td>
+				<td>{{ list.l.lineGateway.areaCode }}</td>
+				<td>{{ list.l.isThrough === '1' ?  '是' : '否'}}</td>
+				<td>{{ list.l.lineGateway.quality }}</td>
+				<td>{{ list.l.lineGateway.capacity }}</td>
 			</tr>
 			</tbody>
 		</table>
@@ -40,13 +40,13 @@
 			</thead>
 			<tbody>
 			<tr v-for="l in list.more">
-				<td class="message-time text-align-c">{{l.createTime | totalDate}}</td>
-				<td>{{ l.lineId}}</td>
-				<td>{{ l.operator }}</td>
-				<td>{{ l.areaCode }}</td>
+				<td class="message-time text-align-c">{{l.lineGateway.createTime | totalDate}}</td>
+				<td>{{ l.lineGateway.lineNumber}}</td>
+				<td>{{ l.lineGateway.operator }}</td>
+				<td>{{ l.lineGateway.areaCode }}</td>
 				<td>{{ l.isThrough === '1' ?  '是' : '否'}}</td>
-				<td>{{ l.quality }}</td>
-				<td>{{ l.capacity }}</td>
+				<td>{{ l.lineGateway.quality }}</td>
+				<td>{{ l.lineGateway.capacity }}</td>
 			</tr>
 			</tbody>
 		</table>
@@ -61,7 +61,7 @@
 		data(){
 			return {
 				list: {
-					one: [],
+					l: {},
 					more: []
 				},
 				pageNo: 1,
@@ -71,9 +71,10 @@
 			}
 		},
 		methods: {
+			// 归属线路
 			fetchOne(){
 				$.get('config/telnum/line/one/'+this.$route.params.nid).then((e)=>{
-					this.list.one = e.data
+					this.list.l = e.data
 				})
 			},
 			fetchMore(type){

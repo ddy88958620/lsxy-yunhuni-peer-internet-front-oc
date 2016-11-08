@@ -40,7 +40,7 @@
 					<td v-if=" l.lineGateway.status !== '1'" class="text-danger">禁用</td>
 					<td class="text-align-c">
 						<span><a v-link="'/admin/settings/line/detail/'+l.lineGateway.id+'/base'">详情</a></span>
-						<span @click="deleteLine($index, l.id)"><a>解释绑定</a></span>
+						<span @click="deleteLine($index, l.id)"><a>解除绑定</a></span>
 						<span><a @click="priority($index, l.id, 'up')">上移</a></span>
 						<span><a @click="priority($index, l.id, 'down')">下移</a></span>
 					</td>
@@ -85,7 +85,11 @@
 		},
 		methods: {
 			deleteLine(index, lid){
-				$.delete('/config/tenant/'+lid).then(()=>{
+				$.delete('/config/tenant/'+lid).then((e)=>{
+					if(!e.success) {
+						this.showMsg({content: e.errorMsg, type: 'danger'})
+						return
+					}
 					this.list.splice(index, 1)
 					this.showMsg({content: '删除成功', type: 'success'})
 				})
@@ -113,8 +117,10 @@
 				})
 			},
 		},
-		ready(){
-			this.query()
+		route:{
+			data(){
+				this.query()
+			}
 		}
 	}
 </script

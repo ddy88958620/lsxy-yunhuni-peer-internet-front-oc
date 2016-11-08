@@ -64,7 +64,7 @@
 						<td>{{ l.operator }}</td>
 						<td>{{ l.areaCode }}</td>
 						<td>{{ l.lineId }}</td>
-						<td>{{ l.tenant.tenantName }}</td>
+						<td>{{ l.tenant ? l.tenant.tenantName : '无'}}</td>
 						<td v-if="l.usable === '1'" class="text-success">启用</td>
 						<td v-else class="text-danger">禁用</td>
 						<td class="text-align-c">

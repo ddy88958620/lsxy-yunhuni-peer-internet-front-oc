@@ -11,7 +11,6 @@
 					<option value='中国电信'>中国电信</option>
 				</select>
 				&nbsp;
-				&nbsp;
 				<label class="">模糊查询 : </label>
 				<div class="select-box inline-block">
 					<search
@@ -20,7 +19,8 @@
 						placeholder="模糊查询"
 					></search>
 				</div>
-				<button class="btn btn-primary float-r" @click="query">查询</button>
+				&nbsp;
+				<button class="btn btn-primary" @click="query">查询</button>
 			</div>
 			<div class="pass_number_result margin-top-20">
 				<div v-for="l in list.number">
@@ -31,11 +31,8 @@
 			</div>
 			<div class="admin-table">
 				<div class="more">
-					<a
-						v-show=''>加载完毕</a>
-					<a @click="query('more')" class="text-none"
-					   v-show=''>加载更多<i
-						class="icon iconfont icon-oc-dropdown"></i></a>
+					<a v-if='origin.number.currentPageNo >= origin.number.totalPageCount'>加载完毕</a>
+					<a @click="query('more')" class="text-none" v-if='origin.number.currentPageNo < origin.number.totalPageCount' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
 				</div>
 			</div>
 			<div class="pass_number_selected">
