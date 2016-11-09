@@ -21,8 +21,8 @@
           <th>呼叫时间</th>
           <th>参与者</th>
           <th>参与类型</th>
-          <th class="text-align-r">消费金额</th>
           <th class="text-align-c">时长(秒)</th>
+          <th class="text-align-r"><span class="padding-right-20">消费金额</span></th>
         </tr>
         </thead>
         <tbody>
@@ -37,8 +37,10 @@
           <td v-if="message.joinType==0">创建</td>
           <td v-if="message.joinType==1">邀请加入</td>
           <td v-if="message.joinType==2">呼入加入</td>
-          <td class="text-align-r">￥{{ message.cost }}</td>
+
+
           <td class="text-align-c">{{ message.costTimeLong }}</td>
+          <td class="text-align-r"><span class="padding-right-20">￥{{ message.cost ? message.cost.toFixed(3) : '0.000' }}</span></td>
 
         </tr>
         </tbody>

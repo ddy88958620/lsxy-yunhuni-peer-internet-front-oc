@@ -46,6 +46,12 @@
       		return
         }
       },
+      reset: {
+	      type: Function,
+        default: function(){
+          return
+        }
+      },
       classname:{
         type:String,
         default:'normal'
@@ -58,6 +64,7 @@
       },
       cancel(){
 //        this.$parent.$data = this.$parent.$options.data()
+        this.reset()
 	      this.show = false
       }
     }

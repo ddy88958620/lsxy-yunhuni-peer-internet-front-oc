@@ -61,13 +61,10 @@ export function fileSize(size){
 	if(size<1024){
 		comSize = size+'B'
 	}
-
 	//kb
 	if(size>=1024 && size< 1024 *1024){
 		comSize = (size/1024 ).toFixed(2)+'K'
 	}
-
-
 	//M
 	if(size>=1024*1024 && size< 1024 *1024*1024){
 		comSize = (size/1024/1024).toFixed(2) +'M'
@@ -104,4 +101,12 @@ export function createImg(filename){
 	let img = '<img src="'+fileurl+'" class="padding-right-10" width="400" height="100%"  data-action="zoom" >'
 	
 	return img
+}
+
+export function fixNull(obj) {
+	let temp = obj
+	if(typeof obj === 'undefined'){
+		temp = ''
+	}
+	return temp
 }

@@ -27,19 +27,18 @@
 				<tbody>
 				<tr v-for='l in list.number'>
 					<td class="message-time text-align-c">{{l.createTime | totalDate}}</td>
-					<td>{{ l.telNumber }}</td>
-					<td>{{ l.isDialing === '1' ? '✔': '✘' }}</td>
-					<td>{{ l.isCalled === '1' ? '✔': '✘' }}</td>
-					<td>{{ l.isThrough === '1' ? '✔': '✘' }}</td>
-					<td>{{ l.source }}</td>
-					<td>{{ l.operator }}</td>
-					<td>{{ l.areaCode }}</td>
-					<td>{{ l.lineId }}</td>
-					<td>{{ l.tenant.tenantName }}</td>
-					<td v-if='message.status===-1' >启用</td>
-					<td v-if='message.status===1 || message.status==null' class='text-danger'>禁用</td>
+					<td>{{ l.resourceTelenum.telNumber }}</td>
+					<td>{{ l.resourceTelenum.isDialing === '1' ? '✔': '✘' }}</td>
+					<td>{{ l.resourceTelenum.isCalled === '1' ? '✔': '✘' }}</td>
+					<td>{{ l.resourceTelenum.isThrough === '1' ? '✔': '✘' }}</td>
+					<td>{{ l.resourceTelenum.type ==='0' ?   '租户自带' : '采购线路' }}</td>
+					<td>{{ l.resourceTelenum.operator }}</td>
+					<td>{{ l.resourceTelenum.areaCode }}</td>
+					<td>{{ l.resourceTelenum.line.lineNumber }}</td>
+					<td v-if="l.resourceTelenum.usable === '1'" class="text-success">启用</td>
+					<td v-else class="text-danger">禁用</td>
 					<td class="text-align-c">
-						<span @click="deleteMsg($index)"><a>解除绑定</a></span>
+						<span @click="deleteLine($index, l.resourceTelenum.id)"><a>解除绑定</a></span>
 					</td>
 				</tr>
 				</tbody>
@@ -91,9 +90,14 @@
 				})
 			},
 			deleteLine(index, nid){
-				$.put('/config/telnum/release/'+nid).then(()=>{
-					this.list.splice(index, 1)
+				$.put('/config/telnum/release/'+nid).then((e)=>{
+					if(e.errorMsg){
+						this.showMsg({content: e.errorMsg, type: 'danger'})
+						return
+					}
+					this.list.number.splice(index, 1)
 					this.showMsg({content: '释放', type: 'success'})
+					this.query()
 				})
 			},
 		},
