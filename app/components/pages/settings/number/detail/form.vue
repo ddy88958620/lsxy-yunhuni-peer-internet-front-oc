@@ -22,17 +22,21 @@
 			<span class="text-danger">*</span>
 		</div>
 		<div class="form-group">
-			<label class="control-label">线路绑定 : </label>
+			<label class="control-label">归属线路 : </label>
 			<select class="form-control" v-model='postData.lineId' >
-				<option value=''>全部</option>
+				<option value=''>请选择线路</option>
 				<option v-for="line in list.line" :value="line.id">{{ line.lineNumber }}</option>
 			</select>
-			<span class="text-danger">*</span>
+		</div>
+		<div class="form-group" v-if="postData.lineId">
+			<label class="control-label">号码属性 : </label>
+			<input type="checkbox" v-model="postData.isDialing" :true-value="'1'" :false-value="'0'"> 可主叫
+			<input type="checkbox" v-model="postData.isCalled" :true-value="'1'" :false-value="'0'"> 可被叫
 		</div>
 		<div class="form-group">
 			<label class="control-label">运营商 : </label>
 			<select class="form-control" v-model='postData.operator' >
-				<option value=''>全部</option>
+				<option value=''>请选择运营商</option>
 				<option value='中国移动'>中国移动</option>
 				<option value='中国联通'>中国联通</option>
 				<option value='中国电信'>中国电信</option>
@@ -50,14 +54,6 @@
 				<option v-for="city in list.city" :value="city.areaCode">{{ city.city}}</option>
 			</select>
 			<span v-if="postData.areaCode">当前区号: {{postData.areaCode}}</span>
-			<span class="text-danger">*</span>
-		</div>
-		<div class="form-group">
-			<label class="control-label">号码属性 : </label>
-			<input type="checkbox" v-model="postData.isDialing" :true-value="'1'" :false-value="'0'"> 可主叫
-			<input type="checkbox" v-model="postData.isCalled" :true-value="'1'" :false-value="'0'"> 可被叫
-			<input type="checkbox" v-model="postData.isThrough" :true-value="'1'" :false-value="'0'" :disabled="postData.type ===  '1' || postData.isCalled === '1' || postData.isDialing === '1'">
-			 <span>可透传</span>
 			<span class="text-danger">*</span>
 		</div>
 		<div class="form-group">
@@ -100,9 +96,8 @@
 					amount: 0,
 					areaCode: '',
 					callUri: '',
-					isCalled: '1',
-					isDialing: '1',
-					isThrough: '',
+					isCalled: '',
+					isDialing: '',
 					lineId: '',
 					operator: '',
 					telNumber: '',

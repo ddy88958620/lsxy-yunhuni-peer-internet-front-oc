@@ -1,6 +1,6 @@
 <template>
 	<!--新增线路号码-->
-	<modal :show.sync="show" title="新增线路号码" :action="newNumber">
+	<modal :show.sync="show" title="新增线路号码" :action="newNumber" :reset="reset">
 		<div slot="body">
 			<div class="form-group">
 				<label class="control-label">新增号码 : </label>
@@ -47,6 +47,19 @@
 
 </template>
 <script>
+	function initPostData(){
+		return {
+			number: {
+				amount: '', // 号码占用费
+				areaCode: '', // 归属地区号
+				callUri: '', //呼出URI
+				isCalled: '', // 可被叫 1 是 0 否
+				isDialing: '', // 可主叫 1 ，0
+				operator: '', // 运营商
+				telNumber: '', //号码
+			}
+		}
+	}
 	export default {
 		vuex:{
 			actions: {
@@ -56,20 +69,8 @@
 		data(){
 			return {
 				show: false,
-				postData: {
-					number: {
-						amount: '', // 号码占用费
-						areaCode: '', // 归属地区号
-						callUri: '', //呼出URI
-						isCalled: '', // 可被叫 1 是 0 否
-						isDialing: '', // 可主叫 1 ，0
-						operator: '', // 运营商
-						telNumber: '', //号码
-					}
-				},
-				originData: {
-					
-				},
+				postData: initPostData(),
+				originData: {},
 				selected: {
 					province: '',
 					operator: []
@@ -112,6 +113,9 @@
 				$.get('/config/attribution/city/list/'+province).then((e)=>{
 					this.list.city= e.data
 				})
+			},
+			reset(){
+				this.postData = initPostData()
 			}
 		},
 		ready(){

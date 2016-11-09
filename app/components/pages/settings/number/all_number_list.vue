@@ -60,10 +60,10 @@
 						<td>{{ l.isDialing === '1' ? '✔': '✘' }}</td>
 						<td>{{ l.isCalled === '1' ? '✔': '✘' }}</td>
 						<td>{{ l.isThrough === '1' ? '✔': '✘' }}</td>
-						<td>{{ l.source }}</td>
+						<td>{{ l.type === '0' ? '租户自带' : '采购线路' }}</td>
 						<td>{{ l.operator }}</td>
 						<td>{{ l.areaCode }}</td>
-						<td>{{ l.lineId }}</td>
+						<td>{{ l.line.lineNumber }}</td>
 						<td>{{ l.tenant ? l.tenant.tenantName : '无'}}</td>
 						<td v-if="l.usable === '1'" class="text-success">启用</td>
 						<td v-else class="text-danger">禁用</td>

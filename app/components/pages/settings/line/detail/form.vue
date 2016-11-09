@@ -43,12 +43,12 @@
 			<div class="sub_form_group">
 				<input type="radio" value="sip" v-model="postData.lineType"> SIP
 				<div class="">
-					<label class="control-label">IP端口 : </label>
-					<input type="text" class="form-control" placeholder="" v-model="postData.sipProviderPort">
+					<label class="control-label">IP+端口 : </label>
+					<input type="text" class="form-control" placeholder="" v-model="postData.sipProviderIp">
 					<span class="text-danger">*</span>
 				</div>
 				<div class="">
-					<label class="control-label">域名端口 : </label>
+					<label class="control-label">域名+端口 : </label>
 					<input type="text" class="form-control" placeholder="" v-model="postData.sipProviderDomain">
 					<span class="text-danger">*</span>
 				</div>
@@ -139,8 +139,8 @@
 					areaCode: '', // 归属地区号
 					fromPrefix: '', // 呼入主叫前缀
 					lineType: 'sip', // 线路类型
-					sipProviderPort: '', // ip 端口
-					sipProviderDomain: '', // domain端口
+					sipProviderIp: '', // ip + 端口
+					sipProviderDomain: '', // domain + 端口
 					sipAuthType: '1', // 鉴权
 					sipAuthAccount: '', // 鉴权账号
 					sipAuthPassword: '', // 鉴权密码
