@@ -240,7 +240,7 @@
         }
         //GET /tenant/tenants/{id}/call_center
         $.get('/tenant/tenants/'+this.$route.params.uid+'/call_center',params).then((res) => {
-          this.calllist = res.data
+          this.calllist = res.data[0]
         })
       },
       //呼叫次数统计
@@ -276,7 +276,7 @@
         }
         let self = this
         $.get('/tenant/tenants/'+this.$route.params.uid+'/call_center',params).then((res) => {
-          self.sessionlist = res.data
+          self.sessionlist = res.data[0]
         })
       }
     },
