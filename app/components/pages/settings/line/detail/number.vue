@@ -131,11 +131,11 @@
 		methods: {
 			deleteNumber(){
 				$.delete('config/line/telnum/' + this.$route.params.lid, {ids: this.selected.deleteNumber}).then((e) => {
-					if (e.errorMsg) {
+					if (!e.success) {
 						this.showMsg({content: e.errorMsg, type: 'danger'})
 						return
 					}
-					this.showMsg({content: '新建成功', type: 'success'})
+					this.showMsg({content: '删除成功', type: 'success'})
 					this.query()
 					this.show = false
 				})
