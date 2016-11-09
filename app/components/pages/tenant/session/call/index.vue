@@ -20,8 +20,8 @@
 					<th class="text-align-c">呼叫时间</th>
 					<th>主叫</th>
 					<th>被叫</th>
-					<th class="text-align-r">消费金额</th>
 					<th class="text-align-c">时长(秒)</th>
+					<th class="text-align-r"><span class="padding-right-20">消费金额</span></th>
 				</tr>
 				</thead>
 				<tbody>
@@ -29,8 +29,9 @@
 					<td class="message-time text-align-c">{{message.callStartDt | totalDate}}</td>
 					<td>{{ message.fromNum }}</td>
 					<td>{{ message.toNum }}</td>
-					<td class="text-align-r">￥{{ message.cost }}</td>
+
 					<td class="text-align-c">{{ message.costTimeLong }}</td>
+					<td class="text-align-r"><span class="padding-right-20">￥{{ message.cost ? message.cost.toFixed(3) : '0.000' }}</span></td>
 				</tr>
 				</tbody>
 			</table>

@@ -21,8 +21,8 @@
           <th>主叫</th>
           <th>被叫</th>
           <th>时长(秒)</th>
-          <th class="text-align-r">消费金额</th>
           <th class="text-align-c">大小</th>
+          <th class="text-align-r"><span class="padding-right-20">消费金额</span></th>
         </tr>
         </thead>
         <tbody>
@@ -31,8 +31,8 @@
           <td >{{message.fromNum}}</td>
           <td >{{message.toNum}}</td>
           <td >{{message.costTimeLong}}</td>
-          <td class="text-align-r">￥{{ message.cost }}</td>
           <td class="text-align-c">{{message.recordSize ? message.recordSize | fileSize : ''}}</td>
+          <td class="text-align-r"><span class="padding-right-20">￥{{ message.cost ? message.cost.toFixed(3) : '0.000' }}</span></td>
         </tr>
         </tbody>
       </table>

@@ -8,11 +8,11 @@
 						<a @click="showModal=true" class="float-r ofh">密码重置</a></div>
 					<div class="panel-body admin-bg flex-1">
 						<ul class="list-none-style">
-							<li>会员名称:{{info.tenantName}}</li>
-							<li>账号ID:{{info.userName}}</li>
-							<li>注册时间:{{info.createTime | totalDate}}</li>
-							<li>绑定手机号:{{info.mobile}}</li>
-							<li>邮箱绑定:{{info.email}}</li>
+							<li><span class="small-font-color">会员名称 : </span>{{info.tenantName}}</li>
+							<li><span class="small-font-color">账号ID : </span>{{info.userName}}</li>
+							<li><span class="small-font-color">注册时间 : </span>{{info.createTime | totalDate}}</li>
+							<li><span class="small-font-color">绑定手机号 : </span>{{info.mobile}}</li>
+							<li><span class="small-font-color">邮箱绑定 : </span>{{info.email}}</li>
 						</ul>
 					</div>
 				</div>
@@ -22,9 +22,9 @@
 				<div class="panel-heading panel-base-heading">业务信息</div>
 				<div class="panel-body admin-bg flex-1">
 					<ul class="list-none-style">
-						<li>应用行业: {{info.industry}}</li>
-						<li>主营业务: {{info.business}}</li>
-						<li>网站: {{info.url}}</li>
+						<li><span class="small-font-color">应用行业 : </span>{{info.industry}}</li>
+						<li><span class="small-font-color">主营业务 : </span>{{info.business}}</li>
+						<li><span class="small-font-color">网站 : </span>{{info.url}}</li>
 					</ul>
 				</div>
 			</div>
@@ -37,9 +37,9 @@
 					<div class="panel-heading panel-base-heading ">联系信息</div>
 					<div class="panel-body admin-bg flex-1 contactbox ">
 						<ul class="list-none-style">
-							<li>所在地区: {{info.province}}{{info.city}}</li>
-							<li>通讯地址: {{info.address}}</li>
-							<li>联系号码: {{info.phone}}</li>
+							<li><span class="small-font-color">所在地区 : </span>{{info.province}}{{info.city}}</li>
+							<li><span class="small-font-color">通讯地址 : </span>{{info.address}}</li>
+							<li><span class="small-font-color">联系号码 : </span>{{info.phone}}</li>
 						</ul>
 					</div>
 				</div>
@@ -55,67 +55,67 @@
 							</li>
 						</ul>
 						<ul class="list-none-style" v-if="authradio == 'private'">
-							<li>认证状态:
+							<li><span class="small-font-color">认证状态 : </span>
 								<span class="padding-right-10" v-if="authinfo.status==1 || authinfo.status==2 || authinfo.status==3 || authinfo.status==4 || authinfo.status==5 || authinfo.status==-2">认证成功</span>
 								<span class="text-danger padding-right-10" v-if="authinfo.status==-1 ">认证失败</span>
 								<a class="btn btn-primary" v-if="authinfo.status ===6" v-link="'/admin/demand/member/list/await'">去审核</a>
 								<span v-if="authinfo.status==100">未认证</span>
 							</li>
 							<div v-if="authinfo.status!=100">
-								<li>真实姓名：{{authinfo.realnamePrivate.name}}</li>
-								<li>证件类型：
+								<li><span class="small-font-color">真实姓名 : </span>{{authinfo.realnamePrivate.name}}</li>
+								<li><span class="small-font-color">证件类型 : </span>
 									<span class="padding-right-10" v-if="authinfo.realnamePrivate.idType ==='0'">身份证</span>
 									<span class="padding-right-10" v-if="authinfo.realnamePrivate.idType ==='1'">护照</span>
 								</li>
-								<li>证件号码：{{authinfo.realnamePrivate.idNumber}}</li>
+								<li><span class="small-font-color">证件号码 : </span>{{authinfo.realnamePrivate.idNumber}}</li>
 								<li class="flex  flex-direction-row ">
-									<span class=" padding-right-10">证件照: </span>
+									<span class="small-font-color padding-right-10">证件照 : </span>
 									<img :src="authinfo.realnamePrivate.idPhoto | img"  class="padding-right-10" height="200" data-action="zoom">
 								</li>
 							</div>
 						</ul>
 
 						<ul class="list-none-style" id="company"  v-if="this.authradio =='corp'" >
-							<li>认证状态:
+							<li><span class="small-font-color">认证状态 : </span>
 								<span class="padding-right-10" v-if="authinfo.status==2 || authinfo.status==4">认证成功</span>
 								<span class="text-danger padding-right-10" v-if="authinfo.status==-2 || authinfo.status==5">认证失败</span>
 								<a class="btn btn-primary" v-if="authinfo.status ===3 || authinfo.status ===0" v-link="'/admin/demand/member/list/await'">去审核</a>
 								<span v-if="authinfo.status==100 || authinfo.status==1 || authinfo.status==-1">未认证</span>
 							</li>
 							<div v-if="authinfo.status !=1 && authinfo.status !=-1 && authinfo.status!=100">
-								<li>公司名称: {{authinfo.realnameCorp.name}}</li>
-								<li>公司地址: {{authinfo.realnameCorp.addr}}</li>
-								<li>所属行业: {{authinfo.realnameCorp.industry}}</li>
-								<li>申请人：{{authinfo.realnameCorp.proposer}}</li>
-								<li>证件类型:
+								<li><span class="small-font-color">公司名称 : </span>{{authinfo.realnameCorp.name}}</li>
+								<li><span class="small-font-color">公司地址 : </span>{{authinfo.realnameCorp.addr}}</li>
+								<li><span class="small-font-color">所属行业 : </span>{{authinfo.realnameCorp.industry}}</li>
+								<li><span class="small-font-color">申请人 : </span>{{authinfo.realnameCorp.proposer}}</li>
+								<li><span class="small-font-color">证件类型 : </span>
 									<span v-if="authinfo.realnameCorp.authType == '0'">三证合一（一照一码）</span>
 									<span v-if="authinfo.realnameCorp.authType == '1'">三证合一</span>
 									<span v-if="authinfo.realnameCorp.authType == '2'">三证分离</span>
 								</li>
 								<div v-if="authinfo.realnameCorp.authType == '0'">
-									<li>统一社会信用代码：{{authinfo.realnameCorp.type01Prop02}}</li>
+									<li><span class="small-font-color">统一社会信用代码 : </span>{{authinfo.realnameCorp.type01Prop02}}</li>
 									<li class="flex  flex-direction-row ">
-										<span class=" padding-right-10">营业执照: </span>
+										<span class="small-font-color padding-right-10">营业执照: </span>
 										<img :src="authinfo.realnameCorp.type01Prop01 | img" alt="" class="padding-right-10"   height="200" data-action="zoom"  >
 									</li>
 								</div>
 								<div v-if="authinfo.realnameCorp.authType == '1'">
-									<li>注册号：{{authinfo.realnameCorp.type02Prop01}}</li>
-									<li>税务登记号：{{authinfo.realnameCorp.type02Prop02}}</li>
+									<li><span class="small-font-color">注册号 : </span>{{authinfo.realnameCorp.type02Prop01}}</li>
+									<li><span class="small-font-color">税务登记号 : </span>{{authinfo.realnameCorp.type02Prop02}}</li>
 									<li class="flex  flex-direction-row ">
-										<span class=" padding-right-10">营业执照: </span>
+										<span class="small-font-color padding-right-10">营业执照 : </span>
 										<img :src="authinfo.realnameCorp.type02Prop03 | img" alt="" class="padding-right-10"  height="200" data-action="zoom" >
 									</li>
 								</div>
 								<div v-if="authinfo.realnameCorp.authType == '2'">
-									<li>税务登记号：{{authinfo.realnameCorp.type03Prop01}}</li>
+									<li><span class="small-font-color">税务登记号 : </span>{{authinfo.realnameCorp.type03Prop01}}</li>
 									<li class="flex  flex-direction-row ">
-										<span class=" padding-right-10">税务登记证: </span>
+										<span class="small-font-color padding-right-10">税务登记证: </span>
 										<img :src="authinfo.realnameCorp.type03Prop02 | img" alt="" class="padding-right-10"  height="200" data-action="zoom" >
 									</li>
-									<li>营业执照号：{{authinfo.realnameCorp.type03Prop03}}</li>
+									<li><span class="small-font-color">营业执照号 : </span>{{authinfo.realnameCorp.type03Prop03}}</li>
 									<li class="flex  flex-direction-row ">
-										<span class=" padding-right-10">营业执照: </span>
+										<span class="small-font-color padding-right-10">营业执照 : </span>
 										<img :src="authinfo.realnameCorp.type03Prop04 | img"  class="padding-right-10"  height="200"  data-action="zoom" >
 									</li>
 								</div>
@@ -210,3 +210,4 @@
 	}
 </style>
 
+return 301 $scheme://yunhuni-development-open.oss-cn-beijing.aliyuncs.com/uc$request_uri;
