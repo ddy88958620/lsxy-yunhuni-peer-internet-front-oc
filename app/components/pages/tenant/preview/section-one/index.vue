@@ -40,7 +40,7 @@
                        {{(bill && bill.balance) ? '欠费'+-bill.balance : '￥0.000' }}
                     </span>
             </div>
-            <div class="inline-block float-r">
+            <div class="inline-block float-r margin-top-20">
               <button class="btn btn-default" @click="openModal" >消费记录</button>
               <button class="btn btn-primary" @click="recharge.showModal = true">充值</button>
               <button class="btn btn-primary" @click="flat.showModal = true">平账</button>
@@ -74,8 +74,8 @@
             </div>
             <div class="flex flex-1 flex-direction-column surplus">
               <div class="flex flex-1">会议剩余：<span class="green">{{(bill && bill.conferenceRemain) || 0}}</span>分钟</div>
-              <div class="flex flex-1">语音剩余：<span class="green">{{(bill && bill.voiceRemain) || 0}}</span>分钟</div>
-              <div class="flex flex-1">短信剩余：<span class="green">{{(bill && bill.smsRemain) || 0}}</span>条</div>
+              <div class="flex flex-1 margin-top-20">语音剩余：<span class="green">{{(bill && bill.voiceRemain) || 0}}</span>分钟</div>
+              <div class="flex flex-1 margin-top-20">短信剩余：<span class="green">{{(bill && bill.smsRemain) || 0}}</span>条</div>
             </div>
           </div>
         </div>
@@ -103,17 +103,17 @@
           <table class="table" >
             <thead>
             <tr>
-              <th class="text-align-c">消费时间</th>
-              <th>消费金额</th>
-              <th>消费类型</th>
+              <th class="text-align-c" width="100">消费时间</th>
+              <th class="text-align-r" width="130">消费金额</th>
+              <th class="text-align-c">消费类型</th>
               <th>备注</th>
             </tr>
             </thead>
             <tbody >
             <tr v-for='consume in consumes'>
               <td class="message-time text-align-c">{{consume.createTime | date}}</td>
-              <td>{{consume.amount}}</td>
-              <td>{{consume.type}}</td>
+              <td class="text-align-r">￥{{ consume.amount ? consume.amount.toFixed(3) : '0.000'}}</td>
+              <td class="text-align-c">{{consume.type}}</td>
               <td>{{consume.remark}}</td>
             </tr>
             </tbody>
