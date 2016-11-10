@@ -1,5 +1,17 @@
 <template>
-	<div class="flex search-box bg-section-margin remove-margin-bottom">
+	<div>
+		<div class="flex search-box bg-section-margin remove-margin-bottom">
+			<div class="inline-block normal-font-size">
+				<span>配置存储周期 : </span>
+				<span>7天免费存储</span>
+				<span>1个月</span>
+				<span>2个月</span>
+				<span>3个月</span>
+			</div>
+		</div>
+	</div>
+
+<!--	<div class="flex search-box bg-section-margin remove-margin-bottom">
 		<div class="select-box inline-block">
 			<search  placeholder='搜索文件名' :value.sync='searchName' :action="search"></search>
 		</div>
@@ -36,9 +48,8 @@
 			<a @click="query()" class="text-none" v-show='!page.loading && page.hasMore'>加载更多<i
 				class="icon iconfont icon-oc-dropdown"></i></a>
 		</div>
-	</div>
-
-	<modal :show.sync="showModal">
+	</div>-->
+<!--	<modal :show.sync="showModal">
 		<div slot="body">
 			<div class="flex flex-1 modal-padding-bottom">批量下载3天范围内的录音文件</div>
 			<div class="flex flex-1 align-items-c modal-padding-bottom">
@@ -51,7 +62,7 @@
 			</div>
 		</div>
 		<div slot="footer"></div>
-	</modal>
+	</modal>-->
 </template>
 
 
@@ -88,7 +99,7 @@
 				})
 			},
 			download(url){
-				console.log('下载',url);
+
 			},
 			search(){
 				this.query(true)
@@ -119,10 +130,9 @@
 			}
 		},
 		ready(){
-			this.query(true)
-			this.fileCapacity()
+		/*	this.query(true)
+			this.fileCapacity()*/
 		}
 	}
 </script>
-<style lang="sass">
-</style>
+

@@ -23,6 +23,7 @@
           <th>时长(秒)</th>
           <th class="text-align-c">大小</th>
           <th class="text-align-r"><span class="padding-right-20">消费金额</span></th>
+          <th class="text-align-c">操作</th>
         </tr>
         </thead>
         <tbody>

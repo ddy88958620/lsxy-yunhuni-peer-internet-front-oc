@@ -23,25 +23,26 @@
           <th>参与类型</th>
           <th class="text-align-c">时长(秒)</th>
           <th class="text-align-r"><span class="padding-right-20">消费金额</span></th>
+          <th class="text-align-c">操作</th>
         </tr>
         </thead>
         <tbody>
         <tr v-for='message in sessionList'>
           <td class="text-align-c">{{message.sessionId}}</td>
           <td class="message-time ">{{message.callStartDt | totalDate}}</td>
-          
-          <td v-if="message.joinType==0">{{message.fromNum}}</td>
-          <td v-if="message.joinType==1">{{message.toNum}}</td>
-          <td v-if="message.joinType==2">{{message.fromNum}}</td>
-
-          <td v-if="message.joinType==0">创建</td>
-          <td v-if="message.joinType==1">邀请加入</td>
-          <td v-if="message.joinType==2">呼入加入</td>
-
-
+          <td>
+            <span v-if="message.joinType==0">{{message.fromNum}}</span>
+            <span v-if="message.joinType==1">{{message.toNum}}</span>
+            <span v-if="message.joinType==2">{{message.fromNum}} </span>
+          </td>
+          <td>
+            <span v-if="message.joinType==0">创建</span>
+            <span v-if="message.joinType==1">邀请加入</span>
+            <span v-if="message.joinType==2">呼入加入</span>
+          </td>
           <td class="text-align-c">{{ message.costTimeLong }}</td>
           <td class="text-align-r"><span class="padding-right-20">￥{{ message.cost ? message.cost.toFixed(3) : '0.000' }}</span></td>
-
+          <td class="text-align-c"><a>录音下载</a></td>
         </tr>
         </tbody>
       </table>
