@@ -40,7 +40,7 @@
                        {{(bill && bill.balance) ? '欠费'+-bill.balance : '￥0.000' }}
                     </span>
             </div>
-            <div class="inline-block float-r margin-top-20">
+            <div class="inline-block float-r margin-top-25">
               <button class="btn btn-default" @click="openModal" >消费记录</button>
               <button class="btn btn-primary" @click="recharge.showModal = true">充值</button>
               <button class="btn btn-primary" @click="flat.showModal = true">平账</button>
@@ -423,5 +423,8 @@
   }
   }
 
+  .margin-top-25{
+    margin-top: 25px;
+  }
 
 </style>

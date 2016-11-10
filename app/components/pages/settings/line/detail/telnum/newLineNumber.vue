@@ -102,6 +102,7 @@
 					this.showMsg({content: '新建成功', type: 'success'})
 					this.$route.router.replace({name: 'telnum', query: {t: new Date()}})
 					this.show = false
+					this.reset()
 				})
 			},
 			fetchProvinceList(){

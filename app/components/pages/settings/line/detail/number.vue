@@ -24,7 +24,7 @@
 				<button class="btn btn-primary" @click="$refs.uploadnumber.show = true">导入线路号码</button>
 				<button class="btn btn-primary" @click="$refs.newline.show = true">新增线路号码</button>
 				<button class="btn btn-primary" @click="$refs.through.show = true">新增透传</button>
-				<a class="btn btn-primary" @click="deleteNumber">删除号码</a>
+				<button class="btn btn-primary" :disabled="selected.deleteNumber.length<1" @click.prevent="$refs.delete.show = true">删除号码</button>
 			</div>
 		</div>
 		<div class="admin-table position-layout">
@@ -46,7 +46,7 @@
 				<tr v-for='l in list.number'>
 					<td><input type="checkbox" v-model="selected.deleteNumber" value="{{l.id}}"></td>
 					<td class="message-time text-align-c">{{ l.createTime | totalDate }}</td>
-					<td>{{ l.telNumber }}</td>
+					<td><a v-link="'/admin/settings/number/detail/'+l.resourceTelenum.id+'/base'"> {{ l.telNumber }}</a></td>
 					<td><input type="checkbox" @change="changeDialing($index, 0)" :checked="l.isDialing === '1'"></td>
 					<td><input type="checkbox" @change="changeDialing($index, 1)" :checked="l.isCalled==='1'"></td>
 					<td><input type="checkbox" @change="changeDialing($index, 2)" :checked="l.isThrough==='1'"></td>
@@ -66,6 +66,9 @@
 		<new-line v-ref:newline></new-line>
 		<upload-number v-ref:uploadnumber></upload-number>
 		<new-through v-ref:through></new-through>
+		<modal v-ref:delete title="" :action="deleteNumber">
+			<div slot="body">确认删除么 </div>
+		</modal>
 	</div>
 </template>
 <script>

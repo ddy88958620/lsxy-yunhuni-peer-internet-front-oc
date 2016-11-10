@@ -29,7 +29,6 @@
 					<td class="message-time text-align-c">{{message.callStartDt | totalDate}}</td>
 					<td>{{ message.fromNum }}</td>
 					<td>{{ message.toNum }}</td>
-
 					<td class="text-align-c">{{ message.costTimeLong }}</td>
 					<td class="text-align-r"><span class="padding-right-20">￥{{ message.cost ? message.cost.toFixed(3) : '0.000' }}</span></td>
 				</tr>

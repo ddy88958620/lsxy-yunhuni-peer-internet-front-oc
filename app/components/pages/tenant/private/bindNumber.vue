@@ -1,12 +1,11 @@
 <template>
-	<modal :classname="'table-big'" :show.sync="show.self" title="新增透传号码" :action="add">
+	<modal :classname="'table-big'" :show.sync="show.self" title="绑定线路" :action="add">
 		<div slot="body">
 			<div class="form-group">
 				<div class="select-box inline-block">
 					<search
 						:value.sync="post.line.lineNumber"
 						:action="query"
-						placeholder="模糊查询"
 					></search>
 				</div>
 				&nbsp;
@@ -20,7 +19,7 @@
 				&nbsp;
 				<button class="btn btn-primary admin-margin-l" @click="query">查询</button>
 			</div>
-			<div class="admin-table bind_number_result">
+			<div class="admin-table bind_number_result margin-top-20">
 				<table class="table">
 					<thead>
 					<tr>

@@ -24,8 +24,8 @@
 				</thead>
 				<tbody>
 				<tr v-for='l in list'>
-					<td class="text-align-c">流水行动</td>
-					<td>15915465846 13954658458</td>
+					<td class="text-align-c">{{ l.tenantName }}</td>
+					<td>{{l.numbers | keyArray 'number' }}</td>
 				</tr>
 				</tbody>
 			</table>
