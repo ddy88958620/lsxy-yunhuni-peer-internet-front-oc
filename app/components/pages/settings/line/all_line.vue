@@ -1,5 +1,10 @@
 <template>
 	<div>
+		<div class="alert alert-success" role="alert">
+			1.新增的线路默认为禁用状态，需要手动启用，会员是否能够租用号码，与号码所属线路的禁用启用无关，与号码的禁用启用有关。<br/>
+			2.新增的线路默认为非全局线路，需要手动归入全局。<br/>
+			3.平台互联网用户只允许购买全局线路里的号码，非全局线路只能被运营人员手动绑定给用户。
+		</div>
 		<div class="admin-table-header">
 			<div class="remove-margin-bottom">
 				<span class='datetime-picker-label'>运营商: </span>

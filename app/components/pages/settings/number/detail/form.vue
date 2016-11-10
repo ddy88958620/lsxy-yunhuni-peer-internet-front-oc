@@ -18,17 +18,18 @@
 			<!--<input type="text" class="form-control" placeholder="" v-model="selected.tenant.tenantName">-->
 			<v-select v-if="!postData.tenant" class="form-control" :value.sync="selected.tenant" :label.sync="'tenantName'"  :options="list.tenant"></v-select>
 			<span v-else>{{ postData.tenant.tenantName }}</span>
-			<button v-if="postData.tenant" @click="$refs.number.show = true" class="btn btn-primary">号码回收</button>
+			<button v-if="postData.tenant" @click.prevent="$refs.number.show = true" class="btn btn-primary">号码回收</button>
 			<span class="text-danger">*</span>
 		</div>
 		<div class="form-group">
 			<label class="control-label">归属线路 : </label>
-			<select class="form-control" v-model='postData.lineId' >
+			<select v-if="!$route.params.nid" class="form-control" v-model='postData.lineId' >
 				<option value=''>请选择线路</option>
 				<option v-for="line in list.line" :value="line.id">{{ line.lineNumber }}</option>
 			</select>
+			<span v-else>{{ postData.line.lineNumber }}</span>
 		</div>
-		<div class="form-group" v-if="postData.lineId">
+		<div class="form-group" v-if="!$route.params.nid">
 			<label class="control-label">号码属性 : </label>
 			<input type="checkbox" v-model="postData.isDialing" :true-value="'1'" :false-value="'0'"> 可主叫
 			<input type="checkbox" v-model="postData.isCalled" :true-value="'1'" :false-value="'0'"> 可被叫
@@ -74,7 +75,7 @@
 			元
 			<span class="text-danger">*</span>
 		</div>
-		<modal v-ref:number title="导入线路号码" :action="numberBack">
+		<modal v-ref:number title="提示" :action="numberBack">
 			<div slot="body">
 				<div>
 					请确认回收号码！

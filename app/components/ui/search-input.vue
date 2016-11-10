@@ -44,7 +44,7 @@
       },
       placeholder: {
       	type: String,
-        default: ''
+        default: '请输入关键字'
       },
     },
     methods: {},

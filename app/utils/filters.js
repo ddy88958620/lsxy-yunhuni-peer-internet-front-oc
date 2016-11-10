@@ -105,8 +105,19 @@ export function createImg(filename){
 
 export function fixNull(obj) {
 	let temp = obj
-	if(typeof obj === 'undefined'){
-		temp = ''
+	if(typeof obj === 'undefined' || obj === null){
+		temp = '无'
+	}
+	return temp
+}
+
+export function keyArray(array, key){
+	// [{number: 1, },{number:2,}] => 1,2
+	let temp
+	if(array) {
+		temp = array.map(function(item){
+			return item[key]
+		})
 	}
 	return temp
 }

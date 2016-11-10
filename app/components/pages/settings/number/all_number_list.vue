@@ -1,5 +1,8 @@
 <template>
 	<div>
+		<div class="alert alert-success" role="alert">
+			新增的号码默认为禁用状态，需要手动启用。号码一旦启用，即可被租户所使用
+		</div>
 		<div class="admin-table-header">
 			<div class="remove-margin-bottom">
 				<div class="select-box inline-block">

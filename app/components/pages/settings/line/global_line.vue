@@ -1,5 +1,8 @@
 <template>
 	<div>
+		<div class="alert alert-success" role="alert">
+			全局线路的优先级顺序根据序号进行排序，序号越靠前，优先级越高，最新归入全局的线路统一排在列表的最下方。
+		</div>
 		<div class="admin-table-header">
 			<div class="remove-margin-bottom">
 				<span class='datetime-picker-label'>运营商: </span>
