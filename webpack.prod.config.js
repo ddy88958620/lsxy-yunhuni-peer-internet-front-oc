@@ -1,7 +1,8 @@
 var webpack = require('webpack')
 var config = require('./webpack.base.config')
 var htmlwebpackplugin = require('html-webpack-plugin')
-
+var CopyWebpackPlugin = require('copy-webpack-plugin')
+const path = require('path')
 config.output.filename = 'build.[hash].js'
 
 config.plugins = (config.plugins || []).concat([
@@ -10,6 +11,9 @@ config.plugins = (config.plugins || []).concat([
       NODE_ENV: '"production"'
     }
   }),
+  new CopyWebpackPlugin([
+    {from: path.resolve(__dirname,'app/assets/favicon.ico')},
+  ]),
   // new webpack.LoaderOptionsPlugin({
   //   minimize: true
   // }),
@@ -23,6 +27,8 @@ config.plugins = (config.plugins || []).concat([
     filename: 'index.html',
     template: './template/product-index.html'
   }),
+
+
 ])
 
 module.exports = config

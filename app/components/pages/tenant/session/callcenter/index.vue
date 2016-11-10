@@ -25,6 +25,7 @@
           <th>通话状态</th>
           <th class="text-align-c">时长(秒)</th>
           <th class="text-align-r"><span class="padding-right-20">消费金额</span></th>
+          <th class="text-align-c">操作</th>
         </tr>
         </thead>
         <tbody>
@@ -36,6 +37,7 @@
           <td>{{ message.toNum }}</td>
           <td class="text-align-c">{{ message.costTimeLong }}</td>
           <td class="text-align-r"><span class="padding-right-20">￥{{ message.cost ? message.cost.toFixed(3) : '0.000' }}</span></td>
+          <td class="text-align-c"><a>录音下载</a></td>
         </tr>
         </tbody>
       </table>

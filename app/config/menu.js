@@ -12,12 +12,6 @@ export default [
     link: '/admin/tenant'
   },
   {
-    title: '服务与支持',
-    label: 'Custom',
-    icon: 'icon-oc-custom',
-    link: '/admin/service'
-  },
-  {
     title: '财务中心',
     label: 'Finance',
     icon: 'icon-oc-finance',
@@ -40,5 +34,11 @@ export default [
     label: 'Demand',
 	  icon: 'icon-oc-verify',
     link: '/admin/demand'
+  },
+  {
+    title: '服务与支持',
+    label: 'Custom',
+    icon: 'icon-oc-custom',
+    link: '/admin/service'
   }
 ]
