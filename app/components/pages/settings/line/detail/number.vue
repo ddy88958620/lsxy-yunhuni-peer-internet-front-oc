@@ -140,7 +140,7 @@
 					}
 					this.showMsg({content: '删除成功', type: 'success'})
 					this.query()
-					this.show = false
+					this.$refs.delete.show = false
 				})
 			},
 			changeDialing(index, type){
