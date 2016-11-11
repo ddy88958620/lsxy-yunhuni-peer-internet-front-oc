@@ -30,7 +30,7 @@
 					<td>{{ l.resourceTelenum.telNumber }}</td>
 					<td>{{ l.resourceTelenum.isDialing === '1' ? '✔': '✘' }}</td>
 					<td>{{ l.resourceTelenum.isCalled === '1' ? '✔': '✘' }}</td>
-					<td>{{ l.resourceTelenum.app.name | fixNull }}</td>
+					<td>{{ l.app.name | fixNull }}</td>
 					<td>{{ l.resourceTelenum.type ==='0' ?   '租户自带' : '采购线路' }}</td>
 					<td>{{ l.resourceTelenum.operator }}</td>
 					<td>{{ l.resourceTelenum.areaCode }}</td>
