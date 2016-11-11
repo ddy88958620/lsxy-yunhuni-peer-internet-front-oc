@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import createLogger from  'vuex/logger'
 
 import showmsg from './modules/showmsg.js'
 import auth from './modules/auth.js'
@@ -16,6 +15,7 @@ import demand from './modules/demand.js'
 const debug = process.env.NODE_ENV !== 'production'
 
 Vue.use(Vuex)
+console.log(Vuex)
 
 export default new Vuex.Store({
   modules: {
@@ -30,6 +30,5 @@ export default new Vuex.Store({
     finance,
     demand,
   },
-  strict: debug,
-  middlewares: debug ? [createLogger()] : []
+  strict: debug
 })
