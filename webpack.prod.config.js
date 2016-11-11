@@ -17,19 +17,20 @@ config.plugins = (config.plugins || []).concat([
   // new webpack.LoaderOptionsPlugin({
   //   minimize: true
   // }),
-  // new webpack.optimize.UglifyJsPlugin({
-  //   sourceMap: false,
-  //   compress: {
-  //     warnings: false,
-  //     pure_funcs: [ 'console.log', 'console.info' ]
-  //   },
-  // }),
+  new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false,
+      pure_funcs: [ 'console.log', 'console.info' ]
+    },
+  }),
   new htmlwebpackplugin({
     filename: 'index.html',
     template: './template/product-index.html'
   }),
-
-
+  new webpack.DllReferencePlugin({
+    context: __dirname,
+    manifest: require('./build/manifest.json'),
+  }),
 ])
 
 module.exports = config

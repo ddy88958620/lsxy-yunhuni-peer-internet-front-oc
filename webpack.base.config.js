@@ -5,7 +5,7 @@ var path = require('path')
 module.exports = {
   entry: './app/main.js',
   output: {
-    path: path.resolve(__dirname, './staticnew'),
+    path: path.resolve(__dirname, './build'),
     //Watching your source files for changes and when changes are made the
     //bundle will be recompiled. This modified bundle is served from memory at
     // the relative path specified in publicPath (see API).
@@ -66,9 +66,8 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      jQuery: 'jquery',
+      jQuery: 'jquery', // 这个可以使jquery变成全局变量
       $: 'jquery',
-	    
     }),
   ]
 }
