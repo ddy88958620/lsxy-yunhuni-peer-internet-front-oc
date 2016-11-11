@@ -45,7 +45,7 @@ module.exports = {
         loader: 'vue',
         options: {
           postcss: [
-            // 让import '*.scss' 也生效
+            // 让autoprefixer 对 import '*.scss' 也生效
             require('postcss-import')({
               addDependencyTo: webpack
             }),

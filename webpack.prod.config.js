@@ -18,12 +18,12 @@ config.plugins = (config.plugins || []).concat([
   // new webpack.LoaderOptionsPlugin({
   //   minimize: true
   // }),
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false,
-	    drop_console: true,
-    },
-  }),
+  // new webpack.optimize.UglifyJsPlugin({
+  //   compress: {
+  //     warnings: false,
+	//     drop_console: true,
+  //   },
+  // }),
   new htmlwebpackplugin({
     filename: 'index.html',
     template: './template/product-index.html'
