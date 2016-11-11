@@ -13,6 +13,9 @@ module.exports = {
     filename: 'build.js'
   },
   resolve: {
+    modules: [
+      'node_modules'
+    ],
     alias: {
       // 'components': path.resolve(__dirname, 'app/components'),
       'font': path.resolve(__dirname, 'app/assets/fonts'),

@@ -19,11 +19,9 @@ config.plugins = (config.plugins || []).concat([
   //   minimize: true
   // }),
   new webpack.optimize.UglifyJsPlugin({
-    sourceMap: false,
-    mangle: false,
     compress: {
       warnings: false,
-      // pure_funcs: [ 'console.log', 'console.info' ]
+	    drop_console: true,
     },
   }),
   new htmlwebpackplugin({
