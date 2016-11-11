@@ -13,9 +13,6 @@ module.exports = {
     filename: 'build.js'
   },
   resolve: {
-    modulesDirectories: [
-      'node_modules',
-    ],
     alias: {
       // 'components': path.resolve(__dirname, 'app/components'),
       'font': path.resolve(__dirname, 'app/assets/fonts'),
@@ -24,7 +21,7 @@ module.exports = {
       'assets': path.resolve(__dirname, 'app/assets'),
       'domain': path.resolve(__dirname, 'app/config/domain.js')
     },
-    extensions: ['', '.json', '.js', '.vue'],
+    extensions: ['.json', '.js', '.vue'],
   },
   module: {
     loaders:[
@@ -52,22 +49,29 @@ module.exports = {
     ],
     noParse: [],
   },
-  vue: {
-    postcss: [
-      // 让import '*.scss' 也生效
-      require('postcss-import')({
-        addDependencyTo: webpack
-      }),
-      require('autoprefixer')({
-        browsers: ['last 3 versions'],
-      }),
-      require('cssnano')({ safe: true })
-    ],
-  },
   plugins: [
     new webpack.ProvidePlugin({
       jQuery: 'jquery', // 这个可以使jquery变成全局变量
       $: 'jquery',
     }),
+    new webpack.LoaderOptionsPlugin({
+      test: /\.vue$/,
+      options: {
+        postcss: [
+          // 让import '*.scss' 也生效
+          require('postcss-import')({
+            addDependencyTo: webpack
+          }),
+          require('autoprefixer')({
+            browsers: ['last 3 versions'],
+          }),
+          require('cssnano')({ safe: true })
+        ],
+        sassLoader: {
+          includePaths: [path.resolve(__dirname, 'src', 'scss')]
+        },
+        context: '/'
+      }
+    })
   ]
 }
