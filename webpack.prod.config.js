@@ -2,6 +2,7 @@ var webpack = require('webpack')
 var config = require('./webpack.base.config')
 var htmlwebpackplugin = require('html-webpack-plugin')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
+
 const path = require('path')
 config.output.filename = 'build.[hash].js'
 
@@ -22,7 +23,7 @@ config.plugins = (config.plugins || []).concat([
     mangle: false,
     compress: {
       warnings: false,
-      pure_funcs: [ 'console.log', 'console.info' ]
+      // pure_funcs: [ 'console.log', 'console.info' ]
     },
   }),
   new htmlwebpackplugin({
