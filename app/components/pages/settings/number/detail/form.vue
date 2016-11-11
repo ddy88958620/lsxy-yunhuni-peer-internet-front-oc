@@ -29,7 +29,7 @@
 			</select>
 			<span v-else>{{ postData.line.lineNumber }}</span>
 		</div>
-		<div class="form-group" v-if="!$route.params.nid">
+		<div class="form-group" v-if="$route.params.nid === '' || postData.lineId !== '' ">
 			<label class="control-label">号码属性 : </label>
 			<input type="checkbox" v-model="postData.isDialing" :true-value="'1'" :false-value="'0'"> 可主叫
 			<input type="checkbox" v-model="postData.isCalled" :true-value="'1'" :false-value="'0'"> 可被叫

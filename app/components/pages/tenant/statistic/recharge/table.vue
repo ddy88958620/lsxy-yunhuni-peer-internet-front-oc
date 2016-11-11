@@ -10,7 +10,7 @@
           <option value='RENGONG'>运营充值</option>
         </select>
         <span class='datetime-picker-label'>充值类型: </span>
-        <select class="form-control" v-model='source'">
+        <select class="form-control" v-model='source'>
           <option value=''>全部</option>
           <option value='USER' v-if="type=='ALIPAY' || type=='UNIONPAY' || type==''">用户自充</option>
           <option value='MANUAL_ACTIVITY'  v-if="type=='RENGONG' || type==''">手工-活动赠送</option>

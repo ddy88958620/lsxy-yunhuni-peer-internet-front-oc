@@ -5,7 +5,7 @@ var path = require('path')
 module.exports = {
   entry: './app/main.js',
   output: {
-    path: path.resolve(__dirname, './staticnew'),
+    path: path.resolve(__dirname, './build'),
     //Watching your source files for changes and when changes are made the
     //bundle will be recompiled. This modified bundle is served from memory at
     // the relative path specified in publicPath (see API).
@@ -13,8 +13,8 @@ module.exports = {
     filename: 'build.js'
   },
   resolve: {
-    modulesDirectories: [
-      'node_modules',
+    modules: [
+      'node_modules'
     ],
     alias: {
       // 'components': path.resolve(__dirname, 'app/components'),
@@ -24,7 +24,7 @@ module.exports = {
       'assets': path.resolve(__dirname, 'app/assets'),
       'domain': path.resolve(__dirname, 'app/config/domain.js')
     },
-    extensions: ['', '.json', '.js', '.vue'],
+    extensions: ['.json', '.js', '.vue'],
   },
   module: {
     loaders:[
@@ -43,6 +43,21 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue',
+        options: {
+          postcss: [
+            // 让autoprefixer 对 import '*.scss' 也生效
+            require('postcss-import')({
+              addDependencyTo: webpack
+            }),
+            require('autoprefixer')({
+              browsers: ['last 3 versions'],
+            }),
+            require('cssnano')({ safe: true })
+          ],
+          sassLoader: {
+            includePaths: [path.resolve(__dirname, 'src', 'scss')]
+          },
+        }
       },
       {
         test: /\.(png|jpg|gif)$/,
@@ -52,23 +67,10 @@ module.exports = {
     ],
     noParse: [],
   },
-  vue: {
-    postcss: [
-      // 让import '*.scss' 也生效
-      require('postcss-import')({
-        addDependencyTo: webpack
-      }),
-      require('autoprefixer')({
-        browsers: ['last 3 versions'],
-      }),
-      require('cssnano')({ safe: true })
-    ],
-  },
   plugins: [
     new webpack.ProvidePlugin({
-      jQuery: 'jquery',
+      jQuery: 'jquery', // 这个可以使jquery变成全局变量
       $: 'jquery',
-	    
-    }),
+    })
   ]
 }

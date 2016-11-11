@@ -5,7 +5,7 @@ git pull origin $CURRENT_BRANCH
 npm install
 npm run build
 
-# 构建之后, 会生成 staticnew
+# 构建之后, 会生成 build
 rm -rf static
-mv staticnew static
+mv build static
 
