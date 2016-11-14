@@ -13,13 +13,12 @@
 			<!--<label class="control-label">所属租户 : </label>-->
 			<!--<input type="text" class="form-control" placeholder="" v-model="selected.tenant.tenantName">-->
 		<!--</div>-->
-		<div class="form-group" v-if="postData.type !== '1'">
+		<div class="form-group">
 			<label class="control-label">所属租户 : </label>
 			<!--<input type="text" class="form-control" placeholder="" v-model="selected.tenant.tenantName">-->
 			<v-select v-if="!postData.tenant" class="form-control" :value.sync="selected.tenant" :label.sync="'tenantName'"  :options="list.tenant"></v-select>
 			<span v-else>{{ postData.tenant.tenantName }}</span>
 			<button v-if="postData.tenant" @click.prevent="$refs.number.show = true" class="btn btn-primary">号码回收</button>
-			<span class="text-danger">*</span>
 		</div>
 		<div class="form-group">
 			<label class="control-label">归属线路 : </label>
@@ -27,12 +26,13 @@
 				<option value=''>请选择线路</option>
 				<option v-for="line in list.line" :value="line.id">{{ line.lineNumber }}</option>
 			</select>
-			<span v-else>{{ postData.line.lineNumber }}</span>
+			<span v-else>{{ postData.line.lineNumber | fixNull }}</span>
 		</div>
-		<div class="form-group" v-if="$route.params.nid === '' || postData.lineId !== '' ">
+		<!-- 新建线路对应 postData.lineId ,  号码详情对应 postData.line, 不存在 lineId  -->
+		<div class="form-group" v-if="postData.lineId !== ''">
 			<label class="control-label">号码属性 : </label>
-			<input type="checkbox" v-model="postData.isDialing" :true-value="'1'" :false-value="'0'"> 可主叫
-			<input type="checkbox" v-model="postData.isCalled" :true-value="'1'" :false-value="'0'"> 可被叫
+			<input type="checkbox" :disabled="$route.params.nid" v-model="postData.isDialing" :true-value="'1'" :false-value="'0'"> 可主叫
+			<input type="checkbox" :disabled="$route.params.nid"  v-model="postData.isCalled" :true-value="'1'" :false-value="'0'"> 可被叫
 		</div>
 		<div class="form-group">
 			<label class="control-label">运营商 : </label>
@@ -129,6 +129,12 @@
 				},
 				deep: true
 			},
+			postData: {
+				handler: function(e){
+					console.log(this.postData.type === '0' && this.postData.lineId !== '')
+				},
+				deep: true
+			}
 		},
 		methods: {
 			fetchAreaList(){

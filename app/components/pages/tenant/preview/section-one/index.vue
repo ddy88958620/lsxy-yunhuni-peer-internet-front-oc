@@ -73,9 +73,9 @@
               <span class="inline-block unit">套餐剩余量</span>
             </div>
             <div class="flex flex-1 flex-direction-column surplus">
-              <div class="flex flex-1">会议剩余：<span class="green">{{(bill && bill.conferenceRemain) || 0}}</span>分钟</div>
-              <div class="flex flex-1 margin-top-20">语音剩余：<span class="green">{{(bill && bill.voiceRemain) || 0}}</span>分钟</div>
-              <div class="flex flex-1 margin-top-20">短信剩余：<span class="green">{{(bill && bill.smsRemain) || 0}}</span>条</div>
+              <div class="flex flex-1">会议剩余：<span class="green">{{(bill && bill.conferenceRemain) || 0}}</span> 分钟</div>
+              <div class="flex flex-1 margin-top-20">语音剩余：<span class="green">{{(bill && bill.voiceRemain) || 0}}</span> 分钟</div>
+              <div class="flex flex-1 margin-top-20">短信剩余：<span class="green">{{(bill && bill.smsRemain) || 0}}</span> 条</div>
             </div>
           </div>
         </div>

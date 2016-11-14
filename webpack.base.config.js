@@ -43,21 +43,6 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue',
-        options: {
-          postcss: [
-            // 让autoprefixer 对 import '*.scss' 也生效
-            require('postcss-import')({
-              addDependencyTo: webpack
-            }),
-            require('autoprefixer')({
-              browsers: ['last 3 versions'],
-            }),
-            require('cssnano')({ safe: true })
-          ],
-          sassLoader: {
-            includePaths: [path.resolve(__dirname, 'src', 'scss')]
-          },
-        }
       },
       {
         test: /\.(png|jpg|gif)$/,
@@ -71,6 +56,20 @@ module.exports = {
     new webpack.ProvidePlugin({
       jQuery: 'jquery', // 这个可以使jquery变成全局变量
       $: 'jquery',
+    }),
+    new webpack.LoaderOptionsPlugin({
+      vue: {
+        postcss: [
+          // 让autoprefixer 对 import '*.scss' 也生效
+          require('postcss-import')({
+            addDependencyTo: webpack
+          }),
+          require('autoprefixer')({
+            browsers: ['last 3 versions'],
+          }),
+          require('cssnano')({ safe: true })
+        ],
+      }
     })
   ]
 }
