@@ -74,7 +74,7 @@
 							<span><a v-link="'/admin/settings/number/detail/'+l.id">详情</a></span>
 							<span v-if=" l.usable === '1'"  @click="disabled($index, l.id)"><a>禁用</a></span>
 							<span v-if=" l.usable !== '1'"  @click="enabled($index, l.id)"><a>启用</a></span>
-							<span @click="deleteNumber($index, l.id)"><a>删除</a></span>
+							<span @click="confirmDeleteNumber($index, l.id)"><a>删除</a></span>
 						</td>
 					</tr>
 				</tbody>
@@ -85,6 +85,7 @@
 			</div>
 		</div>
 	</div>
+	<confirm v-ref:dialog></confirm>
 </template>
 <script>
 	import {showMsg} from 'actions'
@@ -93,7 +94,8 @@
 			actions: { showMsg }
 		},
 		components: {
-			'search': require('ui/search-input.vue')
+			'search': require('ui/search-input.vue'),
+			'confirm': require('ui/confirm.vue'),
 		},
 		data(){
 			return {
@@ -117,6 +119,16 @@
 			}
 		},
 		methods: {
+			confirmDeleteNumber(index, id){
+				this.$refs.dialog.confirm().then(() => {
+					// 点击确定按钮的回调处理
+					this.deleteNumber(index, id)
+					this.$refs.dialog.show = false;
+				}).catch(() => {
+					// 点击取消按钮的回调处理
+					console.log('delete')
+				});
+			},
 			deleteNumber(index, id){
 				$.delete('/config/telnum/'+id).then(()=>{
 					this.list.number.splice(index, 1)
