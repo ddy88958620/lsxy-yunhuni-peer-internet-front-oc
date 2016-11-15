@@ -215,6 +215,30 @@ export default function(router){
                   }
                 }
               }
+            },
+            '/product': {
+              component: (resolve) => require(['../components/pages/route-middle.vue'], resolve),
+              subRoutes: {
+	              '/list': {
+                  component: (resolve) => require(['../components/pages/settings/product/list.vue'], resolve),
+		              subRoutes: {
+                    '/pro': {
+                      component: (resolve) => require(['../components/pages/settings/product/product_list.vue'], resolve),
+                    },
+                    '/price': {
+                      component: (resolve) => require(['../components/pages/route-middle.vue'], resolve),
+                      subRoutes: {
+	                      '/index': {
+                          component: (resolve) => require(['../components/pages/settings/product/price_list.vue'], resolve),
+                        },
+                        '/edit': {
+                          component: (resolve) => require(['../components/pages/settings/product/detail/price_edit.vue'], resolve),
+                        }
+                      }
+                    },
+                  }
+                },
+              }
             }
           }
         },
@@ -355,6 +379,8 @@ export default function(router){
     '/admin/settings/number': '/admin/settings/number/list/all',
     '/admin/settings/number/detail/:nid': '/admin/settings/number/detail/:nid/base',
     '/admin/settings/line/detail/:lid': '/admin/settings/line/detail/:lid/base',
+    '/admin/settings/product': '/admin/settings/product/list/pro',
+    '/admin/settings/product/list/price': '/admin/settings/product/list/price/index',
   })
 
   router.beforeEach(function({to, next, go}){

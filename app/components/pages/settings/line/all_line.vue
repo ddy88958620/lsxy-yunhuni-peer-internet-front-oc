@@ -65,7 +65,7 @@
 						<span><a v-link="'/admin/settings/line/detail/'+l.id+'/base'">详情</a></span>
 						<span v-if=" l.status === '1'"  @click="disabledLine($index, l.id)"><a>禁用</a></span>
 						<span v-if=" l.status !== '1'"  @click="enabledLine($index, l.id)"><a>启用</a></span>
-						<span @click="deleteLine($index, l.id)"><a>删除</a></span>
+						<span @click="confirmDelete($index, l.id)"><a>删除</a></span>
 						<span v-if=" l.isPublicLine === '0' " @click="addGlobal($index, l.id)"><a>归入全局</a></span>
 					</td>
 				</tr>
@@ -77,6 +77,7 @@
 			</div>
 		</div>
 	</div>
+	<confirm v-ref:dialog></confirm>
 </template>
 <script>
 	import {showMsg} from 'actions'
@@ -87,7 +88,8 @@
 		},
 		components: {
 			'datetime-picker': require('ui/datetimepicker.vue'),
-			'modal': require('ui/modal.vue')
+			'modal': require('ui/modal.vue'),
+			'confirm': require('ui/confirm.vue'),
 		},
 		data(){
 			return {
@@ -108,6 +110,16 @@
 			}
 		},
 		methods: {
+			confirmDelete(index, id){
+				this.$refs.dialog.confirm().then(() => {
+					// 点击确定按钮的回调处理
+					this.deleteLine(index, id)
+					this.$refs.dialog.show = false;
+				}).catch(() => {
+					// 点击取消按钮的回调处理
+					console.log('delete')
+				});
+			},
 			deleteLine(index, lid){
 				$.delete('/config/line/'+lid).then(()=>{
 					this.list.splice(index, 1)

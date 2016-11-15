@@ -41,7 +41,7 @@
 					<td class="text-align-c">
 						<span @click="disabled($index, l.id)" v-if='l.status===1'><a>禁用</a></span>
 						<span @click="enabled($index, l.id)" v-else><a>启用</a></span>
-						<span @click="deleteNumber($index, l.id)"><a>删除</a></span>
+						<span @click="confirmDeleteNumber($index, l.id)"><a>删除</a></span>
 					</td>
 				</tr>
 				</tbody>
@@ -65,7 +65,8 @@
 			</div>
 		</div>
 	</modal>
-	
+	<confirm v-ref:dialog></confirm>
+
 </template>
 <script>
 	import {showMsg} from 'actions'
@@ -79,7 +80,8 @@
 		},
 		components: {
 			'datetime-picker': require('ui/datetimepicker.vue'),
-			'modal': require('ui/modal.vue')
+			'modal': require('ui/modal.vue'),
+			'confirm': require('ui/confirm.vue'),
 		},
 		data(){
 			return {
@@ -103,6 +105,16 @@
 			}
 		},
 		methods: {
+			confirmDeleteNumber(index, id){
+				this.$refs.dialog.confirm().then(() => {
+					// 点击确定按钮的回调处理
+					this.deleteNumber(index, id)
+					this.$refs.dialog.show = false;
+				}).catch(() => {
+					// 点击取消按钮的回调处理
+					console.log('delete')
+				});
+			},
 			deleteNumber(index, id){
 				$.delete('/config/redblank/'+id).then(()=>{
 					this.list.number.splice(index, 1)
