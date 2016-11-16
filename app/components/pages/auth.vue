@@ -71,7 +71,7 @@
 
 							</form>
 						</div>
-	          <div class="copy text-align-c" >Copyright 2016 云呼你 粤ICP备16048993号 All Rights Reserved 广州流水行云科技有限公司</div>
+	          <div class="copy text-align-c" >Copyright 2016 壹云 粤ICP备16048993号 All Rights Reserved 广州流水行云科技有限公司</div>
           </div>
         </div>
       </div>

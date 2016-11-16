@@ -16,7 +16,7 @@
           <div class="no-wrap">
             <div class="inline-block box border-right">
               <div class="flex flex-1 align-items-c ">
-                <i class="icon iconfont icon-oc-wallet bigicon"></i>
+                <i class="icon iconfont icon-oc-incoming bigicon"></i>
                 <span class="green money">{{ current.callIn }}</span>
                 <!--<div class="inline-block" v-if="indicant.dto1.costCoin === true" >
                   <i class="iconfont {{ current.callIn >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{current.dto.callIn}}%</span>
@@ -31,7 +31,7 @@
             </div>
             <div class="inline-block box border-right">
               <div class="flex flex-1 align-items-c ">
-                <i class="icon iconfont icon-oc-recharge bigicon"></i>
+                <i class="icon iconfont icon-oc-exhale bigicon"></i>
                 <span class="green money">{{ current.callOut }}</span>
              <!--   <div class="inline-block" v-if="indicant.dto1.rechargeCoinRate === true" >
                   <i class="iconfont {{ indicant.dto.recharge_coin_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{indicant.dto.recharge_coin_rate}}%</span>
@@ -46,7 +46,7 @@
             </div>
             <div class="inline-block box border-right">
               <div class="flex flex-1 align-items-c ">
-                <i class="icon iconfont icon-oc-msg1 bigicon"></i>
+                <i class="icon iconfont icon-oc-transfer bigicon"></i>
                 <span class="green money">{{ current.transferSuccess }}</span>
                 <!--<div class="inline-block" v-if="indicant.dto1.sessionCountRate === true" >
                   <i class="iconfont {{ indicant.dto.session_count_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{indicant.dto.session_count_rate}}%</span>
@@ -61,7 +61,7 @@
             </div>
             <div class="inline-block box border-right">
               <div class="flex flex-1 align-items-c ">
-                <i class="icon iconfont icon-oc-mobile bigicon"></i>
+                <i class="icon iconfont icon-oc-lineup bigicon"></i>
                 <span class="green money">{{ current.formTime }}</span>
                <!-- <div class="inline-block" v-if="indicant.dto1.sessionTimeRate === true" >
                   <i class="iconfont {{ indicant.dto.session_time_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{indicant.dto.session_time_rate}}%</span>
@@ -93,7 +93,7 @@
             </div>
             <div class="inline-block box">
               <div class="flex flex-1 align-items-c ">
-                <i class="icon iconfont icon-oc-callrate bigicon"></i>
+                <i class="icon iconfont icon-oc-wastage bigicon"></i>
                 <span class="green money">{{ current.callFail }}</span>
                <!-- <div v-if="indicant.dto1.connectedRateRate === true" >
                   <i class="iconfont {{ indicant.dto.connected_rate_rate >= 0 ? 'icon-oc-up' : 'icon-oc-down'}}"></i><span class='text-danger'>{{indicant.dto.connected_rate_rate}}%</span>
