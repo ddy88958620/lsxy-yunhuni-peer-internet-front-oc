@@ -37,9 +37,12 @@ else if (env === 'local') {
     // 本地
     COOKIEDOAIM: 'localhost',
     COOKIENAME: 'YUNHUNISESSIONID',
-    JAVAAPI: 'http://localhost:18082',
+    // JAVAAPI: 'http://localhost:18082',
+    JAVAAPI: 'http://rest.oc.internal.yunhuni.cn',
     REDISHOST: '127.0.0.1',
     REDISPORT: 6379
+    
+  
   }
 }
 

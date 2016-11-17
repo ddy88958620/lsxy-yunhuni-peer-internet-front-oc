@@ -18,6 +18,9 @@ Object.keys(filter).forEach((k) => Vue.filter(k, filter[k]))
 import App from './components/app.vue'
 import configRouter from './config/router.js'
 
+import initDirective from './utils/directive'
+initDirective(Vue)
+
 const router = new VueRouter({
 transitionOnLoad:true,
   saveScrollPosition: true,

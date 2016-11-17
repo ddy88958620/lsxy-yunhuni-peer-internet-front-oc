@@ -13,8 +13,10 @@ module.exports = {
     filename: 'build.js'
   },
   resolve: {
+  	// 配置webpack require 查找的路径,　遵循 build-in => *.js => *dir/index.js => ../**/*.js
     modules: [
-      'node_modules'
+      'node_modules',
+	    path.resolve(__dirname, 'app/utils')
     ],
     alias: {
       // 'components': path.resolve(__dirname, 'app/components'),
@@ -22,7 +24,8 @@ module.exports = {
       'actions': path.resolve(__dirname, 'app/vuex/actions.js'),
       'ui': path.resolve(__dirname, 'app/components/ui'),
       'assets': path.resolve(__dirname, 'app/assets'),
-      'domain': path.resolve(__dirname, 'app/config/domain.js')
+      'domain': path.resolve(__dirname, 'app/config/domain.js'),
+	    'utils': path.resolve(__dirname, 'app/utils')
     },
     extensions: ['.json', '.js', '.vue'],
   },
