@@ -1,6 +1,8 @@
 import api from '../api'
 import * as types from './mutation-types.js'
 import {saveCookie, removeCookie} from '../utils/cookieAuth.js'
+import cookies from  '../utils/cookies.js'
+
 
 export const showMsg = ({dispatch}, message) => {
   console.log(message);
@@ -26,11 +28,11 @@ export const localLogin = ({dispatch, router}, user) => {
 	  // 登入成功
     if(login&&login.data) {
       if(user.remember ===true ){
-        saveCookie('interimUser', user.userName)
+        cookies.set('interimUser',user.userName)
       }else{
-        removeCookie('interimUser')
+        cookies.remove('interimUser')
       }
-    	saveCookie('user', user.userName)
+      cookies.set('user', user.userName)
       dispatch(types.LOCAL_LOGIN, user.userName)
       router.go(
         {
@@ -50,7 +52,7 @@ export const localLogin = ({dispatch, router}, user) => {
 }
 
 export const localLogout = ({dispatch, router}) => {
-  removeCookie('user')
+  cookies.remove('user')
   router.go({path: '/auth/login'})
 }
 
