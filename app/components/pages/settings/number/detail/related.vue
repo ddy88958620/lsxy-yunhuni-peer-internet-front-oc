@@ -6,7 +6,7 @@
 			<tr>
 				<th class=" text-align-c">创建时间</th>
 				<th>线路标识</th>
-				<th>运营商</th>
+				<th class="table-operator">运营商</th>
 				<th>归属地</th>
 				<th>支持透传</th>
 				<th>质量</th>
@@ -31,7 +31,7 @@
 			<tr>
 				<th class=" text-align-c">创建时间</th>
 				<th>线路标识</th>
-				<th>运营商</th>
+				<th class="table-operator">运营商</th>
 				<th>归属地</th>
 				<th>支持透传</th>
 				<th>质量</th>
@@ -93,3 +93,9 @@
 		}
 	}
 </script>
+<style>
+	.table-operator {
+		width: 200px;
+	}
+	
+</style>

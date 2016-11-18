@@ -30,8 +30,8 @@
 				</tbody>
 			</table>
 			<div class="more">
-				<a v-show='originData.list.currentPageNo >= originData.list.totalPageNo'>加载完毕</a>
-				<a @click="query('more')" class="text-none" v-show='originData.list.currentPageNo < originData.list.totalPageNo' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+				<a v-if='originData.list.currentPageNo >= originData.list.totalPageNo'>加载完毕</a>
+				<a @click="query('more')" class="text-none" v-else>加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
 			</div>
 		</div>
 	</div>

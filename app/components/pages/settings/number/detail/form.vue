@@ -183,49 +183,4 @@
 </script>
 
 <style lang="sass" rel="stylesheet/scss">
-	.line_form {
-		width: 907px;
-		margin-left: 20px;
-		$input-width: 300px;
-		font-size: 1.4rem;
-	
-	.form-group {
-		margin-bottom: 0;
-	}
-	
-	.control-label {
-		display: inline-block;
-		width: 95px;
-		margin: 10px 20px 10px 0px;
-	}
-	
-	.form-control {
-		width: $input-width;
-		vertical-align: middle;
-	}
-	
-	.input-width {
-		display: inline-block;
-		width: $input-width;
-	}
-	
-	.sub_form_group {
-		display: inline-block;
-		vertical-align: text-top;
-	}
-	.radio-group {
-		vertical-align: text-top;
-		line-height: 25px;
-	}
-	}
-	.v-select {
-		.dropdown-toggle {
-			border: none !important;
-		}
-		.selected-tag{
-			background-color: #fff  !important;;
-			border:none !important;;
-			margin: 0 !important;;
-		}
-	}
 </style>

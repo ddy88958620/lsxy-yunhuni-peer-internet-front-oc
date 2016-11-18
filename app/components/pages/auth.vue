@@ -83,6 +83,10 @@ import {showMsg, localLogin} from '../../vuex/actions'
 import toaster from '../ui/toaster.vue'
 import domain from '../../config/domain'
 import {getCookie} from '../../utils/cookieAuth.js'
+
+import { cookieAuth } from 'cookieAuth'
+import cookies from 'cookies'
+
 export default {
   data(){
     return{
@@ -133,7 +137,7 @@ export default {
          code:'',
          remember:'true'
       }
-      let cookieUser = getCookie('interimUser')
+      let cookieUser = cookies.get('interimUser')
       if(cookieUser!='' && cookieUser!=undefined){
         self.user.userName = cookieUser
         self.user.remember = true
@@ -221,26 +225,6 @@ export default {
     color:#FFF;
     padding-top: 20px;
     padding-bottom: 20px;
-  }
-}
-
-
-
-.validate-field {
-
-  .pristine.invalid {
-    border: 0;
-    border-color: #ccc;
-    box-shadow: none;
-  }
-
-  .invalid {
-    border-color: #a94442;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-  }
-  .valid {
-    border-color: #3c763d;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
   }
 }
 

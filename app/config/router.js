@@ -239,7 +239,30 @@ export default function(router){
                   }
                 },
               }
-            }
+            },
+	          '/role': {
+              component: (resolve) => require(['../components/pages/route-middle.vue'], resolve),
+		          subRoutes: {
+                '/list': {
+                  component: (resolve) => require(['../components/pages/settings/role/list.vue'], resolve),
+                },
+                '/new': {
+                  component: (resolve) => require(['../components/pages/settings/role/newRole.vue'], resolve),
+                }
+              }
+            },
+	          '/operator': {
+		          component: (resolve) => require(['../components/pages/route-middle.vue'], resolve),
+		          subRoutes: {
+			          '/list': {
+				          component: (resolve) => require(['../components/pages/settings/operator/list.vue'], resolve),
+			          },
+			          '/new': {
+				          component: (resolve) => require(['../components/pages/settings/operator/newOperator.vue'], resolve),
+			          }
+		          }
+	          }
+            
           }
         },
         '/message': {
@@ -381,6 +404,8 @@ export default function(router){
     '/admin/settings/line/detail/:lid': '/admin/settings/line/detail/:lid/base',
     '/admin/settings/product': '/admin/settings/product/list/pro',
     '/admin/settings/product/list/price': '/admin/settings/product/list/price/index',
+    '/admin/settings/role': '/admin/settings/role/list',
+	  '/admin/settings/operator': '/admin/settings/operator/list',
   })
 
   router.beforeEach(function({to, next, go}){

@@ -6,5 +6,6 @@ venv
 *.pyc
 .idea
 static/
+staticnew/
 build/
 /middleware/uploads/
