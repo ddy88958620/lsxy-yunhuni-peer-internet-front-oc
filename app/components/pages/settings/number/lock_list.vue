@@ -59,10 +59,12 @@
 			<input type="radio" v-model="postData.newNumber.type" value="2" number> 黑名单
 			<br/>
 			<br/>
-			<div class="form-group">
-				<label class="control-label">新增号码 : </label>
-				<input type="text" class="form-control input-width" placeholder="" v-model="postData.newNumber.number">
-			</div>
+			<form v-reset-form="postData">
+				<div class="form-group">
+					<label class="control-label">新增号码 : </label>
+					<input type="text" class="form-control input-width" placeholder="" :value="postData.newNumber.number" v-model="postData.newNumber.number">
+				</div>
+			</form>
 		</div>
 	</modal>
 	<confirm v-ref:dialog></confirm>

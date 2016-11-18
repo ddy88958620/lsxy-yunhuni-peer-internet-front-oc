@@ -41,8 +41,6 @@ else if (env === 'local') {
     JAVAAPI: 'http://rest.oc.internal.yunhuni.cn',
     REDISHOST: '127.0.0.1',
     REDISPORT: 6379
-    
-  
   }
 }
 
