@@ -209,9 +209,9 @@
 	
 	<modal :show.sync="showModal" title="审核" :action="fail">
 		<div slot="body" class="flex">
-			<div class="flex flex-1 modal-nopass" >
+			<div class="flex flex-1 modal-nopass" v-reset-form="postData" >
 				<span class="flex float-l title">不通过原因</span>
-				<span class="flex admin-button-margin flaot-l" ><textarea class="form-control textarea"  v-model="reason" maxlength="50" ></textarea></span>
+				<span class="flex admin-button-margin flaot-l" ><textarea class="form-control textarea" v-model="postData.reason" maxlength="50" ></textarea></span>
 				<span class="flex float-r numbertips">50字以内</span>
 			</div>
 		</div>
@@ -282,9 +282,8 @@
 					params.status=-2
 				}
 				params.type = type
-				params.reason = self.reason
+				params.reason = self.postData.reason
 				$.put('/demand/member/edit/'+id,params).then((res)=>{
-					self.reason = ''
 					if(res.success === 'false'){
 						self.showMsg({content: res.errorMsg, type: 'danger'})
 						return
@@ -318,7 +317,9 @@
 					list:[],
 					realname:{},
 				},
-				reason:'',
+				postData:{
+					reason:'',
+				},
 				authStatus:''
 			}
 		},
