@@ -103,7 +103,7 @@
       <li class="logo-box text-align-c position-layout">
         <div class="position-center width-100">
           <img src="../../assets/images/logo.png" class="logo " /><br/>
-          <span>壹云运营中心</span>
+          <span>壹耘运营中心</span>
         </div>
       </li>
       <li class="avatar-box position-layout">
