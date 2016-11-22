@@ -82,9 +82,6 @@
 import {showMsg, localLogin} from '../../vuex/actions'
 import toaster from '../ui/toaster.vue'
 import domain from '../../config/domain'
-import {getCookie} from '../../utils/cookieAuth.js'
-
-import { cookieAuth } from 'cookieAuth'
 import cookies from 'cookies'
 
 export default {
