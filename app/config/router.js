@@ -1,5 +1,5 @@
-import { getCookie } from '../utils/cookieAuth.js'
-
+//import { getCookie } from '../utils/cookieAuth.js'
+import cookies from 'cookies'
 
 // FUNCTION LAZYLOA DO NOT WORK
 // const lazyLoad = function(path) {
@@ -410,7 +410,7 @@ export default function(router){
 
   router.beforeEach(function({to, next, go}){
   	// http only YUNHUNISESSIONID 不可在 document.cookie中打印，所以用自己设置的
-    if(to.auth || getCookie('user')) {
+    if(to.auth || cookies.get('user')) {
       next()
     } else {
       // redirect, status 401 or 403 ...

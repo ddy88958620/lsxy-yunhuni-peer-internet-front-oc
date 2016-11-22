@@ -1,15 +1,13 @@
-import jsCookie from 'js-cookie'
-
+import jsCookies from 'js-cookie'
 class cookies{
   set(key,value){
-    jsCookie.set(key, value)
+    jsCookies.set(key, value)
   }
   get(key){
-    jsCookie.get(key)
+    return jsCookies.get(key)
   }
   remove(key){
-    jsCookie.remove(key)
+    jsCookies.remove(key)
   }
 }
-
 export default new cookies()

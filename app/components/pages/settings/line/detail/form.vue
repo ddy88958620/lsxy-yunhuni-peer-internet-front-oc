@@ -109,14 +109,23 @@
 			<input type="radio" class="" placeholder="" v-model="postData.isThrough" value="0"> 否
 			<span class="text-danger">*</span>
 		</div>
+
 		<div class="form-group">
 			<label class="control-label">质量 : </label>
 			<div class="input-width">
-				<slider :value.sync="postData.quality" :min="1" :max="5" :step="1"></slider>
+				<slider :value.sync="postData.quality" :min="1" :max="5" :step="1" :uuid="'quality'"></slider>
 			</div>
 			&nbsp; {{ postData.quality }}
 			<span class="text-danger">*</span>
 		</div>
+<!--	<div class="form-group">
+			<label class="control-label">质量 : </label>
+			<div class="input-width">
+				<slider :value.sync="postData.quality" :min="1" :max="5" :step="1"></slider>.
+			</div>
+			&nbsp; {{ postData.quality }}
+			<span class="text-danger">*</span>
+		</div>-->
 		<div class="form-group">
 			<label class="control-label">并发容量 : </label>
 			<input type="text" class="form-control" placeholder="" v-model="postData.capacity">
@@ -188,7 +197,7 @@
 			}
 		},
 		components: {
-			slider: require('ui/slider.vue')
+			slider: require('ui/slider.vue'),
 		},
 		ready(){
 			console.log(this.$route.params.lid)

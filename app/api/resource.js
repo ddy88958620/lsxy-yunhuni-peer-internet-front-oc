@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import domain from '../config/domain.js'
-import { removeCookie, getCookie } from '../utils/cookieAuth.js'
+
 
 
 // 

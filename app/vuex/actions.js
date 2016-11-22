@@ -1,6 +1,6 @@
 import api from '../api'
 import * as types from './mutation-types.js'
-import {saveCookie, removeCookie} from '../utils/cookieAuth.js'
+//import {saveCookie, removeCookie} from '../utils/cookieAuth.js'
 import cookies from  '../utils/cookies.js'
 
 
