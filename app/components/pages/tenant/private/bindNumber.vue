@@ -51,11 +51,8 @@
 			</div>
 			<div class="admin-table">
 				<div class="more">
-					<a
-						v-show='origin.line.totalPageCount >= origin.line.currentPageNo'>加载完毕</a>
-					<a @click="query('more')" class="text-none"
-					   v-show='origin.line.totalPageCount < origin.line.currentPageNo'>加载更多<i
-						class="icon iconfont icon-oc-dropdown"></i></a>
+					<a v-if='origin.line.currentPageNo >= origin.line.totalPageCount'>加载完毕</a>
+					<a @click="query('more')" class="text-none" v-else>加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
 				</div>
 			</div>
 			<div class="pass_number_selected margin-top-20">
