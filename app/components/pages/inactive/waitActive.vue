@@ -33,8 +33,7 @@
 				加载更多 <i class="icon iconfont icon-oc-dropdown"></i>
 			</a>
 		</div>
-		<modal :show.sync="loseConfirmInfo.show" title="" :action="lose"></modal>
-		<modal :show.sync="showModal" title="" :action="resetPass"></modal>
+		<confirm v-ref:dialog></confirm>
 	</div>
 </template>
 <script>
@@ -46,7 +45,7 @@
 			}
 		},
 		components: {
-			'modal': require('ui/modal.vue')
+			'confirm': require('ui/confirm.vue'),
 		},
 		data(){
 			return ({
@@ -56,39 +55,37 @@
 				account_list: [],
 				account_res: {},
 				currentAccountId: '',
-				showModal: false,
-				resetPassAccountId: '',
-				loseConfirmInfo: {
-					id: null,
-					index: null,
-					show: false
-				},
 			})
 		},
 		methods: {
 			loseConfirm(index,id){
-				this.loseConfirmInfo = {
-					id,
-					index,
-					show: true
-				}
+				this.$refs.dialog.confirm().then(() => {
+					// 点击确定按钮的回调处理
+					this.lose(index, id)
+					this.$refs.dialog.show = false;
+				}).catch(() => {
+				});
 			},
-			lose(){
+			lose(index,id){
 				let self = this
-				$.delete('acount/opt/expire/' + this.loseConfirmInfo.id).then((res) => {
+				$.delete('acount/opt/expire/' + id).then((res) => {
 					self.showMsg({content: '释放成功', type: 'success'})
-					self.account_list.splice(self.loseConfirmInfo.index, 1)
+					self.account_list.splice(index, 1)
 				}, (res)=> {
 					this.showMsg({content: '释放失败', type: 'error'})
 				})
 			},
 			resetPassConfirm(id){
-				this.showModal = true
-				this.resetPassAccountId = id
+				this.$refs.dialog.confirm().then(() => {
+					// 点击确定按钮的回调处理
+					this.resetPass(id)
+					this.$refs.dialog.show = false;
+				}).catch(() => {
+				});
 			},
-			resetPass(){
+			resetPass(id){
 				let self = this
-				$.put('acount/send/password/' + this.resetPassAccountId).then((res) => {
+				$.put('acount/send/password/' + id).then((res) => {
 					self.showMsg({content: '发送成功', type: 'success'})
 				})
 			},
