@@ -1,0 +1,10 @@
+{
+  "extends": "vue",
+  "parser": "babel-eslint",
+  "plugins": [
+    "html"
+  ],
+  "rules": {
+    "no-duplicate-imports": 0
+  }
+}

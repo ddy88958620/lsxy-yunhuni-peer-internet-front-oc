@@ -27,7 +27,7 @@
 					<li>公司地址:{{messages.realname.addr}}</li>
 					<li>所属行业:{{messages.realname.industry}}</li>
 					<li>申请人：{{messages.realname.proposer}}</li>
-					<li>证件类型: 
+					<li>证件类型:
 						<span v-if="messages.realname.authType==0">三证合一（一照一码）</span>
 						<span v-if="messages.realname.authType==1">三证合一 </span>
 						<span v-if="messages.realname.authType==2">三证分离</span>
@@ -83,7 +83,7 @@
 			<div class="panel-heading">认证信息</div>
 			<div class="panel-body">
 				<ul class="list-none-style" >
-					<li>审核结果: 
+					<li>审核结果:
 						<span v-if="messages.realname.status==1 || messages.realname.status==2" class="darkgreen">通过</span>
 						<span v-if="messages.realname.status==-1 || messages.realname.status==-2" class="text-danger">不通过</span>
 					</li>
@@ -95,7 +95,7 @@
 						<span v-if="messages.realname.status==-1 || messages.realname.status==-2">{{messages.realname.reason}}</span>
 					</li>
 				</ul>
-			</div>	
+			</div>
 		</div>
 
 		<div class="panel panel-default flex-1" v-if="messages.list.length!==0 && messages.list[0].status!=0 ">
@@ -163,7 +163,7 @@
 										<li>公司地址:{{message.addr}}</li>
 										<li>所属行业:{{message.industry}}</li>
 										<li>申请人：{{message.proposer}}</li>
-										<li>证件类型: 
+										<li>证件类型:
 											<span v-if="message.authType==0">三证合一（一照一码）</span>
 											<span v-if="message.authType==1">三证合一 </span>
 											<span v-if="message.authType==2">三证分离</span>
@@ -239,7 +239,7 @@
 				this.show.$set(index, !this.show[index])
 			},
 			pass(){
-				let self = this 
+				let self = this
 				let params = {}
 				let id = this.$route.params.id
 				// type 0 个人认证 1实名认证
@@ -268,7 +268,7 @@
 		    })
 			},
 			fail(){
-				let self = this 	
+				let self = this
 				let params = {}
 				let id = this.$route.params.id
 				// type 0 个人认证 1实名认证
@@ -277,7 +277,7 @@
 				if(type==0){
 					params.status=-1
 				}
-				//企业认证成功
+				// 企业认证成功
 				if(type==1){
 					params.status=-2
 				}
@@ -292,13 +292,13 @@
 				  self.showMsg({content: '审核不通过', type: 'success'})
 				  self.getMessageNum()
 				  setTimeout(function(){
-						self.$route.router.go({path:'/admin/demand/member/list/await'})	
+						self.$route.router.go({path:'/admin/demand/member/list/await'})
 					},3000)
 		    })
 			},
 			detail(){
 				let uid = this.$route.params.id
-		 		this.type = this.$route.params.type 
+		 		this.type = this.$route.params.type
 		    let self = this
  				$.get('/demand/member/detail/'+uid,{type:this.type}).then((res)=>{
  					this.messages.list = res.data.list
