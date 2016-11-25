@@ -71,6 +71,8 @@
 				$.delete('acount/opt/expire/' + id).then((res) => {
 					self.showMsg({content: '释放成功', type: 'success'})
 					self.account_list.splice(index, 1)
+          self.account_res.totalCount = self.account_res.totalCount -1
+
 				}, (res)=> {
 					this.showMsg({content: '释放失败', type: 'error'})
 				})

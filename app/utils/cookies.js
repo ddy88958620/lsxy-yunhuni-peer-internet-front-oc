@@ -1,6 +1,6 @@
 import jsCookies from 'js-cookie'
 class Cookies {
-  set(key, value) {
+  set (key, value) {
     jsCookies.set(key, value)
   }
   get (key) {
