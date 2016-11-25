@@ -1,21 +1,42 @@
+
+
+const path = require('path');
 const webpack = require('webpack');
 
 const vendors = [
-	'jquery',
-	'vue',
-	'vue-router',
-	'vuex',
-	'vue-resource',
-	'vue-select',
-	'vue-validator',
-	'vuex-router-sync',
-	'chart.js',
-	'es6-promise',
-	'nprogress',
-	'simditor',
-	'jquery-knob'
+  'jquery',
+  'vue',
+  'vue-router',
+  'vuex',
+  'vue-resource',
+  'vue-select',
+  'vue-validator',
+  'vuex-router-sync',
+  'chart.js',
+  'es6-promise',
+  'nprogress',
+  'simditor',
+  'jquery-knob'
 ];
 
+module.exports = {
+  entry: {
+    "lib": vendors
+  },
+  output: {
+    path: path.join(__dirname, 'build'),
+    filename: '[name].dll.js',
+    library: '[name]_library'
+  },
+  plugins: [
+    new webpack.DllPlugin({
+      path: path.join(__dirname, 'build', '[name]-manifest.json'),
+      name: '[name]_library'
+    })
+  ]
+};
+
+/*
 module.exports = {
 	output: {
 		path: 'build',
@@ -23,7 +44,7 @@ module.exports = {
 		library: '[name].[hash]',
 	},
 	entry: {
-		"lib": vendors,
+		"vendors": vendors,
 	},
 	plugins: [
 		new webpack.DllPlugin({
@@ -33,3 +54,4 @@ module.exports = {
 		}),
 	],
 };
+*/
