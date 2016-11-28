@@ -38,18 +38,16 @@ export default {
   }
 }
 </script>
-<style lang='sass'>
-@import '../../scss/variable.scss';
+<style lang='isass' rel='stylesheet/sass'>
+@import '../../scss/variable.scss'
 
-#topbox {
-	height: auto !important;
-  position: absolute;
-  min-height: 100%;
-  width: 100%;
-}
-.app-main {
-	margin-left: $sidebar-width;
-	margin-top: 60px;
-}
+#topbox
+	height: auto !important
+  position: absolute
+  min-height: 100%
+  width: 100%
+
+.app-main
+  margin-left: 200px
 
 </style>
