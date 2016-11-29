@@ -6,40 +6,28 @@
             <ranking :rank='rank' :index=$index></ranking>
           </div>
         </div>
-<!-- <div>{{ ranklist | json }}</div> -->
     </section>
 </template>
 <script>
-  import {getMemberRankList} from '../../../../vuex/actions'
+  import { getMemberRankList } from 'actions'
   import headBox from './headBox.vue'
   import ranking from './ranking.vue'
   export default{
-    vuex:{
-      getters:{
-        ranklist: ({member}) => member.ranklist
+    vuex: {
+      getters: {
+        ranklist: ({ member }) => member.ranklist
       },
-      actions:{
+      actions: {
         getMemberRankList
       }
     },
-    data(){
-      return{
-        
-      }
+    components: {
+      ranking,
+      headBox
     },
-    components:{
-       ranking,
-       headBox
-    },
-    ready(){
-      let top = {top:3}
-
-      this.getMemberRankList(top)
-     
-
-
+    ready () {
+      this.getMemberRankList({ top: 3 })
     }
-
   }
 </script>
 

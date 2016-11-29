@@ -1,5 +1,5 @@
 <template>
-	<div class="admin-padding">
+	<div class="admin-padding app-main-content">
 		<div class="admin-table-header">
 			<h4>未激活账户管理</h4>
 			<div class="admin-main-tab">
