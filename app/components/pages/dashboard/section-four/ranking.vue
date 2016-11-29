@@ -13,7 +13,6 @@
          <span class="name overflow-y-h" v-if="rank.length === 0">暂无数据</span>
          <span class="name overflow-y-h cursor" v-link="'/admin/tenant/detail/'+rank[0].id" title="{{rank[0].name}}" v-else>{{rank[0].name}}</span>
 
-
           <div class="flex flex-1  align-items-c  " >
             <i class="iconfont {{box[index]['icon']}} grey"></i>
             <span class="count align-items-e">{{ rank.length === 0  ? '0' : rank[0].value }}</span>
@@ -36,28 +35,6 @@
         </div>
       </div>
     </div>
-
-
-   <!--  <div>
-      <div class="sort flex flex-direction-column {{ boxs[key]['color'] }}border">
-        <div class="flex justify-content-b ranking-one">
-          <i class="flex align-items-e band {{ boxs[key]['color'] }}bg" >NO.1</i>
-          <i class="icon iconfont icon-oc-member {{ boxs[key]['color'] }}"></i>
-        </div>
-        <div class="flex flex-1 flex-direction-column ranking-two" v-if="$index==0">
-          <span class="name overflow-y-h" title="{{r.name}}">{{.name ? r.name :'暂未获取数据'}}</span>
-          <div class="flex flex-1  align-items-c  " >
-            <i class="iconfont {{boxs[key]['icon']}} grey"></i>
-            <span class="count align-items-e">{{datarank[0].value}}</span>
-            <span class="overflow-y-h">{{boxs[key]['unit']}}</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="sort2 flex flex-1 flex-direction-column" >
-        <div class="flex flex-1 ranking-three" v-if="$index!=0"><i class="number flex" title="{{r.count}}{{box[index]['unit']}}" ><strong>{{r.rank}}</strong></i><span title="{{r.name}}" class="overflow-y-h">{{r.name}}</span></div>
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -67,31 +44,31 @@
       return {
         box: [
           {
-            title:'按会话量排名',
+            title: '按会话量排名',
             color: 'green',
             icon: 'icon-oc-mobile',
             unit: '(次)'
           },
           {
-            title:'按话务量排名',
+            title: '按话务量排名',
             color: 'blue',
             icon: 'icon-oc-msg-small',
             unit: '(分钟)'
           },
           {
-            title:'按消费额排名',
+            title: '按消费额排名',
             color: 'yellow',
             icon: 'icon-oc-wallet',
             unit: '(元)'
           },
           {
-            title:'按话务周增量排名',
+            title: '按话务周增量排名',
             color: 'purple',
             icon: 'icon-oc-mobile',
             unit: '(分钟)'
           },
           {
-            title:'按会话周增量排名',
+            title: '按会话周增量排名',
             color: 'pink',
             icon: 'icon-oc-msg-small',
             unit: '(次)'
@@ -103,18 +80,13 @@
       rank: {
         type: Array
       },
-      index:{
-        type:Number,
-        default:0
-      },
-
-    },
-    computed: {
-    },
-    ready(){}
+      index: {
+        type: Number,
+        default: 0
+      }
+    }
   }
 </script>
-
 
 <style lang="sass" scoped>
   .rankbox{
