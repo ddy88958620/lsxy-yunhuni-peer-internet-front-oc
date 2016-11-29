@@ -1,7 +1,6 @@
 var webpack = require('webpack')
 var path = require('path')
 
-
 module.exports = {
   entry: './app/main.js',
   output: {
@@ -27,7 +26,7 @@ module.exports = {
       'domain': path.resolve(__dirname, 'app/config/domain.js'),
 	    'utils': path.resolve(__dirname, 'app/utils')
     },
-    extensions: ['.json', '.js', '.vue'],
+    extensions: ['.json', '.js', '.vue']
   },
   module: {
     loaders:[
@@ -72,6 +71,11 @@ module.exports = {
           }),
           require('cssnano')({ safe: true })
         ],
+        loaders: {
+          isass: 'vue-style!css!sass?indentedSyntax',
+          scss: 'vue-style!css!sass',
+          sass: 'vue-style!css!sass'
+        }
       }
     })
   ]
