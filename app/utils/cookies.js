@@ -1,13 +1,20 @@
 import jsCookies from 'js-cookie'
-class cookies{
-  set(key,value){
+class Cookies {
+  set (key, value) {
     jsCookies.set(key, value)
   }
-  get(key){
+  get (key) {
     return jsCookies.get(key)
   }
-  remove(key){
+  remove (key) {
     jsCookies.remove(key)
   }
 }
-export default new cookies()
+
+// function foo (x: number): number {
+//   return x + 10
+// }
+//
+// foo('Hello!')
+
+export default new Cookies()
