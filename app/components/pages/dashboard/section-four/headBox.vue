@@ -6,9 +6,6 @@
     height: 65px;
 	  line-height: 65px;
     font-size: 1.6rem;
-    i{
-
-    }
   }
 </style>
 
