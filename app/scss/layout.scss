@@ -192,8 +192,9 @@
   padding-left: 0px !important;
 }
 
-$input-width: 300px;
-$input-width-120: 120px;
+$input-width: 300px !important;
+$input-width-120: 120px !important;
+$input-width-100: 100px !important;
 
 // form
 .input-width {
@@ -203,4 +204,9 @@ $input-width-120: 120px;
 .input-width-select {
   display: inline-block;
   width: $input-width-120 !important;
+}
+
+.input-width-120 {
+  display: inline-block;
+  width: $input-width-120;
 }
