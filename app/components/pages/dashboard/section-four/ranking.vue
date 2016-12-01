@@ -13,7 +13,7 @@
          <span class="name overflow-y-h" v-if="rank.length === 0">暂无数据</span>
          <span class="name overflow-y-h cursor" v-link="'/admin/tenant/detail/'+rank[0].id" title="{{rank[0].name}}" v-else>{{rank[0].name}}</span>
 
-          <div class="flex flex-1  align-items-c  " >
+          <div class="flex flex-1  align-items-c" >
             <i class="iconfont {{box[index]['icon']}} grey"></i>
             <span class="count align-items-e">{{ rank.length === 0  ? '0' : rank[0].value }}</span>
             <span class="overflow-y-h">{{box[index]['unit']}}</span>
@@ -40,7 +40,7 @@
 
 <script>
   export default {
-    data(){
+    data () {
       return {
         box: [
           {
