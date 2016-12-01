@@ -126,8 +126,9 @@
 		outline: 0;
 		overflow: scroll;
 		display: table;
+    font-size: 1.4rem;
 	}
-	
+
 	.modal-table-wrap {
 		display: table-cell;
 		vertical-align: middle;
@@ -137,11 +138,11 @@
 		margin: 0 auto;
 		width: 400px;
 	}
-	
+
 	.modal-content {
 		width: 100%;
 	}
-	
+
 	.modal-backup {
 		position: fixed;
 		top: 0;
@@ -151,7 +152,7 @@
 		z-index: 1000;
 		background: rgba(0, 0, 0, 0.5);
 	}
-	
+
 	.modal-header {
 		line-height: 1.3;
 		margin-top: 0;
@@ -159,11 +160,11 @@
 		color: #FFF;
 		background-color: #008fd5;
 	}
-	
+
 	.modal-body {
 		padding: 30px;
 	}
-	
+
 	.modal-footer{
 		padding: 10px;
 	}
