@@ -1,5 +1,5 @@
 <template>
-  <div class="admin-padding app-main-content ">
+  <div class="admin-padding">
     <router-view></router-view>
   </div>
 </template>

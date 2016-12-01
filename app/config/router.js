@@ -6,7 +6,6 @@ import cookies from 'cookies'
 //   return (resolve) => require([`${path}`], resolve)
 // }
 
-
 export default function(router){
   router.map({
     '/auth/login': {
@@ -27,11 +26,11 @@ export default function(router){
           name: 'inactive',
           component: (resolve) => require(['../components/pages/inactive/index.vue'], resolve),
           subRoutes: {
-          	'/wait': {
-              component: (resolve) => require(['../components/pages/inactive/waitActive.vue'], resolve),
+            '/wait': {
+              component: (resolve) => require(['../components/pages/inactive/waitActive.vue'], resolve)
             },
             'lose': {
-              component: (resolve) => require(['../components/pages/inactive/lose.vue'], resolve),
+              component: (resolve) => require(['../components/pages/inactive/lose.vue'], resolve)
             }
           }
         },
@@ -150,13 +149,13 @@ export default function(router){
         '/settings' : {
           component: (resolve) => require(['../components/pages/settings/index.vue'], resolve),
           subRoutes: {
-          	'/line' : {
+            '/line' : {
               component: (resolve) => require(['../components/pages/settings/line/index.vue'], resolve),
               subRoutes: {
-              	'/list': {
+                '/list': {
                   component: (resolve) => require(['../components/pages/settings/line/list.vue'], resolve),
                   subRoutes: {
-	                  '/all': {
+                    '/all': {
                       name: 'line',
                       component: (resolve) => require(['../components/pages/settings/line/all_line.vue'], resolve),
                     },
@@ -171,7 +170,7 @@ export default function(router){
                 '/detail/:lid': {
                   component: (resolve) => require(['../components/pages/settings/line/detail/index.vue'], resolve),
                   subRoutes: {
-                  	'/base': {
+                    '/base': {
                       component: (resolve) => require(['../components/pages/settings/line/detail/base.vue'], resolve),
                     },
                     '/number': {
@@ -206,7 +205,7 @@ export default function(router){
                 '/detail/:nid' : {
                   component: (resolve) => require(['../components/pages/settings/number/detail/index.vue'], resolve),
                   subRoutes: {
-	                  '/base': {
+                    '/base': {
                       component: (resolve) => require(['../components/pages/settings/number/detail/edit_number.vue'], resolve),
                     },
                     '/relate': {
@@ -219,19 +218,20 @@ export default function(router){
             '/product': {
               component: (resolve) => require(['../components/pages/route-middle.vue'], resolve),
               subRoutes: {
-	              '/list': {
+                '/list': {
                   component: (resolve) => require(['../components/pages/settings/product/list.vue'], resolve),
-		              subRoutes: {
+                  subRoutes: {
                     '/pro': {
                       component: (resolve) => require(['../components/pages/settings/product/product_list.vue'], resolve),
                     },
                     '/price': {
                       component: (resolve) => require(['../components/pages/route-middle.vue'], resolve),
                       subRoutes: {
-	                      '/index': {
+                        '/index': {
+                          name: 'priceList',
                           component: (resolve) => require(['../components/pages/settings/product/price_list.vue'], resolve),
                         },
-                        '/edit': {
+                        '/edit/:pid': {
                           component: (resolve) => require(['../components/pages/settings/product/detail/price_edit.vue'], resolve),
                         }
                       }
@@ -240,9 +240,18 @@ export default function(router){
                 },
               }
             },
-	          '/role': {
+            '/global': {
               component: (resolve) => require(['../components/pages/route-middle.vue'], resolve),
-		          subRoutes: {
+              subRoutes: {
+                '/list': {
+                  name: 'globalList',
+                  component: (resolve) => require(['../components/pages/settings/global/global_list.vue'], resolve)
+                }
+              }
+            },
+            '/role': {
+              component: (resolve) => require(['../components/pages/route-middle.vue'], resolve),
+              subRoutes: {
                 '/list': {
                   component: (resolve) => require(['../components/pages/settings/role/list.vue'], resolve),
                 },
@@ -251,18 +260,18 @@ export default function(router){
                 }
               }
             },
-	          '/operator': {
-		          component: (resolve) => require(['../components/pages/route-middle.vue'], resolve),
-		          subRoutes: {
-			          '/list': {
-				          component: (resolve) => require(['../components/pages/settings/operator/list.vue'], resolve),
-			          },
-			          '/new': {
-				          component: (resolve) => require(['../components/pages/settings/operator/newOperator.vue'], resolve),
-			          }
-		          }
-	          }
-            
+            '/operator': {
+              component: (resolve) => require(['../components/pages/route-middle.vue'], resolve),
+              subRoutes: {
+                '/list': {
+                  component: (resolve) => require(['../components/pages/settings/operator/list.vue'], resolve),
+                },
+                '/new': {
+                  component: (resolve) => require(['../components/pages/settings/operator/newOperator.vue'], resolve),
+                }
+              }
+            }
+
           }
         },
         '/message': {
@@ -330,7 +339,7 @@ export default function(router){
         },
         '/demand': {
           component: (resolve) => require(['../components/pages/demand/index.vue'], resolve),
-	        subRoutes: {
+          subRoutes: {
             '/voice': {
               component: (resolve) => require(['../components/pages/demand/voice/index.vue'], resolve),
               subRoutes: {
@@ -352,7 +361,7 @@ export default function(router){
             },
             '/member': {
               component: (resolve) => require(['../components/pages/demand/member/index.vue'], resolve),
-	            subRoutes: {
+              subRoutes: {
                 '/list':{
                   component: (resolve) => require(['../components/pages/demand/member/list.vue'], resolve),
                   subRoutes:{
@@ -377,14 +386,14 @@ export default function(router){
       }
     },
   })
-  
+
   // set the default router-view
   router.redirect({
     '*': '/admin/dashboard',
     '/': '/auth/login',
     // '/admin': '/admin/dashboard',
     '/admin/service': '/admin/service/list',
-	  '/admin/message': '/admin/message/list',
+    '/admin/message': '/admin/message/list',
     '/admin/tenant': '/admin/tenant/list',
     '/admin/finance': '/admin/finance/invoice',
     '/admin/finance/invoice': '/admin/finance/invoice/list/pending',
@@ -405,11 +414,11 @@ export default function(router){
     '/admin/settings/product': '/admin/settings/product/list/pro',
     '/admin/settings/product/list/price': '/admin/settings/product/list/price/index',
     '/admin/settings/role': '/admin/settings/role/list',
-	  '/admin/settings/operator': '/admin/settings/operator/list',
+    '/admin/settings/operator': '/admin/settings/operator/list',
   })
 
   router.beforeEach(function({to, next, go}){
-  	// http only YUNHUNISESSIONID 不可在 document.cookie中打印，所以用自己设置的
+    // http only YUNHUNISESSIONID 不可在 document.cookie中打印，所以用自己设置的
     if(to.auth || cookies.get('user')) {
       next()
     } else {
