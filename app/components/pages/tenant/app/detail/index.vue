@@ -28,7 +28,7 @@
 					<ul class="list-none-style">
 						<li>服务器白名单: {{app.whiteList}}</li>
 						<li>回调URL: {{app.url}}</li>
-						<li>监听通知:<span  v-if="app.isAuth == 1">启用监听 启用鉴权</span><span> 没有启用监听</span></li>
+						<li>监听通知:<span  v-if="app.isAuth == 1">启用监听 启用鉴权</span><span v-else> 没有启用监听</span></li>
 						<li>绑定测试号: {{app.testPhone}}</li>
 						<li v-if="app.serviceType=='call_center'">分机接入信息: {{app.sipRegistrar}}</li>
 						<!--<li v-if="app.serviceType=='call_center'">租用号码:{{app.testPhone}} </li>-->

@@ -1,14 +1,8 @@
 <template>
   <div>
     <!--搜索-->
-    <div class="headbox flex flex-1 align-items-c bg-section-margin whilebg">
-      <span class='datetime-picker-label padding-right-20'>选择应用: </span>
-      <select class="form-control flex select-box padding-right-20" v-model='serach.selectApp' >
-        <option v-for="app in serach.apps"  value="{{app.id}}">{{app.name}} </option>
-      </select>
-      <span class='datetime-picker-label padding-right-20 padding-left-20'>时间:</span>
-      <datetime-picker :uuid="'sessionDate'"  :type.sync="serach.time.type" :value.sync="serach.time.value"></datetime-picker>
-    </div>
+    <serach :servicetype="serach.type" :app.sync="serach.app" :time.sync="serach.time"></serach>
+
     <!--表格-->
     <div class="admin-table">
       <div class="table-total flex flex-1 justify-content-e float-r">
@@ -42,60 +36,49 @@
         </tbody>
       </table>
       <div class="more">
-        <a v-show='session.totalPageCount==session.currentPageNo || session.totalPageCount==0'>加载完毕</a>
-        <a @click="query('more')" class="text-none" v-show='session.totalPageCount!=session.currentPageNo && session.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+        <a v-if='session.currentPageNo >= session.totalPageCount'>加载完毕</a>
+        <a @click="query('more')" class="text-none" v-else>加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
       </div>
     </div>
   </div>
 </template>
 <script>
-  import DATE from '../../../../../utils/date'
   export default {
     components: {
-      'datetime-picker': require('ui/datetimepicker.vue'),
+      'serach': require('../serach.vue')
     },
     data(){
       return {
-        serach :{
-          time:{
-            type:'day',
-            value:DATE.todayString('day'),
-          },
-          apps:[],
-          selectApp:'',
+        serach: {
+          time: '',
+          app: '',
+          type: 'call_center'
         },
         session:{},
         sessionTotal : 0,
         sessionList: [],
-        messages:[],
-        total: 100
       }
     },
     watch:{
-      'serach.selectApp': function(){ this.query()},
-      'serach.time.value': function(){ this.query()}
+      'serach.app': function () {
+        this.query()
+      },
+      'serach.time': function () {
+        this.query()
+      }
     },
     methods: {
-      getApp(){
-        let param = { serviceType : 'call_center'}
-        $.get('/app/list/'+this.$route.params.uid ,param).then((res) => {
-          if(res.data.length>0){
-            this.serach.apps = res.data
-            this.serach.selectApp =res.data[0].id
-            this.query()
-          }
-        })
-      },
       query(more){
         //voice_call.语音呼叫,duo_call.双向回拨,conf_call.会议服务,ivr_call.IVR定制服务,captcha_call.语音验证码,voice_recording.录音服务
-        let params = {type:'call_center',appId:this.serach.selectApp,time:this.serach.time.value}
+        let params = {type:'call_center',appId:this.serach.app,time:this.serach.time}
+        if (!this.serach.app) return
         if(more){
           let pageNo = this.session.currentPageNo + 1
           params.pageNo = pageNo
         }
         let self = this
         $.get('/tenant/'+this.$route.params.uid+'/session', params).then((res) => {
-          if(res.data.page.totalCount>=0){
+          if (res.data.page.totalCount>=0){
             self.sessionTotal =res.data.total
             self.session = res.data.page
             if(more)
@@ -105,13 +88,7 @@
           }
         })
       }
-    },
-    route: {
-      data(){
-        this.getApp()
-      }
     }
-
   }
 
 </script>
