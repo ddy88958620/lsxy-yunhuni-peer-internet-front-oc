@@ -15,7 +15,6 @@ import demand from './modules/demand.js'
 const debug = process.env.NODE_ENV !== 'production'
 
 Vue.use(Vuex)
-console.log(Vuex)
 
 export default new Vuex.Store({
   modules: {

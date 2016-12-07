@@ -3,7 +3,7 @@
     <!--<div class="alert alert-success" role="alert">-->
     <!--新增的号码默认为禁用状态，需要手动启用。号码一旦启用，即可被租户所使用-->
     <!--</div>-->
-		<h4>全局参数配置管理</h4>
+		<h4>全局参数配置</h4>
     <div class="admin-table ">
       <div class="table-total flex flex-1 justify-content-e float-r">
         共<span class="text-danger">{{origin.product.totalCount ? origin.product.totalCount : 0}}</span>条

@@ -14,7 +14,7 @@
 
 			<li class="wrapper"><span></span>参数配置</li>
 			<li>
-				<a v-link="{name: 'globalList'}">线路管理</a>
+				<a v-link="{name: 'globalList'}">全局参数配置</a>
 			</li>
 
 			<!--<li class="wrapper"><span></span>用户管理配置</li>-->

@@ -1,5 +1,5 @@
 <template>
-	<form class="form-horizontal line_form" role="form">
+	<form class="form-horizontal line-form" role="form">
 		<div class="form-group">
 			<label class="control-label">线路标识 : </label>
 			<input type="text" class="form-control" v-model="postData.lineNumber" placeholder="">
@@ -214,41 +214,3 @@
 		}
 	}
 </script>
-
-<style lang="sass" rel="stylesheet/scss">
-	.line_form {
-		width: 907px;
-		margin-left: 20px;
-		$input-width: 300px;
-		font-weight: normal;
-		font-size: 1.4rem;
-		color: #333;
-		.form-group {
-			margin-bottom: 0;
-		}
-		
-		.control-label {
-			display: inline-block;
-			width: 110px;
-			margin: 10px 20px 10px 0px;
-		}
-		
-		.form-control {
-			width: $input-width;
-		}
-		
-		.input-width {
-			display: inline-block;
-			width: $input-width;
-		}
-		
-		.sub_form_group {
-			display: inline-block;
-			vertical-align: text-top;
-		}
-		.radio-group {
-			vertical-align: text-top;
-			line-height: 25px;
-		}
-	}
-</style>

@@ -83,6 +83,7 @@ import {showMsg, localLogin} from '../../vuex/actions'
 import toaster from '../ui/toaster.vue'
 import domain from '../../config/domain'
 import cookies from 'cookies'
+import Vue from 'vue'
 
 export default {
   data(){
@@ -124,9 +125,12 @@ export default {
       }
     }
   },
+  ready(){
+    this.$log.log('hello world')
+  },
   route:{
   	data(){
-      let self = this 
+      let self = this
       //初始化
       self.user  = {
          userName: '',
