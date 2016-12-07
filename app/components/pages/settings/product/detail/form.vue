@@ -70,7 +70,7 @@
   }
 </script>
 
-<style lang="scss" rel="stylesheet/scss">
+<style lang="sass" rel="stylesheet/scss">
   .v-select {
     .dropdown-toggle {
       border: none !important;
