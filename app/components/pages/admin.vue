@@ -38,7 +38,7 @@ export default {
   }
 }
 </script>
-<style lang='scss' rel='stylesheet/sass'>
+<style lang='sass' rel='stylesheet/sass'>
 @import '../../scss/variable.scss';
 
 #topbox {
