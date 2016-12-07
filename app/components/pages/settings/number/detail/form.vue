@@ -1,5 +1,5 @@
 <template>
-	<form class="form-horizontal line_form" role="form">
+	<form class="form-horizontal line-form" role="form">
 		<div v-if="!$route.params.nid" class="form-group">
 			<label class="control-label">号码来源 : </label>
 			<input type="radio" class="" placeholder="" value="0" v-model="postData.type"> 租户自带
