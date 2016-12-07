@@ -33,7 +33,7 @@
     "flow-bin": "0.36.0",
     "html-webpack-plugin": "2.22.0",
     "json-loader": "0.5.4",
-    "node-sass": "3.4.2",
+    "node-sass": "^3.11.2",
     "postcss-import": "8.1.0",
     "postcss-loader": "^0.13.0",
     "readable-stream": "2.1.4",
