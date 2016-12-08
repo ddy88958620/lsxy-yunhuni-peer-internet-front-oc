@@ -38,7 +38,7 @@ export default {
   }
 }
 </script>
-<style lang='sass' rel='stylesheet/sass'>
+<style lang='scss' rel='stylesheet/sass'>
 @import '../../scss/variable.scss';
 
 #topbox {
@@ -48,7 +48,7 @@ export default {
   width: 100%;
 }
 .app-main {
-       margin-left: $sidebar-width;
-       margin-top: 60px;
+  margin-left: $sidebar-width;
+  margin-top: 60px;
 }
 </style>
