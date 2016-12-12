@@ -98,9 +98,7 @@
         let self = this
 
         $.get('/tenant/' + this.$route.params.uid + '/session/voice_recording', params).then((res) => {
-
           if (res.data.page.totalCount >= 0) {
-            self.serach.producttype = ''
             self.proData.types = res.data.types
             self.proData.sessionTotal = res.data.total.cost
             self.proData.sessionSize = res.data.total.size
