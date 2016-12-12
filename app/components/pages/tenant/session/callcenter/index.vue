@@ -1,7 +1,8 @@
 <template>
   <div>
-    <!--搜索-->
-    <serach :servicetype="serach.type" :app.sync="serach.app" :time.sync="serach.time"></serach>
+    <div class="headbox flex flex-1 align-items-c bg-section-margin whilebg">
+      <serach :servicetype="serach.type" :app.sync="serach.app" :time.sync="serach.time"></serach>
+    </div>
 
     <!--表格-->
     <div class="admin-table">
@@ -31,7 +32,7 @@
           <td>{{ message.toNum }}</td>
           <td class="text-align-c">{{ message.costTimeLong }}</td>
           <td class="text-align-r"><span class="padding-right-20">￥{{ message.cost ? message.cost.toFixed(3) : '0.000' }}</span></td>
-          <td class="text-align-c"><a>录音下载</a></td>
+          <td class="text-align-c"><a id="download{{ $index }}" @click=" this.$children[1].download($index,message.id)" data-status="1">录音下载</a></td>
         </tr>
         </tbody>
       </table>
@@ -39,13 +40,15 @@
         <a v-if='session.currentPageNo >= session.totalPageCount'>加载完毕</a>
         <a @click="query('more')" class="text-none" v-else>加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
       </div>
+      <download></download>
     </div>
   </div>
 </template>
 <script>
   export default {
     components: {
-      'serach': require('../serach.vue')
+      'serach': require('../serach.vue'),
+      'download': require('../download.vue')
     },
     data(){
       return {

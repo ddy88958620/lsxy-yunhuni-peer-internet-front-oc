@@ -1,6 +1,8 @@
 <template>
   <div>
-    <serach :servicetype="serach.type" :app.sync="serach.app" :time.sync="serach.time"></serach>
+    <div class="headbox flex flex-1 align-items-c bg-section-margin whilebg">
+      <serach :servicetype="serach.type" :app.sync="serach.app" :time.sync="serach.time"></serach>
+    </div>
     <!--表格-->
     <div class="admin-table">
       <div class="table-total flex flex-1 justify-content-e float-r">

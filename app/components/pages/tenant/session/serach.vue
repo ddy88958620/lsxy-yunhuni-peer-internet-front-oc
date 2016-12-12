@@ -1,14 +1,10 @@
 <template>
-  <div>
-    <div class="headbox flex flex-1 align-items-c bg-section-margin whilebg">
-      <span class='datetime-picker-label padding-right-20'>选择应用: </span>
-      <select class="form-control flex select-box padding-right-20" v-model='app' >
-        <option v-for="app in appList"  value="{{app.id}}">{{app.name}} </option>
-      </select>
-      <span class='datetime-picker-label padding-right-20 padding-left-20'>时间:</span>
-      <datetime-picker :uuid="'sessionDate'"  :type="'day'" :value.sync="time"></datetime-picker>
-    </div>
-  </div>
+    <span class='datetime-picker-label padding-right-20'>选择应用 : </span>
+    <select class="form-control flex select-box padding-right-20" v-model='app' >
+      <option v-for="app in appList"  value="{{app.id}}">{{app.name}} </option>
+    </select>
+    <span class='datetime-picker-label padding-right-20 padding-left-20'>时间 : </span>
+    <datetime-picker :uuid="'sessionDate'"  :type="'day'" :value.sync="time"></datetime-picker>
 </template>
 <script>
   import DATE from 'utils/date'
@@ -29,7 +25,7 @@
         type: String,
         twoWays: true,
         default: ''
-      }
+      },
     },
     data () {
       return {
