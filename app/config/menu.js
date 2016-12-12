@@ -32,7 +32,7 @@ export default [
   {
     title: '审核中心',
     label: 'Demand',
-	  icon: 'icon-oc-verify',
+    icon: 'icon-oc-verify',
     link: '/admin/demand'
   },
   {
