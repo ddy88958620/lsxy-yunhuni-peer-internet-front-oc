@@ -1,7 +1,9 @@
 <template>
   <div>
 
-    <serach :servicetype="serach.type" :app.sync="serach.app" :time.sync="serach.time"></serach>
+    <div class="headbox flex flex-1 align-items-c bg-section-margin whilebg">
+      <serach :servicetype="serach.type" :app.sync="serach.app" :time.sync="serach.time"></serach>
+    </div>
 
     <!--表格-->
     <div class="admin-table">
@@ -26,7 +28,7 @@
           <td>{{ message.toNum }}</td>
           <td class="text-align-c">{{ message.costTimeLong }}</td>
           <td class="text-align-r"><span class="padding-right-20">￥{{ message.cost ? message.cost.toFixed }}</span></td>
-          <td class="text-align-c"><a>录音下载</a></td>
+          <td class="text-align-c"><a id="download{{ $index }}" @click=" this.$children[1].download($index,message.id)" data-status="1">录音下载</a></td>
         </tr>
         </tbody>
       </table>
@@ -34,13 +36,17 @@
         <a v-if='session.currentPageNo >= session.totalPageCount'>加载完毕</a>
         <a @click="query('more')" class="text-none" v-else>加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
       </div>
+
+      <download></download>
+
     </div>
   </div>
 </template>
 <script>
   export default {
     components: {
-      'serach': require('../serach.vue')
+      'serach': require('../serach.vue'),
+      'download': require('../download.vue')
     },
     data(){
       return {
@@ -49,8 +55,8 @@
           app: '',
           type: 'voice'
         },
-        session:{},
-        sessionTotal : 0,
+        session: {},
+        sessionTotal: 0,
         sessionList: [],
       }
     },
@@ -63,8 +69,8 @@
       }
     },
     methods: {
-      query(more){
-        //voice_call.语音呼叫,duo_call.双向回拨,conf_call.会议服务,ivr_call.IVR定制服务,captcha_call.语音验证码,voice_recording.录音服务
+      query(more) {
+        // voice_call.语音呼叫,duo_call.双向回拨,conf_call.会议服务,ivr_call.IVR定制服务,captcha_call.语音验证码,voice_recording.录音服务
         let params = { type:'duo_call',appId:this.serach.app,time:this.serach.time }
         if (!this.serach.app) return
         if(more){
@@ -72,6 +78,7 @@
           params.pageNo = pageNo
         }
         let self = this
+
         $.get('/tenant/'+this.$route.params.uid+'/session', params).then((res) => {
           if(res.data.page.totalCount>=0){
             self.sessionTotal =res.data.total

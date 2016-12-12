@@ -200,3 +200,13 @@ img.zoom-img {
 .vertical-align-top{
  vertical-align: top !important;
 }
+
+.download{
+  width: 16px;
+  height: 16px;
+  margin-left: 10px;
+  vertical-align: bottom;
+  background-size: cover;
+  display: inline-block;
+  background-image: url('../assets/images/loading.gif');
+}

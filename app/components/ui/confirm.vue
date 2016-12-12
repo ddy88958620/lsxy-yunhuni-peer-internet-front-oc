@@ -107,7 +107,7 @@
 					this.resolve = resolve;
 					this.reject = reject;
 				});
-				return this.promise;   //返回promise对象,给父级组件调用
+				return this.promise;   // 返回promise对象,给父级组件调用
 			},
 		},
 	}
