@@ -1,12 +1,21 @@
 var webpack = require('webpack')
 var path = require('path')
 
+
+var svgoConfig = JSON.stringify({
+  plugins: [
+    {removeTitle: true},
+    {convertColors: {shorthex: false}},
+    {convertPathData: false}
+  ]
+});
+
 module.exports = {
   entry: './app/main.js',
   output: {
     path: path.resolve(__dirname, './build'),
-    //Watching your source files for changes and when changes are made the
-    //bundle will be recompiled. This modified bundle is served from memory at
+    // Watching your source files for changes and when changes are made the
+    // bundle will be recompiled. This modified bundle is served from memory at
     // the relative path specified in publicPath (see API).
     publicPath: '/',
     filename: 'build.js'
@@ -50,7 +59,10 @@ module.exports = {
         test: /\.(png|jpg|gif)$/,
         loader: 'file?name=[name].[ext]?[hash]'
       },
-      { test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url?limit=10000&name=fonts/[hash:8].[name].[ext]'},
+      { test: /\.svg$/,
+        loaders: [ 'svg-sprite-loader',  'svgo-loader?' + svgoConfig]
+      },
+      { test: /\.(woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url?limit=10000&name=fonts/[hash:8].[name].[ext]'},
     ],
     noParse: [],
   },

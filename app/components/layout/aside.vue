@@ -2,6 +2,12 @@
 @import '../../scss/mixin.scss';
 @import '../../scss/variable.scss';
 .app-sidebar {
+  svg{
+    width: 1.6rem;
+    height: 1.6rem;
+
+    fill: currentColor;
+  }
   width: $sidebar-width;
   background-color: #616b88;
   color: #d9dbe8;
@@ -60,13 +66,13 @@
         padding-bottom: 10px;
       }
     }
-    
+
     .submenu{
       width: 20px;
       height: 14px;
       background: url('../../assets/images/menu_bg.png') no-repeat ;
     }
-    
+
     .menu-box{
       .iconfont{
         color:#515a76;
@@ -120,6 +126,7 @@
       </li>
       <li class="block " v-for='menu in menus'>
       <a class="block sub border align-items-c " v-link="menu.link">
+        <!--<svg><use xlink:href="#menu{{ menu.label }}"></use></svg>-->
         <i class="iconfont {{menu.icon}}"></i>{{ menu.title }}
         <span class="menu-count" v-if="menu.label=='Custom' && num.awaitService!=0" >{{num.awaitService}}</span>
         <span class="menu-count" v-if="menu.label=='Finance' && num.awaitInvoice!=0" >{{num.awaitInvoice}}</span>

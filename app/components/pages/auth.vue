@@ -85,6 +85,23 @@ import domain from '../../config/domain'
 import cookies from 'cookies'
 import Vue from 'vue'
 
+
+//import analytics from '../../assets/svg/analytics.svg'
+//import archives from '../../assets/svg/archives.svg'
+//import businessman from '../../assets/svg/businessman.svg'
+//import businessmen from '../../assets/svg/businessmen.svg'
+//import certificate from '../../assets/svg/certificate.svg'
+//import chat from '../../assets/svg/chat.svg'
+//import contract from '../../assets/svg/contract.svg'
+//
+
+//console.log(analytics)
+//console.log(analytics)
+//console.log(archives)
+//console.log(businessman)
+//console.log(certificate)
+//console.log(chat)
+
 export default {
   data(){
     return{

@@ -8,6 +8,9 @@ import store from './vuex/store'
 import * as filter from './utils/filters'
 import vueLogger from 'vue-logger'
 
+//svg 图片
+import 'assets/js/svg.js'
+
 Vue.use(vueLogger, { prefix: new Date(), dev: true })
 Vue.use(VueRouter)
 Vue.use(VueValidator)

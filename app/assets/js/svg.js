@@ -1,0 +1,15 @@
+import analytics from '../svg/analytics.svg'
+import businessman from '../svg/businessman.svg'
+import businessmen from '../svg/businessmen.svg'
+import certificate from '../svg/certificate.svg'
+
+import chat from '../svg/chat.svg'
+import contract from '../svg/contract.svg'
+
+import mebuDemand from '../svg/mebuDemand.svg'
+import menuCustom from '../svg/menuCustom.svg'
+import menuDashboard from '../svg/menuDashboard.svg'
+import menuFinance from '../svg/menuFinance.svg'
+import menuMessage from '../svg/menuMessage.svg'
+import menuSettings from '../svg/menuSettings.svg'
+import menuTenant from '../svg/menuTenant.svg'
