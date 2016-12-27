@@ -42,7 +42,7 @@ $.extend({
       })
     })
   },
-  patch: function(url,data){
+  patch: function(url, data) {
     return new Promise((resolve, reject) => {
       $.ajax({
         type: 'patch',
@@ -50,6 +50,7 @@ $.extend({
         data: JSON.stringify(data),
         contentType: 'application/json',
         processData: false,
+        dataType: 'json',
         success: (e) => {
           resolve(e)
         },
