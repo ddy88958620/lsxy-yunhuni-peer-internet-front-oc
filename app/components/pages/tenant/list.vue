@@ -62,8 +62,8 @@
           <td v-else class="text-danger">禁用</td>
           <td class="text-align-c">
             <span><a v-link="'/admin/tenant/detail/'+tenant.uid">查看</a></span>
-            <span v-if="tenant.account_status == 2"><a @click="toggleStatus($index,tenant.uid,1)">禁用</a></span>
-            <span v-else><a @click="toggleStatus($index,tenant.uid,2)">启用</a></span>
+            <span v-if="tenant.account_status == 2"><a @click="confirmToggle($index,tenant.uid,1)">禁用</a></span>
+            <span v-else><a @click="confirmToggle($index,tenant.uid,2)">启用</a></span>
           </td>
         </tr>
         </tbody>
@@ -75,11 +75,12 @@
           class="icon iconfont icon-oc-dropdown"></i></a>
       </div>
     </div>
+  	<confirm v-ref:dialog></confirm>
   </div>
 </template>
 <script>
   import {showMsg} from '../../../vuex/actions'
- 
+
   export default {
     vuex:{
       actions:{
@@ -88,7 +89,8 @@
     },
     components: {
       'datetime-picker': require('../../ui/datetimepicker.vue'),
-      'search': require('../../ui/search-input.vue')
+      'search': require('../../ui/search-input.vue'),
+			'confirm': require('ui/confirm.vue'),
     },
     data(){
       return {
@@ -139,11 +141,24 @@
         })
       },
       toggleStatus(index, id, status){
-        let self = this;
         $.patch('/tenant/tenants/' + id + '?status=' + status).then((res)=> {
-          return res.data && (self.tenants[index].account_status = status);
+          this.$log.log(res)
+          if(res.success) {
+            let temp = this.tenants[index]
+            temp.account_status = status
+            this.tenants.$set(index, temp)
+          }
         })
-      }
+      },
+			confirmToggle(index, id, status){
+				this.$refs.dialog.confirm().then(() => {
+					// 点击确定按钮的回调处理
+					this.toggleStatus(index, id, status)
+					this.$refs.dialog.show = false;
+				}).catch(() => {
+					// 点击取消按钮的回调处理
+				});
+			},
     },
     route: {
       data(){
