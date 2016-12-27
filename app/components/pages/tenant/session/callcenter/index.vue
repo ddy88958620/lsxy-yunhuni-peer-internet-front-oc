@@ -13,11 +13,9 @@
         <thead>
         <tr>
           <th class="text-align-c">呼叫时间</th>
-          <th>呼叫时间</th>
           <th>呼叫类型</th>
           <th>主叫</th>
           <th>被叫</th>
-          <th>通话状态</th>
           <th class="text-align-c">时长(秒)</th>
           <th class="text-align-r"><span class="padding-right-20">消费金额</span></th>
           <th class="text-align-c">操作</th>
