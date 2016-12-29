@@ -28,7 +28,7 @@
           :label.sync="date.type"
           :ydata1.sync="chartApiValue"
           :title="['API调用', '']"
-          :xtitle="['话务量(分钟)','消费额(元)']"
+          :xtitle="['API调用(次数)','']"
           :color="[['rgba(246,239,232,0.2)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
 											['#ebeecc','rgba(214,235,78,0.8)','rgba(214,235,78,1)','#FFF','rgba(214,235,78,0.1)','rgba(220,220,220,0.1)']]"
         ></chart>
@@ -37,7 +37,6 @@
     <div class="flex-flex-1 bg-section-margin">
       <admin-table :value.sync="chartApiValue" :date.sync='date.value'></admin-table>
     </div>
-
   </div>
 </template>
 <style lang="sass" scoped>

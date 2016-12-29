@@ -15,7 +15,7 @@
 
       <span class='datetime-picker-label padding-right-20 padding-left-20'>呼叫类型: </span>
       <select class="form-control flex select-box padding-right-20" v-model='serach.type'>
-        <option value="0">全部</option>
+        <option value="">全部</option>
         <option value="1">呼入</option>
         <option value="2">呼出</option>
       </select>
@@ -41,7 +41,7 @@
           <th class="text-align-c">转人工时间</th>
           <th class="text-align-c">接听时间</th>
           <th class="text-align-c">通过结束时间</th>
-          <th class="text-align-r">消费金额</th>
+          <th>消费金额</th>
         </tr>
         </thead>
         <tbody>
@@ -61,7 +61,7 @@
           <td class="message-time text-align-c">{{message.toManualTime | totalDate}}</td>
           <td class="message-time text-align-c">{{message.answerTime | totalDate}}</td>
           <td class="message-time text-align-c">{{message.endTime | totalDate}}</td>
-          <td class="text-align-r">￥{{ message.cost }}</td>
+          <td class="text-align-r"><span class="padding-right-20">￥{{ message.cost ? message.cost.toFixed(3) : '0.000' }}</span></td>
         </tr>
         </tbody>
       </table>
@@ -88,7 +88,7 @@
           agent: '',
           callnum: '',
           pageSize: 20,
-          type: 0
+          type: ""
         },
         session: {},
         sessionList: [],
@@ -109,14 +109,17 @@
           params.pageNo = pageNo
         }
         $.get('/tenant/tenants/' + this.$route.params.uid + '/call_center/detail', params).then((res) => {
-          if (res.data.page.totalCount >= 0) {
+          if (res.data.page.totalPageCount >= 0) {
             this.sessionTotal = res.data.page.totalCount
             this.session = res.data.page
             this.sum = res.data.sum
             if (more)
-              this.sessionList = self.sessionList.concat(res.data.pageObj.result)
+              this.sessionList = this.sessionList.concat(res.data.page.result)
             else
-              this.sessionList = res.data.pageObj.result
+              this.sessionList = res.data.page.result
+
+            console.log(res.data.page.result);
+
           }
         })
       }
