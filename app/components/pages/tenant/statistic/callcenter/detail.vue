@@ -58,9 +58,15 @@
             <span v-if="message.toManualResult ===4">超时</span>
           </td>
           <td>{{ message.overReason}}</td>
-          <td class="message-time text-align-c">{{message.toManualTime | totalDate}}</td>
-          <td class="message-time text-align-c">{{message.answerTime | totalDate}}</td>
-          <td class="message-time text-align-c">{{message.endTime | totalDate}}</td>
+          <td class="message-time text-align-c">
+            <span v-if="message.toManualTime">{{ message.toManualTime |totalDate }}</span>
+          </td>
+          <td class="message-time text-align-c">
+            <span v-if="message.answerTime">{{ message.answerTime |totalDate }}</span>
+          </td>
+          <td class="message-time text-align-c">
+            <span v-if="message.endTime">{{ message.endTime |totalDate }}</span>
+          </td>
           <td class="text-align-r"><span class="padding-right-20">￥{{ message.cost ? message.cost.toFixed(3) : '0.000' }}</span></td>
         </tr>
         </tbody>
