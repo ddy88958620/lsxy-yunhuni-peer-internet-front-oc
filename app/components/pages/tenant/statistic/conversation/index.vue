@@ -53,8 +53,8 @@
                :label.sync="sessiondate.type"
                :ydata1="sessionlist"
                :ydata2=""
-               :title="['会话量(次)','']"
-               :xtitle="['(时长)','']"
+               :title="['会话量','']"
+               :xtitle="['会话量(次)','']"
                :color="[['rgba(246,239,232,0.2)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
                     ['#ebeecc','rgba(214,235,78,0.8)','rgba(214,235,78,1)','#FFF','rgba(214,235,78,0.1)','rgba(220,220,220,0.1)']]"
         ></chart>
@@ -108,7 +108,7 @@
     methods: {
       //获取应用
       getApp(){
-        $.get('app/list/' + this.$route.params.uid, {serviceType: ''}).then((res) => {
+        $.get('app/list/' + this.$route.params.uid, {serviceType: 'voice'}).then((res) => {
           if (res.data.length > 0) {
             this.serach.apps = res.data
           }
@@ -119,8 +119,8 @@
       //获取话务量 消费额度
       doGetComsumeChart(){
         let params = {}
-        let self = this 
-       
+        let self = this
+
         if(this.chartdate.type == 'month'){
           params.year = this.chartdate.value.split('-')[0]
           params.month = this.chartdate.value.split('-')[1]

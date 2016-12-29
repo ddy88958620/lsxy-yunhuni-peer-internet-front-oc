@@ -36,7 +36,9 @@
           </td>
           <td class="text-align-c">{{ message.costTimeLong }}</td>
           <td class="text-align-r"><span class="padding-right-20">￥{{ message.cost ? message.cost.toFixed(3) : '0.000' }}</span></td>
-          <td class="text-align-c"><a id="download{{ $index }}" @click=" this.$children[1].download($index,message.id)" data-status="1">录音下载</a></td>
+          <td class="text-align-c">
+            <a id="download{{ $index }}" @click=" this.$children[1].download($index,message.id)" data-status="1"  v-if="message.cost>0">录音下载</a>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -76,7 +78,8 @@
     },
     methods: {
       query(more){
-        let params = {type:'conf_call',appId:this.serach.selectApp,time:this.serach.time.value}
+        // let params = {type:'conf_call',appId:this.serach.selectApp,time:this.serach.time.value}
+        let params = {type: 'conf_call',appId:this.serach.app,time:this.serach.time}
         if (!this.serach.app) return
         if(more){
           let pageNo = this.session.currentPageNo + 1

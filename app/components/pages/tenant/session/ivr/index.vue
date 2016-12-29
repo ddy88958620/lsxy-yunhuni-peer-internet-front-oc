@@ -25,13 +25,17 @@
         <tbody>
         <tr v-for='message in sessionList'>
           <td class="message-time text-align-c">{{message.callStartDt | totalDate}}</td>
-          <td v-if="message.ivrType==1">呼入</td>
-          <td v-if="message.ivrType==2">呼出</td>
+          <td>
+            <span  v-if="message.ivrType==1">呼入</span>
+            <span  v-if="message.ivrType==2">呼出</span>
+          </td>
           <td>{{ message.fromNum }}</td>
           <td>{{ message.toNum }}</td>
           <td class="text-align-c">{{ message.costTimeLong }}</td>
           <td class="text-align-r"><span class="padding-right-20">￥{{ message.cost ? message.cost.toFixed(3) : '0.000' }}</span></td>
-          <td class="text-align-c"><a id="download{{ $index }}" @click=" this.$children[1].download($index,message.id)" data-status="1">录音下载</a></td>
+          <td class="text-align-c">
+            <a id="download{{ $index }}" @click=" this.$children[1].download($index,message.id)" data-status="1"  v-if="message.cost>0">录音下载</a>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -86,7 +90,7 @@
               self.sessionList = self.sessionList.concat(res.data.page.result)
             else
               self.sessionList = res.data.page.result
-          }
+           }
         })
       }
     }
