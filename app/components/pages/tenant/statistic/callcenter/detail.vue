@@ -47,7 +47,7 @@
         <tbody>
         <tr v-for='message in sessionList'>
           <td class="message-time text-align-c">{{message.startTime | totalDate}}</td>
-          <td><span v-if="message.type ===1">呼入</span><span v-if="message.type ===2">呼出</span></td>
+          <td><span v-if="message.type ==1">呼入</span><span v-if="message.type ==2">呼出</span></td>
           <td>{{ message.fromNum}}</td>
           <td>{{ message.toNum}}</td>
           <td>{{ message.agent}}</td>
@@ -124,7 +124,6 @@
             else
               this.sessionList = res.data.page.result
 
-            console.log(res.data.page.result);
 
           }
         })

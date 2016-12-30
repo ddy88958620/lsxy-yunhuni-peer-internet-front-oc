@@ -79,7 +79,7 @@
     methods: {
       query(more){
         // let params = {type:'conf_call',appId:this.serach.selectApp,time:this.serach.time.value}
-        let params = {type: 'conf_call',appId:this.serach.app,time:this.serach.time}
+        let params = {type: 'sys_conf',appId:this.serach.app,time:this.serach.time}
         if (!this.serach.app) return
         if(more){
           let pageNo = this.session.currentPageNo + 1
