@@ -7,7 +7,7 @@ import cookies from  '../utils/cookies.js'
 export const showMsg = ({dispatch}, message) => {
   console.log(message);
   dispatch(types.SHOW_MSG, message)
-	
+
   let temp = setTimeout(()=>{
 		dispatch(types.HIDE_MSG)
     clearTimeout(temp)
@@ -53,7 +53,8 @@ export const localLogin = ({dispatch, router}, user) => {
 
 export const localLogout = ({dispatch, router}) => {
   cookies.remove('user')
-  router.go({path: '/auth/login'})
+  // router.go({path: '/auth/login'})
+  window.location = '#!/auth/login'
 }
 
 
@@ -172,9 +173,9 @@ export const getMoreTenant = ({dispatch},params) =>{
 export const getTenantBilling = ({dispatch},params) =>{
   api.getTenantBilling(params).then(response=> {
     let bill = response.json()
-  
+
     dispatch(types.TENANT_BILLING,bill.data)
-    
+
   }, response =>{
     console.log('fail');
   })
@@ -184,9 +185,9 @@ export const getTenantBilling = ({dispatch},params) =>{
 export const getTenantCert = ({dispatch},params) =>{
   api.getTenantCert(params).then(response=> {
     let cert = response.json()
-  
+
     dispatch(types.TENANT_CERT,cert.data)
-    
+
   }, response =>{
     console.log('fail');
   })
@@ -299,7 +300,7 @@ export const getMoreService = ({dispatch},params) =>{
   })
 }
 
-//财务中心 
+//财务中心
 export const getInvoiceList = ({dispatch},params) =>{
   api.getInvoiceList(params).then(response=> {
     let invoice_list = response.json()
@@ -314,9 +315,9 @@ export const getInvoiceList = ({dispatch},params) =>{
       case 'auditing':
         dispatch(types.INVOICE_PASSED_LIST,invoice_list.data)
         break;
-      case 'unauth': 
+      case 'unauth':
         dispatch(types.INVOICE_ABNORMAL_LIST,invoice_list.data)
-        break;  
+        break;
     }
   }, response =>{
     console.log('fail');
@@ -338,7 +339,7 @@ export const getMoreInvoiceList = ({dispatch},params) =>{
         break;
         case 'unauth':
           dispatch(types.INVOICE_MORE_ABNORMAL_LIST,invoice_list.data)
-        break;  
+        break;
       }
     }
   }, response =>{
@@ -361,7 +362,7 @@ export const getInvoiceDetail = ({dispatch},params) =>{
 export const getDeliveryList = ({dispatch},params) =>{
   api.getInvoiceSendList(params).then(response=> {
     let delivery_list = response.json()
-    
+
 
     switch(params.status){
       case 'await':
@@ -369,11 +370,11 @@ export const getDeliveryList = ({dispatch},params) =>{
           dispatch(types.DELIVERY_UNSEND_LIST,delivery_list.data)
         }
         break;
-      case 'auditing': 
+      case 'auditing':
         if(delivery_list.data){
           dispatch(types.DELIVERY_SEND_LIST,delivery_list.data)
         }
-        break;  
+        break;
     }
   }, response =>{
     console.log('fail');
@@ -393,7 +394,7 @@ export const getMoreDeliveryList = ({dispatch},params) =>{
         break;
         case 'auditing':
           dispatch(types.DELIVERY_MORE_SEND_LIST,delivery_list.data)
-        break;  
+        break;
       }
     }
   }, response =>{
@@ -406,7 +407,7 @@ export const getMoreDeliveryList = ({dispatch},params) =>{
 export const getDemandList = ({dispatch},params) =>{
   api.getDemandList(params).then(response=> {
     let demand_list = response.json()
-   
+
     switch(params.authStatus){
       case 'await':
         dispatch(types.DEMAND_AWAIT_LIST,demand_list.data)
@@ -416,7 +417,7 @@ export const getDemandList = ({dispatch},params) =>{
         break;
       case 'unauth':
         dispatch(types.DEMAND_UNAUTH_LIST,demand_list.data)
-        break;  
+        break;
     }
 
   },response =>{
@@ -439,7 +440,7 @@ export const getMoreDemandList = ({dispatch},params) =>{
           break;
         case 'unauth':
           dispatch(types.DEMAND_MORE_UNAUTH_LIST,delivery_list.data)
-          break;  
+          break;
       }
     }
   }, response =>{
@@ -463,7 +464,7 @@ export const getDemandDetail = ({dispatch},params) =>{
 export const getVoiceList = ({dispatch},params) =>{
   api.getVoiceLlist(params).then(response=> {
     let voice_list = response.json()
-   
+
       switch(params.type){
         case 'await':
           dispatch(types.VOICE_AWAIT_LIST,voice_list.data)
@@ -473,9 +474,9 @@ export const getVoiceList = ({dispatch},params) =>{
           break;
         case 'unauth':
           dispatch(types.VOICE_UNAUTH_LIST,voice_list.data)
-          break;  
+          break;
       }
- 
+
   },response =>{
   })
 }
@@ -495,7 +496,7 @@ export const getMoreVoiceList = ({dispatch},params) =>{
           break;
         case 'unauth':
           dispatch(types.VOICE_MORE_UNAUTH_LIST,voice_list.data)
-          break;  
+          break;
       }
     }
   }, response =>{
@@ -505,7 +506,7 @@ export const getMoreVoiceList = ({dispatch},params) =>{
 
 //删除放音列表 数据
 export const delVoice = ({dispatch},index) =>{
-  let self = this 
+  let self = this
   dispatch(types.VOICE_DETAIL,index)
 }
 
