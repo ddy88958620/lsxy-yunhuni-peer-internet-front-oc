@@ -27,13 +27,15 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for='message in sessionList'>
+        <tr v-for='message in proData.sessionList'>
           <td class="message-time text-align-c">{{message.time | totalDate}}</td>
           <td>{{message.type}}</td>
           <td>{{message.costTimeLong}}</td>
           <td class="text-align-c">{{message.size }}</td>
           <td class="text-align-r"><span class="padding-right-20">￥{{ message.cost ? message.cost.toFixed(3) : '0.000' }}</span>
-          <td class="text-align-c"><a id="download{{ $index }}" @click=" this.$children[1].download($index,message.id)" data-status="1">录音下载</a></td>
+          <td class="text-align-c">
+            <a id="download{{ $index }}" @click=" this.$children[1].download($index,message.id)" data-status="1" v-if="message.cost>0">录音下载</a>
+          </td>
           </td>
         </tr>
 
@@ -96,7 +98,6 @@
           params.pageNo = pageNo
         }
         let self = this
-
         $.get('/tenant/' + this.$route.params.uid + '/session/voice_recording', params).then((res) => {
           if (res.data.page.totalCount >= 0) {
             self.proData.types = res.data.types

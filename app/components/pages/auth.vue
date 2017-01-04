@@ -9,12 +9,13 @@
 							</div>
 						</div>
 						<div class="login-content position-layout">
-							<form novalidate id='auth-form' class="position-center">
+							<form novalidate id='auth-form' class="position-center" autocomplete="on">
 								<div
 									class="validate-field form-group relative ">
 									<i class="iconfont icon-oc-login-user input-icon"></i>
 									<input
 										type="text"
+                    name='username'
 										class='form-control form-input'
 										v-model='user.userName'
 										placeholder="请输入账号"
@@ -30,6 +31,7 @@
 									<i class="iconfont icon-oc-login-pwd input-icon"></i>
 									<input
 										type="password"
+                    name='password'
 										class='form-control form-input'
 										v-model='user.password'
 										placeholder="请输入密码"
@@ -142,8 +144,11 @@ export default {
       }
     }
   },
-  ready(){
-    this.$log.log('hello world')
+  create() {
+
+  },
+  ready() {
+    this.refreshVerCode()
   },
   route:{
   	data(){

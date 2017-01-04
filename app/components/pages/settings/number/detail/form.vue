@@ -65,8 +65,9 @@
 		</div>
 		<div class="form-group">
 			<label class="control-label">真实号码 : </label>
-			<input v-model="postData.telNumber" type="text" class="form-control" placeholder="">
-			呼出时作为来电显示，呼入时作为被叫号码
+      <input v-model="postData.telNumber" type="text" class="form-control" placeholder=""  v-if="!$route.params.nid" >
+      <input v-model="postData.telNumber" type="text" class="form-control" placeholder=""  v-else readonly>
+      呼出时作为来电显示，呼入时作为被叫号码
 			<span class="text-danger">*</span>
 		</div>
 		<div class="form-group" v-if="postData.type==='1'">
@@ -177,8 +178,10 @@
 			this.fetchProvinceList()
 			this.fetchLineList()
 			this.fetchTenant()
+
+
 		}
-		
+
 	}
 </script>
 
