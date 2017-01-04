@@ -15,7 +15,7 @@
           <th>主叫</th>
           <th>被叫</th>
           <th>挂机时间</th>
-          <th class="text-align-c">时长(秒)</th>
+          <th>时长(秒)</th>
           <th class="text-align-r"><span class="padding-right-20">消费金额</span></th>
         </tr>
         </thead>
@@ -25,7 +25,7 @@
           <td>{{ message.fromNum }}</td>
           <td>{{ message.toNum }}</td>
           <td>{{ message.callEndDt | totalDate }}</td>
-          <td class="test-align-c">{{message.costTimeLong}}</td>
+          <td >{{message.costTimeLong}}</td>
           <td class="text-align-r"><span class="padding-right-20">￥{{ message.cost ? message.cost.toFixed(3) : '0.000' }}</span></td>
         </tr>
         </tbody>
@@ -79,6 +79,8 @@
               self.sessionList = self.sessionList.concat(res.data.page.result)
             else
               self.sessionList = res.data.page.result
+
+
           }
         })
       }
