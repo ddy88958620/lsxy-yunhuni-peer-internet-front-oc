@@ -15,7 +15,7 @@
           <th>呼叫时间</th>
           <th>参与者</th>
           <th>参与类型</th>
-          <th class="text-align-c">时长(秒)</th>
+          <th>时长(秒)</th>
           <th class="text-align-r"><span class="padding-right-20">消费金额</span></th>
           <th class="text-align-c">操作</th>
         </tr>
@@ -34,7 +34,7 @@
             <span v-if="message.joinType==1">邀请加入</span>
             <span v-if="message.joinType==2">呼入加入</span>
           </td>
-          <td class="text-align-c">{{ message.costTimeLong }}</td>
+          <td>{{ message.costTimeLong }}</td>
           <td class="text-align-r"><span class="padding-right-20">￥{{ message.cost ? message.cost.toFixed(3) : '0.000' }}</span></td>
           <td class="text-align-c">
             <a id="download{{ $index }}" @click=" this.$children[1].download($index,message.id)" data-status="1"  v-if="message.cost>0">录音下载</a>
@@ -94,7 +94,7 @@
               self.sessionList = self.sessionList.concat(res.data.page.result)
             else
               self.sessionList = res.data.page.result
-          }
+           }
         })
       }
     }

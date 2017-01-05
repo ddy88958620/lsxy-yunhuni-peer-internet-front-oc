@@ -52,10 +52,10 @@
           <td>{{ message.toNum}}</td>
           <td>{{ message.agent}}</td>
           <td>
-            <span v-if="message.toManualResult ===1">接听</span>
-            <span v-if="message.toManualResult ===2">呼叫坐席失败</span>
-            <span v-if="message.toManualResult ===3">主动放弃</span>
-            <span v-if="message.toManualResult ===4">超时</span>
+            <span v-if="message.toManualResult ==1">接听</span>
+            <span v-if="message.toManualResult ==2">呼叫坐席失败</span>
+            <span v-if="message.toManualResult ==3">主动放弃</span>
+            <span v-if="message.toManualResult ==4">超时</span>
           </td>
           <td>{{ message.overReason}}</td>
           <td class="message-time text-align-c">

@@ -13,7 +13,7 @@
     <div class="admin-table">
       <div class="table-total flex flex-1 justify-content-e float-r">
         总消费金额: <span class="brown">{{ proData.sessionTotal ? proData.sessionTotal.toFixed(3) : '0.000' }}</span>元&nbsp;&nbsp;
-        存储容量:<span class="brown">{{proData.sessionSize  }}</span> &nbsp;&nbsp;共<span class="text-danger">{{session.totalCount ? proData.session.totalCount : 0 }}</span>条
+        存储容量:<span class="brown">{{proData.sessionSize  }}</span> &nbsp;&nbsp;共<span class="text-danger">{{proData.session.totalCount ? proData.session.totalCount : 0 }}</span>条
       </div>
       <table class="table">
         <thead>
