@@ -46,22 +46,30 @@ export default function(router){
                 },
                 '/app': {
                   component: (resolve) => require(['../components/pages/tenant/app/index.vue'], resolve),
-                  subRoutes:{
-                    '/list':{
-                      component: (resolve) => require(['../components/pages/tenant/app/list/index.vue'], resolve),
+                  subRoutes: {
+                    '/list': {
+                      component: (resolve) => require(
+                        ['../components/pages/tenant/app/list/index.vue'],
+                        resolve),
                     },
-                    '/detail/:appid':{
+                    '/detail/:appid': {
                       component: (resolve) => require(['../components/pages/tenant/app/detail/index.vue'], resolve),
-                      subRoutes:{
-                        '/extension':{
+                      subRoutes: {
+                        '/extension': {
                           component: (resolve) => require(['../components/pages/tenant/app/detail/extension-table.vue'], resolve),
                         },
-                        '/play':{
+                        '/play': {
                           component: (resolve) => require(['../components/pages/tenant/app/detail/play-table.vue'], resolve),
                         },
-                        '/record':{
-                          component: (resolve) => require(['../components/pages/tenant/app/detail/record-table.vue'], resolve),
-                        }
+                        '/record': {
+                          component: (resolve) => require(
+                            ['../components/pages/tenant/app/detail/record-table.vue'],
+                            resolve),
+                        },
+                        '/bind': {
+                          component: (resolve) => require(['../components/pages/tenant/app/detail/bind-number.vue'],
+                          resolve),
+                        },
                       }
                     }
                   }
