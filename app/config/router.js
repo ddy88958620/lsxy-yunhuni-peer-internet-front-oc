@@ -35,6 +35,7 @@ export default function(router){
           }
         },
         '/tenant': {
+          name: 'tenantList',
           component: (resolve) => require(['../components/pages/tenant/index.vue'], resolve),
           subRoutes: {
             '/detail/:uid': {

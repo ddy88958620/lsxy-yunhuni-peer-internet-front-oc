@@ -19,9 +19,11 @@
     }
     .nav-right{
       float: right;
-      width: 200px;
       padding-right: 15px;
       padding-top: 15px;
+    }
+    .search-box, .current-tenant {
+      display: inline-block;
     }
     .matter{
       height: 45px;
@@ -101,6 +103,12 @@
       </div>
     </div>
     <div class="nav-right">
+      <div v-if="currentTenant && currentTenant.tenantName" class="current-tenant">
+        当前租户:
+        <a v-link="'/admin/tenant/detail/'+ $route.params.uid + '/preview'"> {{ currentTenant.tenantName}} </a>
+        &nbsp;
+        &nbsp;
+      </div>
       <search
         :value.sync= 'value'
         :action="search"
@@ -125,7 +133,8 @@ export default {
         awaitTenant:{ title:'会员认证',link:'/admin/demand/member/list/await',content:'等待审核'},
         awaitPlayVoiceFile:{ title:'放音文件',link:'/admin/demand/voice/list/await',content:'等待审核'},
         awaitService:{ title:'客户反馈',link:'/admin/service/list',content:''}
-      }
+      },
+      currentTenant: undefined
     }
   },
   computed: {
@@ -141,6 +150,12 @@ export default {
       return temp
     }
   },
+  watch: {
+  	'$route.params.uid': function(uid) {
+  		console.log(uid)
+      this.getTenantInfo(uid)
+    }
+  },
   components: {
     'search': require('../ui/search-input.vue'),
   },
@@ -150,9 +165,17 @@ export default {
         name: 'tenantlist',
         query: {searchName: this.value}
       })
-    }
+    },
+    getTenantInfo(uid){
+      $.get('/tenant/tenants/' + uid + '/info').then((res) => {
+        return res.data && (this.currentTenant = res.data)
+      });
+    },
   },
   ready(){
+  	let uid = this.$route.params.uid
+    this.getTenantInfo(uid)
+  	console.log('ready', this.$route.params.uid)
   }
 }
 </script>
