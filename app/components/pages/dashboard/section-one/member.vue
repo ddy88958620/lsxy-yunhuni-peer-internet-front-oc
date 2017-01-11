@@ -6,13 +6,15 @@
       <div class="panel-body">
         <div class='flex width-33 float-l' >
           <div class="pie_wrap inline-block ">
-            <pie
-              :max="member.regist_total"
-              :value="member.regist_total"
-              :bgcolor="color[0]"
-              :uuid="'memberpie'"
-              >
-            </pie>
+            <a v-link="{name: 'tenantList'}">
+							<pie
+								:max="member.regist_total"
+								:value="member.regist_total"
+								:bgcolor="color[0]"
+								:uuid="'memberpie'"
+								>
+							</pie>
+            </a>
           </div>
           <div class="inline-block ">
             <ul class="list-none-style ">
@@ -27,12 +29,14 @@
 
         <div class='flex width-33 float-l' >
           <div class="pie_wrap inline-block">
+            <a v-link="{name: 'tenantList', query: { authStatus: 1 } }">
             <pie
               :max="member.regist_total"
               :value="member.auth_total"
               :uuid="'memberpie2'"
               :bgcolor="color[1]" >
             </pie>
+            </a>
           </div>
           <div class="inline-block" >
             <ul class="list-none-style white-space">
@@ -48,12 +52,14 @@
 
         <div class='flex width-33 float-l'>
           <div class="pie_wrap inline-block" >
+            <a v-link="{name: 'tenantList', query: { isCost: 1 } }">
             <pie
               :max="member.regist_total"
               :value="member.consume"
               :uuid="'memberpie3'"
               :bgcolor="color[2]">
             </pie>
+            </a>
           </div>
 
           <div class="inline-block" >

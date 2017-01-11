@@ -1,15 +1,15 @@
 class LocalStorage {
-	constructor(){
+	constructor() {
 		this.store = window.localStorage
 	}
-	get(key){
+	get(key) {
 		let result = this.store.getItem(key)
 		if (!result) {
 			return ''
 		}
 		return JSON.parse(result)
 	}
-	set(key, data){
+	set(key, data) {
 		this.store.setItem(key, JSON.stringify(data))
 	}
 	update(key, data) {
