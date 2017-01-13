@@ -51,7 +51,9 @@
   </div>
 </template>
 <script>
+	import {showMsg} from 'actions'
   export default {
+		vuex:{ actions: { showMsg } },
     components: {
       'serach': require('../serach.vue'),
       'download': require('../download.vue')
@@ -113,13 +115,13 @@
       downloadPolling(id) {
         this.temp = setInterval(()=> {
           $.get('tenant/polling/'+id).then((res) =>{
-            if(res.success && res.data) {
-              clearInterval(this.temp)
-              window.location.href = res.data
-            } else if (errorCode === '0001') {
-              clearInterval(this.temp)
-    					this.showMsg( { content: res.errorMsg, type: 'danger' })
-            }
+            console.log(count);
+              if(res.success && res.data) {
+                clearInterval(this.temp)
+                window.location.href = res.data
+              } else {
+      					this.showMsg( { content: res.errorMsg, type: 'danger' })
+              }
           })
         }, 1500)
       }
