@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<div class="admin-table-header margin-top-20">
-				<button class="btn btn-primary" @click="query" >全部解除绑定</button>
-				<a class="btn btn-primary" @click="show.newNumber = true">绑定号码</a>
+				<button class="btn btn-primary" @click="confirmDisableAll" >全部解除绑定</button>
+				<a v-if="$route.query.appstatus != 2" class="btn btn-primary" @click="show.newNumber = true">绑定号码</a>
 		</div>
 		<div class="admin-table ">
 			<div class="table-total flex flex-1 justify-content-e float-r">
@@ -17,19 +17,21 @@
 					<th>可呼出</th>
 					<th>归属地</th>
 					<th>有效期</th>
-					<th class=" text-align-c">操作</th>
+					<th class="">操作</th>
 				</tr>
 				</thead>
 				<tbody>
 				<tr v-for='l in list.number'>
-					<td>{{l.number}}</td>
-					<td v-if='l.status===1' class="text-success">启用</td>
-					<td class="text-danger" v-else >禁用</td>
-					<td class="text-align-c">✔</td>
-					<td class="text-align-c">✘</td>
-					<td class="text-align-c">020</td>
-					<td class="text-align-c">2016-08-31</td>
-					<td class="">解除绑定</td>
+					<td>{{l.num}}</td>
+					<td v-if="l.status == 1" class="text-success">正常</td>
+					<td class="text-danger" v-else></td>
+					<td class="" v-if="isCalled == 1">✔</td>
+					<td class="" v-else>✘</td>
+          <td class="" v-if="isDialing == 1">✔</td>
+          <td class="" v-else>✘</td>
+					<td class="">{{ l.areaCode }}</td>
+					<td class="">{{ l.expireTime | totalDate }}</td>
+					<td class=""> <a @click='disabled($index, l.rentId)'>解除绑定</a></td>
 				</tr>
 				</tbody>
 			</table>
@@ -40,18 +42,39 @@
 		</div>
 	</div>
 
-	<modal :show.sync="show.newNumber" title="新增线路号码" :action="new">
+	<modal :show.sync="show.newNumber" title="绑定号码" :action="bindNumber">
 		<div slot="body">
-			<input type="radio" v-model="postData.newNumber.type" value="1" number> 红名单 &nbsp;
-			<input type="radio" v-model="postData.newNumber.type" value="2" number> 黑名单
-			<br/>
-			<br/>
-			<form v-reset-form="postData">
-				<div class="form-group">
-					<label class="control-label">新增号码 : </label>
-					<input type="text" class="form-control input-width" placeholder="" :value="postData.newNumber.number" v-model="postData.newNumber.number">
-				</div>
-			</form>
+		<div class="admin-table ">
+			<div class="table-total flex flex-1 justify-content-e float-r">
+				共<span class="text-danger">{{originData.bindNumber.totalCount ? originData.bindNumber.totalCount : 0}}</span>条
+			</div>
+			<table class="table">
+				<thead>
+				<tr>
+					<th></th>
+					<th>号码</th>
+					<th>可呼入</th>
+					<th>可呼出</th>
+					<th>归属地</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr v-for='l in list.bindNumber'>
+					<td><input type="checkbox" name='l.num' v-model="l.checked" /> {{l.num}}</td>
+					<td>{{l.num}}</td>
+					<td class="" v-if="isCalled == 1">✔</td>
+					<td class="" v-else>✘</td>
+          <td class="" v-if="isDialing == 1">✔</td>
+          <td class="" v-else>✘</td>
+					<td class="">{{ l.areaCode }}</td>
+				</tr>
+				</tbody>
+			</table>
+			<div class="more">
+				<a v-if='originData.bindNumber.currentPageNo >= originData.bindNumber.totalPageCount'>加载完毕</a>
+				<a @click="fetchBindNums('more')" class="text-none" v-else>加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+			</div>
+		</div>
 		</div>
 	</modal>
 	<confirm v-ref:dialog></confirm>
@@ -61,12 +84,7 @@
 	import {showMsg} from 'actions'
 
 	export default {
-		vuex:{
-			getter:{},
-			actions:{
-				showMsg
-			}
-		},
+		vuex:{ actions: { showMsg } },
 		components: {
 			'datetime-picker': require('ui/datetimepicker.vue'),
 			'modal': require('ui/modal.vue'),
@@ -78,81 +96,99 @@
 					newNumber: false
 				},
 				postData: {
-					type: '',
-					pageNo: 1,
-					newNumber: {
-						type: 1,
-						number: '',
+					number: {
+						type: '',
+						pageNo: 1,
 					}
 				},
 				list: {
-					number: []
+					number: [],
+					bindNumber: []
 				},
 				originData: {
-					number: {}
+					number: {},
+					bindNumber: {}
 				}
 			}
 		},
 		methods: {
-			confirmDeleteNumber(index, id){
+			checkeAll() {
+				let numbers = this.list.bindNumber
+				for (let [index, item] of Object.entries(numbers)) {
+					console.log(index, item);
+					item.checked = true
+					numbers.$set(index, item)
+				}
+        console.log(this.list.bindNumber);
+			},
+      bindNumber() {
+        let nums = []
+				let numbers = this.list.bindNumber
+				for (let [index, item] of Object.entries(numbers)) {
+          if(item.checked) {
+            nums.push(item.num)
+          }
+				}
+
+        $.post('tenant/tenants/'+ this.$route.params.uid + '/res_rent/num/bind/app/' + this.$route.params.appid, { nums }).then(() => {
+					this.showMsg({content: '绑定成功', type: 'success'})
+          this.show.newNumber = false
+          this.init()
+        })
+      },
+			disabled(index, id) {
+				$.delete('tenant/tenants/'+ this.$route.params.uid + '/res_rent/app/' + this.$route.params.appid + '/unbind/'+id).then(()=>{
+					let temp = this.list.number[index]
+					temp.status = 0
+					this.list.number.splice(index, 1)
+					this.showMsg({content: '禁用成功', type: 'success'})
+				})
+			},
+			confirmDisableAll(index, id){
 				this.$refs.dialog.confirm().then(() => {
 					// 点击确定按钮的回调处理
-					this.deleteNumber(index, id)
+					this.disabledAll()
 					this.$refs.dialog.show = false;
 				}).catch(() => {
 					// 点击取消按钮的回调处理
 					console.log('delete')
 				});
 			},
-			deleteNumber(index, id){
-				$.delete('/config/redblank/'+id).then(()=>{
-					this.list.number.splice(index, 1)
-					this.originData.number.totalCount -= 1
-					this.showMsg({content: '删除成功', type: 'success'})
-				})
-			},
-			enabled(index, id) {
-				$.put('config/redblank/enabled/'+id).then(()=>{
-					let temp = this.list.number[index]
-					temp.status = 1
-					this.list.number.$set(index, temp)
-					this.showMsg({content: '启用成功', type: 'success'})
-				})
-			},
-			disabled(index, id) {
-				$.put('/config/redblank/disabled/'+id).then(()=>{
-					let temp = this.list.number[index]
-					temp.status = 0
-					this.list.number.$set(index, temp)
+			disabledAll() {
+				$.delete('tenant/tenants/'+ this.$route.params.uid + '/res_rent/app/' + this.$route.params.appid + '/unbind_all').then(()=>{
+					this.list.number = []
 					this.showMsg({content: '禁用成功', type: 'success'})
+          this.init()
+				})
+			},
+			fetchBindNums(type){
+				let params = this.postData.bindNumber
+				if(type === 'more') {
+					params.pageNo = this.originData.bindNumber.currentPageNo + 1
+				}
+				$.get('tenant/tenants/'+ this.$route.params.uid + '/res_rent/num/unused/app/' + this.$route.params.appid ).then((res) => {
+					this.originData.bindNumber = res.data
+					this.list.bindNumber = type === 'more' ? this.list.bindNumber.concat(res.data.result) : res.data.result
 				})
 			},
 			query(type){
-				let params = this.postData
+				let params = this.postData.number
 				if(type === 'more') {
 					params.pageNo = this.originData.number.currentPageNo + 1
 				}
-				$.get('config/redblank/plist', params).then((res) => {
+				$.get('tenant/tenants/'+ this.$route.params.uid + '/res_rent/app/' + this.$route.params.appid + '/res_rent/list', params).then((res) => {
 					this.originData.number = res.data
 					this.list.number = type === 'more' ? this.list.number.concat(res.data.result) : res.data.result
 				})
 			},
-			new(){
-				$.post('config/redblank/new', this.postData.newNumber).then((e)=> {
-					if(e.errorMsg){
-						this.showMsg({content: e.errorMsg, type: 'danger'})
-						return
-					}
-					this.showMsg({content: '新建成功', type: 'success'})
-					this.query()
-					this.show.newNumber = false
-				})
-			},
+      init() {
+  			this.query()
+  			this.fetchBindNums()
+      }
 		},
 		ready(){
-			this.query()
+      this.init()
 		}
-
 	}
 </script>
 <style lang="sass" scoped>
