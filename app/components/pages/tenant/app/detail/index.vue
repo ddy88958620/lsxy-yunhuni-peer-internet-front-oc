@@ -39,21 +39,16 @@
 	</div>
 
 	<div class="bg-section-margin">
-		<div class="flex   ">
+		<div>
 			<div class="admin-toolbar inline-block normal-font-size small-font-color cursor" >
 				<span type="button" class="toolbar first-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/play'" >放音媒体库</span>
 				<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/record'" >录音文件</span>
 				<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/extension'" >分机</span>
-				<span type="button" class="toolbar remove-border-right last-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/bind'" >绑定号码</span>
+				<span type="button" class="toolbar last-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/bind?appstatus=' + app.status" >绑定号码</span>
 			</div>
 		</div>
 		<router-view></router-view>
 	</div>
-
-
-
-
-
 </template>
 <style lang="sass" scoped>
 	.base-section {
@@ -76,6 +71,9 @@
 	.toolbar{
 		padding: 9px 10px;
 	}
+  .admin-toolbar span:last-child {
+    border-right: 1px solid transparent !important;
+  }
 
 
 </style>

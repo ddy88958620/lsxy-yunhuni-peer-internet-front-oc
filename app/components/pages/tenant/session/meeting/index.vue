@@ -37,7 +37,7 @@
           <td>{{ message.costTimeLong }}</td>
           <td class="text-align-r"><span class="padding-right-20">￥{{ message.cost ? message.cost.toFixed(3) : '0.000' }}</span></td>
           <td class="text-align-c">
-            <a id="download{{ $index }}" @click=" this.$children[1].download($index,message.id)" data-status="1"  v-if="message.cost>0">录音下载</a>
+            <a @click="download(message.id)" data-status="1"  v-if="message.cost>0">录音下载</a>
           </td>
         </tr>
         </tbody>
@@ -96,6 +96,32 @@
               self.sessionList = res.data.page.result
            }
         })
+      },
+      download(id) {
+        let uid = this.$route.params.uid
+        $.get('tenant/' + uid + '/cdr/download/'+id).then((res) => {
+          if (res.success && res.data) {
+            window.location.href = res.data
+          } else if ( res.errorCode === '0401') {
+  					this.showMsg( { content: res.errorMsg, type: 'danger' })
+          } else {
+            console.log(res.errorMsg);
+            this.downloadPolling(res.errorMsg)
+          }
+        })
+      },
+      downloadPolling(id) {
+        this.temp = setInterval(()=> {
+          $.get('tenant/polling/'+id).then((res) =>{
+            if(res.success && res.data) {
+              clearInterval(this.temp)
+              window.location.href = res.data
+            } else if (errorCode === '0001') {
+              clearInterval(this.temp)
+    					this.showMsg( { content: res.errorMsg, type: 'danger' })
+            }
+          })
+        }, 1500)
       }
     }
   }

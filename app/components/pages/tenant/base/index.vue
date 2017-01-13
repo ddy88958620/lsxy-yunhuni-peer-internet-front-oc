@@ -1,5 +1,4 @@
 <template>
-
 	<div class="bg-section-margin no-wrap base-section">
 		<div class="inline-block width-50 ofh padding-right-10">
 			<div class="panel panel-base">
@@ -50,25 +49,28 @@
 					<div class="panel-body admin-bg flex-1 authbox">
 						<ul class="list-none-style remove-padding-bottom">
 							<li class="padding-bottom-10">
-								 <input type="radio" name="auth-radio" value="private" v-model="authradio" @click="autoheight()" />个人认证
-								 <input type="radio" value="corp" name="auth-radio" v-model="authradio" @click="autoheight()" class="authradio" /> 企业认证
+								 <input type="radio" name="auth-radio" value="private" v-model="authradio" @click="autoheight" />个人认证
+								 <input type="radio" value="corp" name="auth-radio" v-model="authradio" @click="autoheight" class="authradio" /> 企业认证
 							</li>
 						</ul>
 						<ul class="list-none-style" v-if="authradio == 'private'">
 							<li><span class="small-font-color">认证状态 : </span>
-								<span class="padding-right-10" v-if="authinfo.status==1 || authinfo.status==2 || authinfo.status==3 || authinfo.status==4 || authinfo.status==5 || authinfo.status==-2">认证成功</span>
-								<span class="text-danger padding-right-10" v-if="authinfo.status==-1 ">认证失败</span>
-								<a class="btn btn-primary" v-if="authinfo.status ===6" v-link="'/admin/demand/member/list/await'">去审核</a>
-								<span v-if="authinfo.status==100">未认证</span>
+								<span class="padding-right-10"
+									v-if="authinfo.realnamePrivate.status == 1 && authinfo.realnamePrivate !== null">
+									认证成功
+								</span>
+								<span class="text-danger padding-right-10" v-if="authinfo.realnamePrivate.status == -1 ">认证失败</span>
+								<a class="btn btn-primary" v-if="authinfo.realnamePrivate.status === 0" v-link="'/admin/demand/member/list/await'">去审核</a>
+								<span v-if="authinfo.realnamePrivate === null">未认证</span>
 							</li>
-							<div v-if="authinfo.status!=100">
+							<div v-if="authinfo.realnamePrivate.status == 1 && authinfo.realnamePrivate !== null">
 								<li><span class="small-font-color">真实姓名 : </span>{{authinfo.realnamePrivate.name}}</li>
 								<li><span class="small-font-color">证件类型 : </span>
 									<span class="padding-right-10" v-if="authinfo.realnamePrivate.idType ==='0'">身份证</span>
 									<span class="padding-right-10" v-if="authinfo.realnamePrivate.idType ==='1'">护照</span>
 								</li>
 								<li><span class="small-font-color">证件号码 : </span>{{authinfo.realnamePrivate.idNumber}}</li>
-								<li class="flex  flex-direction-row ">
+								<li class="flex  flex-direction-row">
 									<span class="small-font-color padding-right-10">证件照 : </span>
 									<img :src="authinfo.realnamePrivate.idPhoto | img"  class="padding-right-10" height="200" data-action="zoom">
 								</li>
@@ -76,13 +78,14 @@
 						</ul>
 
 						<ul class="list-none-style" id="company"  v-if="this.authradio =='corp'" >
-							<li><span class="small-font-color">认证状态 : </span>
-								<span class="padding-right-10" v-if="authinfo.status==2 || authinfo.status==4">认证成功</span>
-								<span class="text-danger padding-right-10" v-if="authinfo.status==-2 || authinfo.status==5">认证失败</span>
-								<a class="btn btn-primary" v-if="authinfo.status ===3 || authinfo.status ===0" v-link="'/admin/demand/member/list/await'">去审核</a>
-								<span v-if="authinfo.status==100 || authinfo.status==1 || authinfo.status==-1">未认证</span>
+							<li>
+								<span class="small-font-color">认证状态 : </span>
+								<span class="padding-right-10" v-if="authinfo.realnameCorp.status == 2 && authinfo.realnameCorp !== null">认证成功</span>
+								<span class="text-danger padding-right-10" v-if="authinfo.realnameCorp.status === -2">认证失败</span>
+								<a class="btn btn-primary" v-if="authinfo.realnameCorp.status == 0" v-link="'/admin/demand/member/list/await'">去审核</a>
+								<span v-if="authinfo.realnameCorp === null">未认证</span>
 							</li>
-							<div v-if="authinfo.status !=1 && authinfo.status !=-1 && authinfo.status!=100">
+							<div v-if="authinfo.realnameCorp.status == 2 && authinfo.realnameCorp !== null">
 								<li><span class="small-font-color">公司名称 : </span>{{authinfo.realnameCorp.name}}</li>
 								<li><span class="small-font-color">公司地址 : </span>{{authinfo.realnameCorp.addr}}</li>
 								<li><span class="small-font-color">所属行业 : </span>{{authinfo.realnameCorp.industry}}</li>
@@ -132,7 +135,7 @@
 </template>
 
 <script>
-	import {getTenantInfo,getTenantAuthInfo} from '../../../../vuex/actions.js' 
+	import {getTenantInfo, getTenantAuthInfo} from '../../../../vuex/actions.js'
 	export default{
 		vuex: {
 			getters: {
@@ -153,8 +156,8 @@
 				authradio:'private',
 			}
 		},
-		methods:{
-			resetPass(){
+		methods: {
+			resetPass() {
 				let self = this;
 				$.patch('/tenant/tenants/' + this.$route.params.uid + '/resetPass').then((res) => {
 				});
@@ -169,7 +172,7 @@
 			}
 
 		},
-		ready(){
+		ready() {
 			let params = {}
 			params.id = this.$route.params.uid
 			this.getTenantAuthInfo(params)
@@ -178,9 +181,6 @@
 		}
 	}
 </script>
-
-
-
 <style lang="sass" scoped>
 	.base-section {
 		min-height: 300px;
@@ -189,7 +189,7 @@
 			min-height: 235px;
 		}
 	}
-	
+
 	ul {
 		padding: 15px 15px 0 15px;
 		font-size: 1.4rem;
@@ -209,5 +209,3 @@
 		margin-left: 10px;
 	}
 </style>
-
-return 301 $scheme://yunhuni-development-open.oss-cn-beijing.aliyuncs.com/uc$request_uri;
