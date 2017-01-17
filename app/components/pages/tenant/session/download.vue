@@ -1,30 +1,49 @@
 <template>
-<div>
-</div>
+  <a @click="download(message.id)" data-status="1" v-if="message.cost > 0 && message.recording == 1">录音下载</a>
 </template>
-
 <script>
+	import {showMsg} from 'actions'
   export default{
+		vuex:{ actions: { showMsg } },
+    props: {
+      message: {
+        type: Object
+      },
+      type: {
+        type: String
+      }
+    },
     methods: {
-      download (index, recordId) {
-        var  serach = this.$parent.$data.serach
-        var tag = $('#download' + index)
-        var status = tag.attr('data-status')
-        if(status == 1) {
-          tag.html('正在下载<span class="download"></span>').attr('data-status', '2')
-          $.get('/tenant/tenants/' + this.$route.params.uid + '/apps/' + serach.app + '/records/' + recordId + '/', {}).then((res) => {
-            if (res.success && res.data != 'url') {
-              window.open(res.data)
-              tag.html('录音下载').attr('data-status', '1')
+      download(id) {
+        let uid = this.$route.params.uid
+        $.get('tenant/' + uid + '/'+this.type+'/download/'+id).then((res) => {
+          if (res.success && res.data) {
+            window.location.href = res.data
+          } else if ( res.errorCode === '0401') {
+  					this.showMsg( { content: res.errorMsg, type: 'danger' })
+          } else {
+            console.log(res.errorMsg);
+            this.downloadPolling(res.errorMsg)
+          }
+        })
+      },
+      downloadPolling(id) {
+        let count = 5
+        this.temp = setInterval(()=> {
+          $.get('tenant/polling/'+id).then((res) =>{
+            if(res.success && res.data) {
+              clearInterval(this.temp)
+              window.location.href = res.data
             } else {
-              tag.html('下载失败,请重试').attr('data-status', '1')
+    					this.showMsg( { content: res.errorMsg, type: 'danger' })
+              count = count - 1
+              if (count === 0) {
+      					this.showMsg( { content: '录音文件下载超时,请稍后重试', type: 'danger' })
+                clearInterval(this.temp)
+              }
             }
           })
-        }else if(status ==  2) {
-          tag.html('下载失败,请重试').attr('data-status', '1')
-        }else {
-          tag.html('录音下载').attr('data-status', '1')
-        }
+        }, 1500)
       }
     }
   }
