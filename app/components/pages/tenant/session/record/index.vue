@@ -17,14 +17,14 @@
       </div>
       <table class="table">
         <thead>
-        <tr>
-          <th class="text-align-c">呼叫时间</th>
-          <th>产品类型</th>
-          <th>时长(秒)</th>
-          <th class="text-align-c">大小</th>
-          <th class="text-align-r"><span class="padding-right-20">消费金额</span></th>
-          <th class="text-align-c">操作</th>
-        </tr>
+          <tr>
+            <th class="text-align-c">呼叫时间</th>
+            <th>产品类型</th>
+            <th>时长(秒)</th>
+            <th class="text-align-c">大小</th>
+            <th class="text-align-r"><span class="padding-right-20">消费金额</span></th>
+            <th class="text-align-c">操作</th>
+          </tr>
         </thead>
         <tbody>
         <tr v-for='message in proData.sessionList'>
@@ -34,11 +34,10 @@
           <td class="text-align-c">{{message.size }}</td>
           <td class="text-align-r"><span class="padding-right-20">￥{{ message.cost ? message.cost.toFixed(3) : '0.000' }}</span>
           <td class="text-align-c">
-            <a  @click="download(message.id)" data-status="1" v-if="message.cost>0">录音下载</a>
+            <download :type="'file'" :message="message"></download>
           </td>
           </td>
         </tr>
-
         </tbody>
       </table>
       <div class="more">
@@ -112,41 +111,7 @@
             }
           }
         })
-      },
-      download(id) {
-        let uid = this.$route.params.uid
-        $.get('tenant/' + uid + '/file/download/'+id).then((res) => {
-          if (res.success && res.data) {
-            window.location.href = res.data
-          } else if ( res.errorCode === '0401') {
-  					this.showMsg( { content: res.errorMsg, type: 'danger' })
-          } else {
-            console.log(res.errorMsg);
-            this.downloadPolling(res.errorMsg)
-          }
-        })
-      },
-      downloadPolling(id) {
-        let count = 5
-        this.temp = setInterval(()=> {
-          $.get('tenant/polling/'+id).then((res) =>{
-            if(res.success && res.data) {
-              clearInterval(this.temp)
-              window.location.href = res.data
-            } else {
-    					this.showMsg( { content: res.errorMsg, type: 'danger' })
-              count = count - 1
-              if (count === 0) {
-                clearInterval(this.temp)
-              }
-            }
-          })
-        }, 1500)
       }
-    },
-    ready(){
-      var num = 100
-      console.log(num.toFixed(3))
     }
   }
 

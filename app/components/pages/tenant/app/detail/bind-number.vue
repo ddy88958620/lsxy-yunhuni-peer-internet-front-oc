@@ -25,9 +25,9 @@
 					<td>{{l.num}}</td>
 					<td v-if="l.status == 1" class="text-success">正常</td>
 					<td class="text-danger" v-else></td>
-					<td class="" v-if="isCalled == 1">✔</td>
+					<td class="" v-if="l.isCalled == 1">✔</td>
 					<td class="" v-else>✘</td>
-          <td class="" v-if="isDialing == 1">✔</td>
+          <td class="" v-if="l.isDialing == 1">✔</td>
           <td class="" v-else>✘</td>
 					<td class="">{{ l.areaCode }}</td>
 					<td class="">{{ l.expireTime | totalDate }}</td>
@@ -60,11 +60,11 @@
 				</thead>
 				<tbody>
 				<tr v-for='l in list.bindNumber'>
-					<td><input type="checkbox" name='l.num' v-model="l.checked" /> {{l.num}}</td>
+					<td><input type="checkbox" name='l.num' v-model="l.checked" /></td>
 					<td>{{l.num}}</td>
-					<td class="" v-if="isCalled == 1">✔</td>
+					<td class="" v-if="l.isCalled == 1">✔</td>
 					<td class="" v-else>✘</td>
-          <td class="" v-if="isDialing == 1">✔</td>
+          <td class="" v-if="l.isDialing == 1">✔</td>
           <td class="" v-else>✘</td>
 					<td class="">{{ l.areaCode }}</td>
 				</tr>
@@ -130,10 +130,14 @@
           }
 				}
 
-        $.post('tenant/tenants/'+ this.$route.params.uid + '/res_rent/num/bind/app/' + this.$route.params.appid, { nums }).then(() => {
-					this.showMsg({content: '绑定成功', type: 'success'})
+        $.post('tenant/tenants/'+ this.$route.params.uid + '/res_rent/num/bind/app/' + this.$route.params.appid, { nums }).then((d) => {
+					if(d.success) {
+						this.showMsg({content: '绑定成功', type: 'success'})
+	          this.init()
+					} else {
+						this.showMsg({content: d.errorMsg, type: 'danger'})
+					}
           this.show.newNumber = false
-          this.init()
         })
       },
 			disabled(index, id) {
@@ -141,7 +145,8 @@
 					let temp = this.list.number[index]
 					temp.status = 0
 					this.list.number.splice(index, 1)
-					this.showMsg({content: '禁用成功', type: 'success'})
+					this.showMsg({content: '解除绑定成功', type: 'success'})
+					this.init()
 				})
 			},
 			confirmDisableAll(index, id){
@@ -157,7 +162,7 @@
 			disabledAll() {
 				$.delete('tenant/tenants/'+ this.$route.params.uid + '/res_rent/app/' + this.$route.params.appid + '/unbind_all').then(()=>{
 					this.list.number = []
-					this.showMsg({content: '禁用成功', type: 'success'})
+					this.showMsg({content: '解除绑定成功', type: 'success'})
           this.init()
 				})
 			},
