@@ -1,5 +1,5 @@
 <template>
-  <a @click="download(message.id)" data-status="1" v-if="message.cost > 0 && message.recording == 1">录音下载</a>
+  <a @click="download(message.id)" data-status="1" v-if="message.cost > 0 && message.recording !== 0">录音下载</a>
 </template>
 <script>
 	import {showMsg} from 'actions'
