@@ -25,12 +25,12 @@ config.plugins = (config.plugins || []).concat([
     name: "./build/lib.dll.js",
     manifest: require('./build/lib-manifest.json')
   }),
-  // new webpack.optimize.UglifyJsPlugin({
-  //   compress: {
-  //     warnings: false,
-  //     drop_console: true,
-  //   },
-  // }),
+  new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false,
+      drop_console: true,
+    },
+  }),
   new webpack.LoaderOptionsPlugin({
     minimize: true
   }),

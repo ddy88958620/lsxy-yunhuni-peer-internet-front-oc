@@ -32,6 +32,12 @@ module.exports = {
     new webpack.DllPlugin({
       path: path.join(__dirname, 'build', '[name]-manifest.json'),
       name: '[name]_library'
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+        drop_console: true,
+      },
     })
   ]
 };
