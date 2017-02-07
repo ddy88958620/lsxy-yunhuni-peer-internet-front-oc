@@ -96,9 +96,7 @@
 </template>
 <script>
 	export default {
-		vuex: {
-			actions: {showMsg: require('actions').showMsg}
-		},
+		vuex: { actions: {showMsg: require('actions').showMsg} },
 		data(){
 			return {
 				show: {
@@ -147,7 +145,12 @@
 				let params = this.post.line
 				if (type === 'more') {
 					params.pageNo = this.origin.line.currentPageNo + 1
-				}
+				} else {
+          // 如果是不是加载下一页，则重置所有参数
+          params.pageNo = 1
+          this.selected.line = []
+          this.lineIndex = []
+        }
 				$.get('/config/tenant/line/plist/' + this.$route.params.uid, params).then((res) => {
 					this.origin.line = res.data
 					this.list.line = type === 'more' ? this.list.line.concat(res.data.result) : res.data.result

@@ -55,6 +55,7 @@
 						</ul>
 						<ul class="list-none-style" v-if="authradio == 'private'">
 							<li><span class="small-font-color">认证状态 : </span>
+								<!-- 认证有四种状态 1 成功 -1 失败 0 去审核 null 未认证 -->
 								<span class="padding-right-10"
 									v-if="authinfo.realnamePrivate.status == 1 && authinfo.realnamePrivate !== null">
 									认证成功
