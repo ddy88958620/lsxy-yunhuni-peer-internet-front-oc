@@ -99,6 +99,10 @@
 					number: {
 						type: '',
 						pageNo: 1,
+					},
+					bindNumber: {
+						type: '',
+						pageNo: 1,
 					}
 				},
 				list: {
