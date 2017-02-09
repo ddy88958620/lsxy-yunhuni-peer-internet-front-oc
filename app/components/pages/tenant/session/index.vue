@@ -1,6 +1,5 @@
 <template>
 	<div>
-
 		<div class=" bg-section-margin inline-block remove-margin-bottom">
 			<div class="admin-toolbar small-font-color cursor">
 				<span type="button" class="toolbar first-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/session/call'" >语音通知</span>
@@ -14,14 +13,7 @@
 		</div>
 		<router-view></router-view>
 	</div>
-
 </template>
-<script>
-
-	export default{
-	}
-</script>
-
 <style lang="sass">
 	.headbox{
 		padding: 10px;

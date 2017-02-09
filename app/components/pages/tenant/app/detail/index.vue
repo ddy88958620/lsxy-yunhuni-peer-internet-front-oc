@@ -15,7 +15,14 @@
 						<li>应用描述: {{app.description || '这家伙很懒，什么都没留下'}}</li>
 						<li>应用类型: {{app.type}}</li>
 						<li>所属行业: {{app.industry}}</li>
-						<li>选择服务: <span v-if="app.serviceType ==='voice'">语音</span><span	 v-if="app.serviceType==='call_center'">呼叫中心</span> </li>
+						<li>选择服务:
+							{{app.isVoiceDirectly ? '语音通知' : '' }}
+							{{app.isVoiceCallback ? '语音回拨' : '' }}
+							{{app.isSessionService ? '语音会议' : '' }}
+							{{app.isVoiceValidate ? '语音验证码' : '' }}
+							{{app.isIvrService ? '自定义IVR' : '' }}
+							{{app.isCallCenter ? '呼叫中心' : '' }}
+						 </li>
 						<li>应用状态: <span class="text-danger"  v-if="app.status == 1">已上线</span><span class="text-danger"  v-else>未上线</span></li>
 					</ul>
 				</div>
@@ -44,7 +51,8 @@
 				<span type="button" class="toolbar first-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/play'" >放音媒体库</span>
 				<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/record'" >录音文件</span>
 				<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/extension'" >分机</span>
-				<span type="button" class="toolbar last-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/bind?appstatus=' + app.status" >绑定号码</span>
+				<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/bind?appstatus=' + app.status" >绑定号码</span>
+				<span type="button" class="toolbar last-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/agent'" >座席列表</span>
 			</div>
 		</div>
 		<router-view></router-view>

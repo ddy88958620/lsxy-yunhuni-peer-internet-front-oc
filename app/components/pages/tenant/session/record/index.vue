@@ -1,12 +1,17 @@
 <template>
   <div>
     <div class="headbox flex flex-1 align-items-c bg-section-margin whilebg">
-      <serach :servicetype="serach.type" :app.sync="serach.app" :time.sync="serach.time"></serach>
-      <span class='datetime-picker-label padding-right-20 padding-left-20'>产品类型 : </span>
-      <select class="form-control flex select-box padding-right-20" v-model="serach.producttype">
-        <option value="">全部</option>
-        <option value="{{val}}" v-for="val in proData.types">{{ val }}</option>
-      </select>
+      <div class="">
+        <span class='datetime-picker-label padding-right-20 padding-left-20'>产品类型 : </span>
+        <select class="form-control flex select-box padding-right-20" v-model="search.producttype">
+          <option value="">全部</option>
+          <option value="{{val[0]}}" v-for="val in proData.types">{{ val[1] }}</option>
+        </select>
+        <span class='datetime-picker-label padding-right-20 padding-left-20'>时间 : </span>
+        <datetime-picker :uuid="'sessionDate'"  :type="'day'" :value.sync="search.time"></datetime-picker>
+        &nbsp;至&nbsp;
+        <datetime-picker :uuid="'sessionDate2'"  :type="'day'" :value.sync="search.time2"></datetime-picker>
+      </div>
     </div>
 
     <!-- 表格 -->
@@ -41,28 +46,26 @@
         </tbody>
       </table>
       <div class="more">
-        <a v-show='proData.session.currentPageNo==proData.session.totalPageCount || proData.session.totalPageCount==0'>加载完毕</a>
-        <a @click="query('more')" class="text-none"
-           v-show='proData.session.totalPageCount!=proData.session.currentPageNo && proData.session.totalPageCount!=0'>加载更多<i
-          class="icon iconfont icon-oc-dropdown"></i></a>
+        <a v-show='proData.session.currentPageNo > proData.session.totalPageCount'>加载完毕</a>
+        <a @click="query('more')" class="text-none" v-else>加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
       </div>
     </div>
   </div>
 </template>
 <script>
-	import {showMsg} from 'actions'
+  import DATE from 'utils/date'
   export default {
-		vuex:{ actions: { showMsg } },
     components: {
-      'serach': require('../serach.vue'),
-      'download': require('../download.vue')
+      'download': require('../download.vue'),
+      'datetime-picker': require('ui/datetimepicker.vue')
     },
     data () {
       return {
-        serach: {
+        appList: [],
+        search: {
           time: '',
-          app: '',
-          type: '',
+          time2: '',
+          appId: '',
           producttype:''
         },
         proData: {
@@ -79,20 +82,16 @@
       }
     },
     watch: {
-      'serach.app': function () {
-        this.query()
+      search: {
+        handler: function () {
+          this.query()
+        },
+        deep: true
       },
-      'serach.time': function () {
-        this.query()
-      },
-      'serach.producttype': function () {
-        this.query()
-      }
     },
     methods: {
       query (more) {
-        let params = { type: this.serach.producttype, appId: this.serach.app, time: this.serach.time }
-        if (!this.serach.app) return
+        let params = this.search
         if (more) {
           let pageNo = this.session.currentPageNo + 1
           params.pageNo = pageNo
@@ -112,6 +111,9 @@
           }
         })
       }
+    },
+    ready () {
+      this.search.time2 = this.search.time =  DATE.todayString('day')
     }
   }
 

@@ -1,13 +1,14 @@
 <template>
   <div>
     <div class="headbox flex flex-1 align-items-c bg-section-margin whilebg">
-      <serach :servicetype="serach.type" :app.sync="serach.app" :time.sync="serach.time"></serach>
+      <search v-ref:search :servicetype="'call_center'" :type="'call_center'"></search>
     </div>
 
     <!--表格-->
     <div class="admin-table">
       <div class="table-total flex flex-1 justify-content-e float-r">
-        消费金额: <span class="brown">{{ sessionTotal ? sessionTotal.toFixed(3) : '0.000'}}</span>元 共<span class="text-danger">{{session.totalCount ? session.totalCount : 0 }}</span>条
+        消费金额: <span class="brown">{{ $refs.search.origin.total ? $refs.search.origin.total.toFixed(3) : '0.000'}}</span>元 共
+        <span class="text-danger">{{$refs.search.origin.page.totalCount ? $refs.search.origin.page.totalCount : 0 }}</span>条
       </div>
       <table class="table">
         <thead>
@@ -22,7 +23,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for='message in sessionList'>
+        <tr v-for='message in $refs.search.list'>
           <td class="message-time text-align-c">{{message.callStartDt | totalDate}}</td>
           <td>
             <span  v-if="message.ivrType==1">呼入</span>
@@ -39,62 +40,17 @@
         </tbody>
       </table>
       <div class="more">
-        <a v-if='session.currentPageNo >= session.totalPageCount'>加载完毕</a>
-        <a @click="query('more')" class="text-none" v-else>加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+        <a v-if='$refs.search.origin.page.currentPageNo >= $refs.search.origin.page.totalPageCount'>加载完毕</a>
+        <a @click="$refs.search.query('more')" class="text-none" v-else>加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
       </div>
     </div>
   </div>
 </template>
 <script>
-	import {showMsg} from 'actions'
   export default {
-		vuex:{ actions: { showMsg } },
     components: {
-      'serach': require('../serach.vue'),
+      'search': require('../search.vue'),
       'download': require('../download.vue')
-    },
-    data(){
-      return {
-        serach: {
-          time: '',
-          app: '',
-          type: 'call_center'
-        },
-        session:{},
-        sessionTotal : 0,
-        sessionList: [],
-      }
-    },
-    watch:{
-      'serach.app': function () {
-        this.query()
-      },
-      'serach.time': function () {
-        this.query()
-      }
-    },
-    methods: {
-      query(more){
-        //voice_call.语音呼叫,duo_call.双向回拨,conf_call.会议服务,ivr_call.IVR定制服务,captcha_call.语音验证码,voice_recording.录音服务
-        let params = {type:'call_center',appId:this.serach.app,time:this.serach.time}
-        if (!this.serach.app) return
-        if(more){
-          let pageNo = this.session.currentPageNo + 1
-          params.pageNo = pageNo
-        }
-        let self = this
-        $.get('/tenant/'+this.$route.params.uid+'/session', params).then((res) => {
-          if (res.data.page.totalCount>=0){
-            self.sessionTotal =res.data.total
-            self.session = res.data.page
-            if(more)
-              self.sessionList = self.sessionList.concat(res.data.page.result)
-            else
-              self.sessionList = res.data.page.result
-            }
-        })
-      },
     }
   }
-
 </script>
