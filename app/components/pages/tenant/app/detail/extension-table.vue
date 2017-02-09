@@ -83,7 +83,7 @@
 				if(init){
 					self.plays = [];
 				}
-				$.get('/tenant/tenants/'+this.$route.params.uid+'/app/extension/'+this.$route.params.appid, params).then((res)=> {
+				$.get('/tenant/tenants/'+this.$route.params.uid+'/app/' + this.$route.params.appid + '/callcenter/extension/', params).then((res)=> {
 					self.page.loading = false
 					if (res.data && res.data.result) {
 						if (init) {

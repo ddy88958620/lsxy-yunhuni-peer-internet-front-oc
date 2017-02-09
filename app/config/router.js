@@ -71,6 +71,10 @@ export default function(router){
                           component: (resolve) => require(['../components/pages/tenant/app/detail/bind-number.vue'],
                           resolve),
                         },
+                        '/agent': {
+                          component: (resolve) => require(['../components/pages/tenant/app/detail/agent.vue'],
+                          resolve),
+                        },
                       }
                     }
                   }

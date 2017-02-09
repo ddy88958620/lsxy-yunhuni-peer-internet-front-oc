@@ -82,7 +82,7 @@
                 <th>事件</th>
               </tr>
               </thead>
-              <tbody v-if="num.awaitDemand + num.awaitInvoice + num.awaitService>0">
+              <tbody v-if="num && (num.awaitDemand + num.awaitInvoice + num.awaitService)>0">
                 <tr v-for="n in nums">
                   <td>{{ $index+1}}</td>
                   <td>
@@ -138,13 +138,12 @@ export default {
     }
   },
   computed: {
-    nums(){
-      let num = this.num.son
-      let temp = {}
-      let {keys, values, entries} = Object;
-      for (let [key, value] of entries(num)) {
-        if(value>0){
-          temp[key] = value
+    nums() {
+      let temp = []
+      if (this.num) {
+        let nums = this.sum.son
+        for (let [key, value] of Object.entries(nums)) {
+          temp.push(value)
         }
       }
       return temp
@@ -152,7 +151,6 @@ export default {
   },
   watch: {
   	'$route.params.uid': function(uid) {
-  		console.log(uid)
       this.getTenantInfo(uid)
     }
   },
