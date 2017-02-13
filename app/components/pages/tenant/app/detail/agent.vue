@@ -19,7 +19,7 @@
 					<td>
 					  <span v-for="s in l.skills">{{s.name}}&nbsp;</span>
 					</td>
-					<td>{{l.channel}}</td>
+					<td>{{l.extension}}</td>
           <td>{{l.state}}</td>
 				</tr>
 				</tbody>
