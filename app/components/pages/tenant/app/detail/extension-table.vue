@@ -16,17 +16,19 @@
 				<th class="text-align-c">名称</th>
 				<th>账号</th>
 				<th>密码</th>
-				<th class="text-align-c">状态</th>
+				<th>状态</th>
 				<th>鉴权方式</th>
 			</tr>
 			</thead>
 			<tbody>
 			<tr v-for='play in plays'>
-				<td class="message-time text-align-c">{{ play.name }}</td>
+				<td class="message-time text-align-c">{{ play.id }}</td>
 				<td>{{ play.user}}</td>
 				<td>{{ play.password}}</td>
-				<td class="text-align-c">{{ play.type}}</td>
-				<td>{{ play.secret}}</td>
+				<td>{{ play.enable ? '可用': '不可用'}}</td>
+        <td v-if="play.type == '1'">SIP 终端</td>
+        <td v-if="play.type == '2'">SIP 网关</td>
+        <td v-if="play.type == '3'">普通电话</td>
 			</tr>
 			</tbody>
 		</table>
