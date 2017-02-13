@@ -47,84 +47,74 @@
 			<div class="panel panel-base">
 					<div class="panel-heading panel-base-heading">认证信息</div>
 					<div class="panel-body admin-bg flex-1 authbox">
-						<ul class="list-none-style remove-padding-bottom">
-							<li class="padding-bottom-10">
-								 <input type="radio" name="auth-radio" value="private" v-model="authradio" @click="autoheight" />个人认证
-								 <input type="radio" value="corp" name="auth-radio" v-model="authradio" @click="autoheight" class="authradio" /> 企业认证
-							</li>
-						</ul>
-						<ul class="list-none-style" v-if="authradio == 'private'">
-							<li><span class="small-font-color">认证状态 : </span>
-								<!-- 认证有四种状态 1 成功 -1 失败 0 去审核 null 未认证 -->
-								<span class="padding-right-10"
-									v-if="authinfo.realnamePrivate.status == 1 && authinfo.realnamePrivate !== null">
-									认证成功
-								</span>
-								<span class="text-danger padding-right-10" v-if="authinfo.realnamePrivate.status == -1 ">认证失败</span>
-								<a class="btn btn-primary" v-if="authinfo.realnamePrivate.status === 0" v-link="'/admin/demand/member/list/await'">去审核</a>
-								<span v-if="authinfo.realnamePrivate === null">未认证</span>
-							</li>
-							<div v-if="authinfo.realnamePrivate.status == 1 && authinfo.realnamePrivate !== null">
-								<li><span class="small-font-color">真实姓名 : </span>{{authinfo.realnamePrivate.name}}</li>
-								<li><span class="small-font-color">证件类型 : </span>
-									<span class="padding-right-10" v-if="authinfo.realnamePrivate.idType ==='0'">身份证</span>
-									<span class="padding-right-10" v-if="authinfo.realnamePrivate.idType ==='1'">护照</span>
-								</li>
-								<li><span class="small-font-color">证件号码 : </span>{{authinfo.realnamePrivate.idNumber}}</li>
-								<li class="flex  flex-direction-row">
-									<span class="small-font-color padding-right-10">证件照 : </span>
-									<img :src="authinfo.realnamePrivate.idPhoto | img"  class="padding-right-10" height="200" data-action="zoom">
-								</li>
-							</div>
-						</ul>
 
-						<ul class="list-none-style" id="company"  v-if="this.authradio =='corp'" >
-							<li>
-								<span class="small-font-color">认证状态 : </span>
-								<span class="padding-right-10" v-if="authinfo.realnameCorp.status == 2 && authinfo.realnameCorp !== null">认证成功</span>
-								<span class="text-danger padding-right-10" v-if="authinfo.realnameCorp.status === -2">认证失败</span>
-								<a class="btn btn-primary" v-if="authinfo.realnameCorp.status == 0" v-link="'/admin/demand/member/list/await'">去审核</a>
-								<span v-if="authinfo.realnameCorp === null">未认证</span>
-							</li>
-							<div v-if="authinfo.realnameCorp.status == 2 && authinfo.realnameCorp !== null">
-								<li><span class="small-font-color">公司名称 : </span>{{authinfo.realnameCorp.name}}</li>
-								<li><span class="small-font-color">公司地址 : </span>{{authinfo.realnameCorp.addr}}</li>
-								<li><span class="small-font-color">所属行业 : </span>{{authinfo.realnameCorp.industry}}</li>
-								<li><span class="small-font-color">申请人 : </span>{{authinfo.realnameCorp.proposer}}</li>
-								<li><span class="small-font-color">证件类型 : </span>
-									<span v-if="authinfo.realnameCorp.authType == '0'">三证合一（一照一码）</span>
-									<span v-if="authinfo.realnameCorp.authType == '1'">三证合一</span>
-									<span v-if="authinfo.realnameCorp.authType == '2'">三证分离</span>
-								</li>
-								<div v-if="authinfo.realnameCorp.authType == '0'">
-									<li><span class="small-font-color">统一社会信用代码 : </span>{{authinfo.realnameCorp.type01Prop02}}</li>
-									<li class="flex  flex-direction-row ">
-										<span class="small-font-color padding-right-10">营业执照: </span>
-										<img :src="authinfo.realnameCorp.type01Prop01 | img" alt="" class="padding-right-10"   height="200" data-action="zoom"  >
-									</li>
-								</div>
-								<div v-if="authinfo.realnameCorp.authType == '1'">
-									<li><span class="small-font-color">注册号 : </span>{{authinfo.realnameCorp.type02Prop01}}</li>
-									<li><span class="small-font-color">税务登记号 : </span>{{authinfo.realnameCorp.type02Prop02}}</li>
-									<li class="flex  flex-direction-row ">
-										<span class="small-font-color padding-right-10">营业执照 : </span>
-										<img :src="authinfo.realnameCorp.type02Prop03 | img" alt="" class="padding-right-10"  height="200" data-action="zoom" >
-									</li>
-								</div>
-								<div v-if="authinfo.realnameCorp.authType == '2'">
-									<li><span class="small-font-color">税务登记号 : </span>{{authinfo.realnameCorp.type03Prop01}}</li>
-									<li class="flex  flex-direction-row ">
-										<span class="small-font-color padding-right-10">税务登记证: </span>
-										<img :src="authinfo.realnameCorp.type03Prop02 | img" alt="" class="padding-right-10"  height="200" data-action="zoom" >
-									</li>
-									<li><span class="small-font-color">营业执照号 : </span>{{authinfo.realnameCorp.type03Prop03}}</li>
-									<li class="flex  flex-direction-row ">
-										<span class="small-font-color padding-right-10">营业执照 : </span>
-										<img :src="authinfo.realnameCorp.type03Prop04 | img"  class="padding-right-10"  height="200"  data-action="zoom" >
-									</li>
-								</div>
-							</div>
-						</ul>
+            <ul class="list-none-style remove-padding-bottom">
+              <li><strong>个人认证</strong></li>
+              <li>
+                  <span class="small-font-color">认证状态 : </span>
+                	<span class="padding-right-10" v-if="authinfo.realnamePrivate.status == 1 && authinfo.realnamePrivate !== null">认证成功</span>
+                  <span v-else>未认证</span>
+              </li>
+              <div v-if="authinfo.realnamePrivate.status == 1 && authinfo.realnamePrivate !== null">
+                <li><span class="small-font-color">真实姓名 : </span>{{authinfo.realnamePrivate.name}}</li>
+                <li><span class="small-font-color">证件类型 : </span>
+                  <span class="padding-right-10" v-if="authinfo.realnamePrivate.idType ==='0'">身份证</span>
+                  <span class="padding-right-10" v-if="authinfo.realnamePrivate.idType ==='1'">护照</span>
+                </li>
+                <li><span class="small-font-color">证件号码 : </span>{{authinfo.realnamePrivate.idNumber}}</li>
+                <li class="flex  flex-direction-row">
+                  <span class="small-font-color padding-right-15">证件照 : </span>
+                  <img :src="authinfo.realnamePrivate.idPhoto | img"  class="padding-right-10" height="200" data-action="zoom">
+                </li>
+              </div>
+            </ul>
+
+            <ul class="list-none-style remove-padding-bottom">
+              <li><strong>企业认证</strong></li>
+              <li>
+                <span class="small-font-color">认证状态 : </span>
+                <span class="padding-right-15" v-if="authinfo.realnameCorp.status == 2 && authinfo.realnameCorp !== null">认证成功</span>
+                <span v-else>未认证</span>
+              </li>
+              <div v-if="authinfo.realnameCorp.status == 2 && authinfo.realnameCorp !== null">
+                <li><span class="small-font-color">公司名称 : </span>{{authinfo.realnameCorp.name}}</li>
+                <li><span class="small-font-color">公司地址 : </span>{{authinfo.realnameCorp.addr}}</li>
+                <li><span class="small-font-color">所属行业 : </span>{{authinfo.realnameCorp.industry}}</li>
+                <li><span class="small-font-color">申请人 : </span>{{authinfo.realnameCorp.proposer}}</li>
+                <li><span class="small-font-color">证件类型 : </span>
+                  <span v-if="authinfo.realnameCorp.authType == '0'">三证合一（一照一码）</span>
+                  <span v-if="authinfo.realnameCorp.authType == '1'">三证合一</span>
+                  <span v-if="authinfo.realnameCorp.authType == '2'">三证分离</span>
+                </li>
+                <div v-if="authinfo.realnameCorp.authType == '0'">
+                  <li><span class="small-font-color">统一社会信用代码 : </span>{{authinfo.realnameCorp.type01Prop02}}</li>
+                  <li class="flex  flex-direction-row ">
+                    <span class="small-font-color padding-right-15">营业执照: </span>
+                    <img :src="authinfo.realnameCorp.type01Prop01 | img" alt="" class="padding-right-10"   height="200" data-action="zoom"  >
+                  </li>
+                </div>
+                <div v-if="authinfo.realnameCorp.authType == '1'">
+                  <li><span class="small-font-color">注册号 : </span>{{authinfo.realnameCorp.type02Prop01}}</li>
+                  <li><span class="small-font-color">税务登记号 : </span>{{authinfo.realnameCorp.type02Prop02}}</li>
+                  <li class="flex  flex-direction-row ">
+                    <span class="small-font-color padding-right-15">营业执照 : </span>
+                    <img :src="authinfo.realnameCorp.type02Prop03 | img" alt="" class="padding-right-10"  height="200" data-action="zoom" >
+                  </li>
+                </div>
+                <div v-if="authinfo.realnameCorp.authType == '2'">
+                  <li><span class="small-font-color">税务登记号 : </span>{{authinfo.realnameCorp.type03Prop01}}</li>
+                  <li class="flex  flex-direction-row ">
+                    <span class="small-font-color padding-right-15">税务登记证: </span>
+                    <img :src="authinfo.realnameCorp.type03Prop02 | img" alt="" class="padding-right-10"  height="200" data-action="zoom" >
+                  </li>
+                  <li><span class="small-font-color">营业执照号 : </span>{{authinfo.realnameCorp.type03Prop03}}</li>
+                  <li class="flex  flex-direction-row ">
+                    <span class="small-font-color padding-right-15">营业执照 : </span>
+                    <img :src="authinfo.realnameCorp.type03Prop04 | img"  class="padding-right-10"  height="200"  data-action="zoom" >
+                  </li>
+                </div>
+              </div>
+            </ul>
 					</div>
 				</div>
 		</div>
@@ -209,4 +199,5 @@
 	.authradio{
 		margin-left: 10px;
 	}
+
 </style>
