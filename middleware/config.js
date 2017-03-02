@@ -19,7 +19,7 @@ else if (env === 'test') {
     COOKIENAME: 'YUNHUNISESSIONID',
     JAVAAPI: 'http://rest.oc.internal.yunhuni.cn',
     REDISHOST: '10.163.3.165',
-    REDISPORT: 6379
+    REDISPORT: 16379
   }
 }
 else if (env === 'develop') {
