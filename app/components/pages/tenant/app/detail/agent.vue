@@ -7,7 +7,7 @@
 			<table class="table">
 				<thead>
 				<tr>
-					<th class='text-center'>座席名称(ID)</th>
+					<th class='text-center'>坐席名称(ID)</th>
 					<th>技能组</th>
 					<th>绑定分机</th>
 					<th>状态</th>
