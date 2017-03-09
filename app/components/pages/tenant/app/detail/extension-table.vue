@@ -13,8 +13,8 @@
 		<table class="table ">
 			<thead>
 			<tr>
-				<th class="text-align-c">名称</th>
-				<th>账号</th>
+				<th class="text-align-c">ID</th>
+				<th>分机号</th>
 				<th>密码</th>
 				<th>状态</th>
 				<th>鉴权方式</th>
