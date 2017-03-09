@@ -7,6 +7,6 @@ npm run dll
 npm run build
 
 # 构建之后, 会生成 build
-rm -rf static
-mv build static
+sudo rm -rf static
+sudo mv build static
 
