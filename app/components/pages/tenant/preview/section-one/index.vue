@@ -85,7 +85,7 @@
   </section>
 
 
-  <modal :show.sync="showModal" title='消费记录' :width='table'  :action="closeModal"  >
+  <modal :show.sync="showModal" title='消费记录' :action="closeModal"  >
     <div slot="body" class="flex flex-1 flex-direction-column">
       <div class="flex flex-direction-column admin-table-header">
         <div class="flex align-items-c">

@@ -83,7 +83,7 @@
 					<div class="input-width radio-group">
 						<input type="radio" class="" placeholder="" v-model="postData.mobileAreaRule" value="0">全部加0 <br/>
 						<input type="radio" class="" placeholder="" v-model="postData.mobileAreaRule" value="1">全部不加0 <br/>
-						<input type="radio" class="" placeholder="" v-model="postData.mobileAreaRule" value="2">被叫归属地与线路归属地不一致，加0
+						<input type="radio" class="" placeholder="" v-model="postData.mobileAreaRule" value="2">被叫归属地与号码归属地不一致，加0
 					</div>
 					<span class="text-danger">*</span>
 				</div>
