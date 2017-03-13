@@ -13,7 +13,14 @@ const state = {
    num:{
       awaitDemand:0,
       awaitInvoice:0,
-      awaitService:0
+      awaitService:0,
+      son:{
+        awaitTenant:0,
+        awaitTenant:0,
+        awaitService:0,
+        awaitInvoiceApplySend:0,
+        awaitInvoiceApply:0
+      }
    }
 }
 

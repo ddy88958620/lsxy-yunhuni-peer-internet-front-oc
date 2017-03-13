@@ -9,7 +9,11 @@
 				<img src="../../../../../assets/images/app.png" width="100" height="100">
 				<p class="bigger-font-size name">{{ app.name}}</p>
 				<p>应用标识: {{ app.id}}</p>
-				<p>选择服务: <span v-if="app.serviceType ==='voice'">语音</span><span	 v-if="app.serviceType==='call_center'">呼叫中心</span></p>
+				<p>选择服务:
+          <span v-if="app.serviceType ==='voice'">语音</span>
+          <span	v-if="app.serviceType==='call_center'">呼叫中心</span>
+          <span	v-if="app.serviceType==='msg'">消息</span>
+        </p>
 				<p class="text-center word-wrap">{{ app.description ? app.description :'这家伙很懒，什么都没留下'}}</p>
 			</div>
 		</header>
