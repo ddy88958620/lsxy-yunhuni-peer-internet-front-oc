@@ -132,6 +132,11 @@
 			并发容量为线路同一时间内能够容纳的最多的在线通话数量（范围：1~1000）
 			<span class="text-danger">*</span>
 		</div>
+    <div class="form-group">
+      <label class="control-label">语音编码 : </label>
+      <input type="text" class="form-control" placeholder="" v-model="postData.codecs">
+      <span class="text-danger">*</span>
+    </div>
 	</form>
 </template>
 <script>
