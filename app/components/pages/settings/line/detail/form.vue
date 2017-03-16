@@ -135,7 +135,6 @@
     <div class="form-group">
       <label class="control-label">语音编码 : </label>
       <input type="text" class="form-control" placeholder="" v-model="postData.codecs">
-      <span class="text-danger">*</span>
     </div>
 	</form>
 </template>
