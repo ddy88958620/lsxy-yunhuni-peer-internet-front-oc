@@ -57,7 +57,28 @@
 						<a @click="edit('isIvrService')">{{ switchs.isIvrService ? '关闭' : '开启'}}</a>
 					</td>
 				</tr>
-			
+        <tr>
+          <td class="text-align-l padding-ten" >呼叫中心</td>
+          <td class="{{ switchs.isCallCenter === 0 ? 'text-danger' : 'darkgreen'}} text-align-c" >{{ switchs.isCallCenter ===0 ? '关闭' : '开启'}}</td>
+          <td class="text-align-c">
+            <a @click="edit('isCallCenter')">{{ switchs.isCallCenter ? '关闭' : '开启'}}</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-align-l padding-ten" >闪印</td>
+          <td class="{{ switchs.isUssd === 0 ? 'text-danger' : 'darkgreen'}} text-align-c" >{{ switchs.isUssd ===0 ? '关闭' : '开启'}}</td>
+          <td class="text-align-c">
+            <a @click="edit('isUssd')">{{ switchs.isUssd ? '关闭' : '开启'}}</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-align-l padding-ten" >短信</td>
+          <td class="{{ switchs.isSms === 0 ? 'text-danger' : 'darkgreen'}} text-align-c" >{{ switchs.isSms ===0 ? '关闭' : '开启'}}</td>
+          <td class="text-align-c">
+            <a @click="edit('isSms')">{{ switchs.isSms ? '关闭' : '开启'}}</a>
+          </td>
+        </tr>
+
 				</tbody>
 			</table>
 		</div>
@@ -74,7 +95,10 @@
 					isSessionService:0,
 					isRecording:0,
 					isVoiceValidate:0,
-					isIvrService:0
+					isIvrService:0,
+          isCallCenter:0,
+          isSms:0,
+          isUssd:0
 				},
 			}
 		},
@@ -98,7 +122,16 @@
 					break;
 				case 'isIvrService':
 					this.switchs.isIvrService = this.switchs.isIvrService===0  ? 1:0
-					break;					
+					break;
+        case 'isCallCenter':
+          this.switchs.isCallCenter = this.switchs.isCallCenter===0  ? 1:0
+          break;
+        case 'isSms':
+          this.switchs.isSms = this.switchs.isSms===0  ? 1:0
+          break;
+        case 'isUssd':
+          this.switchs.isUssd = this.switchs.isUssd===0  ? 1:0
+          break;
 			}
 			let uid = this.$route.params.uid
 			let params = {}
@@ -108,20 +141,22 @@
 					//修改成功提示
 				}
 			})
-
-				
 			}
 		},
 		ready(){
 			let self = this
 			let uid = this.$route.params.uid
 			$.get('/tenant/tenants/'+uid+'/switchs').then((res) => {
+			  console.log(res);
 				self.switchs.isIvrService = res.data.isIvrService
 				self.switchs.isRecording = res.data.isRecording
 				self.switchs.isSessionService = res.data.isSessionService
 				self.switchs.isVoiceDirectly = res.data.isVoiceDirectly
 				self.switchs.isVoiceValidate = res.data.isVoiceValidate
 				self.switchs.isVoiceCallback = res.data.isVoiceCallback
+        self.switchs.isCallCenter = res.data.isCallCenter
+        self.switchs.isSms = res.data.isSms
+        self.switchs.isUssd = res.data.isUssd
 			})
 
 		}
