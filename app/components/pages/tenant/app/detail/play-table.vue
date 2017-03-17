@@ -43,7 +43,7 @@
 <script>
 	export default{
 		components:{
-			'search': require('../../../../ui/search-input.vue')
+			'search': require('ui/search-input.vue')
 		},
 		data(){
 			return{

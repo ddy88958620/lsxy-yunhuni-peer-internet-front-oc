@@ -19,7 +19,9 @@ const state = {
         awaitTenant:0,
         awaitService:0,
         awaitInvoiceApplySend:0,
-        awaitInvoiceApply:0
+        awaitInvoiceApply:0,
+        msgTemplat:0,
+        awaitApp:0
       }
    }
 }

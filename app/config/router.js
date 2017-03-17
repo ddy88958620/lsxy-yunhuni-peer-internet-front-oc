@@ -75,6 +75,10 @@ export default function(router){
                           component: (resolve) => require(['../components/pages/tenant/app/detail/agent.vue'],
                           resolve),
                         },
+                        '/subs/:serviceType': {
+                          component: (resolve) => require(['../components/pages/tenant/app/detail/subs.vue'],
+                            resolve),
+                        },
                       }
                     }
                   }
@@ -372,6 +376,14 @@ export default function(router){
                 }
               }
             },
+            '/app': {
+              component: (resolve) => require(['../components/pages/demand/app/index.vue'], resolve),
+              subRoutes: {
+                '/list/:type':{
+                  component: (resolve) => require(['../components/pages/demand/app/list.vue'], resolve),
+                }
+              }
+            },
             '/member': {
               component: (resolve) => require(['../components/pages/demand/member/index.vue'], resolve),
               subRoutes: {
@@ -394,6 +406,17 @@ export default function(router){
                 }
               }
             },
+            '/template': {
+              component: (resolve) => require(['../components/pages/demand/template/index.vue'], resolve),
+              subRoutes: {
+                '/list/:type':{
+                  component: (resolve) => require(['../components/pages/demand/template/list.vue'], resolve),
+                },
+                '/detail/:templateid':{
+                  component: (resolve) => require(['../components/pages/demand/template/detail.vue'], resolve),
+                }
+              }
+            }
           }
         }
       }
@@ -418,6 +441,8 @@ export default function(router){
     '/admin/demand': '/admin/demand/member',
     '/admin/demand/member': '/admin/demand/member/list/await',
     '/admin/demand/voice': '/admin/demand/voice/list/await',
+    '/admin/demand/app': '/admin/demand/app/list/await',
+    '/admin/demand/template': '/admin/demand/template/list/await',
     '/admin/inactive': '/admin/inactive/wait',
     '/admin/settings': '/admin/settings/line/list/all',
     '/admin/settings/line': '/admin/settings/line/list/all',

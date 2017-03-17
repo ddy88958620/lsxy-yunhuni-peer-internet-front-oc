@@ -11,12 +11,6 @@
 			<datetime-picker :uuid="'demandVoiceStartDate'"  :type.sync="startdate.type" :value.sync="startdate.value"></datetime-picker>
 			<span class='datetime-picker-label'>至</span>
 			<datetime-picker :uuid="'demandVoiceEndDate'"  :type.sync="enddate.type" :value.sync="enddate.value"></datetime-picker>
-			<!-- <span class='datetime-picker-label'>认证类型: </span>
-			<select class="form-control">
-				<option>全部</option>
-				<option>已上线</option>
-				<option>未上线</option>
-			</select> -->
 			<button class="btn btn-primary admin-button-margin" @click="query">查询</button>
 		</div>
 	</div>
@@ -139,7 +133,7 @@
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
 				params.name = this.search
-				
+
 				params.pageNo = nextPage
 				this.getMoreVoiceList(params)
 			},

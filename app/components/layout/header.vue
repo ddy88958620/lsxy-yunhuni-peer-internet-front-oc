@@ -132,7 +132,9 @@
           awaitInvoiceApplySend:{ title:'发票寄送',link:'/admin/finance/delivery/list/unsend',content:'等待审核'},
           awaitTenant:{ title:'会员认证',link:'/admin/demand/member/list/await',content:'等待审核'},
           awaitPlayVoiceFile:{ title:'放音文件',link:'/admin/demand/voice/list/await',content:'等待审核'},
-          awaitService:{ title:'客户反馈',link:'/admin/service/list',content:''}
+          awaitService:{ title:'客户反馈',link:'/admin/service/list',content:''},
+          awaitApp:{ title:'应用上线',link:'/admin/demand/app/list/await',content:'等待审核'},
+          msgTemplat:{ title:'模板申请',link:'/admin/demand/template/list/await',content:'等待审核'},
         },
         currentTenant: undefined
       }

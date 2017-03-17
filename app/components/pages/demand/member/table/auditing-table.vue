@@ -10,10 +10,10 @@
 			</div>
 			<span class='datetime-picker-label '>申请时间:</span>
 			<datetime-picker :uuid="'demandMemberStartDate'"  :type.sync="startdate.type" :value.sync="startdate.value"></datetime-picker>
-			
+
 			<span class='datetime-picker-label'>至</span>
 			<datetime-picker :uuid="'demandMemberEndDate'"  :type.sync="enddate.type" :value.sync="enddate.value"></datetime-picker>
-		
+
 			<span class='datetime-picker-label'>认证类型: </span>
 			<select class="form-control" v-model='type' >
 				<option value="-1">全部</option>
@@ -107,10 +107,10 @@
 				}
 				params.startTime = this.startdate.value
 				params.endTime = this.enddate.value
-				
+
 				params.pageNo = nextPage
 				this.getMoreDemandList(params)
-			
+
 			},
 			query(){
 				let params = {}
@@ -127,7 +127,7 @@
 			}
 		},
 		route: {
-				
+
 		},
 		ready(){
 			let params = {}
