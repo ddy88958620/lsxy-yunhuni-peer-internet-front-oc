@@ -41,10 +41,27 @@
       <div class="panel-body">
         <ul class="list-none-style">
           <li><span class=" padding-right-10">审核时间 : </span>{{ template.lastTime | totalDate}}</li>
+          <li><span class=" padding-right-10" v-if="template.status === 1">供应商 : </span>{{ template.msgSupplierName }}</li>
+
           <li><span class=" padding-right-10" v-if="template.status === -1">不通过原因 : </span>{{ template.reason}}</li>
         </ul>
       </div>
     </div>
+
+    <!-- 通过 -->
+    <modal :show.sync="passModal.show" title="审核22" :action="success">
+      <div slot="body" class="flex">
+        <div class="flex flex-1 modal-nopass" >
+          <span class="flex float-l title line-height-32">供应商</span>
+          <span class="flex admin-button-margin flaot-l" >
+            <select class="form-control textarea" v-model="passModal.data.id">
+              <option value="">请选择供应商</option>
+              <option v-for="supplier in passModal.supplier_list" value="{{ supplier.id }}">{{ supplier.supplierName }}</option>
+            </select>
+          </span>
+        </div>
+      </div>
+    </modal>
 
     <modal :show.sync="showModal" title="模板审核" :action="fail">
       <div slot="body" class="flex">
@@ -72,6 +89,14 @@
     data(){
       return {
         showModal: false,
+        passModal: {
+          show : false,
+          supplier_list:[],
+          data:{
+            id: '',
+            tempId: '',
+          }
+        },
         template: {},
         postData:{
           reason : ''
@@ -83,21 +108,47 @@
     },
     methods: {
       pass(){
-        $.put('/demand/member/msgtemplate/pass/' + this.$route.params.templateid).then((res) => {
+        $.get('/demand/member/msgtemplate/supplier/list').then((res) => {
           if (res.success === 'false') {
             this.showMsg({content: res.errorMsg, type: 'danger'})
             return
           }
-          this.showMsg({content: '审核通过', type: 'success'})
+          this.passModal = {
+            show:true,
+            supplier_list: res.data,
+            data: {
+              id : '',
+              tempId: this.template.tempId
+            }
+          }
         })
+
       },
       nopass(){
         this.showModal = true
         this.postData.reason = ''
       },
+      success(){
+        if(this.passModal.data.id == ''){
+          this.showMsg({content: '请选择供应商', type: 'danger'})
+          return
+        }
+        let params = { ids : [ this.passModal.data]}
+        $.put('/demand/member/msgtemplate/pass/' + this.$route.params.templateid ,params).then((res) => {
+          if (res.success) {
+            this.passModal.show = false
+            this.showMsg({content: '审核通过', type: 'success'})
+            setTimeout(function () {
+              this.$route.router.go({path: '/admin/demand/template/list/await'})
+            }, 3000)
+            return
+          }
+          this.showMsg({content: res.errorMsg, type: 'danger'})
+
+        })
+      },
       fail(){
         let params = this.postData
-        console.log(params);
         $.put('/demand/member/msgtemplate/nopass/' + this.$route.params.templateid ,params).then((res) => {
           if (res.success === 'false') {
             this.showMsg({content: res.errorMsg, type: 'danger'})

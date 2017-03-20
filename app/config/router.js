@@ -135,6 +135,9 @@ export default function(router){
                     },
                     'line': {
                       component: (resolve) => require(['../components/pages/tenant/statistic/line/index.vue'], resolve),
+                    },
+                    'subs': {
+                      component: (resolve) => require(['../components/pages/tenant/statistic/subs/index.vue'], resolve),
                     }
                   },
                 },

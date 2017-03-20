@@ -81,7 +81,7 @@
 			query(type){
 				let params = this.postData.subs
 				if(type === 'more') {
-					params.pageNo = this.originData.number.currentPageNo + 1
+					params.pageNo = this.origin.subs_res.currentPageNo + 1
 				}
 				$.get('tenant/tenants/'+ this.$route.params.uid + '/apps/' + this.$route.params.appid + '/subs', params).then((res) => {
 				  if(res.success){

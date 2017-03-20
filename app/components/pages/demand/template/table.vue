@@ -47,11 +47,11 @@
           </td>
           <td>{{ template.subaccountId }}</td>
           <td v-if="page.type=='unauth'">{{ template.reason }}</td>
-          <td v-if="page.type=='auditing'"></td>
+          <td v-if="page.type=='auditing'">{{ template.msgSupplierName}}</td>
           <td class="message-time" v-if="page.type=='auditing' || page.type=='unauth'">{{ template.lastTime | totalDate }}</td>
           <td class="text-align-c">
             <a v-link="'/admin/demand/template/detail/'+template.id">详情</a>
-            <a v-if="page.type == 'await'" @click="pass(template.id,$index)" >通过</a>
+            <a v-if="page.type == 'await'" @click="pass(template.id,template.tempId,$index)" >通过</a>
             <a v-if="page.type == 'await'" @click="nopass(template.id,$index)">不通过</a>
           </td>
         </tr>
@@ -65,11 +65,26 @@
       </div>
 		</div>
 
-    <!-- modal -->
-    <modal :show.sync="passModal.show" title="审核" :action="fail">
+    <!-- 通过 -->
+    <modal :show.sync="passModal.show" title="审核" :action="success">
       <div slot="body" class="flex">
         <div class="flex flex-1 modal-nopass" >
-          <span class="flex float-l title">不通过原因</span>
+          <span class="flex float-l title line-height-32">供应商</span>
+          <span class="flex admin-button-margin flaot-l" >
+            <select class="form-control textarea" v-model="passModal.data.id">
+              <option value="">请选择供应商</option>
+              <option v-for="supplier in passModal.supplier_list" value="{{ supplier.id }}">{{ supplier.supplierName }}</option>
+            </select>
+          </span>
+        </div>
+      </div>
+    </modal>
+
+    <!-- 不通过 -->
+    <modal :show.sync="nopassModal.show" title="审核" :action="fail">
+      <div slot="body" class="flex">
+        <div class="flex flex-1 modal-nopass" >
+          <span class="flex float-l title ">不通过原因</span>
           <span class="flex admin-button-margin flaot-l" ><textarea class="form-control textarea" v-model="passModal.data.reason"  maxlength="50" ></textarea></span>
           <span class="flex float-r numbertips">50字以内</span>
         </div>
@@ -101,6 +116,10 @@
           type:''
         },
         passModal:{
+          show: false,
+          supplier_list: []
+        },
+        nopassModal:{
           show: false
         },
         template_list: [],
@@ -117,22 +136,30 @@
         $.get('demand/member/msgtemplate/'+this.$route.params.type+'/list', params).then((res) => {
           if(res.success){
             this.template_res = res.data
-            this.template_list = type === 'more' ? this.app_list.concat(res.data.result) : res.data.result
+            this.template_list = type === 'more' ? this.template_list.concat(res.data.result) : res.data.result
           }
         })
       },
-      pass(id,index){
-        $.put('/demand/member/msgtemplate/pass/' + id).then((res) => {
+      pass(id,tempId,index){
+        $.get('/demand/member/msgtemplate/supplier/list').then((res) => {
           if (res.success === 'false') {
             this.showMsg({content: res.errorMsg, type: 'danger'})
             return
           }
-          this.app_list.splice(index,1)
-          this.showMsg({content: '审核通过', type: 'success'})
+          this.passModal = {
+            show:true,
+            supplier_list: res.data,
+            data: {
+              id : '',
+              index : index,
+              tempId: id,
+              template_id : id,
+            }
+          }
         })
       },
       nopass(id,index){
-        this.passModal = {
+        this.nopassModal = {
           show:true,
           data: {
             id : id,
@@ -141,16 +168,31 @@
           }
         }
       },
-      fail(){
-        let params = { reason: this.passModal.data.reason };
-        console.log(params);
-        $.put('/demand/member/msgtemplate/nopass/' + this.passModal.data.id ,params).then((res) => {
+      success(){
+        if(this.passModal.data.id == ''){
+          this.showMsg({content: '请选择供应商', type: 'danger'})
+          return
+        }
+        let params = { ids : [ this.passModal.data]}
+        $.put('/demand/member/msgtemplate/pass/' + this.passModal.data.template_id ,params).then((res) => {
           if (res.success === 'false') {
             this.showMsg({content: res.errorMsg, type: 'danger'})
             return
           }
-          this.app_list.splice(this.passModal.data.index,1)
-          this.passModal = { show:false ,data :{ reason :''}}
+          this.template_list.splice(this.passModal.data.index,1)
+          this.passModal.show = false
+          this.showMsg({content: '审核通过', type: 'success'})
+        })
+      },
+      fail(){
+        let params = { reason: this.nopassModal.data.reason };
+        $.put('/demand/member/msgtemplate/nopass/' + this.nopassModal.data.id ,params).then((res) => {
+          if (res.success === 'false') {
+            this.showMsg({content: res.errorMsg, type: 'danger'})
+            return
+          }
+          this.template_list.splice(this.passModal.data.index,1)
+          this.nopassModal = { show:false ,data :{ reason :''}}
           this.showMsg({content: '审核不通过成功', type: 'success'})
         })
       }
