@@ -22,6 +22,8 @@
 							{{app.isVoiceValidate ? '语音验证码' : '' }}
 							{{app.isIvrService ? '自定义IVR' : '' }}
 							{{app.isCallCenter ? '呼叫中心' : '' }}
+              {{app.isSms ? '短信' : '' }}
+              {{app.isUssd ? '闪印' : '' }}
 						 </li>
 						<li>应用状态: <span class="text-danger"  v-if="app.status == 1">已上线</span><span class="text-danger"  v-else>未上线</span></li>
 					</ul>
@@ -36,7 +38,7 @@
 						<li>应用标识: {{ app.id }}</li>
 						<li>服务器白名单: {{app.whiteList ? app.whiteList : '无'}}</li>
 						<li>回调URL: {{app.url}}</li>
-						<li>绑定测试号: {{ app.testPhone.length == 0 ? '无' : app.testPhone }}</li>
+						<li>绑定测试号: <span v-show="app.testPhone.length > 0">{{ app.testPhone }}</span><span v-else>无</span></li>
 						<li v-if="app.serviceType=='call_center'">分机接入信息: {{app.sipRegistrar}}</li>
 						<!--<li v-if="app.serviceType=='call_center'">租用号码:{{app.testPhone}} </li>-->
 					</ul>
@@ -52,7 +54,9 @@
 				<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/record'" >录音文件</span>
 				<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/bind?appstatus=' + app.status" >号码绑定</span>
 				<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/extension'"  v-if="app.serviceType==='call_center'">分机列表</span>
-				<span type="button" class="toolbar last-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/agent'" v-if="app.serviceType==='call_center'" >坐席列表</span>
+				<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/agent'" v-if="app.serviceType==='call_center'" >坐席列表</span>
+        <span type="button" class="toolbar last-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/subs/'+app.serviceType" >子账号</span>
+
 			</div>
 		</div>
 		<router-view></router-view>
@@ -83,7 +87,6 @@
     border-right: 1px solid transparent !important;
   }
 
-
 </style>
 <script>
 	export default {
@@ -92,7 +95,9 @@
 		},
 		data(){
 			return {
-				app:{}
+				app:{
+          testPhone:[]
+        }
 			}
 		},
 		ready(){
