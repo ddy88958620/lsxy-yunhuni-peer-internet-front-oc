@@ -74,11 +74,12 @@
 	</div>
 </template>
 <script>
-  import {showMsg} from 'actions'
+  import {showMsg,getMessageNum} from 'actions'
 	export default {
     vuex: {
       actions: {
-        showMsg
+        showMsg,
+        getMessageNum
       }
     },
 		components: {
@@ -122,6 +123,7 @@
             this.showMsg({content: res.errorMsg, type: 'danger'})
             return
           }
+          this.getMessageNum();
           this.app_list.splice(index,1)
           this.showMsg({content: '审核通过', type: 'success'})
         })
@@ -144,6 +146,7 @@
             this.showMsg({content: res.errorMsg, type: 'danger'})
             return
           }
+          this.getMessageNum();
           this.app_list.splice(this.passModal.data.index,1)
           this.passModal = { show:false ,data :{ reason :''}}
           this.showMsg({content: '审核不通过成功', type: 'success'})
