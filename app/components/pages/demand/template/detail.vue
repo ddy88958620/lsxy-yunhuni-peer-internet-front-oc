@@ -43,11 +43,10 @@
           <li><span class=" padding-right-10">审核时间 : </span>{{ template.lastTime | totalDate}}</li>
           <li v-if="template.status === 1">
             <span class=" padding-right-10" >供应商 : </span>
-
-          </li>  <span v-for="tem in template.list">
+            <span v-for="tem in template.list">
               {{ tem.msgSupplierName }}
             </span>
-
+          </li>
           <li v-if="template.status === -1"><span class=" padding-right-10" >不通过原因 : </span>{{ template.reason}}</li>
         </ul>
       </div>
