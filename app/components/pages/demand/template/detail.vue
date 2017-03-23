@@ -157,6 +157,7 @@
       },
       fail(){
         let params = this.postData
+        let self = this
         $.put('/demand/member/msgtemplate/nopass/' + this.$route.params.templateid ,params).then((res) => {
           if (res.success === 'false') {
             this.showMsg({content: res.errorMsg, type: 'danger'})
