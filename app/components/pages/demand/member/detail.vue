@@ -37,36 +37,36 @@
           <li class="flex  flex-direction-row " v-if="messages.realname.authType==0">
             <span class=" padding-right-10">营业执照: </span>
             <img :src="messages.realname.type01Prop01 | img" class="padding-right-10" height="200" data-action="zoom">
-            
+
             <!-- <div>
 							{{ messages.realname.type01Prop01 | createImg | html }}
 						</div> -->
-            
+
             <!-- <img :src="messages.realname.type01Prop01 | img" class="padding-right-10" width="400" height="100%"  data-action="zoom" > -->
           </li>
-          
+
           <li v-if="messages.realname.authType==1">注册号:{{messages.realname.type02Prop01}}</li>
           <li v-if="messages.realname.authType==1">税务登记号:{{messages.realname.type02Prop02}}</li>
           <li class="flex  flex-direction-row " v-if="messages.realname.authType==1">
             <span class=" padding-right-10">营业执照: </span>
             <img :src="messages.realname.type02Prop03 | img" class="padding-right-10" height="200" data-action="zoom">
           </li>
-          
+
           <li v-if="messages.realname.authType==2">税务登记号:{{messages.realname.type03Prop01}}</li>
-          
+
           <!-- <li v-if="messages.realname.authType==2">税务登记证:{{messages.realname.type03Prop02}} </li> -->
           <li class="flex  flex-direction-row " v-if="messages.realname.authType==2">
             <span class=" padding-right-10">税务登记证: </span>
             <img :src="messages.realname.type03Prop02 | img" class="padding-right-10" height="200" data-action="zoom">
           </li>
-          
-          
+
+
           <li v-if="messages.realname.authType==2">营业执照号:{{messages.realname.type03Prop03}}</li>
           <li class="flex  flex-direction-row " v-if="messages.realname.authType==2">
             <span class=" padding-right-10">营业执照: </span>
             <img :src="messages.realname.type03Prop04 | img" class="padding-right-10" height="200" data-action="zoom">
           </li>
-        
+
         </ul>
         <ul class="list-none-style" v-if="messages.realname.status==0">
           <li>
@@ -75,11 +75,11 @@
             <button class="btn btn-default" v-link="'/admin/demand/member/list/await'">取消</button>
           </li>
         </ul>
-      
-      
+
+
       </div>
     </div>
-    
+
     <div class="admin-panel" v-if="messages.realname.status!=0">
       <div class="panel-heading">认证信息</div>
       <div class="panel-body">
@@ -99,7 +99,7 @@
         </ul>
       </div>
     </div>
-    
+
     <div class="panel panel-default flex-1" v-if="messages.list.length!==0 && messages.list[0].status!=0 ">
       <div class="panel-heading">历史认证信息</div>
       <div class="panel-body  admin-bg flex-1">
@@ -151,7 +151,7 @@
                   </div>
                 </div>
                 <div class="flex flex-1 table-detail" v-show="show[$index]">
-                  
+
                   <ul class="list-none-style" v-if="message.status==-1 || message.status==1">
                     <!--个人认证-->
                     <li>真实姓名: {{ message.name}}</li>
@@ -178,17 +178,17 @@
                       <span class=" padding-right-10">营业执照: </span>
                       <img :src="message.type01Prop01 | img" class="padding-right-10" height="200" data-action="zoom">
                     </li>
-                    
+
                     <li v-if="message.authType==1">注册号:{{message.type02Prop01}}</li>
                     <li v-if="message.authType==1">税务登记号:{{message.type02Prop02}}</li>
                     <li class="flex  flex-direction-row " v-if="message.authType==1">
                       <span class=" padding-right-10">营业执照: </span>
                       <img :src="message.type02Prop03 | img" class="padding-right-10" height="200" data-action="zoom">
                     </li>
-                    
-                    
+
+
                     <li v-if="message.authType==2">税务登记号:{{message.type03Prop01}}</li>
-                    
+
                     <li class="flex  flex-direction-row " v-if="message.authType==2">
                       <span class=" padding-right-10">税务登记证: </span>
                       <img :src="message.type03Prop02 | img" class="padding-right-10" height="200" data-action="zoom">
@@ -208,10 +208,10 @@
       </div>
     </div>
   </div>
-  
+
   </div>
-  
-  
+
+
   <modal :show.sync="showModal" title="审核" :action="fail">
     <div slot="body" class="flex">
       <div class="flex flex-1 modal-nopass" v-reset-form="postData">
@@ -226,7 +226,7 @@
 </template>
 
 <script>
-  import {showMsg, getMessageNum} from '../../../../vuex/actions'
+  import {showMsg,getMessageNum} from 'actions'
   export default {
     vuex: {
       getters: {},
@@ -257,7 +257,7 @@
           params.status = 2
         }
         params.type = type
-        
+
         $.put('/demand/member/edit/' + id, params).then((res) => {
           if (res.success === 'false') {
             self.showMsg({content: res.errorMsg, type: 'danger'})
@@ -268,7 +268,7 @@
           setTimeout(function () {
             self.$route.router.go({path: '/admin/demand/member/list/await'})
           }, 3000)
-          
+
         })
       },
       fail(){
@@ -308,8 +308,8 @@
           this.messages.list = res.data.list
           this.messages.realname = res.data.realname
         })
-        
-        
+
+
       }
     },
     data(){
@@ -328,14 +328,14 @@
       }
     },
     ready(){
-      
+
       let arr = []
       Array.from(this.messages, function (i, index) {
         arr.push(false)
       })
       this.show = arr
       this.detail()
-      
+
       /* $.get('/tenant/tenants/'+uid+'/session/statistic', self.chartApiDate).then((res)=>{
        self.chartApiValue = res.data
        })*/
@@ -348,37 +348,37 @@
   ul {
     padding: 15px 15px 0 15px;
     font-size: 1.4rem;
-  
+
   li {
     padding-bottom: 25px;
   }
-    
+
   }
-  
+
   .title-time {
     width: 15%;
   }
-  
+
   .title-type {
     width: 15%;
   }
-  
+
   .table-detail {
     border-top: 1px solid #e9edf4;
   }
-  
+
   .title-reason {
     width: 68%;
   }
-  
+
   .detail {
     padding: 0 0 0 5px;
-  
+
   li {
     padding-top: 10px;
     padding-bottom: 0px;
   }
-    
+
   }
 
 </style>
