@@ -56,6 +56,9 @@ export default function(router){
                     '/detail/:appid': {
                       component: (resolve) => require(['../components/pages/tenant/app/detail/index.vue'], resolve),
                       subRoutes: {
+                        '/template': {
+                          component: (resolve) => require(['../components/pages/tenant/app/detail/template-table.vue'], resolve),
+                        },
                         '/extension': {
                           component: (resolve) => require(['../components/pages/tenant/app/detail/extension-table.vue'], resolve),
                         },
