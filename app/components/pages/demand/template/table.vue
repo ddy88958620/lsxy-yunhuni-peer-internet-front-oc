@@ -45,7 +45,7 @@
               <span v-if="template.type=='msg_ussd'">闪印</span>
               <span v-if="template.type=='msg_sms'">短信</span>
           </td>
-          <td>{{ template.subaccountId }}</td>
+          <td>{{ template.certId }}</td>
           <td v-if="page.type=='unauth'">{{ template.reason }}</td>
           <td v-if="page.type=='auditing'">
               <span v-for="tem in template.list">
