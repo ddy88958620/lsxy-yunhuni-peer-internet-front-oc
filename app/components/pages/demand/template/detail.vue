@@ -15,7 +15,7 @@
           <li><span class=" padding-right-10">会员名称 : </span>{{ template.tenantName}}</li>
           <li><span class=" padding-right-10">应用名称 : </span> <a v-link="'/admin/tenant/detail/'+template.tenantId+'/app/detail/'+template.appId" >{{ template.appName}}</a></li>
           <li><span class=" padding-right-10">模板编号 : </span>{{ template.tempId}}</li>
-          <li><span class=" padding-right-10">模板类型 : </span>{{ template.type==='sms' ? '短信' : '闪印'}}</li>
+          <li><span class=" padding-right-10">模板类型 : </span>{{ template.type==='msg_sms' ? '短信' : '闪印'}}</li>
           <li><span class=" padding-right-10">模板名称 : </span>{{ template.name}}</li>
           <li><span class=" padding-right-10">模板内容 : </span>{{ template.content}}</li>
           <li><span class=" padding-right-10">使用场景 : </span>{{ template.remark}}</li>
@@ -41,15 +41,19 @@
       <div class="panel-body">
         <ul class="list-none-style">
           <li><span class=" padding-right-10">审核时间 : </span>{{ template.lastTime | totalDate}}</li>
-          <li><span class=" padding-right-10" v-if="template.status === 1">供应商 : </span>{{ template.msgSupplierName }}</li>
-
-          <li><span class=" padding-right-10" v-if="template.status === -1">不通过原因 : </span>{{ template.reason}}</li>
+          <li v-if="template.status === 1">
+            <span class=" padding-right-10" >供应商 : </span>
+            <span v-for="tem in template.list">
+              {{ tem.msgSupplierName }}
+            </span>
+          </li>
+          <li v-if="template.status === -1"><span class=" padding-right-10" >不通过原因 : </span>{{ template.reason}}</li>
         </ul>
       </div>
     </div>
 
     <!-- 通过 -->
-    <modal :show.sync="passModal.show" title="审核22" :action="success">
+    <modal :show.sync="passModal.show" title="审核" :action="success">
       <div slot="body" class="flex">
         <div class="flex flex-1 modal-nopass" >
           <span class="flex float-l title line-height-32">供应商</span>
@@ -78,12 +82,13 @@
 </template>
 
 <script>
-  import {showMsg} from 'actions'
+  import {showMsg,getMessageNum} from 'actions'
   export default {
     vuex: {
       getters: {},
       actions: {
-        showMsg
+        showMsg,
+        getMessageNum
       }
     },
     data(){
@@ -134,12 +139,14 @@
           return
         }
         let params = { ids : [ this.passModal.data]}
+        let self = this
         $.put('/demand/member/msgtemplate/pass/' + this.$route.params.templateid ,params).then((res) => {
           if (res.success) {
             this.passModal.show = false
+            this.getMessageNum()
             this.showMsg({content: '审核通过', type: 'success'})
             setTimeout(function () {
-              this.$route.router.go({path: '/admin/demand/template/list/await'})
+              self.$route.router.go({path: '/admin/demand/template/list/await'})
             }, 3000)
             return
           }
@@ -149,13 +156,19 @@
       },
       fail(){
         let params = this.postData
+        let self = this
         $.put('/demand/member/msgtemplate/nopass/' + this.$route.params.templateid ,params).then((res) => {
           if (res.success === 'false') {
             this.showMsg({content: res.errorMsg, type: 'danger'})
             return
           }
+          this.getMessageNum()
           this.showModal = false
           this.showMsg({content: '审核不通过成功', type: 'success'})
+          setTimeout(function () {
+            self.$route.router.go({path: '/admin/demand/template/list/await'})
+          }, 3000)
+          return
         })
       },
       detail() {

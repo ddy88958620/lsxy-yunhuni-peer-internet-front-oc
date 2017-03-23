@@ -16,7 +16,7 @@
 	<div>
 		<div class="admin-table">
 			<div class="table-total flex flex-1 justify-content-e float-r">
-				共<span class="text-danger">{{ template_res.totalCount }}</span>条
+				共<span class="text-danger">{{ template_res.totalCount ? template_res.totalCount : 0 }}</span>条
 			</div>
 			<table class="table">
 				<thead>
@@ -42,12 +42,16 @@
           <td>{{template.tempId}}</td>
           <td>{{template.name}}</td>
           <td>
-              <span v-if="template.type=='ussd'">闪印</span>
-              <span v-if="template.type=='sms'">短信</span>
+              <span v-if="template.type=='msg_ussd'">闪印</span>
+              <span v-if="template.type=='msg_sms'">短信</span>
           </td>
-          <td>{{ template.subaccountId }}</td>
+          <td>{{ template.certId }}</td>
           <td v-if="page.type=='unauth'">{{ template.reason }}</td>
-          <td v-if="page.type=='auditing'">{{ template.msgSupplierName}}</td>
+          <td v-if="page.type=='auditing'">
+              <span v-for="tem in template.list">
+              {{ tem.msgSupplierName }}
+            </span>
+          </td>
           <td class="message-time" v-if="page.type=='auditing' || page.type=='unauth'">{{ template.lastTime | totalDate }}</td>
           <td class="text-align-c">
             <a v-link="'/admin/demand/template/detail/'+template.id">详情</a>
@@ -85,7 +89,7 @@
       <div slot="body" class="flex">
         <div class="flex flex-1 modal-nopass" >
           <span class="flex float-l title ">不通过原因</span>
-          <span class="flex admin-button-margin flaot-l" ><textarea class="form-control textarea" v-model="passModal.data.reason"  maxlength="50" ></textarea></span>
+          <span class="flex admin-button-margin flaot-l" ><textarea class="form-control textarea" v-model="nopassModal.data.reason"  maxlength="50" ></textarea></span>
           <span class="flex float-r numbertips">50字以内</span>
         </div>
       </div>
@@ -94,11 +98,12 @@
 	</div>
 </template>
 <script>
-  import {showMsg} from 'actions'
+  import {showMsg,getMessageNum} from 'actions'
 	export default {
     vuex: {
       actions: {
-        showMsg
+        showMsg,
+        getMessageNum
       }
     },
 		components: {
@@ -131,7 +136,7 @@
         this.page.type = this.$route.params.type
         let params = this.page
         if (type === 'more') {
-          this.page.pageNo =  this.app_res.currentPageNo + 1
+          this.page.pageNo =  this.template_res.currentPageNo + 1
         }
         $.get('demand/member/msgtemplate/'+this.$route.params.type+'/list', params).then((res) => {
           if(res.success){
@@ -146,6 +151,7 @@
             this.showMsg({content: res.errorMsg, type: 'danger'})
             return
           }
+          this.getMessageNum()
           this.passModal = {
             show:true,
             supplier_list: res.data,
@@ -179,6 +185,8 @@
             this.showMsg({content: res.errorMsg, type: 'danger'})
             return
           }
+          this.template_res.totalCount = this.template_res.totalCount -1
+          this.getMessageNum()
           this.template_list.splice(this.passModal.data.index,1)
           this.passModal.show = false
           this.showMsg({content: '审核通过', type: 'success'})
@@ -191,15 +199,26 @@
             this.showMsg({content: res.errorMsg, type: 'danger'})
             return
           }
-          this.template_list.splice(this.passModal.data.index,1)
-          this.nopassModal = { show:false ,data :{ reason :''}}
+          this.template_res.totalCount = this.template_res.totalCount -1
+          this.getMessageNum()
+          this.template_list.splice(this.nopassModal.data.index,1)
+          this.nopassModal.show = false
           this.showMsg({content: '审核不通过成功', type: 'success'})
         })
       }
 
       },
     watch:{
-      '$route.params.type':'query'
+      '$route.params.type': function () {
+        this.page = {
+          pageNo: 1,
+            name:'',
+            startTime:'',
+            endTime:'',
+            type:''
+        };
+        this.query()
+      }
     },
     ready(){
 		  this.query()
