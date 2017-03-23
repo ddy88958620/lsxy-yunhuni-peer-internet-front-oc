@@ -73,7 +73,7 @@
 	</div>
 
 
-	<modal :show.sync="abnormalModal" title="操作" :action="fail">
+	<modal :show.sync="abnormalModal" title="操作" :action="abnormal">
 		<div slot="body" class="flex">
 			<div class="flex flex-1 modal-nopass" >
 				<span class="flex float-l title">异常原因</span>
@@ -96,7 +96,7 @@
 			<div class="flex flex-direction-column admin-table-header">
 				<div class="flex align-items-c">
 					<span class='datetime-picker-label clear-padding-left'>提交时间:</span>
-					{{ detail.start | month }}   
+					{{ detail.start | month }}
 					<span class='datetime-picker-label'>至</span>
 					{{ detail.end | month}}
 				</div>
@@ -139,9 +139,9 @@
 		<div slot="body" class="flex flex-1 flex-direction-column">
 			<div class="flex flex-direction-column admin-table-header">
 				<div class="flex align-items-c">
-					{{ detail.start | month }}  
+					{{ detail.start | month }}
 					<span class='datetime-picker-label'>至</span>
-					{{ detail.end | month}} 
+					{{ detail.end | month}}
 				</div>
 			</div>
 			<div class="admin-table flex-1 flex flex-direction-column">
@@ -170,7 +170,7 @@
 					</table>
 				</div>
 				<div class="flex modal-table" >
-					
+
 					<table class="table remove-margin-bottom remove-border">
 						<tbody>
 
@@ -206,8 +206,8 @@
 				<div class="more">
 					<a v-show='invoice.list.totalPageCount==invoice.list.currentPageNo || invoice.list.totalPageCount==0'>加载完毕</a>
 					<a @click="query('more')" class="text-none" v-show='invoice.list.totalPageCount!=invoice.list.currentPageNo && invoice.list.totalPageCount!=0' >加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
-				</div>	
-				
+				</div>
+
 			</div>
 		</div>
 
@@ -243,9 +243,9 @@
 				this.showDetailModal = false
 			},
 			showDetail:function(index,time){
-				
+
 				//获取当日数据
-				let self = this 
+				let self = this
 				let id = self.$route.params.id
 				let params = {}
 
@@ -303,11 +303,11 @@
 					setTimeout(function() {
 				        self.$route.router.go({path:'/admin/finance/invoice/list/pending'})
 				    },3000)
-					
+
 				})
 			},
 			query(more){
-				let params = {} 
+				let params = {}
 				params.id = this.$route.params.id
 				if(more){
 					let pageNo = this.invoice.list.currentPageNo + 1
@@ -358,15 +358,15 @@
 					arr.push(false)
 			})
 			this.show = arr
-			
+
 			let params = {}
 			params.id = this.$route.params.id
 
 			//详情
 			this.getInvoiceDetail(params)
 			//消费记录
-			this.query()	
-	
+			this.query()
+
 		}
 	}
 </script>

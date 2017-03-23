@@ -15,7 +15,7 @@
           <li><span class=" padding-right-10">会员名称 : </span>{{ template.tenantName}}</li>
           <li><span class=" padding-right-10">应用名称 : </span> <a v-link="'/admin/tenant/detail/'+template.tenantId+'/app/detail/'+template.appId" >{{ template.appName}}</a></li>
           <li><span class=" padding-right-10">模板编号 : </span>{{ template.tempId}}</li>
-          <li><span class=" padding-right-10">模板类型 : </span>{{ template.type==='sms' ? '短信' : '闪印'}}</li>
+          <li><span class=" padding-right-10">模板类型 : </span>{{ template.type==='msg_sms' ? '短信' : '闪印'}}</li>
           <li><span class=" padding-right-10">模板名称 : </span>{{ template.name}}</li>
           <li><span class=" padding-right-10">模板内容 : </span>{{ template.content}}</li>
           <li><span class=" padding-right-10">使用场景 : </span>{{ template.remark}}</li>
@@ -78,12 +78,13 @@
 </template>
 
 <script>
-  import {showMsg} from 'actions'
+  import {showMsg,getMessageNum} from 'actions'
   export default {
     vuex: {
       getters: {},
       actions: {
-        showMsg
+        showMsg,
+        getMessageNum
       }
     },
     data(){
@@ -134,12 +135,14 @@
           return
         }
         let params = { ids : [ this.passModal.data]}
+        let self = this
         $.put('/demand/member/msgtemplate/pass/' + this.$route.params.templateid ,params).then((res) => {
           if (res.success) {
             this.passModal.show = false
+            this.getMessageNum()
             this.showMsg({content: '审核通过', type: 'success'})
             setTimeout(function () {
-              this.$route.router.go({path: '/admin/demand/template/list/await'})
+              self.$route.router.go({path: '/admin/demand/template/list/await'})
             }, 3000)
             return
           }
@@ -154,6 +157,7 @@
             this.showMsg({content: res.errorMsg, type: 'danger'})
             return
           }
+          this.getMessageNum()
           this.showModal = false
           this.showMsg({content: '审核不通过成功', type: 'success'})
         })
