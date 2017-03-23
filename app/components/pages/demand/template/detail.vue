@@ -43,10 +43,10 @@
           <li><span class=" padding-right-10">审核时间 : </span>{{ template.lastTime | totalDate}}</li>
           <li v-if="template.status === 1">
             <span class=" padding-right-10" >供应商 : </span>
-            <span v-for="tem in template.list">
+
+          </li>  <span v-for="tem in template.list">
               {{ tem.msgSupplierName }}
             </span>
-          </li>
 
           <li v-if="template.status === -1"><span class=" padding-right-10" >不通过原因 : </span>{{ template.reason}}</li>
         </ul>
@@ -54,7 +54,7 @@
     </div>
 
     <!-- 通过 -->
-    <modal :show.sync="passModal.show" title="审核22" :action="success">
+    <modal :show.sync="passModal.show" title="审核" :action="success">
       <div slot="body" class="flex">
         <div class="flex flex-1 modal-nopass" >
           <span class="flex float-l title line-height-32">供应商</span>
@@ -157,6 +157,7 @@
       },
       fail(){
         let params = this.postData
+        let self = this
         $.put('/demand/member/msgtemplate/nopass/' + this.$route.params.templateid ,params).then((res) => {
           if (res.success === 'false') {
             this.showMsg({content: res.errorMsg, type: 'danger'})
@@ -165,6 +166,10 @@
           this.getMessageNum()
           this.showModal = false
           this.showMsg({content: '审核不通过成功', type: 'success'})
+          setTimeout(function () {
+            self.$route.router.go({path: '/admin/demand/template/list/await'})
+          }, 3000)
+          return
         })
       },
       detail() {
