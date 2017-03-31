@@ -212,10 +212,10 @@
       '$route.params.type': function () {
         this.page = {
           pageNo: 1,
-            name:'',
-            startTime:'',
-            endTime:'',
-            type:''
+          name:'',
+          startTime:'',
+          endTime:'',
+          type:''
         };
         this.query()
       }

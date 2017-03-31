@@ -46,30 +46,34 @@
 
 	<modal :show.sync="show.newNumber" title="绑定号码" :action="bindNumber">
 		<div slot="body">
-		<div class="admin-table ">
+		<div class="admin-table position-layout"  >
 			<div class="table-total flex flex-1 justify-content-e float-r">
 				共<span class="text-danger">{{originData.bindNumber.totalCount ? originData.bindNumber.totalCount : 0}}</span>条
 			</div>
-			<table class="table">
+			<table class="table table-scroll" >
 				<thead>
 				<tr>
-					<th></th>
-					<th>号码</th>
-					<th>可呼入</th>
-					<th>可呼出</th>
-					<th>归属地</th>
+					<th width="5%"></th>
+					<th class="center">号码</th>
+					<th class="center" class="text-align-c">可呼入</th>
+					<th class="center">可呼出</th>
+					<th class="center">归属地</th>
 				</tr>
 				</thead>
 				<tbody>
-				<tr v-for='l in list.bindNumber'>
-					<td><input type="checkbox" name='l.num' v-model="l.checked" /></td>
-					<td>{{l.num}}</td>
-					<td class="" v-if="l.isCalled == 1">✔</td>
-					<td class="" v-else>✘</td>
-          <td class="" v-if="l.isDialing == 1">✔</td>
-          <td class="" v-else>✘</td>
-					<td class="">{{ l.areaCode }}</td>
-				</tr>
+        <tr v-for='l in list.bindNumber'>
+          <td><input type="checkbox" name='l.num' v-model="l.checked" /></td>
+          <td class="center">{{l.num}}</td>
+          <td class="center">
+            <span  v-if="l.isCalled == 1">✔</span>
+            <span v-else>✘</span>
+          </td>
+          <td class="center">
+            <span class="" v-if="l.isDialing == 1">✔</span>
+            <span class="" v-else>✘</span>
+          </td>
+          <td class="center">{{ l.areaCode }}</td>
+        </tr>
 				</tbody>
 			</table>
 			<div class="more">
@@ -203,4 +207,18 @@
 	}
 </script>
 <style lang="sass" scoped>
+  .table-scroll {
+    tbody{
+      height: 200px;
+      display: block;
+      overflow-y: scroll;
+    }
+    thead > tr{
+      display: block;
+    }
+  }
+  .center{
+    width: 160px;
+  }
+
 </style>
