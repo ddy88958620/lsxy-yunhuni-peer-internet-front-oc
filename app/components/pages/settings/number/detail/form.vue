@@ -1,5 +1,11 @@
 <template>
+
+
 	<form class="form-horizontal line-form" role="form">
+    <div class="form-group" v-if="postData.isTestTelnum">
+      <span class="darkgreen">该号码为平台的呼入公共测试号</span>
+    </div>
+
 		<div v-if="!$route.params.nid" class="form-group">
 			<label class="control-label">号码来源 : </label>
 			<input type="radio" class="" placeholder="" value="0" v-model="postData.type"> 租户自带
@@ -15,7 +21,7 @@
 		<!--</div>-->
     <div class="form-group" v-if="postData.isTestTelnum">
       <label class="control-label">所属租户： </label>
-      <span>平台呼入公用测试号</span>
+      <select class="form-control" readonly="" disabled></select>
     </div>
 
 		<div class="form-group" v-else>
@@ -25,7 +31,7 @@
 			<span v-else>{{ postData.tenant.tenantName }}</span>
 			<button v-if="postData.tenant" @click.prevent="$refs.number.show = true" class="btn btn-primary">号码回收</button>
 		</div>
-    
+
 		<div class="form-group">
 			<label class="control-label">归属线路 : </label>
 			<select v-if="!$route.params.nid" class="form-control" v-model='postData.lineId' >
