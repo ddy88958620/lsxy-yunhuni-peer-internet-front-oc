@@ -94,6 +94,9 @@
       </div>
     </modal>
 
+
+    <!--<page v-ref:page :async="false" :data="lists" :lens="lenArr" :page-len="pageLen" :param="param"></page>-->
+
 	</div>
 </template>
 <script>
@@ -108,7 +111,8 @@
 		components: {
 			'datetime-picker': require('ui/datetimepicker.vue'),
 			'search' : require('ui/search-input.vue'),
-      'modal' : require('ui/modal.vue')
+      'modal' : require('ui/modal.vue'),
+      'page' : require('ui/pager.vue'),
 		},
 		data(){
 			return {
