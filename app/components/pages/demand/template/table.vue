@@ -73,12 +73,11 @@
     <modal :show.sync="passModal.show" title="审核" :action="success">
       <div slot="body" class="flex">
         <div class="flex flex-1 modal-nopass" >
-          <span class="flex float-l title line-height-32">供应商</span>
+          <span class="flex float-l title">供应商：</span>
           <span class="flex admin-button-margin flaot-l" >
-            <select class="form-control textarea" v-model="passModal.data.id">
-              <option value="">请选择供应商</option>
-              <option v-for="supplier in passModal.supplier_list" value="{{ supplier.id }}">{{ supplier.supplierName }}</option>
-            </select>
+            <span v-for="supplier in passModal.supplier_list">
+              <input type="checkbox" value="{{ supplier.id }}" v-model="passModal.ids" />{{ supplier.supplierName }}
+            </span>
           </span>
         </div>
       </div>
@@ -155,6 +154,7 @@
           this.passModal = {
             show:true,
             supplier_list: res.data,
+            ids:[],
             data: {
               id : '',
               index : index,
@@ -175,11 +175,17 @@
         }
       },
       success(){
-        if(this.passModal.data.id == ''){
+
+        if(this.passModal.ids.length ==0){
           this.showMsg({content: '请选择供应商', type: 'danger'})
           return
         }
-        let params = { ids : [ this.passModal.data]}
+        let data = this.passModal.data
+        let params = { ids:[]}
+        this.passModal.ids.forEach(function (val) {
+          params.ids = params.ids.concat({tempId:data.tempId,id:val})
+        })
+
         $.put('/demand/member/msgtemplate/pass/' + this.passModal.data.template_id ,params).then((res) => {
           if (res.success === 'false') {
             this.showMsg({content: res.errorMsg, type: 'danger'})

@@ -52,20 +52,21 @@
       </div>
     </div>
 
+
     <!-- 通过 -->
     <modal :show.sync="passModal.show" title="审核" :action="success">
       <div slot="body" class="flex">
         <div class="flex flex-1 modal-nopass" >
-          <span class="flex float-l title line-height-32">供应商</span>
+          <span class="flex float-l title">供应商：</span>
           <span class="flex admin-button-margin flaot-l" >
-            <select class="form-control textarea" v-model="passModal.data.id">
-              <option value="">请选择供应商</option>
-              <option v-for="supplier in passModal.supplier_list" value="{{ supplier.id }}">{{ supplier.supplierName }}</option>
-            </select>
+            <span v-for="supplier in passModal.supplier_list">
+              <input type="checkbox" value="{{ supplier.id }}" v-model="passModal.ids" />{{ supplier.supplierName }}
+            </span>
           </span>
         </div>
       </div>
     </modal>
+
 
     <modal :show.sync="showModal" title="模板审核" :action="fail">
       <div slot="body" class="flex">
@@ -98,7 +99,6 @@
           show : false,
           supplier_list:[],
           data:{
-            id: '',
             tempId: '',
           }
         },
@@ -121,8 +121,8 @@
           this.passModal = {
             show:true,
             supplier_list: res.data,
+            ids:[],
             data: {
-              id : '',
               tempId: this.template.tempId
             }
           }
@@ -134,12 +134,17 @@
         this.postData.reason = ''
       },
       success(){
-        if(this.passModal.data.id == ''){
+        let self = this
+        if(this.passModal.ids.length ==0){
           this.showMsg({content: '请选择供应商', type: 'danger'})
           return
         }
-        let params = { ids : [ this.passModal.data]}
-        let self = this
+        let data = self.passModal.data
+        let params = { ids:[]}
+        this.passModal.ids.forEach(function (val) {
+          params.ids = params.ids.concat({tempId:data.tempId,id:val})
+        })
+
         $.put('/demand/member/msgtemplate/pass/' + this.$route.params.templateid ,params).then((res) => {
           if (res.success) {
             this.passModal.show = false
