@@ -1,6 +1,6 @@
 <template>
 	<div class="single-box inline-block while" v-for="app in appdata">
-		<header class="flex flex-1 flex-direction-column header-box normal-font-size"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+app.id+'/play'">
+		<header class="flex flex-1 flex-direction-column header-box normal-font-size"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+app.id+'/'+this.type[app.serviceType]">
 			<div class="flex text-align-r">
 				<span v-if="app.status == 1" class="inline-block down">已上线</span>
 				<span v-else class="inline-block down">未上线</span>
@@ -49,7 +49,16 @@
 			appdata :{
 				type:Array
 			}
-		}
+		},
+    data(){
+		  return{
+		    type:{
+		      voice:'play',
+          call_center:'extension',
+          msg:'template'
+        }
+      }
+    }
 	}
 </script>
 
