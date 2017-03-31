@@ -13,20 +13,29 @@
 			<!--<label class="control-label">所属租户 : </label>-->
 			<!--<input type="text" class="form-control" placeholder="" v-model="selected.tenant.tenantName">-->
 		<!--</div>-->
-		<div class="form-group">
+    <div class="form-group" v-if="postData.isTestTelnum">
+      <label class="control-label">所属租户： </label>
+      <span>平台呼入公用测试号</span>
+    </div>
+
+		<div class="form-group" v-else>
 			<label class="control-label">所属租户 : </label>
 			<!--<input type="text" class="form-control" placeholder="" v-model="selected.tenant.tenantName">-->
-			<v-select v-if="!postData.tenant" class="form-control" :value.sync="selected.tenant" :label.sync="'tenantName'"  :options="list.tenant"></v-select>
+			<v-select v-if="!postData.tenant && !postData.isTestTelnum" class="form-control" :value.sync="selected.tenant" :label.sync="'tenantName'"  :options="list.tenant" ></v-select>
 			<span v-else>{{ postData.tenant.tenantName }}</span>
 			<button v-if="postData.tenant" @click.prevent="$refs.number.show = true" class="btn btn-primary">号码回收</button>
 		</div>
+    
 		<div class="form-group">
 			<label class="control-label">归属线路 : </label>
 			<select v-if="!$route.params.nid" class="form-control" v-model='postData.lineId' >
 				<option value=''>请选择线路</option>
 				<option v-for="line in list.line" :value="line.id">{{ line.lineNumber }}</option>
 			</select>
-			<span v-else>{{ postData.line.lineNumber | fixNull }}</span>
+			<span v-else>
+        <span v-if="postData.line">{{ postData.line.lineNumber | fixNull }}</span>
+        <span v-else>无</span>
+      </span>
 		</div>
 		<!-- 新建线路对应 postData.lineId ,  号码详情对应 postData.line, 不存在 lineId  -->
 		<div class="form-group" v-if="postData.lineId !== ''">
