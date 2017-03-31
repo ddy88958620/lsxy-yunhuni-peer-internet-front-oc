@@ -17,6 +17,7 @@
 					<th>可呼出</th>
 					<th>归属地</th>
 					<th>有效期</th>
+					<th>关联子账号</th>
 					<th class="">操作</th>
 				</tr>
 				</thead>
@@ -31,6 +32,7 @@
           <td class="" v-else>✘</td>
 					<td class="">{{ l.areaCode }}</td>
 					<td class="">{{ l.expireTime | totalDate }}</td>
+					<td class="">{{ l.subaccountId }}</td>
 					<td class=""> <a @click='disabled($index, l.rentId)'>解除绑定</a></td>
 				</tr>
 				</tbody>

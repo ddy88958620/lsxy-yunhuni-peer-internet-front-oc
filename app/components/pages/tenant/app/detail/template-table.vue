@@ -30,8 +30,8 @@
           <td>{{ template.content }}</td>
           <td></td>
           <td>
-            <span v-if="template.state==1">审核通过</span>
-            <span v-if="template.state==-1">审核不通过</span>
+            <span v-if="template.state==1" class="darkgreen">审核通过</span>
+            <span v-if="template.state==-1" class="text-danger">审核不通过</span>
             <span v-if="template.state==0">待审核</span>
           </td>
           <td>

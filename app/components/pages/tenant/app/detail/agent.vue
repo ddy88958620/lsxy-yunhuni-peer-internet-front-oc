@@ -10,6 +10,7 @@
 					<th class='text-center'>坐席名称(ID)</th>
 					<th>技能组</th>
 					<th>绑定分机</th>
+          <th>关联子账号</th>
 					<th>状态</th>
 				</tr>
 				</thead>
@@ -20,6 +21,7 @@
 					  <span v-for="s in l.skills">{{s.name}}&nbsp;</span>
 					</td>
 					<td>{{l.extension}}</td>
+          <td class="">{{ l.subaccountId }}</td>
           <td>{{l.state}}</td>
 				</tr>
 				</tbody>

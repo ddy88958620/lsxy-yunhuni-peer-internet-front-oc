@@ -62,6 +62,9 @@ export default function(router){
                         '/extension': {
                           component: (resolve) => require(['../components/pages/tenant/app/detail/extension-table.vue'], resolve),
                         },
+                        '/condition': {
+                          component: (resolve) => require(['../components/pages/tenant/app/detail/condition-table.vue'], resolve),
+                        },
                         '/play': {
                           component: (resolve) => require(['../components/pages/tenant/app/detail/play-table.vue'], resolve),
                         },

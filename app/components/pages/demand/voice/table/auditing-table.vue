@@ -83,7 +83,7 @@
 
 </template>
 <script>
-	import { getVoiceList,getMoreVoiceList } from '../../../../../vuex/actions'
+	import { getVoiceList,getMoreVoiceList } from 'actions'
 	import domain from '../../../../../config/domain'
 	export default {
 		vuex: {
@@ -96,9 +96,9 @@
 			}
 		},
 		components: {
-			'datetime-picker': require('../../../../ui/datetimepicker.vue'),
-			'search' : require('../../../../ui/search-input.vue'),
-			'modal' : require('../../../../ui/modal.vue'),
+			'datetime-picker': require('ui/datetimepicker.vue'),
+			'search' : require('ui/search-input.vue'),
+			'modal' : require('ui/modal.vue'),
 		},
 		data(){
 			return {
