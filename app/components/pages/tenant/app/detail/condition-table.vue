@@ -1,10 +1,14 @@
 <template>
 
-<!--	<div class="flex search-box bg-section-margin remove-margin-bottom">
-		<div class="select-box">
-			<search  placeholder='搜索文件名' :value.sync='searchName' :action="search"></search>
-		</div>
-	</div>-->
+  <div class="flex search-box bg-section-margin remove-margin-bottom">
+    <div class="select-box inline-block">
+      <search  placeholder='关联子账号' :value.sync='page.query.subId' :action="search"></search>
+    </div>
+    <!--<div class="select-box inline-block">
+      <search  placeholder='排队条件ID' :value.sync='page.query.queueId' :action="search"></search>
+    </div>-->
+
+	</div>
 
 	<div class="admin-table">
 		<div class="table-total flex flex-1 justify-content-e float-r">
@@ -13,26 +17,24 @@
 		<table class="table ">
 			<thead>
 			<tr>
-				<th class="text-align-c">ID</th>
-				<th>分机号</th>
-				<th>密码</th>
+				<th>条件选择表达式</th>
+				<th>排序表达式</th>
+				<th>优先级</th>
+				<th class="text-align-c">等待超时时间（秒）</th>
+				<th class="text-align-c">接听超时时间（秒）</th>
 				<th>关联子账号</th>
-				<th>状态</th>
-				<th>鉴权方式</th>
+				<th>备注</th>
 			</tr>
 			</thead>
 			<tbody>
 			<tr v-for='play in plays'>
-				<td class="message-time text-align-c">{{ play.id }}</td>
-				<td>{{ play.user}}</td>
-				<td>{{ play.password}}</td>
-        <td >{{ play.subaccountId }}</td>
-				<td>{{ play.enable ? '可用': '不可用'}}</td>
-        <td>
-          <span v-if="play.type == '1'">SIP 终端</span>
-          <span v-if="play.type == '2'">SIP 网关</span>
-          <span v-if="play.type == '3'">普通电话</span>
-        </td>
+				<td>{{ play.whereExpression }}</td>
+				<td>{{ play.sortExpression }}</td>
+				<td>{{ play.priority }}</td>
+				<td class="text-align-c">{{ play.queue_timeout || 0 }}</td>
+				<td class="text-align-c">{{ play.fetch_timeout || 0 }}</td>
+				<td>{{ play.subaccountId  }}</td>
+				<td>{{ play.remark  }}</td>
 			</tr>
 			</tbody>
 		</table>
@@ -57,7 +59,7 @@
 				capacity:{},
 				page: {
 					query: {
-						name: '',
+            queueId: '',
 						pageNo: 0,
 						pageSize: 10
 					},
@@ -69,12 +71,6 @@
 			}
 		},
 		methods: {
-			fileCapacity(){
-				let self = this;
-				$.get('/tenant/tenants/'+this.$route.params.uid+'/file/totalSize').then((res)=> {
-					return res.data && (self.capacity = res.data)
-				})
-			},
 			search(){
 				this.query(true)
 			},
@@ -89,7 +85,7 @@
 				if(init){
 					self.plays = [];
 				}
-				$.get('/tenant/tenants/'+this.$route.params.uid+'/app/' + this.$route.params.appid + '/callcenter/extension/', params).then((res)=> {
+				$.get('/tenant/tenants/'+this.$route.params.uid+'/apps/' + this.$route.params.appid + '/callcenter/queue/', params).then((res)=> {
 					self.page.loading = false
 					if (res.data && res.data.result) {
 						if (init) {

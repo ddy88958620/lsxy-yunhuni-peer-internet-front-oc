@@ -50,13 +50,14 @@
 	<div class="bg-section-margin">
 		<div>
 			<div class="admin-toolbar inline-block normal-font-size small-font-color cursor" >
-				<span type="button" class="toolbar first-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/play'" >放音媒体库</span>
-				<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/record'" >录音文件</span>
-				<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/bind?appstatus=' + app.status" >号码绑定</span>
-				<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/extension'"  v-if="app.serviceType==='call_center'">分机列表</span>
-				<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/agent'" v-if="app.serviceType==='call_center'" >坐席列表</span>
+        <span type="button" class="toolbar first-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/template'" v-if="app.serviceType==='msg'" >模板列表</span>
+        <span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/extension'"  v-if="app.serviceType==='call_center'">分机列表</span>
+        <span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/agent'" v-if="app.serviceType==='call_center'" >坐席列表</span>
+        <span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/condition'" v-if="app.serviceType==='call_center'" >排队条件列表</span>
+        <span type="button" class="toolbar first-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/play'" v-if="app.serviceType==='call_center' || app.serviceType==='voice'" >放音媒体库</span>
+				<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/record'"  v-if="app.serviceType==='call_center' || app.serviceType==='voice'">录音文件</span>
+				<span type="button" class="toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/bind?appstatus=' + app.status" v-if="app.serviceType==='call_center' || app.serviceType==='voice'">号码绑定</span>
         <span type="button" class="toolbar last-toolbar"  v-link="'/admin/tenant/detail/'+$route.params.uid+'/app/detail/'+$route.params.appid+'/subs/'+app.serviceType" >子账号</span>
-
 			</div>
 		</div>
 		<router-view></router-view>
@@ -91,7 +92,7 @@
 <script>
 	export default {
 		components: {
-			'modal': require('../../../../ui/modal.vue')
+			'modal': require('ui/modal.vue')
 		},
 		data(){
 			return {
