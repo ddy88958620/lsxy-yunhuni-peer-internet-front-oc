@@ -156,6 +156,9 @@ export default function(router){
                 '/switch': {
                   component: (resolve) => require(['../components/pages/tenant/switch/index.vue'], resolve)
                 },
+                '/price': {
+                  component: (resolve) => require(['../components/pages/tenant/price/index.vue'], resolve)
+                },
                 '/private': {
                   component: (resolve) => require(['../components/pages/tenant/private/index.vue'], resolve)
                 },
