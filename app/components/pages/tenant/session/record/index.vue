@@ -46,7 +46,7 @@
         </tbody>
       </table>
       <div class="more">
-        <a v-show='proData.session.currentPageNo > proData.session.totalPageCount'>加载完毕</a>
+        <a v-show='proData.session.currentPageNo >= proData.session.totalPageCount'>加载完毕</a>
         <a @click="query('more')" class="text-none" v-else>加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
       </div>
     </div>
@@ -75,10 +75,6 @@
           sessionSize: 0,
           sessionList: []
         },
-        session: {},
-        sessionTotal: 0,
-        sessionSize: 0,
-        sessionList: []
       }
     },
     watch: {
@@ -93,21 +89,23 @@
       query (more) {
         let params = this.search
         if (more) {
-          let pageNo = this.session.currentPageNo + 1
+      
+          let pageNo = this.proData.session.currentPageNo + 1
           params.pageNo = pageNo
         }
+
+
         let self = this
         $.get('/tenant/' + this.$route.params.uid + '/session/voice_recording', params).then((res) => {
+
           if (res.data.page.totalCount >= 0) {
             self.proData.types = res.data.types
             self.proData.sessionTotal = res.data.total.cost
             self.proData.sessionSize = res.data.total.size
             self.proData.session = res.data.page
-            if (more) {
-              self.proData.sessionList = self.sessionList.concat(res.data.page.result)
-            } else {
-              self.proData.sessionList = res.data.page.result
-            }
+
+            self.proData.sessionList = more ? self.proData.sessionList.concat(res.data.page.result) : res.data.page.result  
+            
           }
         })
       }
