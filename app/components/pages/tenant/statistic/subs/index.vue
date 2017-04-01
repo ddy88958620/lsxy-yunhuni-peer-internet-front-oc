@@ -34,9 +34,9 @@
           <table class="table">
             <thead>
             <tr>
-              <th class='text-center'>鉴权账号</th>
+              <th>鉴权账号</th>
               <th>密钥</th>
-              <th>所属应用</th>
+
               <th>话务量（分钟）</th>
               <th>消费金额</th>
               <th v-if="serviceType=='voice' || serviceType=='call_center'">语音总用量 /配额（分钟）</th>
@@ -48,7 +48,7 @@
             <tr v-for='subs in origin.subs_list'>
               <td>{{ subs.certId }}</td>
               <td>{{ subs.secretKey }}</td>
-              <td>{{ subs.appName }}</td>
+
               <td>{{ subs.amongDuration }}</td>
               <td>{{ subs.amongAmount }}</td>
               <td  v-if="serviceType=='voice' || serviceType=='call_center'">{{ subs.voiceNum }}</td>
