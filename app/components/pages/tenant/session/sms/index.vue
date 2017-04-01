@@ -91,7 +91,6 @@
   import DATE from 'utils/date'
   export default {
     components: {
-      'download': require('../download.vue'),
       'datetime-picker': require('ui/datetimepicker.vue')
     },
     data () {
