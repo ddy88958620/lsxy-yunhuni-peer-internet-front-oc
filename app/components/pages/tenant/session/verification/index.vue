@@ -20,8 +20,8 @@
           <th class="text-align-r"><span class="padding-right-20">消费金额</span></th>
         </tr>
         </thead>
-        <tbody>
-        <tr v-for='message in $refs.search.list'>
+        <tbody  v-if="$refs.search">
+        <tr v-for='message in $refs.search.list' v-if="$refs.search.list.length > 0">
           <td class="message-time text-align-c">{{message.callStartDt | totalDate}}</td>
           <td>{{ message.fromNum }}</td>
           <td>{{ message.toNum }}</td>
@@ -31,7 +31,7 @@
         </tr>
         </tbody>
       </table>
-      <div class="more">
+      <div class="more"  v-if="$refs.search">
         <a v-if='$refs.search.origin.page.currentPageNo >= $refs.search.origin.page.totalPageCount'>加载完毕</a>
         <a @click="$refs.search.query('more')" class="text-none" v-else>加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
       </div>
