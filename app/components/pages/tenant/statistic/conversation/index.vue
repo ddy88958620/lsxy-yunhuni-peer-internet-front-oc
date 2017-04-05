@@ -108,7 +108,7 @@
     methods: {
       //获取应用
       getApp(){
-        $.get('app/list/' + this.$route.params.uid, {serviceType: ''}).then((res) => {
+        $.get('app/list/' + this.$route.params.uid, {serviceType: 'voice,call_center'}).then((res) => {
           if (res.data.length > 0) {
             this.serach.apps = res.data
           }
