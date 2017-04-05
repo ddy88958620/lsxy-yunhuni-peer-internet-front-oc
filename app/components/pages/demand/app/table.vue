@@ -42,7 +42,7 @@
             <span v-if="app.serviceType == 'call_center'">呼叫中心</span>
            </td>
           <td class="message-time">{{app.createTime | totalDate }}</td>
-          <td v-if="page.type=='unauth'" class="text-over over-width">{{ app.reason }}</td>
+          <td v-if="page.type=='unauth'" class="text-over over-width" title="{{ app.reason }}">{{ app.reason }}</td>
           <td class="message-time" v-if="page.type=='auditing' || page.type=='unauth'">{{ app.auditTime | totalDate }}</td>
           <td class="text-align-c">
             <a v-link="'/admin/tenant/detail/'+app.tenant.id+'/app/detail/'+app.id">详情</a>

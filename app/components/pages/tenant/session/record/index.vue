@@ -89,28 +89,18 @@
     methods: {
       query (more) {
         let params = this.search
-        console.log(params)
-
         if (more) {
-      
           let pageNo = this.proData.session.currentPageNo + 1
           params.pageNo = pageNo
         }
-
-
         let self = this
         $.get('/tenant/' + this.$route.params.uid + '/session/voice_recording', params).then((res) => {
-
           if (res.data.page.totalCount >= 0) {
-
-            console.log(res.data.page)
             self.proData.types = res.data.types
             self.proData.sessionTotal = res.data.total.cost
             self.proData.sessionSize = res.data.total.size
             self.proData.session = res.data.page
-
-            self.proData.sessionList = more ? self.proData.sessionList.concat(res.data.page.result) : res.data.page.result  
-            
+            self.proData.sessionList = more ? self.proData.sessionList.concat(res.data.page.result) : res.data.page.result
           }
         })
       }
