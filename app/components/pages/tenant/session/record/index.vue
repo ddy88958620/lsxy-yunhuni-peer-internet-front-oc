@@ -3,7 +3,7 @@
     <div class="headbox flex flex-1 align-items-c bg-section-margin whilebg">
       <div class="">
         <span class='datetime-picker-label padding-right-20 padding-left-20'>产品类型 : </span>
-        <select class="form-control flex select-box padding-right-20" v-model="search.producttype">
+        <select class="form-control flex select-box padding-right-20" v-model="search.type">
           <option value="">全部</option>
           <option value="{{val[0]}}" v-for="val in proData.types">{{ val[1] }}</option>
         </select>
@@ -66,7 +66,7 @@
           time: '',
           time2: '',
           appId: '',
-          producttype:''
+          type:''
         },
         proData: {
           types: [],
@@ -80,6 +80,7 @@
     watch: {
       search: {
         handler: function () {
+          this.search.pageNo = 1
           this.query()
         },
         deep: true
@@ -88,6 +89,8 @@
     methods: {
       query (more) {
         let params = this.search
+        console.log(params)
+
         if (more) {
       
           let pageNo = this.proData.session.currentPageNo + 1
@@ -99,6 +102,8 @@
         $.get('/tenant/' + this.$route.params.uid + '/session/voice_recording', params).then((res) => {
 
           if (res.data.page.totalCount >= 0) {
+
+            console.log(res.data.page)
             self.proData.types = res.data.types
             self.proData.sessionTotal = res.data.total.cost
             self.proData.sessionSize = res.data.total.size
