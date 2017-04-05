@@ -18,9 +18,11 @@
         &nbsp;至&nbsp;
         <datetime-picker :uuid="'sessionDate2'"  :type="'day'" :value.sync="search.time2"></datetime-picker>
 
-        <span class='datetime-picker-label padding-right-20 padding-left-20' v-if="search.isMass==0">手机号码 : </span>
-        <input type="text" class="form-control flex select-box" v-model="search.mobile" />
-
+        <div v-if="search.isMass==0">
+          <span class='datetime-picker-label padding-right-20 padding-left-20' >手机号码 : </span>
+          <input type="text" class="form-control flex select-box" v-model="search.mobile" />
+        </div>
+      
       </div>
     </div>
 

@@ -53,14 +53,15 @@
         let id = this.origin.id
         let params = {
           discount: parseInt(this.origin.discount ? this.origin.discount : 0 ),
-          buyoutPrice : parseInt(this.origin.buyoutPrice ? this.origin.buyoutPrice : null)
+          buyoutPrice : parseInt(this.origin.buyoutPrice ? this.origin.buyoutPrice : 0)
         }
-        $.post('config/product/discount/' + this.$route.params.uid + '/price/edit/'+id,params).then((res) => {
+        $.post('config/product/discount/' + this.$route.params.uid + '/price/edit/'+ id +'?discount='+params.discount + '&buyoutPrice=' + params.buyoutPrice ,params).then((res) => {
           if (res.success) {
             this.showMsg( { content:res.data ,type: 'success'})
           } else {
             this.showMsg( { content: res.errorMsg, type: 'danger' })
           }
+          this.show = false
         })
       },
       fail() {
