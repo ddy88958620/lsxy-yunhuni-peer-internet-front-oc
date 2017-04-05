@@ -99,6 +99,12 @@
     watch: {
       'search.appIndex': function () {
         this.changeDate(this.page.type)
+      },
+      'page.startTime':function(){
+         this.query()
+      },
+      'page.endTime':function(){
+        this.query()
       }
     },
     methods: {
@@ -116,6 +122,7 @@
         let params = this.page
         if(this.search.appIndex >=0){
           this.page.appId = this.search.apps[this.search.appIndex].id
+          this.serviceType = this.search.apps[this.search.appIndex].serviceType
         }
         if (type === 'more') {
           this.page.pageNo =  this.origin.subs_res.currentPageNo + 1

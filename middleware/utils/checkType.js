@@ -19,7 +19,15 @@ function checkAudioType(url) {
 	return true
 }
 
+function checkExcelType(url) {
+	if (!/\.(xls|xlsx)$/.test(url)) {
+		return false;
+	}
+	return true
+}
+
 export default {
 	checkImageType,
-	checkAudioType
+	checkAudioType,
+	checkExcelType
 }
