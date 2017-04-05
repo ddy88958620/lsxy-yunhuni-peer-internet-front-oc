@@ -36,7 +36,7 @@
 					<th class="text-align-c">发布时间</th>
 					<th>发布人</th>
 					<th>发布状态</th>
-					<th style="width:50%">发布标题</th>
+					<th>发布标题</th>
 					<!-- <th>消息类型</th> -->
 					<th class="text-align-c">操作</th>
 				</tr>
@@ -50,7 +50,7 @@
 					<td v-if='message.status==0 || message.status==null' class='text-danger'>未上线</td>
 					<td v-if='message.status==1' class="text-success" >已上线</td>
 
-					<td style="width:50%"><a @click="showConent(message.title)" >{{ message.title | subStr}}</a></td>
+					<td class="text-over over-width"><a @click="showConent(message.title)" >{{ message.title | subStr}}</a></td>
 					<!-- <td>{{message.type ? '活动消息' : '用户消息'　}}</td> -->
 					<td class="text-align-c">
 						<span v-if="message.status == 0 " ><a v-link="'/admin/message/edit/'+message.id">编辑</a></span>
