@@ -46,7 +46,7 @@
 					<td v-if='message.type==2'>企业增值税普通发票</td>
 					<td v-if='message.type==3'>企业增值税专用发票</td>
 					<td>{{message.title}}</td>
-					<td>{{message.reason}}</td>
+					<td class="text-over over-width">{{message.reason}}</td>
 					<td>{{message.receivePeople}}</td>
 					<td class="text-align-c">
 						<a v-link="'/admin/finance/invoice/detail/'+message.id" >查看详情</a>

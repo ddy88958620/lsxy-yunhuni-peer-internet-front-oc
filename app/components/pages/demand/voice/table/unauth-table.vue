@@ -40,7 +40,7 @@
 					<td>{{message.app.name}}</td>
 					<td>{{message.name}}</td>
 					<td>{{message.size | fileSize }}</td>
-					<td>{{message.reason}}</td>
+					<td class="text-over over-width">{{message.reason}}</td>
 					<td>管理员</td>
 					<td class="message-time text-align-c">{{message.checkTime | totalDate}}</td>
 					<td class="text-align-c">
