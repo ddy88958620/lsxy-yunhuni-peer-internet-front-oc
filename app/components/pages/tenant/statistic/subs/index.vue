@@ -25,7 +25,7 @@
         <span class="datepicker-wrap">
           <button class="btn btn-primary" @click="query">查询</button>
         </span>
-        <download :params="page"></download> 
+      
       </div>
       <div class="flex-1">
         <div class="admin-table">
@@ -95,7 +95,6 @@
     },
     components:{
       'datetime-picker' :require('ui/datetimepicker.vue'),
-      'download' :require('./download.vue')
     },
     watch: {
       'search.appIndex': function () {
@@ -116,14 +115,12 @@
       query(type){
         let params = this.page
         if(this.search.appIndex >=0){
-          params.appId = this.search.apps[this.search.appIndex].appId
-          this.serviceType = this.search.apps[this.search.appIndex].serviceType
+          this.page.appId = this.search.apps[this.search.appIndex].id
         }
-
         if (type === 'more') {
           this.page.pageNo =  this.origin.subs_res.currentPageNo + 1
         }
-        $.get('tenant/tenants/'+this.$route.params.uid+'/sub/statistic/' + this.page.type + '/plist',params).then((res) => {
+        $.get('tenant/tenants/'+this.$route.params.uid+'/sub/statistic/' + this.page.type + '/plist',this.page).then((res) => {
           if(res.success){
             this.origin.subs_res = res.data.page
             this.origin.subs_list = type === 'more' ? this.origin.subs_list.concat(res.data.page.result) : res.data.page.result

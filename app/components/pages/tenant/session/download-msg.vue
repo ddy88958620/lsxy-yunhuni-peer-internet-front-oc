@@ -16,7 +16,6 @@
     methods: {
       download(id) {
         let uid = this.$route.params.uid
-
         $.get('tenant/' + uid + '/session/msg/download/'+id).then((res) => {
           if (res.success && res.data) {
             window.location.href = res.data

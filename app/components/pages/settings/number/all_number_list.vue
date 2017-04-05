@@ -59,7 +59,10 @@
 				<tbody>
 					<tr v-for='l in list.number'>
 						<td class="message-time text-align-c">{{l.createTime | totalDate}}</td>
-            <td>{{ l.telNumber }} <i class="icon iconfont icon-oc-wastage oc-wastage-small" v-if="l.isTestTelnum"></i></td>
+            <td>
+            	<span v-if="l.isTestTelnum" title="该号码为平台的呼入公共测试号">{{ l.telNumber }} <i class="icon iconfont icon-oc-wastage oc-wastage-small" v-if="l.isTestTelnum"></i></span>
+            	<span v-else>{{ l.telNumber }}</span>
+            </td>
 						<td>{{ l.isDialing === '1' ? '✔': '✘' }}</td>
 						<td>{{ l.isCalled === '1' ? '✔': '✘' }}</td>
 						<td>{{ l.isThrough === '1' ? '✔': '✘' }}</td>
