@@ -11,20 +11,21 @@
     <!--图表-->
     <div class="flex flex-1 flex-direction-column section-right whilebg admin-padding admin-border bg-section-margin">
       <div class="app-chart-header flex align-items-c">
-        <input name='app-chart-type' @click="changeDate('day')" type="radio" value="day" v-model="radioDates"  checked=checked />
+        <input name='app-chart-type' @click="changeDate('day')" type="radio" value="day" v-model="page.type"  checked=checked />
         <label>日统计</label>
-        <input name='app-chart-type'  @click="changeDate('month')" type="radio" value="month" v-model="radioDates"  />
+        <input name='app-chart-type'  @click="changeDate('month')" type="radio" value="month" v-model="page.type"  />
         <label>月统计</label>
         <div class="datepicker-wrap inline-block">
-          <datetime-picker :uuid="'subsStartTime'" :type.sync="radioDates" :value.sync="page.startTime"></datetime-picker>
+          <datetime-picker :uuid="'subsStartTime'" :type.sync="page.type" :value.sync="page.startTime"></datetime-picker>
         </div>
         <span class="datepicker-wrap">至</span>
         <div class="datepicker-wrap inline-block">
-          <datetime-picker :uuid="'subsendTime'" :type.sync="radioDates" :value.sync="page.endTime"></datetime-picker>
+          <datetime-picker :uuid="'subsendTime'" :type.sync="page.type" :value.sync="page.endTime"></datetime-picker>
         </div>
         <span class="datepicker-wrap">
           <button class="btn btn-primary" @click="query">查询</button>
         </span>
+        <download :params="page"></download> 
       </div>
       <div class="flex-1">
         <div class="admin-table">
@@ -71,7 +72,7 @@
 
 </style>
 <script>
-  import DATE from '../../../../../utils/date'
+  import DATE from 'utils/date'
   export default{
     data(){
       return {
@@ -82,22 +83,23 @@
         page:{
           startTime:DATE.todayString('day'),
           endTime:DATE.todayString('day'),
+          type:'day',
           pageNo:1
         },
         origin:{
           subs_res:{},
           subs_list:[]
         },
-        radioDates:'day',
         serviceType:'voice'
       }
     },
     components:{
-      'datetime-picker' :require('ui/datetimepicker.vue')
+      'datetime-picker' :require('ui/datetimepicker.vue'),
+      'download' :require('./download.vue')
     },
     watch: {
       'search.appIndex': function () {
-        this.changeDate(this.radioDates)
+        this.changeDate(this.page.type)
       }
     },
     methods: {
@@ -108,7 +110,7 @@
           if (res.data.length > 0) {
             self.search.apps = res.data
           }
-          this.changeDate(this.radioDates)
+          this.changeDate(this.page.type)
         })
       },
       query(type){
@@ -121,7 +123,7 @@
         if (type === 'more') {
           this.page.pageNo =  this.origin.subs_res.currentPageNo + 1
         }
-        $.get('tenant/tenants/'+this.$route.params.uid+'/sub/statistic/' + this.radioDates + '/plist',params).then((res) => {
+        $.get('tenant/tenants/'+this.$route.params.uid+'/sub/statistic/' + this.page.type + '/plist',params).then((res) => {
           if(res.success){
             this.origin.subs_res = res.data.page
             this.origin.subs_list = type === 'more' ? this.origin.subs_list.concat(res.data.page.result) : res.data.page.result
@@ -129,7 +131,7 @@
         })
       },
       changeDate(type){
-        this.radioDates = type
+        this.page.type = type
         this.page.startTime = DATE.todayString(type)
         this.page.endTime = DATE.todayString(type)
         this.query()
