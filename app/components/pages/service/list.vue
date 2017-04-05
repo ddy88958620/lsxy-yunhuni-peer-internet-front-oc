@@ -31,7 +31,7 @@
 					<th class="text-align-c">状态</th>
 					<th>会员名称</th>
 					<th class="text-align-c">提交时间</th>
-					<th style="width:50%">反馈内容</th>
+					<th style="width:40%">反馈内容</th>
 					<th class="text-align-c">操作</th>
 				</tr>
 				</thead>
@@ -40,7 +40,7 @@
 					<td :class="[message.status===0 ? 'text-danger' : '', 'text-align-c']">{{message.status===0 ? '未读' : '已读'}}</td>
 					<td ><a v-link="'/admin/tenant/detail/'+message.account.tenant.id" >{{message.account.tenant.tenantName}}</a></td>	
 					<td class="message-time text-align-c">{{message.createTime | totalDate }}</td>
-					<td style="width:50%" ><a @click="showConent(message.content)">{{ message.content | subStr}}</a></td>
+					<td style="width:50%" class="text-over" ><a @click="showConent(message.content)">{{ message.content | subStr}}</a></td>
 					<td class="text-align-c">
 						<span><a v-if="message.status === 0" @click="readed($index, message.id)">已阅</a></span>
 						<span v-if="message.status !== 0" >已阅</span>

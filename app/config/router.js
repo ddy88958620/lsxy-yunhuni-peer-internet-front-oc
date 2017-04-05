@@ -145,6 +145,9 @@ export default function(router){
                     '/interface': {
                       component: (resolve) => require(['../components/pages/tenant/statistic/interface/index.vue'], resolve),
                     },
+                    '/msg': {
+                      component: (resolve) => require(['../components/pages/tenant/statistic/msg/index.vue'], resolve),
+                    },
                     'line': {
                       component: (resolve) => require(['../components/pages/tenant/statistic/line/index.vue'], resolve),
                     },

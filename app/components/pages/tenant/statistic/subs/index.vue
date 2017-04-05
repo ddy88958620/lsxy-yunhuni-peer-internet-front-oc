@@ -36,8 +36,8 @@
             <tr>
               <th>鉴权账号</th>
               <th>密钥</th>
-
-              <th>话务量（分钟）</th>
+              <th v-if="serviceType=='voice' || serviceType=='call_center'" class="text-align-c">话务量（分钟）</th>
+              <th v-if="serviceType=='msg'" class="text-align-c">发送数（条）</th>
               <th>消费金额</th>
               <th v-if="serviceType=='voice' || serviceType=='call_center'">语音总用量 /配额（分钟）</th>
               <th v-if="serviceType=='msg'">闪印总用量 /配额（条）</th>
@@ -48,12 +48,12 @@
             <tr v-for='subs in origin.subs_list'>
               <td>{{ subs.certId }}</td>
               <td>{{ subs.secretKey }}</td>
-
-              <td>{{ subs.amongDuration }}</td>
+              <td v-if="serviceType=='voice' || serviceType=='call_center'" class="text-align-c">{{ subs.amongDuration }}</td>
+              <td v-if="serviceType=='msg'" class="text-align-c">{{ subs.amongMsg }}</td>
               <td>{{ subs.amongAmount }}</td>
               <td  v-if="serviceType=='voice' || serviceType=='call_center'">{{ subs.voiceNum }}</td>
               <td  v-if="serviceType=='msg'">{{ subs.ussdNum }}</td>
-              <td  v-if="serviceType=='msg'">{{ subs.msgNum }}</td>
+              <td  v-if="serviceType=='msg'">{{ subs.smsNum }}</td>
             </tr>
             </tbody>
           </table>
@@ -117,6 +117,7 @@
           params.appId = this.search.apps[this.search.appIndex].appId
           this.serviceType = this.search.apps[this.search.appIndex].serviceType
         }
+
         if (type === 'more') {
           this.page.pageNo =  this.origin.subs_res.currentPageNo + 1
         }
