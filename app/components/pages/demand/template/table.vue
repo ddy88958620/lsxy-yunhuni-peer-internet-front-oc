@@ -46,7 +46,7 @@
               <span v-if="template.type=='msg_sms'">短信</span>
           </td>
           <td>{{ template.certId }}</td>
-          <td v-if="page.type=='unauth'">{{ template.reason }}</td>
+          <td v-if="page.type=='unauth'" class="text-over over-width">{{ template.reason }}</td>
           <td v-if="page.type=='auditing'">
               <span v-for="tem in template.list">
               {{ tem.msgSupplierName }}
