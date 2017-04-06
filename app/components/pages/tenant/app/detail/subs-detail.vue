@@ -1,5 +1,4 @@
 <template>
-  <!--新增线路号码-->
   <modal :show.sync="show"  title="子账号详情" :reset="reset">
     <div slot="body">
       <div class="form-group">
@@ -15,8 +14,8 @@
         <span>{{ origin.subs.secretKey }}</span>
       </div>
       <div class="form-group">
-        <label class="control-label">回调地址 : </label>
-        <span>{{ origin.subs.url }}</span>
+        <label class="control-label vertical-align-top">回调地址 : </label>
+        <span class="inline-block over-width">{{ origin.subs.url }}</span>
       </div>
       <p class="small-font-color">负数为额度不作限制，0则表示额度为0，正数为具体的使用额度限制</p>
       <div class="form-group" v-if="serviceType=='voice' || serviceType=='call_center'">
@@ -37,11 +36,15 @@
       </div>
 
       <div class="form-group">
-        <label class="control-label">备注: </label>
-        <p>{{ origin.subs.remark }}</p>
+          <label class="control-label vertical-align-top">
+            备注 : 
+          </label>  
+          <span class="inline-block over-width">
+            {{ origin.subs.remark }}
+          </span>  
       </div>
 
-      <div class="admin-table" v-if="serviceType=='call_center'">
+      <div class="admin-table" v-if="serviceType=='call_center' || serviceType=='voice'">
         <div class="table-total flex flex-1 justify-content-e float-r">
           共<span class="text-danger">{{origin.phone_res.totalCount ? origin.phone_res.totalCount : 0}}</span>条
         </div>
@@ -125,7 +128,7 @@
             this.origin.subs = res.data
           }
         })
-        if(this.serviceType=='call_center'){
+        if(this.serviceType=='call_center' || this.serviceType=='voice'){
           this.queryPhone();
         }
       },

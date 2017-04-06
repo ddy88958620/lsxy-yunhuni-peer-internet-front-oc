@@ -32,7 +32,7 @@
           <td class="" v-else>✘</td>
 					<td class="">{{ l.areaCode }}</td>
 					<td class="">{{ l.expireTime | totalDate }}</td>
-					<td class="">{{ l.subaccountId }}</td>
+					<td class="">{{ l.certId }}</td>
 					<td class=""> <a @click='disabled($index, l.rentId)'>解除绑定</a></td>
 				</tr>
 				</tbody>

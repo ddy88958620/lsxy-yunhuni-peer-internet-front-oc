@@ -28,7 +28,7 @@
           <td class="message-time text-align-c">{{ play.checkTime | totalDate }}</td>
           <td>{{play.name}}</td>
           <td>{{ play.size | fileSize}}</td>
-          <td>{{ play.subaccountId }}</td>
+          <td>{{ play.certId }}</td>
           <td class="text-align-c">{{play.remark}}</td>
           <td class="text-align-c">
             <span><a @click="playAudio($index)">试听</a></span>

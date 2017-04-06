@@ -26,7 +26,7 @@
 				<td class="message-time text-align-c">{{ play.id }}</td>
 				<td>{{ play.user}}</td>
 				<td>{{ play.password}}</td>
-        <td >{{ play.subaccountId }}</td>
+        <td >{{ play.certId }}</td>
 				<td>{{ play.enable ? '可用': '不可用'}}</td>
         <td>
           <span v-if="play.type == '1'">SIP 终端</span>

@@ -106,7 +106,7 @@
               <th class="text-align-c" width="100">消费时间</th>
               <th class="text-align-r" width="130">消费金额</th>
               <th class="text-align-c">消费类型</th>
-              <th>备注</th>
+              <th width="130" >备注</th>
             </tr>
             </thead>
             <tbody >
@@ -114,7 +114,7 @@
               <td class="message-time text-align-c">{{consume.createTime | date}}</td>
               <td class="text-align-r">￥{{ consume.amount ? consume.amount.toFixed(3) : '0.000'}}</td>
               <td class="text-align-c">{{consume.type}}</td>
-              <td>{{consume.remark}}</td>
+              <td class="text-over over-small-width" title="{{consume.remark}}">{{consume.remark}}</td>
             </tr>
             </tbody>
           </table>
