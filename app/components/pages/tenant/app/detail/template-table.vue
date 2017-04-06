@@ -92,7 +92,7 @@
         this.$refs.tempdetail.detail = this.origin.template_list[index]
       },
       queryName(){
-        this.postData.pageNo = 1
+        this.postData.template.pageNo = 1
         this.query()
       }
     },
