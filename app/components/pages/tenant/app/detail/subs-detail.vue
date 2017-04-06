@@ -44,38 +44,42 @@
           </span>  
       </div>
 
-      <div class="admin-table" v-if="serviceType=='call_center' || serviceType=='voice'">
-        <div class="table-total flex flex-1 justify-content-e float-r">
+      <div class="admin-table flex-1 flex flex-direction-column" v-if="serviceType=='call_center' || serviceType=='voice'">
+        <div class="table-total flex flex-1 justify-content-e text-right">
           共<span class="text-danger">{{origin.phone_res.totalCount ? origin.phone_res.totalCount : 0}}</span>条
         </div>
-        <table class="table">
-          <thead>
-          <tr>
-            <th class='text-center'>号码</th>
-            <th>状态</th>
-            <th>可呼入	</th>
-            <th>可呼出</th>
-            <th>归属地</th>
-            <th>有效期</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr v-for='phone in origin.phone_list'>
-            <td>{{ phone.num }}</td>
-            <td>
-              <span class="text-danger" v-if="phone.status==0">过期</span>
-              <span class="darkgreen" v-if="phone.status==1">正常</span>
-            </td>
-            <td>{{ phone.isCalled==1 ? '✔' : '✘' }}</td>
-            <td>{{ phone.isDialing==1 ? '✔' : '✘' }}</td>
-            <td>{{ phone.areaCode }}</td>
-            <td>{{ phone.expireTime | totalDate }}</td>
-          </tr>
-          </tbody>
-        </table>
+
+        <div class="modal-table flex">
+          <table class="table">
+            <thead>
+            <tr>
+              <th class='text-center'>号码</th>
+              <th>状态</th>
+              <th>可呼入 </th>
+              <th>可呼出</th>
+              <th>归属地</th>
+              <th>有效期</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr v-for='phone in origin.phone_list'>
+              <td>{{ phone.num }}</td>
+              <td>
+                <span class="text-danger" v-if="phone.status==0">过期</span>
+                <span class="darkgreen" v-if="phone.status==1">正常</span>
+              </td>
+              <td>{{ phone.isCalled==1 ? '✔' : '✘' }}</td>
+              <td>{{ phone.isDialing==1 ? '✔' : '✘' }}</td>
+              <td>{{ phone.areaCode }}</td>
+              <td>{{ phone.expireTime | totalDate }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+       
         <div class="more">
           <a v-if='origin.phone_res.currentPageNo >= origin.phone_res.totalPageCount'>加载完毕</a>
-          <a @click="queryPhone('more')" class="text-none" v-else>加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+          <a @click="query('more')" class="text-none" v-else>加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
         </div>
       </div>
     </div>
@@ -133,10 +137,11 @@
         }
       },
       queryPhone(type){
+        let params = {id:this.subId}
         if(type === 'more') {
           params.pageNo = this.origin.phone_res.currentPageNo + 1
         }
-        let params = {id:this.subId};
+       
         $.get('tenant/tenants/'+ this.$route.params.uid + '/apps/' + this.$route.params.appid + '/subs/'+ this.subId + '/nums',params).then((res) => {
           if(res.success){
             this.origin.phone_res = res.data
@@ -160,5 +165,8 @@
   }
   .form-group{
     margin-bottom: 10px;
+  }
+  .modal-table{
+    height: 200px;
   }
 </style>

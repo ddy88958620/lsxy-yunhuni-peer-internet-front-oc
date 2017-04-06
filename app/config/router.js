@@ -116,9 +116,6 @@ export default function(router){
                     '/msg/:type': {
                       component: (resolve) => require(['../components/pages/tenant/session/msg/index.vue'], resolve),
                     },
-                    '/sms': {
-                      component: (resolve) => require(['../components/pages/tenant/session/sms/index.vue'], resolve),
-                    },
                     '/callcenter': {
                       component: (resolve) => require(['../components/pages/tenant/session/callcenter/index.vue'], resolve),
                     }

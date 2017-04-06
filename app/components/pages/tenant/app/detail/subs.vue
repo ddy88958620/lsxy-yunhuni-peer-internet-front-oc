@@ -35,7 +35,7 @@
           <td v-if="serviceType =='msg'" class="text-align-c">{{ subs.smsNum }}</td>
           <td>
              <span class="text-danger" v-if="subs.enabled==0">禁用</span>
-             <span class="darkgreen" v-if="subs.enabled==1">启动</span>
+             <span class="darkgreen" v-if="subs.enabled==1">启用</span>
           </td>
           <td><a @click="detail(subs.id)">详情</a></td>
 				</tr>

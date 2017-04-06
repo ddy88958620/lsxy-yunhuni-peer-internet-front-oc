@@ -44,7 +44,7 @@
 		</div>
 	</div>
 
-	<modal :show.sync="show.newNumber" title="绑定号码" :action="bindNumber">
+	<modal :show.sync="show.newNumber" title="绑定号码" :action="bindNumber" :reset="reset">
 		<div slot="body">
 		<div class="admin-table position-layout"  >
 			<div class="table-total flex flex-1 justify-content-e float-r">
@@ -181,7 +181,7 @@
 				if(type === 'more') {
 					params.pageNo = this.originData.bindNumber.currentPageNo + 1
 				}
-				$.get('tenant/tenants/'+ this.$route.params.uid + '/res_rent/num/unused/app/' + this.$route.params.appid ).then((res) => {
+				$.get('tenant/tenants/'+ this.$route.params.uid + '/res_rent/num/unused/app/' + this.$route.params.appid,params ).then((res) => {
 					this.originData.bindNumber = res.data
 					this.list.bindNumber = type === 'more' ? this.list.bindNumber.concat(res.data.result) : res.data.result
 				})
@@ -196,6 +196,9 @@
 					this.list.number = type === 'more' ? this.list.number.concat(res.data.result) : res.data.result
 				})
 			},
+      reset(){
+        this.postData.bindNumber.pageNo = 1
+      },
       init() {
   			this.query()
   			this.fetchBindNums()

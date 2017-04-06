@@ -33,7 +33,7 @@
 				<td>{{ play.priority }}</td>
 				<td class="text-align-c">{{ play.queue_timeout || 0 }}</td>
 				<td class="text-align-c">{{ play.fetch_timeout || 0 }}</td>
-				<td>{{ play.subaccountId  }}</td>
+				<td>{{ play.certId  }}</td>
 				<td>{{ play.remark  }}</td>
 			</tr>
 			</tbody>

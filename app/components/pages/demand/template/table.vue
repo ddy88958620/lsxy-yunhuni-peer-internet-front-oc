@@ -3,14 +3,14 @@
 		<div class="bg-section-margin remove-margin-bottom ">
 			<div class="select-box inline-block" ><search
 				:value.sync = 'page.name'
-				:action="query"
+				:action="queryName"
 				placeholder="请输入会员名称"
 			></search></div>
 			<span class='datetime-picker-label '>申请时间:</span>
 			<datetime-picker :uuid="'demandAppStartDate'"  :type.sync="'day'" :value.sync="page.startTime"></datetime-picker>
 			<span class='datetime-picker-label'>至</span>
 			<datetime-picker :uuid="'demandAppEndDate'"  :type.sync="'day'" :value.sync="page.endTime"></datetime-picker>
-			<button class="btn btn-primary admin-button-margin" @click="query">查询</button>
+			<button class="btn btn-primary admin-button-margin" @click="queryName">查询</button>
 		</div>
 	</div>
 	<div>
@@ -135,6 +135,10 @@
 			}
 		},
 		methods: {
+      queryName(){
+        this.page.pageNo = 1
+        this.query()
+      },
       query(type){
         this.page.type = this.$route.params.type
         let params = this.page
