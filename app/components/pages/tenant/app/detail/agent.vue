@@ -70,11 +70,7 @@
 		methods: {
 			query(type){
 				let params = this.postData.number
-				if(type === 'more') {
-					params.pageNo = this.originData.number.currentPageNo + 1
-				}
-				console.log(params);
-
+				params.pageNo = type==='more' ? this.originData.number.currentPageNo + 1 : 1
 				$.get('tenant/tenants/'+ this.$route.params.uid + '/app/' + this.$route.params.appid + '/callcenter/agent', params).then((res) => {
 					this.originData.number = res.data
 					this.list.number = type === 'more' ? this.list.number.concat(res.data.result) : res.data.result

@@ -27,8 +27,9 @@
           :type="['line','line']"
           :label.sync="date.type"
           :ydata1.sync="chartApiValue"
-          :title="['API调用', '']"
-          :xtitle="['API调用(次数)','']"
+          :ydata2.sync="chartApiValue"
+          :title="['成功', '失败']"
+          :xtitle="['成功(次数)','失败(次数)']"
           :color="[['rgba(246,239,232,0.2)','rgba(251,54,45,0.8)','rgba(251,54,45,0.8)','#FFF','rgba(251,54,45,0.8)','rgba(220,220,220,1)'],
 											['#ebeecc','rgba(214,235,78,0.8)','rgba(214,235,78,1)','#FFF','rgba(214,235,78,0.1)','rgba(220,220,220,0.1)']]"
         ></chart>
@@ -51,7 +52,8 @@
           apps: [],
           selectApp: 'all',
         },
-        chartApiValue: [],
+        successValue: [],
+        failValue: [],
         date: {
           type: 'month',
           value: DATE.todayString('month'),

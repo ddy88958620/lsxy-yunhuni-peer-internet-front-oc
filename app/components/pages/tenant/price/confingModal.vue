@@ -37,7 +37,7 @@
         type: Boolean
       },
       origin:{
-        type: Object
+        type: Object,
       },
       reset: {
         type: Function,
@@ -57,25 +57,33 @@
     methods: {
       set() {
         let id = this.origin.id
-        let params = {
-          discount: parseFloat(this.origin.discount >= 0 ? this.origin.discount : null ),
-          buyoutPrice : parseFloat(this.origin.buyoutPrice >= 0 ? this.origin.buyoutPrice : null )
+
+
+        if(this.origin.discount < 0 || this.origin.buyoutPrice < 0){
+          this.showMsg( { content: '折扣或一口价不能小于0', type: 'danger' })
+          return
         }
-        if(params.discount > 1){
+        if(this.origin.discount > 1){
           this.showMsg( { content: '折扣必须小于1', type: 'danger' })
           return
         }
+        let params = {
+          discount: this.origin.discount >= 0 ? parseFloat(this.origin.discount) : null ,
+          buyoutPrice : this.origin.buyoutPrice >= 0 ? parseFloat(this.origin.buyoutPrice) : null 
+        }
+      
         $.post('config/product/discount/' + this.$route.params.uid + '/price/edit/'+ id +'?discount='+ params.discount + '&buyoutPrice=' + params.buyoutPrice ,params).then((res) => {
           if (res.success) {
             this.showMsg( { content:res.data ,type: 'success'})
           } else {
             this.showMsg( { content: res.errorMsg, type: 'danger' })
           }
-          this.show = false
+          this.fail()
         })
       },
       fail() {
         this.show = false
+        this.$parent.query()
       }
     }
   }

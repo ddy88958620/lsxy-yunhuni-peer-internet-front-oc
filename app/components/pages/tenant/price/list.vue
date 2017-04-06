@@ -50,16 +50,14 @@
           product:{},
           page:{
             pageNo:1,
-            pageSize:20
+            pageSize:40
           }
         }
       }
     },
     methods: {
       query(type){
-        if(type=='more') {
-          this.proData.page.pageNo = this.proData.product.currentPageNo + 1
-        }
+        this.proData.page.pageNo = type==='more' ? this.proData.product.currentPageNo + 1 : 1
         $.get('/config/product/discount/' + this.$route.params.uid + '/price/plist', this.proData.page).then((res) => {
           if (res.data.totalCount >= 0) {
             this.proData.product = res.data
@@ -70,9 +68,6 @@
       setting(index){
         this.$refs.config.origin = this.proData.list[index]
         this.$refs.config.show = true
-      },
-      reset(){
-        console.log('rest')
       }
     },
     ready(){

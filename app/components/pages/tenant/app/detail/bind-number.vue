@@ -188,9 +188,7 @@
 			},
 			query(type){
 				let params = this.postData.number
-				if(type === 'more') {
-					params.pageNo = this.originData.number.currentPageNo + 1
-				}
+        params.pageNo = type === 'more' ? this.originData.number.currentPageNo + 1 : 1
 				$.get('tenant/tenants/'+ this.$route.params.uid + '/res_rent/app/' + this.$route.params.appid + '/res_rent/list', params).then((res) => {
 					this.originData.number = res.data
 					this.list.number = type === 'more' ? this.list.number.concat(res.data.result) : res.data.result
