@@ -34,7 +34,7 @@
 
    
 
-    <confing-modal v-ref:config></confing-modal>
+    <confing-modal v-ref:config :reset='reset'></confing-modal>
   </div>
 </template>
 <script>
@@ -68,11 +68,11 @@
         })
       },
       setting(index){
-        console.log(this.$refs.config)
-        console.log(this.proData.list[index])
-
         this.$refs.config.origin = this.proData.list[index]
         this.$refs.config.show = true
+      },
+      reset(){
+        console.log('rest')
       }
     },
     ready(){

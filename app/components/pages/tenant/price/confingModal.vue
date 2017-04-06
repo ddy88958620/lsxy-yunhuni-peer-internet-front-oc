@@ -38,7 +38,13 @@
       },
       origin:{
         type: Object
-      }
+      },
+      reset: {
+        type: Function,
+        default: function(){
+          return
+        }
+      },
     },
     components:{
       'modal': require('ui/modal.vue')
@@ -52,8 +58,8 @@
       set() {
         let id = this.origin.id
         let params = {
-          discount: parseFloat(this.origin.discount ? this.origin.discount : 0 ),
-          buyoutPrice : parseFloat(this.origin.buyoutPrice ? this.origin.buyoutPrice : 0)
+          discount: parseFloat(this.origin.discount >= 0 ? this.origin.discount : null ),
+          buyoutPrice : parseFloat(this.origin.buyoutPrice >= 0 ? this.origin.buyoutPrice : null )
         }
         if(params.discount > 1){
           this.showMsg( { content: '折扣必须小于1', type: 'danger' })
