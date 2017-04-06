@@ -21,7 +21,7 @@
           <th v-if="serviceType =='msg'" class="text-align-c">闪印用量 /配额（条）</th>
           <th v-if="serviceType =='msg'" class="text-align-c">短信用量/配额（条）</th>
 					<th>状态</th>
-          <th>详情</th>
+          <th>操作</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -31,10 +31,10 @@
           <td>{{ subs.secretKey }}</td>
           <td v-if="serviceType=='voice' || serviceType =='call_center'" class="text-align-c">{{ subs.voiceNum }}</td>
           <td v-if="serviceType =='call_center'" class="text-align-c">{{ subs.seatNum }}</td>
-          <td v-if="serviceType =='msg'" class="text-align-c">{{ subs.smsNum }}</td>
           <td v-if="serviceType =='msg'" class="text-align-c">{{ subs.ussdNum }}</td>
+          <td v-if="serviceType =='msg'" class="text-align-c">{{ subs.smsNum }}</td>
           <td>
-             <span class="text-danger" v-if="subs.enabled==0">禁止</span>
+             <span class="text-danger" v-if="subs.enabled==0">禁用</span>
              <span class="darkgreen" v-if="subs.enabled==1">启动</span>
           </td>
           <td><a @click="detail(subs.id)">详情</a></td>
@@ -57,7 +57,7 @@
 		vuex:{ actions: { showMsg } },
     components:{
       'search': require('ui/search-input.vue'),
-      'subsDetail': require('./subsDetail.vue')
+      'subsDetail': require('./subs-detail.vue')
     },
 		data(){
 			return {

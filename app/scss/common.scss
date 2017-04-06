@@ -214,12 +214,16 @@ img.zoom-img {
 
 .text-over{
   display:block;
-  white-space:nowrap; 
-  overflow:hidden; 
+  white-space:nowrap;
+  overflow:hidden;
   text-overflow:ellipsis;
 }
 
 .over-width{
   width: 400px;
+}
+
+.over-small-width{
+  width: 100px;
 }
 

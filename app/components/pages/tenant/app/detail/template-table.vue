@@ -1,9 +1,8 @@
 <template>
   <div>
-
     <div class="flex search-box bg-section-margin remove-margin-bottom">
       <div class="select-box">
-        <search  placeholder='模板名称' :value.sync='postData.template.name' :action="query"></search>
+        <search  placeholder='模板名称' :value.sync='postData.template.name' :action="queryName"></search>
       </div>
     </div>
     <div class="admin-table">
@@ -19,7 +18,7 @@
           <th>内容</th>
           <th>关联子帐号</th>
           <th>状态</th>
-          <th>原因</th>
+          <th>操作</th>
         </tr>
         </thead>
         <tbody>
@@ -27,16 +26,14 @@
           <td class="text-align-c">{{ template.tempId }}</td>
           <td>{{ template.type=='msg_sms' ? '短信' : '闪印' }}</td>
           <td>{{ template.name }}</td>
-          <td>{{ template.content }}</td>
-          <td></td>
+          <td class="text-over over-width">{{ template.content }}</td>
+          <td>{{ template.certId }}</td>
           <td>
             <span v-if="template.state==1" class="darkgreen">审核通过</span>
             <span v-if="template.state==-1" class="text-danger">审核不通过</span>
             <span v-if="template.state==0">待审核</span>
           </td>
-          <td>
-            {{ template.reason }}
-          </td>
+          <td><a @click="detail($index)">详情</a></td>
         </tr>
         </tbody>
       </table>
@@ -46,6 +43,8 @@
       </div>
     </div>
 
+     <template-detail v-ref:tempdetail></template-detail>
+
   </div>
 </template>
 <script>
@@ -53,7 +52,8 @@
   export default {
     vuex:{ actions: { showMsg } },
     components:{
-      'search': require('ui/search-input.vue')
+      'search': require('ui/search-input.vue'),
+      'templateDetail': require('./template-detail.vue')
     },
     data(){
       return {
@@ -86,6 +86,14 @@
             this.origin.template_list = type === 'more' ? this.origin.template_list.concat(res.data.result) : res.data.result
           }
         })
+      },
+      detail(index){
+        this.$refs.tempdetail.show = true
+        this.$refs.tempdetail.detail = this.origin.template_list[index]
+      },
+      queryName(){
+        this.postData.pageNo = 1
+        this.query()
       }
     },
     ready(){

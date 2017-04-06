@@ -21,7 +21,7 @@
 					  <span v-for="s in l.skills">{{s.name}}&nbsp;</span>
 					</td>
 					<td>{{l.extension}}</td>
-          <td class="">{{ l.subaccountId }}</td>
+          <td class="">{{ l.certId }}</td>
           <td>{{l.state}}</td>
 				</tr>
 				</tbody>
