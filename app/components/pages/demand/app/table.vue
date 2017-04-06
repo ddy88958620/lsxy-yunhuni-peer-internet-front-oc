@@ -107,9 +107,7 @@
       query(type){
         this.page.type = this.$route.params.type
         let params = this.page
-        if (type === 'more') {
-          this.page.pageNo =  this.app_res.currentPageNo + 1
-        }
+        params.pageNo = type ==='more' ?  this.app_res.currentPageNo + 1 : 1
         $.get('demand/member/app/'+this.$route.params.type+'/list', params).then((res) => {
           if(res.success){
             this.app_res = res.data
