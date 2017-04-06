@@ -46,7 +46,7 @@
               <span v-if="template.type=='msg_sms'">短信</span>
           </td>
           <td>{{ template.certId }}</td>
-          <td v-if="page.type=='unauth'">{{ template.reason }}</td>
+          <td v-if="page.type=='unauth'" class="text-over over-width" title="{{ template.reason }}">{{ template.reason }}</td>
           <td v-if="page.type=='auditing'">
               <span v-for="tem in template.list">
               {{ tem.msgSupplierName }}
@@ -73,12 +73,11 @@
     <modal :show.sync="passModal.show" title="审核" :action="success">
       <div slot="body" class="flex">
         <div class="flex flex-1 modal-nopass" >
-          <span class="flex float-l title line-height-32">供应商</span>
+          <span class="flex float-l title">供应商：</span>
           <span class="flex admin-button-margin flaot-l" >
-            <select class="form-control textarea" v-model="passModal.data.id">
-              <option value="">请选择供应商</option>
-              <option v-for="supplier in passModal.supplier_list" value="{{ supplier.id }}">{{ supplier.supplierName }}</option>
-            </select>
+            <span v-for="supplier in passModal.supplier_list">
+              <input type="checkbox" value="{{ supplier.id }}" v-model="passModal.ids" />{{ supplier.supplierName }}
+            </span>
           </span>
         </div>
       </div>
@@ -95,6 +94,9 @@
       </div>
     </modal>
 
+
+    <!--<page v-ref:page :async="false" :data="lists" :lens="lenArr" :page-len="pageLen" :param="param"></page>-->
+
 	</div>
 </template>
 <script>
@@ -109,7 +111,8 @@
 		components: {
 			'datetime-picker': require('ui/datetimepicker.vue'),
 			'search' : require('ui/search-input.vue'),
-      'modal' : require('ui/modal.vue')
+      'modal' : require('ui/modal.vue'),
+      'page' : require('ui/pager.vue'),
 		},
 		data(){
 			return {
@@ -155,6 +158,7 @@
           this.passModal = {
             show:true,
             supplier_list: res.data,
+            ids:[],
             data: {
               id : '',
               index : index,
@@ -175,11 +179,17 @@
         }
       },
       success(){
-        if(this.passModal.data.id == ''){
+
+        if(this.passModal.ids.length ==0){
           this.showMsg({content: '请选择供应商', type: 'danger'})
           return
         }
-        let params = { ids : [ this.passModal.data]}
+        let data = this.passModal.data
+        let params = { ids:[]}
+        this.passModal.ids.forEach(function (val) {
+          params.ids = params.ids.concat({tempId:data.tempId,id:val})
+        })
+
         $.put('/demand/member/msgtemplate/pass/' + this.passModal.data.template_id ,params).then((res) => {
           if (res.success === 'false') {
             this.showMsg({content: res.errorMsg, type: 'danger'})
@@ -212,10 +222,10 @@
       '$route.params.type': function () {
         this.page = {
           pageNo: 1,
-            name:'',
-            startTime:'',
-            endTime:'',
-            type:''
+          name:'',
+          startTime:'',
+          endTime:'',
+          type:''
         };
         this.query()
       }

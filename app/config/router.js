@@ -56,8 +56,14 @@ export default function(router){
                     '/detail/:appid': {
                       component: (resolve) => require(['../components/pages/tenant/app/detail/index.vue'], resolve),
                       subRoutes: {
+                        '/template': {
+                          component: (resolve) => require(['../components/pages/tenant/app/detail/template-table.vue'], resolve),
+                        },
                         '/extension': {
                           component: (resolve) => require(['../components/pages/tenant/app/detail/extension-table.vue'], resolve),
+                        },
+                        '/condition': {
+                          component: (resolve) => require(['../components/pages/tenant/app/detail/condition-table.vue'], resolve),
                         },
                         '/play': {
                           component: (resolve) => require(['../components/pages/tenant/app/detail/play-table.vue'], resolve),
@@ -107,6 +113,12 @@ export default function(router){
                     '/ivr': {
                       component: (resolve) => require(['../components/pages/tenant/session/ivr/index.vue'], resolve),
                     },
+                    '/msg/:type': {
+                      component: (resolve) => require(['../components/pages/tenant/session/msg/index.vue'], resolve),
+                    },
+                    '/sms': {
+                      component: (resolve) => require(['../components/pages/tenant/session/sms/index.vue'], resolve),
+                    },
                     '/callcenter': {
                       component: (resolve) => require(['../components/pages/tenant/session/callcenter/index.vue'], resolve),
                     }
@@ -133,6 +145,9 @@ export default function(router){
                     '/interface': {
                       component: (resolve) => require(['../components/pages/tenant/statistic/interface/index.vue'], resolve),
                     },
+                    '/msg': {
+                      component: (resolve) => require(['../components/pages/tenant/statistic/msg/index.vue'], resolve),
+                    },
                     'line': {
                       component: (resolve) => require(['../components/pages/tenant/statistic/line/index.vue'], resolve),
                     },
@@ -143,6 +158,9 @@ export default function(router){
                 },
                 '/switch': {
                   component: (resolve) => require(['../components/pages/tenant/switch/index.vue'], resolve)
+                },
+                '/price': {
+                  component: (resolve) => require(['../components/pages/tenant/price/index.vue'], resolve)
                 },
                 '/private': {
                   component: (resolve) => require(['../components/pages/tenant/private/index.vue'], resolve)

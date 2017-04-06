@@ -24,7 +24,12 @@
         },
         appList: [],
         list: [],
-        origin: {}
+        origin: {
+          page : {
+            currentPageNo:1,
+            totalPageCount:0,
+          }
+        }
       }
     },
     watch: {

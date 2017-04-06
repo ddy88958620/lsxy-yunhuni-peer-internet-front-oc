@@ -210,3 +210,16 @@ img.zoom-img {
   display: inline-block;
   background-image: url('../assets/images/loading.gif');
 }
+
+
+.text-over{
+  display:block;
+  white-space:nowrap; 
+  overflow:hidden; 
+  text-overflow:ellipsis;
+}
+
+.over-width{
+  width: 400px;
+}
+
