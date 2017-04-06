@@ -1,5 +1,11 @@
 <template>
 	<div>
+
+<!-- 		<div class="flex search-box bg-section-margin remove-margin-bottom">
+	    <div class="select-box inline-block">
+	      <search  placeholder='关联子账号' :value.sync='postData.number.subId' :action="queryName"></search>
+	    </div>
+	 </div> -->
 		<div class="admin-table ">
 			<div class="table-total flex flex-1 justify-content-e float-r">
 				共<span class="text-danger">{{originData.number.totalCount ? originData.number.totalCount : 0}}</span>条
@@ -37,6 +43,9 @@
 	import {showMsg} from 'actions'
 	export default {
 		vuex:{ actions: { showMsg } },
+		components:{
+			'search': require('ui/search-input.vue')
+		},
 		data(){
 			return {
 				show: {
@@ -45,6 +54,7 @@
 				postData: {
 					number: {
 						pageNo: 1,
+						subId:''
 					},
 				},
 				list: {
@@ -63,10 +73,16 @@
 				if(type === 'more') {
 					params.pageNo = this.originData.number.currentPageNo + 1
 				}
+				console.log(params);
+
 				$.get('tenant/tenants/'+ this.$route.params.uid + '/app/' + this.$route.params.appid + '/callcenter/agent', params).then((res) => {
 					this.originData.number = res.data
 					this.list.number = type === 'more' ? this.list.number.concat(res.data.result) : res.data.result
 				})
+			},
+			queryName(){
+				this.postData.number.pageNo = 1
+				this.query()
 			},
       init() {
   			this.query()

@@ -22,7 +22,6 @@
           <span class='datetime-picker-label padding-right-20 padding-left-20' >手机号码 : </span>
           <input type="text" class="form-control flex select-box" v-model="search.mobile" />
         </div>
-      
       </div>
     </div>
 
@@ -58,8 +57,6 @@
           <td class="message-time text-align-c">{{message.sendTime | totalDate}}</td>
           <td class="message-time text-align-c" v-if="message.isMass==1">{{message.lastTime | totalDate}}</td>
 
-
-
           <td v-if="search.isMass==0">{{message.mobile}}</td>
           <td v-if="search.isMass==0" class="text-over">{{message.msg}}</td>
           <td>
@@ -81,6 +78,7 @@
             <span class="padding-right-20">￥{{ message.msgCost ? ((message.sumNum + message.invalidNum) * message.msgCost).toFixed(3)  : '0.000' }}</span>
           </td>
           <td class="text-align-c" v-if="search.isMass==1">
+            <a @click='detail($index)'>详情</a>
             <download :message="message"></download>
           </td>
         </tr>
@@ -91,6 +89,9 @@
         <a @click="query('more')" class="text-none" v-else>加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
       </div>
     </div>
+
+    <detail v-ref:msgdetail ></detail>
+
   </div>
 </template>
 <script>
@@ -98,7 +99,8 @@
   export default {
     components: {
       'download': require('../download-msg.vue'),
-      'datetime-picker': require('ui/datetimepicker.vue')
+      'datetime-picker': require('ui/datetimepicker.vue'),
+      'detail': require('./detail.vue')
     },
     data () {
       return {
@@ -136,17 +138,23 @@
           }
         })
       },
-      query (more) {
-        let params = this.search
-        if (more) {
-          let pageNo = this.session.currentPageNo + 1
-          params.pageNo = pageNo
-        }
+      detail(index){
+        this.$refs.msgdetail.show = true
+        this.$refs.msgdetail.msgKey = this.proData.sessionList[index].msgKey
+        this.$refs.msgdetail.message = this.proData.sessionList[index]
+      },
+      query (type) {
         let self = this
+        let params = self.search
+        if (type == 'more') 
+          params.pageNo = this.proData.session.currentPageNo + 1
+        else
+          params.pageNo = 1 
+        
         $.get('/tenant/' + this.$route.params.uid + '/session/msg/'+ this.$route.params.type, params).then((res) => {
           if (res.data.totalCount >= 0) {
-            self.proData.session = res.data
-            self.proData.sessionList = more ? self.sessionList.concat(res.data.result) : res.data.result
+            this.proData.session = res.data
+            this.proData.sessionList = type=='more' ? this.proData.sessionList.concat(res.data.result) : res.data.result
           }
         })
       }

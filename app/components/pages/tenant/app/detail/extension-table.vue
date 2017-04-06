@@ -1,10 +1,10 @@
 <template>
 
-<!--	<div class="flex search-box bg-section-margin remove-margin-bottom">
-		<div class="select-box">
-			<search  placeholder='搜索文件名' :value.sync='searchName' :action="search"></search>
-		</div>
-	</div>-->
+<!-- 	<div class="flex search-box bg-section-margin remove-margin-bottom">
+    <div class="select-box inline-block">
+      <search  placeholder='关联子账号' :value.sync='page.query.name' :action="queryName"></search>
+    </div>
+	</div> -->
 
 	<div class="admin-table">
 		<div class="table-total flex flex-1 justify-content-e float-r">
@@ -49,7 +49,7 @@
 <script>
 	export default{
 		components:{
-			'search': require('../../../../ui/search-input.vue')
+			'search': require('ui/search-input.vue')
 		},
 		data(){
 			return{
@@ -77,6 +77,10 @@
 			},
 			search(){
 				this.query(true)
+			},
+			queryName(){
+				this.page.query.pageNo =1
+				this.query()
 			},
 			query(init){
 				let self = this

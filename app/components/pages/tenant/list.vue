@@ -126,7 +126,6 @@
             showMsg({dispatch}, {type:'danger', content: (res && res.errorMsg) || '未知错误'})
             return
           }
-
           self.page.loading = false
           if (res.data && res.data.result) {
             if (init) {
