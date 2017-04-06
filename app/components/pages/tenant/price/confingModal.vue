@@ -52,10 +52,14 @@
       set() {
         let id = this.origin.id
         let params = {
-          discount: parseInt(this.origin.discount ? this.origin.discount : 0 ),
-          buyoutPrice : parseInt(this.origin.buyoutPrice ? this.origin.buyoutPrice : 0)
+          discount: parseFloat(this.origin.discount ? this.origin.discount : 0 ),
+          buyoutPrice : parseFloat(this.origin.buyoutPrice ? this.origin.buyoutPrice : 0)
         }
-        $.post('config/product/discount/' + this.$route.params.uid + '/price/edit/'+ id +'?discount='+params.discount + '&buyoutPrice=' + params.buyoutPrice ,params).then((res) => {
+        if(params.discount > 1){
+          this.showMsg( { content: '折扣必须小于1', type: 'danger' })
+          return
+        }
+        $.post('config/product/discount/' + this.$route.params.uid + '/price/edit/'+ id +'?discount='+ params.discount + '&buyoutPrice=' + params.buyoutPrice ,params).then((res) => {
           if (res.success) {
             this.showMsg( { content:res.data ,type: 'success'})
           } else {

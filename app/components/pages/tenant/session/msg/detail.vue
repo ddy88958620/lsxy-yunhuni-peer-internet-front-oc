@@ -27,7 +27,7 @@
       <div class="flex flex-direction-column admin-table-header">
         <div class="flex align-items-c">
           <select v-model="page.state" class="form-control">
-            <option value="">全部</option>
+            <option value="2">全部</option>
             <option value="1">发送成功</option>
             <option value="-1">发送失败</option>
             <option value="0">未完成</option>
@@ -91,7 +91,7 @@
     data() {
       return {
         page:{
-          state:1,
+          state:2,
           mobile:''
         },
         origin:{
@@ -126,6 +126,7 @@
       },
       reset(){
         this.show = false
+        this.page.state = 2
       }
     },
   }
