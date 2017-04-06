@@ -37,8 +37,8 @@
           <td ><a v-link="'/admin/tenant/detail/'+app.tenant.id">{{app.tenant.tenantName}}</a></td>
           <td>{{app.name}}</td>
           <td>
-             <span v-if="app.serviceType == 'voice'">语音服务</span>
-             <span v-if="app.serviceType == 'msg'">消息</span>
+            <span v-if="app.serviceType == 'voice'">语音服务</span>
+            <span v-if="app.serviceType == 'msg'">消息</span>
             <span v-if="app.serviceType == 'call_center'">呼叫中心</span>
            </td>
           <td class="message-time">{{app.createTime | totalDate }}</td>
@@ -122,7 +122,7 @@
             return
           }
           this.app_res.totalCount = this.app_res.totalCount -1
-          this.getMessageNum();
+          this.getMessageNum()
           this.app_list.splice(index,1)
           this.showMsg({content: '审核通过', type: 'success'})
         })
@@ -139,7 +139,6 @@
       },
       fail(){
         let params = { reason: this.passModal.data.reason };
-        console.log(params);
         $.put('/demand/member/app/nopass/' + this.passModal.data.id ,params).then((res) => {
           if (res.success === 'false') {
             this.showMsg({content: res.errorMsg, type: 'danger'})
