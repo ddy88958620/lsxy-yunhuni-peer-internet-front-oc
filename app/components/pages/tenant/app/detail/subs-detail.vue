@@ -79,7 +79,7 @@
        
         <div class="more">
           <a v-if='origin.phone_res.currentPageNo >= origin.phone_res.totalPageCount'>加载完毕</a>
-          <a @click="query('more')" class="text-none" v-else>加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
+          <a @click="queryPhone('more')" class="text-none" v-else>加载更多<i class="icon iconfont icon-oc-dropdown"></i></a>
         </div>
       </div>
     </div>
