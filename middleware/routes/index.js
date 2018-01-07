@@ -72,15 +72,15 @@ var generate = function(){
 	return text;
 }
 router.get('/verCode', async (ctx, next) => {
-	let code = generate()
-  //调用java生成图片的接口
-	let stream = REQUEST({
-		url: prefix + '/vc/code?code='+code,
-		method: 'get'
-	})
-	ctx.session.verCode=code
-	ctx.type = `image/jpeg;charset=UTF-8`
-	ctx.body = stream
+	// let code = generate()
+  // //调用java生成图片的接口
+	// let stream = REQUEST({
+	// 	url: prefix + '/vc/code?code='+code,
+	// 	method: 'get'
+	// })
+	// ctx.session.verCode=code
+	ctx.type = `text/html`
+	ctx.body = "hello world"
 })
 
 // 同步获取 swagger doc, 保存在内在当中

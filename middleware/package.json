@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "product": "cross-env NODE_ENV=production pm2 start --name='oc-koa' bin/run",
-    "local": "cross-env NODE_ENV=local node bin/run",
+    "local": "cross-env NODE_ENV=local node $NODE_DEBUG_OPTION bin/run",
     "dev": "cross-env NODE_ENV=develop pm2 start --name='oc-koa' bin/run",
     "test": "cross-env NODE_ENV=test pm2 start --name='oc-koa' bin/run",
     "doc": "node ./doc/getDoc.js"
